@@ -16,6 +16,5 @@ namespace software_engineering_2019
         {
             InitializeComponent();
         }
-
     }
 }
