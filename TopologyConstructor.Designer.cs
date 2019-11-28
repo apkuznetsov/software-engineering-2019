@@ -1,6 +1,6 @@
 ﻿namespace software_engineering_2019
 {
-    partial class Form1
+    partial class TopologyConstructor
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,13 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.fillingStationField = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.fillingStationField)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // fillingStationField
+            // 
+            this.fillingStationField.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.fillingStationField.Location = new System.Drawing.Point(21, 54);
+            this.fillingStationField.Name = "fillingStationField";
+            this.fillingStationField.Size = new System.Drawing.Size(539, 355);
+            this.fillingStationField.TabIndex = 0;
+            // 
+            // TopologyConstructor
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.fillingStationField);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.Name = "TopologyConstructor";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.fillingStationField)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView fillingStationField;
     }
 }
 

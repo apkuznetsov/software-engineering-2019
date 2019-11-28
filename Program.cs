@@ -16,7 +16,7 @@ namespace software_engineering_2019
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new TopologyConstructor());
         }
     }
 }
