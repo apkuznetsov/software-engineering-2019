@@ -1,6 +1,10 @@
 .vs/
 obj/
 bin/
+Properties/
 
 *.csproj
 *.sln
+*.resx
+
+Properties/AssemblyInfo.cs
