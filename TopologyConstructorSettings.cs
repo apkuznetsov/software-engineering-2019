@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using software_engineering_2019.Elements;
 
 namespace software_engineering_2019
 {
@@ -23,8 +24,8 @@ namespace software_engineering_2019
             fillingStationField.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             fillingStationField.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-            fillingStationField.RowCount = Settings.MinNumOfCellsVertically;
-            fillingStationField.ColumnCount = Settings.MinNumOfCellsHorizontally;
+            fillingStationField.RowCount = Topology.MinNumOfCellsVertically;
+            fillingStationField.ColumnCount = Topology.MinNumOfCellsHorizontally;
         }
 
         private void SetCellsSize()
@@ -42,11 +43,11 @@ namespace software_engineering_2019
 
         private void SetSpinners()
         {
-            cellsHorizontally.Minimum = Settings.MinNumOfCellsHorizontally;
-            cellsHorizontally.Maximum = Settings.MaxNumOfCellsHorizontally;
+            cellsHorizontally.Minimum = Topology.MinNumOfCellsHorizontally;
+            cellsHorizontally.Maximum = Topology.MaxNumOfCellsHorizontally;
 
-            cellsVertically.Minimum = Settings.MinNumOfCellsVertically;
-            cellsVertically.Maximum = Settings.MaxNumOfCellsVertically;
+            cellsVertically.Minimum = Topology.MinNumOfCellsVertically;
+            cellsVertically.Maximum = Topology.MaxNumOfCellsVertically;
 
             cellsHorizontally.Text = fillingStationField.ColumnCount.ToString();
             cellsVertically.Text = fillingStationField.RowCount.ToString();

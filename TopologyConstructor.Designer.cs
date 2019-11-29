@@ -31,6 +31,7 @@
             this.fillingStationField = new System.Windows.Forms.DataGridView();
             this.cellsHorizontally = new System.Windows.Forms.NumericUpDown();
             this.cellsVertically = new System.Windows.Forms.NumericUpDown();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.fillingStationField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -65,11 +66,20 @@
             this.cellsVertically.TabIndex = 2;
             this.cellsVertically.ValueChanged += new System.EventHandler(this.cellsVertically_ValueChanged);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(610, 88);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 95);
+            this.listBox1.TabIndex = 3;
+            // 
             // TopologyConstructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.cellsVertically);
             this.Controls.Add(this.cellsHorizontally);
             this.Controls.Add(this.fillingStationField);
@@ -88,6 +98,7 @@
         private System.Windows.Forms.DataGridView fillingStationField;
         private System.Windows.Forms.NumericUpDown cellsHorizontally;
         private System.Windows.Forms.NumericUpDown cellsVertically;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
