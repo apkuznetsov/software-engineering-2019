@@ -16,6 +16,7 @@ namespace GasStationMs.Dal
         }
 
         public DbSet<Fuel> Fuels { get; set; }
+        public DbSet<Car> Cars { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,10 +28,16 @@ namespace GasStationMs.Dal
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new FuelConfiguration());
+            modelBuilder.ApplyConfiguration(new CarConfiguration());
 
             modelBuilder.Entity<Fuel>().HasData
             (
-               FuelPreset.GetPresetFuels()
+                FuelPreset.GetPresetFuels()
+            );
+
+            modelBuilder.Entity<Car>().HasData
+            (
+                CarPreset.GetPresetCars()
             );
         }
     }

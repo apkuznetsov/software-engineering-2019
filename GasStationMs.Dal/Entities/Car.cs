@@ -4,18 +4,14 @@ using System.Text;
 
 namespace GasStationMs.Dal.Entities
 {
-    class Fuel
+    class Car
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double Price { get; set; }
+        public int TankVolume { get; set; }
+        public bool IsTruck { get; set; }
 
-
-        public ICollection<Car> Cars { get; set; }
-
-        public Fuel()
-        {
-            Cars = new HashSet<Car>();
-        }
+        public int? FuelTypeId { get; set; }
+        public Fuel FuelType { get; set; }
     }
 }

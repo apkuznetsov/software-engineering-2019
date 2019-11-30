@@ -21,6 +21,10 @@ namespace GasStationMs.Dal.Entities.Configurations
             builder
                 .Property(f => f.Price)
                 .IsRequired();
+
+            //builder.HasMany<Car>(f => f.Cars)
+            //    .WithOne(c => c.FuelType)
+            //    .HasForeignKey(c => c.FuelTypeId);
         }
     }
 }
