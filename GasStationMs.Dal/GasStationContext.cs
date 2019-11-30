@@ -1,5 +1,6 @@
 ﻿using GasStationMs.Dal.Entities;
 using GasStationMs.Dal.Entities.Configurations;
+using GasStationMs.Dal.PresetData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -26,6 +27,11 @@ namespace GasStationMs.Dal
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new FuelConfiguration());
+
+            modelBuilder.Entity<Fuel>().HasData
+            (
+               FuelPreset.GetPresetFuels()
+            );
         }
     }
 }
