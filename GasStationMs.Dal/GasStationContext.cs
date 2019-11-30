@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GasStationMs.Dal.Entities;
+using GasStationMs.Dal.Entities.Configurations;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace GasStationMs.Dal
@@ -12,11 +14,18 @@ namespace GasStationMs.Dal
         {
         }
 
+        public DbSet<Fuel> Fuels { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
                 .UseLoggerFactory(ConsoleLoggerFactory)
                 .UseSqlServer("Server=.\\SQLEXPRESS; Initial Catalog=GasStationMs;Integrated Security=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new FuelConfiguration());
         }
     }
 }
