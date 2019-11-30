@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalModels\Fuel.cs" />
+    <Compile Include="DistributionLaw\IDistributionLaw.cs" />
     <Compile Include="Models\Cashbox.cs" />
     <Compile Include="Models\FuelDispenser.cs" />
     <Compile Include="Models\FuelTank.cs" />
