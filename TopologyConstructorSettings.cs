@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using software_engineering_2019.Models;
+using GasStationMs.App.Models;
 
-namespace software_engineering_2019
+namespace GasStationMs.App
 {
     public partial class TopologyConstructor
     {

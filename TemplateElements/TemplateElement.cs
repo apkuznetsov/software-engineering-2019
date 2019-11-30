@@ -1,4 +1,4 @@
-﻿namespace software_engineering_2019.TemplateElements
+﻿namespace GasStationMs.App.TemplateElements
 {
     public abstract class TemplateElement
     {

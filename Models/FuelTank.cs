@@ -1,7 +1,7 @@
 ﻿using System;
-using software_engineering_2019.AdditionalModels;
+using GasStationMs.App.AdditionalModels;
 
-namespace software_engineering_2019.Models
+namespace GasStationMs.App.Models
 {
     public class FuelTank
     {

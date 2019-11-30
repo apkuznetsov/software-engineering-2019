@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace software_engineering_2019
+namespace GasStationMs.App
 {
     static class Program
     {

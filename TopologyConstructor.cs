@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace software_engineering_2019
+namespace GasStationMs.App
 {
     public partial class TopologyConstructor : Form
     {

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B0D3DBE4-5121-4BE7-A0C9-F1CF1E309ABC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>software_engineering_2019</RootNamespace>
-    <AssemblyName>software_engineering_2019</AssemblyName>
+    <RootNamespace>GasStationMs.App</RootNamespace>
+    <AssemblyName>GasStationMs.App</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -76,6 +76,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

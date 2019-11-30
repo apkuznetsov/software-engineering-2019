@@ -1,4 +1,4 @@
-﻿namespace software_engineering_2019.Models
+﻿namespace GasStationMs.App.Models
 {
     public class Cashbox
     {

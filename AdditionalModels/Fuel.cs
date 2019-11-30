@@ -1,4 +1,4 @@
-﻿namespace software_engineering_2019.AdditionalModels
+﻿namespace GasStationMs.App.AdditionalModels
 {
     public class Fuel
     {

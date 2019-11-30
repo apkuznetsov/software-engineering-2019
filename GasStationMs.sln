@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "software_engineering_2019", "software_engineering_2019.csproj", "{B0D3DBE4-5121-4BE7-A0C9-F1CF1E309ABC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasStationMs.App", "GasStationMs.App.csproj", "{B0D3DBE4-5121-4BE7-A0C9-F1CF1E309ABC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

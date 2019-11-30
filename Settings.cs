@@ -1,4 +1,4 @@
-﻿namespace software_engineering_2019
+﻿namespace GasStationMs.App
 {
     public static class Settings
     {
