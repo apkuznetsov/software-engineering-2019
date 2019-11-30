@@ -9,7 +9,7 @@
             this.name = name;
         }
 
-        public string FuelType
+        public string Type
         {
             get
             {
