@@ -15,10 +15,10 @@ namespace GasStationMs.App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Bootstrap();
-            Application.Run(container.GetInstance<TopologyConstructor>());
+            //Application.Run(container.GetInstance<TopologyConstructor>());
 
             //Так будет выглядеть запуск приложения в будущем
-            //Application.Run(new Form1(container));
+            Application.Run(new Start(container));
         }
 
         private static void Bootstrap()
