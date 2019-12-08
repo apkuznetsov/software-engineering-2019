@@ -24,8 +24,16 @@ namespace GasStationMs.App
             fillingStationField.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             fillingStationField.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
+            
+ //           fillingStationField.ColumnCount = Topology.MinNumOfCellsHorizontally;
+
+            
+            for (int i = 0; i < Topology.MinNumOfCellsHorizontally; i++)
+            {
+                DataGridViewImageColumn dgColMemos = new DataGridViewImageColumn(true);
+                fillingStationField.Columns.Add(dgColMemos);
+                    }
             fillingStationField.RowCount = Topology.MinNumOfCellsVertically;
-            fillingStationField.ColumnCount = Topology.MinNumOfCellsHorizontally;
         }
 
         private void SetCellsSize()

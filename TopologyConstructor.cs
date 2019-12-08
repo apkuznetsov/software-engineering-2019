@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasStationMs.App.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,5 +31,27 @@ namespace GasStationMs.App
             fillingStationField.RowCount = (int)cellsVertically.Value;
         }
         #endregion
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        
+
+        private void fillingStationField_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            DataGridViewImageCell cell = (DataGridViewImageCell)fillingStationField.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+            if (cell.Value == null)
+            {
+                cell.Value = FuelDispenser.icon;
+            }
+            
+        }
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
