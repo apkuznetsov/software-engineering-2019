@@ -93,9 +93,49 @@ namespace GasStationMs.App.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fuel1 {
+            get {
+                object obj = ResourceManager.GetObject("fuel1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fuel2 {
+            get {
+                object obj = ResourceManager.GetObject("fuel2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FuelTank {
             get {
                 object obj = ResourceManager.GetObject("FuelTank", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_oil_storage_tank_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-oil-storage-tank-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_oil_storage_tank_64_photo_resizer_ru {
+            get {
+                object obj = ResourceManager.GetObject("icons8-oil-storage-tank-64_photo-resizer.ru", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

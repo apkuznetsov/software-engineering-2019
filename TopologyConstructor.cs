@@ -46,14 +46,50 @@ namespace GasStationMs.App
 
             DataGridViewImageCell cell = (DataGridViewImageCell)fillingStationField.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
+
+            if (Controls.OfType<RadioButton>().Any(x => x.Checked))
+            {
+                cell.Value = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked).Image;
+
+            }
             
-                cell.Value = FuelDispenser.icon;
             
             
         }
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        
+        bool isCheckedradioButtonFuelDisplenser = false;
+        private void radioButtonFuelDisplenser_CheckedChanged(object sender, EventArgs e)
         {
-            
+            isCheckedradioButtonFuelDisplenser = radioButtonFuelDisplenser.Checked;
         }
+
+        private void radioButtonFuelDisplenser_Click(object sender, EventArgs e)
+        {
+            if (radioButtonFuelDisplenser.Checked && !isCheckedradioButtonFuelDisplenser)
+                radioButtonFuelDisplenser.Checked = false;
+            else
+            {
+                radioButtonFuelDisplenser.Checked = true;
+                isCheckedradioButtonFuelDisplenser = false;
+            }
+        }
+
+        bool isCheckedradioButtonFuelTank = false;
+        private void radioButtonFuelTank_CheckedChanged(object sender, EventArgs e)
+        {
+            isCheckedradioButtonFuelTank = radioButtonFuelTank.Checked;
+        }
+
+        private void radioButtonFuelTank_Click(object sender, EventArgs e)
+        {
+            if (radioButtonFuelTank.Checked && !isCheckedradioButtonFuelTank)
+                radioButtonFuelTank.Checked = false;
+            else
+            {
+                radioButtonFuelTank.Checked = true;
+                isCheckedradioButtonFuelTank = false;
+            }
+        }
+
     }
 }
