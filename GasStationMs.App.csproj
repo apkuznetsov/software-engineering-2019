@@ -94,6 +94,11 @@
   <ItemGroup>
     <Content Include=".gitignore" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="GasStationMs.Dal\GasStationMs.Dal.csproj">
+      <Project>{b44b95bb-6b38-4f66-a554-5072a063815e}</Project>
+      <Name>GasStationMs.Dal</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

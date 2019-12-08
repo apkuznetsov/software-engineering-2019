@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
+using GasStationMs.Dal;
 
 namespace GasStationMs.App
 {
