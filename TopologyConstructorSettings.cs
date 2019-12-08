@@ -9,7 +9,6 @@ namespace GasStationMs.App
         {
             SetField();
             SetCellsSize();
-
             SetSpinners();
         }
 
@@ -27,25 +26,19 @@ namespace GasStationMs.App
             
             for (int i = 0; i < Topology.MinNumOfCellsHorizontally; i++)
             {
-               // DataGridViewImageColumn DataGridViewImageColumn = new DataGridViewImageColumn(true);
+               
                 fillingStationField.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
-            }// Blank - белый цвет 30 на 30 и нет проблем с размерами
-            
+            }
             fillingStationField.RowCount = Topology.MinNumOfCellsVertically;
-            
-            // remove default [x] image for data DataGridViewImageColumn columns
-            //foreach (DataGridViewImageColumn column in fillingStationField.Columns)
-            //{                
-            //        column.DefaultCellStyle.NullValue = null;// почему блять не работает для последнего ряда?
-            //}
 
-            //DataGridViewRow row = fillingStationField.RowTemplate;
-            //row.DefaultCellStyle.NullValue = null;
+            
+
+
+
         }
 
         private void SetCellsSize() 
-            // чото с imagecolumncell не работает ни фига при создании грида - делает 20 на20,
-            // размер ячейки получают от Blank
+            
         {
             for (int i = 0; i < fillingStationField.ColumnCount; i++)
             {
