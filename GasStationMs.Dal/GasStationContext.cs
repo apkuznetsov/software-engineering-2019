@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace GasStationMs.Dal
 {
-    class GasStationContext : DbContext
+    public class GasStationContext : DbContext
     {
         public static readonly ILoggerFactory ConsoleLoggerFactory =
             new LoggerFactory().AddConsole(LogLevel.Information);
