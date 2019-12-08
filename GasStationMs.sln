@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GasStationMs.Dal", "GasStat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasStationMs.Bll", "GasStationMs.Bll\GasStationMs.Bll.csproj", "{BAFEC30C-6E78-4D9D-B008-93F3362B492A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasStationMs.CommonLayer", "GasStationMs.CommonLayer\GasStationMs.CommonLayer.csproj", "{44032916-8503-4B2C-9391-F1656A4A4D7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BAFEC30C-6E78-4D9D-B008-93F3362B492A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAFEC30C-6E78-4D9D-B008-93F3362B492A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAFEC30C-6E78-4D9D-B008-93F3362B492A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44032916-8503-4B2C-9391-F1656A4A4D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44032916-8503-4B2C-9391-F1656A4A4D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44032916-8503-4B2C-9391-F1656A4A4D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44032916-8503-4B2C-9391-F1656A4A4D7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
