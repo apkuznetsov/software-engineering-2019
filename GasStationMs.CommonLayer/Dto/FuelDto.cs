@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GasStationMs.CommonLayer.Dto
 {
-    class FuelDto
+    public class FuelDto
     {
         public int? Id { get; set; }
         public string Name { get; set; }
