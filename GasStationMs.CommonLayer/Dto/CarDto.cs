@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GasStationMs.Dal.Entities
+namespace GasStationMs.CommonLayer.Dto
 {
-    public class Car
+    public class CarDto
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Name { get; set; }
         public int TankVolume { get; set; }
         public bool IsTruck { get; set; }
-
-        public int? FuelTypeId { get; set; }
-        public Fuel FuelType { get; set; }
+        public string FuelTypeName { get; set; }
     }
 }
