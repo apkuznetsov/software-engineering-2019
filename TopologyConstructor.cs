@@ -24,11 +24,14 @@ namespace GasStationMs.App
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
             fillingStationField.ColumnCount = (int)cellsHorizontally.Value;
+            // передалать потому что добавляются текст колонки а не imagecolumn
+            
         }
 
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
         {
             fillingStationField.RowCount = (int)cellsVertically.Value;
+            // добавляем и удаляем предпоследний ряд а не последний 
         }
         #endregion
 
@@ -43,10 +46,9 @@ namespace GasStationMs.App
 
             DataGridViewImageCell cell = (DataGridViewImageCell)fillingStationField.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-            if (cell.Value == null)
-            {
+            
                 cell.Value = FuelDispenser.icon;
-            }
+            
             
         }
         private void toolStripButton1_Click(object sender, EventArgs e)

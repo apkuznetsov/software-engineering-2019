@@ -9,6 +9,8 @@ namespace GasStationMs.App.Models
 
         public static readonly int MinFuelFeedRateInLitersPerMinute = 25;
         public static readonly int MaxFuelFeedRateInLitersPerMinute = 160;
-        public static Icon icon = new Icon(Properties.Resources.fuel, Settings.CellSizeInPx, Settings.CellSizeInPx);
+        
+        static Bitmap bm = new Bitmap(Properties.Resources.fuel, Settings.CellSizeInPx, Settings.CellSizeInPx);
+        public static Icon icon = Icon.FromHandle(bm.GetHicon());
     }
 }

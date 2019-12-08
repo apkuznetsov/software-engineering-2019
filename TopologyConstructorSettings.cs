@@ -25,22 +25,31 @@ namespace GasStationMs.App
             fillingStationField.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             
- //           fillingStationField.ColumnCount = Topology.MinNumOfCellsHorizontally;
-
-            
             for (int i = 0; i < Topology.MinNumOfCellsHorizontally; i++)
             {
-                DataGridViewImageColumn dgColMemos = new DataGridViewImageColumn(true);
-                fillingStationField.Columns.Add(dgColMemos);
-                    }
+               // DataGridViewImageColumn DataGridViewImageColumn = new DataGridViewImageColumn(true);
+                fillingStationField.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
+            }// Blank - белый цвет 30 на 30 и нет проблем с размерами
+            
             fillingStationField.RowCount = Topology.MinNumOfCellsVertically;
+            
+            // remove default [x] image for data DataGridViewImageColumn columns
+            //foreach (DataGridViewImageColumn column in fillingStationField.Columns)
+            //{                
+            //        column.DefaultCellStyle.NullValue = null;// почему блять не работает для последнего ряда?
+            //}
+
+            //DataGridViewRow row = fillingStationField.RowTemplate;
+            //row.DefaultCellStyle.NullValue = null;
         }
 
-        private void SetCellsSize()
+        private void SetCellsSize() 
+            // чото с imagecolumncell не работает ни фига при создании грида - делает 20 на20,
+            // размер ячейки получают от Blank
         {
             for (int i = 0; i < fillingStationField.ColumnCount; i++)
             {
-                fillingStationField.Columns[i].Width = Settings.CellSizeInPx;
+                fillingStationField.Columns[i].Width = Settings.CellSizeInPx; 
             }
 
             for (int j = 0; j < fillingStationField.RowCount; j++)
