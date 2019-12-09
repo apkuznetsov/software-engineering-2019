@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace GasStationMs.App {
+namespace GasStationMs.App.DB {
     
     
     /// <summary>
@@ -648,7 +648,7 @@ namespace GasStationMs.App {
         }
     }
 }
-namespace GasStationMs.App.GasStationMsDBDataSetTableAdapters {
+namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
     
     
     /// <summary>

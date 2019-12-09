@@ -66,8 +66,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalModels\Fuel.cs" />
+    <Compile Include="AdditionalModels\FueulView.cs" />
     <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DistributionLaw\IDistributionLaw.cs" />
+    <Compile Include="DB\GasStationMsDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cashbox.cs" />
     <Compile Include="Models\FuelDispenser.cs" />
     <Compile Include="Models\FuelTank.cs" />
@@ -109,6 +115,17 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="DB\GasStationMsDBDataSet.xsc">
+      <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DB\GasStationMsDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GasStationMsDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB\GasStationMsDBDataSet.xss">
+      <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,11 +139,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="GasStationMsDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="DB\GasStationMsDB.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="GasStationMsDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="DB\GasStationMsDB_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
     <None Include="Resources\icons8-oil-storage-tank-64_photo-resizer.ru.png" />
