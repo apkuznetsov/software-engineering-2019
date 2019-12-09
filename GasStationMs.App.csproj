@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalModels\Fuel.cs" />
+    <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DistributionLaw\IDistributionLaw.cs" />
     <Compile Include="Models\Cashbox.cs" />
     <Compile Include="Models\FuelDispenser.cs" />
@@ -106,6 +107,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="Resources\icons8-oil-storage-tank-64_photo-resizer.ru.png" />
+    <None Include="Resources\icons8-oil-storage-tank-641.png" />
+    <None Include="Resources\fuel1.ico" />
+    <None Include="Resources\fuel1.jpg" />
+    <None Include="Resources\Blank.png" />
+    <None Include="Resources\icons8-cash-counter-64.png" />
+    <None Include="Resources\fuel.jpg" />
+    <None Include="Resources\icons8-oil-storage-tank-64.png" />
+    <None Include="Resources\FuelTank.ico" />
+    <None Include="Resources\fuel.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="GasStationMs.Dal\GasStationMs.Dal.csproj">

@@ -1,5 +1,6 @@
 ﻿using System;
 using GasStationMs.App.AdditionalModels;
+using System.Drawing;
 
 namespace GasStationMs.App.Models
 {
@@ -8,6 +9,9 @@ namespace GasStationMs.App.Models
         public static readonly int MinVolumeInLiters = 10000;
         public static readonly int MaxVolumeInLiters = 75000;
         public static readonly double CriticalVolumeForRefuelingInShares = 0.15;
+
+        static Bitmap bm = new Bitmap(Properties.Resources.FuelTank, Settings.CellSizeInPx, Settings.CellSizeInPx);
+        public static Icon icon = Icon.FromHandle(bm.GetHicon());
 
         private int volume;
         private int criticalVolume;

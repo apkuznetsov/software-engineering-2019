@@ -9,7 +9,6 @@ namespace GasStationMs.App
         {
             SetField();
             SetCellsSize();
-
             SetSpinners();
         }
 
@@ -24,15 +23,26 @@ namespace GasStationMs.App
             fillingStationField.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             fillingStationField.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
+            
+            for (int i = 0; i < Topology.MinNumOfCellsHorizontally; i++)
+            {
+               
+                fillingStationField.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
+            }
             fillingStationField.RowCount = Topology.MinNumOfCellsVertically;
-            fillingStationField.ColumnCount = Topology.MinNumOfCellsHorizontally;
+
+            
+
+
+
         }
 
-        private void SetCellsSize()
+        private void SetCellsSize() 
+            
         {
             for (int i = 0; i < fillingStationField.ColumnCount; i++)
             {
-                fillingStationField.Columns[i].Width = Settings.CellSizeInPx;
+                fillingStationField.Columns[i].Width = Settings.CellSizeInPx; 
             }
 
             for (int j = 0; j < fillingStationField.RowCount; j++)

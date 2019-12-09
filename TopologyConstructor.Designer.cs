@@ -32,6 +32,8 @@
             this.cellsHorizontally = new System.Windows.Forms.NumericUpDown();
             this.cellsVertically = new System.Windows.Forms.NumericUpDown();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.radioButtonFuelDisplenser = new System.Windows.Forms.RadioButton();
+            this.radioButtonFuelTank = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.fillingStationField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -49,6 +51,7 @@
             this.fillingStationField.Name = "fillingStationField";
             this.fillingStationField.Size = new System.Drawing.Size(539, 355);
             this.fillingStationField.TabIndex = 0;
+            this.fillingStationField.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fillingStationField_CellClick);
             // 
             // cellsHorizontally
             // 
@@ -69,16 +72,47 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(610, 88);
+            this.listBox1.Location = new System.Drawing.Point(605, 183);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 95);
             this.listBox1.TabIndex = 3;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // radioButtonFuelDisplenser
+            // 
+            this.radioButtonFuelDisplenser.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButtonFuelDisplenser.AutoSize = true;
+            this.radioButtonFuelDisplenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
+            this.radioButtonFuelDisplenser.Location = new System.Drawing.Point(605, 54);
+            this.radioButtonFuelDisplenser.Name = "radioButtonFuelDisplenser";
+            this.radioButtonFuelDisplenser.Size = new System.Drawing.Size(38, 38);
+            this.radioButtonFuelDisplenser.TabIndex = 6;
+            this.radioButtonFuelDisplenser.TabStop = true;
+            this.radioButtonFuelDisplenser.UseVisualStyleBackColor = true;
+            this.radioButtonFuelDisplenser.CheckedChanged += new System.EventHandler(this.radioButtonFuelDisplenser_CheckedChanged);
+            this.radioButtonFuelDisplenser.Click += new System.EventHandler(this.radioButtonFuelDisplenser_Click);
+            // 
+            // radioButtonFuelTank
+            // 
+            this.radioButtonFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButtonFuelTank.AutoSize = true;
+            this.radioButtonFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
+            this.radioButtonFuelTank.Location = new System.Drawing.Point(649, 56);
+            this.radioButtonFuelTank.Name = "radioButtonFuelTank";
+            this.radioButtonFuelTank.Size = new System.Drawing.Size(36, 36);
+            this.radioButtonFuelTank.TabIndex = 7;
+            this.radioButtonFuelTank.TabStop = true;
+            this.radioButtonFuelTank.UseVisualStyleBackColor = true;
+            this.radioButtonFuelTank.CheckedChanged += new System.EventHandler(this.radioButtonFuelTank_CheckedChanged);
+            this.radioButtonFuelTank.Click += new System.EventHandler(this.radioButtonFuelTank_Click);
             // 
             // TopologyConstructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.radioButtonFuelTank);
+            this.Controls.Add(this.radioButtonFuelDisplenser);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.cellsVertically);
             this.Controls.Add(this.cellsHorizontally);
@@ -90,6 +124,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -99,6 +134,8 @@
         private System.Windows.Forms.NumericUpDown cellsHorizontally;
         private System.Windows.Forms.NumericUpDown cellsVertically;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.RadioButton radioButtonFuelDisplenser;
+        private System.Windows.Forms.RadioButton radioButtonFuelTank;
     }
 }
 
