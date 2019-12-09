@@ -22,5 +22,16 @@ namespace GasStationMs.App.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\GasStationMsD" +
+            "B.mdf;Integrated Security=True;Current Language=Russian")]
+        public string GasStationMsDBConnectionString {
+            get {
+                return ((string)(this["GasStationMsDBConnectionString"]));
+            }
+        }
     }
 }
