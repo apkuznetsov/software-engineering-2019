@@ -69,6 +69,7 @@
     <Compile Include="AdditionalModels\FueulView.cs" />
     <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
+    <Compile Include="DB\CrudHelper.cs" />
     <Compile Include="DistributionLaw\IDistributionLaw.cs" />
     <Compile Include="DB\GasStationMsDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
