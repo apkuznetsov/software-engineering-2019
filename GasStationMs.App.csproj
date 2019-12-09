@@ -13,6 +13,21 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,8 +66,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalModels\Fuel.cs" />
+    <Compile Include="AdditionalModels\FueulView.cs" />
     <Compile Include="CustomImageColumn.cs" />
+    <Compile Include="DB\ConnectionHelpers.cs" />
+    <Compile Include="DB\CrudHelper.cs" />
     <Compile Include="DistributionLaw\IDistributionLaw.cs" />
+    <Compile Include="DB\GasStationMsDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cashbox.cs" />
     <Compile Include="Models\FuelDispenser.cs" />
     <Compile Include="Models\FuelTank.cs" />
@@ -94,6 +117,17 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="DB\GasStationMsDBDataSet.xsc">
+      <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DB\GasStationMsDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GasStationMsDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB\GasStationMsDBDataSet.xss">
+      <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -107,6 +141,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="DB\GasStationMsDB.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DB\GasStationMsDB_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>GasStationMsDB.mdf</DependentUpon>
+    </Content>
     <None Include="Resources\icons8-oil-storage-tank-64_photo-resizer.ru.png" />
     <None Include="Resources\icons8-oil-storage-tank-641.png" />
     <None Include="Resources\fuel1.ico" />
@@ -123,6 +164,18 @@
       <Project>{b44b95bb-6b38-4f66-a554-5072a063815e}</Project>
       <Name>GasStationMs.Dal</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
