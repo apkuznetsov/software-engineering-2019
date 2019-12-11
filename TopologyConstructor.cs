@@ -80,6 +80,18 @@ namespace GasStationMs.App
                         MessageBox.Show("невозможно добавить ТРК");
                     }
                 }
+                else if (radioButton.Name == "radioButtonFuelTank")
+                {
+                    if (Topology.CanAddFuelTank())
+                    {
+                        cell.Value = radioButton.Image;
+                        Topology.AddFuelTank();
+                    }
+                    else
+                    {
+                        MessageBox.Show("невозможно добавить ТБ");
+                    }
+                }
                 else
                 {
                     cell.Value = radioButton.Image;
