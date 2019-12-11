@@ -31,6 +31,7 @@ namespace GasStationMs.App.Models
         #region поля
         private static int numOfCellsHorizontally;
         private static int numOfCellsVertically;
+        private static int numOfFuelTanks;
         #endregion
 
         #region свойства
@@ -75,6 +76,30 @@ namespace GasStationMs.App.Models
                 }
 
                 numOfCellsVertically = value;
+            }
+        }
+
+        public static int NumOfFuelTanks
+        {
+            get
+            {
+                return numOfFuelTanks;
+            }
+
+            set
+            {
+                if (numOfFuelTanks < MinNumberOfFuelTanks)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                int maxNumb = (int)(numOfCellsHorizontally * numOfCellsVertically * ServiceAreaInShares);
+                if (numOfFuelTanks > maxNumb)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                numOfFuelTanks = value;
             }
         }
 
