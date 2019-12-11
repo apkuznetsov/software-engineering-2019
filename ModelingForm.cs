@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,11 +20,22 @@ namespace GasStationMs.App
         private bool _paused;
         private readonly Random _rnd = new Random();
 
+        #region TopologyElements
+
+        private PictureBox _cashCounter;
+        private PictureBox _enter;
+        private PictureBox _exit;
+        private List<PictureBox> _fuelDispensersList = new List<PictureBox>();
+        private List<PictureBox> _fuelTanksList = new List<PictureBox>();
+
+        #endregion /TopologyElements
+
         public ModelingForm()
         {
             InitializeComponent();
 
             this.Controls.Remove(pictureBoxCar);
+            MapTopology();
             
         }
 
@@ -133,5 +144,26 @@ namespace GasStationMs.App
         }
 
         #endregion CarLogic
+
+        #region TopologyMappingLogic
+
+        private void MapTopology(/*int[][] topology*/)
+        {
+            //CreateCashCounter();
+            //CreateEnter();
+            //CreateExit();
+            //CreateFuelDispenser();
+            //CreateFuelTank();
+
+            _cashCounter = pictureBoxCashCounter;
+            _enter = pictureBoxEnter;
+            _exit = pictureBoxExit;
+            _fuelDispensersList.Add(pictureBoxFuelDispenser1);
+            _fuelDispensersList.Add(pictureBoxFuelDispenser2);
+            _fuelTanksList.Add(pictureBoxFuelTank1);
+            _fuelTanksList.Add(pictureBoxFuelTank2);
+        }
+
+        #endregion /TopologyMappingLogic
     }
 }

@@ -103,22 +103,24 @@
             // pictureBoxFuelDispenser2
             // 
             this.pictureBoxFuelDispenser2.Image = global::GasStationMs.App.Properties.Resources.dispenser70;
-            this.pictureBoxFuelDispenser2.Location = new System.Drawing.Point(234, 212);
+            this.pictureBoxFuelDispenser2.Location = new System.Drawing.Point(234, 230);
             this.pictureBoxFuelDispenser2.Name = "pictureBoxFuelDispenser2";
             this.pictureBoxFuelDispenser2.Size = new System.Drawing.Size(70, 70);
             this.pictureBoxFuelDispenser2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxFuelDispenser2.TabIndex = 2;
             this.pictureBoxFuelDispenser2.TabStop = false;
+            this.pictureBoxFuelDispenser2.Tag = "fuelDispenser";
             // 
             // pictureBoxFuelDispenser1
             // 
             this.pictureBoxFuelDispenser1.Image = global::GasStationMs.App.Properties.Resources.dispenser70;
-            this.pictureBoxFuelDispenser1.Location = new System.Drawing.Point(234, 79);
+            this.pictureBoxFuelDispenser1.Location = new System.Drawing.Point(234, 30);
             this.pictureBoxFuelDispenser1.Name = "pictureBoxFuelDispenser1";
             this.pictureBoxFuelDispenser1.Size = new System.Drawing.Size(70, 70);
             this.pictureBoxFuelDispenser1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxFuelDispenser1.TabIndex = 1;
             this.pictureBoxFuelDispenser1.TabStop = false;
+            this.pictureBoxFuelDispenser1.Tag = "fuelDispenser";
             // 
             // timerModeling
             // 
@@ -134,6 +136,7 @@
             this.pictureBoxEnter.Size = new System.Drawing.Size(92, 24);
             this.pictureBoxEnter.TabIndex = 5;
             this.pictureBoxEnter.TabStop = false;
+            this.pictureBoxEnter.Tag = "enter";
             // 
             // pictureBoxExit
             // 
@@ -143,6 +146,7 @@
             this.pictureBoxExit.Size = new System.Drawing.Size(92, 24);
             this.pictureBoxExit.TabIndex = 6;
             this.pictureBoxExit.TabStop = false;
+            this.pictureBoxExit.Tag = "exit";
             // 
             // ModelingForm
             // 
