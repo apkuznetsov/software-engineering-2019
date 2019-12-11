@@ -105,8 +105,8 @@
             this.pictureBoxFuelDispenser2.Image = global::GasStationMs.App.Properties.Resources.dispenser70;
             this.pictureBoxFuelDispenser2.Location = new System.Drawing.Point(234, 230);
             this.pictureBoxFuelDispenser2.Name = "pictureBoxFuelDispenser2";
-            this.pictureBoxFuelDispenser2.Size = new System.Drawing.Size(70, 70);
-            this.pictureBoxFuelDispenser2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxFuelDispenser2.Size = new System.Drawing.Size(50, 50);
+            this.pictureBoxFuelDispenser2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxFuelDispenser2.TabIndex = 2;
             this.pictureBoxFuelDispenser2.TabStop = false;
             this.pictureBoxFuelDispenser2.Tag = "fuelDispenser";
@@ -116,8 +116,8 @@
             this.pictureBoxFuelDispenser1.Image = global::GasStationMs.App.Properties.Resources.dispenser70;
             this.pictureBoxFuelDispenser1.Location = new System.Drawing.Point(234, 30);
             this.pictureBoxFuelDispenser1.Name = "pictureBoxFuelDispenser1";
-            this.pictureBoxFuelDispenser1.Size = new System.Drawing.Size(70, 70);
-            this.pictureBoxFuelDispenser1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxFuelDispenser1.Size = new System.Drawing.Size(50, 50);
+            this.pictureBoxFuelDispenser1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxFuelDispenser1.TabIndex = 1;
             this.pictureBoxFuelDispenser1.TabStop = false;
             this.pictureBoxFuelDispenser1.Tag = "fuelDispenser";
