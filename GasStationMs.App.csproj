@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalModels\Fuel.cs" />
-    <Compile Include="AdditionalModels\FueulView.cs" />
+    <Compile Include="AdditionalModels\FuelView.cs" />
     <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
@@ -77,6 +77,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
     </Compile>
+
+    <Compile Include="ModelingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelingForm.Designer.cs">
+      <DependentUpon>ModelingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modeling\Models\CarView.cs" />
     <Compile Include="DistributionLaws\NormalDistribution.cs" />
     <Compile Include="DistributionLaws\UniformDistribution.cs" />
     <Compile Include="Models\Cashbox.cs" />
@@ -103,6 +111,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="ModelingForm.resx">
+      <DependentUpon>ModelingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +162,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Cars\car.png" />
+    <None Include="Resources\Cars\car%2864x34%29.png" />
+    <None Include="Resources\dispenser70.png" />
     <None Include="Resources\icons8-oil-storage-tank-64_photo-resizer.ru.png" />
     <None Include="Resources\icons8-oil-storage-tank-641.png" />
     <None Include="Resources\fuel1.ico" />
@@ -180,5 +194,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
