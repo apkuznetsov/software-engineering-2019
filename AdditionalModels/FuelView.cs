@@ -1,4 +1,4 @@
-﻿namespace GasStationMs.Dal
+﻿namespace GasStationMs.App
 {
     public class FuelView
     {
