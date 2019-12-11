@@ -16,7 +16,7 @@ namespace GasStationMs.App.DistributionLaws
             this.lambda = lambda;
         }
 
-        public int Lambda { get; }
+        public double Lambda { get; }
 
         public double GetRandNumber()
         {
