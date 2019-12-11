@@ -28,9 +28,12 @@ namespace GasStationMs.App.Models
             (int)(MaxNumOfCellsHorizontally * MaxNumOfCellsVertically * ServiceAreaInShares);
         #endregion
 
+        #region поля
         private static int numOfCellsHorizontally;
         private static int numOfCellsVertically;
+        #endregion
 
+        #region свойства
         public static int NumOfCellsHorizontally
         {
             get
@@ -74,5 +77,38 @@ namespace GasStationMs.App.Models
                 numOfCellsVertically = value;
             }
         }
+
+        public static int NumOfAdjacentRoads
+        {
+            get
+            {
+                return MinAndMaxNumOfAdjacentRoads;
+            }
+        }
+
+        public static int NumOfEntries
+        {
+            get
+            {
+                return MinAndMaxNumOfEntries;
+            }
+        }
+
+        public static int NumOfExits
+        {
+            get
+            {
+                return MinAndMaxNumOfExits;
+            }
+        }
+
+        public static int NumOfCashboxes
+        {
+            get
+            {
+                return MinAndMaxNumOfCashboxes;
+            }
+        }
+        #endregion
     }
 }
