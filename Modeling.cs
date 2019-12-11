@@ -16,5 +16,10 @@ namespace GasStationMs.App
         {
             InitializeComponent();
         }
+
+        private void TimerModeling_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

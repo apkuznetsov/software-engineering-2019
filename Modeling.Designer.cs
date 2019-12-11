@@ -28,20 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelServiceArea = new System.Windows.Forms.Panel();
+            this.pictureBoxFuelTank2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxFuelTank1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCashCounter = new System.Windows.Forms.PictureBox();
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.pictureBoxFuelDispenser2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxFuelDispenser1 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxFuelTank2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxFuelTank1 = new System.Windows.Forms.PictureBox();
+            this.timerModeling = new System.Windows.Forms.Timer(this.components);
             this.panelServiceArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCashCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelServiceArea
@@ -53,6 +55,26 @@
             this.panelServiceArea.Name = "panelServiceArea";
             this.panelServiceArea.Size = new System.Drawing.Size(245, 359);
             this.panelServiceArea.TabIndex = 0;
+            // 
+            // pictureBoxFuelTank2
+            // 
+            this.pictureBoxFuelTank2.Image = global::GasStationMs.App.Properties.Resources.FuelTank;
+            this.pictureBoxFuelTank2.Location = new System.Drawing.Point(147, 218);
+            this.pictureBoxFuelTank2.Name = "pictureBoxFuelTank2";
+            this.pictureBoxFuelTank2.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxFuelTank2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxFuelTank2.TabIndex = 1;
+            this.pictureBoxFuelTank2.TabStop = false;
+            // 
+            // pictureBoxFuelTank1
+            // 
+            this.pictureBoxFuelTank1.Image = global::GasStationMs.App.Properties.Resources.FuelTank;
+            this.pictureBoxFuelTank1.Location = new System.Drawing.Point(147, 60);
+            this.pictureBoxFuelTank1.Name = "pictureBoxFuelTank1";
+            this.pictureBoxFuelTank1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxFuelTank1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxFuelTank1.TabIndex = 0;
+            this.pictureBoxFuelTank1.TabStop = false;
             // 
             // pictureBoxCashCounter
             // 
@@ -94,25 +116,11 @@
             this.pictureBoxFuelDispenser1.TabIndex = 1;
             this.pictureBoxFuelDispenser1.TabStop = false;
             // 
-            // pictureBoxFuelTank2
+            // timerModeling
             // 
-            this.pictureBoxFuelTank2.Image = global::GasStationMs.App.Properties.Resources.FuelTank;
-            this.pictureBoxFuelTank2.Location = new System.Drawing.Point(147, 218);
-            this.pictureBoxFuelTank2.Name = "pictureBoxFuelTank2";
-            this.pictureBoxFuelTank2.Size = new System.Drawing.Size(64, 64);
-            this.pictureBoxFuelTank2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBoxFuelTank2.TabIndex = 1;
-            this.pictureBoxFuelTank2.TabStop = false;
-            // 
-            // pictureBoxFuelTank1
-            // 
-            this.pictureBoxFuelTank1.Image = global::GasStationMs.App.Properties.Resources.FuelTank;
-            this.pictureBoxFuelTank1.Location = new System.Drawing.Point(147, 60);
-            this.pictureBoxFuelTank1.Name = "pictureBoxFuelTank1";
-            this.pictureBoxFuelTank1.Size = new System.Drawing.Size(64, 64);
-            this.pictureBoxFuelTank1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBoxFuelTank1.TabIndex = 0;
-            this.pictureBoxFuelTank1.TabStop = false;
+            this.timerModeling.Enabled = true;
+            this.timerModeling.Interval = 20;
+            this.timerModeling.Tick += new System.EventHandler(this.TimerModeling_Tick);
             // 
             // Modeling
             // 
@@ -129,12 +137,12 @@
             this.Text = "Modeling";
             this.panelServiceArea.ResumeLayout(false);
             this.panelServiceArea.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCashCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,5 +157,6 @@
         private System.Windows.Forms.PictureBox pictureBoxCashCounter;
         private System.Windows.Forms.PictureBox pictureBoxFuelTank2;
         private System.Windows.Forms.PictureBox pictureBoxFuelTank1;
+        private System.Windows.Forms.Timer timerModeling;
     }
 }
