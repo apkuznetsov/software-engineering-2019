@@ -1,5 +1,5 @@
-﻿using System;
-using GasStationMs.App.DistributionLaw;
+using System;
+using GasStationMs.App.DistributionLaws;
 
 namespace GasStationMs.App.Models
 {

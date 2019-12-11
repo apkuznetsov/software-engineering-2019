@@ -1,18 +1,18 @@
 ﻿namespace GasStationMs.App
 {
-    public class FuelView
+    public class FuelModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
 
-        public FuelView(string name, double price)
+        public FuelModel(string name, double price)
         {
             Name = name;
             Price = price;
         }
 
-        public FuelView(int id, string name, double price)
+        public FuelModel(int id, string name, double price)
         {
             Id = id;
             Name = name;

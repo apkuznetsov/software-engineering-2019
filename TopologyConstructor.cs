@@ -154,7 +154,7 @@ namespace GasStationMs.App
 
             // Create second column.
             column = new DataColumn();
-            column.DataType = typeof(FuelView);
+            column.DataType = typeof(FuelModel);
             column.ColumnName = "Fuel";
             column.AutoIncrement = false;
             column.Caption = "Fuel";
@@ -170,7 +170,7 @@ namespace GasStationMs.App
                 var name = dataTableRow["Name"].ToString();
                 var price = Double.Parse(dataTableRow["Price"].ToString());
 
-                var fuel = new FuelView(name, price);
+                var fuel = new FuelModel(name, price);
 
                 var row = fuelDataTable.NewRow();
                 row["id"] = id;
@@ -192,7 +192,7 @@ namespace GasStationMs.App
         {
             DataRowView row = listFuels.SelectedItem as DataRowView;
 
-            var fuel = (FuelView) row["Fuel"];
+            var fuel = (FuelModel) row["Fuel"];
             textBoxNewFuelName.Text = fuel.Name;
             textBoxNewFuelPrice.Text = fuel.Price.ToString();
             //textBoxNewFuelName.Text = row["Name"].ToString();

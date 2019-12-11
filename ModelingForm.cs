@@ -101,7 +101,6 @@ namespace GasStationMs.App
                     var carView = (CarView) car.Tag;
 
                     MoveCarToDestination(car);
-
                 }
             }
 
@@ -257,7 +256,7 @@ namespace GasStationMs.App
             var name = "mycar";
             var tankVolume = 80;
             var fuelRemained = 20;
-            FuelView fuel = new FuelView(1, "АИ-92", 42.9);
+            FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
             var isTruck = false;
             var isGoesFilling = false;
 
