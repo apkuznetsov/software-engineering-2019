@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace GasStationMs.App.Models
 {
@@ -92,13 +92,13 @@ namespace GasStationMs.App.Models
 
             set
             {
-                if (numOfFuelTanks < MinNumOfFuelTanks)
+                if (value < MinNumOfFuelTanks)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
                 int maxNumb = (int)(numOfCellsHorizontally * numOfCellsVertically * ServiceAreaInShares);
-                if (numOfFuelTanks > maxNumb)
+                if (value > maxNumb)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -116,11 +116,11 @@ namespace GasStationMs.App.Models
 
             set
             {
-                if (numOfFuelDispensers < MinNumOfFuelDispensers)
+                if (value < MinNumOfFuelDispensers)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                if (numOfFuelDispensers > MaxNumOfFuelDispensers)
+                if (value > MaxNumOfFuelDispensers)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
