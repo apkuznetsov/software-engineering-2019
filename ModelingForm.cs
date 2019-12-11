@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -62,19 +62,43 @@ namespace GasStationMs.App
                     continue;
                 }
 
-                var pictureBox = (PictureBox)c;
+                var pictureBox = (PictureBox) c;
 
                 // Car
                 if (pictureBox.Tag is CarView)
                 {
                     var car = pictureBox;
-                    var carView = (CarView)car.Tag;
+                    var carView = (CarView) car.Tag;
 
-                    //carView.AddDestination()
+                    var destPoint = new Point(_enter.Left + this._enter.Width / 2, _enter.Top + 40);
+                    PictureBox destSpot = carView.DestinationSpot;
+
+                    if (!carView.GetDestinationPoint().Equals(destPoint))
+                    {
+                        carView.AddDestinationPoint(destPoint.X, destPoint.Y);
+
+                        destSpot = new PictureBox()
+                        {
+                            Size = new Size(5, 5),
+                            Location = destPoint,
+                            Visible = true,
+                            BackColor = Color.DarkRed
+                        };
+
+                        carView.DestinationSpot = destSpot;
+                        this.Controls.Add(destSpot);
+                    }
+                    
 
                     MoveCarToDestination(car);
 
-                    
+                    if (car.Bounds.IntersectsWith(destSpot.Bounds))
+                    {
+                        this.Controls.Remove(car);
+                        this.Controls.Remove(destSpot);
+                        car.Dispose();
+                        destSpot.Dispose();
+                    }
                 }
             }
 
@@ -111,8 +135,11 @@ namespace GasStationMs.App
         {
             var carView = (CarView)car.Tag;
 
-            //Point destinationPoint = carView.GetDestinationPoint();
-            Point destinationPoint = new Point(100, this.Height - 200);
+            Point destinationPoint = carView.GetDestinationPoint();
+            //Point destinationPoint = new Point(100, this.Height - 200);
+            //Point destinationPoint = new Point(_fuelDispensersList[0].Left,
+            //   _fuelDispensersList[0].Bottom);
+
 
             // Go left
             if (car.Left > destinationPoint.X)
