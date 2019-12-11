@@ -16,7 +16,7 @@ namespace GasStationMs.App
             Application.SetCompatibleTextRenderingDefault(false);
             Bootstrap();
             //Application.Run(container.GetInstance<TopologyConstructor>());
-            Application.Run(container.GetInstance<Modeling>());
+            Application.Run(container.GetInstance<ModelingForm>());
 
             //Так будет выглядеть запуск приложения в будущем
             //Application.Run(new Start(container));

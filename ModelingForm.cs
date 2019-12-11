@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App
 {
-    public partial class Modeling : Form
+    public partial class ModelingForm : Form
     {
         private int _timerTicksCount = 0;
 
         private bool _paused;
         private readonly Random _rnd = new Random();
 
-        public Modeling()
+        public ModelingForm()
         {
             InitializeComponent();
 

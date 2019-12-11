@@ -76,11 +76,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Modeling.cs">
+    <Compile Include="ModelingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modeling.Designer.cs">
-      <DependentUpon>Modeling.cs</DependentUpon>
+    <Compile Include="ModelingForm.Designer.cs">
+      <DependentUpon>ModelingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Cashbox.cs" />
     <Compile Include="Models\FuelDispenser.cs" />
@@ -106,8 +106,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="Modeling.resx">
-      <DependentUpon>Modeling.cs</DependentUpon>
+    <EmbeddedResource Include="ModelingForm.resx">
+      <DependentUpon>ModelingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.cs</DependentUpon>
@@ -188,6 +188,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modeling\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
