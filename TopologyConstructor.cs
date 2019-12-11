@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.Dal;
+using GasStationMs.App.Models;
 
 namespace GasStationMs.App
 {
@@ -41,7 +42,7 @@ namespace GasStationMs.App
         {
             fillingStationField.ColumnCount = (int)cellsHorizontally.Value;
             // передалать потому что добавляются текст колонки а не imagecolumn
-            
+
         }
 
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
@@ -55,7 +56,7 @@ namespace GasStationMs.App
         {
 
         }
-        
+
 
         private void fillingStationField_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -65,27 +66,40 @@ namespace GasStationMs.App
 
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
             {
-                cell.Value = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked).Image;
+                var radioButton = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
 
+                if (radioButton.Name == "radioButtonFuelDispenser")
+                {
+                    if (Topology.CanAddFuelDispenser())
+                    {
+                        cell.Value = radioButton.Image;
+                        Topology.AddFuelDispenser();
+                    }
+                    else
+                    {
+                        MessageBox.Show("невозможно добавить ТРК");
+                    }
+                }
+                else
+                {
+                    cell.Value = radioButton.Image;
+                }
             }
-            
-            
-            
         }
-        
+
         bool isCheckedradioButtonFuelDisplenser = false;
         private void radioButtonFuelDisplenser_CheckedChanged(object sender, EventArgs e)
         {
-            isCheckedradioButtonFuelDisplenser = radioButtonFuelDisplenser.Checked;
+            isCheckedradioButtonFuelDisplenser = radioButtonFuelDispenser.Checked;
         }
 
         private void radioButtonFuelDisplenser_Click(object sender, EventArgs e)
         {
-            if (radioButtonFuelDisplenser.Checked && !isCheckedradioButtonFuelDisplenser)
-                radioButtonFuelDisplenser.Checked = false;
+            if (radioButtonFuelDispenser.Checked && !isCheckedradioButtonFuelDisplenser)
+                radioButtonFuelDispenser.Checked = false;
             else
             {
-                radioButtonFuelDisplenser.Checked = true;
+                radioButtonFuelDispenser.Checked = true;
                 isCheckedradioButtonFuelDisplenser = false;
             }
         }
@@ -192,7 +206,7 @@ namespace GasStationMs.App
         {
             DataRowView row = listFuels.SelectedItem as DataRowView;
 
-            var fuel = (FuelView) row["Fuel"];
+            var fuel = (FuelView)row["Fuel"];
             textBoxNewFuelName.Text = fuel.Name;
             textBoxNewFuelPrice.Text = fuel.Price.ToString();
             //textBoxNewFuelName.Text = row["Name"].ToString();
@@ -201,7 +215,7 @@ namespace GasStationMs.App
 
         private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
         {
-           ConnectionHelpers.CloseConnection(_connection);
+            ConnectionHelpers.CloseConnection(_connection);
         }
     }
 }
