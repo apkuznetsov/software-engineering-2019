@@ -2,6 +2,6 @@
 {
     public interface IDistributionLaw
     {
-        int GetRandInt();
+        double GetRandNumber();
     }
 }

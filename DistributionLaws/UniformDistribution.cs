@@ -4,28 +4,28 @@ namespace GasStationMs.App.DistributionLaws
 {
     public class UniformDistribution : IDistributionLaw
     {
-        private readonly int minValue;
-        private readonly int maxValue;
+        private readonly double a;
+        private readonly double b;
 
-        public UniformDistribution(int minValue, int maxValue)
+        public UniformDistribution(double a, double b)
         {
-            if (minValue > maxValue)
+            if (a > b)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            this.minValue = minValue;
-            this.maxValue = maxValue;
+            this.a = a;
+            this.b = b;
         }
 
-        public int MinValue { get; }
-        public int MaxValue { get; }
+        public double A { get; }
+        public int B { get; }
 
-        public int GetRandInt()
+        public double GetRandNumber()
         {
             Random random = new Random();
 
-            return random.Next(minValue, maxValue + 1);
+            return random.NextDouble() * (b - a) + a;
         }
     }
 }
