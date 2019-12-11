@@ -77,6 +77,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DistributionLaws\NormalDistribution.cs" />
     <Compile Include="DistributionLaws\UniformDistribution.cs" />
     <Compile Include="Models\Cashbox.cs" />
     <Compile Include="Models\FuelDispenser.cs" />
