@@ -157,6 +157,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Cars\car.png" />
+    <None Include="Resources\Cars\car%2864x34%29.png" />
+    <None Include="Resources\dispenser70.png" />
     <None Include="Resources\icons8-oil-storage-tank-64_photo-resizer.ru.png" />
     <None Include="Resources\icons8-oil-storage-tank-641.png" />
     <None Include="Resources\fuel1.ico" />

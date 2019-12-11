@@ -28,56 +28,91 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panelServiceArea = new System.Windows.Forms.Panel();
+            this.pictureBoxCashCounter = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCar = new System.Windows.Forms.PictureBox();
+            this.pictureBoxFuelDispenser2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxFuelDispenser1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxFuelTank2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxFuelTank1 = new System.Windows.Forms.PictureBox();
+            this.panelServiceArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCashCounter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelServiceArea
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.panel1.Location = new System.Drawing.Point(556, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(245, 359);
-            this.panel1.TabIndex = 0;
+            this.panelServiceArea.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.panelServiceArea.Controls.Add(this.pictureBoxFuelTank2);
+            this.panelServiceArea.Controls.Add(this.pictureBoxFuelTank1);
+            this.panelServiceArea.Location = new System.Drawing.Point(556, 0);
+            this.panelServiceArea.Name = "panelServiceArea";
+            this.panelServiceArea.Size = new System.Drawing.Size(245, 359);
+            this.panelServiceArea.TabIndex = 0;
             // 
-            // pictureBox1
+            // pictureBoxCashCounter
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(234, 142);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxCashCounter.Image = global::GasStationMs.App.Properties.Resources.cashbox;
+            this.pictureBoxCashCounter.Location = new System.Drawing.Point(35, 46);
+            this.pictureBoxCashCounter.Name = "pictureBoxCashCounter";
+            this.pictureBoxCashCounter.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxCashCounter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxCashCounter.TabIndex = 4;
+            this.pictureBoxCashCounter.TabStop = false;
             // 
-            // pictureBox2
+            // pictureBoxCar
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(234, 229);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.pictureBoxCar.Image = global::GasStationMs.App.Properties.Resources.car_64x34_;
+            this.pictureBoxCar.Location = new System.Drawing.Point(641, 429);
+            this.pictureBoxCar.Name = "pictureBoxCar";
+            this.pictureBoxCar.Size = new System.Drawing.Size(64, 34);
+            this.pictureBoxCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxCar.TabIndex = 3;
+            this.pictureBoxCar.TabStop = false;
             // 
-            // pictureBox3
+            // pictureBoxFuelDispenser2
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(641, 429);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
+            this.pictureBoxFuelDispenser2.Image = global::GasStationMs.App.Properties.Resources.dispenser70;
+            this.pictureBoxFuelDispenser2.Location = new System.Drawing.Point(234, 274);
+            this.pictureBoxFuelDispenser2.Name = "pictureBoxFuelDispenser2";
+            this.pictureBoxFuelDispenser2.Size = new System.Drawing.Size(70, 70);
+            this.pictureBoxFuelDispenser2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxFuelDispenser2.TabIndex = 2;
+            this.pictureBoxFuelDispenser2.TabStop = false;
             // 
-            // pictureBox4
+            // pictureBoxFuelDispenser1
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(35, 46);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
+            this.pictureBoxFuelDispenser1.Image = global::GasStationMs.App.Properties.Resources.dispenser70;
+            this.pictureBoxFuelDispenser1.Location = new System.Drawing.Point(234, 124);
+            this.pictureBoxFuelDispenser1.Name = "pictureBoxFuelDispenser1";
+            this.pictureBoxFuelDispenser1.Size = new System.Drawing.Size(70, 70);
+            this.pictureBoxFuelDispenser1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxFuelDispenser1.TabIndex = 1;
+            this.pictureBoxFuelDispenser1.TabStop = false;
+            // 
+            // pictureBoxFuelTank2
+            // 
+            this.pictureBoxFuelTank2.Image = global::GasStationMs.App.Properties.Resources.FuelTank;
+            this.pictureBoxFuelTank2.Location = new System.Drawing.Point(147, 218);
+            this.pictureBoxFuelTank2.Name = "pictureBoxFuelTank2";
+            this.pictureBoxFuelTank2.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxFuelTank2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxFuelTank2.TabIndex = 1;
+            this.pictureBoxFuelTank2.TabStop = false;
+            // 
+            // pictureBoxFuelTank1
+            // 
+            this.pictureBoxFuelTank1.Image = global::GasStationMs.App.Properties.Resources.FuelTank;
+            this.pictureBoxFuelTank1.Location = new System.Drawing.Point(147, 60);
+            this.pictureBoxFuelTank1.Name = "pictureBoxFuelTank1";
+            this.pictureBoxFuelTank1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxFuelTank1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxFuelTank1.TabIndex = 0;
+            this.pictureBoxFuelTank1.TabStop = false;
             // 
             // Modeling
             // 
@@ -85,27 +120,34 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(800, 565);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBoxCashCounter);
+            this.Controls.Add(this.pictureBoxCar);
+            this.Controls.Add(this.pictureBoxFuelDispenser2);
+            this.Controls.Add(this.pictureBoxFuelDispenser1);
+            this.Controls.Add(this.panelServiceArea);
             this.Name = "Modeling";
             this.Text = "Modeling";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panelServiceArea.ResumeLayout(false);
+            this.panelServiceArea.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCashCounter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Panel panelServiceArea;
+        private System.Windows.Forms.PictureBox pictureBoxFuelDispenser1;
+        private System.Windows.Forms.PictureBox pictureBoxFuelDispenser2;
+        private System.Windows.Forms.PictureBox pictureBoxCar;
+        private System.Windows.Forms.PictureBox pictureBoxCashCounter;
+        private System.Windows.Forms.PictureBox pictureBoxFuelTank2;
+        private System.Windows.Forms.PictureBox pictureBoxFuelTank1;
     }
 }
