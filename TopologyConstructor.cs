@@ -99,20 +99,20 @@ namespace GasStationMs.App
             }
         }
 
-        bool isCheckedradioButtonFuelDisplenser = false;
-        private void radioButtonFuelDisplenser_CheckedChanged(object sender, EventArgs e)
+        bool isCheckedradioButtonFuelDispenser = false;
+        private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
         {
-            isCheckedradioButtonFuelDisplenser = radioButtonFuelDispenser.Checked;
+            isCheckedradioButtonFuelDispenser = radioButtonFuelDispenser.Checked;
         }
 
-        private void radioButtonFuelDisplenser_Click(object sender, EventArgs e)
+        private void radioButtonFuelDispenser_Click(object sender, EventArgs e)
         {
-            if (radioButtonFuelDispenser.Checked && !isCheckedradioButtonFuelDisplenser)
+            if (radioButtonFuelDispenser.Checked && !isCheckedradioButtonFuelDispenser)
                 radioButtonFuelDispenser.Checked = false;
             else
             {
                 radioButtonFuelDispenser.Checked = true;
-                isCheckedradioButtonFuelDisplenser = false;
+                isCheckedradioButtonFuelDispenser = false;
             }
         }
 

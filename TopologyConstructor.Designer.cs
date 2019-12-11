@@ -96,8 +96,8 @@
             this.radioButtonFuelDispenser.TabIndex = 6;
             this.radioButtonFuelDispenser.TabStop = true;
             this.radioButtonFuelDispenser.UseVisualStyleBackColor = true;
-            this.radioButtonFuelDispenser.CheckedChanged += new System.EventHandler(this.radioButtonFuelDisplenser_CheckedChanged);
-            this.radioButtonFuelDispenser.Click += new System.EventHandler(this.radioButtonFuelDisplenser_Click);
+            this.radioButtonFuelDispenser.CheckedChanged += new System.EventHandler(this.radioButtonFuelDispenser_CheckedChanged);
+            this.radioButtonFuelDispenser.Click += new System.EventHandler(this.radioButtonFuelDispenser_Click);
             // 
             // radioButtonFuelTank
             // 
