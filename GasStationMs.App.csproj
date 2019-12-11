@@ -86,6 +86,7 @@
     <Compile Include="Modeling\Models\CarView.cs" />
     <Compile Include="DistributionLaws\NormalDistribution.cs" />
     <Compile Include="DistributionLaws\UniformDistribution.cs" />
+    <Compile Include="Modeling\Models\FuelDispenserView.cs" />
     <Compile Include="Models\Cashbox.cs" />
     <Compile Include="Models\FuelDispenser.cs" />
     <Compile Include="Models\FuelTank.cs" />
