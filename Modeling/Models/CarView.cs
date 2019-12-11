@@ -12,7 +12,7 @@ namespace GasStationMs.App.Modeling.Models
         public int TankVolume { get; set; }
         public int FuelRemained { get; set; }
 
-        public FuelView Fuel { get; set; }
+        public FuelModel Fuel { get; set; }
         //public int? FuelTypeId { get; set; }
         //public string FuelTypeName { get; set; }
 
@@ -23,7 +23,7 @@ namespace GasStationMs.App.Modeling.Models
         public PictureBox DestinationSpot;
 
         public CarView(int id, string name, int tankVolume, int fuelRemained,
-            FuelView fuelView, bool isTruck, bool isGoesFilling)
+            FuelModel fuelView, bool isTruck, bool isGoesFilling)
         {
             Id = id;
             Name = name;

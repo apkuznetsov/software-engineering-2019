@@ -101,7 +101,6 @@ namespace GasStationMs.App
                     var carView = (CarView) car.Tag;
 
                     MoveCarToDestination(car);
-
                 }
             }
 
@@ -112,22 +111,13 @@ namespace GasStationMs.App
 
         private void SpawnCar( /*CarModel carModel*/)
         {
-            var id = _timerTicksCount;
-            var name = "mycar";
-            var tankVolume = 80;
-            var fuelRemained = 20;
-            FuelView fuel = new FuelView(1, "АИ-92", 42.9);
-            var isTruck = false;
-            var isGoesFilling = false;
+            var carView = CreateCarView( /*caeModel*/);
 
-            var carView = new CarView(id, name, tankVolume, fuelRemained,
-                fuel, isTruck, isGoesFilling);
-
+            // Some Distribution law here
             if (_rnd.NextDouble() >= 0.5)
             {
                 carView.IsGoesFilling = true;
             }
-
 
             if (carView.IsGoesFilling)
             {
@@ -146,14 +136,7 @@ namespace GasStationMs.App
                 carView.AddDestinationPoint(_leavePointNoFilling);
             }
 
-            PictureBox car = new PictureBox();
-            car.Tag = carView;
-            car.Image = Properties.Resources.car_64x34_;
-            car.Location = _spawnPoint;
-            car.SizeMode = PictureBoxSizeMode.AutoSize;
-
-            this.Controls.Add(car);
-            car.BringToFront();
+            CreateCarPictureBox(carView);
         }
 
         private void MoveCarToDestination(PictureBox car)
@@ -264,5 +247,37 @@ namespace GasStationMs.App
         }
 
         #endregion /TopologyMappingLogic
+
+        #region ElementsProducers
+
+        private CarView CreateCarView( /*CarModel*/)
+        {
+            var id = _timerTicksCount;
+            var name = "mycar";
+            var tankVolume = 80;
+            var fuelRemained = 20;
+            FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
+            var isTruck = false;
+            var isGoesFilling = false;
+
+             return new CarView(id, name, tankVolume, fuelRemained,
+                fuel, isTruck, isGoesFilling);
+        }
+
+        private PictureBox CreateCarPictureBox(CarView carView)
+        {
+            PictureBox car = new PictureBox();
+            car.Tag = carView;
+            car.Image = Properties.Resources.car_64x34_;
+            car.Location = _spawnPoint;
+            car.SizeMode = PictureBoxSizeMode.AutoSize;
+
+            this.Controls.Add(car);
+            car.BringToFront();
+
+            return car;
+        }
+
+        #endregion /ElementsProducers
     }
 }

@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalModels\Fuel.cs" />
-    <Compile Include="AdditionalModels\FuelView.cs" />
+    <Compile Include="DB\Models\FuelModel.cs" />
     <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
@@ -77,7 +77,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
     </Compile>
-
     <Compile Include="ModelingForm.cs">
       <SubType>Form</SubType>
     </Compile>
