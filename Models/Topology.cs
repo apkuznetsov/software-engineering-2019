@@ -32,10 +32,11 @@ namespace GasStationMs.App.Models
         #endregion
 
         #region поля
-        private static int numOfCellsHorizontally;
-        private static int numOfCellsVertically;
+        private static int numOfCellsHorizontally = MinNumOfCellsHorizontally;
+        private static int numOfCellsVertically = MinNumOfCellsHorizontally;
         private static int numOfFuelTanks;
         private static int numOfFuelDispensers;
+        private static int serviceAreaInCells = RecalculateServiceArea();
         #endregion
 
         #region свойства
@@ -58,6 +59,7 @@ namespace GasStationMs.App.Models
                 }
 
                 numOfCellsHorizontally = value;
+                serviceAreaInCells = RecalculateServiceArea();
             }
         }
 
@@ -80,6 +82,7 @@ namespace GasStationMs.App.Models
                 }
 
                 numOfCellsVertically = value;
+                serviceAreaInCells = RecalculateServiceArea();
             }
         }
 
@@ -92,13 +95,13 @@ namespace GasStationMs.App.Models
 
             set
             {
-                if (numOfFuelTanks < MinNumOfFuelTanks)
+                if (value < MinNumOfFuelTanks)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
                 int maxNumb = (int)(numOfCellsHorizontally * numOfCellsVertically * ServiceAreaInShares);
-                if (numOfFuelTanks > maxNumb)
+                if (value > maxNumb)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -116,11 +119,11 @@ namespace GasStationMs.App.Models
 
             set
             {
-                if (numOfFuelDispensers < MinNumOfFuelDispensers)
+                if (value < MinNumOfFuelDispensers)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                if (numOfFuelDispensers > MaxNumOfFuelDispensers)
+                if (value > MaxNumOfFuelDispensers)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -161,5 +164,49 @@ namespace GasStationMs.App.Models
             }
         }
         #endregion
+
+        private static int RecalculateServiceArea()
+        {
+            return (int)(numOfCellsHorizontally * numOfCellsVertically * ServiceAreaInShares);
+        }
+
+        public static bool CanAddFuelDispenser()
+        {
+            int newNumOfFuelDispensers = numOfFuelDispensers + 1;
+
+            if (newNumOfFuelDispensers <= MaxNumOfFuelDispensers)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool CanAddFuelTank()
+        {
+            int newNumOfFuelTanks = numOfFuelTanks + 1;
+
+            int temp = serviceAreaInCells;
+            if (newNumOfFuelTanks <= serviceAreaInCells)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static void AddFuelDispenser()
+        {
+            NumOfFuelDispensers = NumOfFuelDispensers + 1;
+        }
+
+        public static void AddFuelTank()
+        {
+            NumOfFuelTanks = NumOfFuelTanks + 1;
+        }
     }
 }
