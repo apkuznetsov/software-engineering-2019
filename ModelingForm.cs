@@ -278,6 +278,38 @@ namespace GasStationMs.App
             return car;
         }
 
+        private FuelDispenserView CreateFuelDispenserView( string name, int speedOfFilling)
+        {
+            return new FuelDispenserView(name, speedOfFilling);
+        }
+
+        private PictureBox CreateFuelDispenserPictureBox(FuelDispenserView fuelDispenserView, 
+            Point locactionPoint)
+        {
+            var size = 50;
+            PictureBox fuelDispenser = new PictureBox();
+            fuelDispenser.Tag = fuelDispenserView;
+            fuelDispenser.Image = Properties.Resources.dispenser70;
+            fuelDispenser.Size = new Size(size, size);
+            fuelDispenser.Location = locactionPoint;
+            fuelDispenser.SizeMode = PictureBoxSizeMode.StretchImage;
+            
+            // Filling area
+            PictureBox fillingArea = new PictureBox();
+            fillingArea.Tag = fuelDispenserView;
+            fillingArea.BackColor = Color.LightSlateGray;
+            fillingArea.Size = new Size(size, size/2);
+            fillingArea.Left = fuelDispenser.Left;
+            fillingArea.Top = fuelDispenser.Bottom;
+            fillingArea.SizeMode = PictureBoxSizeMode.AutoSize;
+
+            this.Controls.Add(fuelDispenser);
+            this.Controls.Add(fillingArea);
+            fuelDispenser.BringToFront();
+
+            return fuelDispenser;
+        }
+
         #endregion /ElementsProducers
     }
 }
