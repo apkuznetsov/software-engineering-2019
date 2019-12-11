@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,13 +30,42 @@ namespace GasStationMs.App
 
         #endregion /TopologyElements
 
+        #region DestinationPoints
+
+        private Dictionary<string, Point> _destPointsDictionary = new Dictionary<string, Point>();
+
+        private int _noFillingHorizontalLine;
+        private int _filledHorizontalLine;
+                
+        private int _rightPlaygroundBorder;
+        private int _leftPlaygroundBorder;
+        private int _leftCarDestroyingEdge;
+
+        // Spawning/destroying car destination points
+        private Point _spawnPoint;
+        private Point _leavePointNoFilling;
+        private Point _leavePointFilled;
+
+        // Destination points to enter/leave gas station
+        private Point _enterCenter;
+        private Point _exitCenter;
+
+        private Point _enterPoint1;
+        private Point _enterPoint2;
+        private Point _enterPoint3;
+
+        private Point _exitPoint1 ;
+        private Point _exitPoint2;
+
+        #endregion /DestinationPoints
+
         public ModelingForm()
         {
             InitializeComponent();
 
             this.Controls.Remove(pictureBoxCar);
             MapTopology();
-            
+
         }
 
         private void TimerModeling_Tick(object sender, EventArgs e)
@@ -189,6 +218,35 @@ namespace GasStationMs.App
             _fuelDispensersList.Add(pictureBoxFuelDispenser2);
             _fuelTanksList.Add(pictureBoxFuelTank1);
             _fuelTanksList.Add(pictureBoxFuelTank2);
+
+            #region DestinationPoints
+
+            _noFillingHorizontalLine = this.Height - 10;
+            _filledHorizontalLine = this.Height - 50;
+
+            _rightPlaygroundBorder = this.Width;
+            _leftPlaygroundBorder =  0;
+            _leftCarDestroyingEdge = _leftPlaygroundBorder - 40;
+
+            // Spawning/destroying car destination points
+            _spawnPoint = new Point(_rightPlaygroundBorder + 50, _noFillingHorizontalLine);
+            _leavePointNoFilling = new Point(_leftCarDestroyingEdge, _noFillingHorizontalLine);
+            _leavePointFilled = new Point(_leftCarDestroyingEdge, _filledHorizontalLine);
+
+            // Destination points to enter/leave gas station
+            _enterCenter = new Point(_enter.Left + _enter.Width / 2,
+                _enter.Top + _enter.Width / 2);
+            _exitCenter = new Point(_exit.Left + _exit.Width / 2,
+                _exit.Top + _exit.Width / 2);
+
+            _enterPoint1 = new Point(_spawnPoint.X - 20, _filledHorizontalLine);
+            _enterPoint2 = new Point(_enterCenter.X, _enterCenter.Y + _enter.Width);
+            _enterPoint3 = new Point(_enterCenter.X, _enterCenter.Y - _enter.Width);
+            
+            _exitPoint1 = new Point(_exitCenter.X, _exitCenter.Y - _exit.Width);
+            _exitPoint2 = new Point(_exitCenter.X, _exitCenter.Y + _exit.Width);
+
+            #endregion /DestinationPoints
         }
 
         #endregion /TopologyMappingLogic
