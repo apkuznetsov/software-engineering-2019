@@ -70,12 +70,14 @@
     <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
-    <Compile Include="DistributionLaw\IDistributionLaw.cs" />
+    <Compile Include="DistributionLaws\ExponentialDistribution.cs" />
+    <Compile Include="DistributionLaws\IDistributionLaw.cs" />
     <Compile Include="DB\GasStationMsDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
     </Compile>
+
     <Compile Include="ModelingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +85,8 @@
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Modeling\Models\CarView.cs" />
+    <Compile Include="DistributionLaws\NormalDistribution.cs" />
+    <Compile Include="DistributionLaws\UniformDistribution.cs" />
     <Compile Include="Models\Cashbox.cs" />
     <Compile Include="Models\FuelDispenser.cs" />
     <Compile Include="Models\FuelTank.cs" />
