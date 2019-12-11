@@ -36,9 +36,18 @@ namespace GasStationMs.App.Modeling.Models
             _destinationPoints = new List<Point>();
         }
 
-        public void AddDestinationPoint(int x, int y)
+        public PictureBox CreateDestinationSpot(Point destPoint)
         {
-            var destPoint = new Point(x, y);
+            return this.DestinationSpot = new PictureBox()
+            {
+                Size = new Size(5, 5),
+                Location = destPoint,
+                Visible = true,
+                BackColor = Color.DarkRed
+            };
+        }
+        public void AddDestinationPoint(Point destPoint)
+        {
             _destinationPoints.Add(destPoint);
         }
 
@@ -47,7 +56,7 @@ namespace GasStationMs.App.Modeling.Models
             return _destinationPoints.Count == 0 ? new Point(-1, -1) : _destinationPoints.Last();
         }
 
-        public void RemoveDestinationPoint()
+        public void RemoveDestinationPoint(Form form)
         {
             if (_destinationPoints.Count == 0)
             {
@@ -56,6 +65,15 @@ namespace GasStationMs.App.Modeling.Models
 
             var lastAssignedPoint = _destinationPoints.Last();
             _destinationPoints.Remove(lastAssignedPoint);
+
+            DeleteDestinationSpot(form);
+        }
+
+        private void DeleteDestinationSpot(Form form)
+        {
+            form.Controls.Remove(DestinationSpot);
+            DestinationSpot.Dispose();
+            DestinationSpot = null;
         }
     }
 }
