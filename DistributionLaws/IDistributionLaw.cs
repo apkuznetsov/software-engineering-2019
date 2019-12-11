@@ -2,10 +2,6 @@
 {
     public interface IDistributionLaw
     {
-        int MinValue { get; }
-
-        int MaxValue { get; }
-
-        int GetRandomNumber();
+        int GetRandInt();
     }
 }

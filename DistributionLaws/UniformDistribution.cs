@@ -2,7 +2,7 @@
 
 namespace GasStationMs.App.DistributionLaws
 {
-    class UniformDistribution : IDistributionLaw
+    public class UniformDistribution : IDistributionLaw
     {
         private readonly int minValue;
         private readonly int maxValue;
@@ -21,7 +21,7 @@ namespace GasStationMs.App.DistributionLaws
         public int MinValue { get; }
         public int MaxValue { get; }
 
-        public int GetRandomNumber()
+        public int GetRandInt()
         {
             Random random = new Random();
 
