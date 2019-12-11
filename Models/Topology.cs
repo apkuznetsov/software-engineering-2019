@@ -23,15 +23,19 @@ namespace GasStationMs.App.Models
 
         public static readonly int MinAndMaxNumOfCashboxes = 1;
 
-        public static readonly int MinNumberOfFuelTanks = 1;
-        public static readonly int MaxNumberOfFuelTanks =
+        public static readonly int MinNumOfFuelTanks = 1;
+        public static readonly int MaxNumOfFuelTanks =
             (int)(MaxNumOfCellsHorizontally * MaxNumOfCellsVertically * ServiceAreaInShares);
+
+        public static readonly int MinNumOfFuelDispensers = 1;
+        public static readonly int MaxNumOfFuelDispensers = 6;
         #endregion
 
         #region поля
         private static int numOfCellsHorizontally;
         private static int numOfCellsVertically;
         private static int numOfFuelTanks;
+        private static int numOfFuelDispensers;
         #endregion
 
         #region свойства
@@ -88,7 +92,7 @@ namespace GasStationMs.App.Models
 
             set
             {
-                if (numOfFuelTanks < MinNumberOfFuelTanks)
+                if (numOfFuelTanks < MinNumOfFuelTanks)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -100,6 +104,28 @@ namespace GasStationMs.App.Models
                 }
 
                 numOfFuelTanks = value;
+            }
+        }
+
+        public static int NumOfFuelDispensers
+        {
+            get
+            {
+                return numOfFuelDispensers;
+            }
+
+            set
+            {
+                if (numOfFuelDispensers < MinNumOfFuelDispensers)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                if (numOfFuelDispensers > MaxNumOfFuelDispensers)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                numOfFuelDispensers = value;
             }
         }
 
