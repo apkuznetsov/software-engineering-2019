@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GasStationMs.App.Modeling.Models;
 
 namespace GasStationMs.App
 {
@@ -22,6 +24,7 @@ namespace GasStationMs.App
             InitializeComponent();
 
             this.Controls.Remove(pictureBoxCar);
+            
         }
 
         private void TimerModeling_Tick(object sender, EventArgs e)
@@ -41,10 +44,19 @@ namespace GasStationMs.App
 
         #region CarLogic
 
-        private void SpawnCar()
+        private void SpawnCar(/*CarModel carModel*/)
         {
+            var id = _timerTicksCount;
+            var name = "mycar";
+            var tankVolume = 80;
+            FuelView fuel = new FuelView(1, "АИ-92", 42.9);
+            var isTruck = false;
+            var isGoesFilling = true;
+
+            var carView = new CarView(id, name, tankVolume, fuel, isTruck, isGoesFilling);
+
             PictureBox car = new PictureBox();
-            car.Tag = "car"; // Will be replaced with CarView class
+            car.Tag = carView; 
             car.Image = Properties.Resources.car_64x34_;
             car.Left = this.Width - car.Width;
             car.Top = this.Height - car.Height - 50;
