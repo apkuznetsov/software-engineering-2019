@@ -2,7 +2,7 @@
 
 namespace GasStationMs.App.Models
 {
-    public class Cashbox
+    public class CashCounter
     {
         public static readonly int MinPricePerLiterOfFuelInRubles = 10;
         public static readonly int MaxPricePerLiterOfFuelInRubles = 100;
