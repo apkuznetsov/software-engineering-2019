@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GasStationMs.App.TemplateElements;
+using System;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Models
 {
@@ -184,6 +186,11 @@ namespace GasStationMs.App.Models
             }
         }
 
+        public static void AddFuelDispenser()
+        {
+            NumOfFuelDispensers = NumOfFuelDispensers + 1;
+        }
+
         public static bool CanAddFuelTank()
         {
             int newNumOfFuelTanks = numOfFuelTanks + 1;
@@ -199,14 +206,50 @@ namespace GasStationMs.App.Models
             }
         }
 
-        public static void AddFuelDispenser()
-        {
-            NumOfFuelDispensers = NumOfFuelDispensers + 1;
-        }
-
         public static void AddFuelTank()
         {
             NumOfFuelTanks = NumOfFuelTanks + 1;
+        }
+
+        public static void DeleteFuelDispenser()
+        {
+            if (numOfFuelDispensers < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            numOfFuelDispensers--;
+        }
+
+        public static void DeleteFuelTank()
+        {
+            if (numOfFuelTanks < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            numOfFuelTanks--;
+        }
+
+        public static void DeleteTemplateElement(DataGridViewCell cell)
+        {
+            Boolean canDelete = cell.Tag != null;
+
+            if (canDelete)
+            {
+                if (cell.Tag is FuelDispenser)
+                {
+                    DeleteFuelDispenser();
+                }
+                else if (cell.Tag is FuelTank)
+                {
+                    DeleteFuelTank();
+                }
+                else { }
+
+                cell.Tag = null;
+                cell.Value = null;
+            }
         }
     }
 }

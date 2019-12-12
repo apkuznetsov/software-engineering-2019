@@ -16,7 +16,7 @@ namespace GasStationMs.App
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            var myForm = _container.GetInstance<TopologyConstructor>();
+            var myForm = _container.GetInstance<Constructor>();
             myForm.Show();
         }
     }

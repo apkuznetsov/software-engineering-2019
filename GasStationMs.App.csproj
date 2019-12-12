@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalModels\Fuel.cs" />
+    <Compile Include="Constructor\ConstructorClicking.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
     <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
@@ -87,9 +90,9 @@
     <Compile Include="DistributionLaws\NormalDistribution.cs" />
     <Compile Include="DistributionLaws\UniformDistribution.cs" />
     <Compile Include="Modeling\Models\FuelDispenserView.cs" />
-    <Compile Include="Models\Cashbox.cs" />
-    <Compile Include="Models\FuelDispenser.cs" />
-    <Compile Include="Models\FuelTank.cs" />
+    <Compile Include="TemplateElements\CashCounter.cs" />
+    <Compile Include="TemplateElements\FuelDispenser.cs" />
+    <Compile Include="TemplateElements\FuelTank.cs" />
     <Compile Include="Models\Topology.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
     <Compile Include="Start.cs">
@@ -98,15 +101,14 @@
     <Compile Include="Start.Designer.cs">
       <DependentUpon>Start.cs</DependentUpon>
     </Compile>
-    <Compile Include="TemplateElements\TemplateElement.cs" />
-    <Compile Include="TopologyConstructorSettings.cs">
+    <Compile Include="Constructor\ConstructorSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TopologyConstructor.cs">
+    <Compile Include="Constructor\Constructor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TopologyConstructor.Designer.cs">
-      <DependentUpon>TopologyConstructor.cs</DependentUpon>
+    <Compile Include="Constructor\Constructor.Designer.cs">
+      <DependentUpon>Constructor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,8 +119,8 @@
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TopologyConstructor.resx">
-      <DependentUpon>TopologyConstructor.cs</DependentUpon>
+    <EmbeddedResource Include="Constructor\Constructor.resx">
+      <DependentUpon>Constructor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -173,8 +175,6 @@
     <None Include="Resources\icons8-cash-counter-64.png" />
     <None Include="Resources\fuel.jpg" />
     <None Include="Resources\icons8-oil-storage-tank-64.png" />
-    <None Include="Resources\FuelTank.ico" />
-    <None Include="Resources\fuel.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="GasStationMs.Dal\GasStationMs.Dal.csproj">
