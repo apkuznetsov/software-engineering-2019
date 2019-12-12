@@ -1,5 +1,4 @@
-﻿using GasStationMs.App;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 class CustomImageColumn : DataGridViewImageColumn

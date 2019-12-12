@@ -1,17 +1,6 @@
 ﻿using GasStationMs.App.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using GasStationMs.App.DB;
-using GasStationMs.Dal;
 using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App
