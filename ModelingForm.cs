@@ -212,7 +212,7 @@ namespace GasStationMs.App
             _enter = pictureBoxEnter;
             _exit = pictureBoxExit;
 
-            #region FuelDispenser
+            #region FuelDispensers
 
             //_fuelDispensersList.Add(pictureBoxFuelDispenser1);
             //_fuelDispensersList.Add(pictureBoxFuelDispenser2);
@@ -222,7 +222,7 @@ namespace GasStationMs.App
             CreateFuelDispenserPictureBox(fuelView1, new Point(235, 30));
             CreateFuelDispenserPictureBox(fuelView2, new Point(235, 180));
 
-            #endregion
+            #endregion /FuelDispensers
 
 
             _fuelTanksList.Add(pictureBoxFuelTank1);
@@ -264,6 +264,8 @@ namespace GasStationMs.App
 
         #region ElementsProducers
 
+        #region Cars
+
         private CarView CreateCarView( /*CarModel*/)
         {
             var id = _timerTicksCount;
@@ -274,7 +276,7 @@ namespace GasStationMs.App
             var isTruck = false;
             var isGoesFilling = false;
 
-             return new CarView(id, name, tankVolume, fuelRemained,
+            return new CarView(id, name, tankVolume, fuelRemained,
                 fuel, isTruck, isGoesFilling);
         }
 
@@ -292,12 +294,16 @@ namespace GasStationMs.App
             return car;
         }
 
-        private FuelDispenserView CreateFuelDispenserView( string name, int speedOfFilling)
+        #endregion /Cars
+
+        #region FuelDispensers
+
+        private FuelDispenserView CreateFuelDispenserView(string name, int speedOfFilling)
         {
             return new FuelDispenserView(name, speedOfFilling);
         }
 
-        private PictureBox CreateFuelDispenserPictureBox(FuelDispenserView fuelDispenserView, 
+        private PictureBox CreateFuelDispenserPictureBox(FuelDispenserView fuelDispenserView,
             Point locactionPoint)
         {
             var size = 50;
@@ -307,12 +313,12 @@ namespace GasStationMs.App
             fuelDispenser.Size = new Size(size, size);
             fuelDispenser.Location = locactionPoint;
             fuelDispenser.SizeMode = PictureBoxSizeMode.StretchImage;
-            
+
             // Filling area
             PictureBox fillingArea = new PictureBox();
             fillingArea.Tag = fuelDispenserView;
             fillingArea.BackColor = Color.LightSlateGray;
-            fillingArea.Size = new Size(size, size/2);
+            fillingArea.Size = new Size(size, size / 2);
             fillingArea.Left = fuelDispenser.Left;
             fillingArea.Top = fuelDispenser.Bottom;
             fillingArea.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -327,6 +333,9 @@ namespace GasStationMs.App
 
             return fuelDispenser;
         }
+
+        #endregion /FuelDispensers
+
 
         #endregion /ElementsProducers
     }
