@@ -65,8 +65,10 @@ namespace GasStationMs.App
             InitializeComponent();
 
             this.Controls.Remove(pictureBoxCar);
-            MapTopology();
+            this.Controls.Remove(pictureBoxFuelDispenser1);
+            this.Controls.Remove(pictureBoxFuelDispenser2);
 
+            MapTopology();
         }
 
         private void TimerModeling_Tick(object sender, EventArgs e)
@@ -209,8 +211,20 @@ namespace GasStationMs.App
             _cashCounter = pictureBoxCashCounter;
             _enter = pictureBoxEnter;
             _exit = pictureBoxExit;
-            _fuelDispensersList.Add(pictureBoxFuelDispenser1);
-            _fuelDispensersList.Add(pictureBoxFuelDispenser2);
+
+            #region FuelDispenser
+
+            //_fuelDispensersList.Add(pictureBoxFuelDispenser1);
+            //_fuelDispensersList.Add(pictureBoxFuelDispenser2);
+            var fuelView1 = CreateFuelDispenserView("fuelDispenser1", 10);
+            var fuelView2 = CreateFuelDispenserView("fuelDispenser2", 15);
+
+            CreateFuelDispenserPictureBox(fuelView1, new Point(235, 30));
+            CreateFuelDispenserPictureBox(fuelView2, new Point(235, 180));
+
+            #endregion
+
+
             _fuelTanksList.Add(pictureBoxFuelTank1);
             _fuelTanksList.Add(pictureBoxFuelTank2);
 
@@ -306,6 +320,10 @@ namespace GasStationMs.App
             this.Controls.Add(fuelDispenser);
             this.Controls.Add(fillingArea);
             fuelDispenser.BringToFront();
+            fillingArea.BringToFront();
+
+            _fuelDispensersList.Add(fuelDispenser);
+
 
             return fuelDispenser;
         }
