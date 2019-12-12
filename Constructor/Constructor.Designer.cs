@@ -58,7 +58,7 @@
             this.dgvTopology.RowHeadersWidth = 51;
             this.dgvTopology.Size = new System.Drawing.Size(539, 355);
             this.dgvTopology.TabIndex = 0;
-            this.dgvTopology.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTopology_CellClick);
+            this.dgvTopology.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTopology_CellMouseClick);
             // 
             // cellsHorizontally
             // 
