@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -86,9 +86,9 @@
     <Compile Include="Modeling\Models\CarView.cs" />
     <Compile Include="DistributionLaws\NormalDistribution.cs" />
     <Compile Include="DistributionLaws\UniformDistribution.cs" />
-    <Compile Include="Models\Cashbox.cs" />
-    <Compile Include="Models\FuelDispenser.cs" />
-    <Compile Include="Models\FuelTank.cs" />
+    <Compile Include="TemplateElements\Cashbox.cs" />
+    <Compile Include="TemplateElements\FuelDispenser.cs" />
+    <Compile Include="TemplateElements\FuelTank.cs" />
     <Compile Include="Models\Topology.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
     <Compile Include="Start.cs">
@@ -97,7 +97,6 @@
     <Compile Include="Start.Designer.cs">
       <DependentUpon>Start.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\TemplateElements.cs" />
     <Compile Include="Constructor\ConstructorSettings.cs">
       <SubType>Form</SubType>
     </Compile>

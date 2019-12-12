@@ -61,8 +61,8 @@ namespace GasStationMs.App
 
         private void SetRbsNames()
         {
-            rbFuelDispenser.Name = TemplateElements.FuelDispenser.ToString();
-            rbFuelTank.Name = TemplateElements.FuelTank.ToString();
+            rbFuelDispenser.Name = typeof(FuelDispenser).ToString();
+            rbFuelTank.Name = typeof(FuelTank).ToString();
         }
     }
 }

@@ -61,13 +61,13 @@ namespace GasStationMs.App
 
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
             {
-                var radioButton = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
+                var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
 
-                if (radioButton.Name == TemplateElements.FuelDispenser.ToString())
+                if (rb.Name == typeof(FuelDispenser).ToString())
                 {
                     if (Topology.CanAddFuelDispenser())
                     {
-                        cell.Value = radioButton.Image;
+                        cell.Value = rb.Image;
                         Topology.AddFuelDispenser();
                     }
                     else
@@ -75,11 +75,11 @@ namespace GasStationMs.App
                         MessageBox.Show("невозможно добавить ТРК");
                     }
                 }
-                else if (radioButton.Name == TemplateElements.FuelTank.ToString())
+                else if (rb.Name == typeof(FuelTank).ToString())
                 {
                     if (Topology.CanAddFuelTank())
                     {
-                        cell.Value = radioButton.Image;
+                        cell.Value = rb.Image;
                         Topology.AddFuelTank();
                     }
                     else
@@ -89,7 +89,7 @@ namespace GasStationMs.App
                 }
                 else
                 {
-                    cell.Value = radioButton.Image;
+                    cell.Value = rb.Image;
                 }
             }
         }
