@@ -14,35 +14,35 @@ namespace GasStationMs.App
 
         private void SetField()
         {
-            fillingStationField.RowHeadersVisible = false;
-            fillingStationField.ColumnHeadersVisible = false;
+            dgvTopology.RowHeadersVisible = false;
+            dgvTopology.ColumnHeadersVisible = false;
 
-            fillingStationField.AllowUserToResizeColumns = false;
-            fillingStationField.AllowUserToResizeRows = false;
+            dgvTopology.AllowUserToResizeColumns = false;
+            dgvTopology.AllowUserToResizeRows = false;
 
-            fillingStationField.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            fillingStationField.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvTopology.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvTopology.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
 
             for (int i = 0; i < Topology.NumOfCellsHorizontally; i++)
             {
 
-                fillingStationField.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
+                dgvTopology.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
             }
-            fillingStationField.RowCount = Topology.NumOfCellsVertically;
+            dgvTopology.RowCount = Topology.NumOfCellsVertically;
         }
 
         private void SetCellsSize()
 
         {
-            for (int i = 0; i < fillingStationField.ColumnCount; i++)
+            for (int i = 0; i < dgvTopology.ColumnCount; i++)
             {
-                fillingStationField.Columns[i].Width = Settings.CellSizeInPx;
+                dgvTopology.Columns[i].Width = Settings.CellSizeInPx;
             }
 
-            for (int j = 0; j < fillingStationField.RowCount; j++)
+            for (int j = 0; j < dgvTopology.RowCount; j++)
             {
-                fillingStationField.Rows[j].Height = Settings.CellSizeInPx;
+                dgvTopology.Rows[j].Height = Settings.CellSizeInPx;
             }
         }
 
@@ -54,8 +54,8 @@ namespace GasStationMs.App
             cellsVertically.Minimum = Topology.MinNumOfCellsVertically;
             cellsVertically.Maximum = Topology.MaxNumOfCellsVertically;
 
-            cellsHorizontally.Text = fillingStationField.ColumnCount.ToString();
-            cellsVertically.Text = fillingStationField.RowCount.ToString();
+            cellsHorizontally.Text = dgvTopology.ColumnCount.ToString();
+            cellsVertically.Text = dgvTopology.RowCount.ToString();
         }
     }
 }

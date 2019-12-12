@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewTopology = new System.Windows.Forms.DataGridView();
+            this.dgvTopology = new System.Windows.Forms.DataGridView();
             this.cellsHorizontally = new System.Windows.Forms.NumericUpDown();
             this.cellsVertically = new System.Windows.Forms.NumericUpDown();
             this.radioButtonFuelDispenser = new System.Windows.Forms.RadioButton();
@@ -38,26 +38,26 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.textBoxNewFuelPrice = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopology)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridViewTopology
+            // dgvTopology
             // 
-            this.dataGridViewTopology.AllowUserToResizeColumns = false;
-            this.dataGridViewTopology.AllowUserToResizeRows = false;
-            this.dataGridViewTopology.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridViewTopology.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridViewTopology.ColumnHeadersHeight = 29;
-            this.dataGridViewTopology.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridViewTopology.ColumnHeadersVisible = false;
-            this.dataGridViewTopology.Location = new System.Drawing.Point(21, 54);
-            this.dataGridViewTopology.Name = "dataGridViewTopology";
-            this.dataGridViewTopology.RowHeadersWidth = 51;
-            this.dataGridViewTopology.Size = new System.Drawing.Size(539, 355);
-            this.dataGridViewTopology.TabIndex = 0;
-            this.dataGridViewTopology.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTopology_CellClick);
+            this.dgvTopology.AllowUserToResizeColumns = false;
+            this.dgvTopology.AllowUserToResizeRows = false;
+            this.dgvTopology.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvTopology.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvTopology.ColumnHeadersHeight = 29;
+            this.dgvTopology.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvTopology.ColumnHeadersVisible = false;
+            this.dgvTopology.Location = new System.Drawing.Point(21, 54);
+            this.dgvTopology.Name = "dgvTopology";
+            this.dgvTopology.RowHeadersWidth = 51;
+            this.dgvTopology.Size = new System.Drawing.Size(539, 355);
+            this.dgvTopology.TabIndex = 0;
+            this.dgvTopology.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTopology_CellClick);
             // 
             // cellsHorizontally
             // 
@@ -165,13 +165,13 @@
             this.Controls.Add(this.radioButtonFuelDispenser);
             this.Controls.Add(this.cellsVertically);
             this.Controls.Add(this.cellsHorizontally);
-            this.Controls.Add(this.dataGridViewTopology);
+            this.Controls.Add(this.dgvTopology);
             this.MinimumSize = new System.Drawing.Size(800, 599);
             this.Name = "Constructor";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TopologyConstructor_FormClosing);
             this.Load += new System.EventHandler(this.TopologyConstructor_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTopology)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).EndInit();
             this.ResumeLayout(false);
@@ -181,7 +181,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridViewTopology;
+        private System.Windows.Forms.DataGridView dgvTopology;
         private System.Windows.Forms.NumericUpDown cellsHorizontally;
         private System.Windows.Forms.NumericUpDown cellsVertically;
         private System.Windows.Forms.RadioButton radioButtonFuelDispenser;

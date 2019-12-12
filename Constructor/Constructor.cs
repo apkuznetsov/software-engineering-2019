@@ -40,14 +40,14 @@ namespace GasStationMs.App
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
-            dataGridViewTopology.ColumnCount = (int)cellsHorizontally.Value;
+            dgvTopology.ColumnCount = (int)cellsHorizontally.Value;
             // передалать потому что добавляются текст колонки а не imagecolumn
 
         }
 
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
         {
-            dataGridViewTopology.RowCount = (int)cellsVertically.Value;
+            dgvTopology.RowCount = (int)cellsVertically.Value;
             // добавляем и удаляем предпоследний ряд а не последний 
         }
         #endregion
@@ -56,7 +56,7 @@ namespace GasStationMs.App
         private void dgvTopology_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            DataGridViewImageCell cell = (DataGridViewImageCell)dataGridViewTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewImageCell cell = (DataGridViewImageCell)dgvTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
 
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
