@@ -22,15 +22,17 @@ namespace GasStationMs.App
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)dgvTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-            if (e.Button == MouseButtons.Left)
+            switch (e.Button)
             {
-                AddTemplateElement(cell);
+                case MouseButtons.Left:
+                    AddTemplateElement(cell);
+                    break;
+                case MouseButtons.Right:
+                    DeleteTemplateElement(cell);
+                    break;
+                default:
+                    break;
             }
-            else if (e.Button == MouseButtons.Right)
-            {
-                DeleteTemplateElement(cell);
-            }
-            else { }
         }
 
         private void AddTemplateElement(DataGridViewImageCell cell)
