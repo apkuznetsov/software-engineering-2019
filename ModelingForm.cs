@@ -64,6 +64,7 @@ namespace GasStationMs.App
         {
             InitializeComponent();
 
+            this.Controls.Remove(pictureBoxCashCounter);
             this.Controls.Remove(pictureBoxCar);
             this.Controls.Remove(pictureBoxFuelDispenser1);
             this.Controls.Remove(pictureBoxFuelDispenser2);
@@ -208,7 +209,16 @@ namespace GasStationMs.App
             //CreateFuelDispenser();
             //CreateFuelTank();
 
-            _cashCounter = pictureBoxCashCounter;
+            #region CashCounter
+            
+            //_cashCounter = pictureBoxCashCounter;
+
+            var cashCounterView = CreateCashCounterView("Cash Counter", 100000);
+            var creationPoint = new Point(20,20);
+            _cashCounter = CreateCashCounterPictureBox(cashCounterView, creationPoint);
+
+            #endregion /CashCounter
+
             _enter = pictureBoxEnter;
             _exit = pictureBoxExit;
 
@@ -219,8 +229,10 @@ namespace GasStationMs.App
             var fuelView1 = CreateFuelDispenserView("fuelDispenser1", 10);
             var fuelView2 = CreateFuelDispenserView("fuelDispenser2", 15);
 
-            CreateFuelDispenserPictureBox(fuelView1, new Point(235, 30));
-            CreateFuelDispenserPictureBox(fuelView2, new Point(235, 180));
+            creationPoint = new Point(235, 30);
+            CreateFuelDispenserPictureBox(fuelView1, creationPoint);
+            creationPoint = new Point(235, 180);
+            CreateFuelDispenserPictureBox(fuelView2, creationPoint);
 
             #endregion /FuelDispensers
 
