@@ -16,13 +16,13 @@ using GasStationMs.App.Models;
 
 namespace GasStationMs.App
 {
-    public partial class TopologyConstructor : Form
+    public partial class Constructor : Form
     {
         private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
 
-        public TopologyConstructor(GasStationContext gasStationContext)
+        public Constructor(GasStationContext gasStationContext)
         {
             _gasStationContext = gasStationContext;
             _connection = ConnectionHelpers.OpenConnection();
@@ -40,35 +40,30 @@ namespace GasStationMs.App
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
-            fillingStationField.ColumnCount = (int)cellsHorizontally.Value;
+            dgvTopology.ColumnCount = (int)cellsHorizontally.Value;
             // передалать потому что добавляются текст колонки а не imagecolumn
 
         }
 
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
         {
-            fillingStationField.RowCount = (int)cellsVertically.Value;
+            dgvTopology.RowCount = (int)cellsVertically.Value;
             // добавляем и удаляем предпоследний ряд а не последний 
         }
         #endregion
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        #region клики
+        private void dgvTopology_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-        }
-
-
-        private void fillingStationField_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            DataGridViewImageCell cell = (DataGridViewImageCell)fillingStationField.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewImageCell cell = (DataGridViewImageCell)dgvTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
 
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
             {
                 var radioButton = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
 
-                if (radioButton.Name == "radioButtonFuelDispenser")
+                if (radioButton.Name == TemplateElements.FuelDispenser.ToString())
                 {
                     if (Topology.CanAddFuelDispenser())
                     {
@@ -80,7 +75,7 @@ namespace GasStationMs.App
                         MessageBox.Show("невозможно добавить ТРК");
                     }
                 }
-                else if (radioButton.Name == "radioButtonFuelTank")
+                else if (radioButton.Name == TemplateElements.FuelTank.ToString())
                 {
                     if (Topology.CanAddFuelTank())
                     {
@@ -102,16 +97,16 @@ namespace GasStationMs.App
         bool isCheckedradioButtonFuelDispenser = false;
         private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
         {
-            isCheckedradioButtonFuelDispenser = radioButtonFuelDispenser.Checked;
+            isCheckedradioButtonFuelDispenser = rbFuelDispenser.Checked;
         }
 
         private void radioButtonFuelDispenser_Click(object sender, EventArgs e)
         {
-            if (radioButtonFuelDispenser.Checked && !isCheckedradioButtonFuelDispenser)
-                radioButtonFuelDispenser.Checked = false;
+            if (rbFuelDispenser.Checked && !isCheckedradioButtonFuelDispenser)
+                rbFuelDispenser.Checked = false;
             else
             {
-                radioButtonFuelDispenser.Checked = true;
+                rbFuelDispenser.Checked = true;
                 isCheckedradioButtonFuelDispenser = false;
             }
         }
@@ -119,19 +114,20 @@ namespace GasStationMs.App
         bool isCheckedradioButtonFuelTank = false;
         private void radioButtonFuelTank_CheckedChanged(object sender, EventArgs e)
         {
-            isCheckedradioButtonFuelTank = radioButtonFuelTank.Checked;
+            isCheckedradioButtonFuelTank = rbFuelTank.Checked;
         }
 
         private void radioButtonFuelTank_Click(object sender, EventArgs e)
         {
-            if (radioButtonFuelTank.Checked && !isCheckedradioButtonFuelTank)
-                radioButtonFuelTank.Checked = false;
+            if (rbFuelTank.Checked && !isCheckedradioButtonFuelTank)
+                rbFuelTank.Checked = false;
             else
             {
-                radioButtonFuelTank.Checked = true;
+                rbFuelTank.Checked = true;
                 isCheckedradioButtonFuelTank = false;
             }
         }
+        #endregion
 
 
         #region DbButtons
@@ -218,7 +214,7 @@ namespace GasStationMs.App
         {
             DataRowView row = listFuels.SelectedItem as DataRowView;
 
-            var fuel = (FuelModel) row["Fuel"];
+            var fuel = (FuelModel)row["Fuel"];
             textBoxNewFuelName.Text = fuel.Name;
             textBoxNewFuelPrice.Text = fuel.Price.ToString();
             //textBoxNewFuelName.Text = row["Name"].ToString();

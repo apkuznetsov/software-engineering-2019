@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -97,15 +97,15 @@
     <Compile Include="Start.Designer.cs">
       <DependentUpon>Start.cs</DependentUpon>
     </Compile>
-    <Compile Include="TemplateElements\TemplateElement.cs" />
-    <Compile Include="TopologyConstructorSettings.cs">
+    <Compile Include="Models\TemplateElements.cs" />
+    <Compile Include="Constructor\ConstructorSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TopologyConstructor.cs">
+    <Compile Include="Constructor\Constructor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TopologyConstructor.Designer.cs">
-      <DependentUpon>TopologyConstructor.cs</DependentUpon>
+    <Compile Include="Constructor\Constructor.Designer.cs">
+      <DependentUpon>Constructor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,8 +116,8 @@
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TopologyConstructor.resx">
-      <DependentUpon>TopologyConstructor.cs</DependentUpon>
+    <EmbeddedResource Include="Constructor\Constructor.resx">
+      <DependentUpon>Constructor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -172,8 +172,6 @@
     <None Include="Resources\icons8-cash-counter-64.png" />
     <None Include="Resources\fuel.jpg" />
     <None Include="Resources\icons8-oil-storage-tank-64.png" />
-    <None Include="Resources\FuelTank.ico" />
-    <None Include="Resources\fuel.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="GasStationMs.Dal\GasStationMs.Dal.csproj">
