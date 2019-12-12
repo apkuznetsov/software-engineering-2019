@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GasStationMs.App.TemplateElements;
+using System;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Models
 {
@@ -227,6 +229,27 @@ namespace GasStationMs.App.Models
             }
 
             numOfFuelTanks--;
+        }
+
+        public static void DeleteTemplateElement(DataGridViewCell cell)
+        {
+            Boolean canDelete = cell.Tag != null;
+
+            if (canDelete)
+            {
+                if (cell.Tag is FuelDispenser)
+                {
+                    DeleteFuelDispenser();
+                }
+                else if (cell.Tag is FuelTank)
+                {
+                    DeleteFuelTank();
+                }
+                else { }
+
+                cell.Tag = null;
+                cell.Value = null;
+            }
         }
     }
 }

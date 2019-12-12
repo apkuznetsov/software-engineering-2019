@@ -28,7 +28,7 @@ namespace GasStationMs.App
                     AddTemplateElement(cell);
                     break;
                 case MouseButtons.Right:
-                    DeleteTemplateElement(cell);
+                    Topology.DeleteTemplateElement(cell);
                     break;
                 default:
                     break;
@@ -81,25 +81,6 @@ namespace GasStationMs.App
                     tbClickedCell.Text = cell.Tag.ToString();
                     //MessageBox.Show("невозможно добавить: ячейка уже занята");
                 }
-            }
-        }
-
-        private void DeleteTemplateElement(DataGridViewImageCell cell)
-        {
-            if (cell.Tag != null)
-            {
-                if (cell.Tag is FuelDispenser)
-                {
-                    Topology.DeleteFuelDispenser();
-                }
-                else if (cell.Tag is FuelTank)
-                {
-                    Topology.DeleteFuelTank();
-                }
-                else { }
-
-                cell.Value = null;
-                cell.Tag = null;
             }
         }
     }
