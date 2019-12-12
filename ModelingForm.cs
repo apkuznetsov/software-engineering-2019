@@ -272,14 +272,14 @@ namespace GasStationMs.App
         }
 
         private PictureBox CreateCashCounterPictureBox(CashCounterView cashCounterView,
-            Point locactionPoint)
+            Point locationPoint)
         {
             var size = 50;
             PictureBox cashCounter = new PictureBox();
             cashCounter.Tag = cashCounterView;
             cashCounter.Image = Properties.Resources.cashbox;
             cashCounter.Size = new Size(size, size);
-            cashCounter.Location = locactionPoint;
+            cashCounter.Location = locationPoint;
             cashCounter.SizeMode = PictureBoxSizeMode.StretchImage;
 
             this.Controls.Add(cashCounter);
@@ -332,14 +332,14 @@ namespace GasStationMs.App
         }
 
         private PictureBox CreateFuelDispenserPictureBox(FuelDispenserView fuelDispenserView,
-            Point locactionPoint)
+            Point locationPoint)
         {
             var size = 50;
             PictureBox fuelDispenser = new PictureBox();
             fuelDispenser.Tag = fuelDispenserView;
             fuelDispenser.Image = Properties.Resources.dispenser70;
             fuelDispenser.Size = new Size(size, size);
-            fuelDispenser.Location = locactionPoint;
+            fuelDispenser.Location = locationPoint;
             fuelDispenser.SizeMode = PictureBoxSizeMode.StretchImage;
 
             // Filling area
