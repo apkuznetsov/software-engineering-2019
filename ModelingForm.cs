@@ -62,6 +62,8 @@ namespace GasStationMs.App
             this.Controls.Remove(pictureBoxCar);
             this.Controls.Remove(pictureBoxFuelDispenser1);
             this.Controls.Remove(pictureBoxFuelDispenser2);
+            this.Controls.Remove(pictureBoxFuelTank1);
+            this.Controls.Remove(pictureBoxFuelTank2);
 
             MapTopology();
         }
@@ -230,9 +232,17 @@ namespace GasStationMs.App
 
             #endregion /FuelDispensers
 
+            #region FuelTanks
 
-            _fuelTanksList.Add(pictureBoxFuelTank1);
-            _fuelTanksList.Add(pictureBoxFuelTank2);
+            //_fuelTanksList.Add(pictureBoxFuelTank1);
+            //_fuelTanksList.Add(pictureBoxFuelTank2);
+
+            var fuelTank = CreateFuelTankView("Fuel Tank", 10000);
+            creationPoint = new Point(540, 50);
+            CreateFuelTankPictureBox(fuelTank, creationPoint);
+
+            #endregion /FuelTanks
+
 
             #region DestinationPoints
 
@@ -387,6 +397,7 @@ namespace GasStationMs.App
             fuelTank.Size = new Size(size, size);
             fuelTank.Location = locationPoint;
             fuelTank.SizeMode = PictureBoxSizeMode.StretchImage;
+            fuelTank.BackColor = Color.Wheat; //For testing
 
             this.Controls.Add(fuelTank);
             fuelTank.BringToFront();
