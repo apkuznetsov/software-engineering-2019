@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalModels\Fuel.cs" />
+    <Compile Include="Constructor\ConstructorClicking.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
     <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
