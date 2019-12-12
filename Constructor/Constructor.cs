@@ -40,22 +40,23 @@ namespace GasStationMs.App
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
-            fillingStationField.ColumnCount = (int)cellsHorizontally.Value;
+            dataGridViewTopology.ColumnCount = (int)cellsHorizontally.Value;
             // передалать потому что добавляются текст колонки а не imagecolumn
 
         }
 
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
         {
-            fillingStationField.RowCount = (int)cellsVertically.Value;
+            dataGridViewTopology.RowCount = (int)cellsVertically.Value;
             // добавляем и удаляем предпоследний ряд а не последний 
         }
         #endregion
 
+        #region клики
         private void fillingStationField_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            DataGridViewImageCell cell = (DataGridViewImageCell)fillingStationField.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewImageCell cell = (DataGridViewImageCell)dataGridViewTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
 
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
@@ -126,6 +127,7 @@ namespace GasStationMs.App
                 isCheckedradioButtonFuelTank = false;
             }
         }
+        #endregion
 
 
         #region DbButtons
