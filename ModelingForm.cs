@@ -264,6 +264,34 @@ namespace GasStationMs.App
 
         #region ElementsProducers
 
+        #region CashCounter
+
+        private CashCounterView CreateCashCounterView(string name, int maxCashVolume)
+        {
+            return new CashCounterView(name, maxCashVolume);
+        }
+
+        private PictureBox CreateCashCounterPictureBox(CashCounterView cashCounterView,
+            Point locactionPoint)
+        {
+            var size = 50;
+            PictureBox cashCounter = new PictureBox();
+            cashCounter.Tag = cashCounterView;
+            cashCounter.Image = Properties.Resources.cashbox;
+            cashCounter.Size = new Size(size, size);
+            cashCounter.Location = locactionPoint;
+            cashCounter.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            this.Controls.Add(cashCounter);
+            cashCounter.BringToFront();
+
+            _cashCounter = cashCounter;
+
+            return cashCounter;
+        }
+
+        #endregion /CashCounter
+
         #region Cars
 
         private CarView CreateCarView( /*CarModel*/)
