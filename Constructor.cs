@@ -16,13 +16,13 @@ using GasStationMs.App.Models;
 
 namespace GasStationMs.App
 {
-    public partial class TopologyConstructor : Form
+    public partial class Constructor : Form
     {
         private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
 
-        public TopologyConstructor(GasStationContext gasStationContext)
+        public Constructor(GasStationContext gasStationContext)
         {
             _gasStationContext = gasStationContext;
             _connection = ConnectionHelpers.OpenConnection();

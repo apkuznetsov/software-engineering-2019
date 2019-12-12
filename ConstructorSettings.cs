@@ -3,7 +3,7 @@ using GasStationMs.App.Models;
 
 namespace GasStationMs.App
 {
-    public partial class TopologyConstructor
+    public partial class Constructor
     {
         private void SetSettings()
         {

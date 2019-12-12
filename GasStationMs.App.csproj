@@ -98,14 +98,14 @@
       <DependentUpon>Start.cs</DependentUpon>
     </Compile>
     <Compile Include="TemplateElements\TemplateElement.cs" />
-    <Compile Include="TopologyConstructorSettings.cs">
+    <Compile Include="ConstructorSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TopologyConstructor.cs">
+    <Compile Include="Constructor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TopologyConstructor.Designer.cs">
-      <DependentUpon>TopologyConstructor.cs</DependentUpon>
+    <Compile Include="Constructor.Designer.cs">
+      <DependentUpon>Constructor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,8 +116,8 @@
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TopologyConstructor.resx">
-      <DependentUpon>TopologyConstructor.cs</DependentUpon>
+    <EmbeddedResource Include="Constructor.resx">
+      <DependentUpon>Constructor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -15,8 +15,8 @@ namespace GasStationMs.App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Bootstrap();
-            //Application.Run(container.GetInstance<TopologyConstructor>());
-            Application.Run(container.GetInstance<ModelingForm>());
+            Application.Run(container.GetInstance<Constructor>());
+            //Application.Run(container.GetInstance<ModelingForm>());
 
             //Так будет выглядеть запуск приложения в будущем
             //Application.Run(new Start(container));
@@ -30,7 +30,7 @@ namespace GasStationMs.App
             // Register your types, for instance:
             container.Register<GasStationContext>(Lifestyle.Singleton);
             //container.Register<IUserContext, WinFormsUserContext>();
-            container.Register<TopologyConstructor>(/*Lifestyle.Scoped*/);
+            container.Register<Constructor>(/*Lifestyle.Scoped*/);
 
             // Optionally verify the container.
             container.Verify(VerificationOption.VerifyOnly);

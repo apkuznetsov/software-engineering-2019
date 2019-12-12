@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App
 {
-    partial class TopologyConstructor
+    partial class Constructor
     {
         /// <summary>
         /// Обязательная переменная конструктора.
