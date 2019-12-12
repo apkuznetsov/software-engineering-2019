@@ -91,6 +91,7 @@
     <Compile Include="DistributionLaws\UniformDistribution.cs" />
     <Compile Include="Modeling\Models\CashCounterView.cs" />
     <Compile Include="Modeling\Models\FuelDispenserView.cs" />
+    <Compile Include="Modeling\Models\FuelTankView.cs" />
     <Compile Include="TemplateElements\CashCounter.cs" />
     <Compile Include="TemplateElements\FuelDispenser.cs" />
     <Compile Include="TemplateElements\FuelTank.cs" />
