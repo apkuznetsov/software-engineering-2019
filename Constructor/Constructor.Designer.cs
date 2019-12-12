@@ -31,7 +31,6 @@
             this.fillingStationField = new System.Windows.Forms.DataGridView();
             this.cellsHorizontally = new System.Windows.Forms.NumericUpDown();
             this.cellsVertically = new System.Windows.Forms.NumericUpDown();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.radioButtonFuelDispenser = new System.Windows.Forms.RadioButton();
             this.radioButtonFuelTank = new System.Windows.Forms.RadioButton();
             this.listFuels = new System.Windows.Forms.ListBox();
@@ -76,15 +75,6 @@
             this.cellsVertically.TabIndex = 2;
             this.cellsVertically.ValueChanged += new System.EventHandler(this.cellsVertically_ValueChanged);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(605, 183);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 3;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
             // radioButtonFuelDispenser
             // 
             this.radioButtonFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
@@ -117,7 +107,7 @@
             // 
             this.listFuels.FormattingEnabled = true;
             this.listFuels.Location = new System.Drawing.Point(605, 301);
-            this.listFuels.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listFuels.Margin = new System.Windows.Forms.Padding(2);
             this.listFuels.Name = "listFuels";
             this.listFuels.Size = new System.Drawing.Size(159, 82);
             this.listFuels.TabIndex = 8;
@@ -126,7 +116,7 @@
             // textBoxNewFuelName
             // 
             this.textBoxNewFuelName.Location = new System.Drawing.Point(605, 390);
-            this.textBoxNewFuelName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxNewFuelName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNewFuelName.Name = "textBoxNewFuelName";
             this.textBoxNewFuelName.Size = new System.Drawing.Size(159, 20);
             this.textBoxNewFuelName.TabIndex = 9;
@@ -134,7 +124,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(605, 442);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(56, 19);
             this.btnAdd.TabIndex = 10;
@@ -145,7 +135,7 @@
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(686, 442);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(56, 19);
             this.btnDelete.TabIndex = 10;
@@ -156,12 +146,12 @@
             // textBoxNewFuelPrice
             // 
             this.textBoxNewFuelPrice.Location = new System.Drawing.Point(605, 413);
-            this.textBoxNewFuelPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxNewFuelPrice.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNewFuelPrice.Name = "textBoxNewFuelPrice";
             this.textBoxNewFuelPrice.Size = new System.Drawing.Size(159, 20);
             this.textBoxNewFuelPrice.TabIndex = 9;
             // 
-            // TopologyConstructor
+            // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -173,12 +163,11 @@
             this.Controls.Add(this.listFuels);
             this.Controls.Add(this.radioButtonFuelTank);
             this.Controls.Add(this.radioButtonFuelDispenser);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.cellsVertically);
             this.Controls.Add(this.cellsHorizontally);
             this.Controls.Add(this.fillingStationField);
             this.MinimumSize = new System.Drawing.Size(800, 599);
-            this.Name = "TopologyConstructor";
+            this.Name = "Constructor";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TopologyConstructor_FormClosing);
             this.Load += new System.EventHandler(this.TopologyConstructor_Load);
@@ -195,7 +184,6 @@
         private System.Windows.Forms.DataGridView fillingStationField;
         private System.Windows.Forms.NumericUpDown cellsHorizontally;
         private System.Windows.Forms.NumericUpDown cellsVertically;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.RadioButton radioButtonFuelDispenser;
         private System.Windows.Forms.RadioButton radioButtonFuelTank;
         private System.Windows.Forms.ListBox listFuels;

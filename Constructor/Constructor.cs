@@ -52,12 +52,6 @@ namespace GasStationMs.App
         }
         #endregion
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void fillingStationField_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
