@@ -97,7 +97,7 @@
     <Compile Include="Start.Designer.cs">
       <DependentUpon>Start.cs</DependentUpon>
     </Compile>
-    <Compile Include="TemplateElements\TemplateElement.cs" />
+    <Compile Include="Models\TemplateElements.cs" />
     <Compile Include="Constructor\ConstructorSettings.cs">
       <SubType>Form</SubType>
     </Compile>

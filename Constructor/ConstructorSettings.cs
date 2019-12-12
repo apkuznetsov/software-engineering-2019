@@ -10,6 +10,7 @@ namespace GasStationMs.App
             SetField();
             SetCellsSize();
             SetSpinners();
+            SetRbsNames();
         }
 
         private void SetField()
@@ -56,6 +57,12 @@ namespace GasStationMs.App
 
             cellsHorizontally.Text = dgvTopology.ColumnCount.ToString();
             cellsVertically.Text = dgvTopology.RowCount.ToString();
+        }
+
+        private void SetRbsNames()
+        {
+            rbFuelDispenser.Name = TemplateElements.FuelDispenser.ToString();
+            rbFuelTank.Name = TemplateElements.FuelTank.ToString();
         }
     }
 }

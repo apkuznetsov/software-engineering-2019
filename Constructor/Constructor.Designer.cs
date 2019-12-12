@@ -31,8 +31,8 @@
             this.dgvTopology = new System.Windows.Forms.DataGridView();
             this.cellsHorizontally = new System.Windows.Forms.NumericUpDown();
             this.cellsVertically = new System.Windows.Forms.NumericUpDown();
-            this.radioButtonFuelDispenser = new System.Windows.Forms.RadioButton();
-            this.radioButtonFuelTank = new System.Windows.Forms.RadioButton();
+            this.rbFuelDispenser = new System.Windows.Forms.RadioButton();
+            this.rbFuelTank = new System.Windows.Forms.RadioButton();
             this.listFuels = new System.Windows.Forms.ListBox();
             this.textBoxNewFuelName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -75,33 +75,33 @@
             this.cellsVertically.TabIndex = 2;
             this.cellsVertically.ValueChanged += new System.EventHandler(this.cellsVertically_ValueChanged);
             // 
-            // radioButtonFuelDispenser
+            // rbFuelDispenser
             // 
-            this.radioButtonFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonFuelDispenser.AutoSize = true;
-            this.radioButtonFuelDispenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
-            this.radioButtonFuelDispenser.Location = new System.Drawing.Point(605, 54);
-            this.radioButtonFuelDispenser.Name = "radioButtonFuelDispenser";
-            this.radioButtonFuelDispenser.Size = new System.Drawing.Size(38, 38);
-            this.radioButtonFuelDispenser.TabIndex = 6;
-            this.radioButtonFuelDispenser.TabStop = true;
-            this.radioButtonFuelDispenser.UseVisualStyleBackColor = true;
-            this.radioButtonFuelDispenser.CheckedChanged += new System.EventHandler(this.radioButtonFuelDispenser_CheckedChanged);
-            this.radioButtonFuelDispenser.Click += new System.EventHandler(this.radioButtonFuelDispenser_Click);
+            this.rbFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbFuelDispenser.AutoSize = true;
+            this.rbFuelDispenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
+            this.rbFuelDispenser.Location = new System.Drawing.Point(605, 54);
+            this.rbFuelDispenser.Name = "rbFuelDispenser";
+            this.rbFuelDispenser.Size = new System.Drawing.Size(38, 38);
+            this.rbFuelDispenser.TabIndex = 6;
+            this.rbFuelDispenser.TabStop = true;
+            this.rbFuelDispenser.UseVisualStyleBackColor = true;
+            this.rbFuelDispenser.CheckedChanged += new System.EventHandler(this.radioButtonFuelDispenser_CheckedChanged);
+            this.rbFuelDispenser.Click += new System.EventHandler(this.radioButtonFuelDispenser_Click);
             // 
-            // radioButtonFuelTank
+            // rbFuelTank
             // 
-            this.radioButtonFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonFuelTank.AutoSize = true;
-            this.radioButtonFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
-            this.radioButtonFuelTank.Location = new System.Drawing.Point(649, 56);
-            this.radioButtonFuelTank.Name = "radioButtonFuelTank";
-            this.radioButtonFuelTank.Size = new System.Drawing.Size(36, 36);
-            this.radioButtonFuelTank.TabIndex = 7;
-            this.radioButtonFuelTank.TabStop = true;
-            this.radioButtonFuelTank.UseVisualStyleBackColor = true;
-            this.radioButtonFuelTank.CheckedChanged += new System.EventHandler(this.radioButtonFuelTank_CheckedChanged);
-            this.radioButtonFuelTank.Click += new System.EventHandler(this.radioButtonFuelTank_Click);
+            this.rbFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbFuelTank.AutoSize = true;
+            this.rbFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
+            this.rbFuelTank.Location = new System.Drawing.Point(649, 56);
+            this.rbFuelTank.Name = "rbFuelTank";
+            this.rbFuelTank.Size = new System.Drawing.Size(36, 36);
+            this.rbFuelTank.TabIndex = 7;
+            this.rbFuelTank.TabStop = true;
+            this.rbFuelTank.UseVisualStyleBackColor = true;
+            this.rbFuelTank.CheckedChanged += new System.EventHandler(this.radioButtonFuelTank_CheckedChanged);
+            this.rbFuelTank.Click += new System.EventHandler(this.radioButtonFuelTank_Click);
             // 
             // listFuels
             // 
@@ -161,8 +161,8 @@
             this.Controls.Add(this.textBoxNewFuelPrice);
             this.Controls.Add(this.textBoxNewFuelName);
             this.Controls.Add(this.listFuels);
-            this.Controls.Add(this.radioButtonFuelTank);
-            this.Controls.Add(this.radioButtonFuelDispenser);
+            this.Controls.Add(this.rbFuelTank);
+            this.Controls.Add(this.rbFuelDispenser);
             this.Controls.Add(this.cellsVertically);
             this.Controls.Add(this.cellsHorizontally);
             this.Controls.Add(this.dgvTopology);
@@ -184,8 +184,8 @@
         private System.Windows.Forms.DataGridView dgvTopology;
         private System.Windows.Forms.NumericUpDown cellsHorizontally;
         private System.Windows.Forms.NumericUpDown cellsVertically;
-        private System.Windows.Forms.RadioButton radioButtonFuelDispenser;
-        private System.Windows.Forms.RadioButton radioButtonFuelTank;
+        private System.Windows.Forms.RadioButton rbFuelDispenser;
+        private System.Windows.Forms.RadioButton rbFuelTank;
         private System.Windows.Forms.ListBox listFuels;
         private System.Windows.Forms.TextBox textBoxNewFuelName;
         private System.Windows.Forms.Button btnAdd;
