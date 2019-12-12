@@ -1,6 +1,7 @@
 ﻿using System;
 using GasStationMs.App.AdditionalModels;
 using System.Drawing;
+using System.Text;
 
 namespace GasStationMs.App.Models
 {
@@ -17,51 +18,6 @@ namespace GasStationMs.App.Models
         private int criticalVolume;
         private Fuel fuel;
         private int occupiedVolume;
-
-        public FuelTank(int volume, Fuel fuel)
-        {
-            if (volume < MinVolumeInLiters)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            if (volume > MaxVolumeInLiters)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            this.volume = volume;
-
-            this.fuel = fuel;
-
-            this.criticalVolume = (int)Math.Ceiling(this.volume * CriticalVolumeForRefuelingInShares);
-            this.occupiedVolume = 0;
-        }
-
-        public FuelTank(int volume, Fuel fuel, int occupiedVolume)
-        {
-            if (volume < MinVolumeInLiters)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            if (volume > MaxVolumeInLiters)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            this.volume = volume;
-
-            this.criticalVolume = (int)Math.Ceiling(this.volume * CriticalVolumeForRefuelingInShares);
-
-            this.fuel = fuel;
-
-            if (occupiedVolume < 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            if (occupiedVolume > volume)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-            this.occupiedVolume = occupiedVolume;
-        }
 
         public int Volume { get; }
 
@@ -94,6 +50,16 @@ namespace GasStationMs.App.Models
                 }
                 occupiedVolume = value;
             }
+        }
+
+        public override string ToString()
+        {
+            string nl = Environment.NewLine;
+
+            return
+                 "Объём: " + volume + nl +
+                 "Текущий объём: " + occupiedVolume + nl +
+                 "Топливо: " + fuel;
         }
     }
 }

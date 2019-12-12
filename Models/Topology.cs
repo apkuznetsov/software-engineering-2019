@@ -184,6 +184,11 @@ namespace GasStationMs.App.Models
             }
         }
 
+        public static void AddFuelDispenser()
+        {
+            NumOfFuelDispensers = NumOfFuelDispensers + 1;
+        }
+
         public static bool CanAddFuelTank()
         {
             int newNumOfFuelTanks = numOfFuelTanks + 1;
@@ -199,14 +204,29 @@ namespace GasStationMs.App.Models
             }
         }
 
-        public static void AddFuelDispenser()
-        {
-            NumOfFuelDispensers = NumOfFuelDispensers + 1;
-        }
-
         public static void AddFuelTank()
         {
             NumOfFuelTanks = NumOfFuelTanks + 1;
+        }
+
+        public static void DeleteFuelDispenser()
+        {
+            if (numOfFuelDispensers < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            numOfFuelDispensers--;
+        }
+
+        public static void DeleteFuelTank()
+        {
+            if (numOfFuelTanks < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            numOfFuelTanks--;
         }
     }
 }
