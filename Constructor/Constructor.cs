@@ -53,7 +53,7 @@ namespace GasStationMs.App
         #endregion
 
         #region клики
-        private void fillingStationField_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTopology_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
             DataGridViewImageCell cell = (DataGridViewImageCell)dataGridViewTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];

@@ -57,7 +57,7 @@
             this.dataGridViewTopology.RowHeadersWidth = 51;
             this.dataGridViewTopology.Size = new System.Drawing.Size(539, 355);
             this.dataGridViewTopology.TabIndex = 0;
-            this.dataGridViewTopology.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fillingStationField_CellClick);
+            this.dataGridViewTopology.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTopology_CellClick);
             // 
             // cellsHorizontally
             // 
