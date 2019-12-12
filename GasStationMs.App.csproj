@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -172,8 +172,6 @@
     <None Include="Resources\icons8-cash-counter-64.png" />
     <None Include="Resources\fuel.jpg" />
     <None Include="Resources\icons8-oil-storage-tank-64.png" />
-    <None Include="Resources\FuelTank.ico" />
-    <None Include="Resources\fuel.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="GasStationMs.Dal\GasStationMs.Dal.csproj">
