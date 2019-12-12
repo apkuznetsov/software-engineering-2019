@@ -98,13 +98,13 @@
       <DependentUpon>Start.cs</DependentUpon>
     </Compile>
     <Compile Include="TemplateElements\TemplateElement.cs" />
-    <Compile Include="ConstructorSettings.cs">
+    <Compile Include="Constructor\ConstructorSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Constructor.cs">
+    <Compile Include="Constructor\Constructor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Constructor.Designer.cs">
+    <Compile Include="Constructor\Constructor.Designer.cs">
       <DependentUpon>Constructor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -116,7 +116,7 @@
     <EmbeddedResource Include="Start.resx">
       <DependentUpon>Start.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Constructor.resx">
+    <EmbeddedResource Include="Constructor\Constructor.resx">
       <DependentUpon>Constructor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
