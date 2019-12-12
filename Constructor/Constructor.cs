@@ -72,6 +72,7 @@ namespace GasStationMs.App
                             cell.Value = rb.Image;
                             cell.Tag = new FuelDispenser();
                             Topology.AddFuelDispenser();
+                            tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
                         {
@@ -85,6 +86,7 @@ namespace GasStationMs.App
                             cell.Value = rb.Image;
                             cell.Tag = new FuelTank();
                             Topology.AddFuelTank();
+                            tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
                         {
@@ -98,7 +100,8 @@ namespace GasStationMs.App
                 }
                 else
                 {
-                    MessageBox.Show("невозможно добавить: ячейка уже занята");
+                    tbClickedCell.Text = cell.Tag.ToString();
+                    //MessageBox.Show("невозможно добавить: ячейка уже занята");
                 }
             }
         }

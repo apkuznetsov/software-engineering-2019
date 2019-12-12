@@ -1,6 +1,7 @@
 ﻿using System;
 using GasStationMs.App.AdditionalModels;
 using System.Drawing;
+using System.Text;
 
 namespace GasStationMs.App.Models
 {
@@ -49,6 +50,16 @@ namespace GasStationMs.App.Models
                 }
                 occupiedVolume = value;
             }
+        }
+
+        public override string ToString()
+        {
+            string nl = Environment.NewLine;
+
+            return
+                 "Объём: " + volume + nl +
+                 "Текущий объём: " + occupiedVolume + nl +
+                 "Топливо: " + fuel;
         }
     }
 }

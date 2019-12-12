@@ -12,5 +12,11 @@ namespace GasStationMs.App.Models
         
         static Bitmap bm = new Bitmap(Properties.Resources.fuel, Settings.CellSizeInPx, Settings.CellSizeInPx);
         public static Icon icon = Icon.FromHandle(bm.GetHicon());
+
+        public override string ToString()
+        {
+            return
+                 "ТРК: ";
+        }
     }
 }

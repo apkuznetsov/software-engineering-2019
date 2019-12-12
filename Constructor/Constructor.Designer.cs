@@ -38,6 +38,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.textBoxNewFuelPrice = new System.Windows.Forms.TextBox();
+            this.tbClickedCell = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -151,11 +152,20 @@
             this.textBoxNewFuelPrice.Size = new System.Drawing.Size(159, 20);
             this.textBoxNewFuelPrice.TabIndex = 9;
             // 
+            // tbClickedCell
+            // 
+            this.tbClickedCell.Location = new System.Drawing.Point(605, 123);
+            this.tbClickedCell.Multiline = true;
+            this.tbClickedCell.Name = "tbClickedCell";
+            this.tbClickedCell.Size = new System.Drawing.Size(159, 143);
+            this.tbClickedCell.TabIndex = 11;
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.tbClickedCell);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.textBoxNewFuelPrice);
@@ -191,6 +201,7 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox textBoxNewFuelPrice;
+        private System.Windows.Forms.TextBox tbClickedCell;
     }
 }
 
