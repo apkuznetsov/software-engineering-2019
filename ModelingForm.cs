@@ -370,6 +370,34 @@ namespace GasStationMs.App
 
         #endregion /FuelDispensers
 
+        #region FuelTanks
+
+        private FuelTankView CreateFuelTankView(string name, int volume)
+        {
+            return new FuelTankView(name, volume);
+        }
+
+        private PictureBox CreateFuelTankPictureBox(FuelTankView fuelTankView,
+            Point locationPoint)
+        {
+            var size = 50;
+            PictureBox fuelTank = new PictureBox();
+            fuelTank.Tag = fuelTankView;
+            fuelTank.Image = Properties.Resources.FuelTank;
+            fuelTank.Size = new Size(size, size);
+            fuelTank.Location = locationPoint;
+            fuelTank.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            this.Controls.Add(fuelTank);
+            fuelTank.BringToFront();
+
+            _fuelTanksList.Add(fuelTank);
+
+            return fuelTank;
+        }
+
+        #endregion /FuelTanks
+
 
         #endregion /ElementsProducers
     }
