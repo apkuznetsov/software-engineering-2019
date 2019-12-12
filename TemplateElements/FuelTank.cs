@@ -1,18 +1,35 @@
 ﻿using System;
 using GasStationMs.App.AdditionalModels;
 using System.Drawing;
-using System.Text;
 
-namespace GasStationMs.App.Models
+namespace GasStationMs.App.TemplateElements
 {
     public class FuelTank
     {
+        #region изображение
+        private static Bitmap image;
+
+        public static Bitmap Image
+        {
+            get
+            {
+                return image;
+            }
+
+            set
+            {
+                image = value;
+                Icon = Icon.FromHandle(image.GetHicon());
+            }
+        }
+
+        public static Icon Icon { get; private set; }
+        #endregion /изображение
+
+
         public static readonly int MinVolumeInLiters = 10000;
         public static readonly int MaxVolumeInLiters = 75000;
         public static readonly double CriticalVolumeForRefuelingInShares = 0.15;
-
-        static Bitmap bm = new Bitmap(Properties.Resources.FuelTank, Settings.CellSizeInPx, Settings.CellSizeInPx);
-        public static Icon icon = Icon.FromHandle(bm.GetHicon());
 
         private int volume;
         private int criticalVolume;

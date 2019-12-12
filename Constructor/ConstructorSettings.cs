@@ -1,5 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using GasStationMs.App.Models;
+using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App
 {
@@ -11,6 +13,8 @@ namespace GasStationMs.App
             SetCellsSize();
             SetSpinners();
             SetRbsNames();
+
+            SetTemplateElementsImages();
         }
 
         private void SetField()
@@ -63,6 +67,13 @@ namespace GasStationMs.App
         {
             rbFuelDispenser.Name = typeof(FuelDispenser).ToString();
             rbFuelTank.Name = typeof(FuelTank).ToString();
+        }
+
+        private void SetTemplateElementsImages()
+        {
+            FuelDispenser.Image = new Bitmap(Properties.Resources.fuel, Settings.CellSizeInPx, Settings.CellSizeInPx);
+            FuelTank.Image = new Bitmap(Properties.Resources.FuelTank, Settings.CellSizeInPx, Settings.CellSizeInPx);
+            //CashCounter.Image = new Bitmap(Properties.Resources.CashCounter, Settings.CellSizeInPx, Settings.CellSizeInPx);
         }
     }
 }
