@@ -1,4 +1,4 @@
-﻿using GasStationMs.App.Models;
+using GasStationMs.App.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.Dal;
-using GasStationMs.App.Models;
+using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App
 {
