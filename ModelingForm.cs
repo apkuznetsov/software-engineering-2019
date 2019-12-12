@@ -64,9 +64,12 @@ namespace GasStationMs.App
         {
             InitializeComponent();
 
+            this.Controls.Remove(pictureBoxCashCounter);
             this.Controls.Remove(pictureBoxCar);
-            MapTopology();
+            this.Controls.Remove(pictureBoxFuelDispenser1);
+            this.Controls.Remove(pictureBoxFuelDispenser2);
 
+            MapTopology();
         }
 
         private void TimerModeling_Tick(object sender, EventArgs e)
@@ -206,11 +209,34 @@ namespace GasStationMs.App
             //CreateFuelDispenser();
             //CreateFuelTank();
 
-            _cashCounter = pictureBoxCashCounter;
+            #region CashCounter
+            
+            //_cashCounter = pictureBoxCashCounter;
+
+            var cashCounterView = CreateCashCounterView("Cash Counter", 100000);
+            var creationPoint = new Point(20,20);
+            _cashCounter = CreateCashCounterPictureBox(cashCounterView, creationPoint);
+
+            #endregion /CashCounter
+
             _enter = pictureBoxEnter;
             _exit = pictureBoxExit;
-            _fuelDispensersList.Add(pictureBoxFuelDispenser1);
-            _fuelDispensersList.Add(pictureBoxFuelDispenser2);
+
+            #region FuelDispensers
+
+            //_fuelDispensersList.Add(pictureBoxFuelDispenser1);
+            //_fuelDispensersList.Add(pictureBoxFuelDispenser2);
+            var fuelView1 = CreateFuelDispenserView("fuelDispenser1", 10);
+            var fuelView2 = CreateFuelDispenserView("fuelDispenser2", 15);
+
+            creationPoint = new Point(235, 30);
+            CreateFuelDispenserPictureBox(fuelView1, creationPoint);
+            creationPoint = new Point(235, 180);
+            CreateFuelDispenserPictureBox(fuelView2, creationPoint);
+
+            #endregion /FuelDispensers
+
+
             _fuelTanksList.Add(pictureBoxFuelTank1);
             _fuelTanksList.Add(pictureBoxFuelTank2);
 
@@ -250,6 +276,36 @@ namespace GasStationMs.App
 
         #region ElementsProducers
 
+        #region CashCounter
+
+        private CashCounterView CreateCashCounterView(string name, int maxCashVolume)
+        {
+            return new CashCounterView(name, maxCashVolume);
+        }
+
+        private PictureBox CreateCashCounterPictureBox(CashCounterView cashCounterView,
+            Point locationPoint)
+        {
+            var size = 50;
+            PictureBox cashCounter = new PictureBox();
+            cashCounter.Tag = cashCounterView;
+            cashCounter.Image = Properties.Resources.cashbox;
+            cashCounter.Size = new Size(size, size);
+            cashCounter.Location = locationPoint;
+            cashCounter.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            this.Controls.Add(cashCounter);
+            cashCounter.BringToFront();
+
+            _cashCounter = cashCounter;
+
+            return cashCounter;
+        }
+
+        #endregion /CashCounter
+
+        #region Cars
+
         private CarView CreateCarView( /*CarModel*/)
         {
             var id = _timerTicksCount;
@@ -260,7 +316,7 @@ namespace GasStationMs.App
             var isTruck = false;
             var isGoesFilling = false;
 
-             return new CarView(id, name, tankVolume, fuelRemained,
+            return new CarView(id, name, tankVolume, fuelRemained,
                 fuel, isTruck, isGoesFilling);
         }
 
@@ -277,6 +333,49 @@ namespace GasStationMs.App
 
             return car;
         }
+
+        #endregion /Cars
+
+        #region FuelDispensers
+
+        private FuelDispenserView CreateFuelDispenserView(string name, int speedOfFilling)
+        {
+            return new FuelDispenserView(name, speedOfFilling);
+        }
+
+        private PictureBox CreateFuelDispenserPictureBox(FuelDispenserView fuelDispenserView,
+            Point locationPoint)
+        {
+            var size = 50;
+            PictureBox fuelDispenser = new PictureBox();
+            fuelDispenser.Tag = fuelDispenserView;
+            fuelDispenser.Image = Properties.Resources.dispenser70;
+            fuelDispenser.Size = new Size(size, size);
+            fuelDispenser.Location = locationPoint;
+            fuelDispenser.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            // Filling area
+            PictureBox fillingArea = new PictureBox();
+            fillingArea.Tag = fuelDispenserView;
+            fillingArea.BackColor = Color.LightSlateGray;
+            fillingArea.Size = new Size(size, size / 2);
+            fillingArea.Left = fuelDispenser.Left;
+            fillingArea.Top = fuelDispenser.Bottom;
+            fillingArea.SizeMode = PictureBoxSizeMode.AutoSize;
+
+            this.Controls.Add(fuelDispenser);
+            this.Controls.Add(fillingArea);
+            fuelDispenser.BringToFront();
+            fillingArea.BringToFront();
+
+            _fuelDispensersList.Add(fuelDispenser);
+
+
+            return fuelDispenser;
+        }
+
+        #endregion /FuelDispensers
+
 
         #endregion /ElementsProducers
     }
