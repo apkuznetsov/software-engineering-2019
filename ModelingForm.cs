@@ -101,6 +101,8 @@ namespace GasStationMs.App
                     var car = pictureBox;
                     var carView = (CarView) car.Tag;
 
+                    RouteCar(car);
+
                     MoveCarToDestination(car);
                 }
             }
@@ -142,6 +144,11 @@ namespace GasStationMs.App
             CreateCarPictureBox(carView);
         }
 
+        private void RouteCar(PictureBox car)
+        {
+            var carView = (CarView) car.Tag;
+
+        }
         private void MoveCarToDestination(PictureBox car)
         {
             var carView = (CarView) car.Tag;
