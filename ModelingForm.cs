@@ -274,6 +274,12 @@ namespace GasStationMs.App
             var destPointY = optimalFuelDispenser.Bottom + _fuelingPointDeltaY;
             var desPoint = new  Point(destPointX, destPointY);
 
+            // The main point of fueling
+            car.AddDestinationPoint(desPoint);
+
+            // Additional points for better graphics
+            destPointX = optimalFuelDispenser.Right + _fuelingPointDeltaX - 1;
+            desPoint = new Point(destPointX, destPointY);
             car.AddDestinationPoint(desPoint);
         }
 
