@@ -183,28 +183,28 @@ namespace GasStationMs.App
             if (car.Left >= destPoint.X)
             {
                 car.Left -= carSpeed;
-                //car.Image = Properties.Resources.car_64x34_left;
+                car.Image = Properties.Resources.car_64x34__left;
             }
 
             // Go Right
             if (car.Right <= destPoint.X)
             {
                 car.Left += carSpeed;
-                //car.Image = Properties.Resources.car_64x34_right;
+                car.Image = Properties.Resources.car_64x34__right;
             }
 
             // Go Up
             if (car.Top >= destPoint.Y)
             {
                 car.Top -= carSpeed;
-                //car.Image = Properties.Resources.car_64x34_up;
+                car.Image = Properties.Resources.car_64x34__up;
             }
 
             // Go Down
             if (car.Bottom <= destPoint.Y)
             {
                 car.Top += carSpeed;
-                //car.Image = Properties.Resources.car_64x34_down;
+                car.Image = Properties.Resources.car_64x34__down;
             }
 
             #endregion /MotionLogic
@@ -483,7 +483,7 @@ namespace GasStationMs.App
         {
             PictureBox car = new PictureBox();
             car.Tag = carView;
-            car.Image = Properties.Resources.car_64x34_;
+            car.Image = Properties.Resources.car_64x34__left;
             car.Location = _spawnPoint;
             car.SizeMode = PictureBoxSizeMode.AutoSize;
 

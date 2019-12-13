@@ -145,10 +145,19 @@
   <data name="car" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cars\car.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="car_64x34_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cars\car(64x34).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="dispenser70" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dispenser70.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car_64x34__down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cars\car(64x34)-down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car_64x34__left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cars\car(64x34)-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car_64x34__right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cars\car(64x34)-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car_64x34__up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cars\car(64x34)-up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
