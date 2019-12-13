@@ -1,4 +1,4 @@
-using GasStationMs.App.TemplateElements;
+﻿using GasStationMs.App.TemplateElements;
 using System;
 using System.Windows.Forms;
 
@@ -254,6 +254,37 @@ namespace GasStationMs.App.Models
         }
         #endregion /ТБ
 
+        #region касса
+        public static bool CanAddCashCounter()
+        {
+            int newNumOfCashCounters = numOfCashCounters + 1;
+
+            if (newNumOfCashCounters <= MaxNumOfCashCounters)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static void AddCashCounter()
+        {
+            numOfCashCounters++;
+        }
+
+        private static void DeleteCashCounter()
+        {
+            if (numOfCashCounters < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            numOfCashCounters--;
+        }
+        #endregion /касса
+
         public static void DeleteTemplateElement(DataGridViewCell cell)
         {
             bool canDelete = (cell.Tag != null);
@@ -267,6 +298,10 @@ namespace GasStationMs.App.Models
                 else if (cell.Tag is FuelTank)
                 {
                     DeleteFuelTank();
+                }
+                else if (cell.Tag is CashCounter)
+                {
+                    DeleteCashCounter();
                 }
                 else { }
 
