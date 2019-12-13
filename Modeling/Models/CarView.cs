@@ -18,6 +18,10 @@ namespace GasStationMs.App.Modeling.Models
 
         public bool IsTruck { get; set; }
         public bool IsGoesFilling { get; set; }
+        public bool IsOnStation { get; set; }
+        public bool IsFilled { get; set; }
+        public bool IsFuelDispenserChosen { get; set; }
+        public PictureBox ChosenFuelDispenser { get; set; }
 
         private List<Point> _destinationPoints;
         public PictureBox DestinationSpot;
@@ -38,13 +42,17 @@ namespace GasStationMs.App.Modeling.Models
 
         public PictureBox CreateDestinationSpot(Point destPoint)
         {
-            return this.DestinationSpot = new PictureBox()
+            this.DestinationSpot = new PictureBox()
             {
                 Size = new Size(5, 5),
                 Location = destPoint,
                 Visible = true,
                 BackColor = Color.DarkRed
             };
+
+            this.DestinationSpot.BringToFront();
+
+            return DestinationSpot;
         }
         public void AddDestinationPoint(Point destPoint)
         {
@@ -74,6 +82,11 @@ namespace GasStationMs.App.Modeling.Models
             form.Controls.Remove(DestinationSpot);
             DestinationSpot.Dispose();
             DestinationSpot = null;
+        }
+
+        public bool HasDestPoints()
+        {
+            return _destinationPoints.Count > 0;
         }
     }
 }
