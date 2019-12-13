@@ -181,11 +181,14 @@ namespace GasStationMs.App
 
             #region MotionLogic
 
+            var isHorizontalMoving = false;
+
             // Go left
             if (car.Left >= destPoint.X)
             {
                 car.Left -= carSpeed;
                 car.Image = Properties.Resources.car_64x34__left;
+                isHorizontalMoving = true;
             }
 
             // Go Right
@@ -193,17 +196,18 @@ namespace GasStationMs.App
             {
                 car.Left += carSpeed;
                 car.Image = Properties.Resources.car_64x34__right;
+                isHorizontalMoving = true;
             }
 
             // Go Up
-            if (car.Top >= destPoint.Y)
+            if (car.Top >= destPoint.Y && !isHorizontalMoving)
             {
                 car.Top -= carSpeed;
                 car.Image = Properties.Resources.car_64x34__up;
             }
 
             // Go Down
-            if (car.Bottom <= destPoint.Y)
+            if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
             {
                 car.Top += carSpeed;
                 car.Image = Properties.Resources.car_64x34__down;
