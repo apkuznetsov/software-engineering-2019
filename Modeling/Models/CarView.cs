@@ -18,6 +18,7 @@ namespace GasStationMs.App.Modeling.Models
 
         public bool IsTruck { get; set; }
         public bool IsGoesFilling { get; set; }
+        public bool IsOnStation { get; set; }
         public bool IsFilled { get; set; }
         public bool IsFuelDispenserChosen { get; set; }
         public PictureBox ChosenFuelDispenser { get; set; }
