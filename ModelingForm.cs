@@ -149,28 +149,28 @@ namespace GasStationMs.App
             var carSpeed = carView.IsGoesFilling ? _carSpeedFilling : _carSpeedNoFilling;
             
             // Go left
-            if (car.Left > destPoint.X)
+            if (car.Left >= destPoint.X)
             {
                 car.Left -= carSpeed;
                 //car.Image = Properties.Resources.car_64x34_left;
             }
 
             // Go Right
-            if (car.Right < destPoint.X)
+            if (car.Right <= destPoint.X)
             {
                 car.Left += carSpeed;
                 //car.Image = Properties.Resources.car_64x34_right;
             }
 
             // Go Up
-            if (car.Top > destPoint.Y)
+            if (car.Top >= destPoint.Y)
             {
                 car.Top -= carSpeed;
                 //car.Image = Properties.Resources.car_64x34_up;
             }
 
             // Go Down
-            if (car.Bottom < destPoint.Y)
+            if (car.Bottom <= destPoint.Y)
             {
                 car.Top += carSpeed;
                 //car.Image = Properties.Resources.car_64x34_down;
