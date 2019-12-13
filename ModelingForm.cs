@@ -148,7 +148,34 @@ namespace GasStationMs.App
         {
             var carView = (CarView) car.Tag;
 
+            if (!carView.IsGoesFilling)
+            {
+                return;
+            }
+
+            var isOnStation = carView.IsOnStation;
+            var isFilled = carView.IsFilled;
+            var isFuelDispenserChosen = carView.IsFuelDispenserChosen;
+
+            // New car
+            if (!isOnStation && !isFilled)
+            {
+                //GoToEnter(carView);
+            }
+
+            // Just entered the station
+            if (isOnStation && !isFuelDispenserChosen)
+            {
+                ChooseFuelDispenser(carView);
+            }
+
+            // After filling 
+            if (isOnStation && isFilled)
+            {
+                //GoToExit(carView);
+            }
         }
+
         private void MoveCarToDestination(PictureBox car)
         {
             var carView = (CarView) car.Tag;
