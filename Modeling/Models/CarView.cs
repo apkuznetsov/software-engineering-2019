@@ -42,9 +42,10 @@ namespace GasStationMs.App.Modeling.Models
 
         public PictureBox CreateDestinationSpot(Point destPoint)
         {
+            var spotSize = 5;
             this.DestinationSpot = new PictureBox()
             {
-                Size = new Size(5, 5),
+                Size = new Size(spotSize, spotSize),
                 Location = destPoint,
                 Visible = true,
                 BackColor = Color.DarkRed
