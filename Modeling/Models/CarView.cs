@@ -83,5 +83,10 @@ namespace GasStationMs.App.Modeling.Models
             DestinationSpot.Dispose();
             DestinationSpot = null;
         }
+
+        public bool HasDestPoints()
+        {
+            return _destinationPoints.Count > 0;
+        }
     }
 }
