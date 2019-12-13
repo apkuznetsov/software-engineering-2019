@@ -1,4 +1,4 @@
-﻿using GasStationMs.App.TemplateElements;
+using GasStationMs.App.TemplateElements;
 using System;
 using System.Windows.Forms;
 
@@ -172,6 +172,7 @@ namespace GasStationMs.App.Models
             return (int)(numOfCellsHorizontally * numOfCellsVertically * ServiceAreaInShares);
         }
 
+        #region ТРК
         public static bool CanAddFuelDispenser()
         {
             int newNumOfFuelDispensers = numOfFuelDispensers + 1;
@@ -191,6 +192,18 @@ namespace GasStationMs.App.Models
             NumOfFuelDispensers = NumOfFuelDispensers + 1;
         }
 
+        private static void DeleteFuelDispenser()
+        {
+            if (numOfFuelDispensers < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            numOfFuelDispensers--;
+        }
+        #endregion /ТРК
+
+        #region ТБ
         public static bool CanAddFuelTank()
         {
             int newNumOfFuelTanks = numOfFuelTanks + 1;
@@ -211,17 +224,7 @@ namespace GasStationMs.App.Models
             NumOfFuelTanks = NumOfFuelTanks + 1;
         }
 
-        public static void DeleteFuelDispenser()
-        {
-            if (numOfFuelDispensers < 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            numOfFuelDispensers--;
-        }
-
-        public static void DeleteFuelTank()
+        private static void DeleteFuelTank()
         {
             if (numOfFuelTanks < 0)
             {
@@ -230,6 +233,7 @@ namespace GasStationMs.App.Models
 
             numOfFuelTanks--;
         }
+        #endregion /ТБ
 
         public static void DeleteTemplateElement(DataGridViewCell cell)
         {
