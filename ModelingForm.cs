@@ -126,6 +126,8 @@ namespace GasStationMs.App
                 carView.AddDestinationPoint(_leavePointFilled);
                 carView.AddDestinationPoint(_exitPoint2);
                 carView.AddDestinationPoint(_exitPoint1);
+
+                ChooseFuelDispenser(carView);
                 //\test-----------
 
                 carView.AddDestinationPoint(_enterPoint3);
@@ -195,6 +197,34 @@ namespace GasStationMs.App
             }
         }
 
+        private void ChooseFuelDispenser(CarView car)
+        {
+            PictureBox optimalFuelDispenser =  _fuelDispensersList[0];
+            FuelDispenserView fuelDispenserView = (FuelDispenserView) optimalFuelDispenser.Tag;
+            var minQueue = fuelDispenserView.CarsInQueue;
+
+            // Looking for Fuel Dispenser with minimal queue
+            foreach (var fuelDispenser in _fuelDispensersList)
+            {
+                fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
+                if (fuelDispenserView.CarsInQueue < minQueue)
+                {
+                    minQueue = fuelDispenserView.CarsInQueue;
+                    optimalFuelDispenser = fuelDispenser;
+                }
+            }
+
+            car.ChosenFuelDispenser = optimalFuelDispenser;
+            fuelDispenserView = (FuelDispenserView) optimalFuelDispenser.Tag;
+            fuelDispenserView.CarsInQueue++;
+            car.IsFuelDispenserChosen = true;
+
+            var destPointX = optimalFuelDispenser.Left + 5;
+            var destPointY = optimalFuelDispenser.Bottom + 15;
+            var desPoint = new  Point(destPointX, destPointY);
+
+            car.AddDestinationPoint(desPoint);
+        }
         #endregion CarLogic
 
         #region TopologyMappingLogic
