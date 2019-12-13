@@ -69,6 +69,8 @@ namespace GasStationMs.App
             this.Controls.Remove(pictureBoxFuelTank1);
             this.Controls.Remove(pictureBoxFuelTank2);
 
+            this.DoubleBuffered = true;
+
             MapTopology();
         }
 
