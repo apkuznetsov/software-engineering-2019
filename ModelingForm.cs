@@ -27,7 +27,7 @@ namespace GasStationMs.App
 
         #region DestinationPoints
 
-        private Dictionary<string, Point> _destPointsDictionary = new Dictionary<string, Point>();
+        private Dictionary<PictureBox, Point> _fuelDispensersDestPoints = new Dictionary<PictureBox, Point>();
 
         private int _noFillingHorizontalLine;
         private int _filledHorizontalLine;
