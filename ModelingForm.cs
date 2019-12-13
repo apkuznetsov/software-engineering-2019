@@ -182,36 +182,76 @@ namespace GasStationMs.App
             #region MotionLogic
 
             var isHorizontalMoving = false;
+            var isVerticalMoving = false;
 
-            // Go left
-            if (car.Left >= destPoint.X)
+            // Before the filling Horizontal moving is in priority 
+            // After - the vertical one
+
+            if (!carView.IsFilled)
             {
-                car.Left -= carSpeed;
-                car.Image = Properties.Resources.car_64x34__left;
-                isHorizontalMoving = true;
+                // Go Up
+                if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                {
+                    car.Top -= carSpeed;
+                    car.Image = Properties.Resources.car_64x34__up;
+                    isVerticalMoving = true;
+                }
+
+                // Go Down
+                if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+                {
+                    car.Top += carSpeed;
+                    car.Image = Properties.Resources.car_64x34__down;
+                    isVerticalMoving = true;
+                }
+
+                // Go left
+                if (car.Left >= destPoint.X && !isVerticalMoving)
+                {
+                    car.Left -= carSpeed;
+                    car.Image = Properties.Resources.car_64x34__left;
+                }
+
+                // Go Right
+                if (car.Right <= destPoint.X && !isVerticalMoving)
+                {
+                    car.Left += carSpeed;
+                    car.Image = Properties.Resources.car_64x34__right;
+                }
+            }
+            else
+            {
+                // Go left
+                if (car.Left >= destPoint.X)
+                {
+                    car.Left -= carSpeed;
+                    car.Image = Properties.Resources.car_64x34__left;
+                    isHorizontalMoving = true;
+                }
+
+                // Go Right
+                if (car.Right <= destPoint.X)
+                {
+                    car.Left += carSpeed;
+                    car.Image = Properties.Resources.car_64x34__right;
+                    isHorizontalMoving = true;
+                }
+
+                // Go Up
+                if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                {
+                    car.Top -= carSpeed;
+                    car.Image = Properties.Resources.car_64x34__up;
+                }
+
+                // Go Down
+                if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+                {
+                    car.Top += carSpeed;
+                    car.Image = Properties.Resources.car_64x34__down;
+                }
             }
 
-            // Go Right
-            if (car.Right <= destPoint.X)
-            {
-                car.Left += carSpeed;
-                car.Image = Properties.Resources.car_64x34__right;
-                isHorizontalMoving = true;
-            }
-
-            // Go Up
-            if (car.Top >= destPoint.Y && !isHorizontalMoving)
-            {
-                car.Top -= carSpeed;
-                car.Image = Properties.Resources.car_64x34__up;
-            }
-
-            // Go Down
-            if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
-            {
-                car.Top += carSpeed;
-                car.Image = Properties.Resources.car_64x34__down;
-            }
 
             #endregion /MotionLogic
 
