@@ -60,6 +60,8 @@ namespace GasStationMs.App
 
             this.Controls.Remove(pictureBoxCashCounter);
             this.Controls.Remove(pictureBoxCar);
+            this.Controls.Remove(pictureBoxEnter);
+            this.Controls.Remove(pictureBoxExit);
             this.Controls.Remove(pictureBoxFuelDispenser1);
             this.Controls.Remove(pictureBoxFuelDispenser2);
             this.Controls.Remove(pictureBoxFuelTank1);
@@ -215,8 +217,17 @@ namespace GasStationMs.App
 
             #endregion /CashCounter
 
-            _enter = pictureBoxEnter;
-            _exit = pictureBoxExit;
+            #region Enter/Exit
+
+            //_enter = pictureBoxEnter;
+            //_exit = pictureBoxExit;
+            creationPoint = new Point(300, 300);
+            _enter = CreateEnterPictureBox(creationPoint);
+            creationPoint = new Point(50, 300);
+            _exit = CreateExitPictureBox(creationPoint);
+
+            #endregion /Enter/Exit
+
 
             #region FuelDispensers
 
@@ -242,7 +253,6 @@ namespace GasStationMs.App
             CreateFuelTankPictureBox(fuelTank, creationPoint);
 
             #endregion /FuelTanks
-
 
             #region DestinationPoints
 
@@ -307,6 +317,50 @@ namespace GasStationMs.App
         }
 
         #endregion /CashCounter
+
+        #region Enter/Exit
+
+        private PictureBox CreateEnterPictureBox(Point locationPoint)
+        {
+            var sizeX = 80;
+            var sizeY = 20;
+            PictureBox enter = new PictureBox();
+            enter.Tag = "Enter";
+            enter.BackColor = Color.Chartreuse;
+            //enter.Image = Properties.Resources.Enter;
+            enter.Size = new Size(sizeX, sizeY);
+            enter.Location = locationPoint;
+            enter.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            this.Controls.Add(enter);
+            enter.BringToFront();
+
+            _enter = enter;
+
+            return enter;
+        }
+
+        private PictureBox CreateExitPictureBox(Point locationPoint)
+        {
+            var sizeX = 80;
+            var sizeY = 20;
+            PictureBox exit = new PictureBox();
+            exit.Tag = "Exit";
+            exit.BackColor = Color.Coral;
+            //enter.Image = Properties.Resources.Exit;
+            exit.Size = new Size(sizeX, sizeY);
+            exit.Location = locationPoint;
+            exit.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            this.Controls.Add(exit);
+            exit.BringToFront();
+
+            _exit = exit;
+
+            return exit;
+        }
+
+        #endregion /Enter/Exit
 
         #region Cars
 
