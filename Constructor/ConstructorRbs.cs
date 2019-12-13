@@ -6,6 +6,7 @@ namespace GasStationMs.App
     {
         bool isCheckedradioButtonFuelDispenser = false;
         bool isCheckedradioButtonFuelTank = false;
+        bool isCheckedRbCashCounter = false;
 
         private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
         {
@@ -38,5 +39,23 @@ namespace GasStationMs.App
                 isCheckedradioButtonFuelTank = false;
             }
         }
+
+        #region касса
+        private void rbCashCounter_CheckedChanged(object sender, EventArgs e)
+        {
+            isCheckedRbCashCounter = rbCashCounter.Checked;
+        }
+
+        private void rbCashCounter_Click(object sender, EventArgs e)
+        {
+            if (rbCashCounter.Checked && !isCheckedRbCashCounter)
+                rbCashCounter.Checked = false;
+            else
+            {
+                rbCashCounter.Checked = true;
+                isCheckedRbCashCounter = false;
+            }
+        }
+        #endregion /касса
     }
 }
