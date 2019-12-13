@@ -28,8 +28,8 @@ namespace GasStationMs.App
         #region DestinationPoints
 
         private Dictionary<PictureBox, Point> _fuelDispensersDestPoints = new Dictionary<PictureBox, Point>();
-        private int _deltaForFuelPointX = 5;
-        private int _deltaForFuelPointY = 10;
+        private int _fuelingPointDeltaX = 5;
+        private int _fuelingPointDeltaY = 10;
 
         private int _noFillingHorizontalLine;
         private int _filledHorizontalLine;
@@ -128,21 +128,7 @@ namespace GasStationMs.App
             carView.IsGoesFilling = true;
 
 
-            if (carView.IsGoesFilling)
-            {
-                ////test
-                //carView.AddDestinationPoint(_leavePointFilled);
-                //carView.AddDestinationPoint(_exitPoint2);
-                //carView.AddDestinationPoint(_exitPoint1);
-
-                //ChooseFuelDispenser(carView);
-                ////\test-----------
-
-                //carView.AddDestinationPoint(_enterPoint3);
-                //carView.AddDestinationPoint(_enterPoint2);
-                //carView.AddDestinationPoint(_enterPoint1);
-            }
-            else
+            if (!carView.IsGoesFilling)
             {
                 carView.AddDestinationPoint(_leavePointNoFilling);
             }
@@ -190,7 +176,9 @@ namespace GasStationMs.App
             PictureBox destSpot = carView.DestinationSpot;
 
             var carSpeed = carView.IsGoesFilling ? _carSpeedFilling : _carSpeedNoFilling;
-            
+
+            #region MotionLogic
+
             // Go left
             if (car.Left >= destPoint.X)
             {
@@ -219,6 +207,8 @@ namespace GasStationMs.App
                 //car.Image = Properties.Resources.car_64x34_down;
             }
 
+            #endregion /MotionLogic
+
 
             if (carView.DestinationSpot == null)
             {
@@ -237,8 +227,6 @@ namespace GasStationMs.App
 
                 foreach (var fuelDispensersDestPoint in _fuelDispensersDestPoints.Values)
                 {
-                    var d = destPoint;
-                    var f = fuelDispensersDestPoint;
                     if (destPoint.Equals(fuelDispensersDestPoint))
                     {
                         //StartFilling();
@@ -282,8 +270,8 @@ namespace GasStationMs.App
             fuelDispenserView.CarsInQueue++;
             car.IsFuelDispenserChosen = true;
 
-            var destPointX = optimalFuelDispenser.Left + _deltaForFuelPointX;
-            var destPointY = optimalFuelDispenser.Bottom + _deltaForFuelPointY;
+            var destPointX = optimalFuelDispenser.Left + _fuelingPointDeltaX;
+            var destPointY = optimalFuelDispenser.Bottom + _fuelingPointDeltaY;
             var desPoint = new  Point(destPointX, destPointY);
 
             car.AddDestinationPoint(desPoint);
@@ -335,7 +323,6 @@ namespace GasStationMs.App
             _exit = CreateExitPictureBox(creationPoint);
 
             #endregion /Enter/Exit
-
 
             #region FuelDispensers
 
@@ -536,8 +523,8 @@ namespace GasStationMs.App
 
             _fuelDispensersList.Add(fuelDispenser);
 
-            var pointOfFueling = new Point(fuelDispenser.Left + _deltaForFuelPointX,
-                fuelDispenser.Bottom + _deltaForFuelPointY);
+            var pointOfFueling = new Point(fuelDispenser.Left + _fuelingPointDeltaX,
+                fuelDispenser.Bottom + _fuelingPointDeltaY);
             _fuelDispensersDestPoints.Add(fuelDispenser, pointOfFueling);
 
             return fuelDispenser;
