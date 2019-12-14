@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -100,7 +100,9 @@
     <Compile Include="TemplateElements\Exit.cs" />
     <Compile Include="TemplateElements\FuelDispenser.cs" />
     <Compile Include="TemplateElements\FuelTank.cs" />
-    <Compile Include="Models\Topology.cs" />
+    <Compile Include="Topology\TopologyExit.cs" />
+    <Compile Include="Topology\TopologyEntry.cs" />
+    <Compile Include="Topology\Topology.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
     <Compile Include="Start.cs">
       <SubType>Form</SubType>

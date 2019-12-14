@@ -63,13 +63,6 @@ namespace GasStationMs.App
             cellsVertically.Text = dgvTopology.RowCount.ToString();
         }
 
-        private void SetRbsNames()
-        {
-            rbFuelDispenser.Name = typeof(FuelDispenser).ToString();
-            rbFuelTank.Name = typeof(FuelTank).ToString();
-            rbCashCounter.Name = typeof(CashCounter).ToString();
-        }
-
         private void SetTemplateElementsImages()
         {
             FuelDispenser.Image = new Bitmap(Properties.Resources.fuel, Settings.CellSizeInPx, Settings.CellSizeInPx);

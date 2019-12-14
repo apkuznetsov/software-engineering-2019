@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App.Models
 {
-    public static class Topology
+    public static partial class Topology
     {
         public static readonly double ServiceAreaInShares = 0.25;
 
@@ -18,10 +18,6 @@ namespace GasStationMs.App.Models
 
         #region константы кол-ва ШЭ
         public static readonly int MinAndMaxNumOfAdjacentRoads = 1;
-
-        public static readonly int MinAndMaxNumOfEntries = 1;
-
-        public static readonly int MinAndMaxNumOfExits = 1;
 
         public static readonly int MinNumOfFuelDispensers = 1;
         public static readonly int MaxNumOfFuelDispensers = 6;
@@ -102,22 +98,6 @@ namespace GasStationMs.App.Models
             get
             {
                 return MinAndMaxNumOfAdjacentRoads;
-            }
-        }
-
-        public static int NumOfEntries
-        {
-            get
-            {
-                return MinAndMaxNumOfEntries;
-            }
-        }
-
-        public static int NumOfExits
-        {
-            get
-            {
-                return MinAndMaxNumOfExits;
             }
         }
 
@@ -305,6 +285,14 @@ namespace GasStationMs.App.Models
                 else if (cell.Tag is CashCounter)
                 {
                     DeleteCashCounter();
+                }
+                else if (cell.Tag is Entry)
+                {
+                    DeleteEntry();
+                }
+                else if (cell.Tag is Exit)
+                {
+                    DeleteExit();
                 }
                 else { }
 
