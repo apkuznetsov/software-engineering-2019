@@ -67,6 +67,7 @@ namespace GasStationMs.App
         {
             rbFuelDispenser.Name = typeof(FuelDispenser).ToString();
             rbFuelTank.Name = typeof(FuelTank).ToString();
+            rbCashCounter.Name = typeof(CashCounter).ToString();
         }
 
         private void SetTemplateElementsImages()

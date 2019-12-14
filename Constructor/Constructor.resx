@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="rbCashCounter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        xAAADsQBlSsOGwAAARdJREFUSEvtlLsNhDAMQCkpKREVo1AyAiUlJRtQMgIlYzAaZU4+xSdjIdvxIa44
+        nhSBEuOXj0kWfsQjvo1LxNu2haZpwrqusUdHFFsSQkxRFCHLspDneezVEcVlWaoJMQabFTFSSzhN0yFm
+        GIY4ouMWc2nXdXHEhku8LMthrG3bsO97HLWRLKbF5JUCohiKCgXzPL/7eDF5pIAoHsfxI4BJwGqpNKWY
+        OKIYVkNF3l/nDPVrut20VVWVdFNxVDHdbmw4GXh65aqYbzcV47tHbjooKoWCggqnfR55shg5k6fgFgNc
+        Xte1eeXJYp74rPgsEzCJpWKC4uv7/iDGOAmT2HKePEa71UxigCb+5qpEzOKrecS38W/iEF6bIV5+q/hm
+        dQAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>

@@ -60,6 +60,20 @@ namespace GasStationMs.App
                             MessageBox.Show("невозможно добавить ТБ");
                         }
                     }
+                    else if (rb.Name == typeof(CashCounter).ToString())
+                    {
+                        if (Topology.CanAddCashCounter())
+                        {
+                            cell.Value = rb.Image;
+                            cell.Tag = new CashCounter();
+                            Topology.AddCashCounter();
+                            tbClickedCell.Text = cell.Tag.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("невозможно добавить кассу");
+                        }
+                    }
                     else
                     {
                         cell.Value = rb.Image;
