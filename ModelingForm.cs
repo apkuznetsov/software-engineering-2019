@@ -716,7 +716,8 @@ namespace GasStationMs.App
                                 newDestinationPoint1 = new Point(newDestX,
                                     newDestY);
 
-                                newDestinationPoint2 = new Point(fuelDispenser.Left - 35,
+                                newDestX = fuelDispenser.Left + fuelDispenser.Width / 2;
+                                newDestinationPoint2 = new Point(newDestX,
                                     newDestY);
 
                                 newDestinationPoint3 = new Point(fuelDispenser.Left - 20,
