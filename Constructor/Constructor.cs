@@ -1,18 +1,9 @@
-using GasStationMs.App.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.Dal;
-using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App
 {
@@ -51,45 +42,6 @@ namespace GasStationMs.App
             // добавляем и удаляем предпоследний ряд а не последний 
         }
         #endregion
-
-        #region клики
-
-
-        bool isCheckedradioButtonFuelDispenser = false;
-        private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
-        {
-            isCheckedradioButtonFuelDispenser = rbFuelDispenser.Checked;
-        }
-
-        private void radioButtonFuelDispenser_Click(object sender, EventArgs e)
-        {
-            if (rbFuelDispenser.Checked && !isCheckedradioButtonFuelDispenser)
-                rbFuelDispenser.Checked = false;
-            else
-            {
-                rbFuelDispenser.Checked = true;
-                isCheckedradioButtonFuelDispenser = false;
-            }
-        }
-
-        bool isCheckedradioButtonFuelTank = false;
-        private void radioButtonFuelTank_CheckedChanged(object sender, EventArgs e)
-        {
-            isCheckedradioButtonFuelTank = rbFuelTank.Checked;
-        }
-
-        private void radioButtonFuelTank_Click(object sender, EventArgs e)
-        {
-            if (rbFuelTank.Checked && !isCheckedradioButtonFuelTank)
-                rbFuelTank.Checked = false;
-            else
-            {
-                rbFuelTank.Checked = true;
-                isCheckedradioButtonFuelTank = false;
-            }
-        }
-        #endregion
-
 
         #region DbButtons
         private void btnAdd_Click(object sender, EventArgs e)
