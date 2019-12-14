@@ -35,7 +35,7 @@ namespace GasStationMs.App
 
         private int _noFillingHorizontalLine;
         private int _filledHorizontalLine;
-                
+
         private int _rightPlaygroundBorder;
         private int _leftPlaygroundBorder;
         private int _leftCarDestroyingEdge;
@@ -53,7 +53,7 @@ namespace GasStationMs.App
         private Point _enterPoint2;
         private Point _enterPoint3;
 
-        private Point _exitPoint1 ;
+        private Point _exitPoint1;
         private Point _exitPoint2;
 
         #endregion /DestinationPoints
@@ -176,6 +176,11 @@ namespace GasStationMs.App
         private void MoveCarToDestination(PictureBox car)
         {
             var carView = (CarView) car.Tag;
+            //if (carView.IsBypassingObject)
+            //{
+            //    var x = 1;
+            //}
+
             var destPoint = carView.GetDestinationPoint();
             PictureBox destSpot = carView.DestinationSpot;
 
@@ -313,7 +318,7 @@ namespace GasStationMs.App
                 //        }
                 //    }
                 //}
-               
+
 
                 if (destPoint.Equals(_enterPoint3))
                 {
@@ -345,7 +350,7 @@ namespace GasStationMs.App
 
         private void ChooseFuelDispenser(CarView car)
         {
-            PictureBox optimalFuelDispenser =  _fuelDispensersList[0];
+            PictureBox optimalFuelDispenser = _fuelDispensersList[0];
             FuelDispenserView fuelDispenserView = (FuelDispenserView) optimalFuelDispenser.Tag;
             var minQueue = fuelDispenserView.CarsInQueue;
 
@@ -367,7 +372,7 @@ namespace GasStationMs.App
 
             var destPointX = optimalFuelDispenser.Left + _fuelingPointDeltaX;
             var destPointY = optimalFuelDispenser.Bottom + _fuelingPointDeltaY;
-            var desPoint = new  Point(destPointX, destPointY);
+            var desPoint = new Point(destPointX, destPointY);
 
             // The main point of fueling
             car.AddDestinationPoint(desPoint);
@@ -492,11 +497,11 @@ namespace GasStationMs.App
             //CreateFuelTank();
 
             #region CashCounter
-            
+
             //_cashCounter = pictureBoxCashCounter;
 
             var cashCounterView = CreateCashCounterView("Cash Counter", 100000);
-            var creationPoint = new Point(20,20);
+            var creationPoint = new Point(20, 20);
             _cashCounter = CreateCashCounterPictureBox(cashCounterView, creationPoint);
 
             #endregion /CashCounter
@@ -519,9 +524,9 @@ namespace GasStationMs.App
             var fuelView1 = CreateFuelDispenserView("fuelDispenser1", 10);
             var fuelView2 = CreateFuelDispenserView("fuelDispenser2", 15);
 
-            creationPoint = new Point(235, 30);
+            creationPoint = new Point(300, 30);
             CreateFuelDispenserPictureBox(fuelView1, creationPoint);
-            creationPoint = new Point(235, 180);
+            creationPoint = new Point(300, 180);
             CreateFuelDispenserPictureBox(fuelView2, creationPoint);
 
             #endregion /FuelDispensers
@@ -541,11 +546,11 @@ namespace GasStationMs.App
 
             var carHeight = 35;
 
-            _noFillingHorizontalLine = this.Height - 2*carHeight - 20;
-            _filledHorizontalLine = this.Height - 3*carHeight - 40;
+            _noFillingHorizontalLine = this.Height - 2 * carHeight - 20;
+            _filledHorizontalLine = this.Height - 3 * carHeight - 40;
 
             _rightPlaygroundBorder = this.Width;
-            _leftPlaygroundBorder =  0;
+            _leftPlaygroundBorder = 0;
             _leftCarDestroyingEdge = _leftPlaygroundBorder - 40;
 
             // Spawning/destroying car destination points
