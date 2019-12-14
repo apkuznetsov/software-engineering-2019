@@ -160,4 +160,16 @@
   <data name="car_64x34__up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cars\car(64x34)-up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="car_32x17__down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cars\32x17\car(32x17)-down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car_32x17__left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cars\32x17\car(32x17)-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car_32x17__right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cars\32x17\car(32x17)-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="car_32x17__up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cars\32x17\car(32x17)-up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
