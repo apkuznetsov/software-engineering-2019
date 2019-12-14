@@ -28,6 +28,8 @@ namespace GasStationMs.App
         #region DestinationPoints
 
         private Dictionary<PictureBox, Point> _fuelDispensersDestPoints = new Dictionary<PictureBox, Point>();
+        private List<Point> _predeterminedPoints = new List<Point>();
+
         private int _fuelingPointDeltaX = 5;
         private int _fuelingPointDeltaY = 10;
 
@@ -426,9 +428,20 @@ namespace GasStationMs.App
             _enterPoint1 = new Point(_spawnPoint.X - 200, _filledHorizontalLine);
             _enterPoint2 = new Point(_enterCenter.X, _enterCenter.Y + _enter.Height);
             _enterPoint3 = new Point(_enterCenter.X, _enterCenter.Y - _enter.Height);
-            
+
             _exitPoint1 = new Point(_exitCenter.X, _exitCenter.Y - _exit.Height);
             _exitPoint2 = new Point(_exitCenter.X, _exitCenter.Y + _exit.Height);
+
+            // Save all predetermined points 
+            _predeterminedPoints.AddRange(_fuelDispensersDestPoints.Values);
+
+            _predeterminedPoints.Add(_enterPoint3);
+            _predeterminedPoints.Add(_enterPoint2);
+            _predeterminedPoints.Add(_enterPoint1);
+
+            _predeterminedPoints.Add(_leavePointFilled);
+            _predeterminedPoints.Add(_exitPoint2);
+            _predeterminedPoints.Add(_exitPoint1);
 
             #endregion /DestinationPoints
         }
