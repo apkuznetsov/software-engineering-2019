@@ -613,7 +613,7 @@ namespace GasStationMs.App
 
 
                 // Fuel Dispenser
-                if (pictureBox.Tag is FuelDispenserView)
+                if (pictureBox.Tag is FuelDispenserView || pictureBox.Tag is CashCounterView)
                 {
                     var fuelDispenser = pictureBox;
 
