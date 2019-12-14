@@ -2,7 +2,7 @@
 
 namespace GasStationMs.App.TemplateElements
 {
-    public class Entry
+    public class Entry : IGasStationElement
     {
         #region изображение
         private static Bitmap image;

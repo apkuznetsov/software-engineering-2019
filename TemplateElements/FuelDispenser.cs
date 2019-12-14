@@ -2,7 +2,7 @@
 
 namespace GasStationMs.App.TemplateElements
 { 
-    public class FuelDispenser
+    public class FuelDispenser : IGasStationElement
     {
         #region изображение
         private static Bitmap image;

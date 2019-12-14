@@ -2,7 +2,7 @@
 
 namespace GasStationMs.App.TemplateElements
 {
-    public class Exit
+    public class Exit : IGasStationElement
     {
         #region изображение
         private static Bitmap image;
