@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App.TemplateElements
 {
-    interface IGasStationElement
+    public interface IGasStationElement
     {
     }
 }
