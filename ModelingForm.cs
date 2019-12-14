@@ -201,7 +201,7 @@ namespace GasStationMs.App
                     if (car.Top >= destPoint.Y && !isHorizontalMoving)
                     {
                         car.Top -= carSpeed;
-                        car.Image = Properties.Resources.car_64x34__up;
+                        car.Image = Properties.Resources.car_32x17__up;
                         isVerticalMoving = true;
                         destPoint = PreventIntersection(car, 0);
                     }
@@ -218,14 +218,14 @@ namespace GasStationMs.App
                     if (car.Left >= destPoint.X && !isVerticalMoving)
                     {
                         car.Left -= carSpeed;
-                        car.Image = Properties.Resources.car_64x34__left;
+                        car.Image = Properties.Resources.car_32x17__left;
                     }
 
                     // Go Right
                     if (car.Right <= destPoint.X && !isVerticalMoving)
                     {
                         car.Left += carSpeed;
-                        car.Image = Properties.Resources.car_64x34__right;
+                        car.Image = Properties.Resources.car_32x17__right;
                     }
                 }
                 else
@@ -234,7 +234,7 @@ namespace GasStationMs.App
                     if (car.Left >= destPoint.X)
                     {
                         car.Left -= carSpeed;
-                        car.Image = Properties.Resources.car_64x34__left;
+                        car.Image = Properties.Resources.car_32x17__left;
                         isHorizontalMoving = true;
                     }
 
@@ -242,7 +242,7 @@ namespace GasStationMs.App
                     if (car.Right <= destPoint.X)
                     {
                         car.Left += carSpeed;
-                        car.Image = Properties.Resources.car_64x34__right;
+                        car.Image = Properties.Resources.car_32x17__right;
                         isHorizontalMoving = true;
                     }
 
@@ -250,7 +250,7 @@ namespace GasStationMs.App
                     if (car.Top >= destPoint.Y && !isHorizontalMoving)
                     {
                         car.Top -= carSpeed;
-                        car.Image = Properties.Resources.car_64x34__up;
+                        car.Image = Properties.Resources.car_32x17__up;
                         destPoint = PreventIntersection(car, 0);
                     }
 
@@ -258,7 +258,7 @@ namespace GasStationMs.App
                     if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
                     {
                         car.Top += carSpeed;
-                        car.Image = Properties.Resources.car_64x34__down;
+                        car.Image = Properties.Resources.car_32x17__down;
                     }
                 }
             }
@@ -268,21 +268,21 @@ namespace GasStationMs.App
                 if (car.Left >= destPoint.X)
                 {
                     car.Left -= carSpeed;
-                    car.Image = Properties.Resources.car_64x34__left;
+                    car.Image = Properties.Resources.car_32x17__left;
                 }
 
                 // Go Right
                 if (car.Right <= destPoint.X)
                 {
                     car.Left += carSpeed;
-                    car.Image = Properties.Resources.car_64x34__right;
+                    car.Image = Properties.Resources.car_32x17__right;
                 }
 
                 // Go Up
                 if (car.Top >= destPoint.Y)
                 {
                     car.Top -= carSpeed;
-                    car.Image = Properties.Resources.car_64x34__up;
+                    car.Image = Properties.Resources.car_32x17__up;
                     destPoint = PreventIntersection(car, 0);
                 }
 
@@ -290,7 +290,7 @@ namespace GasStationMs.App
                 if (car.Bottom <= destPoint.Y)
                 {
                     car.Top += carSpeed;
-                    car.Image = Properties.Resources.car_64x34__down;
+                    car.Image = Properties.Resources.car_32x17__down;
                 }
             }
 
@@ -681,7 +681,7 @@ namespace GasStationMs.App
         {
             PictureBox car = new PictureBox();
             car.Tag = carView;
-            car.Image = Properties.Resources.car_64x34__left;
+            car.Image = Properties.Resources.car_32x17__left;
             car.Location = _spawnPoint;
             car.SizeMode = PictureBoxSizeMode.AutoSize;
 
