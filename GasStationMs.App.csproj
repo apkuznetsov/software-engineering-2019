@@ -101,7 +101,6 @@
     <Compile Include="TemplateElements\FuelDispenser.cs" />
     <Compile Include="TemplateElements\FuelTank.cs" />
     <Compile Include="TemplateElements\IGasStationElement.cs" />
-    <Compile Include="Topology\TopologyElement.cs" />
     <Compile Include="Topology\TopologyExit.cs" />
     <Compile Include="Topology\TopologyEntry.cs" />
     <Compile Include="Topology\Topology.cs" />
@@ -124,6 +123,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Topology\TopologyForModeling.cs" />
     <EmbeddedResource Include="ModelingForm.resx">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </EmbeddedResource>
