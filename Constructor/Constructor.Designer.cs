@@ -41,6 +41,7 @@
             this.textBoxNewFuelPrice = new System.Windows.Forms.TextBox();
             this.tbClickedCell = new System.Windows.Forms.TextBox();
             this.rbCashCounter = new System.Windows.Forms.RadioButton();
+            this.rbEntry = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -176,11 +177,26 @@
             this.rbCashCounter.CheckedChanged += new System.EventHandler(this.rbCashCounter_CheckedChanged);
             this.rbCashCounter.Click += new System.EventHandler(this.rbCashCounter_Click);
             // 
+            // rbEntry
+            // 
+            this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbEntry.AutoSize = true;
+            this.rbEntry.Image = ((System.Drawing.Image)(resources.GetObject("rbEntry.Image")));
+            this.rbEntry.Location = new System.Drawing.Point(733, 56);
+            this.rbEntry.Name = "rbEntry";
+            this.rbEntry.Size = new System.Drawing.Size(36, 36);
+            this.rbEntry.TabIndex = 13;
+            this.rbEntry.TabStop = true;
+            this.rbEntry.UseVisualStyleBackColor = true;
+            this.rbEntry.CheckedChanged += new System.EventHandler(this.rbEntry_CheckedChanged);
+            this.rbEntry.Click += new System.EventHandler(this.rbEntry_Click);
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.rbEntry);
             this.Controls.Add(this.rbCashCounter);
             this.Controls.Add(this.tbClickedCell);
             this.Controls.Add(this.btnDelete);
@@ -220,6 +236,7 @@
         private System.Windows.Forms.TextBox textBoxNewFuelPrice;
         private System.Windows.Forms.TextBox tbClickedCell;
         private System.Windows.Forms.RadioButton rbCashCounter;
+        private System.Windows.Forms.RadioButton rbEntry;
     }
 }
 
