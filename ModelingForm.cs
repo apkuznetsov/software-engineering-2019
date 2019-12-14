@@ -12,6 +12,11 @@ namespace GasStationMs.App
 
         private int _carSpeedNoFilling = 4;
         private int _carSpeedFilling = 3;
+
+        //private bool _isGoHorizontal;
+        //private bool _isGoVertical;
+
+
         private bool _paused;
         private readonly Random _rnd = new Random();
 
@@ -188,111 +193,9 @@ namespace GasStationMs.App
 
             #region MotionLogic
 
-            var isHorizontalMoving = false;
-            var isVerticalMoving = false;
 
-            // Before the filling Horizontal moving is in priority 
-            // After - the vertical one
-            if (!carView.IsBypassingObject)
-            {
-                if (!carView.IsFilled)
-                {
-                    // Go Up
-                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
-                    {
-                        car.Top -= carSpeed;
-                        car.Image = Properties.Resources.car_32x17__up;
-                        isVerticalMoving = true;
-                        destPoint = PreventIntersection(car, 0);
-                    }
+            destPoint = MoveCar(car, destPoint, carSpeed);
 
-                    // Go Down
-                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
-                    {
-                        car.Top += carSpeed;
-                        car.Image = Properties.Resources.car_64x34__down;
-                        isVerticalMoving = true;
-                    }
-
-                    // Go left
-                    if (car.Left >= destPoint.X && !isVerticalMoving)
-                    {
-                        car.Left -= carSpeed;
-                        car.Image = Properties.Resources.car_32x17__left;
-                    }
-
-                    // Go Right
-                    if (car.Right <= destPoint.X && !isVerticalMoving)
-                    {
-                        car.Left += carSpeed;
-                        car.Image = Properties.Resources.car_32x17__right;
-                    }
-                }
-                else
-                {
-                    // Go left
-                    if (car.Left >= destPoint.X)
-                    {
-                        car.Left -= carSpeed;
-                        car.Image = Properties.Resources.car_32x17__left;
-                        isHorizontalMoving = true;
-                    }
-
-                    // Go Right
-                    if (car.Right <= destPoint.X)
-                    {
-                        car.Left += carSpeed;
-                        car.Image = Properties.Resources.car_32x17__right;
-                        isHorizontalMoving = true;
-                    }
-
-                    // Go Up
-                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
-                    {
-                        car.Top -= carSpeed;
-                        car.Image = Properties.Resources.car_32x17__up;
-                        destPoint = PreventIntersection(car, 0);
-                    }
-
-                    // Go Down
-                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
-                    {
-                        car.Top += carSpeed;
-                        car.Image = Properties.Resources.car_32x17__down;
-                    }
-                }
-            }
-            else
-            {
-                // Go left
-                if (car.Left >= destPoint.X)
-                {
-                    car.Left -= carSpeed;
-                    car.Image = Properties.Resources.car_32x17__left;
-                }
-
-                // Go Right
-                if (car.Right <= destPoint.X)
-                {
-                    car.Left += carSpeed;
-                    car.Image = Properties.Resources.car_32x17__right;
-                }
-
-                // Go Up
-                if (car.Top >= destPoint.Y)
-                {
-                    car.Top -= carSpeed;
-                    car.Image = Properties.Resources.car_32x17__up;
-                    destPoint = PreventIntersection(car, 0);
-                }
-
-                // Go Down
-                if (car.Bottom <= destPoint.Y)
-                {
-                    car.Top += carSpeed;
-                    car.Image = Properties.Resources.car_32x17__down;
-                }
-            }
 
             #endregion /MotionLogic
 
@@ -308,17 +211,8 @@ namespace GasStationMs.App
                 carView.RemoveDestinationPoint(this);
 
                 carView.IsBypassingObject = false;
-                //if (carView.IsBypassingObject)
-                //{
-                //    foreach (var predeterminedPoint in _predeterminedPoints)
-                //    {
-                //        if (destPoint.Equals(predeterminedPoint))
-                //        {
-                //            carView.IsBypassingObject = false;
-                //        }
-                //    }
-                //}
-
+                //_isGoHorizontal = false;
+                //_isGoVertical = false;
 
                 if (destPoint.Equals(_enterPoint3))
                 {
@@ -348,6 +242,259 @@ namespace GasStationMs.App
             }
         }
 
+        private Point MoveCar(PictureBox car, Point destPoint, int carSpeed)
+        {
+            var isHorizontalMoving = false;
+            var isVerticalMoving = false;
+            var carView = (CarView) car.Tag;
+            if (!carView.IsBypassingObject)
+            {
+                if (!carView.IsFilled)
+                {
+                    // Go Up
+                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top -= carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__up;
+                        isVerticalMoving = true;
+                        destPoint = PreventIntersection(car, 0);
+                    }
+
+                    // Go Down
+                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top += carSpeed;
+                        //car.Image = Properties.Resources.car_64x34__down;
+                        isVerticalMoving = true;
+                    }
+
+                    // Go left
+                    if (car.Left >= destPoint.X && !isVerticalMoving)
+                    {
+                        car.Left -= carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__left;
+                        destPoint = PreventIntersection(car, 3);
+                    }
+
+                    // Go Right
+                    if (car.Right <= destPoint.X && !isVerticalMoving)
+                    {
+                        car.Left += carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__right;
+                    }
+                }
+                else
+                {
+                    // Go left
+                    if (car.Left >= destPoint.X)
+                    {
+                        car.Left -= carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__left;
+                        isHorizontalMoving = true;
+                        destPoint = PreventIntersection(car, 3);
+                    }
+
+                    // Go Right
+                    if (car.Right <= destPoint.X)
+                    {
+                        car.Left += carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__right;
+                        isHorizontalMoving = true;
+                    }
+
+                    // Go Up
+                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top -= carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__up;
+                        destPoint = PreventIntersection(car, 0);
+                    }
+
+                    // Go Down
+                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top += carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__down;
+                    }
+                }
+            }
+            else
+            {
+                // Go left
+                if (car.Left >= destPoint.X)
+                {
+                    car.Left -= carSpeed;
+                    //car.Image = Properties.Resources.car_32x17__left;
+                    destPoint = PreventIntersection(car, 3);
+                }
+
+                // Go Right
+                if (car.Right <= destPoint.X)
+                {
+                    car.Left += carSpeed;
+                    //car.Image = Properties.Resources.car_32x17__right;
+                }
+
+                // Go Up
+                if (car.Top >= destPoint.Y)
+                {
+                    car.Top -= carSpeed;
+                    //car.Image = Properties.Resources.car_32x17__up;
+                    destPoint = PreventIntersection(car, 0);
+                }
+
+                // Go Down
+                if (car.Bottom <= destPoint.Y)
+                {
+                    car.Top += carSpeed;
+                    //car.Image = Properties.Resources.car_32x17__down;
+                }
+            }
+
+            return destPoint;
+        }
+
+        #region MoveCar1
+
+        //private Point MoveCar1(PictureBox car, Point destPoint, int carSpeed)
+        //{
+        //    var isHorizontalMoving = false;
+        //    var isVerticalMoving = false;
+        //    var carView = (CarView)car.Tag;
+        //    if (!carView.IsBypassingObject)
+        //    {
+        //        if (!carView.IsFilled)
+        //        {
+        //            // Go Up
+        //            if (car.Top >= destPoint.Y && !isHorizontalMoving)
+        //            {
+        //                car.Top -= carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__up;
+        //                isVerticalMoving = true;
+        //                destPoint = PreventIntersection(car, 0, destPoint);
+        //            }
+
+        //            // Go Down
+        //            if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+        //            {
+        //                car.Top += carSpeed;
+        //                car.Image = Properties.Resources.car_64x34__down;
+        //                isVerticalMoving = true;
+        //            }
+
+        //            // Go left
+        //            if (car.Left >= destPoint.X && !isVerticalMoving)
+        //            {
+        //                car.Left -= carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__left;
+        //                destPoint = PreventIntersection(car, 3, destPoint);
+        //            }
+
+        //            // Go Right
+        //            if (car.Right <= destPoint.X && !isVerticalMoving)
+        //            {
+        //                car.Left += carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__right;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            // Go left
+        //            if (car.Left >= destPoint.X)
+        //            {
+        //                car.Left -= carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__left;
+        //                isHorizontalMoving = true;
+        //                destPoint = PreventIntersection(car, 3, destPoint);
+        //            }
+
+        //            // Go Right
+        //            if (car.Right <= destPoint.X)
+        //            {
+        //                car.Left += carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__right;
+        //                isHorizontalMoving = true;
+        //            }
+
+        //            // Go Up
+        //            if (car.Top >= destPoint.Y && !isHorizontalMoving)
+        //            {
+        //                car.Top -= carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__up;
+        //                destPoint = PreventIntersection(car, 0, destPoint);
+        //            }
+
+        //            // Go Down
+        //            if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+        //            {
+        //                car.Top += carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__down;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // Go left
+        //        if (car.Left >= destPoint.X && !_isGoVertical)
+        //        {
+        //            car.Left -= carSpeed;
+        //            car.Image = Properties.Resources.car_32x17__left;
+        //            destPoint = PreventIntersection(car, 3, destPoint);
+        //            _isGoHorizontal = true;
+        //            _isGoVertical = false;
+
+        //            return destPoint;
+
+        //        }
+
+        //        // Go Right
+        //        if (car.Right <= destPoint.X && !_isGoVertical)
+        //        {
+        //            car.Left += carSpeed;
+        //            car.Image = Properties.Resources.car_32x17__right;
+        //            isHorizontalMoving = true;
+        //            _isGoVertical = false;
+
+        //            return destPoint;
+
+        //        }
+
+        //        // Go Up
+        //        if (car.Top >= destPoint.Y && !_isGoHorizontal)
+        //        {
+        //            car.Top -= carSpeed;
+        //            car.Image = Properties.Resources.car_32x17__up;
+
+        //            destPoint = PreventIntersection(car, 0, destPoint);
+
+        //            _isGoHorizontal = false;
+        //            _isGoVertical = true;
+
+        //            return destPoint;
+
+        //        }
+
+        //        // Go Down
+        //        if (car.Bottom <= destPoint.Y && !_isGoHorizontal)
+        //        {
+        //            car.Top += carSpeed;
+        //            car.Image = Properties.Resources.car_32x17__down;
+        //            _isGoHorizontal = false;
+        //            _isGoVertical = true;
+
+        //            return destPoint;
+
+        //        }
+
+        //        _isGoVertical = false;
+        //        _isGoHorizontal = false;
+        //    }
+
+        //    return destPoint;
+        //}
+
+        #endregion /MoveCar1
+
         private void ChooseFuelDispenser(CarView car)
         {
             PictureBox optimalFuelDispenser = _fuelDispensersList[0];
@@ -372,15 +519,15 @@ namespace GasStationMs.App
 
             var destPointX = optimalFuelDispenser.Left + _fuelingPointDeltaX;
             var destPointY = optimalFuelDispenser.Bottom + _fuelingPointDeltaY;
-            var desPoint = new Point(destPointX, destPointY);
+            var destPoint = new Point(destPointX, destPointY);
 
             // The main point of fueling
-            car.AddDestinationPoint(desPoint);
+            car.AddDestinationPoint(destPoint);
 
             // Additional points for better graphics
             destPointX = optimalFuelDispenser.Right + _fuelingPointDeltaX - 1;
-            desPoint = new Point(destPointX, destPointY);
-            car.AddDestinationPoint(desPoint);
+            destPoint = new Point(destPointX, destPointY + 30);
+            car.AddDestinationPoint(destPoint);
         }
 
         private void GoToEnter(CarView car)
@@ -408,10 +555,9 @@ namespace GasStationMs.App
             var activeCarView = (CarView) activeCar.Tag;
             var destPoint = activeCarView.GetDestinationPoint();
 
-
             foreach (Control c in this.Controls)
             {
-                if (!(c is PictureBox) || c.Tag == null)
+                if (!(c is PictureBox) || c.Tag == null || c == activeCar)
                 {
                     continue;
                 }
@@ -437,6 +583,7 @@ namespace GasStationMs.App
 
                     switch (side)
                     {
+                        // Up
                         case 0:
                         {
                             activeCar.Top = fuelDispenser.Bottom;
@@ -449,15 +596,17 @@ namespace GasStationMs.App
                                     ? fuelDispenser.Left - (activeCar.Width + 5)
                                     : fuelDispenser.Right + (activeCar.Height + 1);
 
-                                var newDestinationPoint = new Point(newDestX,
-                                    fuelDispenser.Bottom + 10);
+                                var newDestY = fuelDispenser.Bottom + 10;
 
-                                //activeCarView.RemoveDestinationPoint(this);
-                                //activeCarView.AddDestinationPoint(destPoint);
+                                var newDestinationPoint1 = new Point(newDestX,
+                                    newDestY);
+
+
                                 activeCarView.DeleteDestinationSpot(this);
-                                activeCarView.AddDestinationPoint(newDestinationPoint);
+                                // activeCarView.AddDestinationPoint(newDestinationPoint2);
+                                activeCarView.AddDestinationPoint(newDestinationPoint1);
 
-                                activeCar.Tag = activeCarView;
+
                             }
 
                             break;
@@ -475,6 +624,52 @@ namespace GasStationMs.App
 
                         case 3:
                         {
+                            activeCar.Left = fuelDispenser.Right;
+
+                            if (!activeCarView.IsBypassingObject)
+                            {
+                                activeCarView.IsBypassingObject = true;
+
+                                bool bypassFromBottom = false;
+                                bool bypassFromTop = false;
+
+                                int newDestX;
+                                int newDestY;
+
+                                Point newDestinationPoint1;
+                                Point newDestinationPoint2;
+                                Point newDestinationPoint3;
+
+                                // choose where to bypass 
+                                newDestX = fuelDispenser.Right + 10;
+
+                                if (destPoint.Y <= fuelDispenser.Bottom)
+                                {
+                                    newDestY = fuelDispenser.Top - (activeCar.Width + 5);
+                                    bypassFromTop = true;
+                                }
+                                else
+                                {
+                                    newDestY = fuelDispenser.Bottom + (activeCar.Width + 1);
+                                    bypassFromBottom = true;
+                                }
+
+
+                                newDestinationPoint1 = new Point(newDestX,
+                                    newDestY);
+
+                                newDestinationPoint2 = new Point(fuelDispenser.Left - 35,
+                                    newDestY);
+
+                                newDestinationPoint3 = new Point(fuelDispenser.Left - 20,
+                                    destPoint.Y - 20);
+
+                                activeCarView.DeleteDestinationSpot(this);
+                                //activeCarView.AddDestinationPoint(newDestinationPoint3);
+                                activeCarView.AddDestinationPoint(newDestinationPoint2);
+                                activeCarView.AddDestinationPoint(newDestinationPoint1);
+                            }
+
                             break;
                         }
                     }
@@ -524,9 +719,9 @@ namespace GasStationMs.App
             var fuelView1 = CreateFuelDispenserView("fuelDispenser1", 10);
             var fuelView2 = CreateFuelDispenserView("fuelDispenser2", 15);
 
-            creationPoint = new Point(300, 30);
+            creationPoint = new Point(300, 100);
             CreateFuelDispenserPictureBox(fuelView1, creationPoint);
-            creationPoint = new Point(300, 180);
+            creationPoint = new Point(200, 150);
             CreateFuelDispenserPictureBox(fuelView2, creationPoint);
 
             #endregion /FuelDispensers
@@ -764,7 +959,6 @@ namespace GasStationMs.App
         }
 
         #endregion /FuelTanks
-
 
         #endregion /ElementsProducers
     }
