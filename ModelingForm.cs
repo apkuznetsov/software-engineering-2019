@@ -6,6 +6,13 @@ using GasStationMs.App.Modeling.Models;
 
 namespace GasStationMs.App
 {
+    public enum Direction
+    {
+        Up,
+        Right,
+        Down,
+        Left
+    }
     public partial class ModelingForm : Form
     {
         private int _timerTicksCount = 0;
@@ -257,7 +264,7 @@ namespace GasStationMs.App
                         car.Top -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__up;
                         isVerticalMoving = true;
-                        destPoint = PreventIntersection(car, 0);
+                        destPoint = PreventIntersection(car, Direction.Up);
                     }
 
                     // Go Down
@@ -273,7 +280,7 @@ namespace GasStationMs.App
                     {
                         car.Left -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__left;
-                        destPoint = PreventIntersection(car, 3);
+                        destPoint = PreventIntersection(car, Direction.Left);
                     }
 
                     // Go Right
@@ -291,7 +298,7 @@ namespace GasStationMs.App
                         car.Left -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__left;
                         isHorizontalMoving = true;
-                        destPoint = PreventIntersection(car, 3);
+                        destPoint = PreventIntersection(car, Direction.Left);
                     }
 
                     // Go Right
@@ -307,7 +314,7 @@ namespace GasStationMs.App
                     {
                         car.Top -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__up;
-                        destPoint = PreventIntersection(car, 0);
+                        destPoint = PreventIntersection(car, Direction.Up);
                     }
 
                     // Go Down
@@ -325,7 +332,7 @@ namespace GasStationMs.App
                 {
                     car.Left -= carSpeed;
                     //car.Image = Properties.Resources.car_32x17__left;
-                    destPoint = PreventIntersection(car, 3);
+                    destPoint = PreventIntersection(car, Direction.Left);
                 }
 
                 // Go Right
@@ -340,7 +347,7 @@ namespace GasStationMs.App
                 {
                     car.Top -= carSpeed;
                     //car.Image = Properties.Resources.car_32x17__up;
-                    destPoint = PreventIntersection(car, 0);
+                    destPoint = PreventIntersection(car, Direction.Up);
                 }
 
                 // Go Down
@@ -544,7 +551,7 @@ namespace GasStationMs.App
             car.AddDestinationPoint(_exitPoint1);
         }
 
-        private Point PreventIntersection(PictureBox activeCar, int side)
+        private Point PreventIntersection(PictureBox activeCar, Direction direction)
         {
             // Sides
             // 0 - Up
@@ -581,10 +588,10 @@ namespace GasStationMs.App
                 {
                     var fuelDispenser = pictureBox;
 
-                    switch (side)
+                    switch (direction)
                     {
                         // Up
-                        case 0:
+                        case Direction.Up:
                         {
                             activeCar.Top = fuelDispenser.Bottom;
 
@@ -612,17 +619,17 @@ namespace GasStationMs.App
                             break;
                         }
 
-                        case 1:
+                        case Direction.Right:
                         {
                             break;
                         }
 
-                        case 2:
+                        case Direction.Down:
                         {
                             break;
                         }
 
-                        case 3:
+                        case Direction.Left:
                         {
                             activeCar.Left = fuelDispenser.Right;
 
