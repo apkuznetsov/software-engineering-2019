@@ -101,6 +101,7 @@
     <Compile Include="Elements\FuelDispenser.cs" />
     <Compile Include="Elements\FuelTank.cs" />
     <Compile Include="Elements\IGasStationElement.cs" />
+    <Compile Include="Topology\TopologyBuilderFuelDispenser.cs" />
     <Compile Include="Topology\TopologyConstants.cs" />
     <Compile Include="Topology\TopologyBuilderExit.cs" />
     <Compile Include="Topology\TopologyBuilderEntry.cs" />

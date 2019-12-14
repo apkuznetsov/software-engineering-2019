@@ -13,7 +13,7 @@ namespace GasStationMs.App.Topology
         private int serviceAreaInCells;
 
         private int fuelTanksCount;
-        private int fuelDispensersCount;
+ 
         private int cashCountersCount;
         #endregion
 
@@ -72,27 +72,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public int FuelDispensersCount
-        {
-            get
-            {
-                return fuelDispensersCount;
-            }
-
-            set
-            {
-                if (value < Topology.MinFuelDispensersCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                if (value > Topology.MaxFuelDispensersCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                fuelDispensersCount = value;
-            }
-        }
+    
 
         public int FuelTanksCount
         {
@@ -145,37 +125,6 @@ namespace GasStationMs.App.Topology
         {
             return (int)(colsCount * rowsCount * Topology.ServiceAreaInShares);
         }
-
-        #region ТРК
-        public bool CanAddFuelDispenser()
-        {
-            int newNumOfFuelDispensers = fuelDispensersCount + 1;
-
-            if (newNumOfFuelDispensers <= Topology.MaxFuelDispensersCount)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public void AddFuelDispenser()
-        {
-            FuelDispensersCount = FuelDispensersCount + 1;
-        }
-
-        private void DeleteFuelDispenser()
-        {
-            if (fuelDispensersCount < 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            fuelDispensersCount--;
-        }
-        #endregion /ТРК
 
         #region ТБ
         public bool CanAddFuelTank()
