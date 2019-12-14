@@ -8,7 +8,7 @@
         public double CurrentFullness { get; set; }
         public bool IsEmpty => CurrentFullness > (double)(Volume / 100) * WhenRefillInPercentage;
 
-        public FuelTankView(string name, int maxCashVolume, int volume)
+        public FuelTankView(string name, int volume)
         {
             Name = name;
             Volume = volume;
