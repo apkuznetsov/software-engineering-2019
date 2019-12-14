@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalModels\Fuel.cs" />
+    <Compile Include="Constructor\ConstructorRbs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Constructor\ConstructorClicking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,9 +96,13 @@
     <Compile Include="Modeling\Models\FuelDispenserView.cs" />
     <Compile Include="Modeling\Models\FuelTankView.cs" />
     <Compile Include="TemplateElements\CashCounter.cs" />
+    <Compile Include="TemplateElements\Entry.cs" />
+    <Compile Include="TemplateElements\Exit.cs" />
     <Compile Include="TemplateElements\FuelDispenser.cs" />
     <Compile Include="TemplateElements\FuelTank.cs" />
-    <Compile Include="Models\Topology.cs" />
+    <Compile Include="Topology\TopologyExit.cs" />
+    <Compile Include="Topology\TopologyEntry.cs" />
+    <Compile Include="Topology\Topology.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
     <Compile Include="Start.cs">
       <SubType>Form</SubType>

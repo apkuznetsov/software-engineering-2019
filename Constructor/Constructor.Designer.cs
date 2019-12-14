@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Constructor));
             this.dgvTopology = new System.Windows.Forms.DataGridView();
             this.cellsHorizontally = new System.Windows.Forms.NumericUpDown();
             this.cellsVertically = new System.Windows.Forms.NumericUpDown();
@@ -39,6 +40,9 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.textBoxNewFuelPrice = new System.Windows.Forms.TextBox();
             this.tbClickedCell = new System.Windows.Forms.TextBox();
+            this.rbCashCounter = new System.Windows.Forms.RadioButton();
+            this.rbEntry = new System.Windows.Forms.RadioButton();
+            this.rbExit = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -160,11 +164,56 @@
             this.tbClickedCell.Size = new System.Drawing.Size(159, 143);
             this.tbClickedCell.TabIndex = 11;
             // 
+            // rbCashCounter
+            // 
+            this.rbCashCounter.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbCashCounter.AutoSize = true;
+            this.rbCashCounter.Image = ((System.Drawing.Image)(resources.GetObject("rbCashCounter.Image")));
+            this.rbCashCounter.Location = new System.Drawing.Point(691, 56);
+            this.rbCashCounter.Name = "rbCashCounter";
+            this.rbCashCounter.Size = new System.Drawing.Size(36, 36);
+            this.rbCashCounter.TabIndex = 12;
+            this.rbCashCounter.TabStop = true;
+            this.rbCashCounter.UseVisualStyleBackColor = true;
+            this.rbCashCounter.CheckedChanged += new System.EventHandler(this.rbCashCounter_CheckedChanged);
+            this.rbCashCounter.Click += new System.EventHandler(this.rbCashCounter_Click);
+            // 
+            // rbEntry
+            // 
+            this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbEntry.AutoSize = true;
+            this.rbEntry.Image = ((System.Drawing.Image)(resources.GetObject("rbEntry.Image")));
+            this.rbEntry.Location = new System.Drawing.Point(733, 56);
+            this.rbEntry.Name = "rbEntry";
+            this.rbEntry.Size = new System.Drawing.Size(36, 36);
+            this.rbEntry.TabIndex = 13;
+            this.rbEntry.TabStop = true;
+            this.rbEntry.UseVisualStyleBackColor = true;
+            this.rbEntry.CheckedChanged += new System.EventHandler(this.rbEntry_CheckedChanged);
+            this.rbEntry.Click += new System.EventHandler(this.rbEntry_Click);
+            // 
+            // rbExit
+            // 
+            this.rbExit.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbExit.AutoSize = true;
+            this.rbExit.Image = ((System.Drawing.Image)(resources.GetObject("rbExit.Image")));
+            this.rbExit.Location = new System.Drawing.Point(733, 14);
+            this.rbExit.Name = "rbExit";
+            this.rbExit.Size = new System.Drawing.Size(36, 36);
+            this.rbExit.TabIndex = 14;
+            this.rbExit.TabStop = true;
+            this.rbExit.UseVisualStyleBackColor = true;
+            this.rbExit.CheckedChanged += new System.EventHandler(this.rbExit_CheckedChanged);
+            this.rbExit.Click += new System.EventHandler(this.rbExit_Click);
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.rbExit);
+            this.Controls.Add(this.rbEntry);
+            this.Controls.Add(this.rbCashCounter);
             this.Controls.Add(this.tbClickedCell);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
@@ -202,6 +251,9 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox textBoxNewFuelPrice;
         private System.Windows.Forms.TextBox tbClickedCell;
+        private System.Windows.Forms.RadioButton rbCashCounter;
+        private System.Windows.Forms.RadioButton rbEntry;
+        private System.Windows.Forms.RadioButton rbExit;
     }
 }
 

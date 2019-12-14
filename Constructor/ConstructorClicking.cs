@@ -60,6 +60,48 @@ namespace GasStationMs.App
                             MessageBox.Show("невозможно добавить ТБ");
                         }
                     }
+                    else if (rb.Name == typeof(CashCounter).ToString())
+                    {
+                        if (Topology.CanAddCashCounter())
+                        {
+                            cell.Value = rb.Image;
+                            cell.Tag = new CashCounter();
+                            Topology.AddCashCounter();
+                            tbClickedCell.Text = cell.Tag.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("невозможно добавить кассу");
+                        }
+                    }
+                    else if (rb.Name == typeof(Entry).ToString())
+                    {
+                        if (Topology.CanAddEntry())
+                        {
+                            cell.Value = rb.Image;
+                            cell.Tag = new Entry();
+                            Topology.AddEntry();
+                            tbClickedCell.Text = cell.Tag.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("невозможно добавить въезд");
+                        }
+                    }
+                    else if (rb.Name == typeof(Exit).ToString())
+                    {
+                        if (Topology.CanAddExit())
+                        {
+                            cell.Value = rb.Image;
+                            cell.Tag = new Exit();
+                            Topology.AddExit();
+                            tbClickedCell.Text = cell.Tag.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("невозможно добавить выезд");
+                        }
+                    }
                     else
                     {
                         cell.Value = rb.Image;
