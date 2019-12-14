@@ -57,7 +57,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        private void DeleteEntry()
+        public void DeleteEntry()
         {
             if (entriesCount < 0)
             {

@@ -56,7 +56,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        private void DeleteFuelTank()
+        public void DeleteFuelTank()
         {
             if (fuelTanksCount < 0)
             {

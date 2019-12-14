@@ -111,7 +111,35 @@ namespace GasStationMs.App
 
         private void DeleteElement(DataGridViewImageCell cell)
         {
-            tb.DeleteTemplateElement(cell);
+            bool canDelete = (cell.Tag != null);
+
+            if (canDelete)
+            {
+                if (cell.Tag is FuelDispenser)
+                {
+                    tb.DeleteFuelDispenser();
+                }
+                else if (cell.Tag is FuelTank)
+                {
+                    tb.DeleteFuelTank();
+                }
+                else if (cell.Tag is CashCounter)
+                {
+                    tb.DeleteCashCounter();
+                }
+                else if (cell.Tag is Entry)
+                {
+                    tb.DeleteEntry();
+                }
+                else if (cell.Tag is Exit)
+                {
+                    tb.DeleteExit();
+                }
+                else { }
+
+                cell.Tag = null;
+                cell.Value = null;
+            }
         }
     }
 }

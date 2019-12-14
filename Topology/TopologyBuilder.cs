@@ -90,39 +90,6 @@ namespace GasStationMs.App.Topology
             return (int)(colsCount * rowsCount * Topology.ServiceAreaInShares);
         }
 
-        public void DeleteTemplateElement(DataGridViewCell cell)
-        {
-            bool canDelete = (cell.Tag != null);
-
-            if (canDelete)
-            {
-                if (cell.Tag is FuelDispenser)
-                {
-                    DeleteFuelDispenser();
-                }
-                else if (cell.Tag is FuelTank)
-                {
-                    DeleteFuelTank();
-                }
-                else if (cell.Tag is CashCounter)
-                {
-                    DeleteCashCounter();
-                }
-                else if (cell.Tag is Entry)
-                {
-                    DeleteEntry();
-                }
-                else if (cell.Tag is Exit)
-                {
-                    DeleteExit();
-                }
-                else { }
-
-                cell.Tag = null;
-                cell.Value = null;
-            }
-        }
-
         public IGasStationElement[,] GetGasStationElementsArray(DataGridView dgv)
         {
             IGasStationElement[,] gseArr;

@@ -56,7 +56,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        private void DeleteCashCounter()
+        public void DeleteCashCounter()
         {
             if (cashCountersCount < 0)
             {

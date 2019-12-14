@@ -55,7 +55,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        private void DeleteFuelDispenser()
+        public void DeleteFuelDispenser()
         {
             if (fuelDispensersCount < 0)
             {
