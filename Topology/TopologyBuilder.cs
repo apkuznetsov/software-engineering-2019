@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App.Topology
 {
-    public partial class TopologyConstructor
+    public partial class TopologyBuilder
     {
         public static readonly double ServiceAreaInShares = 0.25;
 
@@ -31,15 +31,23 @@ namespace GasStationMs.App.Topology
         #endregion
 
         #region поля
-        private int numOfCellsHorizontally = MinNumOfCellsHorizontally;
-        private int numOfCellsVertically = MinNumOfCellsHorizontally;
+        private int numOfCellsHorizontally;
+        private int numOfCellsVertically;
 
-        private int serviceAreaInCells = RecalculateServiceArea();
+        private int serviceAreaInCells;
 
         private int numOfFuelTanks;
         private int numOfFuelDispensers;
         private int numOfCashCounters;
         #endregion
+
+        public TopologyBuilder()
+        {
+            numOfCellsHorizontally = MinNumOfCellsHorizontally;
+            numOfCellsVertically = MinNumOfCellsHorizontally;
+
+            serviceAreaInCells = RecalculateServiceArea();
+        }
 
         #region свойства
         public int NumOfCellsHorizontally

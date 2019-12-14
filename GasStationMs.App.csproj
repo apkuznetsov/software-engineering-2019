@@ -101,9 +101,9 @@
     <Compile Include="Elements\FuelDispenser.cs" />
     <Compile Include="Elements\FuelTank.cs" />
     <Compile Include="Elements\IGasStationElement.cs" />
-    <Compile Include="Topology\TopologyConstructorExit.cs" />
-    <Compile Include="Topology\TopologyConstructorEntry.cs" />
-    <Compile Include="Topology\TopologyConstructor.cs" />
+    <Compile Include="Topology\TopologyBuilderExit.cs" />
+    <Compile Include="Topology\TopologyBuilderEntry.cs" />
+    <Compile Include="Topology\TopologyBuilder.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
     <Compile Include="Start.cs">
       <SubType>Form</SubType>

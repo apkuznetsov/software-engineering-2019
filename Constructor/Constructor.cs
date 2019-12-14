@@ -3,12 +3,15 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
+using GasStationMs.App.Topology;
 using GasStationMs.Dal;
 
 namespace GasStationMs.App
 {
     public partial class Constructor : Form
     {
+        private TopologyBuilder tb;
+
         private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
@@ -19,6 +22,8 @@ namespace GasStationMs.App
             _connection = ConnectionHelpers.OpenConnection();
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
+
+            tb = new TopologyBuilder();
 
             SetSettings();
         }

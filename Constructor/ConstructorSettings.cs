@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using GasStationMs.App.Elements;
+using GasStationMs.App.Topology;
 
 namespace GasStationMs.App
 {
@@ -28,12 +29,12 @@ namespace GasStationMs.App
             dgvTopology.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
 
-            for (int i = 0; i < Topology.TopologyConstructor.NumOfCellsHorizontally; i++)
+            for (int i = 0; i < tb.NumOfCellsHorizontally; i++)
             {
 
                 dgvTopology.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
             }
-            dgvTopology.RowCount = Topology.TopologyConstructor.NumOfCellsVertically;
+            dgvTopology.RowCount = tb.NumOfCellsVertically;
         }
 
         private void SetCellsSize()
@@ -52,11 +53,11 @@ namespace GasStationMs.App
 
         private void SetSpinners()
         {
-            cellsHorizontally.Minimum = Topology.TopologyConstructor.MinNumOfCellsHorizontally;
-            cellsHorizontally.Maximum = Topology.TopologyConstructor.MaxNumOfCellsHorizontally;
+            cellsHorizontally.Minimum = TopologyBuilder.MinNumOfCellsHorizontally;
+            cellsHorizontally.Maximum = TopologyBuilder.MaxNumOfCellsHorizontally;
 
-            cellsVertically.Minimum = Topology.TopologyConstructor.MinNumOfCellsVertically;
-            cellsVertically.Maximum = Topology.TopologyConstructor.MaxNumOfCellsVertically;
+            cellsVertically.Minimum = TopologyBuilder.MinNumOfCellsVertically;
+            cellsVertically.Maximum = TopologyBuilder.MaxNumOfCellsVertically;
 
             cellsHorizontally.Text = dgvTopology.ColumnCount.ToString();
             cellsVertically.Text = dgvTopology.RowCount.ToString();
