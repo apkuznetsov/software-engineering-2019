@@ -12,8 +12,6 @@ namespace GasStationMs.App.Topology
 
         private int serviceAreaInCells;
 
-        private int fuelTanksCount;
- 
         private int cashCountersCount;
         #endregion
 
@@ -74,28 +72,7 @@ namespace GasStationMs.App.Topology
 
     
 
-        public int FuelTanksCount
-        {
-            get
-            {
-                return fuelTanksCount;
-            }
-
-            set
-            {
-                if (value < Topology.MinFuelTanksCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                if (value > serviceAreaInCells)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                fuelTanksCount = value;
-            }
-        }
+        
 
         public int CashCountersCount
         {
@@ -125,37 +102,6 @@ namespace GasStationMs.App.Topology
         {
             return (int)(colsCount * rowsCount * Topology.ServiceAreaInShares);
         }
-
-        #region ТБ
-        public bool CanAddFuelTank()
-        {
-            int newNumOfFuelTanks = fuelTanksCount + 1;
-
-            if (newNumOfFuelTanks <= serviceAreaInCells)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public void AddFuelTank()
-        {
-            FuelTanksCount = FuelTanksCount + 1;
-        }
-
-        private void DeleteFuelTank()
-        {
-            if (fuelTanksCount < 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            fuelTanksCount--;
-        }
-        #endregion /ТБ
 
         #region касса
         public bool CanAddCashCounter()
