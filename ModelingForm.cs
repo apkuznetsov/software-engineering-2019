@@ -13,6 +13,7 @@ namespace GasStationMs.App
         Down,
         Left
     }
+
     public partial class ModelingForm : Form
     {
         private int _timerTicksCount = 0;
@@ -22,7 +23,6 @@ namespace GasStationMs.App
 
         //private bool _isGoHorizontal;
         //private bool _isGoVertical;
-
 
         private bool _paused;
         private readonly Random _rnd = new Random();
@@ -92,17 +92,17 @@ namespace GasStationMs.App
         {
             _timerTicksCount++;
 
-            if (!_paused)
-            {
-                //return;
-                SpawnCar();
-                _paused = true;
-            }
-
-            //if (_timerTicksCount % 40 == 0)
+            //if (!_paused)
             //{
+            //    //return;
             //    SpawnCar();
+            //    _paused = true;
             //}
+
+            if (_timerTicksCount % 15 == 0)
+            {
+                SpawnCar();
+            }
 
             #region LoopingControls
 
@@ -137,11 +137,11 @@ namespace GasStationMs.App
             var carView = CreateCarView( /*caeModel*/);
 
             // Some Distribution law here
-            //if (_rnd.NextDouble() >= 0.5)
-            //{
-            //    carView.IsGoesFilling = true;
-            //}
-            carView.IsGoesFilling = true;
+            if (_rnd.NextDouble() >= 0.5)
+            {
+                carView.IsGoesFilling = true;
+            }
+            //carView.IsGoesFilling = true;
 
 
             if (!carView.IsGoesFilling)
@@ -690,7 +690,7 @@ namespace GasStationMs.App
                                 // choose where to bypass 
                                 newDestX = fuelDispenser.Right + 10;
 
-                                if (destPoint.X <= fuelDispenser.Left + fuelDispenser.Width/2)
+                                if (destPoint.X <= fuelDispenser.Left + fuelDispenser.Width / 2)
                                 {
                                     newDestX = fuelDispenser.Left - (activeCar.Width + 5);
                                     bypassFromLeft = true;
@@ -701,7 +701,7 @@ namespace GasStationMs.App
                                     bypassFromRight = true;
                                 }
 
-                                newDestY = fuelDispenser.Top -10;
+                                newDestY = fuelDispenser.Top - 10;
 
                                 newDestinationPoint1 = new Point(newDestX,
                                     newDestY);
@@ -710,7 +710,7 @@ namespace GasStationMs.App
                                 newDestinationPoint2 = new Point(newDestX,
                                     newDestY);
 
-                                    activeCarView.DeleteDestinationSpot(this);
+                                activeCarView.DeleteDestinationSpot(this);
                                 activeCarView.AddDestinationPoint(newDestinationPoint2);
                                 activeCarView.AddDestinationPoint(newDestinationPoint1);
                             }
@@ -726,9 +726,6 @@ namespace GasStationMs.App
                             {
                                 activeCarView.IsBypassingObject = true;
 
-                             
-                               
-
                                 // choose where to bypass 
                                 newDestX = fuelDispenser.Right + 10;
 
@@ -742,7 +739,6 @@ namespace GasStationMs.App
                                     newDestY = fuelDispenser.Bottom + (activeCar.Width + 1);
                                     bypassFromBottom = true;
                                 }
-
 
                                 newDestinationPoint1 = new Point(newDestX,
                                     newDestY);
@@ -786,7 +782,7 @@ namespace GasStationMs.App
             //_cashCounter = pictureBoxCashCounter;
 
             var cashCounterView = CreateCashCounterView("Cash Counter", 100000);
-            var creationPoint = new Point(20, 20);
+            var creationPoint = new Point(100, 200);
             _cashCounter = CreateCashCounterPictureBox(cashCounterView, creationPoint);
 
             #endregion /CashCounter
