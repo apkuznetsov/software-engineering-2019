@@ -88,6 +88,20 @@ namespace GasStationMs.App
                             MessageBox.Show("невозможно добавить въезд");
                         }
                     }
+                    else if (rb.Name == typeof(Exit).ToString())
+                    {
+                        if (Topology.CanAddExit())
+                        {
+                            cell.Value = rb.Image;
+                            cell.Tag = new Exit();
+                            Topology.AddExit();
+                            tbClickedCell.Text = cell.Tag.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("невозможно добавить выезд");
+                        }
+                    }
                     else
                     {
                         cell.Value = rb.Image;

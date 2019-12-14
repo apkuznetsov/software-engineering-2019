@@ -290,6 +290,10 @@ namespace GasStationMs.App.Models
                 {
                     DeleteEntry();
                 }
+                else if (cell.Tag is Exit)
+                {
+                    DeleteExit();
+                }
                 else { }
 
                 cell.Tag = null;
