@@ -21,6 +21,7 @@ namespace GasStationMs.App.Modeling.Models
         public bool IsOnStation { get; set; }
         public bool IsFilled { get; set; }
         public bool IsFuelDispenserChosen { get; set; }
+        public bool IsBypassingObject { get; set; }
         public PictureBox ChosenFuelDispenser { get; set; }
 
         private List<Point> _destinationPoints;
@@ -42,9 +43,10 @@ namespace GasStationMs.App.Modeling.Models
 
         public PictureBox CreateDestinationSpot(Point destPoint)
         {
+            var spotSize = 5;
             this.DestinationSpot = new PictureBox()
             {
-                Size = new Size(5, 5),
+                Size = new Size(spotSize, spotSize),
                 Location = destPoint,
                 Visible = true,
                 BackColor = Color.DarkRed
@@ -77,7 +79,7 @@ namespace GasStationMs.App.Modeling.Models
             DeleteDestinationSpot(form);
         }
 
-        private void DeleteDestinationSpot(Form form)
+        public void DeleteDestinationSpot(Form form)
         {
             form.Controls.Remove(DestinationSpot);
             DestinationSpot.Dispose();
