@@ -19,8 +19,6 @@ namespace GasStationMs.App.Models
         #region константы кол-ва ШЭ
         public static readonly int MinAndMaxNumOfAdjacentRoads = 1;
 
-        public static readonly int MinAndMaxNumOfExits = 1;
-
         public static readonly int MinNumOfFuelDispensers = 1;
         public static readonly int MaxNumOfFuelDispensers = 6;
 
@@ -100,14 +98,6 @@ namespace GasStationMs.App.Models
             get
             {
                 return MinAndMaxNumOfAdjacentRoads;
-            }
-        }
-
-        public static int NumOfExits
-        {
-            get
-            {
-                return MinAndMaxNumOfExits;
             }
         }
 

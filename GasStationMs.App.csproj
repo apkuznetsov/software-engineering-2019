@@ -100,6 +100,7 @@
     <Compile Include="TemplateElements\Exit.cs" />
     <Compile Include="TemplateElements\FuelDispenser.cs" />
     <Compile Include="TemplateElements\FuelTank.cs" />
+    <Compile Include="Topology\TopologyExit.cs" />
     <Compile Include="Topology\TopologyEntry.cs" />
     <Compile Include="Topology\Topology.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
