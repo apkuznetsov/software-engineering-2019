@@ -612,14 +612,30 @@ namespace GasStationMs.App
                                     ? fuelDispenser.Left - (activeCar.Width + 5)
                                     : fuelDispenser.Right + (activeCar.Width + 5);
 
+
+                                if (destPoint.X < activeCar.Left)
+                                {
+                                    newDestX = fuelDispenser.Left - (activeCar.Width + 5);
+                                    bypassFromLeft = true;
+                                }
+                                else
+                                {
+                                    newDestX = fuelDispenser.Right + (activeCar.Width + 5);
+                                    bypassFromRight = true;
+                                }
+
                                 newDestY = fuelDispenser.Bottom + 10;
+
 
                                 newDestinationPoint1 = new Point(newDestX,
                                     newDestY);
 
+                                newDestY = fuelDispenser.Top + activeCar.Height + 10;
+                                newDestinationPoint2 = new Point(newDestX,
+                                    newDestY);
 
                                 activeCarView.DeleteDestinationSpot(this);
-                                // activeCarView.AddDestinationPoint(newDestinationPoint2);
+                                activeCarView.AddDestinationPoint(newDestinationPoint2);
                                 activeCarView.AddDestinationPoint(newDestinationPoint1);
                             }
 
@@ -763,7 +779,7 @@ namespace GasStationMs.App
 
             creationPoint = new Point(300, 50);
             CreateFuelDispenserPictureBox(fuelView1, creationPoint);
-            creationPoint = new Point(50, 150);
+            creationPoint = new Point(300, 150);
             CreateFuelDispenserPictureBox(fuelView2, creationPoint);
 
             #endregion /FuelDispensers
