@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GasStationMs.App.Models
+namespace GasStationMs.App.Topology
 {
     public static partial class Topology // Entry
     {

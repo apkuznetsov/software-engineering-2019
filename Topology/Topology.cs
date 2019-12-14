@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace GasStationMs.App.Models
+namespace GasStationMs.App.Topology
 {
     public static partial class Topology
     {
