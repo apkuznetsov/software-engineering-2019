@@ -188,37 +188,73 @@ namespace GasStationMs.App
 
             // Before the filling Horizontal moving is in priority 
             // After - the vertical one
-
-            if (!carView.IsFilled)
+            if (!carView.IsBypassingObject)
             {
-                // Go Up
-                if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                if (!carView.IsFilled)
                 {
-                    car.Top -= carSpeed;
-                    car.Image = Properties.Resources.car_64x34__up;
-                    isVerticalMoving = true;
-                }
+                    // Go Up
+                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top -= carSpeed;
+                        car.Image = Properties.Resources.car_64x34__up;
+                        isVerticalMoving = true;
+                        destPoint = PreventIntersection(car, 0);
+                    }
 
-                // Go Down
-                if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
-                {
-                    car.Top += carSpeed;
-                    car.Image = Properties.Resources.car_64x34__down;
-                    isVerticalMoving = true;
-                }
+                    // Go Down
+                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top += carSpeed;
+                        car.Image = Properties.Resources.car_64x34__down;
+                        isVerticalMoving = true;
+                    }
 
-                // Go left
-                if (car.Left >= destPoint.X && !isVerticalMoving)
-                {
-                    car.Left -= carSpeed;
-                    car.Image = Properties.Resources.car_64x34__left;
-                }
+                    // Go left
+                    if (car.Left >= destPoint.X && !isVerticalMoving)
+                    {
+                        car.Left -= carSpeed;
+                        car.Image = Properties.Resources.car_64x34__left;
+                    }
 
-                // Go Right
-                if (car.Right <= destPoint.X && !isVerticalMoving)
+                    // Go Right
+                    if (car.Right <= destPoint.X && !isVerticalMoving)
+                    {
+                        car.Left += carSpeed;
+                        car.Image = Properties.Resources.car_64x34__right;
+                    }
+                }
+                else
                 {
-                    car.Left += carSpeed;
-                    car.Image = Properties.Resources.car_64x34__right;
+                    // Go left
+                    if (car.Left >= destPoint.X)
+                    {
+                        car.Left -= carSpeed;
+                        car.Image = Properties.Resources.car_64x34__left;
+                        isHorizontalMoving = true;
+                    }
+
+                    // Go Right
+                    if (car.Right <= destPoint.X)
+                    {
+                        car.Left += carSpeed;
+                        car.Image = Properties.Resources.car_64x34__right;
+                        isHorizontalMoving = true;
+                    }
+
+                    // Go Up
+                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top -= carSpeed;
+                        car.Image = Properties.Resources.car_64x34__up;
+                        destPoint = PreventIntersection(car, 0);
+                    }
+
+                    // Go Down
+                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top += carSpeed;
+                        car.Image = Properties.Resources.car_64x34__down;
+                    }
                 }
             }
             else
@@ -228,7 +264,6 @@ namespace GasStationMs.App
                 {
                     car.Left -= carSpeed;
                     car.Image = Properties.Resources.car_64x34__left;
-                    isHorizontalMoving = true;
                 }
 
                 // Go Right
@@ -236,24 +271,23 @@ namespace GasStationMs.App
                 {
                     car.Left += carSpeed;
                     car.Image = Properties.Resources.car_64x34__right;
-                    isHorizontalMoving = true;
                 }
 
                 // Go Up
-                if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                if (car.Top >= destPoint.Y)
                 {
                     car.Top -= carSpeed;
                     car.Image = Properties.Resources.car_64x34__up;
+                    destPoint = PreventIntersection(car, 0);
                 }
 
                 // Go Down
-                if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+                if (car.Bottom <= destPoint.Y)
                 {
                     car.Top += carSpeed;
                     car.Image = Properties.Resources.car_64x34__down;
                 }
             }
-
 
             #endregion /MotionLogic
 
@@ -267,6 +301,19 @@ namespace GasStationMs.App
             if (car.Bounds.IntersectsWith(destSpot.Bounds))
             {
                 carView.RemoveDestinationPoint(this);
+
+                carView.IsBypassingObject = false;
+                //if (carView.IsBypassingObject)
+                //{
+                //    foreach (var predeterminedPoint in _predeterminedPoints)
+                //    {
+                //        if (destPoint.Equals(predeterminedPoint))
+                //        {
+                //            carView.IsBypassingObject = false;
+                //        }
+                //    }
+                //}
+               
 
                 if (destPoint.Equals(_enterPoint3))
                 {
