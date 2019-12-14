@@ -12,6 +12,11 @@ namespace GasStationMs.App
 
         private int _carSpeedNoFilling = 4;
         private int _carSpeedFilling = 3;
+
+        //private bool _isGoHorizontal;
+        //private bool _isGoVertical;
+
+
         private bool _paused;
         private readonly Random _rnd = new Random();
 
@@ -188,111 +193,9 @@ namespace GasStationMs.App
 
             #region MotionLogic
 
-            var isHorizontalMoving = false;
-            var isVerticalMoving = false;
 
-            // Before the filling Horizontal moving is in priority 
-            // After - the vertical one
-            if (!carView.IsBypassingObject)
-            {
-                if (!carView.IsFilled)
-                {
-                    // Go Up
-                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
-                    {
-                        car.Top -= carSpeed;
-                        car.Image = Properties.Resources.car_32x17__up;
-                        isVerticalMoving = true;
-                        destPoint = PreventIntersection(car, 0);
-                    }
+            destPoint = MoveCar(car, destPoint, carSpeed);
 
-                    // Go Down
-                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
-                    {
-                        car.Top += carSpeed;
-                        car.Image = Properties.Resources.car_64x34__down;
-                        isVerticalMoving = true;
-                    }
-
-                    // Go left
-                    if (car.Left >= destPoint.X && !isVerticalMoving)
-                    {
-                        car.Left -= carSpeed;
-                        car.Image = Properties.Resources.car_32x17__left;
-                    }
-
-                    // Go Right
-                    if (car.Right <= destPoint.X && !isVerticalMoving)
-                    {
-                        car.Left += carSpeed;
-                        car.Image = Properties.Resources.car_32x17__right;
-                    }
-                }
-                else
-                {
-                    // Go left
-                    if (car.Left >= destPoint.X)
-                    {
-                        car.Left -= carSpeed;
-                        car.Image = Properties.Resources.car_32x17__left;
-                        isHorizontalMoving = true;
-                    }
-
-                    // Go Right
-                    if (car.Right <= destPoint.X)
-                    {
-                        car.Left += carSpeed;
-                        car.Image = Properties.Resources.car_32x17__right;
-                        isHorizontalMoving = true;
-                    }
-
-                    // Go Up
-                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
-                    {
-                        car.Top -= carSpeed;
-                        car.Image = Properties.Resources.car_32x17__up;
-                        destPoint = PreventIntersection(car, 0);
-                    }
-
-                    // Go Down
-                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
-                    {
-                        car.Top += carSpeed;
-                        car.Image = Properties.Resources.car_32x17__down;
-                    }
-                }
-            }
-            else
-            {
-                // Go left
-                if (car.Left >= destPoint.X)
-                {
-                    car.Left -= carSpeed;
-                    car.Image = Properties.Resources.car_32x17__left;
-                }
-
-                // Go Right
-                if (car.Right <= destPoint.X)
-                {
-                    car.Left += carSpeed;
-                    car.Image = Properties.Resources.car_32x17__right;
-                }
-
-                // Go Up
-                if (car.Top >= destPoint.Y)
-                {
-                    car.Top -= carSpeed;
-                    car.Image = Properties.Resources.car_32x17__up;
-                    destPoint = PreventIntersection(car, 0);
-                }
-
-                // Go Down
-                if (car.Bottom <= destPoint.Y)
-                {
-                    car.Top += carSpeed;
-                    car.Image = Properties.Resources.car_32x17__down;
-                }
-            }
 
             #endregion /MotionLogic
 
@@ -308,17 +211,8 @@ namespace GasStationMs.App
                 carView.RemoveDestinationPoint(this);
 
                 carView.IsBypassingObject = false;
-                //if (carView.IsBypassingObject)
-                //{
-                //    foreach (var predeterminedPoint in _predeterminedPoints)
-                //    {
-                //        if (destPoint.Equals(predeterminedPoint))
-                //        {
-                //            carView.IsBypassingObject = false;
-                //        }
-                //    }
-                //}
-
+                //_isGoHorizontal = false;
+                //_isGoVertical = false;
 
                 if (destPoint.Equals(_enterPoint3))
                 {
@@ -347,6 +241,259 @@ namespace GasStationMs.App
                 }
             }
         }
+
+        private Point MoveCar(PictureBox car, Point destPoint, int carSpeed)
+        {
+            var isHorizontalMoving = false;
+            var isVerticalMoving = false;
+            var carView = (CarView) car.Tag;
+            if (!carView.IsBypassingObject)
+            {
+                if (!carView.IsFilled)
+                {
+                    // Go Up
+                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top -= carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__up;
+                        isVerticalMoving = true;
+                        destPoint = PreventIntersection(car, 0, destPoint);
+                    }
+
+                    // Go Down
+                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top += carSpeed;
+                        //car.Image = Properties.Resources.car_64x34__down;
+                        isVerticalMoving = true;
+                    }
+
+                    // Go left
+                    if (car.Left >= destPoint.X && !isVerticalMoving)
+                    {
+                        car.Left -= carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__left;
+                        destPoint = PreventIntersection(car, 3, destPoint);
+                    }
+
+                    // Go Right
+                    if (car.Right <= destPoint.X && !isVerticalMoving)
+                    {
+                        car.Left += carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__right;
+                    }
+                }
+                else
+                {
+                    // Go left
+                    if (car.Left >= destPoint.X)
+                    {
+                        car.Left -= carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__left;
+                        isHorizontalMoving = true;
+                        destPoint = PreventIntersection(car, 3, destPoint);
+                    }
+
+                    // Go Right
+                    if (car.Right <= destPoint.X)
+                    {
+                        car.Left += carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__right;
+                        isHorizontalMoving = true;
+                    }
+
+                    // Go Up
+                    if (car.Top >= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top -= carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__up;
+                        destPoint = PreventIntersection(car, 0, destPoint);
+                    }
+
+                    // Go Down
+                    if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+                    {
+                        car.Top += carSpeed;
+                        //car.Image = Properties.Resources.car_32x17__down;
+                    }
+                }
+            }
+            else
+            {
+                // Go left
+                if (car.Left >= destPoint.X )
+                {
+                    car.Left -= carSpeed;
+                    //car.Image = Properties.Resources.car_32x17__left;
+                    destPoint = PreventIntersection(car, 3, destPoint);
+                }
+
+                // Go Right
+                if (car.Right <= destPoint.X)
+                {
+                    car.Left += carSpeed;
+                    //car.Image = Properties.Resources.car_32x17__right;
+                    isHorizontalMoving = true;
+                }
+
+                // Go Up
+                if (car.Top >= destPoint.Y)
+                {
+                    car.Top -= carSpeed;
+                    //car.Image = Properties.Resources.car_32x17__up;
+                    destPoint = PreventIntersection(car, 0, destPoint);
+                }
+
+                // Go Down
+                if (car.Bottom <= destPoint.Y)
+                {
+                    car.Top += carSpeed;
+                    //car.Image = Properties.Resources.car_32x17__down;
+                }
+            }
+
+            return destPoint;
+        }
+
+        #region MoveCar1
+        //private Point MoveCar1(PictureBox car, Point destPoint, int carSpeed)
+        //{
+        //    var isHorizontalMoving = false;
+        //    var isVerticalMoving = false;
+        //    var carView = (CarView)car.Tag;
+        //    if (!carView.IsBypassingObject)
+        //    {
+        //        if (!carView.IsFilled)
+        //        {
+        //            // Go Up
+        //            if (car.Top >= destPoint.Y && !isHorizontalMoving)
+        //            {
+        //                car.Top -= carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__up;
+        //                isVerticalMoving = true;
+        //                destPoint = PreventIntersection(car, 0, destPoint);
+        //            }
+
+        //            // Go Down
+        //            if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+        //            {
+        //                car.Top += carSpeed;
+        //                car.Image = Properties.Resources.car_64x34__down;
+        //                isVerticalMoving = true;
+        //            }
+
+        //            // Go left
+        //            if (car.Left >= destPoint.X && !isVerticalMoving)
+        //            {
+        //                car.Left -= carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__left;
+        //                destPoint = PreventIntersection(car, 3, destPoint);
+        //            }
+
+        //            // Go Right
+        //            if (car.Right <= destPoint.X && !isVerticalMoving)
+        //            {
+        //                car.Left += carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__right;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            // Go left
+        //            if (car.Left >= destPoint.X)
+        //            {
+        //                car.Left -= carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__left;
+        //                isHorizontalMoving = true;
+        //                destPoint = PreventIntersection(car, 3, destPoint);
+        //            }
+
+        //            // Go Right
+        //            if (car.Right <= destPoint.X)
+        //            {
+        //                car.Left += carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__right;
+        //                isHorizontalMoving = true;
+        //            }
+
+        //            // Go Up
+        //            if (car.Top >= destPoint.Y && !isHorizontalMoving)
+        //            {
+        //                car.Top -= carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__up;
+        //                destPoint = PreventIntersection(car, 0, destPoint);
+        //            }
+
+        //            // Go Down
+        //            if (car.Bottom <= destPoint.Y && !isHorizontalMoving)
+        //            {
+        //                car.Top += carSpeed;
+        //                car.Image = Properties.Resources.car_32x17__down;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // Go left
+        //        if (car.Left >= destPoint.X && !_isGoVertical)
+        //        {
+        //            car.Left -= carSpeed;
+        //            car.Image = Properties.Resources.car_32x17__left;
+        //            destPoint = PreventIntersection(car, 3, destPoint);
+        //            _isGoHorizontal = true;
+        //            _isGoVertical = false;
+
+        //            return destPoint;
+
+        //        }
+
+        //        // Go Right
+        //        if (car.Right <= destPoint.X && !_isGoVertical)
+        //        {
+        //            car.Left += carSpeed;
+        //            car.Image = Properties.Resources.car_32x17__right;
+        //            isHorizontalMoving = true;
+        //            _isGoVertical = false;
+
+        //            return destPoint;
+
+        //        }
+
+        //        // Go Up
+        //        if (car.Top >= destPoint.Y && !_isGoHorizontal)
+        //        {
+        //            car.Top -= carSpeed;
+        //            car.Image = Properties.Resources.car_32x17__up;
+
+        //            destPoint = PreventIntersection(car, 0, destPoint);
+
+        //            _isGoHorizontal = false;
+        //            _isGoVertical = true;
+
+        //            return destPoint;
+
+        //        }
+
+        //        // Go Down
+        //        if (car.Bottom <= destPoint.Y && !_isGoHorizontal)
+        //        {
+        //            car.Top += carSpeed;
+        //            car.Image = Properties.Resources.car_32x17__down;
+        //            _isGoHorizontal = false;
+        //            _isGoVertical = true;
+
+        //            return destPoint;
+
+        //        }
+
+        //        _isGoVertical = false;
+        //        _isGoHorizontal = false;
+        //    }
+
+        //    return destPoint;
+        //}
+
+        #endregion /MoveCar1
 
         private void ChooseFuelDispenser(CarView car)
         {
