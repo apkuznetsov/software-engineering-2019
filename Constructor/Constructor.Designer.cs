@@ -42,6 +42,7 @@
             this.tbClickedCell = new System.Windows.Forms.TextBox();
             this.rbCashCounter = new System.Windows.Forms.RadioButton();
             this.rbEntry = new System.Windows.Forms.RadioButton();
+            this.rbExit = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -191,11 +192,26 @@
             this.rbEntry.CheckedChanged += new System.EventHandler(this.rbEntry_CheckedChanged);
             this.rbEntry.Click += new System.EventHandler(this.rbEntry_Click);
             // 
+            // rbExit
+            // 
+            this.rbExit.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbExit.AutoSize = true;
+            this.rbExit.Image = ((System.Drawing.Image)(resources.GetObject("rbExit.Image")));
+            this.rbExit.Location = new System.Drawing.Point(733, 14);
+            this.rbExit.Name = "rbExit";
+            this.rbExit.Size = new System.Drawing.Size(36, 36);
+            this.rbExit.TabIndex = 14;
+            this.rbExit.TabStop = true;
+            this.rbExit.UseVisualStyleBackColor = true;
+            this.rbExit.CheckedChanged += new System.EventHandler(this.rbExit_CheckedChanged);
+            this.rbExit.Click += new System.EventHandler(this.rbExit_Click);
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.rbExit);
             this.Controls.Add(this.rbEntry);
             this.Controls.Add(this.rbCashCounter);
             this.Controls.Add(this.tbClickedCell);
@@ -237,6 +253,7 @@
         private System.Windows.Forms.TextBox tbClickedCell;
         private System.Windows.Forms.RadioButton rbCashCounter;
         private System.Windows.Forms.RadioButton rbEntry;
+        private System.Windows.Forms.RadioButton rbExit;
     }
 }
 

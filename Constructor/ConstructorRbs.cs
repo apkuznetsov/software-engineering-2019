@@ -10,6 +10,7 @@ namespace GasStationMs.App
         bool isCheckedradioButtonFuelTank = false;
         bool isCheckedRbCashCounter = false;
         bool isCheckedRbEntry = false;
+        bool isCheckedRbExit;
 
         private void SetRbsNames()
         {
@@ -17,6 +18,7 @@ namespace GasStationMs.App
             rbFuelTank.Name = typeof(FuelTank).ToString();
             rbCashCounter.Name = typeof(CashCounter).ToString();
             rbEntry.Name = typeof(Entry).ToString();
+            rbExit.Name = typeof(Exit).ToString();
         }
 
         private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
@@ -86,5 +88,25 @@ namespace GasStationMs.App
             }
         }
         #endregion /Въезд
+
+        #region Выезд
+        private void rbExit_CheckedChanged(object sender, EventArgs e)
+        {
+            isCheckedRbExit = rbExit.Checked;
+        }
+
+        private void rbExit_Click(object sender, EventArgs e)
+        {
+            if (rbExit.Checked && !isCheckedRbExit)
+            {
+                rbExit.Checked = false;
+            }
+            else
+            {
+                rbExit.Checked = true;
+                isCheckedRbExit = false;
+            }
+        }
+        #endregion /Выезд
     }
 }
