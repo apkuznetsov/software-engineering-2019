@@ -411,7 +411,7 @@ namespace GasStationMs.App
 
             foreach (Control c in this.Controls)
             {
-                if (!(c is PictureBox) || c.Tag == null)
+                if (!(c is PictureBox) || c.Tag == null || c == activeCar)
                 {
                     continue;
                 }
