@@ -300,5 +300,23 @@ namespace GasStationMs.App.Models
                 cell.Value = null;
             }
         }
+
+        public static IGasStationElement[,] GetGasStationElementsArray(DataGridView dgv)
+        {
+            IGasStationElement[,] gseArr;
+            gseArr = new IGasStationElement[dgv.RowCount, dgv.ColumnCount];
+
+            DataGridViewImageCell cell;
+            for (int currRow = 0; currRow < gseArr.GetLength(0); currRow++)
+            {
+                for (int currCol = 0; currCol < gseArr.GetLength(1); currCol++)
+                {
+                    cell = (DataGridViewImageCell)dgv.Rows[currRow].Cells[currCol];
+                    gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
+                }
+            }
+
+            return gseArr;
+        }
     }
 }
