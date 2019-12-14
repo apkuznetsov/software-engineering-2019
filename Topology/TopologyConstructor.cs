@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App.Topology
 {
-    public static partial class Topology
+    public static partial class TopologyConstructor
     {
         public static readonly double ServiceAreaInShares = 0.25;
 
@@ -41,7 +41,7 @@ namespace GasStationMs.App.Topology
         private static int numOfCashCounters;
         #endregion
 
-        static Topology()
+        static TopologyConstructor()
         {
             serviceAreaInCells = RecalculateServiceArea();
         }

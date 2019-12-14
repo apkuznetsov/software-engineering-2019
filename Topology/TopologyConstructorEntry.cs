@@ -2,7 +2,7 @@
 
 namespace GasStationMs.App.Topology
 {
-    public static partial class Topology // Entry
+    public static partial class TopologyConstructor // Entry
     {
         public static readonly int MinNumOfEntries = 1;
         public static readonly int MaxNumOfEntries = 1;
