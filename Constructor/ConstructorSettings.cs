@@ -18,22 +18,7 @@ namespace GasStationMs.App
 
         private void SetField()
         {
-            dgvTopology.RowHeadersVisible = false;
-            dgvTopology.ColumnHeadersVisible = false;
 
-            dgvTopology.AllowUserToResizeColumns = false;
-            dgvTopology.AllowUserToResizeRows = false;
-
-            dgvTopology.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgvTopology.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-
-            for (int i = 0; i < tb.ColsCount; i++)
-            {
-
-                dgvTopology.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
-            }
-            dgvTopology.RowCount = tb.RowsCount;
         }
 
         private void SetCellsSize()

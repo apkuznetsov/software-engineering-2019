@@ -28,7 +28,20 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public bool CanAddFuelDispenser()
+        public bool AddFuelDispenser()
+        {
+            if (CanAddFuelDispenser())
+            {
+                FuelDispensersCount = FuelDispensersCount + 1;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool CanAddFuelDispenser()
         {
             int newNumOfFuelDispensers = fuelDispensersCount + 1;
 
@@ -42,12 +55,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public void AddFuelDispenser()
-        {
-            FuelDispensersCount = FuelDispensersCount + 1;
-        }
-
-        private void DeleteFuelDispenser()
+        public void DeleteFuelDispenser()
         {
             if (fuelDispensersCount < 0)
             {

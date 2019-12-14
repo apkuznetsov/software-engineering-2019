@@ -29,7 +29,20 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public bool CanAddCashCounter()
+        public bool AddCashCounter()
+        {
+            if (CanAddCashCounter())
+            {
+                cashCountersCount++;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool CanAddCashCounter()
         {
             int newNumOfCashCounters = cashCountersCount + 1;
 
@@ -43,12 +56,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public void AddCashCounter()
-        {
-            cashCountersCount++;
-        }
-
-        private void DeleteCashCounter()
+        public void DeleteCashCounter()
         {
             if (cashCountersCount < 0)
             {

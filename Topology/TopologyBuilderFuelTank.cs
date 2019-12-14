@@ -29,7 +29,20 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public bool CanAddFuelTank()
+        public bool AddFuelTank()
+        {
+            if (CanAddFuelTank())
+            {
+                FuelTanksCount = FuelTanksCount + 1;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool CanAddFuelTank()
         {
             int newNumOfFuelTanks = fuelTanksCount + 1;
 
@@ -43,12 +56,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public void AddFuelTank()
-        {
-            FuelTanksCount = FuelTanksCount + 1;
-        }
-
-        private void DeleteFuelTank()
+        public void DeleteFuelTank()
         {
             if (fuelTanksCount < 0)
             {

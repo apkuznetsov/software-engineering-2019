@@ -10,12 +10,33 @@ namespace GasStationMs.App.Topology
         private int rowsCount;
         private int serviceAreaInCells;
 
-        public TopologyBuilder()
+        private DataGridView dgv;
+
+        public TopologyBuilder(DataGridView dgv)
         {
             colsCount = Topology.MinColsCount;
             rowsCount = Topology.MinColsCount;
 
             serviceAreaInCells = RecalculateServiceArea();
+
+            #region dgv
+            this.dgv = dgv ?? throw new NullReferenceException();
+
+            this.dgv.RowHeadersVisible = false;
+            this.dgv.ColumnHeadersVisible = false;
+
+            this.dgv.AllowUserToResizeColumns = false;
+            this.dgv.AllowUserToResizeRows = false;
+
+            this.dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            for (int i = 0; i < colsCount; i++)
+            {
+                this.dgv.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
+            }
+            this.dgv.RowCount = rowsCount;
+            #endregion /dgv
         }
 
         public int ColsCount
@@ -69,43 +90,9 @@ namespace GasStationMs.App.Topology
             return (int)(colsCount * rowsCount * Topology.ServiceAreaInShares);
         }
 
-        public void DeleteTemplateElement(DataGridViewCell cell)
+        public Topology CreateAndGetTopology()
         {
-            bool canDelete = (cell.Tag != null);
-
-            if (canDelete)
-            {
-                if (cell.Tag is FuelDispenser)
-                {
-                    DeleteFuelDispenser();
-                }
-                else if (cell.Tag is FuelTank)
-                {
-                    DeleteFuelTank();
-                }
-                else if (cell.Tag is CashCounter)
-                {
-                    DeleteCashCounter();
-                }
-                else if (cell.Tag is Entry)
-                {
-                    DeleteEntry();
-                }
-                else if (cell.Tag is Exit)
-                {
-                    DeleteExit();
-                }
-                else { }
-
-                cell.Tag = null;
-                cell.Value = null;
-            }
-        }
-
-        public IGasStationElement[,] GetGasStationElementsArray(DataGridView dgv)
-        {
-            IGasStationElement[,] gseArr;
-            gseArr = new IGasStationElement[dgv.RowCount, dgv.ColumnCount];
+            IGasStationElement[,] gseArr = new IGasStationElement[dgv.RowCount, dgv.ColumnCount];
 
             DataGridViewImageCell cell;
             for (int currRow = 0; currRow < gseArr.GetLength(0); currRow++)
@@ -117,7 +104,7 @@ namespace GasStationMs.App.Topology
                 }
             }
 
-            return gseArr;
+            return new Topology(gseArr);
         }
     }
 }
