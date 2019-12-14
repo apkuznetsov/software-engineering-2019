@@ -2,14 +2,14 @@
 
 namespace GasStationMs.App.Topology
 {
-    public static partial class TopologyConstructor // Exit
+    public partial class TopologyConstructor // Exit
     {
         public static readonly int MinNumOfExits = 1;
         public static readonly int MaxNumOfExits = 1;
 
-        private static int numOfExits;
+        private int numOfExits;
 
-        public static int NumOfExits
+        public int NumOfExits
         {
             get
             {
@@ -32,7 +32,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static bool CanAddExit()
+        public bool CanAddExit()
         {
             int newNumOfExits = numOfExits + 1;
 
@@ -46,12 +46,12 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static void AddExit()
+        public void AddExit()
         {
             numOfExits++;
         }
 
-        private static void DeleteExit()
+        private void DeleteExit()
         {
             if (numOfExits < 0)
             {

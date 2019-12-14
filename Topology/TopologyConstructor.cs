@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App.Topology
 {
-    public static partial class TopologyConstructor
+    public partial class TopologyConstructor
     {
         public static readonly double ServiceAreaInShares = 0.25;
 
@@ -31,23 +31,18 @@ namespace GasStationMs.App.Topology
         #endregion
 
         #region поля
-        private static int serviceAreaInCells;
+        private int numOfCellsHorizontally = MinNumOfCellsHorizontally;
+        private int numOfCellsVertically = MinNumOfCellsHorizontally;
 
-        private static int numOfCellsHorizontally = MinNumOfCellsHorizontally;
-        private static int numOfCellsVertically = MinNumOfCellsHorizontally;
+        private int serviceAreaInCells = RecalculateServiceArea();
 
-        private static int numOfFuelTanks;
-        private static int numOfFuelDispensers;
-        private static int numOfCashCounters;
+        private int numOfFuelTanks;
+        private int numOfFuelDispensers;
+        private int numOfCashCounters;
         #endregion
 
-        static TopologyConstructor()
-        {
-            serviceAreaInCells = RecalculateServiceArea();
-        }
-
         #region свойства
-        public static int NumOfCellsHorizontally
+        public int NumOfCellsHorizontally
         {
             get
             {
@@ -70,7 +65,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static int NumOfCellsVertically
+        public int NumOfCellsVertically
         {
             get
             {
@@ -93,7 +88,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static int NumOfAdjacentRoads
+        public int NumOfAdjacentRoads
         {
             get
             {
@@ -101,7 +96,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static int NumOfFuelDispensers
+        public int NumOfFuelDispensers
         {
             get
             {
@@ -123,7 +118,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static int NumOfFuelTanks
+        public int NumOfFuelTanks
         {
             get
             {
@@ -146,7 +141,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static int NumOfCashCounters
+        public int NumOfCashCounters
         {
             get
             {
@@ -170,13 +165,13 @@ namespace GasStationMs.App.Topology
         }
         #endregion
 
-        private static int RecalculateServiceArea()
+        private int RecalculateServiceArea()
         {
             return (int)(numOfCellsHorizontally * numOfCellsVertically * ServiceAreaInShares);
         }
 
         #region ТРК
-        public static bool CanAddFuelDispenser()
+        public bool CanAddFuelDispenser()
         {
             int newNumOfFuelDispensers = numOfFuelDispensers + 1;
 
@@ -190,12 +185,12 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static void AddFuelDispenser()
+        public void AddFuelDispenser()
         {
             NumOfFuelDispensers = NumOfFuelDispensers + 1;
         }
 
-        private static void DeleteFuelDispenser()
+        private void DeleteFuelDispenser()
         {
             if (numOfFuelDispensers < 0)
             {
@@ -207,7 +202,7 @@ namespace GasStationMs.App.Topology
         #endregion /ТРК
 
         #region ТБ
-        public static bool CanAddFuelTank()
+        public bool CanAddFuelTank()
         {
             int newNumOfFuelTanks = numOfFuelTanks + 1;
 
@@ -221,12 +216,12 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static void AddFuelTank()
+        public void AddFuelTank()
         {
             NumOfFuelTanks = NumOfFuelTanks + 1;
         }
 
-        private static void DeleteFuelTank()
+        private void DeleteFuelTank()
         {
             if (numOfFuelTanks < 0)
             {
@@ -238,7 +233,7 @@ namespace GasStationMs.App.Topology
         #endregion /ТБ
 
         #region касса
-        public static bool CanAddCashCounter()
+        public bool CanAddCashCounter()
         {
             int newNumOfCashCounters = numOfCashCounters + 1;
 
@@ -252,12 +247,12 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static void AddCashCounter()
+        public void AddCashCounter()
         {
             numOfCashCounters++;
         }
 
-        private static void DeleteCashCounter()
+        private void DeleteCashCounter()
         {
             if (numOfCashCounters < 0)
             {
@@ -268,7 +263,7 @@ namespace GasStationMs.App.Topology
         }
         #endregion /касса
 
-        public static void DeleteTemplateElement(DataGridViewCell cell)
+        public void DeleteTemplateElement(DataGridViewCell cell)
         {
             bool canDelete = (cell.Tag != null);
 
@@ -301,7 +296,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static IGasStationElement[,] GetGasStationElementsArray(DataGridView dgv)
+        public IGasStationElement[,] GetGasStationElementsArray(DataGridView dgv)
         {
             IGasStationElement[,] gseArr;
             gseArr = new IGasStationElement[dgv.RowCount, dgv.ColumnCount];

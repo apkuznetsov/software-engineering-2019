@@ -2,14 +2,14 @@
 
 namespace GasStationMs.App.Topology
 {
-    public static partial class TopologyConstructor // Entry
+    public partial class TopologyConstructor // Entry
     {
         public static readonly int MinNumOfEntries = 1;
         public static readonly int MaxNumOfEntries = 1;
 
-        private static int numOfEntries;
+        private int numOfEntries;
 
-        public static int NumOfEntries
+        public int NumOfEntries
         {
             get
             {
@@ -32,7 +32,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static bool CanAddEntry()
+        public bool CanAddEntry()
         {
             int newNumOfEntries = numOfEntries + 1;
 
@@ -46,12 +46,12 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public static void AddEntry()
+        public void AddEntry()
         {
             numOfEntries++;
         }
 
-        private static void DeleteEntry()
+        private void DeleteEntry()
         {
             if (numOfEntries < 0)
             {
