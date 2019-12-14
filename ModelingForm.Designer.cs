@@ -84,7 +84,7 @@
             // 
             // pictureBoxCar
             // 
-            this.pictureBoxCar.Image = global::GasStationMs.App.Properties.Resources.car_64x34_;
+            this.pictureBoxCar.Image = global::GasStationMs.App.Properties.Resources.car_64x34__left;
             this.pictureBoxCar.Location = new System.Drawing.Point(703, 429);
             this.pictureBoxCar.Name = "pictureBoxCar";
             this.pictureBoxCar.Size = new System.Drawing.Size(64, 34);
