@@ -4,13 +4,13 @@ using System.Drawing;
 
 namespace GasStationMs.App.Topology
 {
-    public class TopologyForModeling
+    public class Topology
     {
         private readonly IGasStationElement[,] topology;
         private readonly int rows;
         private readonly int cols;
 
-        public TopologyForModeling(IGasStationElement[,] topology)
+        public Topology(IGasStationElement[,] topology)
         {
             this.topology = topology ?? throw new NullReferenceException();
 
