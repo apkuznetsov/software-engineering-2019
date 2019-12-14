@@ -553,12 +553,6 @@ namespace GasStationMs.App
 
         private Point PreventIntersection(PictureBox activeCar, Direction direction)
         {
-            // Sides
-            // 0 - Up
-            // 1 - Right
-            // 2 - Down
-            // 3 - Left
-
             var activeCarView = (CarView) activeCar.Tag;
             var destPoint = activeCarView.GetDestinationPoint();
 
@@ -590,7 +584,6 @@ namespace GasStationMs.App
 
                     switch (direction)
                     {
-                        // Up
                         case Direction.Up:
                         {
                             activeCar.Top = fuelDispenser.Bottom;
@@ -601,7 +594,7 @@ namespace GasStationMs.App
                                 // choose where to bypass 
                                 var newDestX = destPoint.X < activeCar.Left
                                     ? fuelDispenser.Left - (activeCar.Width + 5)
-                                    : fuelDispenser.Right + (activeCar.Height + 1);
+                                    : fuelDispenser.Right + (activeCar.Width + 5);
 
                                 var newDestY = fuelDispenser.Bottom + 10;
 
@@ -612,8 +605,6 @@ namespace GasStationMs.App
                                 activeCarView.DeleteDestinationSpot(this);
                                 // activeCarView.AddDestinationPoint(newDestinationPoint2);
                                 activeCarView.AddDestinationPoint(newDestinationPoint1);
-
-
                             }
 
                             break;
@@ -726,9 +717,9 @@ namespace GasStationMs.App
             var fuelView1 = CreateFuelDispenserView("fuelDispenser1", 10);
             var fuelView2 = CreateFuelDispenserView("fuelDispenser2", 15);
 
-            creationPoint = new Point(300, 100);
+            creationPoint = new Point(300, 50);
             CreateFuelDispenserPictureBox(fuelView1, creationPoint);
-            creationPoint = new Point(200, 150);
+            creationPoint = new Point(300, 150);
             CreateFuelDispenserPictureBox(fuelView2, creationPoint);
 
             #endregion /FuelDispensers
