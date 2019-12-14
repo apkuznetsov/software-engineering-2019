@@ -72,7 +72,7 @@ namespace GasStationMs.App
         #region Въезд
         private void rbEntry_CheckedChanged(object sender, EventArgs e)
         {
-            isCheckedRbEntry = rbCashCounter.Checked;
+            isCheckedRbEntry = rbEntry.Checked;
         }
 
         private void rbEntry_Click(object sender, EventArgs e)

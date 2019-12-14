@@ -74,6 +74,20 @@ namespace GasStationMs.App
                             MessageBox.Show("невозможно добавить кассу");
                         }
                     }
+                    else if (rb.Name == typeof(Entry).ToString())
+                    {
+                        if (Topology.CanAddEntry())
+                        {
+                            cell.Value = rb.Image;
+                            cell.Tag = new Entry();
+                            Topology.AddEntry();
+                            tbClickedCell.Text = cell.Tag.ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("невозможно добавить въезд");
+                        }
+                    }
                     else
                     {
                         cell.Value = rb.Image;

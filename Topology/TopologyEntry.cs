@@ -22,6 +22,7 @@ namespace GasStationMs.App.Models
                 {
                     throw new ArgumentOutOfRangeException();
                 }
+
                 if (value > MaxNumOfEntries)
                 {
                     throw new ArgumentOutOfRangeException();
