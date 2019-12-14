@@ -619,19 +619,19 @@ namespace GasStationMs.App
             fuelDispenser.Location = locationPoint;
             fuelDispenser.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            // Filling area
-            PictureBox fillingArea = new PictureBox();
-            fillingArea.Tag = fuelDispenserView;
-            fillingArea.BackColor = Color.LightSlateGray;
-            fillingArea.Size = new Size(size, size / 2);
-            fillingArea.Left = fuelDispenser.Left;
-            fillingArea.Top = fuelDispenser.Bottom;
-            fillingArea.SizeMode = PictureBoxSizeMode.AutoSize;
+            //// Filling area
+            //PictureBox fillingArea = new PictureBox();
+            //fillingArea.Tag = fuelDispenserView;
+            //fillingArea.BackColor = Color.LightSlateGray;
+            //fillingArea.Size = new Size(size, size / 2);
+            //fillingArea.Left = fuelDispenser.Left;
+            //fillingArea.Top = fuelDispenser.Bottom;
+            //fillingArea.SizeMode = PictureBoxSizeMode.AutoSize;
+            //this.Controls.Add(fillingArea);
+            //fillingArea.BringToFront();
 
             this.Controls.Add(fuelDispenser);
-            this.Controls.Add(fillingArea);
             fuelDispenser.BringToFront();
-            fillingArea.BringToFront();
 
             _fuelDispensersList.Add(fuelDispenser);
 
