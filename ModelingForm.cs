@@ -6,6 +6,13 @@ using GasStationMs.App.Modeling.Models;
 
 namespace GasStationMs.App
 {
+    public enum Direction
+    {
+        Up,
+        Right,
+        Down,
+        Left
+    }
     public partial class ModelingForm : Form
     {
         private int _timerTicksCount = 0;
@@ -257,7 +264,7 @@ namespace GasStationMs.App
                         car.Top -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__up;
                         isVerticalMoving = true;
-                        destPoint = PreventIntersection(car, 0);
+                        destPoint = PreventIntersection(car, Direction.Up);
                     }
 
                     // Go Down
@@ -266,6 +273,7 @@ namespace GasStationMs.App
                         car.Top += carSpeed;
                         //car.Image = Properties.Resources.car_64x34__down;
                         isVerticalMoving = true;
+                        destPoint = PreventIntersection(car, Direction.Down);
                     }
 
                     // Go left
@@ -273,7 +281,7 @@ namespace GasStationMs.App
                     {
                         car.Left -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__left;
-                        destPoint = PreventIntersection(car, 3);
+                        destPoint = PreventIntersection(car, Direction.Left);
                     }
 
                     // Go Right
@@ -291,7 +299,7 @@ namespace GasStationMs.App
                         car.Left -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__left;
                         isHorizontalMoving = true;
-                        destPoint = PreventIntersection(car, 3);
+                        destPoint = PreventIntersection(car, Direction.Left);
                     }
 
                     // Go Right
@@ -307,7 +315,7 @@ namespace GasStationMs.App
                     {
                         car.Top -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__up;
-                        destPoint = PreventIntersection(car, 0);
+                        destPoint = PreventIntersection(car, Direction.Up);
                     }
 
                     // Go Down
@@ -315,6 +323,7 @@ namespace GasStationMs.App
                     {
                         car.Top += carSpeed;
                         //car.Image = Properties.Resources.car_32x17__down;
+                        destPoint = PreventIntersection(car, Direction.Down);
                     }
                 }
             }
@@ -325,7 +334,7 @@ namespace GasStationMs.App
                 {
                     car.Left -= carSpeed;
                     //car.Image = Properties.Resources.car_32x17__left;
-                    destPoint = PreventIntersection(car, 3);
+                    destPoint = PreventIntersection(car, Direction.Left);
                 }
 
                 // Go Right
@@ -340,7 +349,7 @@ namespace GasStationMs.App
                 {
                     car.Top -= carSpeed;
                     //car.Image = Properties.Resources.car_32x17__up;
-                    destPoint = PreventIntersection(car, 0);
+                    destPoint = PreventIntersection(car, Direction.Up);
                 }
 
                 // Go Down
@@ -348,6 +357,8 @@ namespace GasStationMs.App
                 {
                     car.Top += carSpeed;
                     //car.Image = Properties.Resources.car_32x17__down;
+
+                    destPoint = PreventIntersection(car, Direction.Down);
                 }
             }
 
@@ -544,14 +555,8 @@ namespace GasStationMs.App
             car.AddDestinationPoint(_exitPoint1);
         }
 
-        private Point PreventIntersection(PictureBox activeCar, int side)
+        private Point PreventIntersection(PictureBox activeCar, Direction direction)
         {
-            // Sides
-            // 0 - Up
-            // 1 - Right
-            // 2 - Down
-            // 3 - Left
-
             var activeCarView = (CarView) activeCar.Tag;
             var destPoint = activeCarView.GetDestinationPoint();
 
@@ -581,10 +586,21 @@ namespace GasStationMs.App
                 {
                     var fuelDispenser = pictureBox;
 
-                    switch (side)
+                    bool bypassFromLeft = false;
+                    bool bypassFromRight = false;
+                    bool bypassFromBottom = false;
+                    bool bypassFromTop = false;
+
+                    int newDestX;
+                    int newDestY;
+
+                    Point newDestinationPoint1;
+                    Point newDestinationPoint2;
+                    Point newDestinationPoint3;
+
+                    switch (direction)
                     {
-                        // Up
-                        case 0:
+                        case Direction.Up:
                         {
                             activeCar.Top = fuelDispenser.Bottom;
 
@@ -592,37 +608,86 @@ namespace GasStationMs.App
                             {
                                 activeCarView.IsBypassingObject = true;
                                 // choose where to bypass 
-                                var newDestX = destPoint.X < activeCar.Left
+                                newDestX = destPoint.X < activeCar.Left
                                     ? fuelDispenser.Left - (activeCar.Width + 5)
-                                    : fuelDispenser.Right + (activeCar.Height + 1);
+                                    : fuelDispenser.Right + (activeCar.Width + 5);
 
-                                var newDestY = fuelDispenser.Bottom + 10;
 
-                                var newDestinationPoint1 = new Point(newDestX,
+                                if (destPoint.X < activeCar.Left)
+                                {
+                                    newDestX = fuelDispenser.Left - (activeCar.Width + 5);
+                                    bypassFromLeft = true;
+                                }
+                                else
+                                {
+                                    newDestX = fuelDispenser.Right + (activeCar.Width + 5);
+                                    bypassFromRight = true;
+                                }
+
+                                newDestY = fuelDispenser.Bottom + 10;
+
+
+                                newDestinationPoint1 = new Point(newDestX,
                                     newDestY);
 
+                                newDestY = fuelDispenser.Top + activeCar.Height + 10;
+                                newDestinationPoint2 = new Point(newDestX,
+                                    newDestY);
 
                                 activeCarView.DeleteDestinationSpot(this);
-                                // activeCarView.AddDestinationPoint(newDestinationPoint2);
+                                activeCarView.AddDestinationPoint(newDestinationPoint2);
                                 activeCarView.AddDestinationPoint(newDestinationPoint1);
-
-
                             }
 
                             break;
                         }
 
-                        case 1:
+                        case Direction.Right:
                         {
                             break;
                         }
 
-                        case 2:
+                        case Direction.Down:
                         {
+                            activeCar.Top = fuelDispenser.Top - activeCar.Height;
+
+                            if (!activeCarView.IsBypassingObject)
+                            {
+                                activeCarView.IsBypassingObject = true;
+
+
+                                // choose where to bypass 
+                                newDestX = fuelDispenser.Right + 10;
+
+                                if (destPoint.X <= fuelDispenser.Left + fuelDispenser.Width/2)
+                                {
+                                    newDestX = fuelDispenser.Left - (activeCar.Width + 5);
+                                    bypassFromLeft = true;
+                                }
+                                else
+                                {
+                                    newDestX = fuelDispenser.Right + (activeCar.Width + 5);
+                                    bypassFromRight = true;
+                                }
+
+                                newDestY = fuelDispenser.Top -10;
+
+                                newDestinationPoint1 = new Point(newDestX,
+                                    newDestY);
+
+                                newDestY = fuelDispenser.Bottom + activeCar.Height + 10;
+                                newDestinationPoint2 = new Point(newDestX,
+                                    newDestY);
+
+                                    activeCarView.DeleteDestinationSpot(this);
+                                activeCarView.AddDestinationPoint(newDestinationPoint2);
+                                activeCarView.AddDestinationPoint(newDestinationPoint1);
+                            }
+
                             break;
                         }
 
-                        case 3:
+                        case Direction.Left:
                         {
                             activeCar.Left = fuelDispenser.Right;
 
@@ -630,15 +695,8 @@ namespace GasStationMs.App
                             {
                                 activeCarView.IsBypassingObject = true;
 
-                                bool bypassFromBottom = false;
-                                bool bypassFromTop = false;
-
-                                int newDestX;
-                                int newDestY;
-
-                                Point newDestinationPoint1;
-                                Point newDestinationPoint2;
-                                Point newDestinationPoint3;
+                             
+                               
 
                                 // choose where to bypass 
                                 newDestX = fuelDispenser.Right + 10;
@@ -658,7 +716,8 @@ namespace GasStationMs.App
                                 newDestinationPoint1 = new Point(newDestX,
                                     newDestY);
 
-                                newDestinationPoint2 = new Point(fuelDispenser.Left - 35,
+                                newDestX = fuelDispenser.Left + fuelDispenser.Width / 2;
+                                newDestinationPoint2 = new Point(newDestX,
                                     newDestY);
 
                                 newDestinationPoint3 = new Point(fuelDispenser.Left - 20,
@@ -719,9 +778,9 @@ namespace GasStationMs.App
             var fuelView1 = CreateFuelDispenserView("fuelDispenser1", 10);
             var fuelView2 = CreateFuelDispenserView("fuelDispenser2", 15);
 
-            creationPoint = new Point(300, 100);
+            creationPoint = new Point(300, 50);
             CreateFuelDispenserPictureBox(fuelView1, creationPoint);
-            creationPoint = new Point(200, 150);
+            creationPoint = new Point(300, 150);
             CreateFuelDispenserPictureBox(fuelView2, creationPoint);
 
             #endregion /FuelDispensers
