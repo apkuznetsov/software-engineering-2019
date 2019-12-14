@@ -257,7 +257,7 @@ namespace GasStationMs.App
                         car.Top -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__up;
                         isVerticalMoving = true;
-                        destPoint = PreventIntersection(car, 0, destPoint);
+                        destPoint = PreventIntersection(car, 0);
                     }
 
                     // Go Down
@@ -273,7 +273,7 @@ namespace GasStationMs.App
                     {
                         car.Left -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__left;
-                        destPoint = PreventIntersection(car, 3, destPoint);
+                        destPoint = PreventIntersection(car, 3);
                     }
 
                     // Go Right
@@ -291,7 +291,7 @@ namespace GasStationMs.App
                         car.Left -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__left;
                         isHorizontalMoving = true;
-                        destPoint = PreventIntersection(car, 3, destPoint);
+                        destPoint = PreventIntersection(car, 3);
                     }
 
                     // Go Right
@@ -307,7 +307,7 @@ namespace GasStationMs.App
                     {
                         car.Top -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__up;
-                        destPoint = PreventIntersection(car, 0, destPoint);
+                        destPoint = PreventIntersection(car, 0);
                     }
 
                     // Go Down
@@ -321,11 +321,11 @@ namespace GasStationMs.App
             else
             {
                 // Go left
-                if (car.Left >= destPoint.X )
+                if (car.Left >= destPoint.X)
                 {
                     car.Left -= carSpeed;
                     //car.Image = Properties.Resources.car_32x17__left;
-                    destPoint = PreventIntersection(car, 3, destPoint);
+                    destPoint = PreventIntersection(car, 3);
                 }
 
                 // Go Right
@@ -333,7 +333,6 @@ namespace GasStationMs.App
                 {
                     car.Left += carSpeed;
                     //car.Image = Properties.Resources.car_32x17__right;
-                    isHorizontalMoving = true;
                 }
 
                 // Go Up
@@ -341,7 +340,7 @@ namespace GasStationMs.App
                 {
                     car.Top -= carSpeed;
                     //car.Image = Properties.Resources.car_32x17__up;
-                    destPoint = PreventIntersection(car, 0, destPoint);
+                    destPoint = PreventIntersection(car, 0);
                 }
 
                 // Go Down
@@ -356,6 +355,7 @@ namespace GasStationMs.App
         }
 
         #region MoveCar1
+
         //private Point MoveCar1(PictureBox car, Point destPoint, int carSpeed)
         //{
         //    var isHorizontalMoving = false;
@@ -555,7 +555,6 @@ namespace GasStationMs.App
             var activeCarView = (CarView) activeCar.Tag;
             var destPoint = activeCarView.GetDestinationPoint();
 
-
             foreach (Control c in this.Controls)
             {
                 if (!(c is PictureBox) || c.Tag == null || c == activeCar)
@@ -584,6 +583,7 @@ namespace GasStationMs.App
 
                     switch (side)
                     {
+                        // Up
                         case 0:
                         {
                             activeCar.Top = fuelDispenser.Bottom;
@@ -596,15 +596,17 @@ namespace GasStationMs.App
                                     ? fuelDispenser.Left - (activeCar.Width + 5)
                                     : fuelDispenser.Right + (activeCar.Height + 1);
 
-                                var newDestinationPoint = new Point(newDestX,
-                                    fuelDispenser.Bottom + 10);
+                                var newDestY = fuelDispenser.Bottom + 10;
 
-                                //activeCarView.RemoveDestinationPoint(this);
-                                //activeCarView.AddDestinationPoint(destPoint);
+                                var newDestinationPoint1 = new Point(newDestX,
+                                    newDestY);
+
+
                                 activeCarView.DeleteDestinationSpot(this);
-                                activeCarView.AddDestinationPoint(newDestinationPoint);
+                                // activeCarView.AddDestinationPoint(newDestinationPoint2);
+                                activeCarView.AddDestinationPoint(newDestinationPoint1);
 
-                                activeCar.Tag = activeCarView;
+
                             }
 
                             break;
@@ -957,7 +959,6 @@ namespace GasStationMs.App
         }
 
         #endregion /FuelTanks
-
 
         #endregion /ElementsProducers
     }
