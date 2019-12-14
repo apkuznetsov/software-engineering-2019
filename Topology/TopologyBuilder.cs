@@ -5,15 +5,10 @@ using System.Windows.Forms;
 namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder
-    { 
-        #region поля
+    {
         private int colsCount;
         private int rowsCount;
-
         private int serviceAreaInCells;
-
-        private int cashCountersCount;
-        #endregion
 
         public TopologyBuilder()
         {
@@ -23,7 +18,6 @@ namespace GasStationMs.App.Topology
             serviceAreaInCells = RecalculateServiceArea();
         }
 
-        #region свойства
         public int ColsCount
         {
             get
@@ -70,69 +64,10 @@ namespace GasStationMs.App.Topology
             }
         }
 
-    
-
-        
-
-        public int CashCountersCount
-        {
-            get
-            {
-                return cashCountersCount;
-            }
-
-            set
-            {
-                if (value < Topology.MinCashCountersCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                if (value > Topology.MaxCashCountersCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                cashCountersCount = value;
-            }
-        }
-        #endregion
-
         private int RecalculateServiceArea()
         {
             return (int)(colsCount * rowsCount * Topology.ServiceAreaInShares);
         }
-
-        #region касса
-        public bool CanAddCashCounter()
-        {
-            int newNumOfCashCounters = cashCountersCount + 1;
-
-            if (newNumOfCashCounters <= Topology.MaxCashCountersCount)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public void AddCashCounter()
-        {
-            cashCountersCount++;
-        }
-
-        private void DeleteCashCounter()
-        {
-            if (cashCountersCount < 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            cashCountersCount--;
-        }
-        #endregion /касса
 
         public void DeleteTemplateElement(DataGridViewCell cell)
         {
