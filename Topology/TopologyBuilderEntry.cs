@@ -29,7 +29,21 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public bool CanAddEntry()
+        public bool AddEntry()
+        {
+            if (CanAddEntry())
+            {
+                entriesCount++;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        private bool CanAddEntry()
         {
             int newNumOfEntries = entriesCount + 1;
 
@@ -41,11 +55,6 @@ namespace GasStationMs.App.Topology
             {
                 return false;
             }
-        }
-
-        public void AddEntry()
-        {
-            entriesCount++;
         }
 
         private void DeleteEntry()

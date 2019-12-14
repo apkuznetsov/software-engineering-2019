@@ -33,11 +33,10 @@ namespace GasStationMs.App
 
                     if (rb.Name == typeof(FuelDispenser).ToString())
                     {
-                        if (tb.CanAddFuelDispenser())
+                        if (tb.AddFuelDispenser())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new FuelDispenser();
-                            tb.AddFuelDispenser();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -47,11 +46,10 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(FuelTank).ToString())
                     {
-                        if (tb.CanAddFuelTank())
+                        if (tb.AddFuelTank())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new FuelTank();
-                            tb.AddFuelTank();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -61,11 +59,10 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
-                        if (tb.CanAddCashCounter())
+                        if (tb.AddCashCounter())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new CashCounter();
-                            tb.AddCashCounter();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -75,11 +72,10 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(Entry).ToString())
                     {
-                        if (tb.CanAddEntry())
+                        if (tb.AddEntry())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Entry();
-                            tb.AddEntry();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -89,11 +85,10 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(Exit).ToString())
                     {
-                        if (tb.CanAddExit())
+                        if (tb.AddExit())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Exit();
-                            tb.AddExit();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else

@@ -29,7 +29,20 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public bool CanAddExit()
+        public bool AddExit()
+        {
+            if (CanAddExit())
+            {
+                exitsCount++;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool CanAddExit()
         {
             int newNumOfExits = exitsCount + 1;
 
@@ -41,11 +54,6 @@ namespace GasStationMs.App.Topology
             {
                 return false;
             }
-        }
-
-        public void AddExit()
-        {
-            exitsCount++;
         }
 
         private void DeleteExit()
