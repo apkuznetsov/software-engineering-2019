@@ -13,17 +13,17 @@ namespace GasStationMs.App
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    AddTemplateElement(cell);
+                    AddElement(cell);
                     break;
                 case MouseButtons.Right:
-                    tb.DeleteTemplateElement(cell);
+                    DeleteElement(cell);
                     break;
                 default:
                     break;
             }
         }
 
-        private void AddTemplateElement(DataGridViewImageCell cell)
+        private void AddElement(DataGridViewImageCell cell)
         {
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
             {
@@ -107,6 +107,11 @@ namespace GasStationMs.App
                     //MessageBox.Show("невозможно добавить: ячейка уже занята");
                 }
             }
+        }
+
+        private void DeleteElement(DataGridViewImageCell cell)
+        {
+            tb.DeleteTemplateElement(cell);
         }
     }
 }
