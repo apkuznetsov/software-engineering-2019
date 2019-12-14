@@ -4,39 +4,39 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder // Entry
     {
-        public static readonly int MinNumOfEntries = 1;
-        public static readonly int MaxNumOfEntries = 1;
+        public static readonly int MinEntriesCount = 1;
+        public static readonly int MaxEntriesCount = 1;
 
-        private int numOfEntries;
+        private int entriesCount;
 
-        public int NumOfEntries
+        public int EntriesCount
         {
             get
             {
-                return numOfEntries;
+                return entriesCount;
             }
 
             set
             {
-                if (value < MinNumOfEntries)
+                if (value < MinEntriesCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (value > MaxNumOfEntries)
+                if (value > MaxEntriesCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                numOfEntries = value;
+                entriesCount = value;
             }
         }
 
         public bool CanAddEntry()
         {
-            int newNumOfEntries = numOfEntries + 1;
+            int newNumOfEntries = entriesCount + 1;
 
-            if (newNumOfEntries <= MaxNumOfEntries)
+            if (newNumOfEntries <= MaxEntriesCount)
             {
                 return true;
             }
@@ -48,17 +48,17 @@ namespace GasStationMs.App.Topology
 
         public void AddEntry()
         {
-            numOfEntries++;
+            entriesCount++;
         }
 
         private void DeleteEntry()
         {
-            if (numOfEntries < 0)
+            if (entriesCount < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            numOfEntries--;
+            entriesCount--;
         }
     }
 }

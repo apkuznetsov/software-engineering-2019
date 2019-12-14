@@ -9,133 +9,125 @@ namespace GasStationMs.App.Topology
         public static readonly double ServiceAreaInShares = 0.25;
 
         #region константы размера
-        public static readonly int MinNumOfCellsHorizontally = 10;
-        public static readonly int MaxNumOfCellsHorizontally = 35;
+        public static readonly int MinColsCount = 10;
+        public static readonly int MaxColsCount = 35;
 
-        public static readonly int MinNumOfCellsVertically = 7;
-        public static readonly int MaxNumOfCellsVertically = 25;
+        public static readonly int MinRowsCount = 7;
+        public static readonly int MaxRowsCount = 25;
         #endregion
 
         #region константы кол-ва ШЭ
-        public static readonly int MinAndMaxNumOfAdjacentRoads = 1;
 
-        public static readonly int MinNumOfFuelDispensers = 1;
-        public static readonly int MaxNumOfFuelDispensers = 6;
 
-        public static readonly int MinNumOfFuelTanks = 1;
-        public static readonly int MaxNumOfFuelTanks =
-            (int)(MaxNumOfCellsHorizontally * MaxNumOfCellsVertically * ServiceAreaInShares);
+        public static readonly int MinFuelDispensersCount = 1;
+        public static readonly int MaxFuelDispensersCount = 6;
 
-        public static readonly int MinNumOfCashCounters = 1;
-        public static readonly int MaxNumOfCashCounters = 1;
+        public static readonly int MinFuelTanksCount = 1;
+        public static readonly int MaxFuelTanksCount =
+            (int)(MaxColsCount * MaxRowsCount * ServiceAreaInShares);
+
+        public static readonly int MinCashCountersCount = 1;
+        public static readonly int MaxCashCountersCount = 1;
         #endregion
 
         #region поля
-        private int numOfCellsHorizontally;
-        private int numOfCellsVertically;
+        private int colsCount;
+        private int rowsCount;
 
         private int serviceAreaInCells;
 
-        private int numOfFuelTanks;
-        private int numOfFuelDispensers;
-        private int numOfCashCounters;
+        private int fuelTanksCount;
+        private int fuelDispensersCount;
+        private int cashCountersCount;
         #endregion
 
         public TopologyBuilder()
         {
-            numOfCellsHorizontally = MinNumOfCellsHorizontally;
-            numOfCellsVertically = MinNumOfCellsHorizontally;
+            colsCount = MinColsCount;
+            rowsCount = MinColsCount;
 
             serviceAreaInCells = RecalculateServiceArea();
         }
 
         #region свойства
-        public int NumOfCellsHorizontally
+        public int ColsCount
         {
             get
             {
-                return numOfCellsHorizontally;
+                return colsCount;
             }
 
             set
             {
-                if (value < MinNumOfCellsHorizontally)
+                if (value < MinColsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                if (value > MaxNumOfCellsHorizontally)
+                if (value > MaxColsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                numOfCellsHorizontally = value;
+                colsCount = value;
                 serviceAreaInCells = RecalculateServiceArea();
             }
         }
 
-        public int NumOfCellsVertically
+        public int RowsCount
         {
             get
             {
-                return numOfCellsVertically;
+                return rowsCount;
             }
 
             set
             {
-                if (value < MinNumOfCellsVertically)
+                if (value < MinRowsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                if (value > MaxNumOfCellsVertically)
+                if (value > MaxRowsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                numOfCellsVertically = value;
+                rowsCount = value;
                 serviceAreaInCells = RecalculateServiceArea();
             }
         }
 
-        public int NumOfAdjacentRoads
+        public int FuelDispensersCount
         {
             get
             {
-                return MinAndMaxNumOfAdjacentRoads;
-            }
-        }
-
-        public int NumOfFuelDispensers
-        {
-            get
-            {
-                return numOfFuelDispensers;
+                return fuelDispensersCount;
             }
 
             set
             {
-                if (value < MinNumOfFuelDispensers)
+                if (value < MinFuelDispensersCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                if (value > MaxNumOfFuelDispensers)
+                if (value > MaxFuelDispensersCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                numOfFuelDispensers = value;
+                fuelDispensersCount = value;
             }
         }
 
-        public int NumOfFuelTanks
+        public int FuelTanksCount
         {
             get
             {
-                return numOfFuelTanks;
+                return fuelTanksCount;
             }
 
             set
             {
-                if (value < MinNumOfFuelTanks)
+                if (value < MinFuelTanksCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -145,45 +137,45 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                numOfFuelTanks = value;
+                fuelTanksCount = value;
             }
         }
 
-        public int NumOfCashCounters
+        public int CashCountersCount
         {
             get
             {
-                return numOfCashCounters;
+                return cashCountersCount;
             }
 
             set
             {
-                if (value < MinNumOfCashCounters)
+                if (value < MinCashCountersCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (value > MaxNumOfCashCounters)
+                if (value > MaxCashCountersCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                numOfCashCounters = value;
+                cashCountersCount = value;
             }
         }
         #endregion
 
         private int RecalculateServiceArea()
         {
-            return (int)(numOfCellsHorizontally * numOfCellsVertically * ServiceAreaInShares);
+            return (int)(colsCount * rowsCount * ServiceAreaInShares);
         }
 
         #region ТРК
         public bool CanAddFuelDispenser()
         {
-            int newNumOfFuelDispensers = numOfFuelDispensers + 1;
+            int newNumOfFuelDispensers = fuelDispensersCount + 1;
 
-            if (newNumOfFuelDispensers <= MaxNumOfFuelDispensers)
+            if (newNumOfFuelDispensers <= MaxFuelDispensersCount)
             {
                 return true;
             }
@@ -195,24 +187,24 @@ namespace GasStationMs.App.Topology
 
         public void AddFuelDispenser()
         {
-            NumOfFuelDispensers = NumOfFuelDispensers + 1;
+            FuelDispensersCount = FuelDispensersCount + 1;
         }
 
         private void DeleteFuelDispenser()
         {
-            if (numOfFuelDispensers < 0)
+            if (fuelDispensersCount < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            numOfFuelDispensers--;
+            fuelDispensersCount--;
         }
         #endregion /ТРК
 
         #region ТБ
         public bool CanAddFuelTank()
         {
-            int newNumOfFuelTanks = numOfFuelTanks + 1;
+            int newNumOfFuelTanks = fuelTanksCount + 1;
 
             if (newNumOfFuelTanks <= serviceAreaInCells)
             {
@@ -226,26 +218,26 @@ namespace GasStationMs.App.Topology
 
         public void AddFuelTank()
         {
-            NumOfFuelTanks = NumOfFuelTanks + 1;
+            FuelTanksCount = FuelTanksCount + 1;
         }
 
         private void DeleteFuelTank()
         {
-            if (numOfFuelTanks < 0)
+            if (fuelTanksCount < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            numOfFuelTanks--;
+            fuelTanksCount--;
         }
         #endregion /ТБ
 
         #region касса
         public bool CanAddCashCounter()
         {
-            int newNumOfCashCounters = numOfCashCounters + 1;
+            int newNumOfCashCounters = cashCountersCount + 1;
 
-            if (newNumOfCashCounters <= MaxNumOfCashCounters)
+            if (newNumOfCashCounters <= MaxCashCountersCount)
             {
                 return true;
             }
@@ -257,17 +249,17 @@ namespace GasStationMs.App.Topology
 
         public void AddCashCounter()
         {
-            numOfCashCounters++;
+            cashCountersCount++;
         }
 
         private void DeleteCashCounter()
         {
-            if (numOfCashCounters < 0)
+            if (cashCountersCount < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            numOfCashCounters--;
+            cashCountersCount--;
         }
         #endregion /касса
 

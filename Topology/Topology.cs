@@ -7,20 +7,20 @@ namespace GasStationMs.App.Topology
     public class Topology
     {
         private readonly IGasStationElement[,] topology;
-        private readonly int rows;
-        private readonly int cols;
+        private readonly int rowsCount;
+        private readonly int colsCount;
 
         public Topology(IGasStationElement[,] topology)
         {
             this.topology = topology ?? throw new NullReferenceException();
 
-            rows = topology.GetLength(0);
-            cols = topology.GetLength(1);
+            rowsCount = topology.GetLength(0);
+            colsCount = topology.GetLength(1);
         }
 
-        public int Rows { get; }
+        public int RowsCount { get; }
 
-        public int Cols { get; }
+        public int ColsCount { get; }
 
         public IGasStationElement this[int x, int y]
         {
@@ -31,7 +31,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (x >= cols)
+                if (x >= colsCount)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -41,7 +41,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (y >= rows)
+                if (y >= rowsCount)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -59,7 +59,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (p.X >= cols)
+                if (p.X >= colsCount)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -69,7 +69,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (p.Y >= rows)
+                if (p.Y >= rowsCount)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -85,7 +85,7 @@ namespace GasStationMs.App.Topology
                 throw new IndexOutOfRangeException();
             }
 
-            if (x >= cols)
+            if (x >= colsCount)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -95,7 +95,7 @@ namespace GasStationMs.App.Topology
                 throw new IndexOutOfRangeException();
             }
 
-            if (y >= rows)
+            if (y >= rowsCount)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -110,7 +110,7 @@ namespace GasStationMs.App.Topology
                 throw new IndexOutOfRangeException();
             }
 
-            if (p.X >= cols)
+            if (p.X >= colsCount)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -120,7 +120,7 @@ namespace GasStationMs.App.Topology
                 throw new IndexOutOfRangeException();
             }
 
-            if (p.Y >= rows)
+            if (p.Y >= rowsCount)
             {
                 throw new IndexOutOfRangeException();
             }
