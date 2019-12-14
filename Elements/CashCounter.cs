@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace GasStationMs.App.Models
+namespace GasStationMs.App.Elements
 {
     public class CashCounter
     {

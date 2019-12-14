@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace GasStationMs.App.TemplateElements
+namespace GasStationMs.App.Elements
 { 
     public class FuelDispenser : IGasStationElement
     {

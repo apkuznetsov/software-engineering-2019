@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace GasStationMs.App.TemplateElements
+namespace GasStationMs.App.Elements
 {
-    public class Entry : IGasStationElement
+    public class Exit : IGasStationElement
     {
         #region изображение
         private static Bitmap image;

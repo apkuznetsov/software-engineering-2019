@@ -1,7 +1,6 @@
-﻿using GasStationMs.App.Models;
+﻿using GasStationMs.App.Elements;
 using System.Linq;
 using System.Windows.Forms;
-using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App
 {
