@@ -4,9 +4,6 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder // Entry
     {
-        public static readonly int MinEntriesCount = 1;
-        public static readonly int MaxEntriesCount = 1;
-
         private int entriesCount;
 
         public int EntriesCount
@@ -18,12 +15,12 @@ namespace GasStationMs.App.Topology
 
             set
             {
-                if (value < MinEntriesCount)
+                if (value < Topology.MinEntriesCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (value > MaxEntriesCount)
+                if (value > Topology.MaxEntriesCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -36,7 +33,7 @@ namespace GasStationMs.App.Topology
         {
             int newNumOfEntries = entriesCount + 1;
 
-            if (newNumOfEntries <= MaxEntriesCount)
+            if (newNumOfEntries <= Topology.MaxEntriesCount)
             {
                 return true;
             }

@@ -5,31 +5,7 @@ using System.Windows.Forms;
 namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder
-    {
-        public static readonly double ServiceAreaInShares = 0.25;
-
-        #region константы размера
-        public static readonly int MinColsCount = 10;
-        public static readonly int MaxColsCount = 35;
-
-        public static readonly int MinRowsCount = 7;
-        public static readonly int MaxRowsCount = 25;
-        #endregion
-
-        #region константы кол-ва ШЭ
-
-
-        public static readonly int MinFuelDispensersCount = 1;
-        public static readonly int MaxFuelDispensersCount = 6;
-
-        public static readonly int MinFuelTanksCount = 1;
-        public static readonly int MaxFuelTanksCount =
-            (int)(MaxColsCount * MaxRowsCount * ServiceAreaInShares);
-
-        public static readonly int MinCashCountersCount = 1;
-        public static readonly int MaxCashCountersCount = 1;
-        #endregion
-
+    { 
         #region поля
         private int colsCount;
         private int rowsCount;
@@ -43,8 +19,8 @@ namespace GasStationMs.App.Topology
 
         public TopologyBuilder()
         {
-            colsCount = MinColsCount;
-            rowsCount = MinColsCount;
+            colsCount = Topology.MinColsCount;
+            rowsCount = Topology.MinColsCount;
 
             serviceAreaInCells = RecalculateServiceArea();
         }
@@ -59,11 +35,11 @@ namespace GasStationMs.App.Topology
 
             set
             {
-                if (value < MinColsCount)
+                if (value < Topology.MinColsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                if (value > MaxColsCount)
+                if (value > Topology.MaxColsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -82,11 +58,11 @@ namespace GasStationMs.App.Topology
 
             set
             {
-                if (value < MinRowsCount)
+                if (value < Topology.MinRowsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                if (value > MaxRowsCount)
+                if (value > Topology.MaxRowsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -105,11 +81,11 @@ namespace GasStationMs.App.Topology
 
             set
             {
-                if (value < MinFuelDispensersCount)
+                if (value < Topology.MinFuelDispensersCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                if (value > MaxFuelDispensersCount)
+                if (value > Topology.MaxFuelDispensersCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -127,7 +103,7 @@ namespace GasStationMs.App.Topology
 
             set
             {
-                if (value < MinFuelTanksCount)
+                if (value < Topology.MinFuelTanksCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -150,12 +126,12 @@ namespace GasStationMs.App.Topology
 
             set
             {
-                if (value < MinCashCountersCount)
+                if (value < Topology.MinCashCountersCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (value > MaxCashCountersCount)
+                if (value > Topology.MaxCashCountersCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -167,7 +143,7 @@ namespace GasStationMs.App.Topology
 
         private int RecalculateServiceArea()
         {
-            return (int)(colsCount * rowsCount * ServiceAreaInShares);
+            return (int)(colsCount * rowsCount * Topology.ServiceAreaInShares);
         }
 
         #region ТРК
@@ -175,7 +151,7 @@ namespace GasStationMs.App.Topology
         {
             int newNumOfFuelDispensers = fuelDispensersCount + 1;
 
-            if (newNumOfFuelDispensers <= MaxFuelDispensersCount)
+            if (newNumOfFuelDispensers <= Topology.MaxFuelDispensersCount)
             {
                 return true;
             }
@@ -237,7 +213,7 @@ namespace GasStationMs.App.Topology
         {
             int newNumOfCashCounters = cashCountersCount + 1;
 
-            if (newNumOfCashCounters <= MaxCashCountersCount)
+            if (newNumOfCashCounters <= Topology.MaxCashCountersCount)
             {
                 return true;
             }

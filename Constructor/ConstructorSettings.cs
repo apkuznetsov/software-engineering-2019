@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using GasStationMs.App.Elements;
-using GasStationMs.App.Topology;
 
 namespace GasStationMs.App
 {
@@ -53,11 +52,11 @@ namespace GasStationMs.App
 
         private void SetSpinners()
         {
-            cellsHorizontally.Minimum = TopologyBuilder.MinColsCount;
-            cellsHorizontally.Maximum = TopologyBuilder.MaxColsCount;
+            cellsHorizontally.Minimum = Topology.Topology.MinColsCount;
+            cellsHorizontally.Maximum = Topology.Topology.MaxColsCount;
 
-            cellsVertically.Minimum = TopologyBuilder.MinRowsCount;
-            cellsVertically.Maximum = TopologyBuilder.MaxRowsCount;
+            cellsVertically.Minimum = Topology.Topology.MinRowsCount;
+            cellsVertically.Maximum = Topology.Topology.MaxRowsCount;
 
             cellsHorizontally.Text = dgvTopology.ColumnCount.ToString();
             cellsVertically.Text = dgvTopology.RowCount.ToString();

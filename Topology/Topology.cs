@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace GasStationMs.App.Topology
 {
-    public class Topology
+    public partial class Topology
     {
         private readonly IGasStationElement[,] topology;
         private readonly int rowsCount;

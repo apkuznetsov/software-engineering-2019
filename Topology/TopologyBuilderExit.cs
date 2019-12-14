@@ -4,9 +4,6 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder // Exit
     {
-        public static readonly int MinExitsCount = 1;
-        public static readonly int MaxExitsCount = 1;
-
         private int exitsCount;
 
         public int ExitsCount
@@ -18,12 +15,12 @@ namespace GasStationMs.App.Topology
 
             set
             {
-                if (value < MinExitsCount)
+                if (value < Topology.MinExitsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (value > MaxExitsCount)
+                if (value > Topology.MaxExitsCount)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -36,7 +33,7 @@ namespace GasStationMs.App.Topology
         {
             int newNumOfExits = exitsCount + 1;
 
-            if (newNumOfExits <= MaxExitsCount)
+            if (newNumOfExits <= Topology.MaxExitsCount)
             {
                 return true;
             }
