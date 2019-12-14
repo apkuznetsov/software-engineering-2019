@@ -23,7 +23,7 @@ namespace GasStationMs.App
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            tb = new TopologyBuilder();
+            tb = new TopologyBuilder(dgvTopology);
 
             SetSettings();
         }

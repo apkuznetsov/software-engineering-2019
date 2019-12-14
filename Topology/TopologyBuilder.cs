@@ -10,12 +10,33 @@ namespace GasStationMs.App.Topology
         private int rowsCount;
         private int serviceAreaInCells;
 
-        public TopologyBuilder()
+        private DataGridView dgv;
+
+        public TopologyBuilder(DataGridView dgv)
         {
             colsCount = Topology.MinColsCount;
             rowsCount = Topology.MinColsCount;
 
             serviceAreaInCells = RecalculateServiceArea();
+
+            #region dgv
+            this.dgv = dgv ?? throw new NullReferenceException();
+
+            this.dgv.RowHeadersVisible = false;
+            this.dgv.ColumnHeadersVisible = false;
+
+            this.dgv.AllowUserToResizeColumns = false;
+            this.dgv.AllowUserToResizeRows = false;
+
+            this.dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            for (int i = 0; i < colsCount; i++)
+            {
+                this.dgv.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
+            }
+            this.dgv.RowCount = rowsCount;
+            #endregion /dgv
         }
 
         public int ColsCount
