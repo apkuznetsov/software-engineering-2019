@@ -90,10 +90,9 @@ namespace GasStationMs.App.Topology
             return (int)(colsCount * rowsCount * Topology.ServiceAreaInShares);
         }
 
-        public IGasStationElement[,] GetGasStationElementsArray(DataGridView dgv)
+        public Topology CreateAndGetTopology()
         {
-            IGasStationElement[,] gseArr;
-            gseArr = new IGasStationElement[dgv.RowCount, dgv.ColumnCount];
+            IGasStationElement[,] gseArr = new IGasStationElement[dgv.RowCount, dgv.ColumnCount];
 
             DataGridViewImageCell cell;
             for (int currRow = 0; currRow < gseArr.GetLength(0); currRow++)
@@ -105,7 +104,7 @@ namespace GasStationMs.App.Topology
                 }
             }
 
-            return gseArr;
+            return new Topology(gseArr);
         }
     }
 }
