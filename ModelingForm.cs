@@ -578,8 +578,39 @@ namespace GasStationMs.App
                 if (pictureBox.Tag is CarView)
                 {
                     var anotherCar = pictureBox;
-                    // Maybe wait
+
+                    switch (direction)
+                    {
+                        case Direction.Up:
+                        {
+                            activeCar.Top = anotherCar.Bottom;
+
+                            break;
+                        }
+
+                        case Direction.Right:
+                        {
+                            activeCar.Left = anotherCar.Left - activeCar.Width;
+
+                            break;
+                        }
+
+                        case Direction.Down:
+                        {
+                            activeCar.Top = anotherCar.Top - activeCar.Height;
+
+                            break;
+                        }
+
+                        case Direction.Left:
+                        {
+                            activeCar.Left = anotherCar.Right;
+
+                            break;
+                        }
+                    }
                 }
+
 
                 // Fuel Dispenser
                 if (pictureBox.Tag is FuelDispenserView)
