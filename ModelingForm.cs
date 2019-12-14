@@ -392,6 +392,93 @@ namespace GasStationMs.App
             car.AddDestinationPoint(_exitPoint1);
         }
 
+        private Point PreventIntersection(PictureBox activeCar, int side)
+        {
+            // Sides
+            // 0 - Up
+            // 1 - Right
+            // 2 - Down
+            // 3 - Left
+
+            var activeCarView = (CarView) activeCar.Tag;
+            var destPoint = activeCarView.GetDestinationPoint();
+
+
+            foreach (Control c in this.Controls)
+            {
+                if (!(c is PictureBox) || c.Tag == null)
+                {
+                    continue;
+                }
+
+                var pictureBox = (PictureBox) c;
+
+                if (!activeCar.Bounds.IntersectsWith(pictureBox.Bounds))
+                {
+                    continue;
+                }
+
+                // Another Car
+                if (pictureBox.Tag is CarView)
+                {
+                    var anotherCar = pictureBox;
+                    // Maybe wait
+                }
+
+                // Fuel Dispenser
+                if (pictureBox.Tag is FuelDispenserView)
+                {
+                    var fuelDispenser = pictureBox;
+
+                    switch (side)
+                    {
+                        case 0:
+                        {
+                            activeCar.Top = fuelDispenser.Bottom;
+
+                            if (!activeCarView.IsBypassingObject)
+                            {
+                                activeCarView.IsBypassingObject = true;
+                                // choose where to bypass 
+                                var newDestX = destPoint.X < activeCar.Left
+                                    ? fuelDispenser.Left - (activeCar.Width + 5)
+                                    : fuelDispenser.Right + (activeCar.Height + 1);
+
+                                var newDestinationPoint = new Point(newDestX,
+                                    fuelDispenser.Bottom + 10);
+
+                                //activeCarView.RemoveDestinationPoint(this);
+                                //activeCarView.AddDestinationPoint(destPoint);
+                                activeCarView.DeleteDestinationSpot(this);
+                                activeCarView.AddDestinationPoint(newDestinationPoint);
+
+                                activeCar.Tag = activeCarView;
+                            }
+
+                            break;
+                        }
+
+                        case 1:
+                        {
+                            break;
+                        }
+
+                        case 2:
+                        {
+                            break;
+                        }
+
+                        case 3:
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return activeCarView.GetDestinationPoint();
+        }
+
         #endregion /CarLogic
 
         #region TopologyMappingLogic

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -79,7 +79,7 @@ namespace GasStationMs.App.Modeling.Models
             DeleteDestinationSpot(form);
         }
 
-        private void DeleteDestinationSpot(Form form)
+        public void DeleteDestinationSpot(Form form)
         {
             form.Controls.Remove(DestinationSpot);
             DestinationSpot.Dispose();
