@@ -35,7 +35,7 @@ namespace GasStationMs.App.Models
         #endregion
 
         #region поля
-        private static int serviceAreaInCells = RecalculateServiceArea();
+        private static int serviceAreaInCells;
 
         private static int numOfCellsHorizontally = MinNumOfCellsHorizontally;
         private static int numOfCellsVertically = MinNumOfCellsHorizontally;
@@ -44,6 +44,11 @@ namespace GasStationMs.App.Models
         private static int numOfFuelDispensers;
         private static int numOfCashCounters;
         #endregion
+
+        static Topology()
+        {
+            serviceAreaInCells = RecalculateServiceArea();
+        }
 
         #region свойства
         public static int NumOfCellsHorizontally
@@ -152,8 +157,7 @@ namespace GasStationMs.App.Models
                     throw new ArgumentOutOfRangeException();
                 }
 
-                int maxNumb = (int)(numOfCellsHorizontally * numOfCellsVertically * ServiceAreaInShares);
-                if (value > maxNumb)
+                if (value > serviceAreaInCells)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -227,7 +231,6 @@ namespace GasStationMs.App.Models
         {
             int newNumOfFuelTanks = numOfFuelTanks + 1;
 
-            int temp = serviceAreaInCells;
             if (newNumOfFuelTanks <= serviceAreaInCells)
             {
                 return true;
