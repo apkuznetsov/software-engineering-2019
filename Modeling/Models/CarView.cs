@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -21,6 +21,7 @@ namespace GasStationMs.App.Modeling.Models
         public bool IsOnStation { get; set; }
         public bool IsFilled { get; set; }
         public bool IsFuelDispenserChosen { get; set; }
+        public bool IsBypassingObject { get; set; }
         public PictureBox ChosenFuelDispenser { get; set; }
 
         private List<Point> _destinationPoints;
