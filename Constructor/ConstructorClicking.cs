@@ -16,7 +16,7 @@ namespace GasStationMs.App
                     AddTemplateElement(cell);
                     break;
                 case MouseButtons.Right:
-                    Topology.Topology.DeleteTemplateElement(cell);
+                    tb.DeleteTemplateElement(cell);
                     break;
                 default:
                     break;
@@ -33,11 +33,11 @@ namespace GasStationMs.App
 
                     if (rb.Name == typeof(FuelDispenser).ToString())
                     {
-                        if (Topology.Topology.CanAddFuelDispenser())
+                        if (tb.CanAddFuelDispenser())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new FuelDispenser();
-                            Topology.Topology.AddFuelDispenser();
+                            tb.AddFuelDispenser();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -47,11 +47,11 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(FuelTank).ToString())
                     {
-                        if (Topology.Topology.CanAddFuelTank())
+                        if (tb.CanAddFuelTank())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new FuelTank();
-                            Topology.Topology.AddFuelTank();
+                            tb.AddFuelTank();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -61,11 +61,11 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
-                        if (Topology.Topology.CanAddCashCounter())
+                        if (tb.CanAddCashCounter())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new CashCounter();
-                            Topology.Topology.AddCashCounter();
+                            tb.AddCashCounter();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -75,11 +75,11 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(Entry).ToString())
                     {
-                        if (Topology.Topology.CanAddEntry())
+                        if (tb.CanAddEntry())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Entry();
-                            Topology.Topology.AddEntry();
+                            tb.AddEntry();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -89,11 +89,11 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(Exit).ToString())
                     {
-                        if (Topology.Topology.CanAddExit())
+                        if (tb.CanAddExit())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Exit();
-                            Topology.Topology.AddExit();
+                            tb.AddExit();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
