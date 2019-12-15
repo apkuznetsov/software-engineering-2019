@@ -179,6 +179,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\cashbox.png" />
+    <None Include="Resources\Exit.png" />
+    <None Include="Resources\Entrance.png" />
     <None Include="Resources\Cars\car.png" />
     <None Include="Resources\Cars\car%2864x34%29.png" />
     <None Include="Resources\dispenser70.png" />

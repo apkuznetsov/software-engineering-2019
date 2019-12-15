@@ -85,7 +85,7 @@
             this.rbFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelDispenser.AutoSize = true;
             this.rbFuelDispenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
-            this.rbFuelDispenser.Location = new System.Drawing.Point(605, 54);
+            this.rbFuelDispenser.Location = new System.Drawing.Point(589, 54);
             this.rbFuelDispenser.Name = "rbFuelDispenser";
             this.rbFuelDispenser.Size = new System.Drawing.Size(38, 38);
             this.rbFuelDispenser.TabIndex = 6;
@@ -99,7 +99,7 @@
             this.rbFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelTank.AutoSize = true;
             this.rbFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
-            this.rbFuelTank.Location = new System.Drawing.Point(649, 56);
+            this.rbFuelTank.Location = new System.Drawing.Point(633, 56);
             this.rbFuelTank.Name = "rbFuelTank";
             this.rbFuelTank.Size = new System.Drawing.Size(36, 36);
             this.rbFuelTank.TabIndex = 7;
@@ -169,7 +169,7 @@
             this.rbCashCounter.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbCashCounter.AutoSize = true;
             this.rbCashCounter.Image = ((System.Drawing.Image)(resources.GetObject("rbCashCounter.Image")));
-            this.rbCashCounter.Location = new System.Drawing.Point(691, 56);
+            this.rbCashCounter.Location = new System.Drawing.Point(675, 54);
             this.rbCashCounter.Name = "rbCashCounter";
             this.rbCashCounter.Size = new System.Drawing.Size(36, 36);
             this.rbCashCounter.TabIndex = 12;
@@ -182,8 +182,8 @@
             // 
             this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbEntry.AutoSize = true;
-            this.rbEntry.Image = ((System.Drawing.Image)(resources.GetObject("rbEntry.Image")));
-            this.rbEntry.Location = new System.Drawing.Point(733, 56);
+            this.rbEntry.Image = global::GasStationMs.App.Properties.Resources.Entrance;
+            this.rbEntry.Location = new System.Drawing.Point(717, 56);
             this.rbEntry.Name = "rbEntry";
             this.rbEntry.Size = new System.Drawing.Size(36, 36);
             this.rbEntry.TabIndex = 13;
@@ -196,8 +196,8 @@
             // 
             this.rbExit.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbExit.AutoSize = true;
-            this.rbExit.Image = ((System.Drawing.Image)(resources.GetObject("rbExit.Image")));
-            this.rbExit.Location = new System.Drawing.Point(733, 14);
+            this.rbExit.Image = global::GasStationMs.App.Properties.Resources.Exit;
+            this.rbExit.Location = new System.Drawing.Point(759, 54);
             this.rbExit.Name = "rbExit";
             this.rbExit.Size = new System.Drawing.Size(36, 36);
             this.rbExit.TabIndex = 14;

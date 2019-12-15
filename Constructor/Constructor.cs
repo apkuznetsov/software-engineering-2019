@@ -159,6 +159,6 @@ namespace GasStationMs.App
         private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
         {
             ConnectionHelpers.CloseConnection(_connection);
-        }
+        }      
     }
 }
