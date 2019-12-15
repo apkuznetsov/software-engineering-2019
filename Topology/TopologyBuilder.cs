@@ -6,37 +6,42 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder
     {
+        #region поля
         private int colsCount;
         private int rowsCount;
+
         private int serviceAreaInCells;
 
         private DataGridView dgv;
+        #endregion /поля
 
         public TopologyBuilder(DataGridView dgv)
         {
             colsCount = Topology.MinColsCount;
-            rowsCount = Topology.MinColsCount;
+            rowsCount = Topology.MinRowsCount;
 
             serviceAreaInCells = RecalculateServiceArea();
 
-            #region dgv
             this.dgv = dgv ?? throw new NullReferenceException();
+            SetupDgv();
+        }
 
-            this.dgv.RowHeadersVisible = false;
-            this.dgv.ColumnHeadersVisible = false;
+        private void SetupDgv()
+        {
+            dgv.RowHeadersVisible = false;
+            dgv.ColumnHeadersVisible = false;
 
-            this.dgv.AllowUserToResizeColumns = false;
-            this.dgv.AllowUserToResizeRows = false;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeRows = false;
 
-            this.dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
             for (int i = 0; i < colsCount; i++)
             {
-                this.dgv.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
+                dgv.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
             }
-            this.dgv.RowCount = rowsCount;
-            #endregion /dgv
+            dgv.RowCount = rowsCount;
         }
 
         public int ColsCount
@@ -57,7 +62,6 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-
                 if (colsCount < value)
                 {
                     for (int i = 0; i < value - colsCount; i++)
@@ -74,6 +78,7 @@ namespace GasStationMs.App.Topology
                 }
 
                 colsCount = value;
+
                 serviceAreaInCells = RecalculateServiceArea();
             }
         }
@@ -96,8 +101,8 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                rowsCount = value;
-                dgv.RowCount = rowsCount;
+                dgv.RowCount = value;
+                rowsCount = dgv.RowCount;
 
                 serviceAreaInCells = RecalculateServiceArea();
             }
