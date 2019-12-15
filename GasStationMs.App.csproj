@@ -76,6 +76,7 @@
     <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
+    <Compile Include="DistributionLaws\DeterminedDistribution.cs" />
     <Compile Include="DistributionLaws\DistributionLaws.cs">
       <SubType>Form</SubType>
     </Compile>
