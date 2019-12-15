@@ -1078,6 +1078,20 @@ namespace GasStationMs.App
             carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
             carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
 
+            // test
+            if (carView.ChosenFuelDispenser != null)
+            {
+                var fuelDispenser = carView.ChosenFuelDispenser;
+                var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
+
+                carInfo.Append("\r\n-------FuelDispenser-----");
+                carInfo.Append("\r\nName: " + fuelDispenserView.Name);
+                carInfo.Append("\r\nCarsInQueue: " + fuelDispenserView.CarsInQueue);
+                carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFilling);
+                carInfo.Append("\r\nIsBusy: " + fuelDispenserView.IsBusy);
+            }
+            // /test
+
             this.textBoxSelectedItemInformation.Text = carInfo.ToString();
 
             _selectedItem = car;
