@@ -242,7 +242,7 @@ namespace GasStationMs.App
                 {
                     if (destPoint.Equals(fuelDispensersDestPoint))
                     {
-                        //StartFilling();
+                        StartFilling(car, carView.ChosenFuelDispenser);
                         //test
                         carView.IsFilled = true;
                     }
@@ -1081,6 +1081,15 @@ namespace GasStationMs.App
             this.textBoxSelectedItemInformation.Text = carInfo.ToString();
 
             _selectedItem = car;
+        }
+
+        private void StartFilling(PictureBox car, PictureBox fuelDispenser)
+        {
+            var carView = (CarView) car.Tag;
+            var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
+
+            carView.IsFilling = true;
+            fuelDispenserView.IsBusy = true;
         }
 
         #endregion /ModelingLogic
