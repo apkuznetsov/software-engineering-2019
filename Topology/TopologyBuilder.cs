@@ -1,4 +1,5 @@
 ﻿using GasStationMs.App.Elements;
+using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using System;
 using System.Windows.Forms;
 
@@ -87,8 +88,34 @@ namespace GasStationMs.App.Topology
         {
             for (int i = 0; i < colsCount; i++)
             {
-                dgv.Columns.Remove(dgv.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None));
+                DataGridViewColumn dgvCol = dgv.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None);
+
+                if (IsThereAnyTag(dgvCol))
+                {
+                    throw new CannotRemoveTopologyBuilderCol();
+                }
+
+                dgv.Columns.Remove(dgvCol);
+                colsCount = dgv.ColumnCount;
             }
+        }
+
+        private bool IsThereAnyTag(DataGridViewColumn dgvCol)
+        {
+            int colIndex = dgvCol.Index;
+
+            DataGridViewImageCell cell;
+            for (int rowIndex = 0; rowIndex < dgv.RowCount; rowIndex++)
+            {
+                cell = (DataGridViewImageCell)dgv.Rows[rowIndex].Cells[colIndex];
+
+                if (cell.Tag != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public int RowsCount

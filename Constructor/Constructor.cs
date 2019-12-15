@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.App.Topology;
+using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using GasStationMs.Dal;
 
 namespace GasStationMs.App
@@ -36,7 +37,14 @@ namespace GasStationMs.App
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
-            tb.ColsCount = (int)cellsHorizontally.Value;
+            try
+            {
+                tb.ColsCount = (int)cellsHorizontally.Value;
+            }
+            catch (CannotRemoveTopologyBuilderCol)
+            {
+                MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
+            }
         }
 
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
