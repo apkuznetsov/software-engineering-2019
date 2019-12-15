@@ -57,6 +57,22 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
+
+                if (colsCount < value)
+                {
+                    for (int i = 0; i < value - colsCount; i++)
+                    {
+                        dgv.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < colsCount - value; i++)
+                    {
+                        dgv.Columns.Remove(dgv.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None));
+                    }
+                }
+
                 colsCount = value;
                 serviceAreaInCells = RecalculateServiceArea();
             }
@@ -81,6 +97,8 @@ namespace GasStationMs.App.Topology
                 }
 
                 rowsCount = value;
+                dgv.RowCount = rowsCount;
+
                 serviceAreaInCells = RecalculateServiceArea();
             }
         }
