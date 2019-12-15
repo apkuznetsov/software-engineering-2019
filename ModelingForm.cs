@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 using GasStationMs.App.Modeling.Models;
 
@@ -26,6 +27,9 @@ namespace GasStationMs.App
 
         private bool _paused;
         private readonly Random _rnd = new Random();
+
+        private PictureBox _selectedItem;
+
 
         #region TopologyElements
 
@@ -91,6 +95,14 @@ namespace GasStationMs.App
         private void TimerModeling_Tick(object sender, EventArgs e)
         {
             _timerTicksCount++;
+
+            if (_selectedItem != null)
+            {
+                if (_selectedItem.Tag is CarView)
+                {
+                    CarPictureBox_Click(_selectedItem, null);
+                }
+            }
 
             //if (!_paused)
             //{
@@ -966,6 +978,8 @@ namespace GasStationMs.App
             car.Location = _spawnPoint;
             car.SizeMode = PictureBoxSizeMode.AutoSize;
 
+            car.MouseClick += new MouseEventHandler(CarPictureBox_Click);
+
             this.Controls.Add(car);
             car.BringToFront();
 
@@ -1047,5 +1061,28 @@ namespace GasStationMs.App
         #endregion /FuelTanks
 
         #endregion /ElementsProducers
+
+        #region ModelingLogic
+
+        private void CarPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var car = (PictureBox) sender;
+            var carView = (CarView)car.Tag;
+
+           // this.textBoxSelectedItemInformation.Text = "";
+
+            StringBuilder carInfo = new StringBuilder();
+
+            carInfo.Append("Name: " + carView.Name);
+            carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
+            carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
+            carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
+
+            this.textBoxSelectedItemInformation.Text = carInfo.ToString();
+
+            _selectedItem = car;
+        }
+
+        #endregion /ModelingLogic
     }
 }
