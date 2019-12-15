@@ -76,6 +76,13 @@
     <Compile Include="CustomImageColumn.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
+    <Compile Include="DistributionLaws\DeterminedDistribution.cs" />
+    <Compile Include="DistributionLaws\DistributionLaws.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DistributionLaws\DistributionLaws.Designer.cs">
+      <DependentUpon>DistributionLaws.cs</DependentUpon>
+    </Compile>
     <Compile Include="DistributionLaws\ExponentialDistribution.cs" />
     <Compile Include="DistributionLaws\IDistributionLaw.cs" />
     <Compile Include="DB\GasStationMsDBDataSet.Designer.cs">
@@ -128,6 +135,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Topology\Topology.cs" />
+    <EmbeddedResource Include="DistributionLaws\DistributionLaws.resx">
+      <DependentUpon>DistributionLaws.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModelingForm.resx">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +189,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\info.png" />
+    <None Include="Resources\cashbox.png" />
+    <None Include="Resources\Exit.png" />
+    <None Include="Resources\Entrance.png" />
     <None Include="Resources\Cars\car.png" />
     <None Include="Resources\Cars\car%2864x34%29.png" />
     <None Include="Resources\dispenser70.png" />
