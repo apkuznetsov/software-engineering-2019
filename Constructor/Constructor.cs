@@ -34,12 +34,29 @@ namespace GasStationMs.App
         }
 
         #region события
+        int oldValue = Topology.Topology.MinColsCount;
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
-            dgvTopology.ColumnCount = (int)cellsHorizontally.Value;
-            // передалать потому что добавляются текст колонки а не imagecolumn
+            if (oldValue < (int)cellsHorizontally.Value)
+            {
+                for (int i = 0; i < ((int)cellsHorizontally.Value - oldValue); i++)
+                {
+                    dgvTopology.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
+                }
+                oldValue = (int)cellsHorizontally.Value;
+            }
+            else
+            {
+                for (int i = 0; i < (oldValue - (int)cellsHorizontally.Value); i++)
+                {
+                    dgvTopology.Columns.Remove(dgvTopology.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None));
+                }
+                oldValue = (int)cellsHorizontally.Value;
+            }
+        
+        
 
-        }
+    }
 
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
         {
