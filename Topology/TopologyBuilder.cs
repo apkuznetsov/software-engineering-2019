@@ -37,11 +37,16 @@ namespace GasStationMs.App.Topology
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
+            AddDgvCols(colsCount);
+            dgv.RowCount = rowsCount;
+        }
+
+        private void AddDgvCols(int colsCount)
+        {
             for (int i = 0; i < colsCount; i++)
             {
                 dgv.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
             }
-            dgv.RowCount = rowsCount;
         }
 
         public int ColsCount
@@ -57,6 +62,7 @@ namespace GasStationMs.App.Topology
                 {
                     throw new ArgumentOutOfRangeException();
                 }
+
                 if (value > Topology.MaxColsCount)
                 {
                     throw new ArgumentOutOfRangeException();
@@ -64,22 +70,24 @@ namespace GasStationMs.App.Topology
 
                 if (colsCount < value)
                 {
-                    for (int i = 0; i < value - colsCount; i++)
-                    {
-                        dgv.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
-                    }
+                    AddDgvCols(value - colsCount);
                 }
                 else
                 {
-                    for (int i = 0; i < colsCount - value; i++)
-                    {
-                        dgv.Columns.Remove(dgv.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None));
-                    }
+                    RemoveDgvCols(colsCount - value);
                 }
 
                 colsCount = value;
 
                 serviceAreaInCells = RecalculateServiceArea();
+            }
+        }
+
+        private void RemoveDgvCols(int colsCount)
+        {
+            for (int i = 0; i < colsCount; i++)
+            {
+                dgv.Columns.Remove(dgv.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None));
             }
         }
 
