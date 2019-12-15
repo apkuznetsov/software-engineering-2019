@@ -17,7 +17,7 @@ namespace GasStationMs.App
             Bootstrap();
             Application.Run(container.GetInstance<Constructor>());
             //Application.Run(container.GetInstance<ModelingForm>());
-
+            //Application.Run(container.GetInstance<DistributionLaws.DistributionLaws>());
             //Так будет выглядеть запуск приложения в будущем
             //Application.Run(new Start(container));
         }
@@ -31,7 +31,7 @@ namespace GasStationMs.App
             container.Register<GasStationContext>(Lifestyle.Singleton);
             //container.Register<IUserContext, WinFormsUserContext>();
             container.Register<Constructor>(/*Lifestyle.Scoped*/);
-
+            container.Register<DistributionLaws.DistributionLaws>();
             // Optionally verify the container.
             container.Verify(VerificationOption.VerifyOnly);
         }
