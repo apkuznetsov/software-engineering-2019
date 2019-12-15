@@ -24,7 +24,7 @@ namespace GasStationMs.App.DistributionLaws
                     double R = ran.NextDouble();
                     Summ += R;
                 }
-                RandValue = Math.Round((mu + sigma * (Summ - 6)), 2);
+                RandValue = Math.Abs(Math.Round((mu + sigma * (Summ - 6)), 2));
                 return RandValue;
             //double x = 0;
 
