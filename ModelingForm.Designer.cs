@@ -39,6 +39,8 @@
             this.pictureBoxEnter = new System.Windows.Forms.PictureBox();
             this.pictureBoxExit = new System.Windows.Forms.PictureBox();
             this.pictureBoxServiceArea = new System.Windows.Forms.PictureBox();
+            this.panelModelingInformation = new System.Windows.Forms.Panel();
+            this.textBoxSelectedItemInformation = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCashCounter)).BeginInit();
@@ -48,6 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxServiceArea)).BeginInit();
+            this.panelModelingInformation.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBoxFuelTank2
@@ -149,12 +152,31 @@
             this.pictureBoxServiceArea.TabIndex = 7;
             this.pictureBoxServiceArea.TabStop = false;
             // 
+            // panelModelingInformation
+            // 
+            this.panelModelingInformation.BackColor = System.Drawing.SystemColors.Window;
+            this.panelModelingInformation.Controls.Add(this.textBoxSelectedItemInformation);
+            this.panelModelingInformation.Location = new System.Drawing.Point(796, 0);
+            this.panelModelingInformation.Name = "panelModelingInformation";
+            this.panelModelingInformation.Size = new System.Drawing.Size(260, 574);
+            this.panelModelingInformation.TabIndex = 8;
+            // 
+            // textBoxSelectedItemInformation
+            // 
+            this.textBoxSelectedItemInformation.Location = new System.Drawing.Point(24, 30);
+            this.textBoxSelectedItemInformation.Multiline = true;
+            this.textBoxSelectedItemInformation.Name = "textBoxSelectedItemInformation";
+            this.textBoxSelectedItemInformation.ReadOnly = true;
+            this.textBoxSelectedItemInformation.Size = new System.Drawing.Size(221, 189);
+            this.textBoxSelectedItemInformation.TabIndex = 0;
+            // 
             // ModelingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(800, 565);
+            this.ClientSize = new System.Drawing.Size(1053, 565);
+            this.Controls.Add(this.panelModelingInformation);
             this.Controls.Add(this.pictureBoxFuelTank2);
             this.Controls.Add(this.pictureBoxExit);
             this.Controls.Add(this.pictureBoxFuelTank1);
@@ -175,6 +197,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxServiceArea)).EndInit();
+            this.panelModelingInformation.ResumeLayout(false);
+            this.panelModelingInformation.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +215,7 @@
         private System.Windows.Forms.PictureBox pictureBoxEnter;
         private System.Windows.Forms.PictureBox pictureBoxExit;
         private System.Windows.Forms.PictureBox pictureBoxServiceArea;
+        private System.Windows.Forms.Panel panelModelingInformation;
+        private System.Windows.Forms.TextBox textBoxSelectedItemInformation;
     }
 }
