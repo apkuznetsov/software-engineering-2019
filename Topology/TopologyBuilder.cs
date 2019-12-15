@@ -45,7 +45,7 @@ namespace GasStationMs.App.Topology
         {
             for (int i = 0; i < colsCount; i++)
             {
-                dgv.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
+                dgv.Columns.Add(new BlankTopologyBuilderCol());
             }
         }
 

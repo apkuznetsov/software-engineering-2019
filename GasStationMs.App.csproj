@@ -73,7 +73,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
-    <Compile Include="CustomImageColumn.cs" />
+    <Compile Include="Topology\BlankTopologyBuilderCol.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
     <Compile Include="DistributionLaws\DeterminedDistribution.cs" />
