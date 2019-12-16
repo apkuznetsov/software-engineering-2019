@@ -39,7 +39,10 @@ namespace GasStationMs.App.Topology
 
         private void AddDgvRows(int rowsCount)
         {
-            dgv.RowCount = rowsCount;
+            for (int i = 0; i < rowsCount; i++)
+            {
+                dgv.Rows.Add();
+            }
         }
 
         public int ColsCount
