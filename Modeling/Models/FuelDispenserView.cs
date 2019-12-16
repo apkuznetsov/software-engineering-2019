@@ -9,6 +9,7 @@
         public bool IsBusy { get; set; }
         public int CarsInQueue { get; set; }
 
+        public FuelTankView ChosenFuelTank{ get; set; }
 
         public FuelDispenserView(string name, int speedOfFillingPerSecond)
         {
