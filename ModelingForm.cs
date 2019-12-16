@@ -834,7 +834,10 @@ namespace GasStationMs.App
             //_fuelTanksList.Add(pictureBoxFuelTank1);
             //_fuelTanksList.Add(pictureBoxFuelTank2);
 
-            var fuelTank = CreateFuelTankView("Fuel Tank", 10000);
+            // test
+            FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
+            // /test
+            var fuelTank = CreateFuelTankView("Fuel Tank", 10000, 5000, fuel);
             creationPoint = new Point(540, 50);
             CreateFuelTankPictureBox(fuelTank, creationPoint);
 
@@ -1038,9 +1041,9 @@ namespace GasStationMs.App
 
         #region FuelTanks
 
-        private FuelTankView CreateFuelTankView(string name, int volume)
+        private FuelTankView CreateFuelTankView(string name, int volume, double currentFullness,FuelModel fuel)
         {
-            return new FuelTankView(name, volume);
+            return new FuelTankView(name, volume, currentFullness, fuel);
         }
 
         private PictureBox CreateFuelTankPictureBox(FuelTankView fuelTankView,
