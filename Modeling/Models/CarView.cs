@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -29,13 +30,14 @@ namespace GasStationMs.App.Modeling.Models
         private List<Point> _destinationPoints;
         public PictureBox DestinationSpot;
 
-        public CarView(int id, string name, int tankVolume, int fuelRemained,
+        public CarView(int id, string name, int tankVolume, double fuelRemained,
             FuelModel fuelView, bool isTruck, bool isGoesFilling)
         {
             Id = id;
             Name = name;
             TankVolume = tankVolume;
             FuelRemained = fuelRemained;
+            DesiredFilling = GenerateDesiredFilling();
             Fuel = fuelView;
             IsTruck = isTruck;
             IsGoesFilling = isGoesFilling;
@@ -91,6 +93,12 @@ namespace GasStationMs.App.Modeling.Models
         public bool HasDestPoints()
         {
             return _destinationPoints.Count > 0;
+        }
+
+        private double GenerateDesiredFilling()
+        {
+            var rnd = new Random();
+            return (double)((this.TankVolume - this.FuelRemained) * rnd.NextDouble());
         }
     }
 }
