@@ -1114,15 +1114,17 @@ namespace GasStationMs.App
             var carView = (CarView) car.Tag;
             var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
 
+            fuelDispenserView.ChoseFuelTank(_fuelTanksList, carView.Fuel);
+
             carView.IsFilling = true;
             fuelDispenserView.IsBusy = true;
         }
 
         private void FillCar(CarView car, FuelDispenserView fuelDispenser)
         {
-            //car.FuelRemained += fuelDispenser.GetFuelFromTank();
+            car.FuelRemained += fuelDispenser.GetFuelFromTank();
             // test
-            car.FuelRemained += fuelDispenser.SpeedOfFillingPerTick;
+            //car.FuelRemained += fuelDispenser.SpeedOfFillingPerTick;
 
             if (car.FuelRemained >= car.DesiredFilling)
             {
@@ -1137,7 +1139,7 @@ namespace GasStationMs.App
                 car.FuelRemained = car.TankVolume;
 
                 var fuelSurplus = car.FuelRemained - car.TankVolume;
-                //fuelDispenser.ReturnFuelToTank(fuelSurplus);
+                fuelDispenser.ReturnFuelToTank(fuelSurplus);
             }
             car.IsFilling = false;
             car.IsFilled = true;
