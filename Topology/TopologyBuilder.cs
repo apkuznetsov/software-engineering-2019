@@ -65,18 +65,16 @@ namespace GasStationMs.App.Topology
             {
                 for (currRow = 0; currRow < dgv.RowCount; currRow++)
                 {
-                    if (serviceAreaCellsLeftToAdd > 0)
-                    {
-                        cell = (DataGridViewImageCell)dgv.Rows[currRow].Cells[currCol];
-                        cell.Tag = new ServiceArea();
-                        cell.Value = ServiceArea.Image;
+                    cell = (DataGridViewImageCell)dgv.Rows[currRow].Cells[currCol];
+                    cell.Tag = new ServiceArea();
+                    cell.Value = ServiceArea.Image;
 
-                        serviceAreaCellsLeftToAdd--;
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    serviceAreaCellsLeftToAdd--;
+                }
+
+                if (serviceAreaCellsLeftToAdd <= 0)
+                {
+                    break;
                 }
             }
         }
