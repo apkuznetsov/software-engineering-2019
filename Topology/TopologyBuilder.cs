@@ -143,7 +143,32 @@ namespace GasStationMs.App.Topology
                     throw new CannotRemoveTopologyBuilderRow();
                 }
 
-                dgv.RowCount = row.Index - 1;
+                try
+                {
+                    DataGridViewImageCell[] penultimateRowCells = new DataGridViewImageCell[dgv.ColumnCount];
+                    int penultimateRowIndex = rowIndex - 1;
+                    DataGridViewImageCell cell;
+                    for (int penultimateColIndex = 0; penultimateColIndex < penultimateRowCells.Length; penultimateColIndex++)
+                    {
+                        cell = (DataGridViewImageCell)dgv.Rows[penultimateRowIndex].Cells[penultimateColIndex];
+                        penultimateRowCells[penultimateColIndex].Tag = cell.Tag;
+                        penultimateRowCells[penultimateColIndex].Value = cell.Value;
+                    }
+
+                    dgv.Rows.Remove(row);
+
+                    rowIndex = dgv.Rows.GetLastRow(DataGridViewElementStates.Visible);
+                    for (int colIndex = 0; colIndex < dgv.ColumnCount; colIndex++)
+                    {
+                        cell = (DataGridViewImageCell)dgv.Rows[rowIndex].Cells[colIndex];
+                        cell.Tag = penultimateRowCells[colIndex].Tag;
+                        cell.Value = penultimateRowCells[colIndex].Value;
+                    }
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
             }
         }
 
