@@ -784,7 +784,7 @@ namespace GasStationMs.App
 
         #region TopologyMappingLogic
 
-        private void MapTopology( /*int[][] topology*/)
+        private void MapTopology( /*int[][] field*/)
         {
             //CreateCashCounter();
             //CreateEnter();

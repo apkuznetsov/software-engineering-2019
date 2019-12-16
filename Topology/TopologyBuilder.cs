@@ -7,37 +7,40 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder
     {
-        private DataGridView dgv;
+        private DataGridView field;
         private int serviceAreaInCells;
+        private int serviceAreaBorderColIndex;
 
         public TopologyBuilder(DataGridView dgv)
         {
-            this.dgv = dgv ?? throw new NullReferenceException();
+            field = dgv ?? throw new NullReferenceException();
             SetupDgv();
 
             serviceAreaInCells = RecalculateServiceArea();
+
+            SetupServiceArea();
         }
 
         private void SetupDgv()
         {
             AddDgvCols(Topology.MinColsCount);
-            dgv.RowCount = Topology.MinRowsCount;
+            field.RowCount = Topology.MinRowsCount;
 
-            dgv.RowHeadersVisible = false;
-            dgv.ColumnHeadersVisible = false;
+            field.RowHeadersVisible = false;
+            field.ColumnHeadersVisible = false;
 
-            dgv.AllowUserToResizeColumns = false;
-            dgv.AllowUserToResizeRows = false;
+            field.AllowUserToResizeColumns = false;
+            field.AllowUserToResizeRows = false;
 
-            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            field.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            field.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void AddDgvCols(int colsCount)
         {
             for (int i = 0; i < colsCount; i++)
             {
-                dgv.Columns.Add(new BlankTopologyBuilderCol());
+                field.Columns.Add(new BlankTopologyBuilderCol());
             }
         }
 
@@ -45,7 +48,35 @@ namespace GasStationMs.App.Topology
         {
             for (int i = 0; i < rowsCount; i++)
             {
-                dgv.Rows.Add();
+                field.Rows.Add();
+            }
+        }
+
+        public void SetupServiceArea()
+        {
+            int сellsLeftToAdd = serviceAreaInCells;
+            int cellsAdded = 0;
+
+            DataGridViewImageCell cell;
+
+            for (int currCol = field.ColumnCount - 1; currCol >= 0; currCol--)
+            {
+                for (int currRow = 0; currRow < field.RowCount; currRow++)
+                {
+                    cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
+                    cell.Tag = new ServiceArea();
+                    cell.Value = ServiceArea.Image;
+
+                    cellsAdded++;
+                    сellsLeftToAdd--;
+                }
+
+                if (сellsLeftToAdd <= 0)
+                {
+                    serviceAreaInCells = cellsAdded;
+                    serviceAreaBorderColIndex = currCol;
+                    break;
+                }
             }
         }
 
@@ -53,7 +84,7 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                return dgv.ColumnCount;
+                return field.ColumnCount;
             }
 
             set
@@ -68,18 +99,18 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (dgv.ColumnCount < value)
+                if (field.ColumnCount < value)
                 {
-                    AddDgvCols(value - dgv.ColumnCount);
+                    AddDgvCols(value - field.ColumnCount);
                 }
                 else
                 {
-                    RemoveDgvCols(dgv.ColumnCount - value);
+                    RemoveDgvCols(field.ColumnCount - value);
                 }
 
-                dgv.ColumnCount = value;
+                field.ColumnCount = value;
 
-                serviceAreaInCells = RecalculateServiceArea();
+                //serviceAreaInCells = RecalculateServiceArea();
             }
         }
 
@@ -87,7 +118,7 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                return dgv.RowCount;
+                return field.RowCount;
             }
 
             set
@@ -101,18 +132,18 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (dgv.RowCount < value)
+                if (field.RowCount < value)
                 {
-                    AddDgvRows(value - dgv.RowCount);
+                    AddDgvRows(value - field.RowCount);
                 }
                 else
                 {
-                    RemoveDgvRows(dgv.RowCount - value);
+                    RemoveDgvRows(field.RowCount - value);
                 }
 
-                dgv.RowCount = value;
+                field.RowCount = value;
 
-                serviceAreaInCells = RecalculateServiceArea();
+                //serviceAreaInCells = RecalculateServiceArea();
             }
         }
 
@@ -120,14 +151,14 @@ namespace GasStationMs.App.Topology
         {
             for (int i = 0; i < colsCount; i++)
             {
-                DataGridViewColumn dgvCol = dgv.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None);
+                DataGridViewColumn dgvCol = field.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None);
 
                 if (IsThereAnyTag(dgvCol))
                 {
                     throw new CannotRemoveTopologyBuilderCol();
                 }
 
-                dgv.Columns.Remove(dgvCol);
+                field.Columns.Remove(dgvCol);
             }
         }
 
@@ -135,8 +166,8 @@ namespace GasStationMs.App.Topology
         {
             for (int i = 0; i < rowsCount; i++)
             {
-                int rowIndex = dgv.Rows.GetLastRow(DataGridViewElementStates.Visible);
-                DataGridViewRow row = dgv.Rows[rowIndex];
+                int rowIndex = field.Rows.GetLastRow(DataGridViewElementStates.Visible);
+                DataGridViewRow row = field.Rows[rowIndex];
 
                 if (IsThereAnyTag(row))
                 {
@@ -145,22 +176,22 @@ namespace GasStationMs.App.Topology
 
                 try
                 {
-                    DataGridViewImageCell[] penultimateRowCells = new DataGridViewImageCell[dgv.ColumnCount];
+                    DataGridViewImageCell[] penultimateRowCells = new DataGridViewImageCell[field.ColumnCount];
                     int penultimateRowIndex = rowIndex - 1;
                     DataGridViewImageCell cell;
                     for (int penultimateColIndex = 0; penultimateColIndex < penultimateRowCells.Length; penultimateColIndex++)
                     {
-                        cell = (DataGridViewImageCell)dgv.Rows[penultimateRowIndex].Cells[penultimateColIndex];
+                        cell = (DataGridViewImageCell)field.Rows[penultimateRowIndex].Cells[penultimateColIndex];
                         penultimateRowCells[penultimateColIndex].Tag = cell.Tag;
                         penultimateRowCells[penultimateColIndex].Value = cell.Value;
                     }
 
-                    dgv.Rows.Remove(row);
+                    field.Rows.Remove(row);
 
-                    rowIndex = dgv.Rows.GetLastRow(DataGridViewElementStates.Visible);
-                    for (int colIndex = 0; colIndex < dgv.ColumnCount; colIndex++)
+                    rowIndex = field.Rows.GetLastRow(DataGridViewElementStates.Visible);
+                    for (int colIndex = 0; colIndex < field.ColumnCount; colIndex++)
                     {
-                        cell = (DataGridViewImageCell)dgv.Rows[rowIndex].Cells[colIndex];
+                        cell = (DataGridViewImageCell)field.Rows[rowIndex].Cells[colIndex];
                         cell.Tag = penultimateRowCells[colIndex].Tag;
                         cell.Value = penultimateRowCells[colIndex].Value;
                     }
@@ -177,9 +208,9 @@ namespace GasStationMs.App.Topology
             int colIndex = col.Index;
             DataGridViewImageCell cell;
 
-            for (int rowIndex = 0; rowIndex < dgv.RowCount; rowIndex++)
+            for (int rowIndex = 0; rowIndex < field.RowCount; rowIndex++)
             {
-                cell = (DataGridViewImageCell)dgv.Rows[rowIndex].Cells[colIndex];
+                cell = (DataGridViewImageCell)field.Rows[rowIndex].Cells[colIndex];
 
                 if (cell.Tag != null)
                 {
@@ -195,9 +226,9 @@ namespace GasStationMs.App.Topology
             int rowIndex = row.Index;
             DataGridViewImageCell cell;
 
-            for (int colIndex = 0; colIndex < dgv.ColumnCount; colIndex++)
+            for (int colIndex = 0; colIndex < field.ColumnCount; colIndex++)
             {
-                cell = (DataGridViewImageCell)dgv.Rows[rowIndex].Cells[colIndex];
+                cell = (DataGridViewImageCell)field.Rows[rowIndex].Cells[colIndex];
 
                 if (cell.Tag != null)
                 {
@@ -215,19 +246,26 @@ namespace GasStationMs.App.Topology
 
         public Topology CreateAndGetTopology()
         {
-            IGasStationElement[,] gseArr = new IGasStationElement[dgv.RowCount, dgv.ColumnCount];
+            IGasStationElement[,] gseArr = new IGasStationElement[field.RowCount, field.ColumnCount];
 
             DataGridViewImageCell cell;
             for (int currRow = 0; currRow < gseArr.GetLength(0); currRow++)
             {
                 for (int currCol = 0; currCol < gseArr.GetLength(1); currCol++)
                 {
-                    cell = (DataGridViewImageCell)dgv.Rows[currRow].Cells[currCol];
-                    gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
+                    cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
+                    if (cell.Tag != null)
+                    {
+                        gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
+                    }
+                    else
+                    {
+                        gseArr[currRow, currCol] = null;
+                    }
                 }
             }
 
-            return new Topology(gseArr);
+            return new Topology(gseArr, serviceAreaBorderColIndex);
         }
     }
 }
