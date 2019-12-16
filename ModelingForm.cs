@@ -1081,6 +1081,13 @@ namespace GasStationMs.App
 
             StringBuilder carInfo = new StringBuilder();
 
+            var cashCounterView = (CashCounterView) _cashCounter.Tag;
+            carInfo.Append("Name: " + cashCounterView.Name);
+            carInfo.Append("\r\nCMaxCashVolume: " + cashCounterView.MaxCashVolume);
+            carInfo.Append("\r\nCurrentCashVolume: " + cashCounterView.CurrentCashVolume);
+            carInfo.Append("\r\nIsFull: " + cashCounterView.IsFull);
+            carInfo.Append("\r\n-------------------------------");
+
             carInfo.Append("Name: " + carView.Name);
             carInfo.Append("\r\nTank volume: " + carView.TankVolume);
             carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
