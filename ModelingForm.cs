@@ -32,6 +32,7 @@ namespace GasStationMs.App
 
         private PictureBox _selectedItem;
 
+        private Panel _playgronudPanel;
 
         #region TopologyElements
 
@@ -792,6 +793,7 @@ namespace GasStationMs.App
 
         private void MapTopology( /*int[][] field*/)
         {
+            SetupPlaygroundPanel();
             //CreateCashCounter();
             //CreateEnter();
             //CreateExit();
@@ -888,7 +890,20 @@ namespace GasStationMs.App
             _predeterminedPoints.Add(_exitPoint1);
 
             #endregion /DestinationPoints
+
+
         }
+
+        private void SetupPlaygroundPanel()
+        {
+            // test
+            panelPlayground.Size = new Size(1030, 700);
+            // /test
+
+            panelPlayground.MouseClick += new MouseEventHandler(PlaygroundPanel_Click);
+        }
+
+       
 
         #endregion /TopologyMappingLogic
 
@@ -950,7 +965,6 @@ namespace GasStationMs.App
             return enter;
         }
 
-
         private PictureBox CreateExitPictureBox(Point locationPoint)
         {
             var sizeX = 80;
@@ -973,9 +987,6 @@ namespace GasStationMs.App
 
             return exit;
         }
-
-
-       
 
         #endregion /Enter/Exit
 
@@ -1198,6 +1209,8 @@ namespace GasStationMs.App
             // /test
 
             this.textBoxSelectedItemInformation.Text = carInfo.ToString();
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
 
             _selectedItem = car;
         }
@@ -1214,6 +1227,9 @@ namespace GasStationMs.App
             fuelDispenserInfo.Append("\r\nСкорость подачи топлива: " + fuelDispenserView.SpeedOfFillingPerSecond + " литров/сек.");
 
             this.textBoxSelectedItemInformation.Text = fuelDispenserInfo.ToString();
+
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
 
             _selectedItem = fuelDispenser;
         }
@@ -1232,6 +1248,9 @@ namespace GasStationMs.App
             fuelTankInfo.Append("\r\nОстаток: " + fuelTankView.CurrentFullness + " литров");
 
             this.textBoxSelectedItemInformation.Text = fuelTankInfo.ToString();
+
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
 
             _selectedItem = fuelTank;
         }
@@ -1268,6 +1287,9 @@ namespace GasStationMs.App
 
             this.textBoxSelectedItemInformation.Text = enterInfo.ToString();
 
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
+
             _selectedItem = enter;
         }
         private void ExitPictureBox_Click(object sender, MouseEventArgs e)
@@ -1282,7 +1304,16 @@ namespace GasStationMs.App
 
             this.textBoxSelectedItemInformation.Text = exitInfo.ToString();
 
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
+
             _selectedItem = exit;
+        }
+
+        private void PlaygroundPanel_Click(object sender, MouseEventArgs e)
+        {
+            labelSelectedElement.Visible = false;
+            textBoxSelectedItemInformation.Visible = false;
         }
 
         #endregion /Clicking
@@ -1291,11 +1322,11 @@ namespace GasStationMs.App
         {
             this.Size = new Size(1280, 800);
 
-            panelPlayground.Size = new Size(1030, 700);
-            panelPlayground.BringToFront();
-
             panelModelingInformation.Size = new Size(250, 800);
             panelModelingInformation.Location = new Point(this.Width - panelModelingInformation.Width, 0);
+
+            labelSelectedElement.Visible = false;
+            textBoxSelectedItemInformation.Visible = false;
 
             textBoxSelectedItemInformation.Size = new Size(225, 150);
 
