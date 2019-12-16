@@ -1106,6 +1106,31 @@ namespace GasStationMs.App
             fuelDispenserView.IsBusy = true;
         }
 
+        private void FillCar(CarView car, FuelDispenserView fuelDispenser)
+        {
+            //car.FuelRemained += fuelDispenser.GetFuelFromTank();
+            // test
+            car.FuelRemained += fuelDispenser.SpeedOfFillingPerTick;
+
+            if (car.FuelRemained >= car.DesiredFilling)
+            {
+                StopFilling(car, fuelDispenser);
+            }
+        }
+
+        private void StopFilling(CarView car, FuelDispenserView fuelDispenser)
+        {
+            if (car.FuelRemained > car.TankVolume)
+            {
+                car.FuelRemained = car.TankVolume;
+
+                var fuelSurplus = car.FuelRemained - car.TankVolume;
+                //fuelDispenser.ReturnFuelToTank(fuelSurplus);
+            }
+            car.IsFilling = false;
+            fuelDispenser.IsBusy = false;
+        }
+
         #endregion /ModelingLogic
     }
 }
