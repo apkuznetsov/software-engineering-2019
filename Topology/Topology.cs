@@ -7,10 +7,12 @@ namespace GasStationMs.App.Topology
     public partial class Topology
     {
         private readonly IGasStationElement[,] field;
+        private int serviceAreaBorderColIndex;
 
-        public Topology(IGasStationElement[,] topology)
+        public Topology(IGasStationElement[,] field, int serviceAreaBorderColIndex)
         {
-            this.field = topology ?? throw new NullReferenceException();
+            this.field = field ?? throw new NullReferenceException();
+            this.serviceAreaBorderColIndex = serviceAreaBorderColIndex;
         }
 
         public int RowsCount
@@ -28,6 +30,8 @@ namespace GasStationMs.App.Topology
                 return field.GetLength(1);
             }
         }
+
+        public int ServiceAreaBorderColIndex { get; }
 
         public IGasStationElement this[int x, int y]
         {
