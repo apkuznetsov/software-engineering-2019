@@ -200,10 +200,15 @@ namespace GasStationMs.App
         private void MoveCarToDestination(PictureBox car)
         {
             var carView = (CarView) car.Tag;
-            //if (carView.IsBypassingObject)
-            //{
-            //    var x = 1;
-            //}
+
+            if (carView.IsFilling)
+            {
+                var chosenFuelDispenser = (FuelDispenserView) carView.ChosenFuelDispenser.Tag;
+
+                FillCar(carView, chosenFuelDispenser);
+
+                return;
+            }
 
             var destPoint = carView.GetDestinationPoint();
             PictureBox destSpot = carView.DestinationSpot;
@@ -244,7 +249,7 @@ namespace GasStationMs.App
                     {
                         StartFilling(car, carView.ChosenFuelDispenser);
                         //test
-                        carView.IsFilled = true;
+                        //carView.IsFilled = true;
                     }
                 }
 
@@ -1132,6 +1137,7 @@ namespace GasStationMs.App
                 //fuelDispenser.ReturnFuelToTank(fuelSurplus);
             }
             car.IsFilling = false;
+            car.IsFilled = true;
             fuelDispenser.IsBusy = false;
         }
 
