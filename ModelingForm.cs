@@ -794,6 +794,7 @@ namespace GasStationMs.App
         private void MapTopology( /*int[][] field*/)
         {
             SetupPlaygroundPanel();
+            SetupServiceArea();
             //CreateCashCounter();
             //CreateEnter();
             //CreateExit();
@@ -903,7 +904,16 @@ namespace GasStationMs.App
             panelPlayground.MouseClick += new MouseEventHandler(PlaygroundPanel_Click);
         }
 
-       
+        private void SetupServiceArea()
+        {
+            // test
+            // /test
+
+            pictureBoxServiceArea.MouseClick += new MouseEventHandler(ServiceArea_Click);
+        }
+
+      
+
 
         #endregion /TopologyMappingLogic
 
@@ -1309,6 +1319,26 @@ namespace GasStationMs.App
 
             _selectedItem = exit;
         }
+
+        private void ServiceArea_Click(object sender, MouseEventArgs e)
+        {
+            var serviceArea = (PictureBox)sender;
+
+            StringBuilder serviceAreaInfo = new StringBuilder();
+
+            labelSelectedElement.Text = "Сервисная зона";
+
+            serviceAreaInfo.Append("\r\nСервисна зона с топливными баками");
+            serviceAreaInfo.Append("\r\nОбычным машинам тут не место");
+
+            this.textBoxSelectedItemInformation.Text = serviceAreaInfo.ToString();
+
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
+
+            _selectedItem = serviceArea;
+        }
+
 
         private void PlaygroundPanel_Click(object sender, MouseEventArgs e)
         {
