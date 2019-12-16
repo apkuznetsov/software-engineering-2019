@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App.Modeling.Models
 {
-    class FuelTankView
+    public class FuelTankView
     {
         private const int WhenRefillInPercentage = 10;
         public string Name { get; set; }
