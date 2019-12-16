@@ -1,5 +1,4 @@
-﻿using GasStationMs.App.Models;
-using GasStationMs.App.TemplateElements;
+﻿using GasStationMs.App.Elements;
 using System;
 
 namespace GasStationMs.App

@@ -1,7 +1,6 @@
-﻿using GasStationMs.App.Models;
+﻿using GasStationMs.App.Elements;
 using System.Linq;
 using System.Windows.Forms;
-using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App
 {
@@ -14,17 +13,17 @@ namespace GasStationMs.App
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    AddTemplateElement(cell);
+                    AddElement(cell);
                     break;
                 case MouseButtons.Right:
-                    Topology.DeleteTemplateElement(cell);
+                    DeleteElement(cell);
                     break;
                 default:
                     break;
             }
         }
 
-        private void AddTemplateElement(DataGridViewImageCell cell)
+        private void AddElement(DataGridViewImageCell cell)
         {
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
             {
@@ -34,11 +33,10 @@ namespace GasStationMs.App
 
                     if (rb.Name == typeof(FuelDispenser).ToString())
                     {
-                        if (Topology.CanAddFuelDispenser())
+                        if (tb.AddFuelDispenser())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new FuelDispenser();
-                            Topology.AddFuelDispenser();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -48,11 +46,10 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(FuelTank).ToString())
                     {
-                        if (Topology.CanAddFuelTank())
+                        if (tb.AddFuelTank())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new FuelTank();
-                            Topology.AddFuelTank();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -62,11 +59,10 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
-                        if (Topology.CanAddCashCounter())
+                        if (tb.AddCashCounter())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new CashCounter();
-                            Topology.AddCashCounter();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -76,11 +72,10 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(Entry).ToString())
                     {
-                        if (Topology.CanAddEntry())
+                        if (tb.AddEntry())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Entry();
-                            Topology.AddEntry();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -90,11 +85,10 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(Exit).ToString())
                     {
-                        if (Topology.CanAddExit())
+                        if (tb.AddExit())
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Exit();
-                            Topology.AddExit();
                             tbClickedCell.Text = cell.Tag.ToString();
                         }
                         else
@@ -112,6 +106,39 @@ namespace GasStationMs.App
                     tbClickedCell.Text = cell.Tag.ToString();
                     //MessageBox.Show("невозможно добавить: ячейка уже занята");
                 }
+            }
+        }
+
+        private void DeleteElement(DataGridViewImageCell cell)
+        {
+            bool canDelete = (cell.Tag != null);
+
+            if (canDelete)
+            {
+                if (cell.Tag is FuelDispenser)
+                {
+                    tb.DeleteFuelDispenser();
+                }
+                else if (cell.Tag is FuelTank)
+                {
+                    tb.DeleteFuelTank();
+                }
+                else if (cell.Tag is CashCounter)
+                {
+                    tb.DeleteCashCounter();
+                }
+                else if (cell.Tag is Entry)
+                {
+                    tb.DeleteEntry();
+                }
+                else if (cell.Tag is Exit)
+                {
+                    tb.DeleteExit();
+                }
+                else { }
+
+                cell.Tag = null;
+                cell.Value = null;
             }
         }
     }

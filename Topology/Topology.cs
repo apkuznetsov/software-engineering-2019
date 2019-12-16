@@ -1,304 +1,160 @@
-﻿using GasStationMs.App.TemplateElements;
+﻿using GasStationMs.App.Elements;
 using System;
-using System.Windows.Forms;
+using System.Drawing;
 
-namespace GasStationMs.App.Models
+namespace GasStationMs.App.Topology
 {
-    public static partial class Topology
+    public partial class Topology
     {
-        public static readonly double ServiceAreaInShares = 0.25;
+        private readonly IGasStationElement[,] field;
+        private int serviceAreaBorderColIndex;
 
-        #region константы размера
-        public static readonly int MinNumOfCellsHorizontally = 10;
-        public static readonly int MaxNumOfCellsHorizontally = 35;
-
-        public static readonly int MinNumOfCellsVertically = 7;
-        public static readonly int MaxNumOfCellsVertically = 25;
-        #endregion
-
-        #region константы кол-ва ШЭ
-        public static readonly int MinAndMaxNumOfAdjacentRoads = 1;
-
-        public static readonly int MinNumOfFuelDispensers = 1;
-        public static readonly int MaxNumOfFuelDispensers = 6;
-
-        public static readonly int MinNumOfFuelTanks = 1;
-        public static readonly int MaxNumOfFuelTanks =
-            (int)(MaxNumOfCellsHorizontally * MaxNumOfCellsVertically * ServiceAreaInShares);
-
-        public static readonly int MinNumOfCashCounters = 1;
-        public static readonly int MaxNumOfCashCounters = 1;
-        #endregion
-
-        #region поля
-        private static int serviceAreaInCells;
-
-        private static int numOfCellsHorizontally = MinNumOfCellsHorizontally;
-        private static int numOfCellsVertically = MinNumOfCellsHorizontally;
-
-        private static int numOfFuelTanks;
-        private static int numOfFuelDispensers;
-        private static int numOfCashCounters;
-        #endregion
-
-        static Topology()
+        public Topology(IGasStationElement[,] field, int serviceAreaBorderColIndex)
         {
-            serviceAreaInCells = RecalculateServiceArea();
+            this.field = field ?? throw new NullReferenceException();
+            this.serviceAreaBorderColIndex = serviceAreaBorderColIndex;
         }
 
-        #region свойства
-        public static int NumOfCellsHorizontally
+        public int RowsCount
         {
             get
             {
-                return numOfCellsHorizontally;
-            }
-
-            set
-            {
-                if (value < MinNumOfCellsHorizontally)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                if (value > MaxNumOfCellsHorizontally)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                numOfCellsHorizontally = value;
-                serviceAreaInCells = RecalculateServiceArea();
+                return field.GetLength(0);
             }
         }
 
-        public static int NumOfCellsVertically
+        public int ColsCount
         {
             get
             {
-                return numOfCellsVertically;
-            }
-
-            set
-            {
-                if (value < MinNumOfCellsVertically)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                if (value > MaxNumOfCellsVertically)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                numOfCellsVertically = value;
-                serviceAreaInCells = RecalculateServiceArea();
+                return field.GetLength(1);
             }
         }
 
-        public static int NumOfAdjacentRoads
+        public int ServiceAreaBorderColIndex { get; }
+
+        public Point FirstBorderPoint
         {
             get
             {
-                return MinAndMaxNumOfAdjacentRoads;
+                return new Point(serviceAreaBorderColIndex, 0);
             }
         }
 
-        public static int NumOfFuelDispensers
+        public IGasStationElement this[int x, int y] // x -- столбец, y -- cтрока
         {
             get
             {
-                return numOfFuelDispensers;
-            }
-
-            set
-            {
-                if (value < MinNumOfFuelDispensers)
+                if (x < 0)
                 {
-                    throw new ArgumentOutOfRangeException();
-                }
-                if (value > MaxNumOfFuelDispensers)
-                {
-                    throw new ArgumentOutOfRangeException();
+                    throw new IndexOutOfRangeException();
                 }
 
-                numOfFuelDispensers = value;
+                if (x >= ColsCount)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                if (y < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                if (y >= RowsCount)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                return field[y, x];
             }
         }
 
-        public static int NumOfFuelTanks
+        public IGasStationElement this[Point p]
         {
             get
             {
-                return numOfFuelTanks;
-            }
-
-            set
-            {
-                if (value < MinNumOfFuelTanks)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                if (value > serviceAreaInCells)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                numOfFuelTanks = value;
+                return this[p.X, p.Y];
             }
         }
 
-        public static int NumOfCashCounters
+        public IGasStationElement GetElement(int x, int y)
         {
-            get
+            if (x < 0)
             {
-                return numOfCashCounters;
+                throw new IndexOutOfRangeException();
             }
 
-            set
+            if (x >= ColsCount)
             {
-                if (value < MinNumOfCashCounters)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                if (value > MaxNumOfCashCounters)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                numOfCashCounters = value;
+                throw new IndexOutOfRangeException();
             }
-        }
-        #endregion
 
-        private static int RecalculateServiceArea()
-        {
-            return (int)(numOfCellsHorizontally * numOfCellsVertically * ServiceAreaInShares);
+            if (y < 0)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            if (y >= RowsCount)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
+            return field[y, x];
         }
 
-        #region ТРК
-        public static bool CanAddFuelDispenser()
+        public IGasStationElement GetElement(Point p)
         {
-            int newNumOfFuelDispensers = numOfFuelDispensers + 1;
-
-            if (newNumOfFuelDispensers <= MaxNumOfFuelDispensers)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return GetElement(p.X, p.Y);
         }
 
-        public static void AddFuelDispenser()
+        public bool IsCashCounter(int x, int y)
         {
-            NumOfFuelDispensers = NumOfFuelDispensers + 1;
+            return this[x, y] is CashCounter;
         }
 
-        private static void DeleteFuelDispenser()
+        public bool IsCashCounter(Point p)
         {
-            if (numOfFuelDispensers < 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            numOfFuelDispensers--;
-        }
-        #endregion /ТРК
-
-        #region ТБ
-        public static bool CanAddFuelTank()
-        {
-            int newNumOfFuelTanks = numOfFuelTanks + 1;
-
-            if (newNumOfFuelTanks <= serviceAreaInCells)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return this[p] is CashCounter;
         }
 
-        public static void AddFuelTank()
+        public bool IsEntry(int x, int y)
         {
-            NumOfFuelTanks = NumOfFuelTanks + 1;
+            return this[x, y] is Entry;
         }
 
-        private static void DeleteFuelTank()
+        public bool IsEntry(Point p)
         {
-            if (numOfFuelTanks < 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            numOfFuelTanks--;
-        }
-        #endregion /ТБ
-
-        #region касса
-        public static bool CanAddCashCounter()
-        {
-            int newNumOfCashCounters = numOfCashCounters + 1;
-
-            if (newNumOfCashCounters <= MaxNumOfCashCounters)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return this[p] is Entry;
         }
 
-        public static void AddCashCounter()
+        public bool IsExit(int x, int y)
         {
-            numOfCashCounters++;
+            return this[x, y] is Exit;
         }
 
-        private static void DeleteCashCounter()
+        public bool IsExit(Point p)
         {
-            if (numOfCashCounters < 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            numOfCashCounters--;
+            return this[p] is Exit;
         }
-        #endregion /касса
 
-        public static void DeleteTemplateElement(DataGridViewCell cell)
+        public bool IsFuelDispenser(int x, int y)
         {
-            bool canDelete = (cell.Tag != null);
+            return this[x, y] is FuelDispenser;
+        }
 
-            if (canDelete)
-            {
-                if (cell.Tag is FuelDispenser)
-                {
-                    DeleteFuelDispenser();
-                }
-                else if (cell.Tag is FuelTank)
-                {
-                    DeleteFuelTank();
-                }
-                else if (cell.Tag is CashCounter)
-                {
-                    DeleteCashCounter();
-                }
-                else if (cell.Tag is Entry)
-                {
-                    DeleteEntry();
-                }
-                else if (cell.Tag is Exit)
-                {
-                    DeleteExit();
-                }
-                else { }
+        public bool IsFuelDispenser(Point p)
+        {
+            return this[p] is FuelDispenser;
+        }
 
-                cell.Tag = null;
-                cell.Value = null;
-            }
+        public bool IsFuelTank(int x, int y)
+        {
+            return this[x, y] is FuelTank;
+        }
+
+        public bool IsFuelTank(Point p)
+        {
+            return this[p] is FuelTank;
         }
     }
 }

@@ -3,12 +3,16 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
+using GasStationMs.App.Topology;
+using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using GasStationMs.Dal;
 
 namespace GasStationMs.App
 {
     public partial class Constructor : Form
     {
+        private TopologyBuilder tb;
+
         private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
@@ -19,6 +23,8 @@ namespace GasStationMs.App
             _connection = ConnectionHelpers.OpenConnection();
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
+
+            tb = new TopologyBuilder(dgvTopology);
 
             SetSettings();
         }
@@ -31,15 +37,28 @@ namespace GasStationMs.App
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
-            dgvTopology.ColumnCount = (int)cellsHorizontally.Value;
-            // передалать потому что добавляются текст колонки а не imagecolumn
-
+            try
+            {
+                tb.ColsCount = (int)cellsHorizontally.Value;
+            }
+            catch (CannotRemoveTopologyBuilderCol)
+            {
+                cellsHorizontally.Value = tb.ColsCount;
+                MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
+            }
         }
 
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
         {
-            dgvTopology.RowCount = (int)cellsVertically.Value;
-            // добавляем и удаляем предпоследний ряд а не последний 
+            try
+            {
+                tb.RowsCount = (int)cellsVertically.Value;
+            }
+            catch (CannotRemoveTopologyBuilderRow)
+            {
+                cellsVertically.Value = tb.RowsCount;
+                MessageBox.Show("удалите ШЭ прежде чем удалить строку");
+            }
         }
         #endregion
 
