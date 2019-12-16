@@ -54,7 +54,7 @@ namespace GasStationMs.App
             {
                 tb.RowsCount = (int)cellsVertically.Value;
             }
-            catch (CannotRemoveTopologyBuilderCol)
+            catch (CannotRemoveTopologyBuilderRow)
             {
                 cellsVertically.Value = tb.RowsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить строку");
