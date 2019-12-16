@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Topology;
 
 namespace GasStationMs.App
 {
     public partial class ModelingForm : Form
     {
         private int _timerTicksCount = 0;
-
+        public Topology.Topology _topology;
         private int _carSpeedNoFilling = 4;
         private int _carSpeedFilling = 3;
         private bool _paused;

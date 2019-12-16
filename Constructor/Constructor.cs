@@ -156,6 +156,7 @@ namespace GasStationMs.App
         {
             Topology.Topology topology = tb.CreateAndGetTopology();
             ModelingForm modelingform = new ModelingForm();
+            modelingform._topology = topology;
             modelingform.ShowDialog();
         }
 
