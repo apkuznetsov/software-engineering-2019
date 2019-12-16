@@ -912,6 +912,8 @@ namespace GasStationMs.App
             cashCounter.Location = locationPoint;
             cashCounter.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            cashCounter.MouseClick += new MouseEventHandler(CashCounterPictureBox_Click);
+
             this.Controls.Add(cashCounter);
             cashCounter.BringToFront();
 
@@ -919,6 +921,8 @@ namespace GasStationMs.App
 
             return cashCounter;
         }
+
+        
 
         #endregion /CashCounter
 
@@ -936,6 +940,8 @@ namespace GasStationMs.App
             enter.Location = locationPoint;
             enter.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            enter.MouseClick += new MouseEventHandler(EnterPictureBox_Click);
+
             this.Controls.Add(enter);
             enter.BringToFront();
 
@@ -943,6 +949,7 @@ namespace GasStationMs.App
 
             return enter;
         }
+
 
         private PictureBox CreateExitPictureBox(Point locationPoint)
         {
@@ -956,6 +963,9 @@ namespace GasStationMs.App
             exit.Location = locationPoint;
             exit.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            exit.MouseClick += new MouseEventHandler(ExitPictureBox_Click);
+
+
             this.Controls.Add(exit);
             exit.BringToFront();
 
@@ -963,6 +973,9 @@ namespace GasStationMs.App
 
             return exit;
         }
+
+
+       
 
         #endregion /Enter/Exit
 
@@ -1018,6 +1031,9 @@ namespace GasStationMs.App
             fuelDispenser.Location = locationPoint;
             fuelDispenser.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            fuelDispenser.MouseClick += new MouseEventHandler(FuelDispenserPictureBox_Click);
+
+
             //// Filling area
             //PictureBox fillingArea = new PictureBox();
             //fillingArea.Tag = fuelDispenserView;
@@ -1041,6 +1057,8 @@ namespace GasStationMs.App
             return fuelDispenser;
         }
 
+       
+
         #endregion /FuelDispensers
 
         #region FuelTanks
@@ -1062,6 +1080,8 @@ namespace GasStationMs.App
             fuelTank.SizeMode = PictureBoxSizeMode.StretchImage;
             fuelTank.BackColor = Color.Wheat; //For testing
 
+            fuelTank.MouseClick += new MouseEventHandler(FuelTankPictureBox_Click);
+
             this.Controls.Add(fuelTank);
             fuelTank.BringToFront();
 
@@ -1075,62 +1095,6 @@ namespace GasStationMs.App
         #endregion /ElementsProducers
 
         #region ModelingLogic
-
-        private void CarPictureBox_Click(object sender, MouseEventArgs e)
-        {
-            var car = (PictureBox) sender;
-            var carView = (CarView) car.Tag;
-
-            // this.textBoxSelectedItemInformation.Text = "";
-
-            StringBuilder carInfo = new StringBuilder();
-
-            var cashCounterView = (CashCounterView) _cashCounter.Tag;
-            carInfo.Append("Name: " + cashCounterView.Name);
-            carInfo.Append("\r\nCMaxCashVolume: " + cashCounterView.MaxCashVolume);
-            carInfo.Append("\r\nCurrentCashVolume: " + cashCounterView.CurrentCashVolume);
-            carInfo.Append("\r\nIsFull: " + cashCounterView.IsFull);
-            carInfo.Append("\r\n-------------------------------");
-
-            carInfo.Append("Name: " + carView.Name);
-            carInfo.Append("\r\nTank volume: " + carView.TankVolume);
-            carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
-            carInfo.Append("\r\nFuelRemained: " + carView.FuelRemained);
-            carInfo.Append("\r\n-------------------------------");
-            carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
-            carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
-            carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
-
-            // test
-            if (carView.ChosenFuelDispenser != null)
-            {
-                var fuelDispenser = carView.ChosenFuelDispenser;
-                var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
-
-                carInfo.Append("\r\n-------FuelDispenser-----");
-                carInfo.Append("\r\nName: " + fuelDispenserView.Name);
-                carInfo.Append("\r\nCarsInQueue: " + fuelDispenserView.CarsInQueue);
-                carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFillingPerSecond);
-                carInfo.Append("\r\nIsBusy: " + fuelDispenserView.IsBusy);
-
-                if (fuelDispenserView.ChosenFuelTank != null)
-                {
-                    var fuelTankView = fuelDispenserView.ChosenFuelTank;
-
-                    carInfo.Append("\r\n-------FuelTank-----");
-                    carInfo.Append("\r\nName: " + fuelTankView.Name);
-                    carInfo.Append("\r\nFuel: " + fuelTankView.Fuel);
-                    carInfo.Append("\r\nVolume: " + fuelTankView.Volume);
-                    carInfo.Append("\r\nCurrentFullness: " + fuelTankView.CurrentFullness);
-                    carInfo.Append("\r\nIsEmpty: " + fuelTankView.IsEmpty);
-                }
-            }
-            // /test
-
-            this.textBoxSelectedItemInformation.Text = carInfo.ToString();
-
-            _selectedItem = car;
-        }
 
         private void StartFilling(PictureBox car, PictureBox fuelDispenser)
         {
@@ -1184,6 +1148,90 @@ namespace GasStationMs.App
         }
 
         #endregion /ModelingLogic
+
+        #region Clicking
+
+        private void CarPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var car = (PictureBox)sender;
+            var carView = (CarView)car.Tag;
+
+            // this.textBoxSelectedItemInformation.Text = "";
+
+            StringBuilder carInfo = new StringBuilder();
+
+            var cashCounterView = (CashCounterView)_cashCounter.Tag;
+            carInfo.Append("Name: " + cashCounterView.Name);
+            carInfo.Append("\r\nCMaxCashVolume: " + cashCounterView.MaxCashVolume);
+            carInfo.Append("\r\nCurrentCashVolume: " + cashCounterView.CurrentCashVolume);
+            carInfo.Append("\r\nIsFull: " + cashCounterView.IsFull);
+            carInfo.Append("\r\n-------------------------------");
+
+            carInfo.Append("Name: " + carView.Name);
+            carInfo.Append("\r\nTank volume: " + carView.TankVolume);
+            carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
+            carInfo.Append("\r\nFuelRemained: " + carView.FuelRemained);
+            carInfo.Append("\r\n-------------------------------");
+            carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
+            carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
+            carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
+
+            // test
+            if (carView.ChosenFuelDispenser != null)
+            {
+                var fuelDispenser = carView.ChosenFuelDispenser;
+                var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
+
+                carInfo.Append("\r\n-------FuelDispenser-----");
+                carInfo.Append("\r\nName: " + fuelDispenserView.Name);
+                carInfo.Append("\r\nCarsInQueue: " + fuelDispenserView.CarsInQueue);
+                carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFillingPerSecond);
+                carInfo.Append("\r\nIsBusy: " + fuelDispenserView.IsBusy);
+
+                if (fuelDispenserView.ChosenFuelTank != null)
+                {
+                    var fuelTankView = fuelDispenserView.ChosenFuelTank;
+
+                    carInfo.Append("\r\n-------FuelTank-----");
+                    carInfo.Append("\r\nName: " + fuelTankView.Name);
+                    carInfo.Append("\r\nFuel: " + fuelTankView.Fuel);
+                    carInfo.Append("\r\nVolume: " + fuelTankView.Volume);
+                    carInfo.Append("\r\nCurrentFullness: " + fuelTankView.CurrentFullness);
+                    carInfo.Append("\r\nIsEmpty: " + fuelTankView.IsEmpty);
+                }
+            }
+            // /test
+
+            this.textBoxSelectedItemInformation.Text = carInfo.ToString();
+
+            _selectedItem = car;
+        }
+
+        private void FuelDispenserPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void FuelTankPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CashCounterPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EnterPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private void ExitPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion /Clicking
 
         private void LocateFormElements()
         {
