@@ -1074,6 +1074,10 @@ namespace GasStationMs.App
             StringBuilder carInfo = new StringBuilder();
 
             carInfo.Append("Name: " + carView.Name);
+            carInfo.Append("\r\nTank volume: " + carView.TankVolume);
+            carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
+            carInfo.Append("\r\nFuelRemained: " + carView.FuelRemained);
+            carInfo.Append("\r\n-------------------------------");
             carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
             carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
             carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
@@ -1087,7 +1091,7 @@ namespace GasStationMs.App
                 carInfo.Append("\r\n-------FuelDispenser-----");
                 carInfo.Append("\r\nName: " + fuelDispenserView.Name);
                 carInfo.Append("\r\nCarsInQueue: " + fuelDispenserView.CarsInQueue);
-                carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFilling);
+                carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFillingPerSecond);
                 carInfo.Append("\r\nIsBusy: " + fuelDispenserView.IsBusy);
             }
             // /test
