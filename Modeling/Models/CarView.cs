@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -95,6 +95,11 @@ namespace GasStationMs.App.Modeling.Models
         public bool HasDestPoints()
         {
             return _destinationPoints.Count > 0;
+        }
+
+        public void PayForOrderedFuel(CashCounterView cashCounterView)
+        {
+            cashCounterView.CurrentCashVolume += OrderedAmountOfFuel * Fuel.Price;
         }
 
         private double GenerateDesiredFilling()
