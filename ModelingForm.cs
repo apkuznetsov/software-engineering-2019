@@ -18,8 +18,6 @@ namespace GasStationMs.App
 
     public partial class ModelingForm : Form
     {
-        private Topology.Topology _topology;
-
         private int _timerTicksCount = 0;
         public Topology.Topology _topology;
         private int _carSpeedNoFilling = 4;
