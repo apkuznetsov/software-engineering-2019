@@ -125,7 +125,7 @@ namespace GasStationMs.App
 
             #region LoopingControls
 
-            foreach (Control c in this.Controls)
+            foreach (Control c in panelPlayground.Controls)
             {
                 if (!(c is PictureBox) || c.Tag == null)
                 {
@@ -232,7 +232,7 @@ namespace GasStationMs.App
             if (carView.DestinationSpot == null)
             {
                 destSpot = carView.CreateDestinationSpot(destPoint);
-                this.Controls.Add(destSpot);
+                panelPlayground.Controls.Add(destSpot);
             }
 
             if (car.Bounds.IntersectsWith(destSpot.Bounds))
@@ -265,7 +265,7 @@ namespace GasStationMs.App
 
                 if (destPoint.Equals(_leavePointNoFilling) || destPoint.Equals(_leavePointFilled))
                 {
-                    this.Controls.Remove(car);
+                    panelPlayground.Controls.Remove(car);
                     car.Dispose();
                 }
             }
@@ -582,7 +582,7 @@ namespace GasStationMs.App
             var activeCarView = (CarView) activeCar.Tag;
             var destPoint = activeCarView.GetDestinationPoint();
 
-            foreach (Control c in this.Controls)
+            foreach (Control c in panelPlayground.Controls)
             {
                 if (!(c is PictureBox) || c.Tag == null || c == activeCar)
                 {
@@ -854,10 +854,10 @@ namespace GasStationMs.App
 
             var carHeight = 35;
 
-            _noFillingHorizontalLine = this.Height - 2 * carHeight - 20;
-            _filledHorizontalLine = this.Height - 3 * carHeight - 40;
+            _noFillingHorizontalLine = panelPlayground.Height - 2 * carHeight - 20;
+            _filledHorizontalLine = panelPlayground.Height - 3 * carHeight - 40;
 
-            _rightPlaygroundBorder = this.Width;
+            _rightPlaygroundBorder = panelPlayground.Width;
             _leftPlaygroundBorder = 0;
             _leftCarDestroyingEdge = _leftPlaygroundBorder - 40;
 
@@ -939,7 +939,7 @@ namespace GasStationMs.App
 
             cashCounter.MouseClick += new MouseEventHandler(CashCounterPictureBox_Click);
 
-            this.Controls.Add(cashCounter);
+            panelPlayground.Controls.Add(cashCounter);
             cashCounter.BringToFront();
 
             _cashCounter = cashCounter;
@@ -967,7 +967,7 @@ namespace GasStationMs.App
 
             enter.MouseClick += new MouseEventHandler(EnterPictureBox_Click);
 
-            this.Controls.Add(enter);
+            panelPlayground.Controls.Add(enter);
             enter.BringToFront();
 
             _enter = enter;
@@ -990,7 +990,7 @@ namespace GasStationMs.App
             exit.MouseClick += new MouseEventHandler(ExitPictureBox_Click);
 
 
-            this.Controls.Add(exit);
+            panelPlayground.Controls.Add(exit);
             exit.BringToFront();
 
             _exit = exit;
@@ -1026,7 +1026,7 @@ namespace GasStationMs.App
 
             car.MouseClick += new MouseEventHandler(CarPictureBox_Click);
 
-            this.Controls.Add(car);
+            panelPlayground.Controls.Add(car);
             car.BringToFront();
 
             return car;
@@ -1063,10 +1063,10 @@ namespace GasStationMs.App
             //fillingArea.Left = fuelDispenser.Left;
             //fillingArea.Top = fuelDispenser.Bottom;
             //fillingArea.SizeMode = PictureBoxSizeMode.AutoSize;
-            //this.Controls.Add(fillingArea);
+            //panelPlayground.Controls.Add(fillingArea);
             //fillingArea.BringToFront();
 
-            this.Controls.Add(fuelDispenser);
+            panelPlayground.Controls.Add(fuelDispenser);
             fuelDispenser.BringToFront();
 
             _fuelDispensersList.Add(fuelDispenser);
@@ -1103,7 +1103,7 @@ namespace GasStationMs.App
 
             fuelTank.MouseClick += new MouseEventHandler(FuelTankPictureBox_Click);
 
-            this.Controls.Add(fuelTank);
+            panelPlayground.Controls.Add(fuelTank);
             fuelTank.BringToFront();
 
             _fuelTanksList.Add(fuelTank);
