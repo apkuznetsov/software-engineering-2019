@@ -33,6 +33,14 @@ namespace GasStationMs.App.Topology
 
         public int ServiceAreaBorderColIndex { get; }
 
+        public Point FirstBorderPoint
+        {
+            get
+            {
+                return new Point(serviceAreaBorderColIndex, 0);
+            }
+        }
+
         public IGasStationElement this[int x, int y]
         {
             get
