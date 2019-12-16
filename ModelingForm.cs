@@ -1128,6 +1128,8 @@ namespace GasStationMs.App
 
             fuelDispenserView.ChoseFuelTank(_fuelTanksList, carView.Fuel);
 
+            carView.PayForOrderedFuel((CashCounterView)_cashCounter.Tag);
+
             carView.IsFilling = true;
             fuelDispenserView.IsBusy = true;
         }
@@ -1135,6 +1137,7 @@ namespace GasStationMs.App
         private void FillCar(CarView car, FuelDispenserView fuelDispenser)
         {
             car.FuelRemained += fuelDispenser.GetFuelFromTank();
+
             // test
             //car.FuelRemained += fuelDispenser.SpeedOfFillingPerTick;
 
