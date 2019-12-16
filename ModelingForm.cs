@@ -75,6 +75,7 @@ namespace GasStationMs.App
 
         private Point _exitPoint1;
         private Point _exitPoint2;
+        private Point _exitPoint3;
 
         #endregion /DestinationPoints
 
@@ -591,6 +592,7 @@ namespace GasStationMs.App
         private void GoToExit(CarView car)
         {
             car.AddDestinationPoint(_leavePointFilled);
+            car.AddDestinationPoint(_exitPoint3);
             car.AddDestinationPoint(_exitPoint2);
             car.AddDestinationPoint(_exitPoint1);
         }
@@ -899,6 +901,7 @@ namespace GasStationMs.App
 
             _exitPoint1 = new Point(_exitCenter.X, _exitCenter.Y - _exit.Height);
             _exitPoint2 = new Point(_exitCenter.X, _exitCenter.Y + _exit.Height);
+            _exitPoint3 = new Point(_exit.Left, _exitCenter.Y + 2*_exit.Height);
 
             // Save all predetermined points 
             _predeterminedPoints.AddRange(_fuelDispensersDestPoints.Values);
@@ -908,6 +911,7 @@ namespace GasStationMs.App
             _predeterminedPoints.Add(_enterPoint1);
 
             _predeterminedPoints.Add(_leavePointFilled);
+            _predeterminedPoints.Add(_exitPoint3);
             _predeterminedPoints.Add(_exitPoint2);
             _predeterminedPoints.Add(_exitPoint1);
 
