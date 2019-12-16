@@ -94,8 +94,8 @@ namespace GasStationMs.App.Topology
         private bool IsThereAnyTag(DataGridViewColumn col)
         {
             int colIndex = col.Index;
-
             DataGridViewImageCell cell;
+
             for (int rowIndex = 0; rowIndex < dgv.RowCount; rowIndex++)
             {
                 cell = (DataGridViewImageCell)dgv.Rows[rowIndex].Cells[colIndex];
@@ -109,12 +109,12 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
-        private bool IsThereAnyTag(DataGridViewRow dgvCol)
+        private bool IsThereAnyTag(DataGridViewRow row)
         {
-            int colIndex = dgvCol.Index;
+            int rowIndex = row.Index;
 
             DataGridViewImageCell cell;
-            for (int rowIndex = 0; rowIndex < dgv.RowCount; rowIndex++)
+            for (int colIndex = 0; colIndex < dgv.ColumnCount; colIndex++)
             {
                 cell = (DataGridViewImageCell)dgv.Rows[rowIndex].Cells[colIndex];
 
