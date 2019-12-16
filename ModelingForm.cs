@@ -1145,6 +1145,16 @@ namespace GasStationMs.App
         {
             car.FuelRemained += fuelDispenser.GetFuelFromTank();
 
+            if (fuelDispenser.ChosenFuelTank.IsEmpty)
+            {
+                // CallRefiller()
+            }
+
+            if (((CashCounterView) _cashCounter.Tag).IsFull)
+            {
+                // CallCollector()
+            }
+
             // test
             //car.FuelRemained += fuelDispenser.SpeedOfFillingPerTick;
 
