@@ -88,7 +88,6 @@ namespace GasStationMs.App.Topology
                 }
 
                 dgv.Columns.Remove(dgvCol);
-                colsCount = dgv.ColumnCount;
             }
         }
 
