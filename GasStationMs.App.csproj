@@ -112,6 +112,7 @@
     <Compile Include="Topology\TopologyBuilderFuelTank.cs" />
     <Compile Include="Topology\TopologyBuilderFuelDispenser.cs" />
     <Compile Include="Topology\TopologyBuilderHelpers\CannotRemoveTopologyBuilderCol.cs" />
+    <Compile Include="Topology\TopologyBuilderHelpers\CannotRemoveTopologyBuilderRow.cs" />
     <Compile Include="Topology\TopologyConstants.cs" />
     <Compile Include="Topology\TopologyBuilderExit.cs" />
     <Compile Include="Topology\TopologyBuilderEntry.cs" />
