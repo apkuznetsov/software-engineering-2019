@@ -97,8 +97,19 @@ namespace GasStationMs.App.Modeling.Models
 
         private double GenerateDesiredFilling()
         {
+            // With step equal to 5% of Tank volume
             var rnd = new Random();
-            return (double)((this.TankVolume - this.FuelRemained) * rnd.NextDouble());
+
+            var onePercentOfTankVolume = (double) TankVolume / 100;
+            var fivePercentOfTankVolume = onePercentOfTankVolume * 5;
+
+            // Percentage of the remained fuel of the total tank volume
+            var percentageOfRemainedFuel = Convert.ToInt32((double) FuelRemained / (onePercentOfTankVolume));
+
+            var countOfFivePercentPartInRemainedFuel = Convert.ToInt32(percentageOfRemainedFuel / 5);
+
+            // 21 because it's 20 parts of 5% in 100%
+            return rnd.Next(countOfFivePercentPartInRemainedFuel + 1, 21) * fivePercentOfTankVolume; 
         }
     }
 }
