@@ -102,6 +102,15 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
+                if (dgv.RowCount < value)
+                {
+                    AddDgvRows(value - dgv.RowCount);
+                }
+                else
+                {
+                    RemoveDgvRows(dgv.RowCount - value);
+                }
+
                 dgv.RowCount = value;
 
                 serviceAreaInCells = RecalculateServiceArea();
@@ -120,6 +129,21 @@ namespace GasStationMs.App.Topology
                 }
 
                 dgv.Columns.Remove(dgvCol);
+            }
+        }
+
+        private void RemoveDgvRows(int rowsCount)
+        {
+            for (int i = 0; i < rowsCount; i++)
+            {
+                DataGridViewRow row = dgv.Rows[dgv.Rows.GetLastRow(DataGridViewElementStates.Visible)];
+
+                if (IsThereAnyTag(row))
+                {
+                    throw new CannotRemoveTopologyBuilderRow();
+                }
+
+                dgv.Rows.Remove(row);
             }
         }
 
