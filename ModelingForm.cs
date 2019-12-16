@@ -217,9 +217,7 @@ namespace GasStationMs.App
 
             #region MotionLogic
 
-
             destPoint = MoveCar(car, destPoint, carSpeed);
-
 
             #endregion /MotionLogic
 
@@ -1041,7 +1039,7 @@ namespace GasStationMs.App
 
         #region FuelTanks
 
-        private FuelTankView CreateFuelTankView(string name, int volume, double currentFullness,FuelModel fuel)
+        private FuelTankView CreateFuelTankView(string name, int volume, double currentFullness, FuelModel fuel)
         {
             return new FuelTankView(name, volume, currentFullness, fuel);
         }
@@ -1075,9 +1073,9 @@ namespace GasStationMs.App
         private void CarPictureBox_Click(object sender, MouseEventArgs e)
         {
             var car = (PictureBox) sender;
-            var carView = (CarView)car.Tag;
+            var carView = (CarView) car.Tag;
 
-           // this.textBoxSelectedItemInformation.Text = "";
+            // this.textBoxSelectedItemInformation.Text = "";
 
             StringBuilder carInfo = new StringBuilder();
 
@@ -1101,7 +1099,7 @@ namespace GasStationMs.App
             if (carView.ChosenFuelDispenser != null)
             {
                 var fuelDispenser = carView.ChosenFuelDispenser;
-                var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
+                var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
 
                 carInfo.Append("\r\n-------FuelDispenser-----");
                 carInfo.Append("\r\nName: " + fuelDispenserView.Name);
@@ -1135,7 +1133,7 @@ namespace GasStationMs.App
 
             fuelDispenserView.ChoseFuelTank(_fuelTanksList, carView.Fuel);
 
-            carView.PayForOrderedFuel((CashCounterView)_cashCounter.Tag);
+            carView.PayForOrderedFuel((CashCounterView) _cashCounter.Tag);
 
             carView.IsFilling = true;
             fuelDispenserView.IsBusy = true;
@@ -1156,7 +1154,6 @@ namespace GasStationMs.App
             }
 
             // test
-            //car.FuelRemained += fuelDispenser.SpeedOfFillingPerTick;
 
             if (car.FuelRemained >= car.DesiredFilling)
             {
@@ -1173,6 +1170,7 @@ namespace GasStationMs.App
                 var fuelSurplus = car.FuelRemained - car.TankVolume;
                 fuelDispenser.ReturnFuelToTank(fuelSurplus);
             }
+
             car.IsFilling = false;
             car.IsFilled = true;
             fuelDispenser.CarsInQueue--;

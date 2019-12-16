@@ -13,14 +13,14 @@ namespace GasStationMs.App.Modeling.Models
         public bool IsBusy { get; set; }
         public int CarsInQueue { get; set; }
 
-        public FuelTankView ChosenFuelTank{ get; set; }
+        public FuelTankView ChosenFuelTank { get; set; }
 
         public FuelDispenserView(string name, int speedOfFillingPerSecond)
         {
             Name = name;
             SpeedOfFillingPerSecond = speedOfFillingPerSecond;
             // Since 20ms is 1 tick, 1second = 1000ms = 50 ticks
-            SpeedOfFillingPerTick = (double) speedOfFillingPerSecond / 50; 
+            SpeedOfFillingPerTick = (double) speedOfFillingPerSecond / 50;
             IsBusy = false;
             CarsInQueue = 0;
         }
@@ -29,7 +29,7 @@ namespace GasStationMs.App.Modeling.Models
         {
             ChosenFuelTank = null;
 
-            double maxCurrentFullness = 0; 
+            double maxCurrentFullness = 0;
 
             foreach (var fuelTank in fuelTanksList)
             {
@@ -57,6 +57,7 @@ namespace GasStationMs.App.Modeling.Models
 
             return SpeedOfFillingPerTick;
         }
+
         public void ReturnFuelToTank(double fuelSurplus)
         {
             ChosenFuelTank.CurrentFullness += fuelSurplus;

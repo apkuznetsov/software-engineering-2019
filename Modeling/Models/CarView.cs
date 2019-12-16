@@ -62,6 +62,7 @@ namespace GasStationMs.App.Modeling.Models
 
             return DestinationSpot;
         }
+
         public void AddDestinationPoint(Point destPoint)
         {
             _destinationPoints.Add(destPoint);
@@ -116,7 +117,7 @@ namespace GasStationMs.App.Modeling.Models
             var countOfFivePercentPartInRemainedFuel = Convert.ToInt32(percentageOfRemainedFuel / 5);
 
             // 21 because it's 20 parts of 5% in 100%
-            return rnd.Next(countOfFivePercentPartInRemainedFuel + 1, 21) * fivePercentOfTankVolume; 
+            return rnd.Next(countOfFivePercentPartInRemainedFuel + 1, 21) * fivePercentOfTankVolume;
         }
     }
 }

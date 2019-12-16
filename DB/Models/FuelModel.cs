@@ -26,9 +26,7 @@
 
         public override bool Equals(object obj)
         {
-            FuelModel fuelModel = obj as FuelModel;
-            
-            return fuelModel != null && (Name.Equals(fuelModel.Name) && Price.Equals(fuelModel.Price));
+            return obj is FuelModel fuelModel && (Name.Equals(fuelModel.Name) && Price.Equals(fuelModel.Price));
         }
 
         public override int GetHashCode()
