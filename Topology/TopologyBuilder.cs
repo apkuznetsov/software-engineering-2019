@@ -135,14 +135,15 @@ namespace GasStationMs.App.Topology
         {
             for (int i = 0; i < rowsCount; i++)
             {
-                DataGridViewRow row = dgv.Rows[dgv.Rows.GetLastRow(DataGridViewElementStates.Visible)];
+                int rowIndex = dgv.Rows.GetLastRow(DataGridViewElementStates.Visible);
+                DataGridViewRow row = dgv.Rows[rowIndex];
 
                 if (IsThereAnyTag(row))
                 {
                     throw new CannotRemoveTopologyBuilderRow();
                 }
 
-                dgv.Rows.Remove(row);
+                dgv.RowCount = row.Index - 1;
             }
         }
 
