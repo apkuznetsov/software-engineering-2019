@@ -32,6 +32,7 @@ namespace GasStationMs.App
         private PictureBox _selectedItem;
 
         private Panel _playgronudPanel;
+        private int _elementSize = 50;
 
         #region TopologyElements
 
