@@ -7,14 +7,8 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder
     {
-        #region поля
-        //private int colsCount;
-        //private int rowsCount;
-
-        private int serviceAreaInCells;
-
         private DataGridView dgv;
-        #endregion /поля
+        private int serviceAreaInCells;
 
         public TopologyBuilder(DataGridView dgv)
         {

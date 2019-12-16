@@ -37,12 +37,14 @@ namespace GasStationMs.App
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
+            int newValue = (int)cellsHorizontally.Value;
             try
             {
-                tb.ColsCount = (int)cellsHorizontally.Value;
+                tb.ColsCount = newValue;
             }
             catch (CannotRemoveTopologyBuilderCol)
             {
+                cellsHorizontally.Value = tb.ColsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
             }
         }
