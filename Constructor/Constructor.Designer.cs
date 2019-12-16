@@ -43,10 +43,19 @@
             this.rbCashCounter = new System.Windows.Forms.RadioButton();
             this.rbEntry = new System.Windows.Forms.RadioButton();
             this.rbExit = new System.Windows.Forms.RadioButton();
-            this.buttonToModelling = new System.Windows.Forms.Button();
+            this.panelClickedCell = new System.Windows.Forms.Panel();
+            this.numericUpDownVolume = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownFuelDispenserSpeed = new System.Windows.Forms.NumericUpDown();
+            this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
+            this.clickedFuelList = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
+            this.panelClickedCell.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvTopology
@@ -159,10 +168,10 @@
             // 
             // tbClickedCell
             // 
-            this.tbClickedCell.Location = new System.Drawing.Point(605, 123);
+            this.tbClickedCell.Location = new System.Drawing.Point(3, 13);
             this.tbClickedCell.Multiline = true;
             this.tbClickedCell.Name = "tbClickedCell";
-            this.tbClickedCell.Size = new System.Drawing.Size(159, 143);
+            this.tbClickedCell.Size = new System.Drawing.Size(106, 21);
             this.tbClickedCell.TabIndex = 11;
             // 
             // rbCashCounter
@@ -207,26 +216,122 @@
             this.rbExit.CheckedChanged += new System.EventHandler(this.rbExit_CheckedChanged);
             this.rbExit.Click += new System.EventHandler(this.rbExit_Click);
             // 
-            // buttonToModelling
+            // panelClickedCell
             // 
-            this.buttonToModelling.Location = new System.Drawing.Point(21, 436);
-            this.buttonToModelling.Name = "buttonToModelling";
-            this.buttonToModelling.Size = new System.Drawing.Size(516, 31);
-            this.buttonToModelling.TabIndex = 15;
-            this.buttonToModelling.Text = "Перейти к моделированию";
-            this.buttonToModelling.UseVisualStyleBackColor = true;
-            this.buttonToModelling.Click += new System.EventHandler(this.buttonToModelling_Click);
+            this.panelClickedCell.Controls.Add(this.label2);
+            this.panelClickedCell.Controls.Add(this.label1);
+            this.panelClickedCell.Controls.Add(this.numericUpDownVolume);
+            this.panelClickedCell.Controls.Add(this.numericUpDownFuelDispenserSpeed);
+            this.panelClickedCell.Controls.Add(this.textBoxChosenFuel);
+            this.panelClickedCell.Controls.Add(this.clickedFuelList);
+            this.panelClickedCell.Controls.Add(this.tbClickedCell);
+            this.panelClickedCell.Location = new System.Drawing.Point(566, 130);
+            this.panelClickedCell.Name = "panelClickedCell";
+            this.panelClickedCell.Size = new System.Drawing.Size(222, 145);
+            this.panelClickedCell.TabIndex = 15;
+            this.panelClickedCell.Visible = false;
+            // 
+            // numericUpDownVolume
+            // 
+            this.numericUpDownVolume.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownVolume.Location = new System.Drawing.Point(98, 80);
+            this.numericUpDownVolume.Maximum = new decimal(new int[] {
+            75000,
+            0,
+            0,
+            0});
+            this.numericUpDownVolume.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDownVolume.Name = "numericUpDownVolume";
+            this.numericUpDownVolume.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownVolume.TabIndex = 16;
+            this.numericUpDownVolume.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDownVolume.Visible = false;
+            this.numericUpDownVolume.ValueChanged += new System.EventHandler(this.numericUpDownVolume_ValueChanged);
+            // 
+            // numericUpDownFuelDispenserSpeed
+            // 
+            this.numericUpDownFuelDispenserSpeed.Location = new System.Drawing.Point(151, 54);
+            this.numericUpDownFuelDispenserSpeed.Maximum = new decimal(new int[] {
+            160,
+            0,
+            0,
+            0});
+            this.numericUpDownFuelDispenserSpeed.Minimum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.numericUpDownFuelDispenserSpeed.Name = "numericUpDownFuelDispenserSpeed";
+            this.numericUpDownFuelDispenserSpeed.Size = new System.Drawing.Size(67, 20);
+            this.numericUpDownFuelDispenserSpeed.TabIndex = 15;
+            this.numericUpDownFuelDispenserSpeed.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.numericUpDownFuelDispenserSpeed.Visible = false;
+            this.numericUpDownFuelDispenserSpeed.ValueChanged += new System.EventHandler(this.numericUpDownFuelDispenserSpeed_ValueChanged);
+            // 
+            // textBoxChosenFuel
+            // 
+            this.textBoxChosenFuel.Location = new System.Drawing.Point(3, 107);
+            this.textBoxChosenFuel.Name = "textBoxChosenFuel";
+            this.textBoxChosenFuel.ReadOnly = true;
+            this.textBoxChosenFuel.Size = new System.Drawing.Size(79, 20);
+            this.textBoxChosenFuel.TabIndex = 14;
+            this.textBoxChosenFuel.Visible = false;
+            // 
+            // clickedFuelList
+            // 
+            this.clickedFuelList.FormattingEnabled = true;
+            this.clickedFuelList.Location = new System.Drawing.Point(98, 106);
+            this.clickedFuelList.Name = "clickedFuelList";
+            this.clickedFuelList.Size = new System.Drawing.Size(121, 21);
+            this.clickedFuelList.TabIndex = 12;
+            this.clickedFuelList.Visible = false;
+            this.clickedFuelList.SelectionChangeCommitted += new System.EventHandler(this.clickedFuelList_SelectionChangeCommitted);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Объем бака";
+            this.label1.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Скорость заправки";
+            this.label2.Visible = false;
             // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
-            this.Controls.Add(this.buttonToModelling);
+            this.Controls.Add(this.panelClickedCell);
             this.Controls.Add(this.rbExit);
             this.Controls.Add(this.rbEntry);
             this.Controls.Add(this.rbCashCounter);
-            this.Controls.Add(this.tbClickedCell);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.textBoxNewFuelPrice);
@@ -245,6 +350,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).EndInit();
+            this.panelClickedCell.ResumeLayout(false);
+            this.panelClickedCell.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,7 +375,13 @@
         private System.Windows.Forms.RadioButton rbCashCounter;
         private System.Windows.Forms.RadioButton rbEntry;
         private System.Windows.Forms.RadioButton rbExit;
-        private System.Windows.Forms.Button buttonToModelling;
+        private System.Windows.Forms.Panel panelClickedCell;
+        private System.Windows.Forms.ComboBox clickedFuelList;
+        private System.Windows.Forms.TextBox textBoxChosenFuel;
+        private System.Windows.Forms.NumericUpDown numericUpDownFuelDispenserSpeed;
+        private System.Windows.Forms.NumericUpDown numericUpDownVolume;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

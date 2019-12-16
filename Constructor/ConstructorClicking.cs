@@ -37,7 +37,7 @@ namespace GasStationMs.App
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new FuelDispenser();
-                            tbClickedCell.Text = cell.Tag.ToString();
+                            
                         }
                         else
                         {
@@ -49,8 +49,12 @@ namespace GasStationMs.App
                         if (tb.AddFuelTank())
                         {
                             cell.Value = rb.Image;
-                            cell.Tag = new FuelTank();
-                            tbClickedCell.Text = cell.Tag.ToString();
+                            FuelTank fueltank = new FuelTank();
+                            fueltank.Fuel="топливо";
+                            fueltank.volume = 10000;
+                            cell.Tag = fueltank;
+
+
                         }
                         else
                         {
@@ -63,7 +67,7 @@ namespace GasStationMs.App
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new CashCounter();
-                            tbClickedCell.Text = cell.Tag.ToString();
+                            
                         }
                         else
                         {
@@ -76,7 +80,7 @@ namespace GasStationMs.App
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Entry();
-                            tbClickedCell.Text = cell.Tag.ToString();
+                           
                         }
                         else
                         {
@@ -89,7 +93,7 @@ namespace GasStationMs.App
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Exit();
-                            tbClickedCell.Text = cell.Tag.ToString();
+                            
                         }
                         else
                         {
@@ -105,9 +109,47 @@ namespace GasStationMs.App
                 {
                     tbClickedCell.Text = cell.Tag.ToString();
                     //MessageBox.Show("невозможно добавить: ячейка уже занята");
+
+                    panelClickedCell.Visible = true;
+                    
+                    if (cell.Tag.ToString() == "ТРК: ")
+                    {
+                        label1.Visible = false;
+                        numericUpDownVolume.Visible = false;
+                        clickedFuelList.Visible = false;
+                        textBoxChosenFuel.Visible = false;
+
+
+                        label2.Visible = true;
+                        numericUpDownFuelDispenserSpeed.Visible = true;
+                        FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
+                        _selectedFuelDispenser = clickedFuelDispenser;
+                        numericUpDownFuelDispenserSpeed.Value = clickedFuelDispenser.FuelFeedRateInLitersPerMinute;
+
+                    
+                    } else if (cell.Tag.ToString() == "Топливный бак: ")
+                    {
+                        label2.Visible = false;
+                        numericUpDownFuelDispenserSpeed.Visible = false;
+
+
+                        label1.Visible = true;
+                        numericUpDownVolume.Visible = true;
+                        clickedFuelList.Visible = true;
+                        textBoxChosenFuel.Visible = true;
+                        FuelTank clickedFuelTank = cell.Tag as FuelTank;
+                        _selectedFuelTank = clickedFuelTank;
+                        textBoxChosenFuel.Text = _selectedFuelTank.Fuel;
+                        clickedFuelList.DisplayMember = "Fuel";
+                        clickedFuelList.ValueMember = "Id";
+                        clickedFuelList.DataSource = _fuelDataTable;
+                        numericUpDownVolume.Value = _selectedFuelTank.volume;
+
+                    }
                 }
             }
         }
+        
 
         private void DeleteElement(DataGridViewImageCell cell)
         {
