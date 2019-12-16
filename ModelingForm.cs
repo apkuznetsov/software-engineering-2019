@@ -104,6 +104,8 @@ namespace GasStationMs.App
         {
             _timerTicksCount++;
 
+            labelCashCounterSumValue.Text = ((int)((CashCounterView) _cashCounter.Tag).CurrentCashVolume).ToString();
+
             if (_selectedItem != null)
             {
                 if (_selectedItem.Tag is CarView)
