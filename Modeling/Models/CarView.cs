@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,6 +13,7 @@ namespace GasStationMs.App.Modeling.Models
         public int TankVolume { get; set; }
         public double FuelRemained { get; set; }
         public double DesiredFilling { get; }
+        public double OrderedAmountOfFuel { get; }
 
         public FuelModel Fuel { get; set; }
         //public int? FuelTypeId { get; set; }
@@ -38,6 +39,7 @@ namespace GasStationMs.App.Modeling.Models
             TankVolume = tankVolume;
             FuelRemained = fuelRemained;
             DesiredFilling = GenerateDesiredFilling();
+            OrderedAmountOfFuel = DesiredFilling - fuelRemained;
             Fuel = fuelView;
             IsTruck = isTruck;
             IsGoesFilling = isGoesFilling;
