@@ -9,6 +9,7 @@ namespace GasStationMs.App.Topology
     {
         private DataGridView dgv;
         private int serviceAreaInCells;
+        private int serviceAreaBorderColIndex;
 
         public TopologyBuilder(DataGridView dgv)
         {
@@ -16,6 +17,8 @@ namespace GasStationMs.App.Topology
             SetupDgv();
 
             serviceAreaInCells = RecalculateServiceArea();
+
+            SetupServiceArea();
         }
 
         private void SetupDgv()
@@ -46,6 +49,35 @@ namespace GasStationMs.App.Topology
             for (int i = 0; i < rowsCount; i++)
             {
                 dgv.Rows.Add();
+            }
+        }
+
+        public void SetupServiceArea()
+        {
+            int serviceAreaCellsLeftToAdd = serviceAreaInCells;
+
+            DataGridViewImageCell cell;
+
+            int currCol;
+            int currRow;
+
+            for (currCol = dgv.ColumnCount - 1; currCol >= 0; currCol--)
+            {
+                for (currRow = 0; currRow < dgv.RowCount; currRow++)
+                {
+                    if (serviceAreaCellsLeftToAdd > 0)
+                    {
+                        cell = (DataGridViewImageCell)dgv.Rows[currRow].Cells[currCol];
+                        cell.Tag = new ServiceArea();
+                        cell.Value = ServiceArea.Image;
+
+                        serviceAreaCellsLeftToAdd--;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
             }
         }
 
