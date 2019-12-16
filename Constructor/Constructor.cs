@@ -152,6 +152,12 @@ namespace GasStationMs.App
             //textBoxNewFuelName.Text = row["Name"].ToString();
             //textBoxNewFuelPrice.Text = row["Price"].ToString();
         }
+        private void buttonToModelling_Click(object sender, EventArgs e) 
+        {
+            Topology.Topology topology = tb.CreateAndGetTopology();
+            ModelingForm modelingform = new ModelingForm();
+            modelingform.ShowDialog();
+        }
 
         private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
         {
