@@ -78,16 +78,18 @@ namespace GasStationMs.App
         {
             InitializeComponent();
 
-            this.Controls.Remove(pictureBoxCashCounter);
-            this.Controls.Remove(pictureBoxCar);
-            this.Controls.Remove(pictureBoxEnter);
-            this.Controls.Remove(pictureBoxExit);
-            this.Controls.Remove(pictureBoxFuelDispenser1);
-            this.Controls.Remove(pictureBoxFuelDispenser2);
-            this.Controls.Remove(pictureBoxFuelTank1);
-            this.Controls.Remove(pictureBoxFuelTank2);
+            panelPlayground.Controls.Remove(pictureBoxCashCounter);
+            panelPlayground.Controls.Remove(pictureBoxCar);
+            panelPlayground.Controls.Remove(pictureBoxEnter);
+            panelPlayground.Controls.Remove(pictureBoxExit);
+            panelPlayground.Controls.Remove(pictureBoxFuelDispenser1);
+            panelPlayground.Controls.Remove(pictureBoxFuelDispenser2);
+            panelPlayground.Controls.Remove(pictureBoxFuelTank1);
+            panelPlayground.Controls.Remove(pictureBoxFuelTank2);
 
             this.DoubleBuffered = true;
+
+            LocateFormElements();
 
             MapTopology();
         }
@@ -1178,5 +1180,24 @@ namespace GasStationMs.App
         }
 
         #endregion /ModelingLogic
+
+        private void LocateFormElements()
+        {
+            this.Size = new Size(1280, 800);
+
+            panelPlayground.Size = new Size(1030, 700);
+            panelPlayground.BringToFront();
+
+            panelModelingInformation.Size = new Size(250, 800);
+            panelModelingInformation.Location = new Point(this.Width - panelModelingInformation.Width, 0);
+
+            textBoxSelectedItemInformation.Size = new Size(225, 150);
+
+            panelTimeManagment.Size = new Size(1030, 100);
+            panelTimeManagment.Location = new Point(0, this.Height - panelTimeManagment.Height);
+
+            labelTotalTime.Location = new Point(25, 25);
+            labelTotalTimeValue.Location = new Point(labelTotalTime.Right + 10, 25);
+        }
     }
 }
