@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using GasStationMs.App.Elements;
 using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Topology;
 
@@ -806,15 +807,14 @@ namespace GasStationMs.App
 
         #region TopologyMappingLogic
 
-        private void MapTopology( /*int[][] field*/)
+        private void MapTopology()
         {
             SetupPlaygroundPanel();
             SetupServiceArea();
-            //CreateCashCounter();
-            //CreateEnter();
-            //CreateExit();
-            //CreateFuelDispenser();
-            //CreateFuelTank();
+
+            #region TestTopology
+
+            /*
 
             #region CashCounter
 
@@ -865,6 +865,10 @@ namespace GasStationMs.App
 
             #endregion /FuelTanks
 
+            */
+
+            #endregion
+
             #region DestinationPoints
 
             var carHeight = 35;
@@ -906,29 +910,134 @@ namespace GasStationMs.App
             _predeterminedPoints.Add(_exitPoint1);
 
             #endregion /DestinationPoints
-
-
         }
 
         private void SetupPlaygroundPanel()
         {
-            // test
-            panelPlayground.Size = new Size(1030, 700);
-            // /test
+            var width = _topology.ColsCount * _elementSize;
+            var height = _topology.RowsCount * _elementSize + 3 * _elementSize;
+            panelPlayground.Size = new Size(width, height);
+
+            for (int i = 0; i < _topology.RowsCount; i++)
+            {
+                for (int j = 0; j < _topology.ColsCount; j++)
+                {
+                    var topologyElement = _topology[i, j];
+
+                    if (topologyElement == null)
+                    {
+                        continue;
+                    }
+
+                    var creationPointX = j * _elementSize;
+                    var creationPointY = i * _elementSize;
+
+                    var creationPoint = new Point(creationPointX, creationPointY);
+
+                    if (topologyElement is CashCounter)
+                    {
+                        CreateCashCounter(creationPoint);
+                    }
+
+                    if (topologyElement is Entry)
+                    {
+                        CreateEnter(creationPoint);
+                    }
+
+                    if (topologyElement is Exit)
+                    {
+                        CreateExit(creationPoint);
+                    }
+
+
+                    if (topologyElement is FuelDispenser)
+                    {
+                        CreateFuelDispenser((FuelDispenser)topologyElement, creationPoint);
+                    }
+
+                    if (topologyElement is FuelTank)
+                    {
+                        CreateFuelTank((FuelTank)topologyElement, creationPoint);
+                    }
+                }
+            }
 
             panelPlayground.MouseClick += new MouseEventHandler(PlaygroundPanel_Click);
         }
 
         private void SetupServiceArea()
         {
-            // test
-            // /test
+            var width = (_topology.ColsCount - _topology.FirstBorderPoint.X) * _elementSize;
+            var height = (_topology.RowsCount - 1) * _elementSize;
+
+            var creationPointX = _topology.FirstBorderPoint.X * _elementSize;
+            var creationPointY = _topology.FirstBorderPoint.Y * _elementSize;
+            var creationPoint = new Point(creationPointX, creationPointY);
+
+            pictureBoxServiceArea.Location = creationPoint;
+            pictureBoxServiceArea.Size = new Size(width, height);
+            pictureBoxServiceArea.BackColor = Color.Wheat;
 
             pictureBoxServiceArea.MouseClick += new MouseEventHandler(ServiceArea_Click);
         }
 
-      
+            #region CashCounter
 
+            private void CreateCashCounter(Point creationPoint)
+        {
+            var cashCounterView = CreateCashCounterView("Cash Counter", CashCounter.CashLimitInRubles);
+            _cashCounter = CreateCashCounterPictureBox(cashCounterView, creationPoint);
+        }
+
+
+        #endregion /CashCounter
+
+        #region Enter/Exit
+
+        private void CreateEnter(Point creationPoint)
+        {
+            _enter = CreateEnterPictureBox(creationPoint);
+        }
+
+        private void CreateExit(Point creationPoint)
+        {
+            _exit = CreateExitPictureBox(creationPoint);
+        }
+
+        #endregion /Enter/Exit
+
+        #region FuelDispensers
+
+        private void CreateFuelDispenser(FuelDispenser fuelDispenser, Point creationPoint)
+        {
+            //var speedOfFilling = fuelDispenser.SpeedOfFilling;
+            var speedOfFilling = 15;
+            var fuelView = CreateFuelDispenserView("Fuel Dispenser", speedOfFilling);
+
+            CreateFuelDispenserPictureBox(fuelView, creationPoint);
+        }
+
+        #endregion /FuelDispensers
+
+        #region FuelTanks
+
+        private void CreateFuelTank(FuelTank fuelTank, Point creationPoint)
+        {
+            //var fuel = fuelTank.Fuel;
+            //var volume = fuelTank.Volume;
+            //var currentFullness = fuelTank.OccupiedVolume;
+
+            // test
+            FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
+            var volume = 10000;
+            var currentFullness = 5000;
+            // /test
+
+            var fuelTankView = CreateFuelTankView("Fuel Tank", volume, currentFullness, fuel);
+            CreateFuelTankPictureBox(fuelTankView, creationPoint);
+        }
+
+        #endregion /FuelTanks
 
         #endregion /TopologyMappingLogic
 
@@ -1128,11 +1237,13 @@ namespace GasStationMs.App
 
         #endregion /FuelTanks
 
-        #endregion /ElementsProducers
+       
 
-        #region ModelingLogic
+            #endregion /ElementsProducers
 
-        private void StartFilling(PictureBox car, PictureBox fuelDispenser)
+            #region ModelingLogic
+
+            private void StartFilling(PictureBox car, PictureBox fuelDispenser)
         {
             var carView = (CarView) car.Tag;
             var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
