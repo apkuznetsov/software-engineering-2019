@@ -254,11 +254,18 @@ namespace GasStationMs.App.Topology
                 for (int currCol = 0; currCol < gseArr.GetLength(1); currCol++)
                 {
                     cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
-                    gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
+                    if (cell.Tag != null)
+                    {
+                        gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
+                    }
+                    else
+                    {
+                        gseArr[currRow, currCol] = null;
+                    }
                 }
             }
 
-            return new Topology(gseArr);
+            return new Topology(gseArr, serviceAreaBorderColIndex);
         }
     }
 }
