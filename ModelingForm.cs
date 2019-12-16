@@ -109,6 +109,21 @@ namespace GasStationMs.App
                 {
                     CarPictureBox_Click(_selectedItem, null);
                 }
+
+                if (_selectedItem.Tag is FuelDispenserView)
+                {
+                    FuelDispenserPictureBox_Click(_selectedItem, null);
+                }
+
+                if (_selectedItem.Tag is FuelTankView)
+                {
+                    FuelTankPictureBox_Click(_selectedItem, null);
+                }
+
+                if (_selectedItem.Tag is CashCounterView)
+                {
+                    CashCounterPictureBox_Click(_selectedItem, null);
+                }
             }
 
             //if (!_paused)
