@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,7 +10,8 @@ namespace GasStationMs.App.Modeling.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int TankVolume { get; set; }
-        public int FuelRemained { get; set; }
+        public double FuelRemained { get; set; }
+        public double DesiredFilling { get; }
 
         public FuelModel Fuel { get; set; }
         //public int? FuelTypeId { get; set; }
