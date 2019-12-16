@@ -6,23 +6,42 @@ namespace GasStationMs.App.Topology
 {
     public partial class Topology
     {
-        private readonly IGasStationElement[,] topology;
-        private readonly int rowsCount;
-        private readonly int colsCount;
+        private readonly IGasStationElement[,] field;
+        private int serviceAreaBorderColIndex;
 
-        public Topology(IGasStationElement[,] topology)
+        public Topology(IGasStationElement[,] field, int serviceAreaBorderColIndex)
         {
-            this.topology = topology ?? throw new NullReferenceException();
-
-            rowsCount = topology.GetLength(0);
-            colsCount = topology.GetLength(1);
+            this.field = field ?? throw new NullReferenceException();
+            this.serviceAreaBorderColIndex = serviceAreaBorderColIndex;
         }
 
-        public int RowsCount { get; }
+        public int RowsCount
+        {
+            get
+            {
+                return field.GetLength(0);
+            }
+        }
 
-        public int ColsCount { get; }
+        public int ColsCount
+        {
+            get
+            {
+                return field.GetLength(1);
+            }
+        }
 
-        public IGasStationElement this[int x, int y]
+        public int ServiceAreaBorderColIndex { get; }
+
+        public Point FirstBorderPoint
+        {
+            get
+            {
+                return new Point(serviceAreaBorderColIndex, 0);
+            }
+        }
+
+        public IGasStationElement this[int x, int y] // x -- столбец, y -- cтрока
         {
             get
             {
@@ -31,7 +50,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (x >= colsCount)
+                if (x >= ColsCount)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -41,12 +60,12 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (y >= rowsCount)
+                if (y >= RowsCount)
                 {
                     throw new IndexOutOfRangeException();
                 }
 
-                return topology[x, y];
+                return field[y, x];
             }
         }
 
@@ -54,27 +73,7 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                if (p.X < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (p.X >= colsCount)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (p.Y < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (p.Y >= rowsCount)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                return topology[p.X, p.Y];
+                return this[p.X, p.Y];
             }
         }
 
@@ -85,7 +84,7 @@ namespace GasStationMs.App.Topology
                 throw new IndexOutOfRangeException();
             }
 
-            if (x >= colsCount)
+            if (x >= ColsCount)
             {
                 throw new IndexOutOfRangeException();
             }
@@ -95,37 +94,17 @@ namespace GasStationMs.App.Topology
                 throw new IndexOutOfRangeException();
             }
 
-            if (y >= rowsCount)
+            if (y >= RowsCount)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            return topology[x, y];
+            return field[y, x];
         }
 
         public IGasStationElement GetElement(Point p)
         {
-            if (p.X < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (p.X >= colsCount)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (p.Y < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (p.Y >= rowsCount)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            return topology[p.X, p.Y];
+            return GetElement(p.X, p.Y);
         }
 
         public bool IsCashCounter(int x, int y)

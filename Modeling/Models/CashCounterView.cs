@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App.Modeling.Models
 {
-    class CashCounterView
+    public class CashCounterView
     {
         private const int WhenDrawMoneyInPercentage = 90;
         public string Name { get; set; }
