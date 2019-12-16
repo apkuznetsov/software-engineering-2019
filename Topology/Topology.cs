@@ -6,18 +6,18 @@ namespace GasStationMs.App.Topology
 {
     public partial class Topology
     {
-        private readonly IGasStationElement[,] topology;
+        private readonly IGasStationElement[,] field;
 
         public Topology(IGasStationElement[,] topology)
         {
-            this.topology = topology ?? throw new NullReferenceException();
+            this.field = topology ?? throw new NullReferenceException();
         }
 
         public int RowsCount
         {
             get
             {
-                return topology.GetLength(0);
+                return field.GetLength(0);
             }
         }
 
@@ -25,7 +25,7 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                return topology.GetLength(1);
+                return field.GetLength(1);
             }
         }
 
@@ -53,7 +53,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                return topology[x, y];
+                return field[x, y];
             }
         }
 
@@ -87,7 +87,7 @@ namespace GasStationMs.App.Topology
                 throw new IndexOutOfRangeException();
             }
 
-            return topology[x, y];
+            return field[x, y];
         }
 
         public IGasStationElement GetElement(Point p)
