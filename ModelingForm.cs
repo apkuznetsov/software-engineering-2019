@@ -970,7 +970,7 @@ namespace GasStationMs.App
 
         private PictureBox CreateEnterPictureBox(Point locationPoint)
         {
-            var sizeX = 80;
+            var sizeX = _elementSize;
             var sizeY = 20;
             PictureBox enter = new PictureBox();
             enter.Tag = "Enter";
@@ -992,7 +992,7 @@ namespace GasStationMs.App
 
         private PictureBox CreateExitPictureBox(Point locationPoint)
         {
-            var sizeX = 80;
+            var sizeX = _elementSize;
             var sizeY = 20;
             PictureBox exit = new PictureBox();
             exit.Tag = "Exit";
