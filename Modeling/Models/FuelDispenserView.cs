@@ -1,4 +1,8 @@
-﻿namespace GasStationMs.App.Modeling.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace GasStationMs.App.Modeling.Models
 {
     public class FuelDispenserView
     {
@@ -19,6 +23,32 @@
             SpeedOfFillingPerTick = (double) speedOfFillingPerSecond / 50; 
             IsBusy = false;
             CarsInQueue = 0;
+        }
+
+        public void ChoseFuelTank(List<PictureBox> fuelTanksList, FuelModel fuel)
+        {
+            ChosenFuelTank = null;
+
+            double maxCurrentFullness = 0; 
+
+            foreach (var fuelTank in fuelTanksList)
+            {
+                var fuelTankView = (FuelTankView) fuelTank.Tag;
+
+                if (fuelTankView.Fuel.Equals(fuel))
+                {
+                    if (maxCurrentFullness + 1000 < fuelTankView.CurrentFullness || maxCurrentFullness == 0)
+                    {
+                        maxCurrentFullness = fuelTankView.CurrentFullness;
+                        ChosenFuelTank = fuelTankView;
+                    }
+                }
+            }
+
+            if (ChosenFuelTank == null)
+            {
+                throw new Exception("No fuel tank with fuel in the list");
+            }
         }
 
         public double GetFuelFromTank()
