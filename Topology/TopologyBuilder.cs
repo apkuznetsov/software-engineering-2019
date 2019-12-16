@@ -14,6 +14,16 @@ namespace GasStationMs.App.Topology
         {
             this.dgv = dgv ?? throw new NullReferenceException();
 
+            SetupDgv();
+
+            AddDgvCols(Topology.MinColsCount);
+            AddDgvRows(Topology.MinRowsCount);
+
+            serviceAreaInCells = RecalculateServiceArea();
+        }
+
+        private void SetupDgv()
+        {
             dgv.RowHeadersVisible = false;
             dgv.ColumnHeadersVisible = false;
 
@@ -22,11 +32,6 @@ namespace GasStationMs.App.Topology
 
             dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-            AddDgvCols(Topology.MinColsCount);
-            AddDgvRows(Topology.MinRowsCount);
-
-            serviceAreaInCells = RecalculateServiceArea();
         }
 
         private void AddDgvCols(int colsCount)
@@ -74,6 +79,30 @@ namespace GasStationMs.App.Topology
                 }
 
                 dgv.ColumnCount = value;
+
+                serviceAreaInCells = RecalculateServiceArea();
+            }
+        }
+
+        public int RowsCount
+        {
+            get
+            {
+                return dgv.RowCount;
+            }
+
+            set
+            {
+                if (value < Topology.MinRowsCount)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                if (value > Topology.MaxRowsCount)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                dgv.RowCount = value;
 
                 serviceAreaInCells = RecalculateServiceArea();
             }
@@ -128,30 +157,6 @@ namespace GasStationMs.App.Topology
             }
 
             return false;
-        }
-
-        public int RowsCount
-        {
-            get
-            {
-                return dgv.RowCount;
-            }
-
-            set
-            {
-                if (value < Topology.MinRowsCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                if (value > Topology.MaxRowsCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                dgv.RowCount = value;
-
-                serviceAreaInCells = RecalculateServiceArea();
-            }
         }
 
         private int RecalculateServiceArea()
