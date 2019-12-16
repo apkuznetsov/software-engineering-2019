@@ -91,7 +91,25 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        private bool IsThereAnyTag(DataGridViewColumn dgvCol)
+        private bool IsThereAnyTag(DataGridViewColumn col)
+        {
+            int colIndex = col.Index;
+
+            DataGridViewImageCell cell;
+            for (int rowIndex = 0; rowIndex < dgv.RowCount; rowIndex++)
+            {
+                cell = (DataGridViewImageCell)dgv.Rows[rowIndex].Cells[colIndex];
+
+                if (cell.Tag != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsThereAnyTag(DataGridViewRow dgvCol)
         {
             int colIndex = dgvCol.Index;
 

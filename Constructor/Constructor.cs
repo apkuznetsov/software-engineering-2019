@@ -37,10 +37,9 @@ namespace GasStationMs.App
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
-            int newValue = (int)cellsHorizontally.Value;
             try
             {
-                tb.ColsCount = newValue;
+                tb.ColsCount = (int)cellsHorizontally.Value;
             }
             catch (CannotRemoveTopologyBuilderCol)
             {
@@ -51,7 +50,15 @@ namespace GasStationMs.App
 
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
         {
-            tb.RowsCount = (int)cellsVertically.Value;
+            try
+            {
+                tb.RowsCount = (int)cellsVertically.Value;
+            }
+            catch (CannotRemoveTopologyBuilderCol)
+            {
+                cellsVertically.Value = tb.RowsCount;
+                MessageBox.Show("удалите ШЭ прежде чем удалить строку");
+            }
         }
         #endregion
 
