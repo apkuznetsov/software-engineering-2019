@@ -17,6 +17,8 @@ namespace GasStationMs.App
 
     public partial class ModelingForm : Form
     {
+        private Topology.Topology _topology;
+
         private int _timerTicksCount = 0;
 
         private int _carSpeedNoFilling = 4;
@@ -74,9 +76,11 @@ namespace GasStationMs.App
 
         #endregion /DestinationPoints
 
-        public ModelingForm()
+        public ModelingForm(Topology.Topology topology)
         {
             InitializeComponent();
+
+            this._topology = topology;
 
             panelPlayground.Controls.Remove(pictureBoxCashCounter);
             panelPlayground.Controls.Remove(pictureBoxCar);
