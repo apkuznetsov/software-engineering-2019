@@ -20,5 +20,16 @@
             IsBusy = false;
             CarsInQueue = 0;
         }
+
+        public double GetFuelFromTank()
+        {
+            ChosenFuelTank.CurrentFullness -= this.SpeedOfFillingPerTick;
+
+            return SpeedOfFillingPerTick;
+        }
+        public void ReturnFuelToTank(double fuelSurplus)
+        {
+            ChosenFuelTank.CurrentFullness += fuelSurplus;
+        }
     }
 }
