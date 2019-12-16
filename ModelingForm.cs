@@ -1200,7 +1200,7 @@ namespace GasStationMs.App
             carInfo.Append("Название: " + carView.Name);
             carInfo.Append("\r\nОбъем бака: " + carView.TankVolume);
             //carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
-            carInfo.Append("\r\nТоплива в баке: " + carView.FuelRemained);
+            carInfo.Append("\r\nТоплива в баке: " + (int) carView.FuelRemained);
 
             //carInfo.Append("\r\n-------------------------------");
             //carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
@@ -1270,7 +1270,7 @@ namespace GasStationMs.App
 
             fuelTankInfo.Append("\r\nОбъем: " + fuelTankView.Volume + " литров");
             fuelTankInfo.Append("\r\nТопливо: " + fuelTankView.Fuel);
-            fuelTankInfo.Append("\r\nОстаток: " + fuelTankView.CurrentFullness + " литров");
+            fuelTankInfo.Append("\r\nОстаток: " + (int)fuelTankView.CurrentFullness + " литров");
 
             this.textBoxSelectedItemInformation.Text = fuelTankInfo.ToString();
 
