@@ -13,7 +13,7 @@ namespace GasStationMs.App.Topology
 
         public TopologyBuilder(DataGridView dgv)
         {
-            this.field = dgv ?? throw new NullReferenceException();
+            field = dgv ?? throw new NullReferenceException();
             SetupDgv();
 
             serviceAreaInCells = RecalculateServiceArea();
@@ -54,27 +54,26 @@ namespace GasStationMs.App.Topology
 
         public void SetupServiceArea()
         {
-            int serviceAreaCellsLeftToAdd = serviceAreaInCells;
-            
+            int сellsLeftToAdd = serviceAreaInCells;
+            int cellsAdded = 0;
 
             DataGridViewImageCell cell;
 
-            int currCol;
-            int currRow;
-
-            for (currCol = field.ColumnCount - 1; currCol >= 0; currCol--)
+            for (int currCol = field.ColumnCount - 1; currCol >= 0; currCol--)
             {
-                for (currRow = 0; currRow < field.RowCount; currRow++)
+                for (int currRow = 0; currRow < field.RowCount; currRow++)
                 {
                     cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
                     cell.Tag = new ServiceArea();
                     cell.Value = ServiceArea.Image;
 
-                    serviceAreaCellsLeftToAdd--;
+                    cellsAdded++;
+                    сellsLeftToAdd--;
                 }
 
-                if (serviceAreaCellsLeftToAdd <= 0)
+                if (сellsLeftToAdd <= 0)
                 {
+                    serviceAreaInCells = cellsAdded;
                     serviceAreaBorderColIndex = currCol;
                     break;
                 }
@@ -111,7 +110,7 @@ namespace GasStationMs.App.Topology
 
                 field.ColumnCount = value;
 
-                serviceAreaInCells = RecalculateServiceArea();
+                //serviceAreaInCells = RecalculateServiceArea();
             }
         }
 
@@ -144,7 +143,7 @@ namespace GasStationMs.App.Topology
 
                 field.RowCount = value;
 
-                serviceAreaInCells = RecalculateServiceArea();
+                //serviceAreaInCells = RecalculateServiceArea();
             }
         }
 
