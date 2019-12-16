@@ -41,31 +41,31 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public IGasStationElement this[int x, int y] // x -- столбец, y -- cтрока
+        public IGasStationElement this[int x, int y] 
         {
             get
             {
-                if (x < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (x >= ColsCount)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
                 if (y < 0)
                 {
                     throw new IndexOutOfRangeException();
                 }
 
-                if (y >= RowsCount)
+                if (y >= ColsCount)
                 {
                     throw new IndexOutOfRangeException();
                 }
 
-                return field[y, x];
+                if (x < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                if (x >= RowsCount)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                return field[x, y];
             }
         }
 

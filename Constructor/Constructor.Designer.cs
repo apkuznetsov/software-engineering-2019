@@ -43,6 +43,7 @@
             this.rbCashCounter = new System.Windows.Forms.RadioButton();
             this.rbEntry = new System.Windows.Forms.RadioButton();
             this.rbExit = new System.Windows.Forms.RadioButton();
+            this.buttonToModelling = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -206,11 +207,22 @@
             this.rbExit.CheckedChanged += new System.EventHandler(this.rbExit_CheckedChanged);
             this.rbExit.Click += new System.EventHandler(this.rbExit_Click);
             // 
+            // buttonToModelling
+            // 
+            this.buttonToModelling.Location = new System.Drawing.Point(21, 436);
+            this.buttonToModelling.Name = "buttonToModelling";
+            this.buttonToModelling.Size = new System.Drawing.Size(516, 31);
+            this.buttonToModelling.TabIndex = 15;
+            this.buttonToModelling.Text = "Перейти к моделированию";
+            this.buttonToModelling.UseVisualStyleBackColor = true;
+            this.buttonToModelling.Click += new System.EventHandler(this.buttonToModelling_Click);
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.buttonToModelling);
             this.Controls.Add(this.rbExit);
             this.Controls.Add(this.rbEntry);
             this.Controls.Add(this.rbCashCounter);
@@ -254,6 +266,7 @@
         private System.Windows.Forms.RadioButton rbCashCounter;
         private System.Windows.Forms.RadioButton rbEntry;
         private System.Windows.Forms.RadioButton rbExit;
+        private System.Windows.Forms.Button buttonToModelling;
     }
 }
 

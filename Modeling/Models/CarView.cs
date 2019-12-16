@@ -55,7 +55,7 @@ namespace GasStationMs.App.Modeling.Models
                 Size = new Size(spotSize, spotSize),
                 Location = destPoint,
                 Visible = true,
-                BackColor = Color.DarkRed
+                //BackColor = Color.DarkRed
             };
 
             this.DestinationSpot.BringToFront();

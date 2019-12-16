@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using GasStationMs.App.Elements;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Topology;
 
 namespace GasStationMs.App
 {
@@ -17,10 +19,8 @@ namespace GasStationMs.App
 
     public partial class ModelingForm : Form
     {
-        private Topology.Topology _topology;
-
         private int _timerTicksCount = 0;
-
+        public Topology.Topology _topology;
         private int _carSpeedNoFilling = 4;
         private int _carSpeedFilling = 3;
 
@@ -32,6 +32,8 @@ namespace GasStationMs.App
 
         private PictureBox _selectedItem;
 
+        private Panel _playgronudPanel;
+        private int _elementSize = 50;
 
         #region TopologyElements
 
@@ -73,6 +75,7 @@ namespace GasStationMs.App
 
         private Point _exitPoint1;
         private Point _exitPoint2;
+        private Point _exitPoint3;
 
         #endregion /DestinationPoints
 
@@ -102,11 +105,28 @@ namespace GasStationMs.App
         {
             _timerTicksCount++;
 
+            labelCashCounterSumValue.Text = ((int)((CashCounterView) _cashCounter.Tag).CurrentCashVolume).ToString();
+
             if (_selectedItem != null)
             {
                 if (_selectedItem.Tag is CarView)
                 {
                     CarPictureBox_Click(_selectedItem, null);
+                }
+
+                if (_selectedItem.Tag is FuelDispenserView)
+                {
+                    FuelDispenserPictureBox_Click(_selectedItem, null);
+                }
+
+                if (_selectedItem.Tag is FuelTankView)
+                {
+                    FuelTankPictureBox_Click(_selectedItem, null);
+                }
+
+                if (_selectedItem.Tag is CashCounterView)
+                {
+                    CashCounterPictureBox_Click(_selectedItem, null);
                 }
             }
 
@@ -117,14 +137,14 @@ namespace GasStationMs.App
             //    _paused = true;
             //}
 
-            if (_timerTicksCount % 15 == 0)
+            if (_timerTicksCount % 40 == 0)
             {
                 SpawnCar();
             }
 
             #region LoopingControls
 
-            foreach (Control c in this.Controls)
+            foreach (Control c in panelPlayground.Controls)
             {
                 if (!(c is PictureBox) || c.Tag == null)
                 {
@@ -231,7 +251,7 @@ namespace GasStationMs.App
             if (carView.DestinationSpot == null)
             {
                 destSpot = carView.CreateDestinationSpot(destPoint);
-                this.Controls.Add(destSpot);
+                panelPlayground.Controls.Add(destSpot);
             }
 
             if (car.Bounds.IntersectsWith(destSpot.Bounds))
@@ -264,7 +284,7 @@ namespace GasStationMs.App
 
                 if (destPoint.Equals(_leavePointNoFilling) || destPoint.Equals(_leavePointFilled))
                 {
-                    this.Controls.Remove(car);
+                    panelPlayground.Controls.Remove(car);
                     car.Dispose();
                 }
             }
@@ -572,6 +592,7 @@ namespace GasStationMs.App
         private void GoToExit(CarView car)
         {
             car.AddDestinationPoint(_leavePointFilled);
+            car.AddDestinationPoint(_exitPoint3);
             car.AddDestinationPoint(_exitPoint2);
             car.AddDestinationPoint(_exitPoint1);
         }
@@ -581,7 +602,7 @@ namespace GasStationMs.App
             var activeCarView = (CarView) activeCar.Tag;
             var destPoint = activeCarView.GetDestinationPoint();
 
-            foreach (Control c in this.Controls)
+            foreach (Control c in panelPlayground.Controls)
             {
                 if (!(c is PictureBox) || c.Tag == null || c == activeCar)
                 {
@@ -790,13 +811,14 @@ namespace GasStationMs.App
 
         #region TopologyMappingLogic
 
-        private void MapTopology( /*int[][] field*/)
+        private void MapTopology()
         {
-            //CreateCashCounter();
-            //CreateEnter();
-            //CreateExit();
-            //CreateFuelDispenser();
-            //CreateFuelTank();
+            SetupPlaygroundPanel();
+            SetupServiceArea();
+
+            #region TestTopology
+
+            /*
 
             #region CashCounter
 
@@ -847,14 +869,18 @@ namespace GasStationMs.App
 
             #endregion /FuelTanks
 
+            */
+
+            #endregion
+
             #region DestinationPoints
 
             var carHeight = 35;
 
-            _noFillingHorizontalLine = this.Height - 2 * carHeight - 20;
-            _filledHorizontalLine = this.Height - 3 * carHeight - 40;
+            _noFillingHorizontalLine = panelPlayground.Height - 2 * carHeight - 20;
+            _filledHorizontalLine = panelPlayground.Height - 3 * carHeight - 40;
 
-            _rightPlaygroundBorder = this.Width;
+            _rightPlaygroundBorder = panelPlayground.Width;
             _leftPlaygroundBorder = 0;
             _leftCarDestroyingEdge = _leftPlaygroundBorder - 40;
 
@@ -875,6 +901,7 @@ namespace GasStationMs.App
 
             _exitPoint1 = new Point(_exitCenter.X, _exitCenter.Y - _exit.Height);
             _exitPoint2 = new Point(_exitCenter.X, _exitCenter.Y + _exit.Height);
+            _exitPoint3 = new Point(_exit.Left, _exitCenter.Y + 2*_exit.Height);
 
             // Save all predetermined points 
             _predeterminedPoints.AddRange(_fuelDispensersDestPoints.Values);
@@ -884,11 +911,138 @@ namespace GasStationMs.App
             _predeterminedPoints.Add(_enterPoint1);
 
             _predeterminedPoints.Add(_leavePointFilled);
+            _predeterminedPoints.Add(_exitPoint3);
             _predeterminedPoints.Add(_exitPoint2);
             _predeterminedPoints.Add(_exitPoint1);
 
             #endregion /DestinationPoints
         }
+
+        private void SetupPlaygroundPanel()
+        {
+            var width = _topology.ColsCount * _elementSize;
+            var height = _topology.RowsCount * _elementSize + 3 * _elementSize;
+            panelPlayground.Size = new Size(width, height);
+
+            for (int i = 0; i < _topology.RowsCount; i++)
+            {
+                for (int j = 0; j < _topology.ColsCount; j++)
+                {
+                    var topologyElement = _topology[i, j];
+
+                    if (topologyElement == null)
+                    {
+                        continue;
+                    }
+
+                    var creationPointX = j * _elementSize;
+                    var creationPointY = i * _elementSize;
+
+                    var creationPoint = new Point(creationPointX, creationPointY);
+
+                    if (topologyElement is CashCounter)
+                    {
+                        CreateCashCounter(creationPoint);
+                    }
+
+                    if (topologyElement is Entry)
+                    {
+                        CreateEnter(creationPoint);
+                    }
+
+                    if (topologyElement is Exit)
+                    {
+                        CreateExit(creationPoint);
+                    }
+
+
+                    if (topologyElement is FuelDispenser)
+                    {
+                        CreateFuelDispenser((FuelDispenser) topologyElement, creationPoint);
+                    }
+
+                    if (topologyElement is FuelTank)
+                    {
+                        CreateFuelTank((FuelTank) topologyElement, creationPoint);
+                    }
+                }
+            }
+
+            panelPlayground.MouseClick += new MouseEventHandler(PlaygroundPanel_Click);
+        }
+
+        private void SetupServiceArea()
+        {
+            var width = (_topology.ColsCount - _topology.FirstBorderPoint.X) * _elementSize;
+            var height = (_topology.RowsCount - 1) * _elementSize;
+
+            var creationPointX = _topology.FirstBorderPoint.X * _elementSize;
+            var creationPointY = _topology.FirstBorderPoint.Y * _elementSize;
+            var creationPoint = new Point(creationPointX, creationPointY);
+
+            pictureBoxServiceArea.Location = creationPoint;
+            pictureBoxServiceArea.Size = new Size(width, height);
+            pictureBoxServiceArea.BackColor = Color.Wheat;
+
+            pictureBoxServiceArea.MouseClick += new MouseEventHandler(ServiceArea_Click);
+        }
+
+        #region CashCounter
+
+        private void CreateCashCounter(Point creationPoint)
+        {
+            var cashCounterView = CreateCashCounterView("Cash Counter", CashCounter.CashLimitInRubles);
+            _cashCounter = CreateCashCounterPictureBox(cashCounterView, creationPoint);
+        }
+
+        #endregion /CashCounter
+
+        #region Enter/Exit
+
+        private void CreateEnter(Point creationPoint)
+        {
+            _enter = CreateEnterPictureBox(creationPoint);
+        }
+
+        private void CreateExit(Point creationPoint)
+        {
+            _exit = CreateExitPictureBox(creationPoint);
+        }
+
+        #endregion /Enter/Exit
+
+        #region FuelDispensers
+
+        private void CreateFuelDispenser(FuelDispenser fuelDispenser, Point creationPoint)
+        {
+            //var speedOfFilling = fuelDispenser.SpeedOfFilling;
+            var speedOfFilling = 15;
+            var fuelView = CreateFuelDispenserView("Fuel Dispenser", speedOfFilling);
+
+            CreateFuelDispenserPictureBox(fuelView, creationPoint);
+        }
+
+        #endregion /FuelDispensers
+
+        #region FuelTanks
+
+        private void CreateFuelTank(FuelTank fuelTank, Point creationPoint)
+        {
+            //var fuel = fuelTank.Fuel;
+            //var volume = fuelTank.Volume;
+            //var currentFullness = fuelTank.OccupiedVolume;
+
+            // test
+            FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
+            var volume = 10000;
+            var currentFullness = 5000;
+            // /test
+
+            var fuelTankView = CreateFuelTankView("Fuel Tank", volume, currentFullness, fuel);
+            CreateFuelTankPictureBox(fuelTankView, creationPoint);
+        }
+
+        #endregion /FuelTanks
 
         #endregion /TopologyMappingLogic
 
@@ -912,7 +1066,9 @@ namespace GasStationMs.App
             cashCounter.Location = locationPoint;
             cashCounter.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            this.Controls.Add(cashCounter);
+            cashCounter.MouseClick += new MouseEventHandler(CashCounterPictureBox_Click);
+
+            panelPlayground.Controls.Add(cashCounter);
             cashCounter.BringToFront();
 
             _cashCounter = cashCounter;
@@ -926,7 +1082,7 @@ namespace GasStationMs.App
 
         private PictureBox CreateEnterPictureBox(Point locationPoint)
         {
-            var sizeX = 80;
+            var sizeX = _elementSize;
             var sizeY = 20;
             PictureBox enter = new PictureBox();
             enter.Tag = "Enter";
@@ -936,7 +1092,9 @@ namespace GasStationMs.App
             enter.Location = locationPoint;
             enter.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            this.Controls.Add(enter);
+            enter.MouseClick += new MouseEventHandler(EnterPictureBox_Click);
+
+            panelPlayground.Controls.Add(enter);
             enter.BringToFront();
 
             _enter = enter;
@@ -946,7 +1104,7 @@ namespace GasStationMs.App
 
         private PictureBox CreateExitPictureBox(Point locationPoint)
         {
-            var sizeX = 80;
+            var sizeX = _elementSize;
             var sizeY = 20;
             PictureBox exit = new PictureBox();
             exit.Tag = "Exit";
@@ -956,7 +1114,10 @@ namespace GasStationMs.App
             exit.Location = locationPoint;
             exit.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            this.Controls.Add(exit);
+            exit.MouseClick += new MouseEventHandler(ExitPictureBox_Click);
+
+
+            panelPlayground.Controls.Add(exit);
             exit.BringToFront();
 
             _exit = exit;
@@ -992,7 +1153,7 @@ namespace GasStationMs.App
 
             car.MouseClick += new MouseEventHandler(CarPictureBox_Click);
 
-            this.Controls.Add(car);
+            panelPlayground.Controls.Add(car);
             car.BringToFront();
 
             return car;
@@ -1018,6 +1179,9 @@ namespace GasStationMs.App
             fuelDispenser.Location = locationPoint;
             fuelDispenser.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            fuelDispenser.MouseClick += new MouseEventHandler(FuelDispenserPictureBox_Click);
+
+
             //// Filling area
             //PictureBox fillingArea = new PictureBox();
             //fillingArea.Tag = fuelDispenserView;
@@ -1026,10 +1190,10 @@ namespace GasStationMs.App
             //fillingArea.Left = fuelDispenser.Left;
             //fillingArea.Top = fuelDispenser.Bottom;
             //fillingArea.SizeMode = PictureBoxSizeMode.AutoSize;
-            //this.Controls.Add(fillingArea);
+            //panelPlayground.Controls.Add(fillingArea);
             //fillingArea.BringToFront();
 
-            this.Controls.Add(fuelDispenser);
+            panelPlayground.Controls.Add(fuelDispenser);
             fuelDispenser.BringToFront();
 
             _fuelDispensersList.Add(fuelDispenser);
@@ -1062,7 +1226,9 @@ namespace GasStationMs.App
             fuelTank.SizeMode = PictureBoxSizeMode.StretchImage;
             fuelTank.BackColor = Color.Wheat; //For testing
 
-            this.Controls.Add(fuelTank);
+            fuelTank.MouseClick += new MouseEventHandler(FuelTankPictureBox_Click);
+
+            panelPlayground.Controls.Add(fuelTank);
             fuelTank.BringToFront();
 
             _fuelTanksList.Add(fuelTank);
@@ -1075,62 +1241,6 @@ namespace GasStationMs.App
         #endregion /ElementsProducers
 
         #region ModelingLogic
-
-        private void CarPictureBox_Click(object sender, MouseEventArgs e)
-        {
-            var car = (PictureBox) sender;
-            var carView = (CarView) car.Tag;
-
-            // this.textBoxSelectedItemInformation.Text = "";
-
-            StringBuilder carInfo = new StringBuilder();
-
-            var cashCounterView = (CashCounterView) _cashCounter.Tag;
-            carInfo.Append("Name: " + cashCounterView.Name);
-            carInfo.Append("\r\nCMaxCashVolume: " + cashCounterView.MaxCashVolume);
-            carInfo.Append("\r\nCurrentCashVolume: " + cashCounterView.CurrentCashVolume);
-            carInfo.Append("\r\nIsFull: " + cashCounterView.IsFull);
-            carInfo.Append("\r\n-------------------------------");
-
-            carInfo.Append("Name: " + carView.Name);
-            carInfo.Append("\r\nTank volume: " + carView.TankVolume);
-            carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
-            carInfo.Append("\r\nFuelRemained: " + carView.FuelRemained);
-            carInfo.Append("\r\n-------------------------------");
-            carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
-            carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
-            carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
-
-            // test
-            if (carView.ChosenFuelDispenser != null)
-            {
-                var fuelDispenser = carView.ChosenFuelDispenser;
-                var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
-
-                carInfo.Append("\r\n-------FuelDispenser-----");
-                carInfo.Append("\r\nName: " + fuelDispenserView.Name);
-                carInfo.Append("\r\nCarsInQueue: " + fuelDispenserView.CarsInQueue);
-                carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFillingPerSecond);
-                carInfo.Append("\r\nIsBusy: " + fuelDispenserView.IsBusy);
-
-                if (fuelDispenserView.ChosenFuelTank != null)
-                {
-                    var fuelTankView = fuelDispenserView.ChosenFuelTank;
-
-                    carInfo.Append("\r\n-------FuelTank-----");
-                    carInfo.Append("\r\nName: " + fuelTankView.Name);
-                    carInfo.Append("\r\nFuel: " + fuelTankView.Fuel);
-                    carInfo.Append("\r\nVolume: " + fuelTankView.Volume);
-                    carInfo.Append("\r\nCurrentFullness: " + fuelTankView.CurrentFullness);
-                    carInfo.Append("\r\nIsEmpty: " + fuelTankView.IsEmpty);
-                }
-            }
-            // /test
-
-            this.textBoxSelectedItemInformation.Text = carInfo.ToString();
-
-            _selectedItem = car;
-        }
 
         private void StartFilling(PictureBox car, PictureBox fuelDispenser)
         {
@@ -1185,15 +1295,195 @@ namespace GasStationMs.App
 
         #endregion /ModelingLogic
 
+        #region Clicking
+
+        private void CarPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var car = (PictureBox) sender;
+            var carView = (CarView) car.Tag;
+
+            // this.textBoxSelectedItemInformation.Text = "";
+            labelSelectedElement.Text = "Автомобиль";
+
+            StringBuilder carInfo = new StringBuilder();
+
+            carInfo.Append("Название: " + carView.Name);
+            carInfo.Append("\r\nОбъем бака: " + carView.TankVolume);
+            //carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
+            carInfo.Append("\r\nТоплива в баке: " + (int) carView.FuelRemained);
+
+            //carInfo.Append("\r\n-------------------------------");
+            //carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
+            //carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
+            //carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
+
+            // test
+            //if (carView.ChosenFuelDispenser != null)
+            //{
+            //    var fuelDispenser = carView.ChosenFuelDispenser;
+            //    var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
+
+            //    carInfo.Append("\r\n-------FuelDispenser-----");
+            //    carInfo.Append("\r\nName: " + fuelDispenserView.Name);
+            //    carInfo.Append("\r\nCarsInQueue: " + fuelDispenserView.CarsInQueue);
+            //    carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFillingPerSecond);
+            //    carInfo.Append("\r\nIsBusy: " + fuelDispenserView.IsBusy);
+
+            //    if (fuelDispenserView.ChosenFuelTank != null)
+            //    {
+            //        var fuelTankView = fuelDispenserView.ChosenFuelTank;
+
+            //        carInfo.Append("\r\n-------FuelTank-----");
+            //        carInfo.Append("\r\nName: " + fuelTankView.Name);
+            //        carInfo.Append("\r\nFuel: " + fuelTankView.Fuel);
+            //        carInfo.Append("\r\nVolume: " + fuelTankView.Volume);
+            //        carInfo.Append("\r\nCurrentFullness: " + fuelTankView.CurrentFullness);
+            //        carInfo.Append("\r\nIsEmpty: " + fuelTankView.IsEmpty);
+            //    }
+            //}
+            // /test
+
+            this.textBoxSelectedItemInformation.Text = carInfo.ToString();
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
+
+            _selectedItem = car;
+        }
+
+        private void FuelDispenserPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var fuelDispenser = (PictureBox) sender;
+            var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
+
+            labelSelectedElement.Text = "ТРК";
+
+            StringBuilder fuelDispenserInfo = new StringBuilder();
+
+            fuelDispenserInfo.Append("\r\nСкорость подачи топлива: " + fuelDispenserView.SpeedOfFillingPerSecond +
+                                     " литров/сек.");
+
+            this.textBoxSelectedItemInformation.Text = fuelDispenserInfo.ToString();
+
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
+
+            _selectedItem = fuelDispenser;
+        }
+
+        private void FuelTankPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var fuelTank = (PictureBox) sender;
+            var fuelTankView = (FuelTankView) fuelTank.Tag;
+
+            labelSelectedElement.Text = "Топливный бак";
+
+            StringBuilder fuelTankInfo = new StringBuilder();
+
+            fuelTankInfo.Append("\r\nОбъем: " + fuelTankView.Volume + " литров");
+            fuelTankInfo.Append("\r\nТопливо: " + fuelTankView.Fuel);
+            fuelTankInfo.Append("\r\nОстаток: " + (int) fuelTankView.CurrentFullness + " литров");
+
+            this.textBoxSelectedItemInformation.Text = fuelTankInfo.ToString();
+
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
+
+            _selectedItem = fuelTank;
+        }
+
+        private void CashCounterPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var cashCounter = (PictureBox) sender;
+            var cashCounterView = (CashCounterView) cashCounter.Tag;
+
+            labelSelectedElement.Text = "Касса";
+
+            StringBuilder cashCounterInfo = new StringBuilder();
+
+            cashCounterInfo.Append("\r\nСумма: " + (int) cashCounterView.CurrentCashVolume + " руб.");
+            cashCounterInfo.Append("\r\nЛимит кассы: " + cashCounterView.MaxCashVolume + " руб.");
+
+            //cashCounterInfo.Append("\r\nIsFull: " + cashCounterView.IsFull);
+            //cashCounterInfo.Append("\r\n-------------------------------");
+
+            this.textBoxSelectedItemInformation.Text = cashCounterInfo.ToString();
+
+            _selectedItem = cashCounter;
+        }
+
+        private void EnterPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var enter = (PictureBox) sender;
+
+            StringBuilder enterInfo = new StringBuilder();
+
+            labelSelectedElement.Text = "Въезд";
+
+            enterInfo.Append("\r\nЗдесь автомобили въезжают на АЗС");
+
+            this.textBoxSelectedItemInformation.Text = enterInfo.ToString();
+
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
+
+            _selectedItem = enter;
+        }
+
+        private void ExitPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var exit = (PictureBox) sender;
+
+            StringBuilder exitInfo = new StringBuilder();
+
+            labelSelectedElement.Text = "Выезд";
+
+            exitInfo.Append("\r\nЗдесь автомобили выезжают с АЗС");
+
+            this.textBoxSelectedItemInformation.Text = exitInfo.ToString();
+
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
+
+            _selectedItem = exit;
+        }
+
+        private void ServiceArea_Click(object sender, MouseEventArgs e)
+        {
+            var serviceArea = (PictureBox) sender;
+
+            StringBuilder serviceAreaInfo = new StringBuilder();
+
+            labelSelectedElement.Text = "Сервисная зона";
+
+            serviceAreaInfo.Append("\r\nСервисна зона с топливными баками");
+            serviceAreaInfo.Append("\r\nОбычным машинам тут не место");
+
+            this.textBoxSelectedItemInformation.Text = serviceAreaInfo.ToString();
+
+            labelSelectedElement.Visible = true;
+            textBoxSelectedItemInformation.Visible = true;
+
+            _selectedItem = serviceArea;
+        }
+
+
+        private void PlaygroundPanel_Click(object sender, MouseEventArgs e)
+        {
+            labelSelectedElement.Visible = false;
+            textBoxSelectedItemInformation.Visible = false;
+        }
+
+        #endregion /Clicking
+
         private void LocateFormElements()
         {
             this.Size = new Size(1280, 800);
 
-            panelPlayground.Size = new Size(1030, 700);
-            panelPlayground.BringToFront();
-
             panelModelingInformation.Size = new Size(250, 800);
             panelModelingInformation.Location = new Point(this.Width - panelModelingInformation.Width, 0);
+
+            labelSelectedElement.Visible = false;
+            textBoxSelectedItemInformation.Visible = false;
 
             textBoxSelectedItemInformation.Size = new Size(225, 150);
 
