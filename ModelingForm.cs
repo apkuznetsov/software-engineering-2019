@@ -134,7 +134,7 @@ namespace GasStationMs.App
             //    _paused = true;
             //}
 
-            if (_timerTicksCount % 15 == 0)
+            if (_timerTicksCount % 40 == 0)
             {
                 SpawnCar();
             }
@@ -952,12 +952,12 @@ namespace GasStationMs.App
 
                     if (topologyElement is FuelDispenser)
                     {
-                        CreateFuelDispenser((FuelDispenser)topologyElement, creationPoint);
+                        CreateFuelDispenser((FuelDispenser) topologyElement, creationPoint);
                     }
 
                     if (topologyElement is FuelTank)
                     {
-                        CreateFuelTank((FuelTank)topologyElement, creationPoint);
+                        CreateFuelTank((FuelTank) topologyElement, creationPoint);
                     }
                 }
             }
@@ -981,14 +981,13 @@ namespace GasStationMs.App
             pictureBoxServiceArea.MouseClick += new MouseEventHandler(ServiceArea_Click);
         }
 
-            #region CashCounter
+        #region CashCounter
 
-            private void CreateCashCounter(Point creationPoint)
+        private void CreateCashCounter(Point creationPoint)
         {
             var cashCounterView = CreateCashCounterView("Cash Counter", CashCounter.CashLimitInRubles);
             _cashCounter = CreateCashCounterPictureBox(cashCounterView, creationPoint);
         }
-
 
         #endregion /CashCounter
 
@@ -1070,8 +1069,6 @@ namespace GasStationMs.App
 
             return cashCounter;
         }
-
-        
 
         #endregion /CashCounter
 
@@ -1202,8 +1199,6 @@ namespace GasStationMs.App
             return fuelDispenser;
         }
 
-       
-
         #endregion /FuelDispensers
 
         #region FuelTanks
@@ -1237,13 +1232,11 @@ namespace GasStationMs.App
 
         #endregion /FuelTanks
 
-       
+        #endregion /ElementsProducers
 
-            #endregion /ElementsProducers
+        #region ModelingLogic
 
-            #region ModelingLogic
-
-            private void StartFilling(PictureBox car, PictureBox fuelDispenser)
+        private void StartFilling(PictureBox car, PictureBox fuelDispenser)
         {
             var carView = (CarView) car.Tag;
             var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
@@ -1300,11 +1293,11 @@ namespace GasStationMs.App
 
         private void CarPictureBox_Click(object sender, MouseEventArgs e)
         {
-            var car = (PictureBox)sender;
-            var carView = (CarView)car.Tag;
+            var car = (PictureBox) sender;
+            var carView = (CarView) car.Tag;
 
             // this.textBoxSelectedItemInformation.Text = "";
-            labelSelectedElement.Text = "Автомобиль"; 
+            labelSelectedElement.Text = "Автомобиль";
 
             StringBuilder carInfo = new StringBuilder();
 
@@ -1353,14 +1346,15 @@ namespace GasStationMs.App
 
         private void FuelDispenserPictureBox_Click(object sender, MouseEventArgs e)
         {
-            var fuelDispenser = (PictureBox)sender;
-            var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
+            var fuelDispenser = (PictureBox) sender;
+            var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
 
             labelSelectedElement.Text = "ТРК";
 
             StringBuilder fuelDispenserInfo = new StringBuilder();
 
-            fuelDispenserInfo.Append("\r\nСкорость подачи топлива: " + fuelDispenserView.SpeedOfFillingPerSecond + " литров/сек.");
+            fuelDispenserInfo.Append("\r\nСкорость подачи топлива: " + fuelDispenserView.SpeedOfFillingPerSecond +
+                                     " литров/сек.");
 
             this.textBoxSelectedItemInformation.Text = fuelDispenserInfo.ToString();
 
@@ -1372,8 +1366,8 @@ namespace GasStationMs.App
 
         private void FuelTankPictureBox_Click(object sender, MouseEventArgs e)
         {
-            var fuelTank = (PictureBox)sender;
-            var fuelTankView = (FuelTankView)fuelTank.Tag;
+            var fuelTank = (PictureBox) sender;
+            var fuelTankView = (FuelTankView) fuelTank.Tag;
 
             labelSelectedElement.Text = "Топливный бак";
 
@@ -1381,7 +1375,7 @@ namespace GasStationMs.App
 
             fuelTankInfo.Append("\r\nОбъем: " + fuelTankView.Volume + " литров");
             fuelTankInfo.Append("\r\nТопливо: " + fuelTankView.Fuel);
-            fuelTankInfo.Append("\r\nОстаток: " + (int)fuelTankView.CurrentFullness + " литров");
+            fuelTankInfo.Append("\r\nОстаток: " + (int) fuelTankView.CurrentFullness + " литров");
 
             this.textBoxSelectedItemInformation.Text = fuelTankInfo.ToString();
 
@@ -1393,8 +1387,8 @@ namespace GasStationMs.App
 
         private void CashCounterPictureBox_Click(object sender, MouseEventArgs e)
         {
-            var cashCounter = (PictureBox)sender;
-            var cashCounterView = (CashCounterView)cashCounter.Tag;
+            var cashCounter = (PictureBox) sender;
+            var cashCounterView = (CashCounterView) cashCounter.Tag;
 
             labelSelectedElement.Text = "Касса";
 
@@ -1413,7 +1407,7 @@ namespace GasStationMs.App
 
         private void EnterPictureBox_Click(object sender, MouseEventArgs e)
         {
-            var enter = (PictureBox)sender;
+            var enter = (PictureBox) sender;
 
             StringBuilder enterInfo = new StringBuilder();
 
@@ -1428,9 +1422,10 @@ namespace GasStationMs.App
 
             _selectedItem = enter;
         }
+
         private void ExitPictureBox_Click(object sender, MouseEventArgs e)
         {
-            var exit = (PictureBox)sender;
+            var exit = (PictureBox) sender;
 
             StringBuilder exitInfo = new StringBuilder();
 
@@ -1448,7 +1443,7 @@ namespace GasStationMs.App
 
         private void ServiceArea_Click(object sender, MouseEventArgs e)
         {
-            var serviceArea = (PictureBox)sender;
+            var serviceArea = (PictureBox) sender;
 
             StringBuilder serviceAreaInfo = new StringBuilder();
 
