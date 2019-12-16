@@ -41,7 +41,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public IGasStationElement this[int x, int y]
+        public IGasStationElement this[int x, int y] // x -- столбец, y -- cтрока
         {
             get
             {
@@ -65,7 +65,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                return field[x, y];
+                return field[y, x];
             }
         }
 
@@ -99,7 +99,7 @@ namespace GasStationMs.App.Topology
                 throw new IndexOutOfRangeException();
             }
 
-            return field[x, y];
+            return field[y, x];
         }
 
         public IGasStationElement GetElement(Point p)
