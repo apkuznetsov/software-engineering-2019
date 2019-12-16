@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 using GasStationMs.App.Modeling.Models;
 
@@ -26,6 +27,9 @@ namespace GasStationMs.App
 
         private bool _paused;
         private readonly Random _rnd = new Random();
+
+        private PictureBox _selectedItem;
+
 
         #region TopologyElements
 
@@ -91,6 +95,14 @@ namespace GasStationMs.App
         private void TimerModeling_Tick(object sender, EventArgs e)
         {
             _timerTicksCount++;
+
+            if (_selectedItem != null)
+            {
+                if (_selectedItem.Tag is CarView)
+                {
+                    CarPictureBox_Click(_selectedItem, null);
+                }
+            }
 
             //if (!_paused)
             //{
@@ -188,10 +200,15 @@ namespace GasStationMs.App
         private void MoveCarToDestination(PictureBox car)
         {
             var carView = (CarView) car.Tag;
-            //if (carView.IsBypassingObject)
-            //{
-            //    var x = 1;
-            //}
+
+            if (carView.IsFilling)
+            {
+                var chosenFuelDispenser = (FuelDispenserView) carView.ChosenFuelDispenser.Tag;
+
+                FillCar(carView, chosenFuelDispenser);
+
+                return;
+            }
 
             var destPoint = carView.GetDestinationPoint();
             PictureBox destSpot = carView.DestinationSpot;
@@ -200,9 +217,7 @@ namespace GasStationMs.App
 
             #region MotionLogic
 
-
             destPoint = MoveCar(car, destPoint, carSpeed);
-
 
             #endregion /MotionLogic
 
@@ -230,9 +245,9 @@ namespace GasStationMs.App
                 {
                     if (destPoint.Equals(fuelDispensersDestPoint))
                     {
-                        //StartFilling();
+                        StartFilling(car, carView.ChosenFuelDispenser);
                         //test
-                        carView.IsFilled = true;
+                        //carView.IsFilled = true;
                     }
                 }
 
@@ -817,7 +832,10 @@ namespace GasStationMs.App
             //_fuelTanksList.Add(pictureBoxFuelTank1);
             //_fuelTanksList.Add(pictureBoxFuelTank2);
 
-            var fuelTank = CreateFuelTankView("Fuel Tank", 10000);
+            // test
+            FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
+            // /test
+            var fuelTank = CreateFuelTankView("Fuel Tank", 10000, 5000, fuel);
             creationPoint = new Point(540, 50);
             CreateFuelTankPictureBox(fuelTank, creationPoint);
 
@@ -966,6 +984,8 @@ namespace GasStationMs.App
             car.Location = _spawnPoint;
             car.SizeMode = PictureBoxSizeMode.AutoSize;
 
+            car.MouseClick += new MouseEventHandler(CarPictureBox_Click);
+
             this.Controls.Add(car);
             car.BringToFront();
 
@@ -1019,9 +1039,9 @@ namespace GasStationMs.App
 
         #region FuelTanks
 
-        private FuelTankView CreateFuelTankView(string name, int volume)
+        private FuelTankView CreateFuelTankView(string name, int volume, double currentFullness, FuelModel fuel)
         {
-            return new FuelTankView(name, volume);
+            return new FuelTankView(name, volume, currentFullness, fuel);
         }
 
         private PictureBox CreateFuelTankPictureBox(FuelTankView fuelTankView,
@@ -1047,5 +1067,116 @@ namespace GasStationMs.App
         #endregion /FuelTanks
 
         #endregion /ElementsProducers
+
+        #region ModelingLogic
+
+        private void CarPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var car = (PictureBox) sender;
+            var carView = (CarView) car.Tag;
+
+            // this.textBoxSelectedItemInformation.Text = "";
+
+            StringBuilder carInfo = new StringBuilder();
+
+            var cashCounterView = (CashCounterView) _cashCounter.Tag;
+            carInfo.Append("Name: " + cashCounterView.Name);
+            carInfo.Append("\r\nCMaxCashVolume: " + cashCounterView.MaxCashVolume);
+            carInfo.Append("\r\nCurrentCashVolume: " + cashCounterView.CurrentCashVolume);
+            carInfo.Append("\r\nIsFull: " + cashCounterView.IsFull);
+            carInfo.Append("\r\n-------------------------------");
+
+            carInfo.Append("Name: " + carView.Name);
+            carInfo.Append("\r\nTank volume: " + carView.TankVolume);
+            carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
+            carInfo.Append("\r\nFuelRemained: " + carView.FuelRemained);
+            carInfo.Append("\r\n-------------------------------");
+            carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
+            carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
+            carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
+
+            // test
+            if (carView.ChosenFuelDispenser != null)
+            {
+                var fuelDispenser = carView.ChosenFuelDispenser;
+                var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
+
+                carInfo.Append("\r\n-------FuelDispenser-----");
+                carInfo.Append("\r\nName: " + fuelDispenserView.Name);
+                carInfo.Append("\r\nCarsInQueue: " + fuelDispenserView.CarsInQueue);
+                carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFillingPerSecond);
+                carInfo.Append("\r\nIsBusy: " + fuelDispenserView.IsBusy);
+
+                if (fuelDispenserView.ChosenFuelTank != null)
+                {
+                    var fuelTankView = fuelDispenserView.ChosenFuelTank;
+
+                    carInfo.Append("\r\n-------FuelTank-----");
+                    carInfo.Append("\r\nName: " + fuelTankView.Name);
+                    carInfo.Append("\r\nFuel: " + fuelTankView.Fuel);
+                    carInfo.Append("\r\nVolume: " + fuelTankView.Volume);
+                    carInfo.Append("\r\nCurrentFullness: " + fuelTankView.CurrentFullness);
+                    carInfo.Append("\r\nIsEmpty: " + fuelTankView.IsEmpty);
+                }
+            }
+            // /test
+
+            this.textBoxSelectedItemInformation.Text = carInfo.ToString();
+
+            _selectedItem = car;
+        }
+
+        private void StartFilling(PictureBox car, PictureBox fuelDispenser)
+        {
+            var carView = (CarView) car.Tag;
+            var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
+
+            fuelDispenserView.ChoseFuelTank(_fuelTanksList, carView.Fuel);
+
+            carView.PayForOrderedFuel((CashCounterView) _cashCounter.Tag);
+
+            carView.IsFilling = true;
+            fuelDispenserView.IsBusy = true;
+        }
+
+        private void FillCar(CarView car, FuelDispenserView fuelDispenser)
+        {
+            car.FuelRemained += fuelDispenser.GetFuelFromTank();
+
+            if (fuelDispenser.ChosenFuelTank.IsEmpty)
+            {
+                // CallRefiller()
+            }
+
+            if (((CashCounterView) _cashCounter.Tag).IsFull)
+            {
+                // CallCollector()
+            }
+
+            // test
+
+            if (car.FuelRemained >= car.DesiredFilling)
+            {
+                StopFilling(car, fuelDispenser);
+            }
+        }
+
+        private void StopFilling(CarView car, FuelDispenserView fuelDispenser)
+        {
+            if (car.FuelRemained > car.TankVolume)
+            {
+                car.FuelRemained = car.TankVolume;
+
+                var fuelSurplus = car.FuelRemained - car.TankVolume;
+                fuelDispenser.ReturnFuelToTank(fuelSurplus);
+            }
+
+            car.IsFilling = false;
+            car.IsFilled = true;
+            fuelDispenser.CarsInQueue--;
+            fuelDispenser.IsBusy = false;
+        }
+
+        #endregion /ModelingLogic
     }
 }
