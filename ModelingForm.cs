@@ -1157,49 +1157,44 @@ namespace GasStationMs.App
             var carView = (CarView)car.Tag;
 
             // this.textBoxSelectedItemInformation.Text = "";
+            labelSelectedElement.Text = "Автомобиль"; 
 
             StringBuilder carInfo = new StringBuilder();
 
-            var cashCounterView = (CashCounterView)_cashCounter.Tag;
-            carInfo.Append("Name: " + cashCounterView.Name);
-            carInfo.Append("\r\nCMaxCashVolume: " + cashCounterView.MaxCashVolume);
-            carInfo.Append("\r\nCurrentCashVolume: " + cashCounterView.CurrentCashVolume);
-            carInfo.Append("\r\nIsFull: " + cashCounterView.IsFull);
-            carInfo.Append("\r\n-------------------------------");
+            carInfo.Append("Название: " + carView.Name);
+            carInfo.Append("\r\nОбъем бака: " + carView.TankVolume);
+            //carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
+            carInfo.Append("\r\nТоплива в баке: " + carView.FuelRemained);
 
-            carInfo.Append("Name: " + carView.Name);
-            carInfo.Append("\r\nTank volume: " + carView.TankVolume);
-            carInfo.Append("\r\nDesiredFilling: " + carView.DesiredFilling);
-            carInfo.Append("\r\nFuelRemained: " + carView.FuelRemained);
-            carInfo.Append("\r\n-------------------------------");
-            carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
-            carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
-            carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
+            //carInfo.Append("\r\n-------------------------------");
+            //carInfo.Append("\r\nIsOnStation: " + carView.IsOnStation);
+            //carInfo.Append("\r\nIsFilled: " + carView.IsFilled);
+            //carInfo.Append("\r\nIsFilling: " + carView.IsFilling);
 
             // test
-            if (carView.ChosenFuelDispenser != null)
-            {
-                var fuelDispenser = carView.ChosenFuelDispenser;
-                var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
+            //if (carView.ChosenFuelDispenser != null)
+            //{
+            //    var fuelDispenser = carView.ChosenFuelDispenser;
+            //    var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
 
-                carInfo.Append("\r\n-------FuelDispenser-----");
-                carInfo.Append("\r\nName: " + fuelDispenserView.Name);
-                carInfo.Append("\r\nCarsInQueue: " + fuelDispenserView.CarsInQueue);
-                carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFillingPerSecond);
-                carInfo.Append("\r\nIsBusy: " + fuelDispenserView.IsBusy);
+            //    carInfo.Append("\r\n-------FuelDispenser-----");
+            //    carInfo.Append("\r\nName: " + fuelDispenserView.Name);
+            //    carInfo.Append("\r\nCarsInQueue: " + fuelDispenserView.CarsInQueue);
+            //    carInfo.Append("\r\nSpeedOfFilling: " + fuelDispenserView.SpeedOfFillingPerSecond);
+            //    carInfo.Append("\r\nIsBusy: " + fuelDispenserView.IsBusy);
 
-                if (fuelDispenserView.ChosenFuelTank != null)
-                {
-                    var fuelTankView = fuelDispenserView.ChosenFuelTank;
+            //    if (fuelDispenserView.ChosenFuelTank != null)
+            //    {
+            //        var fuelTankView = fuelDispenserView.ChosenFuelTank;
 
-                    carInfo.Append("\r\n-------FuelTank-----");
-                    carInfo.Append("\r\nName: " + fuelTankView.Name);
-                    carInfo.Append("\r\nFuel: " + fuelTankView.Fuel);
-                    carInfo.Append("\r\nVolume: " + fuelTankView.Volume);
-                    carInfo.Append("\r\nCurrentFullness: " + fuelTankView.CurrentFullness);
-                    carInfo.Append("\r\nIsEmpty: " + fuelTankView.IsEmpty);
-                }
-            }
+            //        carInfo.Append("\r\n-------FuelTank-----");
+            //        carInfo.Append("\r\nName: " + fuelTankView.Name);
+            //        carInfo.Append("\r\nFuel: " + fuelTankView.Fuel);
+            //        carInfo.Append("\r\nVolume: " + fuelTankView.Volume);
+            //        carInfo.Append("\r\nCurrentFullness: " + fuelTankView.CurrentFullness);
+            //        carInfo.Append("\r\nIsEmpty: " + fuelTankView.IsEmpty);
+            //    }
+            //}
             // /test
 
             this.textBoxSelectedItemInformation.Text = carInfo.ToString();
@@ -1209,26 +1204,85 @@ namespace GasStationMs.App
 
         private void FuelDispenserPictureBox_Click(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            var fuelDispenser = (PictureBox)sender;
+            var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
+
+            labelSelectedElement.Text = "ТРК";
+
+            StringBuilder fuelDispenserInfo = new StringBuilder();
+
+            fuelDispenserInfo.Append("\r\nСкорость подачи топлива: " + fuelDispenserView.SpeedOfFillingPerSecond + " литров/сек.");
+
+            this.textBoxSelectedItemInformation.Text = fuelDispenserInfo.ToString();
+
+            _selectedItem = fuelDispenser;
         }
 
         private void FuelTankPictureBox_Click(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            var fuelTank = (PictureBox)sender;
+            var fuelTankView = (FuelTankView)fuelTank.Tag;
+
+            labelSelectedElement.Text = "Топливный бак";
+
+            StringBuilder fuelTankInfo = new StringBuilder();
+
+            fuelTankInfo.Append("\r\nОбъем: " + fuelTankView.Volume + " литров");
+            fuelTankInfo.Append("\r\nТопливо: " + fuelTankView.Fuel);
+            fuelTankInfo.Append("\r\nОстаток: " + fuelTankView.CurrentFullness + " литров");
+
+            this.textBoxSelectedItemInformation.Text = fuelTankInfo.ToString();
+
+            _selectedItem = fuelTank;
         }
 
         private void CashCounterPictureBox_Click(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            var cashCounter = (PictureBox)sender;
+            var cashCounterView = (CashCounterView)cashCounter.Tag;
+
+            labelSelectedElement.Text = "Касса";
+
+            StringBuilder cashCounterInfo = new StringBuilder();
+
+            cashCounterInfo.Append("\r\nСумма: " + (int) cashCounterView.CurrentCashVolume + " руб.");
+            cashCounterInfo.Append("\r\nЛимит кассы: " + cashCounterView.MaxCashVolume + " руб.");
+
+            //cashCounterInfo.Append("\r\nIsFull: " + cashCounterView.IsFull);
+            //cashCounterInfo.Append("\r\n-------------------------------");
+
+            this.textBoxSelectedItemInformation.Text = cashCounterInfo.ToString();
+
+            _selectedItem = cashCounter;
         }
 
         private void EnterPictureBox_Click(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            var enter = (PictureBox)sender;
+
+            StringBuilder enterInfo = new StringBuilder();
+
+            labelSelectedElement.Text = "Въезд";
+
+            enterInfo.Append("\r\nЗдесь автомобили въезжают на АЗС");
+
+            this.textBoxSelectedItemInformation.Text = enterInfo.ToString();
+
+            _selectedItem = enter;
         }
         private void ExitPictureBox_Click(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            var exit = (PictureBox)sender;
+
+            StringBuilder exitInfo = new StringBuilder();
+
+            labelSelectedElement.Text = "Выезд";
+
+            exitInfo.Append("\r\nЗдесь автомобили выезжают с АЗС");
+
+            this.textBoxSelectedItemInformation.Text = exitInfo.ToString();
+
+            _selectedItem = exit;
         }
 
         #endregion /Clicking
