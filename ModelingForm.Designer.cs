@@ -167,7 +167,7 @@
             this.textBoxSelectedItemInformation.Multiline = true;
             this.textBoxSelectedItemInformation.Name = "textBoxSelectedItemInformation";
             this.textBoxSelectedItemInformation.ReadOnly = true;
-            this.textBoxSelectedItemInformation.Size = new System.Drawing.Size(221, 189);
+            this.textBoxSelectedItemInformation.Size = new System.Drawing.Size(221, 397);
             this.textBoxSelectedItemInformation.TabIndex = 0;
             // 
             // ModelingForm
