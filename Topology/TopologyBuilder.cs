@@ -13,17 +13,16 @@ namespace GasStationMs.App.Topology
         public TopologyBuilder(DataGridView dgv)
         {
             this.dgv = dgv ?? throw new NullReferenceException();
-
             SetupDgv();
-
-            AddDgvCols(Topology.MinColsCount);
-            AddDgvRows(Topology.MinRowsCount);
 
             serviceAreaInCells = RecalculateServiceArea();
         }
 
         private void SetupDgv()
         {
+            AddDgvCols(Topology.MinColsCount);
+            dgv.RowCount = Topology.MinRowsCount;
+
             dgv.RowHeadersVisible = false;
             dgv.ColumnHeadersVisible = false;
 
@@ -168,8 +167,8 @@ namespace GasStationMs.App.Topology
         private bool IsThereAnyTag(DataGridViewRow row)
         {
             int rowIndex = row.Index;
-
             DataGridViewImageCell cell;
+
             for (int colIndex = 0; colIndex < dgv.ColumnCount; colIndex++)
             {
                 cell = (DataGridViewImageCell)dgv.Rows[rowIndex].Cells[colIndex];
