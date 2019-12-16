@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace GasStationMs.App.Elements
 {
-    public class CashCounter
+    public class CashCounter : IGasStationElement
     {
         #region статика
         #region изображение
