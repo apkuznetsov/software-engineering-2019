@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Topology;
 
 namespace GasStationMs.App
 {
@@ -20,7 +21,7 @@ namespace GasStationMs.App
         private Topology.Topology _topology;
 
         private int _timerTicksCount = 0;
-
+        public Topology.Topology _topology;
         private int _carSpeedNoFilling = 4;
         private int _carSpeedFilling = 3;
 
