@@ -155,8 +155,8 @@ namespace GasStationMs.App
         private void buttonToModelling_Click(object sender, EventArgs e) 
         {
             Topology.Topology topology = tb.CreateAndGetTopology();
-            ModelingForm modelingform = new ModelingForm();
-            modelingform._topology = topology;
+            ModelingForm modelingform = new ModelingForm(topology);
+            
             modelingform.ShowDialog();
         }
 
