@@ -2,7 +2,7 @@
 {
     public class Fuel
     {
-        private string name;
+        public string name;
 
         public Fuel(string name)
         {
@@ -16,5 +16,6 @@
                 return name;
             }
         }
+        
     }
 }
