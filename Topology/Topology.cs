@@ -61,27 +61,7 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                if (p.X < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (p.X >= ColsCount)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (p.Y < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (p.Y >= RowsCount)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                return topology[p.X, p.Y];
+                return this[p.X, p.Y];
             }
         }
 
@@ -112,27 +92,7 @@ namespace GasStationMs.App.Topology
 
         public IGasStationElement GetElement(Point p)
         {
-            if (p.X < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (p.X >= ColsCount)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (p.Y < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (p.Y >= RowsCount)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            return topology[p.X, p.Y];
+            return GetElement(p.X, p.Y);
         }
 
         public bool IsCashCounter(int x, int y)
