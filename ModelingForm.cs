@@ -1155,6 +1155,7 @@ namespace GasStationMs.App
             }
             car.IsFilling = false;
             car.IsFilled = true;
+            fuelDispenser.CarsInQueue--;
             fuelDispenser.IsBusy = false;
         }
 
