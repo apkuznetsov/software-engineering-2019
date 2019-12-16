@@ -111,7 +111,7 @@
     <Compile Include="Topology\TopologyBuilderCashCounter.cs" />
     <Compile Include="Topology\TopologyBuilderFuelTank.cs" />
     <Compile Include="Topology\TopologyBuilderFuelDispenser.cs" />
-    <Compile Include="Topology\TopologyBuilderHelpers\Class1.cs" />
+    <Compile Include="Topology\TopologyBuilderHelpers\CannotRemoveTopologyBuilderCol.cs" />
     <Compile Include="Topology\TopologyConstants.cs" />
     <Compile Include="Topology\TopologyBuilderExit.cs" />
     <Compile Include="Topology\TopologyBuilderEntry.cs" />
