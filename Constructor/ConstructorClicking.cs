@@ -40,20 +40,9 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(FuelTank).ToString())
                     {
-                        if (tb.AddFuelTank())
-                        {
-                            FuelTank fuelTank = new FuelTank
-                            {
-                                Fuel = "топливо",
-                                volume = 10000
-                            };
-                            cell.Tag = fuelTank;
-                            cell.Value = rb.Image;
-                        }
-                        else
-                        {
+                        isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить ТБ");
-                        }
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
@@ -133,7 +122,7 @@ namespace GasStationMs.App
                         clickedFuelList.DisplayMember = "Fuel";
                         clickedFuelList.ValueMember = "Id";
                         clickedFuelList.DataSource = _fuelDataTable;
-                        numericUpDownVolume.Value = _selectedFuelTank.volume;
+                        numericUpDownVolume.Value = _selectedFuelTank.Volume;
                     }
                 }
             }
