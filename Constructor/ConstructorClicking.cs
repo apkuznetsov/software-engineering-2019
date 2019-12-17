@@ -1,4 +1,4 @@
-﻿using GasStationMs.App.Elements;
+using GasStationMs.App.Elements;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -31,70 +31,36 @@ namespace GasStationMs.App
                 {
                     var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
 
+                    bool isAdded = false;
                     if (rb.Name == typeof(FuelDispenser).ToString())
                     {
-                        if (tb.AddFuelDispenser())
-                        {
-                            cell.Value = rb.Image;
-                            cell.Tag = new FuelDispenser();
-                            tbClickedCell.Text = cell.Tag.ToString();
-                        }
-                        else
-                        {
+                        isAdded = tb.AddFuelDispenser(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить ТРК");
-                        }
                     }
                     else if (rb.Name == typeof(FuelTank).ToString())
                     {
-                        if (tb.AddFuelTank())
-                        {
-                            cell.Value = rb.Image;
-                            cell.Tag = new FuelTank();
-                            tbClickedCell.Text = cell.Tag.ToString();
-                        }
-                        else
-                        {
+                        isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить ТБ");
-                        }
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
-                        if (tb.AddCashCounter())
-                        {
-                            cell.Value = rb.Image;
-                            cell.Tag = new CashCounter();
-                            tbClickedCell.Text = cell.Tag.ToString();
-                        }
-                        else
-                        {
+                        isAdded = tb.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить кассу");
-                        }
                     }
                     else if (rb.Name == typeof(Entry).ToString())
                     {
-                        if (tb.AddEntry())
-                        {
-                            cell.Value = rb.Image;
-                            cell.Tag = new Entry();
-                            tbClickedCell.Text = cell.Tag.ToString();
-                        }
-                        else
-                        {
+                        isAdded = tb.AddEntry(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить въезд");
-                        }
                     }
                     else if (rb.Name == typeof(Exit).ToString())
                     {
-                        if (tb.AddExit())
-                        {
-                            cell.Value = rb.Image;
-                            cell.Tag = new Exit();
-                            tbClickedCell.Text = cell.Tag.ToString();
-                        }
-                        else
-                        {
+                        isAdded = tb.AddExit(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить выезд");
-                        }
                     }
                     else
                     {
@@ -105,9 +71,45 @@ namespace GasStationMs.App
                 {
                     tbClickedCell.Text = cell.Tag.ToString();
                     //MessageBox.Show("невозможно добавить: ячейка уже занята");
+
+                    panelClickedCell.Visible = true;
+
+                    if (cell.Tag.ToString() == "ТРК: ")
+                    {
+                        label1.Visible = false;
+                        numericUpDownVolume.Visible = false;
+                        clickedFuelList.Visible = false;
+                        textBoxChosenFuel.Visible = false;
+
+
+                        label2.Visible = true;
+                        numericUpDownFuelDispenserSpeed.Visible = true;
+                        FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
+                        _selectedFuelDispenser = clickedFuelDispenser;
+                        numericUpDownFuelDispenserSpeed.Value = clickedFuelDispenser.FuelFeedRateInLitersPerMinute;
+                    }
+                    else if (cell.Tag.ToString() == "Топливный бак: ")
+                    {
+                        label2.Visible = false;
+                        numericUpDownFuelDispenserSpeed.Visible = false;
+
+
+                        label1.Visible = true;
+                        numericUpDownVolume.Visible = true;
+                        clickedFuelList.Visible = true;
+                        textBoxChosenFuel.Visible = true;
+                        FuelTank clickedFuelTank = cell.Tag as FuelTank;
+                        _selectedFuelTank = clickedFuelTank;
+                        textBoxChosenFuel.Text = _selectedFuelTank.Fuel;
+                        clickedFuelList.DisplayMember = "Fuel";
+                        clickedFuelList.ValueMember = "Id";
+                        clickedFuelList.DataSource = _fuelDataTable;
+                        numericUpDownVolume.Value = _selectedFuelTank.Volume;
+                    }
                 }
             }
         }
+
 
         private void DeleteElement(DataGridViewImageCell cell)
         {
@@ -135,7 +137,9 @@ namespace GasStationMs.App
                 {
                     tb.DeleteExit();
                 }
-                else { }
+                else
+                {
+                }
 
                 cell.Tag = null;
                 cell.Value = null;

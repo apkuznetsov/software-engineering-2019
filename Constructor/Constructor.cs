@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
+using GasStationMs.App.Elements;
 using GasStationMs.App.Topology;
 using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using GasStationMs.Dal;
@@ -12,7 +13,9 @@ namespace GasStationMs.App
     public partial class Constructor : Form
     {
         private TopologyBuilder tb;
-
+        private DataTable _fuelDataTable;
+        private FuelDispenser _selectedFuelDispenser;
+        private FuelTank _selectedFuelTank;
         private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
@@ -60,6 +63,32 @@ namespace GasStationMs.App
                 MessageBox.Show("удалите ШЭ прежде чем удалить строку");
             }
         }
+
+        private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
+        {
+            _selectedFuelTank.Volume = (int)numericUpDownVolume.Value;
+        }
+
+        private void numericUpDownFuelDispenserSpeed_ValueChanged(object sender, EventArgs e)
+        {
+
+            _selectedFuelDispenser.FuelFeedRateInLitersPerMinute = (int)numericUpDownFuelDispenserSpeed.Value;
+        }
+
+        private void clickedFuelList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            
+            DataRowView row = clickedFuelList.SelectedItem as DataRowView;
+            var fuel = (FuelModel)row["Fuel"];
+            
+            textBoxChosenFuel.Text = fuel.Name;
+            _selectedFuelTank.Fuel = fuel.Name;
+
+        }
+
+
+
+
         #endregion
 
         #region DbButtons
@@ -135,6 +164,7 @@ namespace GasStationMs.App
             //listFuels.DataSource = dataTable;
             //listFuels.DisplayMember = "Name";
             //listFuels.ValueMember = "Id";
+            this._fuelDataTable = fuelDataTable;
             listFuels.DataSource = fuelDataTable;
             listFuels.DisplayMember = "Fuel";
             listFuels.ValueMember = "Id";
@@ -152,17 +182,12 @@ namespace GasStationMs.App
             //textBoxNewFuelName.Text = row["Name"].ToString();
             //textBoxNewFuelPrice.Text = row["Price"].ToString();
         }
-        private void buttonToModelling_Click(object sender, EventArgs e) 
-        {
-            Topology.Topology topology = tb.CreateAndGetTopology();
-            ModelingForm modelingform = new ModelingForm(topology);
-            
-            modelingform.ShowDialog();
-        }
 
         private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
         {
             ConnectionHelpers.CloseConnection(_connection);
         }
+
+        
     }
 }

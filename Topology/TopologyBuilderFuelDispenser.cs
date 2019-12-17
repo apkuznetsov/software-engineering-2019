@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GasStationMs.App.Elements;
+using System;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Topology
 {
@@ -28,31 +30,31 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public bool AddFuelDispenser()
+        public bool AddFuelDispenser(int x, int y)
         {
             if (CanAddFuelDispenser())
             {
-                FuelDispensersCount = FuelDispensersCount + 1;
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+                cell.Value = FuelDispenser.Image;
+                cell.Tag = new FuelDispenser();
+
+                FuelDispensersCount++;
+
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         private bool CanAddFuelDispenser()
         {
-            int newNumOfFuelDispensers = fuelDispensersCount + 1;
+            bool canAdd = fuelDispensersCount + 1 <= Topology.MaxFuelDispensersCount;
 
-            if (newNumOfFuelDispensers <= Topology.MaxFuelDispensersCount)
-            {
+            if (canAdd)
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public void DeleteFuelDispenser()

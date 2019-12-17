@@ -26,7 +26,7 @@ namespace GasStationMs.App.Elements
 
         public static readonly int MinNumb = 1;
         public static readonly int MaxNumb = 6;
-
+        public int FuelFeedRateInLitersPerMinute = 25;
         public static readonly int MinFuelFeedRateInLitersPerMinute = 25;
         public static readonly int MaxFuelFeedRateInLitersPerMinute = 160;
         

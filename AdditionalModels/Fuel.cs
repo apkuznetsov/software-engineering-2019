@@ -2,19 +2,11 @@
 {
     public class Fuel
     {
-        private string name;
-
         public Fuel(string name)
         {
-            this.name = name;
+            this.Name = name;
         }
 
-        public string Type
-        {
-            get
-            {
-                return name;
-            }
-        }
+        public string Name { get; }
     }
 }

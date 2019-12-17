@@ -6,6 +6,7 @@ namespace GasStationMs.App.Elements
 {
     public class FuelTank : IGasStationElement
     {
+
         #region изображение
         private static Bitmap image;
 
@@ -36,7 +37,13 @@ namespace GasStationMs.App.Elements
         private Fuel fuel;
         private int occupiedVolume;
 
-        public int Volume { get; }
+        public FuelTank()
+        {
+            volume = MinVolumeInLiters;
+            fuel = new Fuel("АИ-100");
+        }
+
+        public int Volume { get; set; }
 
         public int CriticalVolume { get; }
 
@@ -44,7 +51,11 @@ namespace GasStationMs.App.Elements
         {
             get
             {
-                return fuel.Type;
+                return fuel.Name;
+            }
+            set
+            {
+                this.fuel = new Fuel(value);
             }
         }
 
@@ -73,10 +84,10 @@ namespace GasStationMs.App.Elements
         {
             string nl = Environment.NewLine;
 
-            return
-                 "Объём: " + volume + nl +
-                 "Текущий объём: " + occupiedVolume + nl +
-                 "Топливо: " + fuel;
+            return "Топливный бак: ";
+            // "Объём: " + volume + nl +
+            //  "Текущий объём: " + occupiedVolume + nl +
+            //   "Топливо: " + fuel;
         }
     }
 }
