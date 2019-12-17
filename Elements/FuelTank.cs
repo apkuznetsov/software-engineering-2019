@@ -45,7 +45,7 @@ namespace GasStationMs.App.Elements
         {
             get
             {
-                return fuel.Type;
+                return fuel.Name;
             }
             set 
             {
