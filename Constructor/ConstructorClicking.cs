@@ -8,7 +8,7 @@ namespace GasStationMs.App
     {
         private void dgvTopology_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell) dgvTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewImageCell cell = (DataGridViewImageCell)dgvTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
             switch (e.Button)
             {
@@ -31,17 +31,12 @@ namespace GasStationMs.App
                 {
                     var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
 
+                    bool isAdded = false;
                     if (rb.Name == typeof(FuelDispenser).ToString())
                     {
-                        if (tb.AddFuelDispenser())
-                        {
-                            cell.Value = rb.Image;
-                            cell.Tag = new FuelDispenser();
-                        }
-                        else
-                        {
+                        isAdded = tb.AddFuelDispenser(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить ТРК");
-                        }
                     }
                     else if (rb.Name == typeof(FuelTank).ToString())
                     {
