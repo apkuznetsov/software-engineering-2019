@@ -192,6 +192,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Cars\32x17\car%2832x17%29-up.png" />
+    <None Include="Resources\Cars\32x17\car%2832x17%29-right.png" />
+    <None Include="Resources\Cars\32x17\car%2832x17%29-left.png" />
+    <None Include="Resources\Cars\32x17\car%2832x17%29-down.png" />
+    <None Include="Resources\Cars\car%2864x34%29-up.png" />
+    <None Include="Resources\Cars\car%2864x34%29-right.png" />
+    <None Include="Resources\Cars\car%2864x34%29-left.png" />
+    <None Include="Resources\Cars\car%2864x34%29-down.png" />
     <None Include="Resources\ServiceArea.png" />
     <None Include="Resources\info.png" />
     <None Include="Resources\cashbox.png" />
