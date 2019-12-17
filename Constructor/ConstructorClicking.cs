@@ -1,4 +1,4 @@
-﻿using GasStationMs.App.Elements;
+using GasStationMs.App.Elements;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -40,7 +40,9 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(FuelTank).ToString())
                     {
-
+                        isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
+                            MessageBox.Show("невозможно добавить ТБ");
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
