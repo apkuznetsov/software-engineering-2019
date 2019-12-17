@@ -58,15 +58,9 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(Exit).ToString())
                     {
-                        if (tb.AddExit())
-                        {
-                            cell.Value = rb.Image;
-                            cell.Tag = new Exit();
-                        }
-                        else
-                        {
+                        isAdded = tb.AddExit(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить выезд");
-                        }
                     }
                     else
                     {

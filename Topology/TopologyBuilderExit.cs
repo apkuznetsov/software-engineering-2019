@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GasStationMs.App.Elements;
+using System;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Topology
 {
@@ -29,31 +31,31 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public bool AddExit()
+        public bool AddExit(int x, int y)
         {
             if (CanAddExit())
             {
-                exitsCount++;
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+                cell.Value = Exit.Image;
+                cell.Tag = new Exit();
+
+                ExitsCount++;
+
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         private bool CanAddExit()
         {
-            int newNumOfExits = exitsCount + 1;
+            bool canAdd = exitsCount + 1 <= Topology.MaxExitsCount;
 
-            if (newNumOfExits <= Topology.MaxExitsCount)
-            {
+            if (canAdd)
                 return true;
-            }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public void DeleteExit()
