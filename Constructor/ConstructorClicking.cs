@@ -46,15 +46,9 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
-                        if (tb.AddCashCounter())
-                        {
-                            cell.Value = rb.Image;
-                            cell.Tag = new CashCounter();
-                        }
-                        else
-                        {
+                        isAdded = tb.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить кассу");
-                        }
                     }
                     else if (rb.Name == typeof(Entry).ToString())
                     {
