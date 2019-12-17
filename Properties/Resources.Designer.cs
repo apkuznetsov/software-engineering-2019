@@ -193,9 +193,9 @@ namespace GasStationMs.App.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Entrance {
+        internal static System.Drawing.Bitmap Entry {
             get {
-                object obj = ResourceManager.GetObject("Entrance", resourceCulture);
+                object obj = ResourceManager.GetObject("Entry", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

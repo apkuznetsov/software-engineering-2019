@@ -192,7 +192,7 @@
             // 
             this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbEntry.AutoSize = true;
-            this.rbEntry.Image = global::GasStationMs.App.Properties.Resources.Entrance;
+            this.rbEntry.Image = global::GasStationMs.App.Properties.Resources.Entry;
             this.rbEntry.Location = new System.Drawing.Point(717, 56);
             this.rbEntry.Name = "rbEntry";
             this.rbEntry.Size = new System.Drawing.Size(36, 36);

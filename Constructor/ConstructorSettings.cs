@@ -52,6 +52,7 @@ namespace GasStationMs.App
             FuelDispenser.Image = new Bitmap(Properties.Resources.Fuel, Settings.CellSizeInPx, Settings.CellSizeInPx);
             FuelTank.Image = new Bitmap(Properties.Resources.FuelTank, Settings.CellSizeInPx, Settings.CellSizeInPx);
             CashCounter.Image = new Bitmap(Properties.Resources.CashCounter, Settings.CellSizeInPx, Settings.CellSizeInPx);
+            Entry.Image = new Bitmap(Properties.Resources.Entry, Settings.CellSizeInPx, Settings.CellSizeInPx);
             ServiceArea.Image = new Bitmap(Properties.Resources.ServiceArea, Settings.CellSizeInPx, Settings.CellSizeInPx);          
         }
     }
