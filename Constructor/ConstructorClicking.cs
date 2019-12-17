@@ -40,9 +40,7 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(FuelTank).ToString())
                     {
-                        isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить ТБ");
+
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
@@ -52,15 +50,9 @@ namespace GasStationMs.App
                     }
                     else if (rb.Name == typeof(Entry).ToString())
                     {
-                        if (tb.AddEntry())
-                        {
-                            cell.Value = rb.Image;
-                            cell.Tag = new Entry();
-                        }
-                        else
-                        {
+                        isAdded = tb.AddEntry(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
                             MessageBox.Show("невозможно добавить въезд");
-                        }
                     }
                     else if (rb.Name == typeof(Exit).ToString())
                     {
