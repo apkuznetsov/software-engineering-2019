@@ -8,7 +8,7 @@ namespace GasStationMs.App
     {
         private void dgvTopology_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)dgvTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewImageCell cell = (DataGridViewImageCell) dgvTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
             switch (e.Button)
             {
@@ -37,7 +37,6 @@ namespace GasStationMs.App
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new FuelDispenser();
-                            
                         }
                         else
                         {
@@ -48,13 +47,13 @@ namespace GasStationMs.App
                     {
                         if (tb.AddFuelTank())
                         {
+                            FuelTank fuelTank = new FuelTank
+                            {
+                                Fuel = "топливо",
+                                volume = 10000
+                            };
+                            cell.Tag = fuelTank;
                             cell.Value = rb.Image;
-                            FuelTank fueltank = new FuelTank();
-                            fueltank.Fuel="топливо";
-                            fueltank.volume = 10000;
-                            cell.Tag = fueltank;
-
-
                         }
                         else
                         {
@@ -67,7 +66,6 @@ namespace GasStationMs.App
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new CashCounter();
-                            
                         }
                         else
                         {
@@ -80,7 +78,6 @@ namespace GasStationMs.App
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Entry();
-                           
                         }
                         else
                         {
@@ -93,7 +90,6 @@ namespace GasStationMs.App
                         {
                             cell.Value = rb.Image;
                             cell.Tag = new Exit();
-                            
                         }
                         else
                         {
@@ -111,7 +107,7 @@ namespace GasStationMs.App
                     //MessageBox.Show("невозможно добавить: ячейка уже занята");
 
                     panelClickedCell.Visible = true;
-                    
+
                     if (cell.Tag.ToString() == "ТРК: ")
                     {
                         label1.Visible = false;
@@ -125,9 +121,8 @@ namespace GasStationMs.App
                         FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
                         _selectedFuelDispenser = clickedFuelDispenser;
                         numericUpDownFuelDispenserSpeed.Value = clickedFuelDispenser.FuelFeedRateInLitersPerMinute;
-
-                    
-                    } else if (cell.Tag.ToString() == "Топливный бак: ")
+                    }
+                    else if (cell.Tag.ToString() == "Топливный бак: ")
                     {
                         label2.Visible = false;
                         numericUpDownFuelDispenserSpeed.Visible = false;
@@ -144,12 +139,11 @@ namespace GasStationMs.App
                         clickedFuelList.ValueMember = "Id";
                         clickedFuelList.DataSource = _fuelDataTable;
                         numericUpDownVolume.Value = _selectedFuelTank.volume;
-
                     }
                 }
             }
         }
-        
+
 
         private void DeleteElement(DataGridViewImageCell cell)
         {
@@ -177,7 +171,9 @@ namespace GasStationMs.App
                 {
                     tb.DeleteExit();
                 }
-                else { }
+                else
+                {
+                }
 
                 cell.Tag = null;
                 cell.Value = null;
