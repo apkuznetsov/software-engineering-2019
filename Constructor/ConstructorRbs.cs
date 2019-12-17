@@ -1,15 +1,15 @@
-﻿using GasStationMs.App.Elements;
+using GasStationMs.App.Elements;
 using System;
 
 namespace GasStationMs.App
 {
     public partial class Constructor
     {
-        bool isCheckedradioButtonFuelDispenser = false;
-        bool isCheckedradioButtonFuelTank = false;
-        bool isCheckedRbCashCounter = false;
-        bool isCheckedRbEntry = false;
-        bool isCheckedRbExit;
+        private bool isCheckedradioButtonFuelDispenser = false;
+        private bool isCheckedradioButtonFuelTank = false;
+        private bool isCheckedRbCashCounter = false;
+        private bool isCheckedRbEntry = false;
+        private bool isCheckedRbExit = false;
 
         private void SetRbsNames()
         {
