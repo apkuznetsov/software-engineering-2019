@@ -66,7 +66,7 @@ namespace GasStationMs.App
 
         private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
         {
-            _selectedFuelTank.volume = (int)numericUpDownVolume.Value;
+            _selectedFuelTank.Volume = (int)numericUpDownVolume.Value;
         }
 
         private void numericUpDownFuelDispenserSpeed_ValueChanged(object sender, EventArgs e)

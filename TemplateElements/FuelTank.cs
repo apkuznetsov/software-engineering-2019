@@ -43,7 +43,7 @@ namespace GasStationMs.App.Elements
             fuel = new Fuel("АИ-100");
         }
 
-        public int Volume { get; }
+        public int Volume { get; set; }
 
         public int CriticalVolume { get; }
 
