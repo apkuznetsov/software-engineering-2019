@@ -40,7 +40,7 @@ namespace GasStationMs.App.Topology
                 cell.Value = Entry.Image;
                 cell.Tag = new Entry();
 
-                FuelDispensersCount++;
+                EntriesCount++;
 
                 return true;
             }
