@@ -259,7 +259,7 @@ namespace GasStationMs.App.Topology
             return (int)(RowsCount * ColsCount * Topology.ServiceAreaInShares);
         }
 
-        public Topology CreateAndGetTopology()
+        public Topology ToTopology()
         {
             IGasStationElement[,] gseArr = new IGasStationElement[field.RowCount, field.ColumnCount];
 
