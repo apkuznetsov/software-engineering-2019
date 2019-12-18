@@ -1,4 +1,4 @@
-﻿using GasStationMs.App.Elements;
+using GasStationMs.App.Elements;
 using GasStationMs.App.TemplateElements;
 using System;
 using System.Windows.Forms;
@@ -61,6 +61,14 @@ namespace GasStationMs.App.Topology
                 if (isNewCountOk)
                     return true;
             }
+
+            return false;
+        }
+
+        private bool IsRoadUnderServiceArea(int x, int y)
+        {
+            if (x >= serviceAreaBorderColIndex)
+                return true;
 
             return false;
         }
