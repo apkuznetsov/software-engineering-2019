@@ -51,6 +51,7 @@
             this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
             this.clickedFuelList = new System.Windows.Forms.ComboBox();
             this.btnSaveTopology = new System.Windows.Forms.Button();
+            this.btnDownloadTopology = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -334,11 +335,22 @@
             this.btnSaveTopology.UseVisualStyleBackColor = true;
             this.btnSaveTopology.Click += new System.EventHandler(this.btnSaveTopology_Click);
             // 
+            // btnDownloadTopology
+            // 
+            this.btnDownloadTopology.Location = new System.Drawing.Point(109, 12);
+            this.btnDownloadTopology.Name = "btnDownloadTopology";
+            this.btnDownloadTopology.Size = new System.Drawing.Size(75, 23);
+            this.btnDownloadTopology.TabIndex = 0;
+            this.btnDownloadTopology.Text = "Загрузить";
+            this.btnDownloadTopology.UseVisualStyleBackColor = true;
+            this.btnDownloadTopology.Click += new System.EventHandler(this.btnDownloadTopology_Click);
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.btnDownloadTopology);
             this.Controls.Add(this.btnSaveTopology);
             this.Controls.Add(this.panelClickedCell);
             this.Controls.Add(this.rbExit);
@@ -395,6 +407,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveTopology;
+        private System.Windows.Forms.Button btnDownloadTopology;
     }
 }
 
