@@ -55,6 +55,10 @@ namespace GasStationMs.App
                     {
                         MessageBox.Show("невозможно добавить ТБ");
                     }
+                    else if (rb.Name == typeof(Entry).ToString())
+                    {
+                        MessageBox.Show("невозможно добавить Въезд");
+                    }
                 }
                 else if (cell.Tag is ServiceArea)
                 {
@@ -141,7 +145,8 @@ namespace GasStationMs.App
                 }
                 else if (cell.Tag is Entry)
                 {
-                    tb.DeleteEntry();
+                    tb.DeleteEntry(cell.ColumnIndex, cell.RowIndex);
+                    return;
                 }
                 else if (cell.Tag is Exit)
                 {

@@ -65,14 +65,24 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
-        public void DeleteEntry()
+        public void DeleteEntry(int x, int y)
         {
             if (entriesCount < 0)
-            {
                 throw new ArgumentOutOfRangeException();
-            }
 
-            entriesCount--;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool canDelete = cell.Tag is Entry;
+
+            if (canDelete)
+            {
+                cell.Tag = null;
+                cell.Tag = new Road();
+                cell.Value = Road.Image;
+
+                entriesCount--;
+            }
+            else
+                throw new InvalidCastException();
         }
     }
 }
