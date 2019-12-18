@@ -1,4 +1,4 @@
-using GasStationMs.App.Elements;
+﻿using GasStationMs.App.Elements;
 using GasStationMs.App.TemplateElements;
 using System;
 using System.Windows.Forms;
@@ -54,7 +54,8 @@ namespace GasStationMs.App.Topology
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool isRoad = cell.Tag is Road;
 
-            if (isRoad)
+            if (isRoad &&
+                !IsRoadUnderServiceArea(x, y))
             {
                 bool isNewCountOk = entriesCount + 1 <= Topology.MaxEntriesCount;
 
