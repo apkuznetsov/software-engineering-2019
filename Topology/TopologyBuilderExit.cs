@@ -55,7 +55,8 @@ namespace GasStationMs.App.Topology
             bool isRoad = cell.Tag is Road;
 
             if (isRoad &&
-                !IsRoadUnderServiceArea(x, y))
+                !IsRoadUnderServiceArea(x, y) &&
+                !IsRightBeforeServiceAreaBorder(x, y))
             {
                 bool isNewCountOk = exitsCount + 1 <= Topology.MaxExitsCount;
 
@@ -64,6 +65,16 @@ namespace GasStationMs.App.Topology
             }
 
             return false;
+        }
+
+        private bool IsRightBeforeServiceAreaBorder(int x, int y)
+        {
+            int colIndexRightBeforeServiceAreaBorder = serviceAreaBorderColIndex - 1;
+
+            if (x == colIndexRightBeforeServiceAreaBorder)
+                return true;
+            else
+                return false;
         }
 
         public void DeleteExit(int x, int y)
