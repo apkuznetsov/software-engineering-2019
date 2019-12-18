@@ -171,6 +171,16 @@ namespace GasStationMs.App.Topology
             return this[p] is Road;
         }
 
+        public bool IsServiceArea(int x, int y)
+        {
+            return this[x, y] is ServiceArea;
+        }
+
+        public bool IsServiceArea(Point p)
+        {
+            return this[p] is ServiceArea;
+        }
+
         public void Save()
         {
             Stream savingFileStream = File.Create("Топология" + ".tplg");
