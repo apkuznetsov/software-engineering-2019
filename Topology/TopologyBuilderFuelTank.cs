@@ -53,7 +53,8 @@ namespace GasStationMs.App.Topology
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool isServiceArea = cell.Tag is ServiceArea;
 
-            if (isServiceArea)
+            if (isServiceArea &&
+                IsThroughOneRowAfterServiceAreaBorder(x, y))
             {
                 bool isNewCountRight = fuelTanksCount + 1 <= serviceAreaInCells;
 
