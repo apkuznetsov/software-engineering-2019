@@ -332,6 +332,7 @@
             this.btnSaveTopology.TabIndex = 16;
             this.btnSaveTopology.Text = "Сохранить";
             this.btnSaveTopology.UseVisualStyleBackColor = true;
+            this.btnSaveTopology.Click += new System.EventHandler(this.btnSaveTopology_Click);
             // 
             // Constructor
             // 

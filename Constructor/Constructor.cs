@@ -188,6 +188,10 @@ namespace GasStationMs.App
             ConnectionHelpers.CloseConnection(_connection);
         }
 
-        
+        private void btnSaveTopology_Click(object sender, EventArgs e)
+        {
+            Topology.Topology topology = tb.ToTopology();
+            topology.Save();
+        }
     }
 }
