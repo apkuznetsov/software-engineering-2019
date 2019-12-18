@@ -57,6 +57,30 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
+        //private bool AreCellsAroundFree(int x, int y)
+        //{
+        //    bool isCellOnEdge = IsCellOnEdgeOrOut(x, y);
+
+        //    return false;
+        //}
+
+        private bool IsCellOnEdgeOrOut(int x, int y)
+        {
+            bool isOnLeftColOrLess = x <= 0;
+            bool isOnRightColOrMore = x >= field.ColumnCount;
+
+            bool isOnTopRowOrUpper = y <= 0;
+            bool isOnBotRowOrLower = y >= field.RowCount;
+
+            if (isOnLeftColOrLess ||
+                isOnRightColOrMore ||
+                isOnTopRowOrUpper ||
+                isOnBotRowOrLower)
+                return true;
+
+            return false;
+        }
+
         public void DeleteFuelDispenser()
         {
             if (fuelDispensersCount < 0)
