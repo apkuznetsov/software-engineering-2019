@@ -1,5 +1,6 @@
-﻿using GasStationMs.App.Elements;
+using GasStationMs.App.Elements;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GasStationMs.App.Topology
@@ -56,6 +57,28 @@ namespace GasStationMs.App.Topology
                 return true;
 
             return false;
+        }
+
+
+        private bool DoesPointExist(int x, int y)
+        {
+            bool isExLess = x < 0;
+            if (isExLess)
+                return false;
+
+            bool isExMore = x > field.ColumnCount - 1;
+            if (isExMore)
+                return false;
+            bool isEyUpper = y < 0;
+
+            if (isEyUpper)
+
+                return false;
+            bool isEyLower = y > field.RowCount - 1;
+            if (isEyLower)
+
+                return false;
+            return true;
         }
 
         public void DeleteCashCounter()
