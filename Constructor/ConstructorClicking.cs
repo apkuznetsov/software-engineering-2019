@@ -151,6 +151,10 @@ namespace GasStationMs.App
                 {
                     return;
                 }
+                else if (cell.Tag is Road)
+                {
+                    return;
+                }
 
                 cell.Tag = null;
                 cell.Value = null;
