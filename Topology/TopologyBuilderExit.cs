@@ -1,4 +1,5 @@
 ﻿using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 using System;
 using System.Windows.Forms;
 
@@ -51,27 +52,37 @@ namespace GasStationMs.App.Topology
         private bool CanAddExit(int x, int y)
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
-            bool isExit = cell.Tag is Exit;
+            bool isRoad = cell.Tag is Road;
 
-            if (isExit)
+            if (isRoad)
             {
                 bool isNewCountOk = exitsCount + 1 <= Topology.MaxExitsCount;
 
                 if (isNewCountOk)
-                return true;
+                    return true;
             }
 
             return false;
         }
 
-        public void DeleteExit()
+        public void DeleteExit(int x, int y)
         {
             if (exitsCount < 0)
-            {
                 throw new ArgumentOutOfRangeException();
-            }
 
-            exitsCount--;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool canDelete = cell.Tag is Exit;
+
+            if (canDelete)
+            {
+                cell.Tag = null;
+                cell.Tag = new Road();
+                cell.Value = Road.Image;
+
+                exitsCount--;
+            }
+            else
+                throw new InvalidCastException();
         }
     }
 }
