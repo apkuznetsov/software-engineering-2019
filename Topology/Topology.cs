@@ -1,4 +1,5 @@
 ﻿using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 using System;
 using System.Drawing;
 using System.IO;
@@ -36,6 +37,22 @@ namespace GasStationMs.App.Topology
 
         public int ServiceAreaBorderColIndex { get; }
 
+        public int LastX
+        {
+            get
+            {
+                return ColsCount - 1;
+            }
+        }
+
+        public int LastY
+        {
+            get
+            {
+                return RowsCount - 1;
+            }
+        }
+
         public Point FirstBorderPoint
         {
             get
@@ -53,7 +70,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (y >= ColsCount)
+                if (y > LastY)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -63,12 +80,12 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (x >= RowsCount)
+                if (x > LastX)
                 {
                     throw new IndexOutOfRangeException();
                 }
 
-                return field[x, y];
+                return field[y, x];
             }
         }
 
@@ -158,6 +175,26 @@ namespace GasStationMs.App.Topology
         public bool IsFuelTank(Point p)
         {
             return this[p] is FuelTank;
+        }
+
+        public bool IsRoad(int x, int y)
+        {
+            return this[x, y] is Road;
+        }
+
+        public bool IsRoad(Point p)
+        {
+            return this[p] is Road;
+        }
+
+        public bool IsServiceArea(int x, int y)
+        {
+            return this[x, y] is ServiceArea;
+        }
+
+        public bool IsServiceArea(Point p)
+        {
+            return this[p] is ServiceArea;
         }
 
         public void Save()

@@ -15,6 +15,10 @@ namespace GasStationMs.App.Topology
         public TopologyBuilder(DataGridView dgv)
         {
             field = dgv ?? throw new NullReferenceException();
+
+            AddDgvCols(Topology.MinColsCount);
+            field.RowCount = Topology.MinRowsCount;
+
             SetupDgv();
 
             serviceAreaInCells = RecalculateServiceArea();
@@ -23,11 +27,19 @@ namespace GasStationMs.App.Topology
             SetupRoad();
         }
 
+        public TopologyBuilder(DataGridView dgv, Topology topology)
+        {
+            field = dgv ?? throw new NullReferenceException();
+            if (topology == null)
+                throw new NullReferenceException();
+
+            SetupDgv();
+
+            ToDgv(topology);
+        }
+
         private void SetupDgv()
         {
-            AddDgvCols(Topology.MinColsCount);
-            field.RowCount = Topology.MinRowsCount;
-
             field.RowHeadersVisible = false;
             field.ColumnHeadersVisible = false;
 
@@ -54,7 +66,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public void SetupServiceArea()
+        private void SetupServiceArea()
         {
             int lastRowIndex = field.RowCount - 1;
 
@@ -84,7 +96,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public void SetupRoad()
+        private void SetupRoad()
         {
             DataGridViewImageCell cell;
             for (int currCol = 0, lastRow = field.Rows.GetLastRow(DataGridViewElementStates.Visible); currCol < field.ColumnCount; currCol++)
@@ -93,6 +105,68 @@ namespace GasStationMs.App.Topology
                 cell.Tag = new Road();
                 cell.Value = Road.Image;
             }
+        }
+
+        private void ToDgv(Topology topology)
+        {
+            field.ColumnCount = topology.ColsCount;
+            field.RowCount = topology.RowsCount;
+
+            serviceAreaBorderColIndex = topology.ServiceAreaBorderColIndex;
+
+            int serviceAreaBorderColsNum = field.ColumnCount - serviceAreaBorderColIndex;
+            int serviceAreaBorderRowsNum = field.RowCount - 1;
+            serviceAreaInCells = serviceAreaBorderColsNum * serviceAreaBorderRowsNum;
+
+            IGasStationElement gse;
+            for (int y = 0; y <= topology.LastY; y++)
+                for (int x = 0; x <= topology.LastX; x++)
+                {
+                    gse = topology[x, y];
+
+                    if (gse == null)
+                        AddBlank(x, y);
+                    else if (gse is CashCounter)
+                        AddCashCounter(x, y);
+                    else if (gse is Entry)
+                        AddEntry(x, y);
+                    else if (gse is Exit)
+                        AddExit(x, y);
+                    else if (gse is FuelDispenser)
+                        AddFuelDispenser(x, y);
+                    else if (gse is FuelTank)
+                        AddFuelTank(x, y);
+                    else if (gse is Road)
+                        AddRoad(x, y);
+                    else if (gse is ServiceArea)
+                        AddServiceArea(x, y);
+                    else
+                        throw new InvalidCastException();
+                }
+        }
+
+        private void AddBlank(int x, int y)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = null;
+            cell.Tag = null;
+        }
+
+        private void AddRoad(int x, int y)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = Road.Image;
+            cell.Tag = new Road();
+        }
+
+        private void AddServiceArea(int x, int y)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = ServiceArea.Image;
+            cell.Tag = new ServiceArea();
         }
 
         public int ColsCount
@@ -271,7 +345,7 @@ namespace GasStationMs.App.Topology
                     cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
                     //if (cell.Tag != null)
                     //{
-                        gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
+                    gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
                     //}
                     //else
                     //{
