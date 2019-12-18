@@ -1,4 +1,5 @@
 ﻿using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 using System;
 using System.Drawing;
 using System.IO;
@@ -158,6 +159,16 @@ namespace GasStationMs.App.Topology
         public bool IsFuelTank(Point p)
         {
             return this[p] is FuelTank;
+        }
+
+        public bool IsRoad(int x, int y)
+        {
+            return this[x, y] is Road;
+        }
+
+        public bool IsRoad(Point p)
+        {
+            return this[p] is Road;
         }
 
         public void Save()
