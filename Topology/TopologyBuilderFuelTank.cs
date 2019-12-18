@@ -33,7 +33,7 @@ namespace GasStationMs.App.Topology
 
         public bool AddFuelTank(int x, int y)
         {
-            if (CanAddFuelTank())
+            if (CanAddFuelTank(x, y))
             {
                 DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
@@ -48,12 +48,18 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
-        private bool CanAddFuelTank()
+        private bool CanAddFuelTank(int x, int y)
         {
-            bool canAdd = fuelTanksCount + 1 <= serviceAreaInCells;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool isServiceArea = cell.Tag is ServiceArea;
 
-            if (canAdd)
-                return true;
+            if (isServiceArea)
+            {
+                bool isNewCountRight = fuelTanksCount + 1 <= serviceAreaInCells;
+
+                if (isNewCountRight)
+                    return true;
+            }
 
             return false;
         }

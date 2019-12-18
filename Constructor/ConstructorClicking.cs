@@ -27,22 +27,16 @@ namespace GasStationMs.App
         {
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
             {
+                var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
+
                 if (cell.Tag == null)
                 {
-                    var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
-
                     bool isAdded = false;
                     if (rb.Name == typeof(FuelDispenser).ToString())
                     {
                         isAdded = tb.AddFuelDispenser(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить ТРК");
-                    }
-                    else if (rb.Name == typeof(FuelTank).ToString())
-                    {
-                        isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить ТБ");
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
@@ -62,9 +56,19 @@ namespace GasStationMs.App
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить выезд");
                     }
-                    else
+                    else if (rb.Name == typeof(FuelTank).ToString())
                     {
-                        cell.Value = rb.Image;
+                        MessageBox.Show("невозможно добавить ТБ");
+                    }
+                }
+                else if (cell.Tag is ServiceArea)
+                {
+                    bool isAdded = false;
+                    if (rb.Name == typeof(FuelTank).ToString())
+                    {
+                        isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
+                            MessageBox.Show("невозможно добавить ТБ");
                     }
                 }
                 else
