@@ -67,12 +67,6 @@ namespace GasStationMs.App
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить ТБ");
                     }
-                    else if (rb.Name == typeof(Exit).ToString())
-                    {
-                        isAdded = tb.AddExit(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить выезд");
-                    }
                 }
                 else if (cell.Tag is Road)
                 {
@@ -82,6 +76,12 @@ namespace GasStationMs.App
                         isAdded = tb.AddEntry(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить въезд");
+                    }
+                    else if (rb.Name == typeof(Exit).ToString())
+                    {
+                        isAdded = tb.AddExit(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
+                            MessageBox.Show("невозможно добавить выезд");
                     }
                 }
                 else
@@ -154,7 +154,8 @@ namespace GasStationMs.App
                 }
                 else if (cell.Tag is Exit)
                 {
-                    tb.DeleteExit();
+                    tb.DeleteExit(cell.ColumnIndex, cell.RowIndex);
+                    return;
                 }
                 else if (cell.Tag is ServiceArea)
                 {
