@@ -73,6 +73,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
+    <Compile Include="TemplateElements\Road.cs" />
     <Compile Include="TemplateElements\ServiceArea.cs" />
     <Compile Include="Topology\TopologyBuilderHelpers\BlankTopologyBuilderCol.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
