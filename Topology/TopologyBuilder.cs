@@ -54,6 +54,8 @@ namespace GasStationMs.App.Topology
 
         public void SetupServiceArea()
         {
+            int lastRowIndex = field.RowCount - 1;
+
             int сellsLeftToAdd = serviceAreaInCells;
             int cellsAdded = 0;
 
@@ -61,7 +63,7 @@ namespace GasStationMs.App.Topology
 
             for (int currCol = field.ColumnCount - 1; currCol >= 0; currCol--)
             {
-                for (int currRow = 0; currRow < field.RowCount; currRow++)
+                for (int currRow = 0; currRow < lastRowIndex; currRow++)
                 {
                     cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
                     cell.Tag = new ServiceArea();
