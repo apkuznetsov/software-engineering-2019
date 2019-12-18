@@ -142,8 +142,9 @@ namespace GasStationMs.App
                 {
                     tb.DeleteExit();
                 }
-                else
+                else if (cell.Tag is ServiceArea)
                 {
+                    return;
                 }
 
                 cell.Tag = null;
