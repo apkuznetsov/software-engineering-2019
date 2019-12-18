@@ -54,7 +54,9 @@ namespace GasStationMs.App.Topology
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool isRoad = cell.Tag is Road;
 
-            if (isRoad)
+            if (isRoad &&
+                !IsRoadUnderServiceArea(x, y) &&
+                !IsRightBeforeServiceAreaBorder(x, y))
             {
                 bool isNewCountOk = exitsCount + 1 <= Topology.MaxExitsCount;
 
@@ -63,6 +65,16 @@ namespace GasStationMs.App.Topology
             }
 
             return false;
+        }
+
+        private bool IsRightBeforeServiceAreaBorder(int x, int y)
+        {
+            int colIndexRightBeforeServiceAreaBorder = serviceAreaBorderColIndex - 1;
+
+            if (x == colIndexRightBeforeServiceAreaBorder)
+                return true;
+            else
+                return false;
         }
 
         public void DeleteExit(int x, int y)

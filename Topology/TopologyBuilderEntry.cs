@@ -53,14 +53,25 @@ namespace GasStationMs.App.Topology
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool isRoad = cell.Tag is Road;
+            bool isZerothCol = x == 0;
 
-            if (isRoad)
+            if (isRoad &&
+                !IsRoadUnderServiceArea(x, y) &&
+                !isZerothCol)
             {
                 bool isNewCountOk = entriesCount + 1 <= Topology.MaxEntriesCount;
 
                 if (isNewCountOk)
                     return true;
             }
+
+            return false;
+        }
+
+        private bool IsRoadUnderServiceArea(int x, int y)
+        {
+            if (x >= serviceAreaBorderColIndex)
+                return true;
 
             return false;
         }

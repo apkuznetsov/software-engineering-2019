@@ -40,7 +40,7 @@ namespace GasStationMs.App.Elements
 
         public FuelTank()
         {
-            volume = MinVolumeInLiters;
+            Volume = MinVolumeInLiters;
             fuel = new Fuel("АИ-100");
         }
 

@@ -53,7 +53,8 @@ namespace GasStationMs.App.Topology
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool isServiceArea = cell.Tag is ServiceArea;
 
-            if (isServiceArea)
+            if (isServiceArea &&
+                IsThroughOneRowAfterServiceAreaBorder(x, y))
             {
                 bool isNewCountRight = fuelTanksCount + 1 <= serviceAreaInCells;
 
@@ -62,6 +63,34 @@ namespace GasStationMs.App.Topology
             }
 
             return false;
+        }
+
+        private bool IsThroughOneRowAfterServiceAreaBorder(int x, int y)
+        {
+            bool isAfterBorderCol = x > serviceAreaBorderColIndex;
+
+            if (isAfterBorderCol)
+            {
+                bool isServiceAreaBorderColIndexEven = (serviceAreaBorderColIndex % 2) == 0;
+                bool isExEven = (x % 2) == 0;
+
+                if (isServiceAreaBorderColIndexEven)
+                {
+                    if (!isExEven)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                {
+                    if (isExEven)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            else
+                return false;
         }
 
         public void DeleteFuelTank(int x, int y)
