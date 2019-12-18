@@ -1,4 +1,4 @@
-﻿using GasStationMs.App.Elements;
+using GasStationMs.App.Elements;
 using System;
 using System.Windows.Forms;
 
@@ -76,6 +76,15 @@ namespace GasStationMs.App.Topology
                 isOnRightColOrMore ||
                 isOnTopRowOrUpper ||
                 isOnBotRowOrLower)
+                return true;
+
+            return false;
+        }
+
+        private bool IsCellBlank(int x, int y)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            if (cell.Tag == null)
                 return true;
 
             return false;
