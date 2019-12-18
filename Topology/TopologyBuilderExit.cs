@@ -33,7 +33,7 @@ namespace GasStationMs.App.Topology
 
         public bool AddExit(int x, int y)
         {
-            if (CanAddExit())
+            if (CanAddExit(x, y))
             {
                 DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
@@ -48,12 +48,18 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
-        private bool CanAddExit()
+        private bool CanAddExit(int x, int y)
         {
-            bool canAdd = exitsCount + 1 <= Topology.MaxExitsCount;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool isExit = cell.Tag is Exit;
 
-            if (canAdd)
+            if (isExit)
+            {
+                bool isNewCountOk = exitsCount + 1 <= Topology.MaxExitsCount;
+
+                if (isNewCountOk)
                 return true;
+            }
 
             return false;
         }
