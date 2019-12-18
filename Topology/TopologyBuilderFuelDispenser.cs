@@ -63,10 +63,10 @@ namespace GasStationMs.App.Topology
         private bool IsCellOnEdgeOrOut(int x, int y)
         {
             bool isOnLeftColOrLess = x <= 0;
-            bool isOnRightColOrMore = x >= field.ColumnCount;
+            bool isOnRightColOrMore = x >= field.ColumnCount - 1;
 
             bool isOnTopRowOrUpper = y <= 0;
-            bool isOnBotRowOrLower = y >= field.RowCount;
+            bool isOnBotRowOrLower = y >= field.RowCount - 1;
 
             if (isOnLeftColOrLess ||
                 isOnRightColOrMore ||
