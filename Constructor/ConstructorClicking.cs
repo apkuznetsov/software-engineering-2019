@@ -1,4 +1,5 @@
 using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -27,10 +28,10 @@ namespace GasStationMs.App
         {
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
             {
+                var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
+
                 if (cell.Tag == null)
                 {
-                    var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
-
                     bool isAdded = false;
                     if (rb.Name == typeof(FuelDispenser).ToString())
                     {
@@ -38,19 +39,39 @@ namespace GasStationMs.App
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить ТРК");
                     }
-                    else if (rb.Name == typeof(FuelTank).ToString())
-                    {
-                        isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить ТБ");
-                    }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
                         isAdded = tb.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить кассу");
                     }
+                    else if (rb.Name == typeof(FuelTank).ToString())
+                    {
+                        MessageBox.Show("невозможно добавить ТБ");
+                    }
                     else if (rb.Name == typeof(Entry).ToString())
+                    {
+                        MessageBox.Show("невозможно добавить въезд");
+                    }
+                    else if (rb.Name == typeof(Exit).ToString())
+                    {
+                        MessageBox.Show("невозможно добавить выезд");
+                    }
+                }
+                else if (cell.Tag is ServiceArea)
+                {
+                    bool isAdded = false;
+                    if (rb.Name == typeof(FuelTank).ToString())
+                    {
+                        isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
+                            MessageBox.Show("невозможно добавить ТБ");
+                    }
+                }
+                else if (cell.Tag is Road)
+                {
+                    bool isAdded = false;
+                    if (rb.Name == typeof(Entry).ToString())
                     {
                         isAdded = tb.AddEntry(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
@@ -61,10 +82,6 @@ namespace GasStationMs.App
                         isAdded = tb.AddExit(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить выезд");
-                    }
-                    else
-                    {
-                        cell.Value = rb.Image;
                     }
                 }
                 else
@@ -123,7 +140,8 @@ namespace GasStationMs.App
                 }
                 else if (cell.Tag is FuelTank)
                 {
-                    tb.DeleteFuelTank();
+                    tb.DeleteFuelTank(cell.ColumnIndex, cell.RowIndex);
+                    return;
                 }
                 else if (cell.Tag is CashCounter)
                 {
@@ -131,14 +149,21 @@ namespace GasStationMs.App
                 }
                 else if (cell.Tag is Entry)
                 {
-                    tb.DeleteEntry();
+                    tb.DeleteEntry(cell.ColumnIndex, cell.RowIndex);
+                    return;
                 }
                 else if (cell.Tag is Exit)
                 {
-                    tb.DeleteExit();
+                    tb.DeleteExit(cell.ColumnIndex, cell.RowIndex);
+                    return;
                 }
-                else
+                else if (cell.Tag is ServiceArea)
                 {
+                    return;
+                }
+                else if (cell.Tag is Road)
+                {
+                    return;
                 }
 
                 cell.Tag = null;

@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App
 {
@@ -53,7 +54,9 @@ namespace GasStationMs.App
             FuelTank.Image = new Bitmap(Properties.Resources.FuelTank, Settings.CellSizeInPx, Settings.CellSizeInPx);
             CashCounter.Image = new Bitmap(Properties.Resources.CashCounter, Settings.CellSizeInPx, Settings.CellSizeInPx);
             Entry.Image = new Bitmap(Properties.Resources.Entry, Settings.CellSizeInPx, Settings.CellSizeInPx);
-            ServiceArea.Image = new Bitmap(Properties.Resources.ServiceArea, Settings.CellSizeInPx, Settings.CellSizeInPx);          
+            Exit.Image = new Bitmap(Properties.Resources.Exit, Settings.CellSizeInPx, Settings.CellSizeInPx);
+            ServiceArea.Image = new Bitmap(Properties.Resources.ServiceArea, Settings.CellSizeInPx, Settings.CellSizeInPx);
+            Road.Image = new Bitmap(Properties.Resources.Road, Settings.CellSizeInPx, Settings.CellSizeInPx);
         }
     }
 }

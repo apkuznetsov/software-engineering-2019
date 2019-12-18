@@ -1,4 +1,5 @@
 ﻿using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using System;
 using System.Windows.Forms;
@@ -19,6 +20,7 @@ namespace GasStationMs.App.Topology
             serviceAreaInCells = RecalculateServiceArea();
 
             SetupServiceArea();
+            SetupRoad();
         }
 
         private void SetupDgv()
@@ -54,6 +56,8 @@ namespace GasStationMs.App.Topology
 
         public void SetupServiceArea()
         {
+            int lastRowIndex = field.RowCount - 1;
+
             int сellsLeftToAdd = serviceAreaInCells;
             int cellsAdded = 0;
 
@@ -61,7 +65,7 @@ namespace GasStationMs.App.Topology
 
             for (int currCol = field.ColumnCount - 1; currCol >= 0; currCol--)
             {
-                for (int currRow = 0; currRow < field.RowCount; currRow++)
+                for (int currRow = 0; currRow < lastRowIndex; currRow++)
                 {
                     cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
                     cell.Tag = new ServiceArea();
@@ -77,6 +81,17 @@ namespace GasStationMs.App.Topology
                     serviceAreaBorderColIndex = currCol;
                     break;
                 }
+            }
+        }
+
+        public void SetupRoad()
+        {
+            DataGridViewImageCell cell;
+            for (int currCol = 0, lastRow = field.Rows.GetLastRow(DataGridViewElementStates.Visible); currCol < field.ColumnCount; currCol++)
+            {
+                cell = (DataGridViewImageCell)field.Rows[lastRow].Cells[currCol];
+                cell.Tag = new Road();
+                cell.Value = Road.Image;
             }
         }
 
