@@ -44,12 +44,13 @@
             this.rbEntry = new System.Windows.Forms.RadioButton();
             this.rbExit = new System.Windows.Forms.RadioButton();
             this.panelClickedCell = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.numericUpDownVolume = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownFuelDispenserSpeed = new System.Windows.Forms.NumericUpDown();
             this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
             this.clickedFuelList = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnSaveTopology = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -231,6 +232,26 @@
             this.panelClickedCell.TabIndex = 15;
             this.panelClickedCell.Visible = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Скорость заправки";
+            this.label2.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Объем бака";
+            this.label1.Visible = false;
+            // 
             // numericUpDownVolume
             // 
             this.numericUpDownVolume.Increment = new decimal(new int[] {
@@ -303,31 +324,21 @@
             this.clickedFuelList.Visible = false;
             this.clickedFuelList.SelectionChangeCommitted += new System.EventHandler(this.clickedFuelList_SelectionChangeCommitted);
             // 
-            // label1
+            // btnSaveTopology
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 86);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Объем бака";
-            this.label1.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Скорость заправки";
-            this.label2.Visible = false;
+            this.btnSaveTopology.Location = new System.Drawing.Point(13, 13);
+            this.btnSaveTopology.Name = "btnSaveTopology";
+            this.btnSaveTopology.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveTopology.TabIndex = 16;
+            this.btnSaveTopology.Text = "Сохранить";
+            this.btnSaveTopology.UseVisualStyleBackColor = true;
             // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.btnSaveTopology);
             this.Controls.Add(this.panelClickedCell);
             this.Controls.Add(this.rbExit);
             this.Controls.Add(this.rbEntry);
@@ -382,6 +393,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownVolume;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSaveTopology;
     }
 }
 
