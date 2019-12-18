@@ -123,7 +123,8 @@ namespace GasStationMs.App
                 }
                 else if (cell.Tag is FuelTank)
                 {
-                    tb.DeleteFuelTank();
+                    tb.DeleteFuelTank(cell.ColumnIndex, cell.RowIndex);
+                    return;
                 }
                 else if (cell.Tag is CashCounter)
                 {

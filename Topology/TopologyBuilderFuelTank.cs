@@ -58,14 +58,24 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
-        public void DeleteFuelTank()
+        public void DeleteFuelTank(int x, int y)
         {
             if (fuelTanksCount < 0)
-            {
                 throw new ArgumentOutOfRangeException();
-            }
 
-            fuelTanksCount--;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool canDelete = cell.Tag is FuelTank;
+
+            if (canDelete)
+            {
+                cell.Tag = null;
+                cell.Tag = new ServiceArea();
+                cell.Value = ServiceArea.Image;
+
+                fuelTanksCount--;
+            }
+            else
+                throw new InvalidCastException();
         }
     }
 }
