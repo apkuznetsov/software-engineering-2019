@@ -1,8 +1,10 @@
 ﻿using GasStationMs.App.Elements;
+using System;
 using System.Drawing;
 
 namespace GasStationMs.App.TemplateElements
 {
+    [Serializable()]
     public class Road : IGasStationElement
     {
         #region изображение

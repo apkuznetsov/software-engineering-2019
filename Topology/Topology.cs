@@ -1,9 +1,12 @@
 ﻿using GasStationMs.App.Elements;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GasStationMs.App.Topology
 {
+    [Serializable()]
     public partial class Topology
     {
         private readonly IGasStationElement[,] field;
@@ -41,7 +44,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public IGasStationElement this[int x, int y] 
+        public IGasStationElement this[int x, int y]
         {
             get
             {
@@ -155,6 +158,14 @@ namespace GasStationMs.App.Topology
         public bool IsFuelTank(Point p)
         {
             return this[p] is FuelTank;
+        }
+
+        public void Save()
+        {
+            Stream savingFileStream = File.Create("Топология" + ".tplg");
+            BinaryFormatter serializer = new BinaryFormatter();
+            serializer.Serialize(savingFileStream, this);
+            savingFileStream.Close();
         }
     }
 }

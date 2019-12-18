@@ -259,7 +259,7 @@ namespace GasStationMs.App.Topology
             return (int)(RowsCount * ColsCount * Topology.ServiceAreaInShares);
         }
 
-        public Topology CreateAndGetTopology()
+        public Topology ToTopology()
         {
             IGasStationElement[,] gseArr = new IGasStationElement[field.RowCount, field.ColumnCount];
 
@@ -269,14 +269,14 @@ namespace GasStationMs.App.Topology
                 for (int currCol = 0; currCol < gseArr.GetLength(1); currCol++)
                 {
                     cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
-                    if (cell.Tag != null)
-                    {
+                    //if (cell.Tag != null)
+                    //{
                         gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
-                    }
-                    else
-                    {
-                        gseArr[currRow, currCol] = null;
-                    }
+                    //}
+                    //else
+                    //{
+                    //    gseArr[currRow, currCol] = null;
+                    //}
                 }
             }
 

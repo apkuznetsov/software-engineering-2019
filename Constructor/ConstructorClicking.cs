@@ -83,6 +83,14 @@ namespace GasStationMs.App
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить выезд");
                     }
+                    else if (rb.Name == typeof(FuelTank).ToString())
+                    {
+                        MessageBox.Show("невозможно добавить ТБ");
+                    }
+                    else if (rb.Name == typeof(CashCounter).ToString())
+                    {
+                        MessageBox.Show("невозможно добавить кассу");
+                    }
                 }
                 else
                 {
