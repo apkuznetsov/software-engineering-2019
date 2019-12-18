@@ -1,4 +1,5 @@
 using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -44,12 +45,6 @@ namespace GasStationMs.App
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить кассу");
                     }
-                    else if (rb.Name == typeof(Entry).ToString())
-                    {
-                        isAdded = tb.AddEntry(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить въезд");
-                    }
                     else if (rb.Name == typeof(Exit).ToString())
                     {
                         isAdded = tb.AddExit(cell.ColumnIndex, cell.RowIndex);
@@ -69,6 +64,16 @@ namespace GasStationMs.App
                         isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить ТБ");
+                    }
+                }
+                else if (cell.Tag is Road)
+                {
+                    bool isAdded = false;
+                    if (rb.Name == typeof(Entry).ToString())
+                    {
+                        isAdded = tb.AddEntry(cell.ColumnIndex, cell.RowIndex);
+                        if (!isAdded)
+                            MessageBox.Show("невозможно добавить въезд");
                     }
                 }
                 else

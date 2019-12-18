@@ -1,4 +1,5 @@
 ﻿using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 using System;
 using System.Windows.Forms;
 
@@ -33,7 +34,7 @@ namespace GasStationMs.App.Topology
 
         public bool AddEntry(int x, int y)
         {
-            if (CanAddEntry())
+            if (CanAddEntry(x, y))
             {
                 DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
@@ -48,12 +49,18 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
-        private bool CanAddEntry()
+        private bool CanAddEntry(int x, int y)
         {
-            bool canAdd = entriesCount + 1 <= Topology.MaxEntriesCount;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool isRoad = cell.Tag is Road;
 
-            if (canAdd)
-                return true;
+            if (isRoad)
+            {
+                bool isNewCountOk = entriesCount + 1 <= Topology.MaxEntriesCount;
+
+                if (isNewCountOk)
+                    return true;
+            }
 
             return false;
         }
