@@ -1,6 +1,8 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.App.Elements;
@@ -12,6 +14,8 @@ namespace GasStationMs.App
 {
     public partial class Constructor : Form
     {
+        const string FileName = "Топология" + ".tplg";
+
         private TopologyBuilder tb;
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
@@ -77,10 +81,10 @@ namespace GasStationMs.App
 
         private void clickedFuelList_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            
+
             DataRowView row = clickedFuelList.SelectedItem as DataRowView;
             var fuel = (FuelModel)row["Fuel"];
-            
+
             textBoxChosenFuel.Text = fuel.Name;
             _selectedFuelTank.Fuel = fuel.Name;
 
@@ -192,6 +196,21 @@ namespace GasStationMs.App
         {
             Topology.Topology topology = tb.ToTopology();
             topology.Save();
+        }
+
+        private void btnDownloadTopology_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(FileName))
+            {
+                Stream downloadingFileStream = File.OpenRead(FileName);
+
+                BinaryFormatter deserializer = new BinaryFormatter();
+                Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
+
+                downloadingFileStream.Close();
+
+                tb = new TopologyBuilder(dgvTopology, topology);
+            }
         }
     }
 }

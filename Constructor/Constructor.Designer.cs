@@ -343,6 +343,7 @@
             this.btnDownloadTopology.TabIndex = 0;
             this.btnDownloadTopology.Text = "Загрузить";
             this.btnDownloadTopology.UseVisualStyleBackColor = true;
+            this.btnDownloadTopology.Click += new System.EventHandler(this.btnDownloadTopology_Click);
             // 
             // Constructor
             // 
