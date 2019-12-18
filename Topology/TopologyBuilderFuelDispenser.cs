@@ -81,6 +81,43 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
+        private bool AreCellsAroundBlank(int x, int y)
+        {
+            Point northWest = new Point(x - 1, y - 1);
+            if (!IsCellBlank(northWest.X, northWest.Y))
+                return false;
+
+            Point west = new Point(x - 1, y);
+            if (!IsCellBlank(west.X, west.Y))
+                return false;
+
+            Point southWest = new Point(x - 1, y + 1);
+            if (!IsCellBlank(southWest.X, southWest.Y))
+                return false;
+
+            Point north = new Point(x, y - 1);
+            if (!IsCellBlank(north.X, north.Y))
+                return false;
+
+            Point south = new Point(x, y + 1);
+            if (!IsCellBlank(south.X, south.Y))
+                return false;
+
+            Point northEast = new Point(x + 1, y - 1);
+            if (!IsCellBlank(northEast.X, northEast.Y))
+                return false;
+
+            Point east = new Point(x + 1, y);
+            if (!IsCellBlank(east.X, east.Y))
+                return false;
+
+            Point southEast = new Point(x + 1, y + 1);
+            if (!IsCellBlank(southEast.X, southEast.Y))
+                return false;
+
+            return true;
+        }
+
         private bool IsCellBlank(int x, int y)
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
