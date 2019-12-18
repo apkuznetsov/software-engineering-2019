@@ -1,7 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace GasStationMs.App.Elements
 {
+    [Serializable()]
     public class ServiceArea : IGasStationElement
     {
         #region изображение

@@ -162,7 +162,7 @@ namespace GasStationMs.App.Topology
 
         public void Save()
         {
-            Stream savingFileStream = File.Create("Топология");
+            Stream savingFileStream = File.Create("Топология" + ".tplg");
             BinaryFormatter serializer = new BinaryFormatter();
             serializer.Serialize(savingFileStream, this);
             savingFileStream.Close();

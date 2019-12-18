@@ -4,6 +4,7 @@ using System.Drawing;
 
 namespace GasStationMs.App.Elements
 {
+    [Serializable()]
     public class FuelTank : IGasStationElement
     {
 
