@@ -37,6 +37,22 @@ namespace GasStationMs.App.Topology
 
         public int ServiceAreaBorderColIndex { get; }
 
+        public int LastX
+        {
+            get
+            {
+                return ColsCount - 1;
+            }
+        }
+
+        public int LastY
+        {
+            get
+            {
+                return RowsCount - 1;
+            }
+        }
+
         public Point FirstBorderPoint
         {
             get
@@ -54,7 +70,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (y >= ColsCount)
+                if (y > LastY)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -64,12 +80,12 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                if (x >= RowsCount)
+                if (x > LastX)
                 {
                     throw new IndexOutOfRangeException();
                 }
 
-                return field[x, y];
+                return field[y, x];
             }
         }
 
