@@ -64,6 +64,34 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
+        private bool IsThroughOneRowAfterServiceAreaBorder(int x, int y)
+        {
+            bool isAfterBorderCol = x > serviceAreaBorderColIndex;
+
+            if (isAfterBorderCol)
+            {
+                bool isServiceAreaBorderColIndexEven = (serviceAreaBorderColIndex % 2) == 0;
+                bool isExEven = (x % 2) == 0;
+
+                if (isServiceAreaBorderColIndexEven)
+                {
+                    if (!isExEven)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                {
+                    if (isExEven)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            else
+                return false;
+        }
+
         public void DeleteFuelTank(int x, int y)
         {
             if (fuelTanksCount < 0)
