@@ -61,6 +61,7 @@ namespace GasStationMs.App.Topology
 
 
         private bool DoesPointExist(int x, int y)
+        private bool DoesCellExist(int x, int y)
         {
             bool isExLess = x < 0;
             if (isExLess)
@@ -69,15 +70,15 @@ namespace GasStationMs.App.Topology
             bool isExMore = x > field.ColumnCount - 1;
             if (isExMore)
                 return false;
+
             bool isEyUpper = y < 0;
-
             if (isEyUpper)
-
                 return false;
+
             bool isEyLower = y > field.RowCount - 1;
             if (isEyLower)
-
                 return false;
+
             return true;
         }
 
