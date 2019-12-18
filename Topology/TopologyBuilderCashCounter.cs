@@ -34,7 +34,7 @@ namespace GasStationMs.App.Topology
 
         public bool AddCashCounter(int x, int y)
         {
-            if (CanAddCashCounter())
+            if (CanAddCashCounter(x, y))
             {
                 DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
@@ -49,11 +49,12 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
-        private bool CanAddCashCounter()
+        private bool CanAddCashCounter(int x, int y)
         {
-            bool canAdd = cashCountersCount + 1 <= Topology.MaxCashCountersCount;
+            bool isNewCountOk = cashCountersCount + 1 <= Topology.MaxCashCountersCount;
 
-            if (canAdd)
+            if (isNewCountOk &&
+                AreCellsAroundBlankOrDontExist(x, y))
                 return true;
 
             return false;
@@ -101,7 +102,7 @@ namespace GasStationMs.App.Topology
                 if (!IsCellBlank(southEast.X, southEast.Y))
                     return false;
 
-            return false;
+            return true;
         }
 
         private bool DoesCellExist(int x, int y)
