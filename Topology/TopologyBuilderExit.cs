@@ -54,7 +54,8 @@ namespace GasStationMs.App.Topology
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool isRoad = cell.Tag is Road;
 
-            if (isRoad)
+            if (isRoad &&
+                !IsRoadUnderServiceArea(x, y))
             {
                 bool isNewCountOk = exitsCount + 1 <= Topology.MaxExitsCount;
 
