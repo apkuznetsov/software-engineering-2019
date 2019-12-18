@@ -1,5 +1,6 @@
-using GasStationMs.App.Elements;
+﻿using GasStationMs.App.Elements;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace GasStationMs.App.Topology
@@ -32,7 +33,7 @@ namespace GasStationMs.App.Topology
 
         public bool AddFuelDispenser(int x, int y)
         {
-            if (CanAddFuelDispenser())
+            if (CanAddFuelDispenser(x, y))
             {
                 DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
@@ -47,22 +48,17 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
-        private bool CanAddFuelDispenser()
+        private bool CanAddFuelDispenser(int x, int y)
         {
-            bool canAdd = fuelDispensersCount + 1 <= Topology.MaxFuelDispensersCount;
+            bool IsNewCountOk = fuelDispensersCount + 1 <= Topology.MaxFuelDispensersCount;
 
-            if (canAdd)
+            if (IsNewCountOk &&
+                !IsCellOnEdgeOrOut(x, y) &&
+                AreCellsAroundBlank(x, y))
                 return true;
 
             return false;
         }
-
-        //private bool AreCellsAroundFree(int x, int y)
-        //{
-        //    bool isCellOnEdge = IsCellOnEdgeOrOut(x, y);
-
-        //    return false;
-        //}
 
         private bool IsCellOnEdgeOrOut(int x, int y)
         {
