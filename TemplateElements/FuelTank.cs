@@ -44,9 +44,31 @@ namespace GasStationMs.App.Elements
             fuel = new Fuel("АИ-100");
         }
 
-        public int Volume { get; set; }
+        public int Volume
+        {
+            get
+            {
+                return volume;
+            }
 
-        public int CriticalVolume { get; }
+            set
+            {
+                if (value < MinVolumeInLiters)
+                    throw new ArgumentOutOfRangeException();
+
+                volume = value;
+
+                criticalVolume = (int)(volume * CriticalVolumeForRefuelingInShares);
+            }
+        }
+
+        public int CriticalVolume
+        {
+            get
+            {
+                return criticalVolume;
+            }
+        }
 
         public string Fuel
         {
@@ -73,10 +95,12 @@ namespace GasStationMs.App.Elements
                 {
                     throw new ArgumentOutOfRangeException();
                 }
+
                 if (value > volume)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
+
                 occupiedVolume = value;
             }
         }
