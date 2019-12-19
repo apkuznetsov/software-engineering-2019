@@ -112,11 +112,8 @@ namespace GasStationMs.App.Topology
             field.ColumnCount = topology.ColsCount;
             field.RowCount = topology.RowsCount;
 
-            serviceAreaBorderColIndex = topology.ServiceAreaBorderColIndex;
-
-            int serviceAreaBorderColsNum = field.ColumnCount - serviceAreaBorderColIndex;
-            int serviceAreaBorderRowsNum = field.RowCount - 1;
-            serviceAreaInCells = serviceAreaBorderColsNum * serviceAreaBorderRowsNum;
+            SetupServiceArea();           
+            SetupRoad();
 
             IGasStationElement gse;
             for (int y = 0; y <= topology.LastY; y++)
