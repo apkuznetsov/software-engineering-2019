@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App
 {
-    partial class formStart
+    partial class Start
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCreateTopology = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.labelAbout = new System.Windows.Forms.Label();
             this.labelDoSomething = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // btnCreateTopology
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(239, 243);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 24);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Open constructor";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.btnCreateTopology.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCreateTopology.Location = new System.Drawing.Point(216, 165);
+            this.btnCreateTopology.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCreateTopology.Name = "btnCreateTopology";
+            this.btnCreateTopology.Size = new System.Drawing.Size(127, 24);
+            this.btnCreateTopology.TabIndex = 0;
+            this.btnCreateTopology.Text = "Создать";
+            this.btnCreateTopology.UseVisualStyleBackColor = true;
+            this.btnCreateTopology.Click += new System.EventHandler(this.Button1_Click);
             // 
             // btnCancel
             // 
@@ -71,13 +71,13 @@
             // 
             this.labelDoSomething.AutoSize = true;
             this.labelDoSomething.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelDoSomething.Location = new System.Drawing.Point(73, 132);
+            this.labelDoSomething.Location = new System.Drawing.Point(64, 121);
             this.labelDoSomething.Name = "labelDoSomething";
             this.labelDoSomething.Size = new System.Drawing.Size(464, 24);
             this.labelDoSomething.TabIndex = 3;
             this.labelDoSomething.Text = "Создайте топологию АЗС или загрузите из файла";
             // 
-            // formStart
+            // Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -86,9 +86,9 @@
             this.Controls.Add(this.labelDoSomething);
             this.Controls.Add(this.labelAbout);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCreateTopology);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "formStart";
+            this.Name = "Start";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Начало работы";
@@ -99,7 +99,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCreateTopology;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label labelAbout;
         private System.Windows.Forms.Label labelDoSomething;

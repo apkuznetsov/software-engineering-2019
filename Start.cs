@@ -4,10 +4,10 @@ using Container = SimpleInjector.Container;
 
 namespace GasStationMs.App
 {
-    public partial class formStart : Form
+    public partial class Start : Form
     {
         private readonly Container _container;
-        public formStart(Container container)
+        public Start(Container container)
         {
             _container = container;
             InitializeComponent();
@@ -15,8 +15,8 @@ namespace GasStationMs.App
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            var myForm = _container.GetInstance<Constructor>();
-            myForm.Show();
+            Constructor formTopologyBuilder = _container.GetInstance<Constructor>();
+            formTopologyBuilder.Show();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
