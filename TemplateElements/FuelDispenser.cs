@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 namespace GasStationMs.App.Elements
@@ -6,6 +6,7 @@ namespace GasStationMs.App.Elements
     [Serializable()]
     public class FuelDispenser : IGasStationElement
     {
+        #region статика
         #region изображение
         private static Bitmap image;
 
@@ -26,11 +27,9 @@ namespace GasStationMs.App.Elements
         public static Icon Icon { get; private set; }
         #endregion /изображение
 
-        public static readonly int MinNumb = 1;
-        public static readonly int MaxNumb = 6;
-        public int FuelFeedRateInLitersPerMinute = 25;
         public static readonly int MinFuelFeedRateInLitersPerMinute = 25;
         public static readonly int MaxFuelFeedRateInLitersPerMinute = 160;
+        #endregion /статика
         
         public override string ToString()
         {
