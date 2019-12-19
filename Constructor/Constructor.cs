@@ -14,9 +14,7 @@ namespace GasStationMs.App
 {
     public partial class Constructor : Form
     {
-        const string FileName = "Топология" + ".tplg";
-
-        private TopologyBuilder tb;
+        private TopologyBuilder topologyBuilder;
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
@@ -31,7 +29,7 @@ namespace GasStationMs.App
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            tb = new TopologyBuilder(dgvTopology);
+            topologyBuilder = new TopologyBuilder(dgvTopology);
 
             SetSettings();
         }
@@ -55,11 +53,11 @@ namespace GasStationMs.App
         {
             try
             {
-                tb.ColsCount = (int)cellsHorizontally.Value;
+                topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
             }
             catch (CannotRemoveTopologyBuilderCol)
             {
-                cellsHorizontally.Value = tb.ColsCount;
+                cellsHorizontally.Value = topologyBuilder.ColsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
             }
         }
@@ -68,11 +66,11 @@ namespace GasStationMs.App
         {
             try
             {
-                tb.RowsCount = (int)cellsVertically.Value;
+                topologyBuilder.RowsCount = (int)cellsVertically.Value;
             }
             catch (CannotRemoveTopologyBuilderRow)
             {
-                cellsVertically.Value = tb.RowsCount;
+                cellsVertically.Value = topologyBuilder.RowsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить строку");
             }
         }
@@ -203,12 +201,13 @@ namespace GasStationMs.App
 
         private void btnSaveTopology_Click(object sender, EventArgs e)
         {
-            Topology.Topology topology = tb.ToTopology();
+            Topology.Topology topology = topologyBuilder.ToTopology();
             topology.Save();
         }
 
         private void btnDownloadTopology_Click(object sender, EventArgs e)
         {
+            const string FileName = "Топология" + ".tplg";
             if (File.Exists(FileName))
             {
                 Stream downloadingFileStream = File.OpenRead(FileName);
@@ -218,7 +217,7 @@ namespace GasStationMs.App
 
                 downloadingFileStream.Close();
 
-                tb = new TopologyBuilder(dgvTopology, topology);
+                topologyBuilder.SetTopologyBuilder(topology);
             }
         }
     }
