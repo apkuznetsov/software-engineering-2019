@@ -52,6 +52,7 @@
             this.clickedFuelList = new System.Windows.Forms.ComboBox();
             this.btnSaveTopology = new System.Windows.Forms.Button();
             this.btnSaveAs = new System.Windows.Forms.Button();
+            this.btnOpenInBrowserAbout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -344,11 +345,21 @@
             this.btnSaveAs.Text = "Сохранить как";
             this.btnSaveAs.UseVisualStyleBackColor = true;
             // 
+            // btnOpenInBrowserAbout
+            // 
+            this.btnOpenInBrowserAbout.Location = new System.Drawing.Point(212, 13);
+            this.btnOpenInBrowserAbout.Name = "btnOpenInBrowserAbout";
+            this.btnOpenInBrowserAbout.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenInBrowserAbout.TabIndex = 18;
+            this.btnOpenInBrowserAbout.Text = "Справка";
+            this.btnOpenInBrowserAbout.UseVisualStyleBackColor = true;
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.btnOpenInBrowserAbout);
             this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.btnSaveTopology);
             this.Controls.Add(this.panelClickedCell);
@@ -407,6 +418,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveTopology;
         private System.Windows.Forms.Button btnSaveAs;
+        private System.Windows.Forms.Button btnOpenInBrowserAbout;
     }
 }
 
