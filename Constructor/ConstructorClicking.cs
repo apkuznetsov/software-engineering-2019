@@ -35,13 +35,13 @@ namespace GasStationMs.App
                     bool isAdded = false;
                     if (rb.Name == typeof(FuelDispenser).ToString())
                     {
-                        isAdded = tb.AddFuelDispenser(cell.ColumnIndex, cell.RowIndex);
+                        isAdded = topologyBuilder.AddFuelDispenser(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить ТРК");
                     }
                     else if (rb.Name == typeof(CashCounter).ToString())
                     {
-                        isAdded = tb.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
+                        isAdded = topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить кассу");
                     }
@@ -63,7 +63,7 @@ namespace GasStationMs.App
                     bool isAdded = false;
                     if (rb.Name == typeof(FuelTank).ToString())
                     {
-                        isAdded = tb.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                        isAdded = topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить ТБ");
                     }
@@ -73,13 +73,13 @@ namespace GasStationMs.App
                     bool isAdded = false;
                     if (rb.Name == typeof(Entry).ToString())
                     {
-                        isAdded = tb.AddEntry(cell.ColumnIndex, cell.RowIndex);
+                        isAdded = topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить въезд");
                     }
                     else if (rb.Name == typeof(Exit).ToString())
                     {
-                        isAdded = tb.AddExit(cell.ColumnIndex, cell.RowIndex);
+                        isAdded = topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
                         if (!isAdded)
                             MessageBox.Show("невозможно добавить выезд");
                     }
@@ -144,25 +144,25 @@ namespace GasStationMs.App
             {
                 if (cell.Tag is FuelDispenser)
                 {
-                    tb.DeleteFuelDispenser();
+                    topologyBuilder.DeleteFuelDispenser();
                 }
                 else if (cell.Tag is FuelTank)
                 {
-                    tb.DeleteFuelTank(cell.ColumnIndex, cell.RowIndex);
+                    topologyBuilder.DeleteFuelTank(cell.ColumnIndex, cell.RowIndex);
                     return;
                 }
                 else if (cell.Tag is CashCounter)
                 {
-                    tb.DeleteCashCounter();
+                    topologyBuilder.DeleteCashCounter();
                 }
                 else if (cell.Tag is Entry)
                 {
-                    tb.DeleteEntry(cell.ColumnIndex, cell.RowIndex);
+                    topologyBuilder.DeleteEntry(cell.ColumnIndex, cell.RowIndex);
                     return;
                 }
                 else if (cell.Tag is Exit)
                 {
-                    tb.DeleteExit(cell.ColumnIndex, cell.RowIndex);
+                    topologyBuilder.DeleteExit(cell.ColumnIndex, cell.RowIndex);
                     return;
                 }
                 else if (cell.Tag is ServiceArea)
