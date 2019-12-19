@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using Container = SimpleInjector.Container;
 
@@ -15,8 +17,51 @@ namespace GasStationMs.App
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            var myForm = _container.GetInstance<Constructor>();
-            myForm.Show();
+            Constructor formTopologyBuilder = _container.GetInstance<Constructor>();
+            formTopologyBuilder.Show();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            string filePath;
+
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                DefaultExt = ".tplg",
+                Filter = " .tplg|*.tplg"
+            };
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                filePath = ofd.FileName;
+
+                if (File.Exists(filePath))
+                {
+                    Stream downloadingFileStream = File.OpenRead(filePath);
+
+                    try
+                    {
+                        BinaryFormatter deserializer = new BinaryFormatter();
+                        Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
+                        downloadingFileStream.Close();
+
+                        Constructor formConstructor = _container.GetInstance<Constructor>();
+                        formConstructor.Show();
+                        formConstructor.TopologyBuilder.SetTopologyBuilder(topology);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("ОШИБКА: файл повреждён");
+                    }
+                }
+                else
+                    MessageBox.Show("ОШИБКА: файл не существует");
+            }
         }
     }
 }
