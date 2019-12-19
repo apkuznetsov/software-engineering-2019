@@ -27,14 +27,8 @@ namespace GasStationMs.App.Topology
             SetupRoad();
         }
 
-        public TopologyBuilder(DataGridView dgv, Topology topology)
+        public void SetTopologyBuilder(Topology topology)
         {
-            field = dgv ?? throw new NullReferenceException();
-            if (topology == null)
-                throw new NullReferenceException();
-
-            SetupDgv();
-
             ToDgv(topology);
         }
 
