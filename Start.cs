@@ -28,23 +28,39 @@ namespace GasStationMs.App
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            const string Directory = @"D:\software_engineering_2019\bin\Debug\";
-            const string FileName = "Топология" + ".tplg";
+            string filePath;
 
-            Topology.Topology topology;
-
-            if (File.Exists(FileName))
+            OpenFileDialog ofd = new OpenFileDialog
             {
-                Stream downloadingFileStream = File.OpenRead(Directory + FileName);
+                DefaultExt = ".tplg",
+                Filter = " .tplg|*.tplg"
+            };
 
-                BinaryFormatter deserializer = new BinaryFormatter();
-                topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                filePath = ofd.FileName;
 
-                downloadingFileStream.Close();
+                if (File.Exists(filePath))
+                {
+                    Stream downloadingFileStream = File.OpenRead(filePath);
 
-                Constructor formConstructor = _container.GetInstance<Constructor>();
-                formConstructor.Show();
-                formConstructor.TopologyBuilder.SetTopologyBuilder(topology);
+                    try
+                    {
+                        BinaryFormatter deserializer = new BinaryFormatter();
+                        Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
+                        downloadingFileStream.Close();
+
+                        Constructor formConstructor = _container.GetInstance<Constructor>();
+                        formConstructor.Show();
+                        formConstructor.TopologyBuilder.SetTopologyBuilder(topology);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("ОШИБКА: файл повреждён");
+                    }
+                }
+                else
+                    MessageBox.Show("ОШИБКА: файл не существует");
             }
         }
     }
