@@ -36,6 +36,15 @@ namespace GasStationMs.App
             SetSettings();
         }
 
+        public TopologyBuilder TopologyBuilder
+        {
+            get
+            {
+                return topologyBuilder;
+            }
+
+        }
+
         private void TopologyConstructor_Load(object sender, EventArgs e)
         {
             LoadList();
