@@ -30,7 +30,7 @@ namespace GasStationMs.App
         {
             string filePath;
             string dotExt = Topology.Topology.DotExt;
-            string filter = " " + dotExt + "|" + "*." + dotExt;
+            string filter = " " + dotExt + "|" + "*" + dotExt;
 
             OpenFileDialog ofd = new OpenFileDialog
             {
@@ -55,6 +55,7 @@ namespace GasStationMs.App
                         Constructor formConstructor = _container.GetInstance<Constructor>();
                         formConstructor.Show();
                         formConstructor.TopologyBuilder.SetTopologyBuilder(topology);
+                        formConstructor.CurrFilePath = filePath;
                     }
                     catch
                     {

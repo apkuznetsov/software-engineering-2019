@@ -14,6 +14,7 @@ namespace GasStationMs.App
 {
     public partial class Constructor : Form
     {
+        private string currFilePath;
         private TopologyBuilder topologyBuilder;
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
@@ -30,8 +31,8 @@ namespace GasStationMs.App
             InitializeComponent();
 
             topologyBuilder = new TopologyBuilder(dgvTopology);
-
             SetSettings();
+            currFilePath = "Топология" + Topology.Topology.DotExt;
         }
 
         public TopologyBuilder TopologyBuilder
@@ -47,6 +48,8 @@ namespace GasStationMs.App
         {
             LoadList();
         }
+
+        public string CurrFilePath { get; set; }
 
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
@@ -202,7 +205,7 @@ namespace GasStationMs.App
         private void btnSaveTopology_Click(object sender, EventArgs e)
         {
             Topology.Topology topology = topologyBuilder.ToTopology();
-            topology.Save();
+            topology.Save(currFilePath);
         }
 
         private void btnDownloadTopology_Click(object sender, EventArgs e)
