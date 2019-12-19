@@ -344,6 +344,7 @@
             this.btnSaveAs.TabIndex = 17;
             this.btnSaveAs.Text = "Сохранить как";
             this.btnSaveAs.UseVisualStyleBackColor = true;
+            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // btnOpenInBrowserAbout
             // 

@@ -204,6 +204,11 @@ namespace GasStationMs.App
 
         private void btnSaveTopology_Click(object sender, EventArgs e)
         {
+            SaveTopologyIntoCurrFilePath();
+        }
+
+        private void SaveTopologyIntoCurrFilePath()
+        {
             Topology.Topology topology = topologyBuilder.ToTopology();
             topology.Save(currFilePath);
         }
@@ -221,6 +226,24 @@ namespace GasStationMs.App
                 downloadingFileStream.Close();
 
                 topologyBuilder.SetTopologyBuilder(topology);
+            }
+        }
+
+        private void btnSaveAs_Click(object sender, EventArgs e)
+        {
+            string dotExt = Topology.Topology.DotExt;
+            string filter = " " + dotExt + "|" + "*" + dotExt;
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                DefaultExt = dotExt,
+                Filter = filter
+            };
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                currFilePath = sfd.FileName;
+                SaveTopologyIntoCurrFilePath();
             }
         }
     }
