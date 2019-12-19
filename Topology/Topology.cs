@@ -197,9 +197,17 @@ namespace GasStationMs.App.Topology
             return this[p] is ServiceArea;
         }
 
+        public static string DotExt
+        {
+            get
+            {
+                return ".tplg";
+            }
+        }
+
         public void Save()
         {
-            Stream savingFileStream = File.Create("Топология" + ".tplg");
+            Stream savingFileStream = File.Create("Топология" + DotExt);
             BinaryFormatter serializer = new BinaryFormatter();
             serializer.Serialize(savingFileStream, this);
             savingFileStream.Close();

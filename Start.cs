@@ -29,11 +29,13 @@ namespace GasStationMs.App
         private void btnDownload_Click(object sender, EventArgs e)
         {
             string filePath;
+            string dotExt = Topology.Topology.DotExt;
+            string filter = " " + dotExt + "|" + "*." + dotExt;
 
             OpenFileDialog ofd = new OpenFileDialog
             {
-                DefaultExt = ".tplg",
-                Filter = " .tplg|*.tplg"
+                DefaultExt = dotExt,
+                Filter = filter
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
