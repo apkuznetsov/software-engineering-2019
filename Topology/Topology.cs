@@ -205,9 +205,9 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public void Save()
+        public void Save(string currFilePath)
         {
-            Stream savingFileStream = File.Create("Топология" + DotExt);
+            Stream savingFileStream = File.Create(currFilePath);
             BinaryFormatter serializer = new BinaryFormatter();
             serializer.Serialize(savingFileStream, this);
             savingFileStream.Close();
