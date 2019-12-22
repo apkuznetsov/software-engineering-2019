@@ -1,4 +1,5 @@
 ﻿using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using System;
 using System.Windows.Forms;
@@ -14,18 +15,25 @@ namespace GasStationMs.App.Topology
         public TopologyBuilder(DataGridView dgv)
         {
             field = dgv ?? throw new NullReferenceException();
+
+            AddDgvCols(Topology.MinColsCount);
+            field.RowCount = Topology.MinRowsCount;
+
             SetupDgv();
 
             serviceAreaInCells = RecalculateServiceArea();
 
             SetupServiceArea();
+            SetupRoad();
+        }
+
+        public void SetTopologyBuilder(Topology topology)
+        {
+            ToDgv(topology);
         }
 
         private void SetupDgv()
         {
-            AddDgvCols(Topology.MinColsCount);
-            field.RowCount = Topology.MinRowsCount;
-
             field.RowHeadersVisible = false;
             field.ColumnHeadersVisible = false;
 
@@ -52,8 +60,10 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public void SetupServiceArea()
+        private void SetupServiceArea()
         {
+            int lastRowIndex = field.RowCount - 1;
+
             int сellsLeftToAdd = serviceAreaInCells;
             int cellsAdded = 0;
 
@@ -61,7 +71,7 @@ namespace GasStationMs.App.Topology
 
             for (int currCol = field.ColumnCount - 1; currCol >= 0; currCol--)
             {
-                for (int currRow = 0; currRow < field.RowCount; currRow++)
+                for (int currRow = 0; currRow < lastRowIndex; currRow++)
                 {
                     cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
                     cell.Tag = new ServiceArea();
@@ -78,6 +88,76 @@ namespace GasStationMs.App.Topology
                     break;
                 }
             }
+        }
+
+        private void SetupRoad()
+        {
+            DataGridViewImageCell cell;
+            for (int currCol = 0, lastRow = field.Rows.GetLastRow(DataGridViewElementStates.Visible); currCol < field.ColumnCount; currCol++)
+            {
+                cell = (DataGridViewImageCell)field.Rows[lastRow].Cells[currCol];
+                cell.Tag = new Road();
+                cell.Value = Road.Image;
+            }
+        }
+
+        private void ToDgv(Topology topology)
+        {
+            field.ColumnCount = topology.ColsCount;
+            field.RowCount = topology.RowsCount;
+
+            SetupServiceArea();           
+            SetupRoad();
+
+            IGasStationElement gse;
+            for (int y = 0; y <= topology.LastY; y++)
+                for (int x = 0; x <= topology.LastX; x++)
+                {
+                    gse = topology[x, y];
+
+                    if (gse == null)
+                        AddBlank(x, y);
+                    else if (gse is CashCounter)
+                        AddCashCounter(x, y);
+                    else if (gse is Entry)
+                        AddEntry(x, y);
+                    else if (gse is Exit)
+                        AddExit(x, y);
+                    else if (gse is FuelDispenser)
+                        AddFuelDispenser(x, y);
+                    else if (gse is FuelTank)
+                        AddFuelTank(x, y);
+                    else if (gse is Road)
+                        AddRoad(x, y);
+                    else if (gse is ServiceArea)
+                        AddServiceArea(x, y);
+                    else
+                        throw new InvalidCastException();
+                }
+        }
+
+        private void AddBlank(int x, int y)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = null;
+            cell.Tag = null;
+        }
+
+        private void AddRoad(int x, int y)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = Road.Image;
+            cell.Tag = new Road();
+        }
+
+        private void AddServiceArea(int x, int y)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = ServiceArea.Image;
+            cell.Tag = new ServiceArea();
         }
 
         public int ColsCount
@@ -244,7 +324,7 @@ namespace GasStationMs.App.Topology
             return (int)(RowsCount * ColsCount * Topology.ServiceAreaInShares);
         }
 
-        public Topology CreateAndGetTopology()
+        public Topology ToTopology()
         {
             IGasStationElement[,] gseArr = new IGasStationElement[field.RowCount, field.ColumnCount];
 
@@ -254,14 +334,14 @@ namespace GasStationMs.App.Topology
                 for (int currCol = 0; currCol < gseArr.GetLength(1); currCol++)
                 {
                     cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
-                    if (cell.Tag != null)
-                    {
-                        gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
-                    }
-                    else
-                    {
-                        gseArr[currRow, currCol] = null;
-                    }
+                    //if (cell.Tag != null)
+                    //{
+                    gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
+                    //}
+                    //else
+                    //{
+                    //    gseArr[currRow, currCol] = null;
+                    //}
                 }
             }
 

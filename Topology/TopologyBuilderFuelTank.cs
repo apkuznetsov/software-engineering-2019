@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GasStationMs.App.Elements;
+using System;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Topology
 {
@@ -29,41 +31,86 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public bool AddFuelTank()
+        public bool AddFuelTank(int x, int y)
         {
-            if (CanAddFuelTank())
+            if (CanAddFuelTank(x, y))
             {
-                FuelTanksCount = FuelTanksCount + 1;
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+                cell.Value = FuelTank.Image;
+                cell.Tag = new FuelTank();
+
+                FuelTanksCount++;
+
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
-        private bool CanAddFuelTank()
+        private bool CanAddFuelTank(int x, int y)
         {
-            int newNumOfFuelTanks = fuelTanksCount + 1;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool isServiceArea = cell.Tag is ServiceArea;
 
-            if (newNumOfFuelTanks <= serviceAreaInCells)
+            if (isServiceArea &&
+                IsThroughOneRowAfterServiceAreaBorder(x, y))
             {
-                return true;
+                bool isNewCountRight = fuelTanksCount + 1 <= serviceAreaInCells;
+
+                if (isNewCountRight)
+                    return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
-        public void DeleteFuelTank()
+        private bool IsThroughOneRowAfterServiceAreaBorder(int x, int y)
+        {
+            bool isAfterBorderCol = x > serviceAreaBorderColIndex;
+
+            if (isAfterBorderCol)
+            {
+                bool isServiceAreaBorderColIndexEven = (serviceAreaBorderColIndex % 2) == 0;
+                bool isExEven = (x % 2) == 0;
+
+                if (isServiceAreaBorderColIndexEven)
+                {
+                    if (!isExEven)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                {
+                    if (isExEven)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            else
+                return false;
+        }
+
+        public void DeleteFuelTank(int x, int y)
         {
             if (fuelTanksCount < 0)
-            {
                 throw new ArgumentOutOfRangeException();
-            }
 
-            fuelTanksCount--;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool canDelete = cell.Tag is FuelTank;
+
+            if (canDelete)
+            {
+                cell.Tag = null;
+                cell.Tag = new ServiceArea();
+                cell.Value = ServiceArea.Image;
+
+                fuelTanksCount--;
+            }
+            else
+                throw new InvalidCastException();
         }
     }
 }

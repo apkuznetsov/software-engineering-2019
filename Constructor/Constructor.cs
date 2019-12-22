@@ -1,8 +1,11 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
+using GasStationMs.App.Elements;
 using GasStationMs.App.Topology;
 using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using GasStationMs.Dal;
@@ -11,8 +14,11 @@ namespace GasStationMs.App
 {
     public partial class Constructor : Form
     {
-        private TopologyBuilder tb;
-
+        private string currFilePath;
+        private TopologyBuilder topologyBuilder;
+        private DataTable _fuelDataTable;
+        private FuelDispenser _selectedFuelDispenser;
+        private FuelTank _selectedFuelTank;
         private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
@@ -24,9 +30,18 @@ namespace GasStationMs.App
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            tb = new TopologyBuilder(dgvTopology);
-
+            topologyBuilder = new TopologyBuilder(dgvTopology);
             SetSettings();
+            currFilePath = "Топология" + Topology.Topology.DotExt;
+        }
+
+        public TopologyBuilder TopologyBuilder
+        {
+            get
+            {
+                return topologyBuilder;
+            }
+
         }
 
         private void TopologyConstructor_Load(object sender, EventArgs e)
@@ -34,16 +49,18 @@ namespace GasStationMs.App
             LoadList();
         }
 
+        public string CurrFilePath { get; set; }
+
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                tb.ColsCount = (int)cellsHorizontally.Value;
+                topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
             }
             catch (CannotRemoveTopologyBuilderCol)
             {
-                cellsHorizontally.Value = tb.ColsCount;
+                cellsHorizontally.Value = topologyBuilder.ColsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
             }
         }
@@ -52,14 +69,40 @@ namespace GasStationMs.App
         {
             try
             {
-                tb.RowsCount = (int)cellsVertically.Value;
+                topologyBuilder.RowsCount = (int)cellsVertically.Value;
             }
             catch (CannotRemoveTopologyBuilderRow)
             {
-                cellsVertically.Value = tb.RowsCount;
+                cellsVertically.Value = topologyBuilder.RowsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить строку");
             }
         }
+
+        private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
+        {
+            _selectedFuelTank.Volume = (int)numericUpDownVolume.Value;
+        }
+
+        private void numericUpDownFuelDispenserSpeed_ValueChanged(object sender, EventArgs e)
+        {
+
+            _selectedFuelDispenser.FuelFeedRateInLitersPerMinute = (int)numericUpDownFuelDispenserSpeed.Value;
+        }
+
+        private void clickedFuelList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
+            DataRowView row = clickedFuelList.SelectedItem as DataRowView;
+            var fuel = (FuelModel)row["Fuel"];
+
+            textBoxChosenFuel.Text = fuel.Name;
+            _selectedFuelTank.Fuel = fuel.Name;
+
+        }
+
+
+
+
         #endregion
 
         #region DbButtons
@@ -135,6 +178,7 @@ namespace GasStationMs.App
             //listFuels.DataSource = dataTable;
             //listFuels.DisplayMember = "Name";
             //listFuels.ValueMember = "Id";
+            this._fuelDataTable = fuelDataTable;
             listFuels.DataSource = fuelDataTable;
             listFuels.DisplayMember = "Fuel";
             listFuels.ValueMember = "Id";
@@ -152,17 +196,55 @@ namespace GasStationMs.App
             //textBoxNewFuelName.Text = row["Name"].ToString();
             //textBoxNewFuelPrice.Text = row["Price"].ToString();
         }
-        private void buttonToModelling_Click(object sender, EventArgs e) 
-        {
-            Topology.Topology topology = tb.CreateAndGetTopology();
-            ModelingForm modelingform = new ModelingForm(topology);
-            
-            modelingform.ShowDialog();
-        }
 
         private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
         {
             ConnectionHelpers.CloseConnection(_connection);
+        }
+
+        private void btnSaveTopology_Click(object sender, EventArgs e)
+        {
+            SaveTopologyIntoCurrFilePath();
+        }
+
+        private void SaveTopologyIntoCurrFilePath()
+        {
+            Topology.Topology topology = topologyBuilder.ToTopology();
+            topology.Save(currFilePath);
+        }
+
+        private void btnDownloadTopology_Click(object sender, EventArgs e)
+        {
+            const string FileName = "Топология" + ".tplg";
+            if (File.Exists(FileName))
+            {
+                Stream downloadingFileStream = File.OpenRead(FileName);
+
+                BinaryFormatter deserializer = new BinaryFormatter();
+                Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
+
+                downloadingFileStream.Close();
+
+                topologyBuilder.SetTopologyBuilder(topology);
+            }
+        }
+
+        private void btnSaveAs_Click(object sender, EventArgs e)
+        {
+            string dotExt = Topology.Topology.DotExt;
+            string filter = " " + dotExt + "|" + "*" + dotExt;
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                DefaultExt = dotExt,
+                Filter = filter
+            };
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                currFilePath = sfd.FileName;
+                SaveTopologyIntoCurrFilePath();
+            }
         }
     }
 }

@@ -1,8 +1,11 @@
-﻿using System.Drawing;
+﻿using GasStationMs.App.Elements;
+using System;
+using System.Drawing;
 
-namespace GasStationMs.App.Elements
+namespace GasStationMs.App.TemplateElements
 {
-    public class ServiceArea : IGasStationElement
+    [Serializable()]
+    public class Road : IGasStationElement
     {
         #region изображение
         private static Bitmap image;

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
+using System;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Topology
 {
@@ -29,42 +32,68 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public bool AddEntry()
+        public bool AddEntry(int x, int y)
         {
-            if (CanAddEntry())
+            if (CanAddEntry(x, y))
             {
-                entriesCount++;
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+                cell.Value = Entry.Image;
+                cell.Tag = new Entry();
+
+                EntriesCount++;
+
                 return true;
             }
-            else
-            {
-                return false;
-            }
-            
+
+            return false;
         }
 
-        private bool CanAddEntry()
+        private bool CanAddEntry(int x, int y)
         {
-            int newNumOfEntries = entriesCount + 1;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool isRoad = cell.Tag is Road;
+            bool isZerothCol = x == 0;
 
-            if (newNumOfEntries <= Topology.MaxEntriesCount)
+            if (isRoad &&
+                !IsRoadUnderServiceArea(x, y) &&
+                !isZerothCol)
             {
-                return true;
+                bool isNewCountOk = entriesCount + 1 <= Topology.MaxEntriesCount;
+
+                if (isNewCountOk)
+                    return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
-        public void DeleteEntry()
+        private bool IsRoadUnderServiceArea(int x, int y)
+        {
+            if (x >= serviceAreaBorderColIndex)
+                return true;
+
+            return false;
+        }
+
+        public void DeleteEntry(int x, int y)
         {
             if (entriesCount < 0)
-            {
                 throw new ArgumentOutOfRangeException();
-            }
 
-            entriesCount--;
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            bool canDelete = cell.Tag is Entry;
+
+            if (canDelete)
+            {
+                cell.Tag = null;
+                cell.Tag = new Road();
+                cell.Value = Road.Image;
+
+                entriesCount--;
+            }
+            else
+                throw new InvalidCastException();
         }
     }
 }

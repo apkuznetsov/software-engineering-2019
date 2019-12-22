@@ -1,20 +1,15 @@
-﻿namespace GasStationMs.App.AdditionalModels
+﻿using System;
+
+namespace GasStationMs.App.AdditionalModels
 {
+    [Serializable()]
     public class Fuel
     {
-        private string name;
-
         public Fuel(string name)
         {
-            this.name = name;
+            Name = name;
         }
 
-        public string Type
-        {
-            get
-            {
-                return name;
-            }
-        }
+        public string Name { get; }
     }
 }

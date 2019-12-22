@@ -4,8 +4,10 @@ using System.Drawing;
 
 namespace GasStationMs.App.Elements
 {
+    [Serializable()]
     public class FuelTank : IGasStationElement
     {
+
         #region изображение
         private static Bitmap image;
 
@@ -36,15 +38,47 @@ namespace GasStationMs.App.Elements
         private Fuel fuel;
         private int occupiedVolume;
 
-        public int Volume { get; }
+        public FuelTank()
+        {
+            Volume = MinVolumeInLiters;
+            fuel = new Fuel("АИ-100");
+        }
 
-        public int CriticalVolume { get; }
+        public int Volume
+        {
+            get
+            {
+                return volume;
+            }
+
+            set
+            {
+                if (value < MinVolumeInLiters)
+                    throw new ArgumentOutOfRangeException();
+
+                volume = value;
+
+                criticalVolume = (int)(volume * CriticalVolumeForRefuelingInShares);
+            }
+        }
+
+        public int CriticalVolume
+        {
+            get
+            {
+                return criticalVolume;
+            }
+        }
 
         public string Fuel
         {
             get
             {
-                return fuel.Type;
+                return fuel.Name;
+            }
+            set
+            {
+                this.fuel = new Fuel(value);
             }
         }
 
@@ -61,10 +95,12 @@ namespace GasStationMs.App.Elements
                 {
                     throw new ArgumentOutOfRangeException();
                 }
+
                 if (value > volume)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
+
                 occupiedVolume = value;
             }
         }
@@ -73,10 +109,10 @@ namespace GasStationMs.App.Elements
         {
             string nl = Environment.NewLine;
 
-            return
-                 "Объём: " + volume + nl +
-                 "Текущий объём: " + occupiedVolume + nl +
-                 "Топливо: " + fuel;
+            return "Топливный бак: ";
+            // "Объём: " + volume + nl +
+            //  "Текущий объём: " + occupiedVolume + nl +
+            //   "Топливо: " + fuel;
         }
     }
 }
