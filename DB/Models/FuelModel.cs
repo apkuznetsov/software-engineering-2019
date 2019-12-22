@@ -23,5 +23,15 @@
         {
             return Name + ":  " + Price + "р.";
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is FuelModel fuelModel && (Name.Equals(fuelModel.Name) && Price.Equals(fuelModel.Price));
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

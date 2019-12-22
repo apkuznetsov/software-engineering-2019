@@ -73,9 +73,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
-    <Compile Include="CustomImageColumn.cs" />
+    <Compile Include="TemplateElements\Road.cs" />
+    <Compile Include="TemplateElements\ServiceArea.cs" />
+    <Compile Include="Topology\TopologyBuilderHelpers\BlankTopologyBuilderCol.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
+    <Compile Include="DistributionLaws\DeterminedDistribution.cs" />
+    <Compile Include="DistributionLaws.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DistributionLaws.Designer.cs">
+      <DependentUpon>DistributionLaws.cs</DependentUpon>
+    </Compile>
     <Compile Include="DistributionLaws\ExponentialDistribution.cs" />
     <Compile Include="DistributionLaws\IDistributionLaw.cs" />
     <Compile Include="DB\GasStationMsDBDataSet.Designer.cs">
@@ -100,9 +109,16 @@
     <Compile Include="TemplateElements\Exit.cs" />
     <Compile Include="TemplateElements\FuelDispenser.cs" />
     <Compile Include="TemplateElements\FuelTank.cs" />
-    <Compile Include="Topology\TopologyExit.cs" />
-    <Compile Include="Topology\TopologyEntry.cs" />
-    <Compile Include="Topology\Topology.cs" />
+    <Compile Include="TemplateElements\IGasStationElement.cs" />
+    <Compile Include="Topology\TopologyBuilderCashCounter.cs" />
+    <Compile Include="Topology\TopologyBuilderFuelTank.cs" />
+    <Compile Include="Topology\TopologyBuilderFuelDispenser.cs" />
+    <Compile Include="Topology\TopologyBuilderHelpers\CannotRemoveTopologyBuilderCol.cs" />
+    <Compile Include="Topology\TopologyBuilderHelpers\CannotRemoveTopologyBuilderRow.cs" />
+    <Compile Include="Topology\TopologyConstants.cs" />
+    <Compile Include="Topology\TopologyBuilderExit.cs" />
+    <Compile Include="Topology\TopologyBuilderEntry.cs" />
+    <Compile Include="Topology\TopologyBuilder.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
     <Compile Include="Start.cs">
       <SubType>Form</SubType>
@@ -121,7 +137,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Topology\Topology.cs" />
+    <EmbeddedResource Include="DistributionLaws.resx">
+      <DependentUpon>DistributionLaws.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModelingForm.resx">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +192,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Road.png" />
+    <None Include="Resources\cashbox1.png" />
     <None Include="Resources\Cars\32x17\car%2832x17%29-up.png" />
     <None Include="Resources\Cars\32x17\car%2832x17%29-right.png" />
     <None Include="Resources\Cars\32x17\car%2832x17%29-left.png" />
@@ -181,6 +202,11 @@
     <None Include="Resources\Cars\car%2864x34%29-right.png" />
     <None Include="Resources\Cars\car%2864x34%29-left.png" />
     <None Include="Resources\Cars\car%2864x34%29-down.png" />
+    <None Include="Resources\ServiceArea.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\cashbox.png" />
+    <None Include="Resources\Exit.png" />
+    <None Include="Resources\Entrance.png" />
     <None Include="Resources\Cars\car.png" />
     <None Include="Resources\Cars\car%2864x34%29.png" />
     <None Include="Resources\dispenser70.png" />

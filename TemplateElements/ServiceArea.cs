@@ -4,7 +4,7 @@ using System.Drawing;
 namespace GasStationMs.App.Elements
 {
     [Serializable()]
-    public class Entry : IGasStationElement
+    public class ServiceArea : IGasStationElement
     {
         #region изображение
         private static Bitmap image;

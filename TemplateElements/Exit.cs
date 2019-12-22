@@ -1,8 +1,10 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
-namespace GasStationMs.App.TemplateElements
+namespace GasStationMs.App.Elements
 {
-    public class Exit
+    [Serializable()]
+    public class Exit : IGasStationElement
     {
         #region изображение
         private static Bitmap image;

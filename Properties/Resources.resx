@@ -124,7 +124,7 @@
   <data name="FuelTank" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-oil-storage-tank-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fuel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Fuel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fuel.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-oil-storage-tank-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -135,9 +135,6 @@
   </data>
   <data name="fuel2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fuel1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cashbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-cash-counter-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-oil-storage-tank-64_photo-resizer.ru" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-oil-storage-tank-64_photo-resizer.ru.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -171,5 +168,26 @@
   </data>
   <data name="car_32x17__up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cars\32x17\car(32x17)-up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cashbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cashbox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Entry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Entrance.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ServiceArea" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ServiceArea.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CashCounter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cashbox1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Road" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Road.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

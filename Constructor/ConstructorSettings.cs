@@ -1,40 +1,21 @@
 ﻿using System.Drawing;
-using System.Windows.Forms;
-using GasStationMs.App.Models;
+using GasStationMs.App.Elements;
 using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App
 {
     public partial class Constructor
     {
+        const int CellSizeInPx = 30;
+
         private void SetSettings()
         {
-            SetField();
             SetCellsSize();
+
             SetSpinners();
+
             SetRbsNames();
-
             SetTemplateElementsImages();
-        }
-
-        private void SetField()
-        {
-            dgvTopology.RowHeadersVisible = false;
-            dgvTopology.ColumnHeadersVisible = false;
-
-            dgvTopology.AllowUserToResizeColumns = false;
-            dgvTopology.AllowUserToResizeRows = false;
-
-            dgvTopology.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgvTopology.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-
-            for (int i = 0; i < Topology.NumOfCellsHorizontally; i++)
-            {
-
-                dgvTopology.Columns.Add(new CustomImageColumn(Properties.Resources.Blank));
-            }
-            dgvTopology.RowCount = Topology.NumOfCellsVertically;
         }
 
         private void SetCellsSize()
@@ -42,22 +23,22 @@ namespace GasStationMs.App
         {
             for (int i = 0; i < dgvTopology.ColumnCount; i++)
             {
-                dgvTopology.Columns[i].Width = Settings.CellSizeInPx;
+                dgvTopology.Columns[i].Width = CellSizeInPx;
             }
 
             for (int j = 0; j < dgvTopology.RowCount; j++)
             {
-                dgvTopology.Rows[j].Height = Settings.CellSizeInPx;
+                dgvTopology.Rows[j].Height = CellSizeInPx;
             }
         }
 
         private void SetSpinners()
         {
-            cellsHorizontally.Minimum = Topology.MinNumOfCellsHorizontally;
-            cellsHorizontally.Maximum = Topology.MaxNumOfCellsHorizontally;
+            cellsHorizontally.Minimum = Topology.Topology.MinColsCount;
+            cellsHorizontally.Maximum = Topology.Topology.MaxColsCount;
 
-            cellsVertically.Minimum = Topology.MinNumOfCellsVertically;
-            cellsVertically.Maximum = Topology.MaxNumOfCellsVertically;
+            cellsVertically.Minimum = Topology.Topology.MinRowsCount;
+            cellsVertically.Maximum = Topology.Topology.MaxRowsCount;
 
             cellsHorizontally.Text = dgvTopology.ColumnCount.ToString();
             cellsVertically.Text = dgvTopology.RowCount.ToString();
@@ -65,9 +46,13 @@ namespace GasStationMs.App
 
         private void SetTemplateElementsImages()
         {
-            FuelDispenser.Image = new Bitmap(Properties.Resources.fuel, Settings.CellSizeInPx, Settings.CellSizeInPx);
-            FuelTank.Image = new Bitmap(Properties.Resources.FuelTank, Settings.CellSizeInPx, Settings.CellSizeInPx);
-            //CashCounter.Image = new Bitmap(Properties.Resources.CashCounter, Settings.CellSizeInPx, Settings.CellSizeInPx);
+            FuelDispenser.Image = new Bitmap(Properties.Resources.Fuel, CellSizeInPx, CellSizeInPx);
+            FuelTank.Image = new Bitmap(Properties.Resources.FuelTank, CellSizeInPx, CellSizeInPx);
+            CashCounter.Image = new Bitmap(Properties.Resources.CashCounter, CellSizeInPx, CellSizeInPx);
+            Entry.Image = new Bitmap(Properties.Resources.Entry, CellSizeInPx, CellSizeInPx);
+            Exit.Image = new Bitmap(Properties.Resources.Exit, CellSizeInPx, CellSizeInPx);
+            ServiceArea.Image = new Bitmap(Properties.Resources.ServiceArea, CellSizeInPx, CellSizeInPx);
+            Road.Image = new Bitmap(Properties.Resources.Road, CellSizeInPx, CellSizeInPx);
         }
     }
 }
