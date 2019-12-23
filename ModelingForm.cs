@@ -928,7 +928,7 @@ namespace GasStationMs.App
             {
                 for (int j = 0; j < _topology.ColsCount; j++)
                 {
-                    var topologyElement = _topology[i, j];
+                    var topologyElement = _topology[j, i];
 
                     if (topologyElement == null)
                     {
