@@ -55,64 +55,30 @@ namespace GasStationMs.App
         public string CurrFilePath { get; set; }
 
         #region события
-
-
-        int oldColValue = GasStationMs.App.Topology.Topology.MinColsCount;
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
         {
-
-           // topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
-
-            if (oldColValue < (int)cellsHorizontally.Value)
+            try
             {
-                for (int i = 0; i < ((int)cellsHorizontally.Value - oldColValue); i++)
-                {
-                    dgvTopology.Columns.Add(new BlankTopologyBuilderCol());
-                }
-                oldColValue = (int)cellsHorizontally.Value;
+                topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
             }
-            else
+            catch (CannotRemoveTopologyBuilderCol)
             {
-                for (int i = 0; i < (oldColValue - (int)cellsHorizontally.Value); i++)
-                {
-                    dgvTopology.Columns.Remove(dgvTopology.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None));
-                }
-                oldColValue = (int)cellsHorizontally.Value;
+                cellsHorizontally.Value = topologyBuilder.ColsCount;
+                MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
             }
-
         }
 
-        int oldRowValue = GasStationMs.App.Topology.Topology.MinRowsCount;
         private void cellsVertically_ValueChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    topologyBuilder.RowsCount = (int)cellsVertically.Value;
-            //}
-            //catch (CannotRemoveTopologyBuilderRow)
-            //{
-            //    cellsVertically.Value = topologyBuilder.RowsCount;
-            //    MessageBox.Show("удалите ШЭ прежде чем удалить строку");
-            //}
-            if (oldRowValue < (int)cellsVertically.Value)
+            try
             {
-                for (int i = 0; i < ((int)cellsVertically.Value - oldRowValue); i++)
-                {
-                    dgvTopology.Rows.Add(new DataGridViewRow());
-                }
-                
-               oldRowValue = (int)cellsVertically.Value;
+                topologyBuilder.RowsCount = (int)cellsVertically.Value;
             }
-            else
+            catch (CannotRemoveTopologyBuilderRow)
             {
-                for (int i = 0; i < (oldRowValue - (int)cellsVertically.Value); i++)
-                {
-                    dgvTopology.Rows.RemoveAt(dgvTopology.Rows.GetLastRow(DataGridViewElementStates.Visible));
-                }
-                oldRowValue = (int)cellsVertically.Value;
+                cellsVertically.Value = topologyBuilder.RowsCount;
+                MessageBox.Show("удалите ШЭ прежде чем удалить строку");
             }
-
-
         }
                 
 
