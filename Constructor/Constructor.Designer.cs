@@ -63,8 +63,9 @@
             // 
             // dgvTopology
             // 
-            this.dgvTopology.AllowUserToResizeColumns = false;
+            this.dgvTopology.AllowDrop = true;
             this.dgvTopology.AllowUserToAddRows = false;
+            this.dgvTopology.AllowUserToResizeColumns = false;
             this.dgvTopology.AllowUserToResizeRows = false;
             this.dgvTopology.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvTopology.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -77,6 +78,8 @@
             this.dgvTopology.Size = new System.Drawing.Size(539, 355);
             this.dgvTopology.TabIndex = 0;
             this.dgvTopology.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTopology_CellMouseClick);
+            this.dgvTopology.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
+            this.dgvTopology.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragEnter);
             // 
             // cellsHorizontally
             // 
@@ -107,6 +110,7 @@
             this.rbFuelDispenser.UseVisualStyleBackColor = true;
             this.rbFuelDispenser.CheckedChanged += new System.EventHandler(this.radioButtonFuelDispenser_CheckedChanged);
             this.rbFuelDispenser.Click += new System.EventHandler(this.radioButtonFuelDispenser_Click);
+            this.rbFuelDispenser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbFuelDispenser_mouseDown);
             // 
             // rbFuelTank
             // 
@@ -121,6 +125,7 @@
             this.rbFuelTank.UseVisualStyleBackColor = true;
             this.rbFuelTank.CheckedChanged += new System.EventHandler(this.radioButtonFuelTank_CheckedChanged);
             this.rbFuelTank.Click += new System.EventHandler(this.radioButtonFuelTank_Click);
+            this.rbFuelTank.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbFuelTank_mouseDown);
             // 
             // listFuels
             // 
@@ -191,6 +196,7 @@
             this.rbCashCounter.UseVisualStyleBackColor = true;
             this.rbCashCounter.CheckedChanged += new System.EventHandler(this.rbCashCounter_CheckedChanged);
             this.rbCashCounter.Click += new System.EventHandler(this.rbCashCounter_Click);
+            this.rbCashCounter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbCashCounter_mouseDown);
             // 
             // rbEntry
             // 
@@ -205,6 +211,7 @@
             this.rbEntry.UseVisualStyleBackColor = true;
             this.rbEntry.CheckedChanged += new System.EventHandler(this.rbEntry_CheckedChanged);
             this.rbEntry.Click += new System.EventHandler(this.rbEntry_Click);
+            this.rbEntry.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbEntry_mouseDown);
             // 
             // rbExit
             // 
@@ -219,6 +226,7 @@
             this.rbExit.UseVisualStyleBackColor = true;
             this.rbExit.CheckedChanged += new System.EventHandler(this.rbExit_CheckedChanged);
             this.rbExit.Click += new System.EventHandler(this.rbExit_Click);
+            this.rbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbExit_mouseDown);
             // 
             // panelClickedCell
             // 

@@ -1,11 +1,14 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.App.Elements;
+using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology;
 using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using GasStationMs.Dal;
@@ -21,7 +24,7 @@ namespace GasStationMs.App
         private FuelTank _selectedFuelTank;
         private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
-        private readonly CrudHelper _crudHelper;
+        private readonly CrudHelper _crudHelper;        
 
         public Constructor(GasStationContext gasStationContext)
         {
@@ -111,6 +114,140 @@ namespace GasStationMs.App
 
 
         }
+                
+
+
+        private void rbFuelDispenser_mouseDown(object sender,MouseEventArgs e){
+            rbFuelDispenser.Checked = true;
+            isCheckedradioButtonFuelDispenser = false;
+            rbFuelDispenser.DoDragDrop(rbFuelDispenser.Image, DragDropEffects.Copy);
+            
+        }
+        private void rbFuelTank_mouseDown(object sender, MouseEventArgs e)
+        {
+            rbFuelTank.Checked = true;
+            isCheckedradioButtonFuelTank = false;
+            rbFuelTank.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
+            
+        }
+
+        private void rbCashCounter_mouseDown(object sender, MouseEventArgs e)
+        {
+            rbCashCounter.Checked = true;
+            isCheckedRbCashCounter = false;
+            rbCashCounter.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
+
+        }
+
+        private void rbEntry_mouseDown(object sender, MouseEventArgs e)
+        {
+            rbEntry.Checked = true;
+            isCheckedRbEntry = false;
+            rbEntry.DoDragDrop(rbEntry.Image, DragDropEffects.Copy);
+
+        }
+
+        private void rbExit_mouseDown(object sender, MouseEventArgs e)
+        {
+            rbExit.Checked = true;
+            isCheckedRbExit = false;
+            rbExit.DoDragDrop(rbExit.Image, DragDropEffects.Copy);
+
+        }
+
+        private void DataGridView_DragEnter(object sender, DragEventArgs e)
+        {            
+            e.Effect = DragDropEffects.Copy;
+
+        }
+
+
+        private void DataGridView_DragDrop(object sender, DragEventArgs e)
+        {
+            
+            Point cursorPosition = dgvTopology.PointToClient(Cursor.Position);
+            DataGridView.HitTestInfo info = dgvTopology.HitTest(cursorPosition.X, cursorPosition.Y);
+            var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
+            DataGridViewImageCell cell =(DataGridViewImageCell) dgvTopology[info.ColumnIndex, info.RowIndex];
+            if (cell.Tag == null)
+            {
+                bool isAdded = false;
+                if (rb.Name == typeof(FuelDispenser).ToString())
+                {                    
+                    isAdded = topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
+                    rbFuelDispenser.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить ТРК");
+                }
+                else if (rb.Name == typeof(CashCounter).ToString())
+                {
+                    isAdded = topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
+                    rbCashCounter.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить кассу");
+                }
+                else if (rb.Name == typeof(FuelTank).ToString())
+                {
+                    rbFuelTank.Checked = false;
+                    MessageBox.Show("невозможно добавить ТБ");
+                }
+                else if (rb.Name == typeof(Entry).ToString())
+                {
+                    rbEntry.Checked = false;
+                    MessageBox.Show("невозможно добавить въезд");
+                }
+                else if (rb.Name == typeof(Exit).ToString())
+                {
+                    rbExit.Checked = false;
+                    MessageBox.Show("невозможно добавить выезд");
+                }
+            }
+            else if (cell.Tag is ServiceArea)
+            {
+                bool isAdded = false;
+                if (rb.Name == typeof(FuelTank).ToString())
+                {
+                    isAdded = topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                    rbFuelTank.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить ТБ");
+                }
+            }
+            else if (cell.Tag is Road)
+            {
+                bool isAdded = false;
+                if (rb.Name == typeof(Entry).ToString())
+                {
+                    isAdded = topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
+                    rbEntry.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить въезд");
+                }
+                else if (rb.Name == typeof(Exit).ToString())
+                {
+                    isAdded = topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
+                    rbExit.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить выезд");
+                }
+                else if (rb.Name == typeof(FuelTank).ToString())
+                {
+                    rbFuelTank.Checked = false;
+                    MessageBox.Show("невозможно добавить ТБ");
+                }
+                else if (rb.Name == typeof(CashCounter).ToString())
+                {
+                    rbCashCounter.Checked = false;
+                    MessageBox.Show("невозможно добавить кассу");
+                }
+            }
+
+        }
+
+
+
+
+
 
         private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
         {
