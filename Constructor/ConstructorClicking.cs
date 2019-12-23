@@ -99,7 +99,7 @@ namespace GasStationMs.App
 
                     panelClickedCell.Visible = true;
 
-                    if (cell.Tag.ToString() == "ТРК: ")
+                    if (cell.Tag is FuelDispenser)
                     {
                         label1.Visible = false;
                         numericUpDownVolume.Visible = false;
@@ -113,7 +113,7 @@ namespace GasStationMs.App
                         _selectedFuelDispenser = clickedFuelDispenser;
                         numericUpDownFuelDispenserSpeed.Value = clickedFuelDispenser.FuelFeedRateInLitersPerMinute;
                     }
-                    else if (cell.Tag.ToString() == "Топливный бак: ")
+                    else if (cell.Tag is FuelTank)
                     {
                         label2.Visible = false;
                         numericUpDownFuelDispenserSpeed.Visible = false;
