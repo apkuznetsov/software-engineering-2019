@@ -6,26 +6,8 @@ namespace GasStationMs.App.Elements
     [Serializable()]
     public class CashCounter : IGasStationElement
     {
-        #region статика
-        #region изображение
-        private static Bitmap image;
-
-        public static Bitmap Image
-        {
-            get
-            {
-                return image;
-            }
-
-            set
-            {
-                image = value;
-                Icon = Icon.FromHandle(image.GetHicon());
-            }
-        }
-
-        public static Icon Icon { get; private set; }
-        #endregion /изображение
+        #region
+        public static Bitmap Image { get; set; }
 
         public static readonly int CashLimitInRubles = 100000;
 

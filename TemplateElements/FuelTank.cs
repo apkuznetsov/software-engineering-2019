@@ -7,31 +7,13 @@ namespace GasStationMs.App.Elements
     [Serializable()]
     public class FuelTank : IGasStationElement
     {
-
-        #region изображение
-        private static Bitmap image;
-
-        public static Bitmap Image
-        {
-            get
-            {
-                return image;
-            }
-
-            set
-            {
-                image = value;
-                Icon = Icon.FromHandle(image.GetHicon());
-            }
-        }
-
-        public static Icon Icon { get; private set; }
-        #endregion /изображение
-
+        #region статика
+        public static Bitmap Image { get; set; }
 
         public static readonly int MinVolumeInLiters = 10000;
         public static readonly int MaxVolumeInLiters = 75000;
         public static readonly double CriticalVolumeForRefuelingInShares = 0.15;
+        #endregion /статика
 
         private int volume;
         private int criticalVolume;
