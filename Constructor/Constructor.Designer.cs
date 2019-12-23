@@ -39,13 +39,11 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.textBoxNewFuelPrice = new System.Windows.Forms.TextBox();
-            this.tbClickedCell = new System.Windows.Forms.TextBox();
             this.rbCashCounter = new System.Windows.Forms.RadioButton();
             this.rbEntry = new System.Windows.Forms.RadioButton();
             this.rbExit = new System.Windows.Forms.RadioButton();
             this.panelClickedCell = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelMainTeProperty = new System.Windows.Forms.Label();
             this.numericUpDownVolume = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownFuelDispenserSpeed = new System.Windows.Forms.NumericUpDown();
             this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
@@ -53,6 +51,7 @@
             this.btnSaveTopology = new System.Windows.Forms.Button();
             this.btnSaveAs = new System.Windows.Forms.Button();
             this.btnOpenInBrowserAbout = new System.Windows.Forms.Button();
+            this.labelClickedTeName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -175,14 +174,6 @@
             this.textBoxNewFuelPrice.Size = new System.Drawing.Size(159, 20);
             this.textBoxNewFuelPrice.TabIndex = 9;
             // 
-            // tbClickedCell
-            // 
-            this.tbClickedCell.Location = new System.Drawing.Point(3, 13);
-            this.tbClickedCell.Multiline = true;
-            this.tbClickedCell.Name = "tbClickedCell";
-            this.tbClickedCell.Size = new System.Drawing.Size(106, 21);
-            this.tbClickedCell.TabIndex = 11;
-            // 
             // rbCashCounter
             // 
             this.rbCashCounter.Appearance = System.Windows.Forms.Appearance.Button;
@@ -230,38 +221,27 @@
             // 
             // panelClickedCell
             // 
-            this.panelClickedCell.Controls.Add(this.label2);
-            this.panelClickedCell.Controls.Add(this.label1);
+            this.panelClickedCell.Controls.Add(this.labelClickedTeName);
+            this.panelClickedCell.Controls.Add(this.labelMainTeProperty);
             this.panelClickedCell.Controls.Add(this.numericUpDownVolume);
             this.panelClickedCell.Controls.Add(this.numericUpDownFuelDispenserSpeed);
             this.panelClickedCell.Controls.Add(this.textBoxChosenFuel);
             this.panelClickedCell.Controls.Add(this.clickedFuelList);
-            this.panelClickedCell.Controls.Add(this.tbClickedCell);
-            this.panelClickedCell.Location = new System.Drawing.Point(566, 130);
+            this.panelClickedCell.Location = new System.Drawing.Point(573, 127);
             this.panelClickedCell.Name = "panelClickedCell";
             this.panelClickedCell.Size = new System.Drawing.Size(222, 145);
             this.panelClickedCell.TabIndex = 15;
             this.panelClickedCell.Visible = false;
             // 
-            // label2
+            // labelMainTeProperty
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Скорость заправки";
-            this.label2.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 86);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Объем бака";
-            this.label1.Visible = false;
+            this.labelMainTeProperty.AutoSize = true;
+            this.labelMainTeProperty.Location = new System.Drawing.Point(4, 32);
+            this.labelMainTeProperty.Name = "labelMainTeProperty";
+            this.labelMainTeProperty.Size = new System.Drawing.Size(87, 13);
+            this.labelMainTeProperty.TabIndex = 18;
+            this.labelMainTeProperty.Text = "TE main property";
+            this.labelMainTeProperty.Visible = false;
             // 
             // numericUpDownVolume
             // 
@@ -364,6 +344,15 @@
             this.btnOpenInBrowserAbout.Text = "Справка";
             this.btnOpenInBrowserAbout.UseVisualStyleBackColor = true;
             // 
+            // labelClickedTeName
+            // 
+            this.labelClickedTeName.AutoSize = true;
+            this.labelClickedTeName.Location = new System.Drawing.Point(4, 9);
+            this.labelClickedTeName.Name = "labelClickedTeName";
+            this.labelClickedTeName.Size = new System.Drawing.Size(50, 13);
+            this.labelClickedTeName.TabIndex = 19;
+            this.labelClickedTeName.Text = "TE name";
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,7 +404,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox textBoxNewFuelPrice;
-        private System.Windows.Forms.TextBox tbClickedCell;
         private System.Windows.Forms.RadioButton rbCashCounter;
         private System.Windows.Forms.RadioButton rbEntry;
         private System.Windows.Forms.RadioButton rbExit;
@@ -424,11 +412,11 @@
         private System.Windows.Forms.TextBox textBoxChosenFuel;
         private System.Windows.Forms.NumericUpDown numericUpDownFuelDispenserSpeed;
         private System.Windows.Forms.NumericUpDown numericUpDownVolume;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelMainTeProperty;
         private System.Windows.Forms.Button btnSaveTopology;
         private System.Windows.Forms.Button btnSaveAs;
         private System.Windows.Forms.Button btnOpenInBrowserAbout;
+        private System.Windows.Forms.Label labelClickedTeName;
     }
 }
 

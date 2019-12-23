@@ -94,20 +94,21 @@ namespace GasStationMs.App
                 }
                 else
                 {
-                    tbClickedCell.Text = cell.Tag.ToString();
-                    //MessageBox.Show("невозможно добавить: ячейка уже занята");
+                    labelClickedTeName.Text = cell.Tag.ToString();
 
                     panelClickedCell.Visible = true;
 
                     if (cell.Tag is FuelDispenser)
                     {
-                        label1.Visible = false;
+                        labelMainTeProperty.Visible = true;
+                        labelMainTeProperty.Text = "Скорость подачи топлива";
+
+
                         numericUpDownVolume.Visible = false;
                         clickedFuelList.Visible = false;
                         textBoxChosenFuel.Visible = false;
 
 
-                        label2.Visible = true;
                         numericUpDownFuelDispenserSpeed.Visible = true;
                         FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
                         _selectedFuelDispenser = clickedFuelDispenser;
@@ -115,11 +116,13 @@ namespace GasStationMs.App
                     }
                     else if (cell.Tag is FuelTank)
                     {
-                        label2.Visible = false;
+                        labelMainTeProperty.Visible = true;
+                        labelMainTeProperty.Text = "Объём";
+
+
                         numericUpDownFuelDispenserSpeed.Visible = false;
 
 
-                        label1.Visible = true;
                         numericUpDownVolume.Visible = true;
                         clickedFuelList.Visible = true;
                         textBoxChosenFuel.Visible = true;
