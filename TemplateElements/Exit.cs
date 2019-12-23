@@ -7,5 +7,10 @@ namespace GasStationMs.App.Elements
     public class Exit : IGasStationElement
     {
         public static Bitmap Image { get; set; }
+
+        public override string ToString()
+        {
+            return "Выезд";
+        }
     }
 }

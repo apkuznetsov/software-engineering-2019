@@ -89,12 +89,7 @@ namespace GasStationMs.App.Elements
 
         public override string ToString()
         {
-            string nl = Environment.NewLine;
-
-            return "Топливный бак: ";
-            // "Объём: " + volume + nl +
-            //  "Текущий объём: " + occupiedVolume + nl +
-            //   "Топливо: " + fuel;
+            return "ТБ";
         }
     }
 }

@@ -38,8 +38,7 @@ namespace GasStationMs.App.Elements
 
         public override string ToString()
         {
-            return
-                 "ТРК: ";
+            return "ТРК";
         }
     }
 }

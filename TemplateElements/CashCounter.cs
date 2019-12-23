@@ -39,5 +39,10 @@ namespace GasStationMs.App.Elements
                 moneyInRubles = value;
             }
         }
+
+        public override string ToString()
+        {
+            return "Касса";
+        }
     }
 }

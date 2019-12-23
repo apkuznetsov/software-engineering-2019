@@ -8,5 +8,10 @@ namespace GasStationMs.App.TemplateElements
     public class Road : IGasStationElement
     {
         public static Bitmap Image { get; set; }
+
+        public override string ToString()
+        {
+            return "Дорога";
+        }
     }
 }
