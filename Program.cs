@@ -16,10 +16,10 @@ namespace GasStationMs.App
             Application.SetCompatibleTextRenderingDefault(false);
             Bootstrap();
             //Application.Run(container.GetInstance<Constructor>());
-            Application.Run(new ModelingForm(null));
+            //Application.Run(new ModelingForm(null));
             //Application.Run(container.GetInstance<DistributionLaws.DistributionLaws>());
             //Так будет выглядеть запуск приложения в будущем
-            //Application.Run(new Start(container));
+            Application.Run(new Start(container));
         }
 
         private static void Bootstrap()
