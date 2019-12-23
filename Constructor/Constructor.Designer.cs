@@ -64,6 +64,7 @@
             // dgvTopology
             // 
             this.dgvTopology.AllowUserToResizeColumns = false;
+            this.dgvTopology.AllowUserToAddRows = false;
             this.dgvTopology.AllowUserToResizeRows = false;
             this.dgvTopology.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvTopology.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;

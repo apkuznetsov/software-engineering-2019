@@ -160,128 +160,128 @@ namespace GasStationMs.App.Topology
             cell.Tag = new ServiceArea();
         }
 
-        public int ColsCount
-        {
-            get
-            {
-                return field.ColumnCount;
-            }
+        //public int ColsCount
+        //{
+        //    get
+        //    {
+        //        return field.ColumnCount;
+        //    }
 
-            set
-            {
-                if (value < Topology.MinColsCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
+        //    set
+        //    {
+        //        if (value < Topology.MinColsCount)
+        //        {
+        //            throw new ArgumentOutOfRangeException();
+        //        }
 
-                if (value > Topology.MaxColsCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
+        //        if (value > Topology.MaxColsCount)
+        //        {
+        //            throw new ArgumentOutOfRangeException();
+        //        }
 
-                if (field.ColumnCount < value)
-                {
-                    AddDgvCols(value - field.ColumnCount);
-                }
-                else
-                {
-                    RemoveDgvCols(field.ColumnCount - value);
-                }
+        //        if (field.ColumnCount < value)
+        //        {
+        //            AddDgvCols(value - field.ColumnCount);
+        //        }
+        //        else
+        //        {
+        //            RemoveDgvCols(field.ColumnCount - value);
+        //        }
 
-                field.ColumnCount = value;
+        //        field.ColumnCount = value;
 
-                //serviceAreaInCells = RecalculateServiceArea();
-            }
-        }
+        //        //serviceAreaInCells = RecalculateServiceArea();
+        //    }
+        //}
 
-        public int RowsCount
-        {
-            get
-            {
-                return field.RowCount;
-            }
+        //public int RowsCount
+        //{
+        //    get
+        //    {
+        //        return field.RowCount;
+        //    }
 
-            set
-            {
-                if (value < Topology.MinRowsCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                if (value > Topology.MaxRowsCount)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
+        //    set
+        //    {
+        //        if (value < Topology.MinRowsCount)
+        //        {
+        //            throw new ArgumentOutOfRangeException();
+        //        }
+        //        if (value > Topology.MaxRowsCount)
+        //        {
+        //            throw new ArgumentOutOfRangeException();
+        //        }
 
-                if (field.RowCount < value)
-                {
-                    AddDgvRows(value - field.RowCount);
-                }
-                else
-                {
-                    RemoveDgvRows(field.RowCount - value);
-                }
+        //        if (field.RowCount < value)
+        //        {
+        //            AddDgvRows(value - field.RowCount);
+        //        }
+        //        else
+        //        {
+        //            RemoveDgvRows(field.RowCount - value);
+        //        }
 
-                field.RowCount = value;
+        //        field.RowCount = value;
 
-                //serviceAreaInCells = RecalculateServiceArea();
-            }
-        }
+        //        //serviceAreaInCells = RecalculateServiceArea();
+        //    }
+        //}
 
-        private void RemoveDgvCols(int colsCount)
-        {
-            for (int i = 0; i < colsCount; i++)
-            {
-                DataGridViewColumn dgvCol = field.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None);
+        //private void RemoveDgvCols(int colsCount)
+        //{
+        //    for (int i = 0; i < colsCount; i++)
+        //    {
+        //        DataGridViewColumn dgvCol = field.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None);
 
-                if (IsThereAnyTag(dgvCol))
-                {
-                    throw new CannotRemoveTopologyBuilderCol();
-                }
+        //        if (IsThereAnyTag(dgvCol))
+        //        {
+        //            throw new CannotRemoveTopologyBuilderCol();
+        //        }
 
-                field.Columns.Remove(dgvCol);
-            }
-        }
+        //        field.Columns.Remove(dgvCol);
+        //    }
+        //}
 
-        private void RemoveDgvRows(int rowsCount)
-        {
-            for (int i = 0; i < rowsCount; i++)
-            {
-                int rowIndex = field.Rows.GetLastRow(DataGridViewElementStates.Visible);
-                DataGridViewRow row = field.Rows[rowIndex];
+        //private void RemoveDgvRows(int rowsCount)
+        //{
+        //    for (int i = 0; i < rowsCount; i++)
+        //    {
+        //        int rowIndex = field.Rows.GetLastRow(DataGridViewElementStates.Visible);
+        //        DataGridViewRow row = field.Rows[rowIndex];
 
-                if (IsThereAnyTag(row))
-                {
-                    throw new CannotRemoveTopologyBuilderRow();
-                }
+        //        if (IsThereAnyTag(row))
+        //        {
+        //            throw new CannotRemoveTopologyBuilderRow();
+        //        }
 
-                try
-                {
-                    DataGridViewImageCell[] penultimateRowCells = new DataGridViewImageCell[field.ColumnCount];
-                    int penultimateRowIndex = rowIndex - 1;
-                    DataGridViewImageCell cell;
-                    for (int penultimateColIndex = 0; penultimateColIndex < penultimateRowCells.Length; penultimateColIndex++)
-                    {
-                        cell = (DataGridViewImageCell)field.Rows[penultimateRowIndex].Cells[penultimateColIndex];
-                        penultimateRowCells[penultimateColIndex].Tag = cell.Tag;
-                        penultimateRowCells[penultimateColIndex].Value = cell.Value;
-                    }
+        //        try
+        //        {
+        //            DataGridViewImageCell[] penultimateRowCells = new DataGridViewImageCell[field.ColumnCount];
+        //            int penultimateRowIndex = rowIndex - 1;
+        //            DataGridViewImageCell cell;
+        //            for (int penultimateColIndex = 0; penultimateColIndex < penultimateRowCells.Length; penultimateColIndex++)
+        //            {
+        //                cell = (DataGridViewImageCell)field.Rows[penultimateRowIndex].Cells[penultimateColIndex];
+        //                penultimateRowCells[penultimateColIndex].Tag = cell.Tag;
+        //                penultimateRowCells[penultimateColIndex].Value = cell.Value;
+        //            }
 
-                    field.Rows.Remove(row);
+        //            field.Rows.Remove(row);
 
-                    rowIndex = field.Rows.GetLastRow(DataGridViewElementStates.Visible);
-                    for (int colIndex = 0; colIndex < field.ColumnCount; colIndex++)
-                    {
-                        cell = (DataGridViewImageCell)field.Rows[rowIndex].Cells[colIndex];
-                        cell.Tag = penultimateRowCells[colIndex].Tag;
-                        cell.Value = penultimateRowCells[colIndex].Value;
-                    }
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show(exc.Message);
-                }
-            }
-        }
+        //            rowIndex = field.Rows.GetLastRow(DataGridViewElementStates.Visible);
+        //            for (int colIndex = 0; colIndex < field.ColumnCount; colIndex++)
+        //            {
+        //                cell = (DataGridViewImageCell)field.Rows[rowIndex].Cells[colIndex];
+        //                cell.Tag = penultimateRowCells[colIndex].Tag;
+        //                cell.Value = penultimateRowCells[colIndex].Value;
+        //            }
+        //        }
+        //        catch (Exception exc)
+        //        {
+        //            MessageBox.Show(exc.Message);
+        //        }
+        //    }
+        //}
 
         private bool IsThereAnyTag(DataGridViewColumn col)
         {
@@ -321,7 +321,7 @@ namespace GasStationMs.App.Topology
 
         private int RecalculateServiceArea()
         {
-            return (int)(RowsCount * ColsCount * Topology.ServiceAreaInShares);
+            return (int)(field.Rows.Count * field.Columns.Count * Topology.ServiceAreaInShares);
         }
 
         public Topology ToTopology()
