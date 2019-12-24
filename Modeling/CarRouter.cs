@@ -9,11 +9,9 @@ namespace GasStationMs.App.Modeling
     internal static class CarRouter
     {
         private static ModelingForm _modelingForm;
-        private static ModelingProcessor _modelingProcessor;
-        internal static void SetUppCarRouter(ModelingForm modelingForm, ModelingProcessor modelingProcessor)
+        internal static void SetUpCarRouter(ModelingForm modelingForm)
         {
             _modelingForm = modelingForm;
-            _modelingProcessor = modelingProcessor;
         }
 
         internal static void RouteCar(PictureBox car)
@@ -52,12 +50,12 @@ namespace GasStationMs.App.Modeling
 
         private static void ChooseFuelDispenser(CarView car)
         {
-            PictureBox optimalFuelDispenser = _modelingProcessor.FuelDispensersList[0];
+            PictureBox optimalFuelDispenser = ModelingProcessor.FuelDispensersList[0];
             FuelDispenserView fuelDispenserView = (FuelDispenserView)optimalFuelDispenser.Tag;
             var minQueue = fuelDispenserView.CarsInQueue;
 
             // Looking for Fuel Dispenser with minimal queue
-            foreach (var fuelDispenser in _modelingProcessor.FuelDispensersList)
+            foreach (var fuelDispenser in ModelingProcessor.FuelDispensersList)
             {
                 fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
                 if (fuelDispenserView.CarsInQueue < minQueue)

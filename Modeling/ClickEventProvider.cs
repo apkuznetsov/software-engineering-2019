@@ -6,15 +6,15 @@ namespace GasStationMs.App.Modeling
 {
     internal static class ClickEventProvider
     {
+        private static ModelingForm _modelingForm;
         private static Label _labelSelectedElement;
         private static TextBox _textBoxSelectedItemInformation;
-        private static PictureBox _selectedItem;
 
         internal static void SetUpClickEventProvider(ModelingForm modelingForm)
         {
+            _modelingForm = modelingForm;
             _labelSelectedElement = modelingForm.LabelSelectedElement;
             _textBoxSelectedItemInformation = modelingForm.TextBoxSelectedItemInformation;
-            _selectedItem = modelingForm.SelectedItem;
         }
         internal static void CarPictureBox_Click(object sender, MouseEventArgs e)
         {
@@ -35,7 +35,7 @@ namespace GasStationMs.App.Modeling
             _labelSelectedElement.Visible = true;
             _textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = car;
+           _modelingForm.SelectedItem = car;
         }
 
         internal static void FuelDispenserPictureBox_Click(object sender, MouseEventArgs e)
@@ -55,7 +55,7 @@ namespace GasStationMs.App.Modeling
             _labelSelectedElement.Visible = true;
             _textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = fuelDispenser;
+            _modelingForm.SelectedItem = fuelDispenser;
         }
 
         internal static void FuelTankPictureBox_Click(object sender, MouseEventArgs e)
@@ -76,7 +76,7 @@ namespace GasStationMs.App.Modeling
             _labelSelectedElement.Visible = true;
             _textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = fuelTank;
+            _modelingForm.SelectedItem = fuelTank;
         }
 
         internal static void CashCounterPictureBox_Click(object sender, MouseEventArgs e)
@@ -96,7 +96,7 @@ namespace GasStationMs.App.Modeling
 
             _textBoxSelectedItemInformation.Text = cashCounterInfo.ToString();
 
-            _selectedItem = cashCounter;
+            _modelingForm.SelectedItem = cashCounter;
         }
 
         internal static void EnterPictureBox_Click(object sender, MouseEventArgs e)
@@ -114,7 +114,7 @@ namespace GasStationMs.App.Modeling
             _labelSelectedElement.Visible = true;
             _textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = enter;
+            _modelingForm.SelectedItem = enter;
         }
 
         internal static void ExitPictureBox_Click(object sender, MouseEventArgs e)
@@ -132,7 +132,7 @@ namespace GasStationMs.App.Modeling
             _labelSelectedElement.Visible = true;
             _textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = exit;
+            _modelingForm.SelectedItem = exit;
         }
 
         internal static void ServiceArea_Click(object sender, MouseEventArgs e)
@@ -151,7 +151,7 @@ namespace GasStationMs.App.Modeling
             _labelSelectedElement.Visible = true;
             _textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = serviceArea;
+            _modelingForm.SelectedItem = serviceArea;
         }
 
 

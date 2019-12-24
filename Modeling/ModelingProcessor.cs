@@ -4,20 +4,23 @@ using GasStationMs.App.Modeling.Models;
 
 namespace GasStationMs.App.Modeling
 {
-    internal class ModelingProcessor
+    internal static class ModelingProcessor
     {
-        private readonly PictureBox _cashCounter;
-        internal List<PictureBox> FuelDispensersList { get; }
-        internal List<PictureBox> FuelTanksList { get; }
+        private static  PictureBox _cashCounter;
+        internal static List<PictureBox> FuelDispensersList { get; private set; }
+        internal static List<PictureBox> FuelTanksList { get; private set; }
 
-        internal ModelingProcessor(MappedTopology mappedTopology)
+        internal static void SetUpModelingProcessor(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
             _cashCounter = mappedTopology.CashCounter;
             FuelDispensersList = mappedTopology.FuelDispensersList;
             FuelTanksList = mappedTopology.FuelTanksList;
+
+            CarMover.SetUpCarMover(modelingForm);
+            CarRouter.SetUpCarRouter(modelingForm);
         }
 
-        internal void StartFilling(PictureBox car, PictureBox fuelDispenser)
+        internal static void StartFilling(PictureBox car, PictureBox fuelDispenser)
         {
             var carView = (CarView)car.Tag;
             var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
@@ -30,7 +33,7 @@ namespace GasStationMs.App.Modeling
             fuelDispenserView.IsBusy = true;
         }
 
-        internal void FillCar(CarView car, FuelDispenserView fuelDispenser)
+        internal static void FillCar(CarView car, FuelDispenserView fuelDispenser)
         {
             car.FuelRemained += fuelDispenser.GetFuelFromTank();
 
@@ -52,7 +55,7 @@ namespace GasStationMs.App.Modeling
             }
         }
 
-        internal void StopFilling(CarView car, FuelDispenserView fuelDispenser)
+        internal static void StopFilling(CarView car, FuelDispenserView fuelDispenser)
         {
             if (car.FuelRemained > car.TankVolume)
             {

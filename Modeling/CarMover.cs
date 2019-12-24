@@ -3,21 +3,20 @@ using System.Windows.Forms;
 using GasStationMs.App.Modeling.Models;
 using static GasStationMs.App.Modeling.CarRouter;
 using static GasStationMs.App.Modeling.DestinationPointsDefiner;
+using static GasStationMs.App.Modeling.ModelingProcessor;
 
 namespace GasStationMs.App.Modeling
 {
     internal static class CarMover
     {
         private static ModelingForm _modelingForm;
-        private static ModelingProcessor _modelingProcessor;
 
         private static int _carSpeedFilling = 3;
         private static int _carSpeedNoFilling = 4;
 
-        internal static void  SetUpCarMover(ModelingForm modelingForm, ModelingProcessor modelingProcessor)
+        internal static void  SetUpCarMover(ModelingForm modelingForm)
         {
             _modelingForm = modelingForm;
-            _modelingProcessor = modelingProcessor;
         }
 
         internal static void MoveCarToDestination(PictureBox car)
@@ -28,7 +27,7 @@ namespace GasStationMs.App.Modeling
             {
                 var chosenFuelDispenser = (FuelDispenserView)carView.ChosenFuelDispenser.Tag;
 
-                _modelingProcessor.FillCar(carView, chosenFuelDispenser);
+               FillCar(carView, chosenFuelDispenser);
 
                 return;
             }
@@ -69,7 +68,7 @@ namespace GasStationMs.App.Modeling
                 {
                     if (destPoint.Equals(fuelDispensersDestPoint))
                     {
-                        _modelingProcessor.StartFilling(car, carView.ChosenFuelDispenser);
+                        StartFilling(car, carView.ChosenFuelDispenser);
                         //test
                         //carView.IsFilled = true;
                     }

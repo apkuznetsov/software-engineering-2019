@@ -18,8 +18,8 @@ namespace GasStationMs.App.Modeling
             _modelingForm = modelingForm;
             _topology = topology;
             _mappedTopology = new MappedTopology();
+            ElementPictureBoxProducer.SetUpElementPictureBoxProducer(modelingForm, _mappedTopology);
 
-            DestinationPointsDefiner.DefineCommonPoints();
 
             SetupPlaygroundPanel();
             SetupServiceArea();
@@ -34,6 +34,8 @@ namespace GasStationMs.App.Modeling
             var panelPlayground = _modelingForm.PlaygroundPanel;
             PanelPlaygroundWidth = _topology.ColsCount * TopologyCellSize;
             PanelPlaygroundHeight = _topology.RowsCount * TopologyCellSize + 3 * TopologyCellSize;
+
+            DestinationPointsDefiner.DefineCommonPoints();
 
             panelPlayground.Size = new Size(PanelPlaygroundWidth, PanelPlaygroundHeight);
 
