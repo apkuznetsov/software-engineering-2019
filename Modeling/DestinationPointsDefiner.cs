@@ -9,6 +9,8 @@ namespace GasStationMs.App.Modeling
     {
         internal static Dictionary<PictureBox, Point> FuelDispensersDestPoints { get; private set; }
 
+        internal static Point CashCounter { get; private set; }
+
         internal static int FuelingPointDeltaX {get;}= 5;
         internal static int FuelingPointDeltaY { get; } = 5;
 
@@ -55,9 +57,11 @@ namespace GasStationMs.App.Modeling
         internal static void DefineElementsPoints(MappedTopology mappedTopology)
         {
             FuelDispensersDestPoints = mappedTopology.FuelDispensersDestPoints;
+            CashCounter = mappedTopology.CashCounterDestinationPoint;
 
             var enter = mappedTopology.Enter;
             var exit = mappedTopology.Exit;
+
 
             // Destination points to enter/leave gas station
             EnterCenter = new Point(enter.Left + enter.Width / 2,

@@ -1,7 +1,9 @@
 ﻿using System.Drawing;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Modeling.Models.PictureBoxes;
 using static GasStationMs.App.Modeling.DestinationPointsDefiner;
 using static GasStationMs.App.Modeling.DirectionEnum;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
@@ -17,42 +19,64 @@ namespace GasStationMs.App.Modeling
             _modelingForm = modelingForm;
         }
 
-        internal static void RouteCar(PictureBox car)
+        internal static void RouteCar(MoveablePictureBox car)
         {
-            var carView = (CarView) car.Tag;
-
-            if (!carView.IsGoesFilling)
+            if (!car.IsGoesFilling)
             {
                 return;
             }
 
-            var isOnStation = carView.IsOnStation;
-            var isFilled = carView.IsFilled;
-            var isFuelDispenserChosen = carView.IsFuelDispenserChosen;
+            CarView carView = null;
+            CollectorView collectorView = null;
+
+            if (car is CarPictureBox)
+            {
+                carView = car.Tag as CarView;
+            }
+
+            if (car is CollectorPictureBox)
+            {
+                collectorView = car.Tag as CollectorView;
+            }
+
+            var isOnStation = car.IsOnStation;
+            var isFilled = car.IsFilled;
 
             // New car
-            if (!isOnStation && !isFilled && !carView.HasDestPoints())
+            if (!isOnStation && !isFilled && !car.HasDestPoints())
             {
-                GoToEnter(carView);
+                GoToEnter(car);
             }
 
             // Just entered the station
-            if (isOnStation && !isFuelDispenserChosen)
+            if (car is CarPictureBox carPictureBox)
             {
-                ChooseFuelDispenser(carView);
+                if (isOnStation && !carView.IsFuelDispenserChosen)
+                {
+                    ChooseFuelDispenser(carPictureBox);
+                }
+            }
+
+            if (car is CollectorPictureBox collector)
+            {
+                if (isOnStation && !collectorView.IsGoesToCashCounter)
+                {
+                    GoToCashCounter(collector);
+                }
             }
 
             // After filling 
             if (isOnStation && isFilled)
             {
-                GoToExit(carView);
-                carView.IsOnStation = false;
+                GoToExit(car);
+                car.IsOnStation = false;
             }
         }
 
-
-        private static void ChooseFuelDispenser(CarView car)
+        private static void ChooseFuelDispenser(CarPictureBox car)
         {
+            var carView = car.Tag as CarView ;
+
             PictureBox optimalFuelDispenser = ModelingProcessor.FuelDispensersList[0];
             FuelDispenserView fuelDispenserView = (FuelDispenserView) optimalFuelDispenser.Tag;
             var minQueue = fuelDispenserView.CarsInQueue;
@@ -68,10 +92,10 @@ namespace GasStationMs.App.Modeling
                 }
             }
 
-            car.ChosenFuelDispenser = optimalFuelDispenser;
+            carView.ChosenFuelDispenser = optimalFuelDispenser;
             fuelDispenserView = (FuelDispenserView) optimalFuelDispenser.Tag;
             fuelDispenserView.CarsInQueue++;
-            car.IsFuelDispenserChosen = true;
+            carView.IsFuelDispenserChosen = true;
 
             int destPointX;
             int destPointY;
@@ -97,16 +121,49 @@ namespace GasStationMs.App.Modeling
             car.AddDestinationPoint(destPoint);
         }
 
-        private static void GoToEnter(CarView car)
+        private static void GoToCashCounter(CollectorPictureBox collector)
+        {
+            var collectorView = collector.Tag as CollectorView;
+            var cashCounter = ModelingProcessor.CashCounter;
+
+            collectorView.CashCounter = cashCounter;
+
+            collectorView.IsGoesToCashCounter = true;
+
+            int destPointX;
+            int destPointY;
+            Point destPoint;
+
+            // Additional points for better graphics
+            destPointX = cashCounter.Left - CarWidth + 5;
+            destPointY = cashCounter.Bottom + TopologyCellSize - 10;
+            destPoint = new Point(destPointX, destPointY);
+
+            collector.AddDestinationPoint(destPoint);
+
+            destPointX = cashCounter.Left + FuelingPointDeltaX;
+            destPointY = cashCounter.Bottom + FuelingPointDeltaY;
+            destPoint = new Point(destPointX, destPointY);
+
+            // The main point of fueling
+            collector.AddDestinationPoint(destPoint);
+
+            // Additional points for better graphics
+            destPointX = cashCounter.Right - TopologyCellSize / 2;
+            destPoint = new Point(destPointX, destPointY + CarHeight + 5);
+            collector.AddDestinationPoint(destPoint);
+        }
+
+        private static void GoToEnter(MoveablePictureBox car)
         {
             car.AddDestinationPoint(EnterPoint3);
             car.AddDestinationPoint(EnterPoint2);
             car.AddDestinationPoint(EnterPoint1);
         }
 
-        private static void GoToExit(CarView car)
+        private static void GoToExit(MoveablePictureBox car)
         {
-            var fuelDispenserExitPoint = car.GetDestinationPoint();
+            var fillingFinishedPoint = car.GetDestinationPoint();
             car.RemoveDestinationPoint(_modelingForm);
 
             car.AddDestinationPoint(LeavePointFilled);
@@ -114,13 +171,12 @@ namespace GasStationMs.App.Modeling
             car.AddDestinationPoint(ExitPoint2);
             car.AddDestinationPoint(ExitPoint1);
 
-            car.AddDestinationPoint(fuelDispenserExitPoint);
+            car.AddDestinationPoint(fillingFinishedPoint);
         }
 
-        internal static Point PreventIntersection(PictureBox activeCar, Direction direction)
+        internal static Point PreventIntersection(MoveablePictureBox activeCar, Direction direction)
         {
-            var activeCarView = (CarView) activeCar.Tag;
-            var destPoint = activeCarView.GetDestinationPoint();
+            var destPoint = activeCar.GetDestinationPoint();
 
             foreach (Control c in _modelingForm.PlaygroundPanel.Controls)
             {
@@ -197,9 +253,9 @@ namespace GasStationMs.App.Modeling
                         {
                             activeCar.Top = fuelDispenser.Bottom;
 
-                            if (!activeCarView.IsBypassingObject)
+                            if (!activeCar.IsBypassingObject)
                             {
-                                activeCarView.IsBypassingObject = true;
+                                activeCar.IsBypassingObject = true;
                                 // choose where to bypass 
                                 newDestX = destPoint.X < activeCar.Left
                                     ? fuelDispenser.Left - (activeCar.Width + 5)
@@ -227,9 +283,9 @@ namespace GasStationMs.App.Modeling
                                 newDestinationPoint2 = new Point(newDestX,
                                     newDestY);
 
-                                activeCarView.DeleteDestinationSpot(_modelingForm);
-                                activeCarView.AddDestinationPoint(newDestinationPoint2);
-                                activeCarView.AddDestinationPoint(newDestinationPoint1);
+                                activeCar.DeleteDestinationSpot(_modelingForm);
+                                activeCar.AddDestinationPoint(newDestinationPoint2);
+                                activeCar.AddDestinationPoint(newDestinationPoint1);
                             }
 
                             break;
@@ -244,9 +300,9 @@ namespace GasStationMs.App.Modeling
                         {
                             activeCar.Top = fuelDispenser.Top - activeCar.Height;
 
-                            if (!activeCarView.IsBypassingObject)
+                            if (!activeCar.IsBypassingObject)
                             {
-                                activeCarView.IsBypassingObject = true;
+                                activeCar.IsBypassingObject = true;
 
 
                                 // choose where to bypass 
@@ -272,9 +328,9 @@ namespace GasStationMs.App.Modeling
                                 newDestinationPoint2 = new Point(newDestX,
                                     newDestY);
 
-                                activeCarView.DeleteDestinationSpot(_modelingForm);
-                                activeCarView.AddDestinationPoint(newDestinationPoint2);
-                                activeCarView.AddDestinationPoint(newDestinationPoint1);
+                               activeCar.DeleteDestinationSpot(_modelingForm);
+                               activeCar.AddDestinationPoint(newDestinationPoint2);
+                               activeCar.AddDestinationPoint(newDestinationPoint1);
                             }
 
                             break;
@@ -284,9 +340,9 @@ namespace GasStationMs.App.Modeling
                         {
                             activeCar.Left = fuelDispenser.Right;
 
-                            if (!activeCarView.IsBypassingObject)
+                            if (!activeCar.IsBypassingObject)
                             {
-                                activeCarView.IsBypassingObject = true;
+                                activeCar.IsBypassingObject = true;
 
                                 // choose where to bypass 
                                 newDestX = fuelDispenser.Right + 10;
@@ -312,10 +368,10 @@ namespace GasStationMs.App.Modeling
                                 newDestinationPoint3 = new Point(fuelDispenser.Left - 20,
                                     destPoint.Y - 20);
 
-                                activeCarView.DeleteDestinationSpot(_modelingForm);
+                                activeCar.DeleteDestinationSpot(_modelingForm);
                                 //activeCarView.AddDestinationPoint(newDestinationPoint3);
-                                activeCarView.AddDestinationPoint(newDestinationPoint2);
-                                activeCarView.AddDestinationPoint(newDestinationPoint1);
+                                activeCar.AddDestinationPoint(newDestinationPoint2);
+                                activeCar.AddDestinationPoint(newDestinationPoint1);
                             }
 
                             break;
@@ -324,7 +380,7 @@ namespace GasStationMs.App.Modeling
                 }
             }
 
-            return activeCarView.GetDestinationPoint();
+            return activeCar.GetDestinationPoint();
         }
     }
 }

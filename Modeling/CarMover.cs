@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Modeling.Models.PictureBoxes;
 using static GasStationMs.App.Modeling.CarRouter;
 using static GasStationMs.App.Modeling.DestinationPointsDefiner;
 using static GasStationMs.App.Modeling.ModelingProcessor;
@@ -20,23 +21,46 @@ namespace GasStationMs.App.Modeling
             _modelingForm = modelingForm;
         }
 
-        internal static void MoveCarToDestination(PictureBox car)
+        internal static void MoveCarToDestination(MoveablePictureBox car)
         {
-            var carView = (CarView)car.Tag;
+            CarView carView  = null;
+            CollectorView collectorView = null;
 
-            if (carView.IsFilling)
+            if (car is CarPictureBox)
             {
-                var chosenFuelDispenser = (FuelDispenserView)carView.ChosenFuelDispenser.Tag;
-
-               FillCar(carView, chosenFuelDispenser);
-
-                return;
+                carView = car.Tag as CarView;
             }
 
-            var destPoint = carView.GetDestinationPoint();
-            PictureBox destSpot = carView.DestinationSpot;
+            if (car is CollectorPictureBox)
+            {
+                collectorView = car.Tag as CollectorView;
+            }
 
-            var carSpeed = carView.IsGoesFilling ? _carSpeedFilling : _carSpeedNoFilling;
+            if (car.IsFilling)
+            {
+                if (car is CarPictureBox carPictureBox)
+                {
+                    var chosenFuelDispenser = (FuelDispenserView)carView.ChosenFuelDispenser.Tag;
+
+                    FillCar(carPictureBox, chosenFuelDispenser);
+
+                    return;
+                }
+
+                if (car is CollectorPictureBox collector)
+                {
+                    var cashCounter = collectorView.CashCounter.Tag as CashCounterView;
+
+                    CollectCash(collector, cashCounter);
+
+                    return;
+                }
+            }
+
+            var destPoint = car.GetDestinationPoint();
+            PictureBox destSpot = car.DestinationSpot;
+
+            var carSpeed = car.IsGoesFilling ? _carSpeedFilling : _carSpeedNoFilling;
 
             #region MotionLogic
 
@@ -45,39 +69,51 @@ namespace GasStationMs.App.Modeling
             #endregion /MotionLogic
 
 
-            if (carView.DestinationSpot == null)
+            if (car.DestinationSpot == null)
             {
-                destSpot = carView.CreateDestinationSpot(destPoint);
+                destSpot = car.CreateDestinationSpot(destPoint);
                 _modelingForm.PlaygroundPanel.Controls.Add(destSpot);
             }
 
             if (car.Bounds.IntersectsWith(destSpot.Bounds))
             {
-                carView.RemoveDestinationPoint(_modelingForm);
+                car.RemoveDestinationPoint(_modelingForm);
 
-                carView.IsBypassingObject = false;
+                car.IsBypassingObject = false;
                 //_isGoHorizontal = false;
                 //_isGoVertical = false;
 
                 if (destPoint.Equals(EnterPoint3))
                 {
-                    carView.IsOnStation = true;
+                    car.IsOnStation = true;
                 }
 
-
-                foreach (var fuelDispensersDestPoint in FuelDispensersDestPoints.Values)
+                if (car is CarPictureBox carPictureBox)
                 {
-                    if (destPoint.Equals(fuelDispensersDestPoint))
+                    foreach (var fuelDispensersDestPoint in FuelDispensersDestPoints.Values)
                     {
-                        StartFilling(car, carView.ChosenFuelDispenser);
-                        //test
-                        //carView.IsFilled = true;
+                        if (destPoint.Equals(fuelDispensersDestPoint))
+                        {
+                            StartFilling(carPictureBox, carView.ChosenFuelDispenser);
+                            //test
+                            //carView.IsFilled = true;
+                        }
                     }
                 }
 
+                if (car is CollectorPictureBox collector)
+                {
+                    if (destPoint.Equals(DestinationPointsDefiner.CashCounter))
+                    {
+                        StartCollectingCash(collector, collectorView.CashCounter.Tag as CashCounterView);
+                        return;
+                    }
+                }
+               
+
                 if (destPoint.Equals(ExitPoint1))
                 {
-                    carView.IsOnStation = false;
+                    car.IsOnStation = false;
                 }
 
                 if (destPoint.Equals(LeavePointNoFilling) || destPoint.Equals(LeavePointFilled))
@@ -88,14 +124,14 @@ namespace GasStationMs.App.Modeling
             }
         }
 
-        internal static Point MoveCar(PictureBox car, Point destPoint, int carSpeed)
+        internal static Point MoveCar(MoveablePictureBox car, Point destPoint, int carSpeed)
         {
             var isHorizontalMoving = false;
             var isVerticalMoving = false;
-            var carView = (CarView)car.Tag;
-            if (!carView.IsBypassingObject)
+
+            if (!car.IsBypassingObject)
             {
-                if (!carView.IsFilled)
+                if (!car.IsFilled)
                 {
                     // Go Up
                     if (car.Top >= destPoint.Y && !isHorizontalMoving)
