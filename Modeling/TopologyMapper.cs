@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using GasStationMs.App.Elements;
+using GasStationMs.App.DB.Models;
+using GasStationMs.App.Forms;
+using GasStationMs.App.TemplateElements;
 using static GasStationMs.App.Modeling.ElementPictureBoxProducer;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
 using static GasStationMs.App.Modeling.ElementViewProducer;

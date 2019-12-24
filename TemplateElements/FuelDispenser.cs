@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Drawing;
 
-namespace GasStationMs.App.Elements
+namespace GasStationMs.App.TemplateElements
 {
     [Serializable()]
     public class FuelDispenser : IGasStationElement
     {
         #region статика
         #region изображение
-        private static Bitmap image;
+        private static Bitmap _image;
 
         public static Bitmap Image
         {
             get
             {
-                return image;
+                return _image;
             }
 
             set
             {
-                image = value;
-                Icon = Icon.FromHandle(image.GetHicon());
+                _image = value;
+                Icon = Icon.FromHandle(_image.GetHicon());
             }
         }
 
@@ -31,18 +31,18 @@ namespace GasStationMs.App.Elements
         public static readonly int MaxFuelFeedRateInLitersPerMinute = 160;
         #endregion /статика
 
-        private int fuelFeedRateInLitersPerMinute = 25;
+        private int _fuelFeedRateInLitersPerMinute = 25;
 
         public FuelDispenser()
         {
-            fuelFeedRateInLitersPerMinute = MinFuelFeedRateInLitersPerMinute;
+            _fuelFeedRateInLitersPerMinute = MinFuelFeedRateInLitersPerMinute;
         }
 
         public int FuelFeedRateInLitersPerMinute
         {
             get
             {
-                return fuelFeedRateInLitersPerMinute;
+                return _fuelFeedRateInLitersPerMinute;
             }
 
             set
@@ -50,7 +50,7 @@ namespace GasStationMs.App.Elements
                 if (value < MinFuelFeedRateInLitersPerMinute)
                     throw new ArgumentOutOfRangeException();
 
-                fuelFeedRateInLitersPerMinute = value;
+                _fuelFeedRateInLitersPerMinute = value;
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using GasStationMs.App.Modeling.Models;
+﻿using GasStationMs.App.DB.Models;
+using GasStationMs.App.Modeling.Models;
 
 namespace GasStationMs.App.Modeling
 {

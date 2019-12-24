@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Drawing;
 
-namespace GasStationMs.App.Elements
+namespace GasStationMs.App.TemplateElements
 {
     [Serializable()]
     public class CashCounter : IGasStationElement
     {
         #region статика
         #region изображение
-        private static Bitmap image;
+        private static Bitmap _image;
 
         public static Bitmap Image
         {
             get
             {
-                return image;
+                return _image;
             }
 
             set
             {
-                image = value;
-                Icon = Icon.FromHandle(image.GetHicon());
+                _image = value;
+                Icon = Icon.FromHandle(_image.GetHicon());
             }
         }
 
@@ -34,27 +34,27 @@ namespace GasStationMs.App.Elements
         #endregion /статика
 
 
-        private int moneyInRubles;
+        private int _moneyInRubles;
 
         public int MoneyInCashInRubles
         {
             get
             {
-                return moneyInRubles;
+                return _moneyInRubles;
             }
 
             set
             {
-                if (moneyInRubles < 0)
+                if (_moneyInRubles < 0)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
-                if (moneyInRubles > CashLimitInRubles)
+                if (_moneyInRubles > CashLimitInRubles)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                moneyInRubles = value;
+                _moneyInRubles = value;
             }
         }
     }

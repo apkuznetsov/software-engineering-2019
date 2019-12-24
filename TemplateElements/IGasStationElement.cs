@@ -1,4 +1,4 @@
-﻿namespace GasStationMs.App.Elements
+﻿namespace GasStationMs.App.TemplateElements
 {
     public interface IGasStationElement
     {

@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using GasStationMs.App.DistributionLaws;
 
-namespace GasStationMs.App.DistributionLaws
+namespace GasStationMs.App
 {
-    public partial class DistributionLaws : Form
+    public partial class DistributionLawsForm : Form
     {
-        public DistributionLaws()
+        public DistributionLawsForm()
         {
             InitializeComponent();
         }
@@ -55,45 +50,45 @@ namespace GasStationMs.App.DistributionLaws
         #endregion
 
         #region radiobuttons
-        bool isCheckedradioButtonDeterminedFlow = false;
-        bool isCheckedradioButtonRandomFlow = false;
+        bool _isCheckedradioButtonDeterminedFlow = false;
+        bool _isCheckedradioButtonRandomFlow = false;
 
         private void radioButtonDeterminedFlow_CheckedChanged(object sender, EventArgs e)
         {
-            isCheckedradioButtonDeterminedFlow = determinedFlow.Checked;
+            _isCheckedradioButtonDeterminedFlow = determinedFlow.Checked;
         }
 
         private void radioButtonDeterminedFlow_Click(object sender, EventArgs e)
         {
-            if (determinedFlow.Checked && !isCheckedradioButtonDeterminedFlow)
+            if (determinedFlow.Checked && !_isCheckedradioButtonDeterminedFlow)
                 determinedFlow.Checked = false;
             else
             {
                 determinedFlow.Checked = true;
-                isCheckedradioButtonDeterminedFlow = false;
+                _isCheckedradioButtonDeterminedFlow = false;
             }
         }
 
         private void radioButtonRandomFlow_CheckedChanged(object sender, EventArgs e)
         {
-            isCheckedradioButtonRandomFlow = randomFlow.Checked;
+            _isCheckedradioButtonRandomFlow = randomFlow.Checked;
         }
 
         private void radioButtonRandomFlow_Click(object sender, EventArgs e)
         {
-            if (randomFlow.Checked && !isCheckedradioButtonRandomFlow)
+            if (randomFlow.Checked && !_isCheckedradioButtonRandomFlow)
                 randomFlow.Checked = false;
             else
             {
                 randomFlow.Checked = true;
-                isCheckedradioButtonRandomFlow = false;
+                _isCheckedradioButtonRandomFlow = false;
             }
         }
         #endregion
 
         #region
 
-        public IDistributionLaw generator;
+        public IDistributionLaw Generator;
         private void buttonToModelling_Click(object sender, EventArgs e)
         {
             if (Controls.OfType<RadioButton>().Any(x => x.Checked))
@@ -105,15 +100,15 @@ namespace GasStationMs.App.DistributionLaws
                     switch (distributionLaw.SelectedIndex)
                     {
                         case 0:
-                            generator = new UniformDistribution(0.1,(double)uniformDistributionTime.Value);
+                            Generator = new UniformDistribution(0.1,(double)uniformDistributionTime.Value);
                             break;
 
                         case 1:
-                            generator = new NormalDistribution((double)normalDistributionPredicted.Value, (double)normalDistributionDispersion.Value);
+                            Generator = new NormalDistribution((double)normalDistributionPredicted.Value, (double)normalDistributionDispersion.Value);
                             break;
 
                         case 2:
-                            generator = new ExponentialDistribution((double)exponentialDistributionLambda.Value);
+                            Generator = new ExponentialDistribution((double)exponentialDistributionLambda.Value);
                             break;
 
 
@@ -124,9 +119,9 @@ namespace GasStationMs.App.DistributionLaws
                 }
                 else
                 {
-                    generator = new DeterminedDistribution((double)determinedFlowInterval.Value);
+                    Generator = new DeterminedDistribution((double)determinedFlowInterval.Value);
                 }
-                label4.Text = generator.GetRandNumber().ToString();
+                label4.Text = Generator.GetRandNumber().ToString();
             }
 
         }

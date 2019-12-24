@@ -1,4 +1,4 @@
-﻿namespace GasStationMs.App
+﻿namespace GasStationMs.App.Constructor
 {
     partial class Constructor
     {

@@ -6,7 +6,7 @@ namespace GasStationMs.App.Modeling
     internal static class CarCreator
     {
         // test
-        private static Random _rnd = new Random();
+        private static readonly Random Rnd = new Random();
         // /test
        
         internal static void SpawnCar( /*CarModel carModel*/)
@@ -14,7 +14,7 @@ namespace GasStationMs.App.Modeling
             var carView = ElementViewProducer.CreateCarView( /*caeModel*/);
 
             // Some Distribution law here
-            if (_rnd.NextDouble() >= 0.5)
+            if (Rnd.NextDouble() >= 0.5)
             {
                 carView.IsGoesFilling = true;
             }

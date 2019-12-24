@@ -8,16 +8,16 @@ namespace GasStationMs.App.DistributionLaws
 {
     public class DeterminedDistribution : IDistributionLaw
     {
-        private readonly double constNumber;
+        private readonly double _constNumber;
 
         public DeterminedDistribution(double constNumber)
         {
-            this.constNumber = constNumber;
+            this._constNumber = constNumber;
         }
 
         public double GetRandNumber()
         {            
-            return this.constNumber;
+            return this._constNumber;
         }
     }
 }
