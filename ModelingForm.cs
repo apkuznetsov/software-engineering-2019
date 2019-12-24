@@ -32,10 +32,15 @@ namespace GasStationMs.App
         private bool _paused;
         private readonly Random _rnd = new Random();
 
-        private PictureBox _selectedItem;
+        public PictureBox SelectedItem { get; set; }
 
-        private Panel _playgronudPanel;
-        private int _elementSize = 50;
+        public Panel PlaygroundPanel { get; }
+        public Label LabelSelectedElement { get; }
+        public Label LabelCashCounterSumValue { get; }
+        public TextBox TextBoxSelectedItemInformation { get; }
+        public PictureBox PictureBoxServiceArea{ get; }
+
+
 
         #region TopologyElements
 
@@ -97,6 +102,14 @@ namespace GasStationMs.App
             panelPlayground.Controls.Remove(pictureBoxFuelTank2);
 
             this.DoubleBuffered = true;
+
+            PlaygroundPanel = panelPlayground;
+            LabelSelectedElement = labelSelectedElement;
+            TextBoxSelectedItemInformation = textBoxSelectedItemInformation;
+            PictureBoxServiceArea = pictureBoxServiceArea;
+            LabelCashCounterSumValue = labelCashCounterSumValue;
+
+            ElementSizeDefiner.TopologyCellSize = 50;
 
             LocateFormElements();
 
