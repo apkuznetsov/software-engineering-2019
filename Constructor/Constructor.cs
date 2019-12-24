@@ -7,18 +7,19 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
-using GasStationMs.App.Elements;
+using GasStationMs.App.DB.Models;
+using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology;
 using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using GasStationMs.Dal;
 
-namespace GasStationMs.App
+namespace GasStationMs.App.Constructor
 {
     public partial class Constructor : Form
     {
-        private string currFilePath;
-        private TopologyBuilder topologyBuilder;
+        private string _currFilePath;
+        private TopologyBuilder _topologyBuilder;
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
@@ -33,16 +34,16 @@ namespace GasStationMs.App
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            topologyBuilder = new TopologyBuilder(dgvTopology);
+            _topologyBuilder = new TopologyBuilder(dgvTopology);
             SetSettings();
-            currFilePath = "Топология" + Topology.Topology.DotExt;
+            _currFilePath = "Топология" + Topology.Topology.DotExt;
         }
 
         public TopologyBuilder TopologyBuilder
         {
             get
             {
-                return topologyBuilder;
+                return _topologyBuilder;
             }
 
         }
@@ -59,11 +60,11 @@ namespace GasStationMs.App
         {
             try
             {
-                topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
+                _topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
             }
             catch (CannotRemoveTopologyBuilderCol)
             {
-                cellsHorizontally.Value = topologyBuilder.ColsCount;
+                cellsHorizontally.Value = _topologyBuilder.ColsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
             }
         }
@@ -72,11 +73,11 @@ namespace GasStationMs.App
         {
             try
             {
-                topologyBuilder.RowsCount = (int)cellsVertically.Value;
+                _topologyBuilder.RowsCount = (int)cellsVertically.Value;
             }
             catch (CannotRemoveTopologyBuilderRow)
             {
-                cellsVertically.Value = topologyBuilder.RowsCount;
+                cellsVertically.Value = _topologyBuilder.RowsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить строку");
             }
         }
@@ -85,14 +86,14 @@ namespace GasStationMs.App
 
         private void rbFuelDispenser_mouseDown(object sender,MouseEventArgs e){
             rbFuelDispenser.Checked = true;
-            isCheckedradioButtonFuelDispenser = false;
+            _isCheckedradioButtonFuelDispenser = false;
             rbFuelDispenser.DoDragDrop(rbFuelDispenser.Image, DragDropEffects.Copy);
             
         }
         private void rbFuelTank_mouseDown(object sender, MouseEventArgs e)
         {
             rbFuelTank.Checked = true;
-            isCheckedradioButtonFuelTank = false;
+            _isCheckedradioButtonFuelTank = false;
             rbFuelTank.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
             
         }
@@ -100,7 +101,7 @@ namespace GasStationMs.App
         private void rbCashCounter_mouseDown(object sender, MouseEventArgs e)
         {
             rbCashCounter.Checked = true;
-            isCheckedRbCashCounter = false;
+           _isCheckedRbCashCounter = false;
             rbCashCounter.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
 
         }
@@ -108,7 +109,7 @@ namespace GasStationMs.App
         private void rbEntry_mouseDown(object sender, MouseEventArgs e)
         {
             rbEntry.Checked = true;
-            isCheckedRbEntry = false;
+            _isCheckedRbEntry = false;
             rbEntry.DoDragDrop(rbEntry.Image, DragDropEffects.Copy);
 
         }
@@ -116,7 +117,7 @@ namespace GasStationMs.App
         private void rbExit_mouseDown(object sender, MouseEventArgs e)
         {
             rbExit.Checked = true;
-            isCheckedRbExit = false;
+            _isCheckedRbExit = false;
             rbExit.DoDragDrop(rbExit.Image, DragDropEffects.Copy);
 
         }
@@ -140,14 +141,14 @@ namespace GasStationMs.App
                 bool isAdded = false;
                 if (rb.Name == typeof(FuelDispenser).ToString())
                 {                    
-                    isAdded = topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
+                    isAdded = _topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
                     rbFuelDispenser.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить ТРК");
                 }
                 else if (rb.Name == typeof(CashCounter).ToString())
                 {
-                    isAdded = topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = _topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
                     rbCashCounter.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить кассу");
@@ -173,7 +174,7 @@ namespace GasStationMs.App
                 bool isAdded = false;
                 if (rb.Name == typeof(FuelTank).ToString())
                 {
-                    isAdded = topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = _topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
                     rbFuelTank.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить ТБ");
@@ -184,14 +185,14 @@ namespace GasStationMs.App
                 bool isAdded = false;
                 if (rb.Name == typeof(Entry).ToString())
                 {
-                    isAdded = topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = _topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
                     rbEntry.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить въезд");
                 }
                 else if (rb.Name == typeof(Exit).ToString())
                 {
-                    isAdded = topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = _topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
                     rbExit.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить выезд");
@@ -346,23 +347,23 @@ namespace GasStationMs.App
 
         private void SaveTopologyIntoCurrFilePath()
         {
-            Topology.Topology topology = topologyBuilder.ToTopology();
-            topology.Save(currFilePath);
+            Topology.Topology topology = _topologyBuilder.ToTopology();
+            topology.Save(_currFilePath);
         }
 
         private void btnDownloadTopology_Click(object sender, EventArgs e)
         {
-            const string FileName = "Топология" + ".tplg";
-            if (File.Exists(FileName))
+            const string fileName = "Топология" + ".tplg";
+            if (File.Exists(fileName))
             {
-                Stream downloadingFileStream = File.OpenRead(FileName);
+                Stream downloadingFileStream = File.OpenRead(fileName);
 
                 BinaryFormatter deserializer = new BinaryFormatter();
                 Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
 
                 downloadingFileStream.Close();
 
-                topologyBuilder.SetTopologyBuilder(topology);
+                _topologyBuilder.SetTopologyBuilder(topology);
             }
         }
 
@@ -379,9 +380,16 @@ namespace GasStationMs.App
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                currFilePath = sfd.FileName;
+                _currFilePath = sfd.FileName;
                 SaveTopologyIntoCurrFilePath();
             }
+        }
+
+        private void BtnToModeling_Click(object sender, EventArgs e)
+        {
+            Topology.Topology topology = TopologyBuilder.ToTopology();
+            ModelingForm modelingForm = new ModelingForm(topology);
+            modelingForm.ShowDialog();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using GasStationMs.App.Elements;
-using GasStationMs.App.TemplateElements;
+﻿using GasStationMs.App.TemplateElements;
 using System;
 using System.Drawing;
 using System.IO;
@@ -10,20 +9,20 @@ namespace GasStationMs.App.Topology
     [Serializable()]
     public partial class Topology
     {
-        private readonly IGasStationElement[,] field;
-        private int serviceAreaBorderColIndex;
+        private readonly IGasStationElement[,] _field;
+        private int _serviceAreaBorderColIndex;
 
         public Topology(IGasStationElement[,] field, int serviceAreaBorderColIndex)
         {
-            this.field = field ?? throw new NullReferenceException();
-            this.serviceAreaBorderColIndex = serviceAreaBorderColIndex;
+            this._field = field ?? throw new NullReferenceException();
+            this._serviceAreaBorderColIndex = serviceAreaBorderColIndex;
         }
 
         public int RowsCount
         {
             get
             {
-                return field.GetLength(0);
+                return _field.GetLength(0);
             }
         }
 
@@ -31,7 +30,7 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                return field.GetLength(1);
+                return _field.GetLength(1);
             }
         }
 
@@ -57,7 +56,7 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                return new Point(serviceAreaBorderColIndex, 0);
+                return new Point(_serviceAreaBorderColIndex, 0);
             }
         }
 
@@ -85,7 +84,7 @@ namespace GasStationMs.App.Topology
                     throw new IndexOutOfRangeException();
                 }
 
-                return field[y, x];
+                return _field[y, x];
             }
         }
 
@@ -119,7 +118,7 @@ namespace GasStationMs.App.Topology
                 throw new IndexOutOfRangeException();
             }
 
-            return field[y, x];
+            return _field[y, x];
         }
 
         public IGasStationElement GetElement(Point p)

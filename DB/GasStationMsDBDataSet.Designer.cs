@@ -8,11 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+namespace GasStationMs.App.DB
+{
 #pragma warning disable 1591
 
-namespace GasStationMs.App.DB {
-    
-    
     /// <summary>
     ///Represents a strongly typed in-memory cache of data.
     ///</summary>
@@ -42,7 +41,7 @@ namespace GasStationMs.App.DB {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         protected GasStationMsDBDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                base(info, context, false) {
+            base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
                 global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler1 = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -247,7 +246,7 @@ namespace GasStationMs.App.DB {
                             s1.Position = 0;
                             s2.Position = 0;
                             for (; ((s1.Position != s1.Length) 
-                                        && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    && (s1.ReadByte() == s2.ReadByte())); ) {
                                 ;
                             }
                             if ((s1.Position == s1.Length)) {
@@ -314,7 +313,7 @@ namespace GasStationMs.App.DB {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected FuelsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
+                base(info, context) {
                 this.InitVars();
             }
             
@@ -382,9 +381,9 @@ namespace GasStationMs.App.DB {
             public FuelsRow AddFuelsRow(string Name, double Price) {
                 FuelsRow rowFuelsRow = ((FuelsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        Name,
-                        Price};
+                    null,
+                    Name,
+                    Price};
                 rowFuelsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowFuelsRow);
                 return rowFuelsRow;
@@ -394,7 +393,7 @@ namespace GasStationMs.App.DB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public FuelsRow FindById(int Id) {
                 return ((FuelsRow)(this.Rows.Find(new object[] {
-                            Id})));
+                    Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -429,7 +428,7 @@ namespace GasStationMs.App.DB {
                 this.columnPrice = new global::System.Data.DataColumn("Price", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrice);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId}, true));
+                    this.columnId}, true));
                 this.columnId.AutoIncrement = true;
                 this.columnId.AutoIncrementSeed = -1;
                 this.columnId.AutoIncrementStep = -1;
@@ -542,7 +541,7 @@ namespace GasStationMs.App.DB {
                                 s1.Position = 0;
                                 s2.Position = 0;
                                 for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                        && (s1.ReadByte() == s2.ReadByte())); ) {
                                     ;
                                 }
                                 if ((s1.Position == s1.Length)) {
@@ -575,7 +574,7 @@ namespace GasStationMs.App.DB {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal FuelsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
+                base(rb) {
                 this.tableFuels = ((FuelsDataTable)(this.Table));
             }
             
@@ -647,10 +646,7 @@ namespace GasStationMs.App.DB {
             }
         }
     }
-}
-namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
-    
-    
+
     /// <summary>
     ///Represents the connection and commands used to retrieve and save data.
     ///</summary>
@@ -658,7 +654,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.ComponentModel.DataObjectAttribute(true)]
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+                                                     ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class FuelsTableAdapter : global::System.ComponentModel.Component {
         
@@ -729,15 +725,15 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
                     this.CommandCollection[i].Transaction = this._transaction;
                 }
                 if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
+                     && (this.Adapter.DeleteCommand != null))) {
                     this.Adapter.DeleteCommand.Transaction = this._transaction;
                 }
                 if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
+                     && (this.Adapter.InsertCommand != null))) {
                     this.Adapter.InsertCommand.Transaction = this._transaction;
                 }
                 if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
+                     && (this.Adapter.UpdateCommand != null))) {
                     this.Adapter.UpdateCommand.Transaction = this._transaction;
                 }
             }
@@ -779,7 +775,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Fuels] WHERE (([Id] = @Original_Id) AND ([Name] = @Original_Na" +
-                "me) AND ([Price] = @Original_Price))";
+                                                      "me) AND ([Price] = @Original_Price))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -787,15 +783,15 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Fuels] ([Name], [Price]) VALUES (@Name, @Price);\r\nSELECT Id, N" +
-                "ame, Price FROM Fuels WHERE (Id = SCOPE_IDENTITY())";
+                                                      "ame, Price FROM Fuels WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Fuels] SET [Name] = @Name, [Price] = @Price WHERE (([Id] = @Origina" +
-                "l_Id) AND ([Name] = @Original_Name) AND ([Price] = @Original_Price));\r\nSELECT Id" +
-                ", Name, Price FROM Fuels WHERE (Id = @Id)";
+                                                      "l_Id) AND ([Name] = @Original_Name) AND ([Price] = @Original_Price));\r\nSELECT Id" +
+                                                      ", Name, Price FROM Fuels WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Price", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -865,7 +861,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(global::System.Data.DataRow dataRow) {
             return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
+                dataRow});
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -890,7 +886,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
             this.Adapter.DeleteCommand.Parameters[2].Value = ((double)(Original_Price));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
+                 != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.DeleteCommand.Connection.Open();
             }
             try {
@@ -918,7 +914,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
             this.Adapter.InsertCommand.Parameters[1].Value = ((double)(Price));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
+                 != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.InsertCommand.Connection.Open();
             }
             try {
@@ -955,7 +951,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
             this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
+                 != global::System.Data.ConnectionState.Open)) {
                 this.Adapter.UpdateCommand.Connection.Open();
             }
             try {
@@ -984,7 +980,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerDesigner, Microsoft.VSD" +
-        "esigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+                                                     "esigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapterManager")]
     public partial class TableAdapterManager : global::System.ComponentModel.Component {
         
@@ -1010,8 +1006,8 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
+                                                       "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+                                                       "a", "System.Drawing.Design.UITypeEditor")]
         public FuelsTableAdapter FuelsTableAdapter {
             get {
                 return this._fuelsTableAdapter;
@@ -1041,7 +1037,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
                     return this._connection;
                 }
                 if (((this._fuelsTableAdapter != null) 
-                            && (this._fuelsTableAdapter.Connection != null))) {
+                     && (this._fuelsTableAdapter.Connection != null))) {
                     return this._fuelsTableAdapter.Connection;
                 }
                 return null;
@@ -1075,7 +1071,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
                 global::System.Data.DataRow[] updatedRows = dataSet.Fuels.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
+                     && (0 < updatedRows.Length))) {
                     result = (result + this._fuelsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
@@ -1093,7 +1089,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
             if ((this._fuelsTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Fuels.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
+                     && (0 < addedRows.Length))) {
                     result = (result + this._fuelsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
@@ -1111,7 +1107,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
             if ((this._fuelsTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Fuels.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
+                     && (0 < deletedRows.Length))) {
                     result = (result + this._fuelsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
@@ -1126,11 +1122,11 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private global::System.Data.DataRow[] GetRealUpdatedRows(global::System.Data.DataRow[] updatedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             if (((updatedRows == null) 
-                        || (updatedRows.Length < 1))) {
+                 || (updatedRows.Length < 1))) {
                 return updatedRows;
             }
             if (((allAddedRows == null) 
-                        || (allAddedRows.Count < 1))) {
+                 || (allAddedRows.Count < 1))) {
                 return updatedRows;
             }
             global::System.Collections.Generic.List<global::System.Data.DataRow> realUpdatedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
@@ -1156,18 +1152,18 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
                 return 0;
             }
             if (((this._fuelsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._fuelsTableAdapter.Connection) == false))) {
+                 && (this.MatchTableAdapterConnection(this._fuelsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
+                                                           "tring.");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
-                        "ger TableAdapter property to a valid TableAdapter instance.");
+                                                              "ger TableAdapter property to a valid TableAdapter instance.");
             }
             bool workConnOpened = false;
             if (((workConnection.State & global::System.Data.ConnectionState.Broken) 
-                        == global::System.Data.ConnectionState.Broken)) {
+                 == global::System.Data.ConnectionState.Broken)) {
                 workConnection.Close();
             }
             if ((workConnection.State == global::System.Data.ConnectionState.Closed)) {
@@ -1177,7 +1173,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
             global::System.Data.IDbTransaction workTransaction = workConnection.BeginTransaction();
             if ((workTransaction == null)) {
                 throw new global::System.ApplicationException("The transaction cannot begin. The current data connection does not support transa" +
-                        "ctions or the current state is not allowing the transaction to begin.");
+                                                              "ctions or the current state is not allowing the transaction to begin.");
             }
             global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
             global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows = new global::System.Collections.Generic.List<global::System.Data.DataRow>();
@@ -1288,7 +1284,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
                 return true;
             }
             if (((this.Connection == null) 
-                        || (inputConnection == null))) {
+                 || (inputConnection == null))) {
                 return true;
             }
             if (string.Equals(this.Connection.ConnectionString, inputConnection.ConnectionString, global::System.StringComparison.Ordinal)) {
@@ -1342,8 +1338,8 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
 
                 global::System.Data.DataRow parent = row.GetParentRow(this._relation, global::System.Data.DataRowVersion.Default);
                 for (
-                ; ((parent != null) 
-                            && (traversedRows.ContainsKey(parent) == false)); 
+                    ; ((parent != null) 
+                       && (traversedRows.ContainsKey(parent) == false)); 
                 ) {
                     distance = (distance + 1);
                     root = parent;
@@ -1356,8 +1352,8 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
                     traversedRows[row] = row;
                     parent = row.GetParentRow(this._relation, global::System.Data.DataRowVersion.Original);
                     for (
-                    ; ((parent != null) 
-                                && (traversedRows.ContainsKey(parent) == false)); 
+                        ; ((parent != null) 
+                           && (traversedRows.ContainsKey(parent) == false)); 
                     ) {
                         distance = (distance + 1);
                         root = parent;
@@ -1393,7 +1389,7 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
                 }
                 else {
                     global::System.Diagnostics.Debug.Assert(((root1.Table != null) 
-                                    && (root2.Table != null)));
+                                                             && (root2.Table != null)));
                     if ((root1.Table.Rows.IndexOf(root1) < root2.Table.Rows.IndexOf(root2))) {
                         return -1;
                     }
@@ -1404,6 +1400,6 @@ namespace GasStationMs.App.DB.GasStationMsDBDataSetTableAdapters {
             }
         }
     }
-}
 
 #pragma warning restore 1591
+}

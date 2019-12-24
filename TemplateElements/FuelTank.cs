@@ -1,8 +1,8 @@
 ﻿using System;
-using GasStationMs.App.AdditionalModels;
 using System.Drawing;
+using GasStationMs.App.AdditionalModels;
 
-namespace GasStationMs.App.Elements
+namespace GasStationMs.App.TemplateElements
 {
     [Serializable()]
     public class FuelTank : IGasStationElement
@@ -15,22 +15,22 @@ namespace GasStationMs.App.Elements
         public static readonly double CriticalVolumeForRefuelingInShares = 0.15;
         #endregion /статика
 
-        private int volume;
-        private int criticalVolume;
-        private Fuel fuel;
-        private int occupiedVolume;
+        private int _volume;
+        private int _criticalVolume;
+        private Fuel _fuel;
+        private int _occupiedVolume;
 
         public FuelTank()
         {
             Volume = MinVolumeInLiters;
-            fuel = new Fuel("АИ-100");
+            _fuel = new Fuel("АИ-100");
         }
 
         public int Volume
         {
             get
             {
-                return volume;
+                return _volume;
             }
 
             set
@@ -38,9 +38,9 @@ namespace GasStationMs.App.Elements
                 if (value < MinVolumeInLiters)
                     throw new ArgumentOutOfRangeException();
 
-                volume = value;
+                _volume = value;
 
-                criticalVolume = (int)(volume * CriticalVolumeForRefuelingInShares);
+                _criticalVolume = (int)(_volume * CriticalVolumeForRefuelingInShares);
             }
         }
 
@@ -48,7 +48,7 @@ namespace GasStationMs.App.Elements
         {
             get
             {
-                return criticalVolume;
+                return _criticalVolume;
             }
         }
 
@@ -56,11 +56,11 @@ namespace GasStationMs.App.Elements
         {
             get
             {
-                return fuel.Name;
+                return _fuel.Name;
             }
             set
             {
-                this.fuel = new Fuel(value);
+                this._fuel = new Fuel(value);
             }
         }
 
@@ -68,7 +68,7 @@ namespace GasStationMs.App.Elements
         {
             get
             {
-                return occupiedVolume;
+                return _occupiedVolume;
             }
 
             set
@@ -78,12 +78,12 @@ namespace GasStationMs.App.Elements
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (value > volume)
+                if (value > _volume)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                occupiedVolume = value;
+                _occupiedVolume = value;
             }
         }
 

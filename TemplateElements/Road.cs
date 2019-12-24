@@ -1,5 +1,4 @@
-﻿using GasStationMs.App.Elements;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace GasStationMs.App.TemplateElements

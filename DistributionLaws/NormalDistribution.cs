@@ -4,28 +4,28 @@ namespace GasStationMs.App.DistributionLaws
 {
     public class NormalDistribution : IDistributionLaw
     {
-        private readonly double mu;
-        private readonly double sigma;
+        private readonly double _mu;
+        private readonly double _sigma;
 
        public NormalDistribution(double mu, double sigma)
         {
-            this.mu = mu;
-            this.sigma = sigma;
+            this._mu = mu;
+            this._sigma = sigma;
         }
 
 
         public double GetRandNumber()
         {            
-                double Summ = 0, RandValue = 0;
+                double summ = 0, randValue = 0;
                 Random ran = new Random();
-                Summ = 0;
+                summ = 0;
                 for (int i = 0; i <= 12; i++)
                 {
-                    double R = ran.NextDouble();
-                    Summ += R;
+                    double r = ran.NextDouble();
+                    summ += r;
                 }
-                RandValue = Math.Abs(Math.Round((mu + sigma * (Summ - 6)), 2));
-                return RandValue;
+                randValue = Math.Abs(Math.Round((_mu + _sigma * (summ - 6)), 2));
+                return randValue;
             //double x = 0;
 
             //Random random = new Random();

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace GasStationMs.App.Elements
+namespace GasStationMs.App.TemplateElements
 {
     [Serializable()]
     public class ServiceArea : IGasStationElement

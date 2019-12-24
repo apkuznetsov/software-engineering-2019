@@ -73,17 +73,30 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
+    <Compile Include="Modeling\CarCreator.cs" />
+    <Compile Include="Modeling\CarMover.cs" />
+    <Compile Include="Modeling\CarRouter.cs" />
+    <Compile Include="Modeling\ClickEventProvider.cs" />
+    <Compile Include="Modeling\DestinationPointsDefiner.cs" />
+    <Compile Include="Modeling\DirectionEnum.cs" />
+    <Compile Include="Modeling\ElementPictureBoxProducer.cs" />
+    <Compile Include="Modeling\ElementSizeDefiner.cs" />
+    <Compile Include="Modeling\ElementViewProducer.cs" />
+    <Compile Include="Modeling\MappedTopology.cs" />
+    <Compile Include="Modeling\ModelingProcessor.cs" />
+    <Compile Include="Modeling\ModelingTicker.cs" />
+    <Compile Include="Modeling\TopologyMapper.cs" />
     <Compile Include="TemplateElements\Road.cs" />
     <Compile Include="TemplateElements\ServiceArea.cs" />
     <Compile Include="Topology\TopologyBuilderHelpers\BlankTopologyBuilderCol.cs" />
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
     <Compile Include="DistributionLaws\DeterminedDistribution.cs" />
-    <Compile Include="DistributionLaws.cs">
+    <Compile Include="DistributionLawsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DistributionLaws.Designer.cs">
-      <DependentUpon>DistributionLaws.cs</DependentUpon>
+    <Compile Include="DistributionLawsForm.Designer.cs">
+      <DependentUpon>DistributionLawsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DistributionLaws\ExponentialDistribution.cs" />
     <Compile Include="DistributionLaws\IDistributionLaw.cs" />
@@ -92,10 +105,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ModelingForm.cs">
+    <Compile Include="Forms\ModelingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModelingForm.Designer.cs">
+    <Compile Include="Forms\ModelingForm.Designer.cs">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Modeling\Models\CarView.cs" />
@@ -138,10 +151,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Topology\Topology.cs" />
-    <EmbeddedResource Include="DistributionLaws.resx">
-      <DependentUpon>DistributionLaws.cs</DependentUpon>
+    <EmbeddedResource Include="DistributionLawsForm.resx">
+      <DependentUpon>DistributionLawsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelingForm.resx">
+    <EmbeddedResource Include="Forms\ModelingForm.resx">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Start.resx">

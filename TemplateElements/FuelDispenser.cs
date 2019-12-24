@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace GasStationMs.App.Elements
+namespace GasStationMs.App.TemplateElements
 {
     [Serializable()]
     public class FuelDispenser : IGasStationElement
@@ -13,18 +13,18 @@ namespace GasStationMs.App.Elements
         public static readonly int MaxFuelFeedRateInLitersPerMinute = 160;
         #endregion /статика
 
-        private int fuelFeedRateInLitersPerMinute = 25;
+        private int _fuelFeedRateInLitersPerMinute = 25;
 
         public FuelDispenser()
         {
-            fuelFeedRateInLitersPerMinute = MinFuelFeedRateInLitersPerMinute;
+            _fuelFeedRateInLitersPerMinute = MinFuelFeedRateInLitersPerMinute;
         }
 
         public int FuelFeedRateInLitersPerMinute
         {
             get
             {
-                return fuelFeedRateInLitersPerMinute;
+                return _fuelFeedRateInLitersPerMinute;
             }
 
             set
@@ -32,7 +32,7 @@ namespace GasStationMs.App.Elements
                 if (value < MinFuelFeedRateInLitersPerMinute)
                     throw new ArgumentOutOfRangeException();
 
-                fuelFeedRateInLitersPerMinute = value;
+                _fuelFeedRateInLitersPerMinute = value;
             }
         }
 
