@@ -1,6 +1,6 @@
-﻿namespace GasStationMs.App.DistributionLaws
+﻿namespace GasStationMs.App
 {
-    partial class DistributionLaws
+    partial class DistributionLawsForm
     {
         /// <summary>
         /// Required designer variable.

@@ -9,7 +9,7 @@ namespace GasStationMs.App.Models
         public static readonly int MaxTimeBetweenCarsInSeconds = 10;
 
         private IDistributionLaw _distributionLaw;
-        private int timeBetweenCarsInSeconds;
+        private int _timeBetweenCarsInSeconds;
 
         public TrafficFlow(IDistributionLaw distributionLaw)
         {
@@ -20,7 +20,7 @@ namespace GasStationMs.App.Models
         {
             get
             {
-                return timeBetweenCarsInSeconds;
+                return _timeBetweenCarsInSeconds;
             }
 
             set
@@ -35,7 +35,7 @@ namespace GasStationMs.App.Models
                     throw new ArgumentOutOfRangeException();
                 }
 
-                timeBetweenCarsInSeconds = value;
+                _timeBetweenCarsInSeconds = value;
             }
         }
     }

@@ -1,8 +1,7 @@
 ﻿using System.Drawing;
-using GasStationMs.App.Elements;
 using GasStationMs.App.TemplateElements;
 
-namespace GasStationMs.App
+namespace GasStationMs.App.Constructor
 {
     public partial class Constructor
     {
