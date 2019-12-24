@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
 using static GasStationMs.App.Modeling.ClickEventProvider;
@@ -8,6 +8,7 @@ namespace GasStationMs.App.Modeling
     internal static class ModelingTicker
     {
         private static int _timerTicksCount;
+        private static bool _paused;
         internal static void Tick(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
             var selectedItem = modelingForm.SelectedItem;
@@ -44,7 +45,8 @@ namespace GasStationMs.App.Modeling
             //if (!_paused)
             //{
             //    //return;
-            //    SpawnCar();
+            //    CarCreator.SpawnCar();
+
             //    _paused = true;
             //}
 

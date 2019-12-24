@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
@@ -10,7 +10,7 @@ namespace GasStationMs.App.Modeling
         internal static Dictionary<PictureBox, Point> FuelDispensersDestPoints { get; private set; }
 
         internal static int FuelingPointDeltaX {get;}= 5;
-        internal static int FuelingPointDeltaY { get; } = 10;
+        internal static int FuelingPointDeltaY { get; } = 5;
 
         internal static int NoFillingHorizontalLine { get; private set; }
     

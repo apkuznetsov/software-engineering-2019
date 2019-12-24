@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using GasStationMs.App.DB.Models;
 
@@ -84,7 +85,10 @@ namespace GasStationMs.App.Modeling.Models
             var lastAssignedPoint = _destinationPoints.Last();
             _destinationPoints.Remove(lastAssignedPoint);
 
-            DeleteDestinationSpot(form);
+            if (DestinationSpot != null)
+            {
+                DeleteDestinationSpot(form);
+            }
         }
 
         public void DeleteDestinationSpot(Form form)
