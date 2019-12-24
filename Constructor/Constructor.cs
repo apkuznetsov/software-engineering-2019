@@ -5,17 +5,19 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
-using GasStationMs.App.Elements;
+using GasStationMs.App.DB.Models;
+using GasStationMs.App.Forms;
+using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology;
 using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using GasStationMs.Dal;
 
-namespace GasStationMs.App
+namespace GasStationMs.App.Constructor
 {
     public partial class Constructor : Form
     {
-        private string currFilePath;
-        private TopologyBuilder topologyBuilder;
+        private string _currFilePath;
+        private TopologyBuilder _topologyBuilder;
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
@@ -30,16 +32,16 @@ namespace GasStationMs.App
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            topologyBuilder = new TopologyBuilder(dgvTopology);
+            _topologyBuilder = new TopologyBuilder(dgvTopology);
             SetSettings();
-            currFilePath = "Топология" + Topology.Topology.DotExt;
+            _currFilePath = "Топология" + Topology.Topology.DotExt;
         }
 
         public TopologyBuilder TopologyBuilder
         {
             get
             {
-                return topologyBuilder;
+                return _topologyBuilder;
             }
 
         }
@@ -56,11 +58,11 @@ namespace GasStationMs.App
         {
             try
             {
-                topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
+                _topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
             }
             catch (CannotRemoveTopologyBuilderCol)
             {
-                cellsHorizontally.Value = topologyBuilder.ColsCount;
+                cellsHorizontally.Value = _topologyBuilder.ColsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
             }
         }
@@ -69,11 +71,11 @@ namespace GasStationMs.App
         {
             try
             {
-                topologyBuilder.RowsCount = (int)cellsVertically.Value;
+                _topologyBuilder.RowsCount = (int)cellsVertically.Value;
             }
             catch (CannotRemoveTopologyBuilderRow)
             {
-                cellsVertically.Value = topologyBuilder.RowsCount;
+                cellsVertically.Value = _topologyBuilder.RowsCount;
                 MessageBox.Show("удалите ШЭ прежде чем удалить строку");
             }
         }
@@ -209,23 +211,23 @@ namespace GasStationMs.App
 
         private void SaveTopologyIntoCurrFilePath()
         {
-            Topology.Topology topology = topologyBuilder.ToTopology();
-            topology.Save(currFilePath);
+            Topology.Topology topology = _topologyBuilder.ToTopology();
+            topology.Save(_currFilePath);
         }
 
         private void btnDownloadTopology_Click(object sender, EventArgs e)
         {
-            const string FileName = "Топология" + ".tplg";
-            if (File.Exists(FileName))
+            const string fileName = "Топология" + ".tplg";
+            if (File.Exists(fileName))
             {
-                Stream downloadingFileStream = File.OpenRead(FileName);
+                Stream downloadingFileStream = File.OpenRead(fileName);
 
                 BinaryFormatter deserializer = new BinaryFormatter();
                 Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
 
                 downloadingFileStream.Close();
 
-                topologyBuilder.SetTopologyBuilder(topology);
+                _topologyBuilder.SetTopologyBuilder(topology);
             }
         }
 
@@ -242,7 +244,7 @@ namespace GasStationMs.App
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                currFilePath = sfd.FileName;
+                _currFilePath = sfd.FileName;
                 SaveTopologyIntoCurrFilePath();
             }
         }

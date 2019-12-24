@@ -1,7 +1,11 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
+using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Modeling.Models.PictureBoxes;
 using static GasStationMs.App.Modeling.ClickEventProvider;
+using static GasStationMs.App.Modeling.DestinationPointsDefiner;
+using static GasStationMs.App.Modeling.ElementSizeDefiner;
 
 namespace GasStationMs.App.Modeling
 {
@@ -19,13 +23,15 @@ namespace GasStationMs.App.Modeling
         internal static PictureBox CreateCashCounterPictureBox(CashCounterView cashCounterView,
             Point locationPoint)
         {
-            var size = 50;
-            PictureBox cashCounter = new PictureBox();
-            cashCounter.Tag = cashCounterView;
-            cashCounter.Image = Properties.Resources.cashbox;
-            cashCounter.Size = new Size(size, size);
-            cashCounter.Location = locationPoint;
-            cashCounter.SizeMode = PictureBoxSizeMode.StretchImage;
+            var size = TopologyCellSize;
+            PictureBox cashCounter = new PictureBox
+            {
+                Tag = cashCounterView,
+                Image = Properties.Resources.cashbox,
+                Size = new Size(size, size),
+                Location = locationPoint,
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
 
             cashCounter.MouseClick += new MouseEventHandler(CashCounterPictureBox_Click);
 
@@ -34,20 +40,26 @@ namespace GasStationMs.App.Modeling
 
             _mappedTopology.CashCounter = cashCounter;
 
+            _mappedTopology.CashCounterDestinationPoint = new Point(cashCounter.Left + FuelingPointDeltaX,
+                cashCounter.Bottom + FuelingPointDeltaY);
+
+
             return cashCounter;
         }
 
         internal static PictureBox CreateEnterPictureBox(Point locationPoint)
         {
-            var sizeX = ElementSizeDefiner.TopologyCellSize;
+            var sizeX = TopologyCellSize;
             var sizeY = 20;
-            PictureBox enter = new PictureBox();
-            enter.Tag = "Enter";
-            enter.BackColor = Color.Chartreuse;
+            PictureBox enter = new PictureBox
+            {
+                Tag = "Enter",
+                BackColor = Color.Chartreuse,
+                Size = new Size(sizeX, sizeY),
+                Location = locationPoint,
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
             //enter.Image = Properties.Resources.Enter;
-            enter.Size = new Size(sizeX, sizeY);
-            enter.Location = locationPoint;
-            enter.SizeMode = PictureBoxSizeMode.StretchImage;
 
             enter.MouseClick += new MouseEventHandler(EnterPictureBox_Click);
 
@@ -61,15 +73,17 @@ namespace GasStationMs.App.Modeling
 
         internal static PictureBox CreateExitPictureBox(Point locationPoint)
         {
-            var sizeX = ElementSizeDefiner.TopologyCellSize;
+            var sizeX = TopologyCellSize;
             var sizeY = 20;
-            PictureBox exit = new PictureBox();
-            exit.Tag = "Exit";
-            exit.BackColor = Color.Coral;
+            PictureBox exit = new PictureBox
+            {
+                Tag = "Exit",
+                BackColor = Color.Coral,
+                Size = new Size(sizeX, sizeY),
+                Location = locationPoint,
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
             //enter.Image = Properties.Resources.Exit;
-            exit.Size = new Size(sizeX, sizeY);
-            exit.Location = locationPoint;
-            exit.SizeMode = PictureBoxSizeMode.StretchImage;
 
             exit.MouseClick += new MouseEventHandler(ExitPictureBox_Click);
 
@@ -82,32 +96,28 @@ namespace GasStationMs.App.Modeling
             return exit;
         }
 
-        internal static PictureBox CreateCarPictureBox(CarView carView)
+        internal static CarPictureBox CreateCarPictureBox(CarView carView)
         {
-            PictureBox car = new PictureBox();
-            car.Tag = carView;
-            car.Image = Properties.Resources.car_32x17__left;
-            car.Location = DestinationPointsDefiner.SpawnPoint;
-            car.SizeMode = PictureBoxSizeMode.AutoSize;
+            return new CarPictureBox(_modelingForm, carView);
+        }
 
-            car.MouseClick += new MouseEventHandler(CarPictureBox_Click);
-
-            _modelingForm.PlaygroundPanel.Controls.Add(car);
-            car.BringToFront();
-
-            return car;
+        internal static CollectorPictureBox CreateCollectorPictureBox(CollectorView collectorView)
+        {
+            return new CollectorPictureBox(_modelingForm, collectorView);
         }
 
         internal static PictureBox CreateFuelDispenserPictureBox(FuelDispenserView fuelDispenserView,
             Point locationPoint)
         {
             var size = 50;
-            PictureBox fuelDispenser = new PictureBox();
-            fuelDispenser.Tag = fuelDispenserView;
-            fuelDispenser.Image = Properties.Resources.dispenser70;
-            fuelDispenser.Size = new Size(size, size);
-            fuelDispenser.Location = locationPoint;
-            fuelDispenser.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBox fuelDispenser = new PictureBox
+            {
+                Tag = fuelDispenserView,
+                Image = Properties.Resources.dispenser70,
+                Size = new Size(size, size),
+                Location = locationPoint,
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
 
             fuelDispenser.MouseClick += new MouseEventHandler(FuelDispenserPictureBox_Click);
 
@@ -116,8 +126,8 @@ namespace GasStationMs.App.Modeling
 
             _mappedTopology.FuelDispensersList.Add(fuelDispenser);
 
-            var pointOfFueling = new Point(fuelDispenser.Left + DestinationPointsDefiner.FuelingPointDeltaX,
-                fuelDispenser.Bottom + DestinationPointsDefiner.FuelingPointDeltaY);
+            var pointOfFueling = new Point(fuelDispenser.Left + FuelingPointDeltaX,
+                fuelDispenser.Bottom + FuelingPointDeltaY);
             _mappedTopology.AddFuelDispenserWithDestPoint(fuelDispenser, pointOfFueling);
 
             return fuelDispenser;
@@ -127,13 +137,16 @@ namespace GasStationMs.App.Modeling
             Point locationPoint)
         {
             var size = 50;
-            PictureBox fuelTank = new PictureBox();
-            fuelTank.Tag = fuelTankView;
-            fuelTank.Image = Properties.Resources.FuelTank;
-            fuelTank.Size = new Size(size, size);
-            fuelTank.Location = locationPoint;
-            fuelTank.SizeMode = PictureBoxSizeMode.StretchImage;
-            fuelTank.BackColor = Color.Wheat; //For testing
+            PictureBox fuelTank = new PictureBox
+            {
+                Tag = fuelTankView,
+                Image = Properties.Resources.FuelTank,
+                Size = new Size(size, size),
+                Location = locationPoint,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                BackColor = Color.Wheat
+            };
+            //For testing
 
             fuelTank.MouseClick += new MouseEventHandler(FuelTankPictureBox_Click);
 
@@ -144,5 +157,7 @@ namespace GasStationMs.App.Modeling
 
             return fuelTank;
         }
+
+       
     }
 }

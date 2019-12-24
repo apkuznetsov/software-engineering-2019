@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
@@ -9,8 +9,10 @@ namespace GasStationMs.App.Modeling
     {
         internal static Dictionary<PictureBox, Point> FuelDispensersDestPoints { get; private set; }
 
+        internal static Point CashCounter { get; private set; }
+
         internal static int FuelingPointDeltaX {get;}= 5;
-        internal static int FuelingPointDeltaY { get; } = 10;
+        internal static int FuelingPointDeltaY { get; } = 5;
 
         internal static int NoFillingHorizontalLine { get; private set; }
     
@@ -39,8 +41,8 @@ namespace GasStationMs.App.Modeling
 
         internal static void DefineCommonPoints()
         {
-            NoFillingHorizontalLine = PanelPlaygroundHeight - 2 * CarHeight - 20;
-            FilledHorizontalLine = PanelPlaygroundHeight - 3 * CarHeight - 40;
+            NoFillingHorizontalLine = PanelPlaygroundHeight - 1 * CarHeight;
+            FilledHorizontalLine = PanelPlaygroundHeight - 3 * CarHeight;
 
             RightPlaygroundBorder = PanelPlaygroundWidth;
             LeftPlaygroundBorder = 0;
@@ -55,9 +57,11 @@ namespace GasStationMs.App.Modeling
         internal static void DefineElementsPoints(MappedTopology mappedTopology)
         {
             FuelDispensersDestPoints = mappedTopology.FuelDispensersDestPoints;
+            CashCounter = mappedTopology.CashCounterDestinationPoint;
 
             var enter = mappedTopology.Enter;
             var exit = mappedTopology.Exit;
+
 
             // Destination points to enter/leave gas station
             EnterCenter = new Point(enter.Left + enter.Width / 2,
@@ -66,12 +70,12 @@ namespace GasStationMs.App.Modeling
                 exit.Top + exit.Height / 2);
 
             EnterPoint1 = new Point(SpawnPoint.X - 200, FilledHorizontalLine);
-            EnterPoint2 = new Point(EnterCenter.X, EnterCenter.Y + enter.Height);
-            EnterPoint3 = new Point(EnterCenter.X, EnterCenter.Y - enter.Height);
+            EnterPoint2 = new Point(enter.Left + 10 , EnterCenter.Y + enter.Height);
+            EnterPoint3 = new Point(enter.Left + 10, enter.Top - enter.Height - 5);
 
             ExitPoint1 = new Point(ExitCenter.X, ExitCenter.Y - exit.Height);
-            ExitPoint2 = new Point(ExitCenter.X, ExitCenter.Y + exit.Height);
-            ExitPoint3 = new Point(exit.Left, ExitCenter.Y + 2 * exit.Height);
+            ExitPoint2 = new Point(ExitCenter.X, exit.Bottom + CarHeight + 5);
+            ExitPoint3 = new Point(exit.Left - 10, exit.Bottom + 2 * CarHeight);
         }
     }
 }

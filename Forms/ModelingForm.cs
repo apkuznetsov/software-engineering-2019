@@ -3,26 +3,42 @@ using System.Drawing;
 using System.Windows.Forms;
 using GasStationMs.App.Modeling;
 
-namespace GasStationMs.App
+namespace GasStationMs.App.Forms
 {
     public partial class ModelingForm : Form
     {
-        private Topology.Topology _topology;
-        private MappedTopology _mappedTopology;
+        private readonly MappedTopology _mappedTopology;
 
         public PictureBox SelectedItem { get; set; }
-        public Panel PlaygroundPanel { get; }
-        public Label LabelSelectedElement { get; }
-        public Label LabelCashCounterSumValue { get; }
-        public TextBox TextBoxSelectedItemInformation { get; }
-        public PictureBox PictureBoxServiceArea{ get; }
+        public Panel PlaygroundPanel { get; private set; }
+        public Label LabelSelectedElement { get; private set; }
+        public Label LabelCashCounterSumValue { get; private set; }
+        public TextBox TextBoxSelectedItemInformation { get; private set; }
+        public PictureBox PictureBoxServiceArea { get; private set; }
 
         public ModelingForm(Topology.Topology topology)
         {
             InitializeComponent();
+            RemoveUnusedControls();
+            DefineProperties();
+            LocateFormElements();
 
-            this._topology = topology;
+            ElementSizeDefiner.TopologyCellSize = 50;
 
+            ClickEventProvider.SetUpClickEventProvider(this);
+
+            _mappedTopology = TopologyMapper.MapTopology(this, topology);
+
+            ModelingProcessor.SetUpModelingProcessor(this, _mappedTopology);
+        }
+
+        private void TimerModeling_Tick(object sender, EventArgs e)
+        {
+            ModelingTicker.Tick(this, _mappedTopology);
+        }
+
+        private void RemoveUnusedControls()
+        {
             panelPlayground.Controls.Remove(pictureBoxCashCounter);
             panelPlayground.Controls.Remove(pictureBoxCar);
             panelPlayground.Controls.Remove(pictureBoxEnter);
@@ -31,28 +47,15 @@ namespace GasStationMs.App
             panelPlayground.Controls.Remove(pictureBoxFuelDispenser2);
             panelPlayground.Controls.Remove(pictureBoxFuelTank1);
             panelPlayground.Controls.Remove(pictureBoxFuelTank2);
+        }
 
-            this.DoubleBuffered = true;
-
+        private void DefineProperties()
+        {
             PlaygroundPanel = panelPlayground;
             LabelSelectedElement = labelSelectedElement;
             TextBoxSelectedItemInformation = textBoxSelectedItemInformation;
             PictureBoxServiceArea = pictureBoxServiceArea;
             LabelCashCounterSumValue = labelCashCounterSumValue;
-
-            ElementSizeDefiner.TopologyCellSize = 50;
-
-            LocateFormElements();
-
-            ClickEventProvider.SetUpClickEventProvider(this);
-
-            _mappedTopology = TopologyMapper.MapTopology(this, _topology);
-            ModelingProcessor.SetUpModelingProcessor(this, _mappedTopology);
-        }
-
-        private void TimerModeling_Tick(object sender, EventArgs e)
-        {
-           ModelingTicker.Tick(this, _mappedTopology);
         }
 
         private void LocateFormElements()

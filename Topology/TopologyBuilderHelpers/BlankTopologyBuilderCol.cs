@@ -1,19 +1,22 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-public class BlankTopologyBuilderCol : DataGridViewImageColumn
+namespace GasStationMs.App.Topology.TopologyBuilderHelpers
 {
-    public BlankTopologyBuilderCol()
+    public class BlankTopologyBuilderCol : DataGridViewImageColumn
     {
-        Image = GasStationMs.App.Properties.Resources.Blank;
-        CellTemplate = new BlankTopologyBuilderCell(GasStationMs.App.Properties.Resources.Blank);
-    }
+        public BlankTopologyBuilderCol()
+        {
+            Image = GasStationMs.App.Properties.Resources.Blank;
+            CellTemplate = new BlankTopologyBuilderCell(GasStationMs.App.Properties.Resources.Blank);
+        }
 
-    class BlankTopologyBuilderCell : DataGridViewImageCell
-    {
-        public BlankTopologyBuilderCell() : this(null) { }
-        public BlankTopologyBuilderCell(Bitmap defaultImage) { }
+        class BlankTopologyBuilderCell : DataGridViewImageCell
+        {
+            public BlankTopologyBuilderCell() : this(null) { }
+            public BlankTopologyBuilderCell(Bitmap defaultImage) { }
 
-        public override object DefaultNewRowValue { get; }
+            public override object DefaultNewRowValue { get; }
+        }
     }
 }

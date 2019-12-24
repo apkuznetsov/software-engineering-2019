@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using GasStationMs.App.Elements;
+using GasStationMs.App.DB.Models;
+using GasStationMs.App.Forms;
+using GasStationMs.App.TemplateElements;
 using static GasStationMs.App.Modeling.ElementPictureBoxProducer;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
 using static GasStationMs.App.Modeling.ElementViewProducer;
@@ -33,7 +35,7 @@ namespace GasStationMs.App.Modeling
         {
             var panelPlayground = _modelingForm.PlaygroundPanel;
             PanelPlaygroundWidth = _topology.ColsCount * TopologyCellSize;
-            PanelPlaygroundHeight = _topology.RowsCount * TopologyCellSize + 3 * TopologyCellSize;
+            PanelPlaygroundHeight = _topology.RowsCount * TopologyCellSize + 1 * TopologyCellSize;
 
             DestinationPointsDefiner.DefineCommonPoints();
 

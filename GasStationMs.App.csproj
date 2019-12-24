@@ -85,6 +85,17 @@
     <Compile Include="Modeling\MappedTopology.cs" />
     <Compile Include="Modeling\ModelingProcessor.cs" />
     <Compile Include="Modeling\ModelingTicker.cs" />
+    <Compile Include="Modeling\Models\CollectorView.cs" />
+    <Compile Include="Modeling\Models\PictureBoxes\CollectorPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modeling\Models\PictureBoxes\MoveablePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modeling\Models\PictureBoxes\CarPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modeling\Models\RefuellerView.cs" />
     <Compile Include="Modeling\TopologyMapper.cs" />
     <Compile Include="TemplateElements\Road.cs" />
     <Compile Include="TemplateElements\ServiceArea.cs" />
@@ -92,11 +103,11 @@
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
     <Compile Include="DistributionLaws\DeterminedDistribution.cs" />
-    <Compile Include="DistributionLaws.cs">
+    <Compile Include="DistributionLawsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DistributionLaws.Designer.cs">
-      <DependentUpon>DistributionLaws.cs</DependentUpon>
+    <Compile Include="DistributionLawsForm.Designer.cs">
+      <DependentUpon>DistributionLawsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DistributionLaws\ExponentialDistribution.cs" />
     <Compile Include="DistributionLaws\IDistributionLaw.cs" />
@@ -105,10 +116,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GasStationMsDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ModelingForm.cs">
+    <Compile Include="Forms\ModelingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModelingForm.Designer.cs">
+    <Compile Include="Forms\ModelingForm.Designer.cs">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Modeling\Models\CarView.cs" />
@@ -151,10 +162,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Topology\Topology.cs" />
-    <EmbeddedResource Include="DistributionLaws.resx">
-      <DependentUpon>DistributionLaws.cs</DependentUpon>
+    <EmbeddedResource Include="DistributionLawsForm.resx">
+      <DependentUpon>DistributionLawsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModelingForm.resx">
+    <EmbeddedResource Include="Forms\ModelingForm.resx">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Start.resx">
@@ -205,6 +216,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Cars\refueler%2830x35%29.png" />
+    <None Include="Resources\Cars\refueler%2830x30%29.png" />
+    <None Include="Resources\Cars\collector%2835x17%29.png" />
     <None Include="Resources\Road.png" />
     <None Include="Resources\cashbox1.png" />
     <None Include="Resources\Cars\32x17\car%2832x17%29-up.png" />
@@ -250,6 +264,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Modeling\Models\Views\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

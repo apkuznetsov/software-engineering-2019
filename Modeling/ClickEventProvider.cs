@@ -1,6 +1,8 @@
 ﻿using System.Text;
 using System.Windows.Forms;
+using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Modeling.Models.PictureBoxes;
 
 namespace GasStationMs.App.Modeling
 {
@@ -96,7 +98,29 @@ namespace GasStationMs.App.Modeling
 
             _textBoxSelectedItemInformation.Text = cashCounterInfo.ToString();
 
+            _labelSelectedElement.Visible = true;
+            _textBoxSelectedItemInformation.Visible = true;
+
             _modelingForm.SelectedItem = cashCounter;
+        }
+
+        internal static void CashCollectorPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var cashCollector = (CollectorPictureBox)sender;
+            var cashCollectorView = cashCollector.Tag as CollectorView;
+
+            _labelSelectedElement.Text = "Инкассация";
+
+            StringBuilder cashCollectorInfo = new StringBuilder();
+
+            cashCollectorInfo.Append("\r\nИзьято денег: " + (int)cashCollectorView.TakenCashVolume + " руб.");
+
+            _textBoxSelectedItemInformation.Text = cashCollectorInfo.ToString();
+
+            _labelSelectedElement.Visible = true;
+            _textBoxSelectedItemInformation.Visible = true;
+
+            _modelingForm.SelectedItem = cashCollector;
         }
 
         internal static void EnterPictureBox_Click(object sender, MouseEventArgs e)

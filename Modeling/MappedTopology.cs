@@ -13,6 +13,7 @@ namespace GasStationMs.App.Modeling
         internal List<PictureBox> FuelTanksList { get; set; }
 
         internal Dictionary<PictureBox, Point> FuelDispensersDestPoints { get; }
+        internal Point CashCounterDestinationPoint { get; set; }
 
         internal MappedTopology()
         {

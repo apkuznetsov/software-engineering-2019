@@ -4,8 +4,8 @@ namespace GasStationMs.App.DistributionLaws
 {
     public class UniformDistribution : IDistributionLaw
     {
-        private readonly double a;
-        private readonly double b;
+        private readonly double _a;
+        private readonly double _b;
 
         public UniformDistribution(double a, double b)
         {
@@ -14,8 +14,8 @@ namespace GasStationMs.App.DistributionLaws
                 throw new ArgumentOutOfRangeException();
             }
 
-            this.a = a;
-            this.b = b;
+            this._a = a;
+            this._b = b;
         }
 
         public double A { get; }
@@ -25,7 +25,7 @@ namespace GasStationMs.App.DistributionLaws
         {
             Random random = new Random();
 
-            return random.NextDouble() * (b - a) + a;
+            return random.NextDouble() * (_b - _a) + _a;
         }
     }
 }

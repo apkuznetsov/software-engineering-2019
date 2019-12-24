@@ -1,5 +1,4 @@
-﻿using GasStationMs.App.Elements;
-using GasStationMs.App.TemplateElements;
+﻿using GasStationMs.App.TemplateElements;
 using System;
 using System.Windows.Forms;
 
@@ -7,13 +6,13 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder // Exit
     {
-        private int exitsCount;
+        private int _exitsCount;
 
         public int ExitsCount
         {
             get
             {
-                return exitsCount;
+                return _exitsCount;
             }
 
             set
@@ -28,7 +27,7 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                exitsCount = value;
+                _exitsCount = value;
             }
         }
 
@@ -36,7 +35,7 @@ namespace GasStationMs.App.Topology
         {
             if (CanAddExit(x, y))
             {
-                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+                DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
 
                 cell.Value = Exit.Image;
                 cell.Tag = new Exit();
@@ -51,14 +50,14 @@ namespace GasStationMs.App.Topology
 
         private bool CanAddExit(int x, int y)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
             bool isRoad = cell.Tag is Road;
 
             if (isRoad &&
                 !IsRoadUnderServiceArea(x, y) &&
                 !IsRightBeforeServiceAreaBorder(x, y))
             {
-                bool isNewCountOk = exitsCount + 1 <= Topology.MaxExitsCount;
+                bool isNewCountOk = _exitsCount + 1 <= Topology.MaxExitsCount;
 
                 if (isNewCountOk)
                     return true;
@@ -69,7 +68,7 @@ namespace GasStationMs.App.Topology
 
         private bool IsRightBeforeServiceAreaBorder(int x, int y)
         {
-            int colIndexRightBeforeServiceAreaBorder = serviceAreaBorderColIndex - 1;
+            int colIndexRightBeforeServiceAreaBorder = _serviceAreaBorderColIndex - 1;
 
             if (x == colIndexRightBeforeServiceAreaBorder)
                 return true;
@@ -79,10 +78,10 @@ namespace GasStationMs.App.Topology
 
         public void DeleteExit(int x, int y)
         {
-            if (exitsCount < 0)
+            if (_exitsCount < 0)
                 throw new ArgumentOutOfRangeException();
 
-            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
             bool canDelete = cell.Tag is Exit;
 
             if (canDelete)
@@ -91,7 +90,7 @@ namespace GasStationMs.App.Topology
                 cell.Tag = new Road();
                 cell.Value = Road.Image;
 
-                exitsCount--;
+                _exitsCount--;
             }
             else
                 throw new InvalidCastException();

@@ -1,4 +1,4 @@
-﻿namespace GasStationMs.App
+﻿namespace GasStationMs.App.Forms
 {
     partial class ModelingForm
     {
@@ -98,7 +98,7 @@
             this.pictureBoxCashCounter.Location = new System.Drawing.Point(111, 236);
             this.pictureBoxCashCounter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBoxCashCounter.Name = "pictureBoxCashCounter";
-            this.pictureBoxCashCounter.Size = new System.Drawing.Size(64, 64);
+            this.pictureBoxCashCounter.Size = new System.Drawing.Size(30, 30);
             this.pictureBoxCashCounter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxCashCounter.TabIndex = 4;
             this.pictureBoxCashCounter.TabStop = false;
@@ -346,6 +346,7 @@
             this.Controls.Add(this.panelTimeManagment);
             this.Controls.Add(this.panelPlayground);
             this.Controls.Add(this.panelModelingInformation);
+            this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ModelingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
