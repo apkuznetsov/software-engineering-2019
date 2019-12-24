@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace GasStationMs.App.Modeling.Models
+namespace GasStationMs.App.Modeling.Models.Views
 {
     internal class CollectorView
     {
