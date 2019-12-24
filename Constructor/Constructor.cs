@@ -25,7 +25,7 @@ namespace GasStationMs.App.Constructor
         private FuelTank _selectedFuelTank;
         private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
-        private readonly CrudHelper _crudHelper;        
+        private readonly CrudHelper _crudHelper;
 
         public Constructor(GasStationContext gasStationContext)
         {
@@ -36,7 +36,6 @@ namespace GasStationMs.App.Constructor
 
             _topologyBuilder = new TopologyBuilder(dgvTopology);
             SetSettings();
-            _currFilePath = "Топология" + Topology.Topology.DotExt;
         }
 
         public TopologyBuilder TopologyBuilder
@@ -53,7 +52,17 @@ namespace GasStationMs.App.Constructor
             LoadList();
         }
 
-        public string CurrFilePath { get; set; }
+        public string CurrFilePath
+        {
+            get
+            {
+                return _currFilePath;
+            }
+            set
+            {
+                _currFilePath = value;
+            }
+        }
 
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
@@ -81,27 +90,28 @@ namespace GasStationMs.App.Constructor
                 MessageBox.Show("удалите ШЭ прежде чем удалить строку");
             }
         }
-                
 
 
-        private void rbFuelDispenser_mouseDown(object sender,MouseEventArgs e){
+
+        private void rbFuelDispenser_mouseDown(object sender, MouseEventArgs e)
+        {
             rbFuelDispenser.Checked = true;
             _isCheckedradioButtonFuelDispenser = false;
             rbFuelDispenser.DoDragDrop(rbFuelDispenser.Image, DragDropEffects.Copy);
-            
+
         }
         private void rbFuelTank_mouseDown(object sender, MouseEventArgs e)
         {
             rbFuelTank.Checked = true;
             _isCheckedradioButtonFuelTank = false;
             rbFuelTank.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
-            
+
         }
 
         private void rbCashCounter_mouseDown(object sender, MouseEventArgs e)
         {
             rbCashCounter.Checked = true;
-           _isCheckedRbCashCounter = false;
+            _isCheckedRbCashCounter = false;
             rbCashCounter.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
 
         }
@@ -123,7 +133,7 @@ namespace GasStationMs.App.Constructor
         }
 
         private void DataGridView_DragEnter(object sender, DragEventArgs e)
-        {            
+        {
             e.Effect = DragDropEffects.Copy;
 
         }
@@ -131,16 +141,16 @@ namespace GasStationMs.App.Constructor
 
         private void DataGridView_DragDrop(object sender, DragEventArgs e)
         {
-            
+
             Point cursorPosition = dgvTopology.PointToClient(Cursor.Position);
             DataGridView.HitTestInfo info = dgvTopology.HitTest(cursorPosition.X, cursorPosition.Y);
             var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
-            DataGridViewImageCell cell =(DataGridViewImageCell) dgvTopology[info.ColumnIndex, info.RowIndex];
+            DataGridViewImageCell cell = (DataGridViewImageCell)dgvTopology[info.ColumnIndex, info.RowIndex];
             if (cell.Tag == null)
             {
                 bool isAdded = false;
                 if (rb.Name == typeof(FuelDispenser).ToString())
-                {                    
+                {
                     isAdded = _topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
                     rbFuelDispenser.Checked = false;
                     if (!isAdded)
@@ -347,6 +357,7 @@ namespace GasStationMs.App.Constructor
 
         private void SaveTopologyIntoCurrFilePath()
         {
+            string temp = _currFilePath;
             Topology.Topology topology = _topologyBuilder.ToTopology();
             topology.Save(_currFilePath);
         }
