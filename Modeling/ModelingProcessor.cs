@@ -2,18 +2,21 @@
 using System.Windows.Forms;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Modeling.Models.PictureBoxes;
 
 namespace GasStationMs.App.Modeling
 {
     internal static class ModelingProcessor
     {
-        private static  PictureBox _cashCounter;
+        internal static PictureBox CashCounter { get; private set; }
         internal static List<PictureBox> FuelDispensersList { get; private set; }
         internal static List<PictureBox> FuelTanksList { get; private set; }
 
+        private static bool _isCollectingMoney;
+
         internal static void SetUpModelingProcessor(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
-            _cashCounter = mappedTopology.CashCounter;
+            CashCounter = mappedTopology.CashCounter;
             FuelDispensersList = mappedTopology.FuelDispensersList;
             FuelTanksList = mappedTopology.FuelTanksList;
 
@@ -21,48 +24,53 @@ namespace GasStationMs.App.Modeling
             CarRouter.SetUpCarRouter(modelingForm);
         }
 
-        internal static void StartFilling(PictureBox car, PictureBox fuelDispenser)
+        internal static void StartFilling(CarPictureBox car, PictureBox fuelDispenser)
         {
-            var carView = (CarView)car.Tag;
-            var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
+            var carView = car.Tag as CarView;
+            var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
 
             fuelDispenserView.ChoseFuelTank(FuelTanksList, carView.Fuel);
 
-            carView.PayForOrderedFuel((CashCounterView)_cashCounter.Tag);
+            carView.PayForOrderedFuel((CashCounterView) CashCounter.Tag);
 
-            carView.IsFilling = true;
+            car.IsFilling = true;
             fuelDispenserView.IsBusy = true;
         }
 
-        internal static void FillCar(CarView car, FuelDispenserView fuelDispenser)
+        internal static void FillCar(CarPictureBox car, FuelDispenserView fuelDispenser)
         {
-            car.FuelRemained += fuelDispenser.GetFuelFromTank();
+            var carView = car.Tag as CarView;
+
+            carView.FuelRemained += fuelDispenser.GetFuelFromTank();
 
             if (fuelDispenser.ChosenFuelTank.IsEmpty)
             {
                 // CallRefiller()
             }
 
-            if (((CashCounterView)_cashCounter.Tag).IsFull)
+            if (((CashCounterView) CashCounter.Tag).IsFull && !_isCollectingMoney)
             {
-                // CallCollector()
+                CallCollector();
+                _isCollectingMoney = true;
             }
 
             // test
 
-            if (car.FuelRemained >= car.DesiredFilling)
+            if (carView.FuelRemained >= carView.DesiredFilling)
             {
                 StopFilling(car, fuelDispenser);
             }
         }
 
-        internal static void StopFilling(CarView car, FuelDispenserView fuelDispenser)
+        private static void StopFilling(CarPictureBox car, FuelDispenserView fuelDispenser)
         {
-            if (car.FuelRemained > car.TankVolume)
-            {
-                car.FuelRemained = car.TankVolume;
+            var carView = car.Tag as CarView;
 
-                var fuelSurplus = car.FuelRemained - car.TankVolume;
+            if (carView.FuelRemained > carView.TankVolume)
+            {
+                carView.FuelRemained = carView.TankVolume;
+
+                var fuelSurplus = carView.FuelRemained - carView.TankVolume;
                 fuelDispenser.ReturnFuelToTank(fuelSurplus);
             }
 
@@ -70,6 +78,42 @@ namespace GasStationMs.App.Modeling
             car.IsFilled = true;
             fuelDispenser.CarsInQueue--;
             fuelDispenser.IsBusy = false;
+        }
+
+        private static void CallCollector()
+        {
+            CarCreator.SpawnCollector();
+        }
+
+        internal static void CollectCash(CollectorPictureBox collector, CashCounterView cashCounter)
+        {
+            var collectorView = collector.Tag as CollectorView;
+
+            collectorView.GetCashFromCashCounter();
+
+            if (cashCounter.CurrentCashVolume < 0)
+            {
+                StopCollectingCash(collector, cashCounter);
+            }
+        }
+
+        internal static void StartCollectingCash(CollectorPictureBox collector, CashCounterView cashCounter)
+        {
+            collector.IsFilling = true;
+        }
+
+        private static void StopCollectingCash(CollectorPictureBox collector, CashCounterView cashCounter)
+        {
+            var collectorView = collector.Tag as CollectorView;
+
+            collectorView.ReturnCashToCashCounter(0 - cashCounter.CurrentCashVolume);
+
+            collector.IsFilling = false;
+            collector.IsFilled = true;
+
+            //cashCounter.IsFull = false;
+
+            _isCollectingMoney = false;
         }
     }
 }
