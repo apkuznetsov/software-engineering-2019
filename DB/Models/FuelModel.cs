@@ -1,4 +1,4 @@
-﻿namespace GasStationMs.App
+﻿namespace GasStationMs.App.DB.Models
 {
     public class FuelModel
     {

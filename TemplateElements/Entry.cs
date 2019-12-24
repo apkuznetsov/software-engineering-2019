@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Drawing;
 
-namespace GasStationMs.App.Elements
+namespace GasStationMs.App.TemplateElements
 {
     [Serializable()]
     public class Entry : IGasStationElement
     {
         #region изображение
-        private static Bitmap image;
+        private static Bitmap _image;
 
         public static Bitmap Image
         {
             get
             {
-                return image;
+                return _image;
             }
 
             set
             {
-                image = value;
-                Icon = Icon.FromHandle(image.GetHicon());
+                _image = value;
+                Icon = Icon.FromHandle(_image.GetHicon());
             }
         }
 

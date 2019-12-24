@@ -1,4 +1,6 @@
-﻿namespace GasStationMs.App.Modeling.Models
+﻿using GasStationMs.App.DB.Models;
+
+namespace GasStationMs.App.Modeling.Models
 {
     public class FuelTankView
     {

@@ -1,19 +1,19 @@
-﻿using GasStationMs.App.Elements;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder // FuelDispenser
     {
-        private int fuelDispensersCount;
+        private int _fuelDispensersCount;
 
         public int FuelDispensersCount
         {
             get
             {
-                return fuelDispensersCount;
+                return _fuelDispensersCount;
             }
 
             set
@@ -27,7 +27,7 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                fuelDispensersCount = value;
+                _fuelDispensersCount = value;
             }
         }
 
@@ -35,7 +35,7 @@ namespace GasStationMs.App.Topology
         {
             if (CanAddFuelDispenser(x, y))
             {
-                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+                DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
 
                 cell.Value = FuelDispenser.Image;
                 cell.Tag = new FuelDispenser();
@@ -50,9 +50,9 @@ namespace GasStationMs.App.Topology
 
         private bool CanAddFuelDispenser(int x, int y)
         {
-            bool IsNewCountOk = fuelDispensersCount + 1 <= Topology.MaxFuelDispensersCount;
+            bool isNewCountOk = _fuelDispensersCount + 1 <= Topology.MaxFuelDispensersCount;
 
-            if (IsNewCountOk &&
+            if (isNewCountOk &&
                 !IsCellOnEdgeOrOut(x, y) &&
                 AreCellsAroundBlank(x, y))
                 return true;
@@ -63,10 +63,10 @@ namespace GasStationMs.App.Topology
         private bool IsCellOnEdgeOrOut(int x, int y)
         {
             bool isOnLeftColOrLess = x <= 0;
-            bool isOnRightColOrMore = x >= field.ColumnCount - 1;
+            bool isOnRightColOrMore = x >= _field.ColumnCount - 1;
 
             bool isOnTopRowOrUpper = y <= 0;
-            bool isOnBotRowOrLower = y >= field.RowCount - 1;
+            bool isOnBotRowOrLower = y >= _field.RowCount - 1;
 
             if (isOnLeftColOrLess ||
                 isOnRightColOrMore ||
@@ -116,7 +116,7 @@ namespace GasStationMs.App.Topology
 
         private bool IsCellBlank(int x, int y)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
             if (cell.Tag == null)
                 return true;
 
@@ -125,12 +125,12 @@ namespace GasStationMs.App.Topology
 
         public void DeleteFuelDispenser()
         {
-            if (fuelDispensersCount < 0)
+            if (_fuelDispensersCount < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            fuelDispensersCount--;
+            _fuelDispensersCount--;
         }
     }
 }

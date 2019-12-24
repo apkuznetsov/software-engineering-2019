@@ -1,5 +1,4 @@
-﻿using GasStationMs.App.Elements;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace GasStationMs.App.TemplateElements
@@ -8,19 +7,19 @@ namespace GasStationMs.App.TemplateElements
     public class Road : IGasStationElement
     {
         #region изображение
-        private static Bitmap image;
+        private static Bitmap _image;
 
         public static Bitmap Image
         {
             get
             {
-                return image;
+                return _image;
             }
 
             set
             {
-                image = value;
-                Icon = Icon.FromHandle(image.GetHicon());
+                _image = value;
+                Icon = Icon.FromHandle(_image.GetHicon());
             }
         }
 

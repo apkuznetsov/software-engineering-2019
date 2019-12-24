@@ -17,7 +17,7 @@ namespace GasStationMs.App
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Constructor formTopologyBuilder = _container.GetInstance<Constructor>();
+            Constructor.Constructor formTopologyBuilder = _container.GetInstance<Constructor.Constructor>();
             formTopologyBuilder.Show();
         }
 
@@ -52,7 +52,7 @@ namespace GasStationMs.App
                         Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
                         downloadingFileStream.Close();
 
-                        Constructor formConstructor = _container.GetInstance<Constructor>();
+                        Constructor.Constructor formConstructor = _container.GetInstance<Constructor.Constructor>();
                         formConstructor.Show();
                         formConstructor.TopologyBuilder.SetTopologyBuilder(topology);
                         formConstructor.CurrFilePath = filePath;
