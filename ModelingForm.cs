@@ -4,18 +4,20 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using GasStationMs.App.Elements;
+using GasStationMs.App.Modeling;
 using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Topology;
+using static GasStationMs.App.Modeling.DirectionEnum;
 
 namespace GasStationMs.App
 {
-    public enum Direction
-    {
-        Up,
-        Right,
-        Down,
-        Left
-    }
+    //public enum Direction
+    //{
+    //    Up,
+    //    Right,
+    //    Down,
+    //    Left
+    //}
 
     public partial class ModelingForm : Form
     {
