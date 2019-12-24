@@ -45,8 +45,6 @@
             this.rbExit = new System.Windows.Forms.RadioButton();
             this.panelClickedCell = new System.Windows.Forms.Panel();
             this.labelMainTeProperty = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.numericUpDownVolume = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownFuelDispenserSpeed = new System.Windows.Forms.NumericUpDown();
             this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
@@ -266,25 +264,6 @@
             this.labelMainTeProperty.TabIndex = 18;
             this.labelMainTeProperty.Text = "TE main property";
             this.labelMainTeProperty.Visible = false;
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 66);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 17);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Скорость заправки";
-            this.label2.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 106);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 17);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Объем бака";
-            this.label1.Visible = false;
             // 
             // numericUpDownVolume
             // 
@@ -481,8 +460,6 @@
         private System.Windows.Forms.Button btnOpenInBrowserAbout;
         private System.Windows.Forms.Button btnToModeling;
         private System.Windows.Forms.Label labelClickedTeName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
     }
 }
 
