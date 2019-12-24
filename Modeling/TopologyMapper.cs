@@ -35,7 +35,7 @@ namespace GasStationMs.App.Modeling
         {
             var panelPlayground = _modelingForm.PlaygroundPanel;
             PanelPlaygroundWidth = _topology.ColsCount * TopologyCellSize;
-            PanelPlaygroundHeight = _topology.RowsCount * TopologyCellSize + 3 * TopologyCellSize;
+            PanelPlaygroundHeight = _topology.RowsCount * TopologyCellSize + 1 * TopologyCellSize;
 
             DestinationPointsDefiner.DefineCommonPoints();
 

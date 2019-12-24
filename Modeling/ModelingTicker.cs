@@ -1,6 +1,8 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Modeling.Models.PictureBoxes;
+using GasStationMs.App.Modeling.Models.Views;
 using static GasStationMs.App.Modeling.ClickEventProvider;
 
 namespace GasStationMs.App.Modeling
@@ -8,6 +10,7 @@ namespace GasStationMs.App.Modeling
     internal static class ModelingTicker
     {
         private static int _timerTicksCount;
+        private static bool _paused;
         internal static void Tick(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
             var selectedItem = modelingForm.SelectedItem;
@@ -39,41 +42,59 @@ namespace GasStationMs.App.Modeling
                 {
                     CashCounterPictureBox_Click(selectedItem, null);
                 }
+
+                if (selectedItem is CollectorPictureBox)
+                {
+                    CashCollectorPictureBox_Click(selectedItem, null);
+                }
             }
 
             //if (!_paused)
             //{
             //    //return;
-            //    SpawnCar();
+            //    //CarCreator.SpawnCar();
+            //    CarCreator.SpawnCollector();
+
             //    _paused = true;
             //}
 
-            if (_timerTicksCount % 40 == 0)
+            if (_timerTicksCount % 20 == 0)
             {
                 CarCreator.SpawnCar();
             }
 
             #region LoopingControls
 
-            foreach (Control c in panelPlayground.Controls)
+            foreach (Control control in panelPlayground.Controls)
             {
-                if (!(c is PictureBox) || c.Tag == null)
+                if (!(control is MoveablePictureBox))
                 {
                     continue;
                 }
 
-                var pictureBox = (PictureBox)c;
+                var moveablePictureBox = control as MoveablePictureBox;
 
                 // Car
-                if (pictureBox.Tag is CarView)
+                if (moveablePictureBox is CarPictureBox car)
                 {
-                    var car = pictureBox;
-                    var carView = (CarView)car.Tag;
-
                     CarRouter.RouteCar(car);
 
                     CarMover.MoveCarToDestination(car);
+
+                    continue;
                 }
+
+                // Collector
+                if (moveablePictureBox is CollectorPictureBox collector)
+                {
+                    CarRouter.RouteCar(collector);
+
+                    CarMover.MoveCarToDestination(collector);
+
+                    continue;
+                }
+
+                // Refueller
             }
 
             #endregion /LoopingControls
