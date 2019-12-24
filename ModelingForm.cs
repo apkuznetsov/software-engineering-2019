@@ -109,26 +109,26 @@ namespace GasStationMs.App
 
             labelCashCounterSumValue.Text = ((int)((CashCounterView) _cashCounter.Tag).CurrentCashVolume).ToString();
 
-            if (_selectedItem != null)
+            if (SelectedItem != null)
             {
-                if (_selectedItem.Tag is CarView)
+                if (SelectedItem.Tag is CarView)
                 {
-                    CarPictureBox_Click(_selectedItem, null);
+                    CarPictureBox_Click(SelectedItem, null);
                 }
 
-                if (_selectedItem.Tag is FuelDispenserView)
+                if (SelectedItem.Tag is FuelDispenserView)
                 {
-                    FuelDispenserPictureBox_Click(_selectedItem, null);
+                    FuelDispenserPictureBox_Click(SelectedItem, null);
                 }
 
-                if (_selectedItem.Tag is FuelTankView)
+                if (SelectedItem.Tag is FuelTankView)
                 {
-                    FuelTankPictureBox_Click(_selectedItem, null);
+                    FuelTankPictureBox_Click(SelectedItem, null);
                 }
 
-                if (_selectedItem.Tag is CashCounterView)
+                if (SelectedItem.Tag is CashCounterView)
                 {
-                    CashCounterPictureBox_Click(_selectedItem, null);
+                    CashCounterPictureBox_Click(SelectedItem, null);
                 }
             }
 
@@ -922,8 +922,12 @@ namespace GasStationMs.App
 
         private void SetupPlaygroundPanel()
         {
-            var width = _topology.ColsCount * _elementSize;
-            var height = _topology.RowsCount * _elementSize + 3 * _elementSize;
+            var width = _topology.ColsCount * ElementSizeDefiner.TopologyCellSize;
+            var height = _topology.RowsCount * ElementSizeDefiner.TopologyCellSize + 3 * ElementSizeDefiner.TopologyCellSize;
+
+            ElementSizeDefiner.PanelPlaygroundHeight = PlaygroundPanel.Height;
+            ElementSizeDefiner.PanelPlaygroundWidth = PlaygroundPanel.Width;
+
             panelPlayground.Size = new Size(width, height);
 
             for (int i = 0; i < _topology.RowsCount; i++)
@@ -937,8 +941,8 @@ namespace GasStationMs.App
                         continue;
                     }
 
-                    var creationPointX = j * _elementSize;
-                    var creationPointY = i * _elementSize;
+                    var creationPointX = j * ElementSizeDefiner.TopologyCellSize;
+                    var creationPointY = i * ElementSizeDefiner.TopologyCellSize;
 
                     var creationPoint = new Point(creationPointX, creationPointY);
 
@@ -975,11 +979,11 @@ namespace GasStationMs.App
 
         private void SetupServiceArea()
         {
-            var width = (_topology.ColsCount - _topology.FirstBorderPoint.X) * _elementSize;
-            var height = (_topology.RowsCount - 1) * _elementSize;
+            var width = (_topology.ColsCount - _topology.FirstBorderPoint.X) * ElementSizeDefiner.TopologyCellSize;
+            var height = (_topology.RowsCount - 1) * ElementSizeDefiner.TopologyCellSize;
 
-            var creationPointX = _topology.FirstBorderPoint.X * _elementSize;
-            var creationPointY = _topology.FirstBorderPoint.Y * _elementSize;
+            var creationPointX = _topology.FirstBorderPoint.X * ElementSizeDefiner.TopologyCellSize;
+            var creationPointY = _topology.FirstBorderPoint.Y * ElementSizeDefiner.TopologyCellSize;
             var creationPoint = new Point(creationPointX, creationPointY);
 
             pictureBoxServiceArea.Location = creationPoint;
@@ -1084,7 +1088,7 @@ namespace GasStationMs.App
 
         private PictureBox CreateEnterPictureBox(Point locationPoint)
         {
-            var sizeX = _elementSize;
+            var sizeX = ElementSizeDefiner.TopologyCellSize;
             var sizeY = 20;
             PictureBox enter = new PictureBox();
             enter.Tag = "Enter";
@@ -1106,7 +1110,7 @@ namespace GasStationMs.App
 
         private PictureBox CreateExitPictureBox(Point locationPoint)
         {
-            var sizeX = _elementSize;
+            var sizeX = ElementSizeDefiner.TopologyCellSize;
             var sizeY = 20;
             PictureBox exit = new PictureBox();
             exit.Tag = "Exit";
@@ -1349,7 +1353,7 @@ namespace GasStationMs.App
             labelSelectedElement.Visible = true;
             textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = car;
+            SelectedItem = car;
         }
 
         private void FuelDispenserPictureBox_Click(object sender, MouseEventArgs e)
@@ -1369,7 +1373,7 @@ namespace GasStationMs.App
             labelSelectedElement.Visible = true;
             textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = fuelDispenser;
+            SelectedItem = fuelDispenser;
         }
 
         private void FuelTankPictureBox_Click(object sender, MouseEventArgs e)
@@ -1390,7 +1394,7 @@ namespace GasStationMs.App
             labelSelectedElement.Visible = true;
             textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = fuelTank;
+            SelectedItem = fuelTank;
         }
 
         private void CashCounterPictureBox_Click(object sender, MouseEventArgs e)
@@ -1410,7 +1414,7 @@ namespace GasStationMs.App
 
             this.textBoxSelectedItemInformation.Text = cashCounterInfo.ToString();
 
-            _selectedItem = cashCounter;
+            SelectedItem = cashCounter;
         }
 
         private void EnterPictureBox_Click(object sender, MouseEventArgs e)
@@ -1428,7 +1432,7 @@ namespace GasStationMs.App
             labelSelectedElement.Visible = true;
             textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = enter;
+            SelectedItem = enter;
         }
 
         private void ExitPictureBox_Click(object sender, MouseEventArgs e)
@@ -1446,7 +1450,7 @@ namespace GasStationMs.App
             labelSelectedElement.Visible = true;
             textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = exit;
+            SelectedItem = exit;
         }
 
         private void ServiceArea_Click(object sender, MouseEventArgs e)
@@ -1465,7 +1469,7 @@ namespace GasStationMs.App
             labelSelectedElement.Visible = true;
             textBoxSelectedItemInformation.Visible = true;
 
-            _selectedItem = serviceArea;
+            SelectedItem = serviceArea;
         }
 
 
