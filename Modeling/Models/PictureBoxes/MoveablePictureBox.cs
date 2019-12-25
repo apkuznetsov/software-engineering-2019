@@ -12,6 +12,9 @@ namespace GasStationMs.App.Modeling.Models.PictureBoxes
         internal bool IsFilled { get; set; }
         internal bool IsFilling { get; set; }
         internal bool IsBypassingObject { get; set; }
+        internal bool IsGoesHorizontal { get; set; }
+        internal Point FromLeftBypassingPoint { get; set; }
+
 
         private readonly List<Point> _destinationPoints;
         public PictureBox DestinationSpot;
@@ -66,9 +69,12 @@ namespace GasStationMs.App.Modeling.Models.PictureBoxes
 
         public void DeleteDestinationSpot(Form form)
         {
-            form.Controls.Remove(DestinationSpot);
-            DestinationSpot.Dispose();
-            DestinationSpot = null;
+            if (DestinationSpot != null)
+            {
+                form.Controls.Remove(DestinationSpot);
+                DestinationSpot.Dispose();
+                DestinationSpot = null;
+            }
         }
 
         public bool HasDestPoints()
