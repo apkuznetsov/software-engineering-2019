@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
+using GasStationMs.App.Models;
 
 namespace GasStationMs.App
 {
@@ -10,6 +11,9 @@ namespace GasStationMs.App
         public DistributionLawsForm()
         {
             InitializeComponent();
+
+            nudDeterminedFlow.Minimum = TrafficFlow.MinTimeBetweenCarsInSeconds;
+            nudDeterminedFlow.Maximum = TrafficFlow.MaxTimeBetweenCarsInSeconds;
         }
         #region Отображение ЗР
 
@@ -100,7 +104,7 @@ namespace GasStationMs.App
                     switch (distributionLaw.SelectedIndex)
                     {
                         case 0:
-                            Generator = new UniformDistribution(0.1,(double)uniformDistributionTime.Value);
+                            Generator = new UniformDistribution(0.1, (double)uniformDistributionTime.Value);
                             break;
 
                         case 1:
@@ -119,7 +123,7 @@ namespace GasStationMs.App
                 }
                 else
                 {
-                    Generator = new DeterminedDistribution((double)determinedFlowInterval.Value);
+                    Generator = new DeterminedDistribution((double)nudDeterminedFlow.Value);
                 }
                 label4.Text = Generator.GetRandNumber().ToString();
             }

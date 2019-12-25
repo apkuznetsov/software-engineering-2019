@@ -30,7 +30,7 @@
         {
             this.determinedFlow = new System.Windows.Forms.RadioButton();
             this.randomFlow = new System.Windows.Forms.RadioButton();
-            this.determinedFlowInterval = new System.Windows.Forms.NumericUpDown();
+            this.nudDeterminedFlow = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.distributionLaw = new System.Windows.Forms.ComboBox();
@@ -50,7 +50,7 @@
             this.normalDistributionPanel = new System.Windows.Forms.Panel();
             this.uniformDistributionPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.determinedFlowInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDeterminedFlow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.probabilityToEnter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exponentialDistributionLambda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.normalDistributionDispersion)).BeginInit();
@@ -87,12 +87,12 @@
             this.randomFlow.CheckedChanged += new System.EventHandler(this.radioButtonRandomFlow_CheckedChanged);
             this.randomFlow.Click += new System.EventHandler(this.radioButtonRandomFlow_Click);
             // 
-            // determinedFlowInterval
+            // nudDeterminedFlow
             // 
-            this.determinedFlowInterval.Location = new System.Drawing.Point(100, 105);
-            this.determinedFlowInterval.Name = "determinedFlowInterval";
-            this.determinedFlowInterval.Size = new System.Drawing.Size(45, 20);
-            this.determinedFlowInterval.TabIndex = 3;
+            this.nudDeterminedFlow.Location = new System.Drawing.Point(100, 105);
+            this.nudDeterminedFlow.Name = "nudDeterminedFlow";
+            this.nudDeterminedFlow.Size = new System.Drawing.Size(45, 20);
+            this.nudDeterminedFlow.TabIndex = 3;
             // 
             // label1
             // 
@@ -336,7 +336,7 @@
             this.label4.Text = "Для проверки генерации";
             this.label4.Click += new System.EventHandler(this.label4_Click_1);
             // 
-            // DistributionLaws
+            // DistributionLawsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -351,13 +351,13 @@
             this.Controls.Add(this.distributionLaw);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.determinedFlowInterval);
+            this.Controls.Add(this.nudDeterminedFlow);
             this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.randomFlow);
             this.Controls.Add(this.determinedFlow);
-            this.Name = "DistributionLaws";
+            this.Name = "DistributionLawsForm";
             this.Text = "DistributionLaws";
-            ((System.ComponentModel.ISupportInitialize)(this.determinedFlowInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDeterminedFlow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.probabilityToEnter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exponentialDistributionLambda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.normalDistributionDispersion)).EndInit();
@@ -379,7 +379,7 @@
         private System.Windows.Forms.RadioButton determinedFlow;
         private System.Windows.Forms.RadioButton randomFlow;
         private System.Windows.Forms.Button buttonInfo;
-        private System.Windows.Forms.NumericUpDown determinedFlowInterval;
+        private System.Windows.Forms.NumericUpDown nudDeterminedFlow;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox distributionLaw;
