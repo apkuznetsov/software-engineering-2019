@@ -73,6 +73,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
+    <Compile Include="Modeling\Models\PictureBoxes\RefuellerPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Modeling\MovingLogic\Car\CarCreator.cs" />
     <Compile Include="Modeling\MovingLogic\Car\CarMover.cs" />
     <Compile Include="Modeling\MovingLogic\Car\CarRouter.cs" />
@@ -96,6 +99,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Modeling\Models\Views\RefuellerView.cs" />
+    <Compile Include="Modeling\MovingLogic\Refueller\RefuellerCreator.cs" />
+    <Compile Include="Modeling\MovingLogic\Refueller\RefuellerMover.cs" />
+    <Compile Include="Modeling\MovingLogic\Refueller\RefuellerRouter.cs" />
     <Compile Include="Modeling\TopologyMapper.cs" />
     <Compile Include="TemplateElements\Road.cs" />
     <Compile Include="TemplateElements\ServiceArea.cs" />
@@ -264,8 +270,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modeling\MovingLogic\Refueller\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
