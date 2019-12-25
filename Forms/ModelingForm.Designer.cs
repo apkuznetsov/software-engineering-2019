@@ -351,6 +351,7 @@
             this.Name = "ModelingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modeling";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModelingForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCashCounter)).EndInit();
