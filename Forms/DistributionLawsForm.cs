@@ -14,12 +14,14 @@ namespace GasStationMs.App
 
             nudDeterminedFlow.Minimum = TrafficFlow.MinTimeBetweenCarsInSeconds;
             nudDeterminedFlow.Maximum = TrafficFlow.MaxTimeBetweenCarsInSeconds;
+
+            cbSelectDistributionLaw.Visible = false;
         }
         #region Отображение ЗР
 
-        private void distributionLaw_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbSelectDistributionLaw_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (distributionLaw.SelectedIndex)
+            switch (cbSelectDistributionLaw.SelectedIndex)
             {
                 case 0:
                     uniformDistributionTimeLabel.Visible = true;
@@ -60,7 +62,7 @@ namespace GasStationMs.App
         {
             if (rbRandomFlow.Checked == true)
             {
-                switch (distributionLaw.SelectedIndex)
+                switch (cbSelectDistributionLaw.SelectedIndex)
                 {
                     case 0:
                         Generator = new UniformDistribution(0.1, (double)uniformDistributionTime.Value);
@@ -124,8 +126,15 @@ namespace GasStationMs.App
         {
 
         }
+
         #endregion
 
-
+        private void rbRandomFlow_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbRandomFlow.Checked == true)
+                cbSelectDistributionLaw.Visible = true;
+            else
+                cbSelectDistributionLaw.Visible = false;
+        }
     }
 }

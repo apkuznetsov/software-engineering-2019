@@ -33,7 +33,7 @@
             this.nudDeterminedFlow = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.distributionLaw = new System.Windows.Forms.ComboBox();
+            this.cbSelectDistributionLaw = new System.Windows.Forms.ComboBox();
             this.buttonInfo = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.probabilityToEnter = new System.Windows.Forms.NumericUpDown();
@@ -84,6 +84,7 @@
             this.rbRandomFlow.TabStop = true;
             this.rbRandomFlow.Text = "Случайный поток";
             this.rbRandomFlow.UseVisualStyleBackColor = true;
+            this.rbRandomFlow.CheckedChanged += new System.EventHandler(this.rbRandomFlow_CheckedChanged);
             // 
             // nudDeterminedFlow
             // 
@@ -110,18 +111,19 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Закон распределения";
             // 
-            // distributionLaw
+            // cbSelectDistributionLaw
             // 
-            this.distributionLaw.FormattingEnabled = true;
-            this.distributionLaw.Items.AddRange(new object[] {
+            this.cbSelectDistributionLaw.FormattingEnabled = true;
+            this.cbSelectDistributionLaw.Items.AddRange(new object[] {
             "Равномерный",
             "Нормальный",
             "Показательный"});
-            this.distributionLaw.Location = new System.Drawing.Point(166, 175);
-            this.distributionLaw.Name = "distributionLaw";
-            this.distributionLaw.Size = new System.Drawing.Size(124, 21);
-            this.distributionLaw.TabIndex = 6;
-            this.distributionLaw.SelectedIndexChanged += new System.EventHandler(this.distributionLaw_SelectedIndexChanged);
+            this.cbSelectDistributionLaw.Location = new System.Drawing.Point(166, 175);
+            this.cbSelectDistributionLaw.Name = "cbSelectDistributionLaw";
+            this.cbSelectDistributionLaw.Size = new System.Drawing.Size(124, 21);
+            this.cbSelectDistributionLaw.TabIndex = 6;
+            this.cbSelectDistributionLaw.Visible = false;
+            this.cbSelectDistributionLaw.SelectedIndexChanged += new System.EventHandler(this.cbSelectDistributionLaw_SelectedIndexChanged);
             // 
             // buttonInfo
             // 
@@ -357,7 +359,7 @@
             this.Controls.Add(this.buttonToModelling);
             this.Controls.Add(this.probabilityToEnter);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.distributionLaw);
+            this.Controls.Add(this.cbSelectDistributionLaw);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nudDeterminedFlow);
@@ -391,7 +393,7 @@
         private System.Windows.Forms.NumericUpDown nudDeterminedFlow;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox distributionLaw;
+        private System.Windows.Forms.ComboBox cbSelectDistributionLaw;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown probabilityToEnter;
         private System.Windows.Forms.Button buttonToModelling;
