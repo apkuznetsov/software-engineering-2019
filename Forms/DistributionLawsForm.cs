@@ -2,15 +2,21 @@
 using System.Linq;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
+using GasStationMs.App.Forms;
 using GasStationMs.App.Models;
+using GasStationMs.App.Topology;
 
 namespace GasStationMs.App
 {
     public partial class DistributionLawsForm : Form
     {
-        public DistributionLawsForm()
+        private TopologyBuilder tb;
+
+        public DistributionLawsForm(TopologyBuilder tb)
         {
             InitializeComponent();
+
+            this.tb = tb;
 
             nudDeterminedFlow.Minimum = TrafficFlow.MinTimeBetweenCarsInSeconds;
             nudDeterminedFlow.Maximum = TrafficFlow.MaxTimeBetweenCarsInSeconds;
@@ -87,6 +93,10 @@ namespace GasStationMs.App
                 Generator = new DeterminedDistribution((double)nudDeterminedFlow.Value);
             }
             label4.Text = Generator.GetRandNumber().ToString();
+
+            Topology.Topology topology = tb.ToTopology();
+            ModelingForm modelingForm = new ModelingForm(topology, Generator);
+            modelingForm.ShowDialog();
         }
 
         #endregion
