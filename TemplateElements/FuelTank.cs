@@ -7,31 +7,13 @@ namespace GasStationMs.App.TemplateElements
     [Serializable()]
     public class FuelTank : IGasStationElement
     {
-
-        #region изображение
-        private static Bitmap _image;
-
-        public static Bitmap Image
-        {
-            get
-            {
-                return _image;
-            }
-
-            set
-            {
-                _image = value;
-                Icon = Icon.FromHandle(_image.GetHicon());
-            }
-        }
-
-        public static Icon Icon { get; private set; }
-        #endregion /изображение
-
+        #region статика
+        public static Bitmap Image { get; set; }
 
         public static readonly int MinVolumeInLiters = 10000;
         public static readonly int MaxVolumeInLiters = 75000;
         public static readonly double CriticalVolumeForRefuelingInShares = 0.15;
+        #endregion /статика
 
         private int _volume;
         private int _criticalVolume;
@@ -107,12 +89,7 @@ namespace GasStationMs.App.TemplateElements
 
         public override string ToString()
         {
-            string nl = Environment.NewLine;
-
-            return "Топливный бак: ";
-            // "Объём: " + volume + nl +
-            //  "Текущий объём: " + occupiedVolume + nl +
-            //   "Топливо: " + fuel;
+            return "ТБ";
         }
     }
 }

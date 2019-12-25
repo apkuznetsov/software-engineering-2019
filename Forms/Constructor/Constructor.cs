@@ -1,7 +1,9 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
@@ -34,7 +36,6 @@ namespace GasStationMs.App.Constructor
 
             _topologyBuilder = new TopologyBuilder(dgvTopology);
             SetSettings();
-            _currFilePath = "Топология" + Topology.Topology.DotExt;
         }
 
         public TopologyBuilder TopologyBuilder
@@ -51,7 +52,17 @@ namespace GasStationMs.App.Constructor
             LoadList();
         }
 
-        public string CurrFilePath { get; set; }
+        public string CurrFilePath
+        {
+            get
+            {
+                return _currFilePath;
+            }
+            set
+            {
+                _currFilePath = value;
+            }
+        }
 
         #region события
         private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
@@ -79,6 +90,141 @@ namespace GasStationMs.App.Constructor
                 MessageBox.Show("удалите ШЭ прежде чем удалить строку");
             }
         }
+
+
+
+        private void rbFuelDispenser_mouseDown(object sender, MouseEventArgs e)
+        {
+            rbFuelDispenser.Checked = true;
+            _isCheckedradioButtonFuelDispenser = false;
+            rbFuelDispenser.DoDragDrop(rbFuelDispenser.Image, DragDropEffects.Copy);
+
+        }
+        private void rbFuelTank_mouseDown(object sender, MouseEventArgs e)
+        {
+            rbFuelTank.Checked = true;
+            _isCheckedradioButtonFuelTank = false;
+            rbFuelTank.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
+
+        }
+
+        private void rbCashCounter_mouseDown(object sender, MouseEventArgs e)
+        {
+            rbCashCounter.Checked = true;
+            _isCheckedRbCashCounter = false;
+            rbCashCounter.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
+
+        }
+
+        private void rbEntry_mouseDown(object sender, MouseEventArgs e)
+        {
+            rbEntry.Checked = true;
+            _isCheckedRbEntry = false;
+            rbEntry.DoDragDrop(rbEntry.Image, DragDropEffects.Copy);
+
+        }
+
+        private void rbExit_mouseDown(object sender, MouseEventArgs e)
+        {
+            rbExit.Checked = true;
+            _isCheckedRbExit = false;
+            rbExit.DoDragDrop(rbExit.Image, DragDropEffects.Copy);
+
+        }
+
+        private void DataGridView_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
+
+        }
+
+
+        private void DataGridView_DragDrop(object sender, DragEventArgs e)
+        {
+
+            Point cursorPosition = dgvTopology.PointToClient(Cursor.Position);
+            DataGridView.HitTestInfo info = dgvTopology.HitTest(cursorPosition.X, cursorPosition.Y);
+            var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
+            DataGridViewImageCell cell = (DataGridViewImageCell)dgvTopology[info.ColumnIndex, info.RowIndex];
+            if (cell.Tag == null)
+            {
+                bool isAdded = false;
+                if (rb.Name == typeof(FuelDispenser).ToString())
+                {
+                    isAdded = _topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
+                    rbFuelDispenser.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить ТРК");
+                }
+                else if (rb.Name == typeof(CashCounter).ToString())
+                {
+                    isAdded = _topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
+                    rbCashCounter.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить кассу");
+                }
+                else if (rb.Name == typeof(FuelTank).ToString())
+                {
+                    rbFuelTank.Checked = false;
+                    MessageBox.Show("невозможно добавить ТБ");
+                }
+                else if (rb.Name == typeof(Entry).ToString())
+                {
+                    rbEntry.Checked = false;
+                    MessageBox.Show("невозможно добавить въезд");
+                }
+                else if (rb.Name == typeof(Exit).ToString())
+                {
+                    rbExit.Checked = false;
+                    MessageBox.Show("невозможно добавить выезд");
+                }
+            }
+            else if (cell.Tag is ServiceArea)
+            {
+                bool isAdded = false;
+                if (rb.Name == typeof(FuelTank).ToString())
+                {
+                    isAdded = _topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                    rbFuelTank.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить ТБ");
+                }
+            }
+            else if (cell.Tag is Road)
+            {
+                bool isAdded = false;
+                if (rb.Name == typeof(Entry).ToString())
+                {
+                    isAdded = _topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
+                    rbEntry.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить въезд");
+                }
+                else if (rb.Name == typeof(Exit).ToString())
+                {
+                    isAdded = _topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
+                    rbExit.Checked = false;
+                    if (!isAdded)
+                        MessageBox.Show("невозможно добавить выезд");
+                }
+                else if (rb.Name == typeof(FuelTank).ToString())
+                {
+                    rbFuelTank.Checked = false;
+                    MessageBox.Show("невозможно добавить ТБ");
+                }
+                else if (rb.Name == typeof(CashCounter).ToString())
+                {
+                    rbCashCounter.Checked = false;
+                    MessageBox.Show("невозможно добавить кассу");
+                }
+            }
+
+        }
+
+
+
+
+
 
         private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
         {
@@ -211,6 +357,7 @@ namespace GasStationMs.App.Constructor
 
         private void SaveTopologyIntoCurrFilePath()
         {
+            string temp = _currFilePath;
             Topology.Topology topology = _topologyBuilder.ToTopology();
             topology.Save(_currFilePath);
         }
@@ -251,9 +398,8 @@ namespace GasStationMs.App.Constructor
 
         private void BtnToModeling_Click(object sender, EventArgs e)
         {
-            Topology.Topology topology = TopologyBuilder.ToTopology();
-            ModelingForm modelingForm = new ModelingForm(topology);
-            modelingForm.ShowDialog();
+            DistributionLawsForm distributionLawsForm = new DistributionLawsForm(_topologyBuilder);
+            distributionLawsForm.ShowDialog();
         }
     }
 }

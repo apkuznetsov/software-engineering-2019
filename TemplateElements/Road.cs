@@ -6,24 +6,11 @@ namespace GasStationMs.App.TemplateElements
     [Serializable()]
     public class Road : IGasStationElement
     {
-        #region изображение
-        private static Bitmap _image;
+        public static Bitmap Image { get; set; }
 
-        public static Bitmap Image
+        public override string ToString()
         {
-            get
-            {
-                return _image;
-            }
-
-            set
-            {
-                _image = value;
-                Icon = Icon.FromHandle(_image.GetHicon());
-            }
+            return "Дорога";
         }
-
-        public static Icon Icon { get; private set; }
-        #endregion /изображение
     }
 }
