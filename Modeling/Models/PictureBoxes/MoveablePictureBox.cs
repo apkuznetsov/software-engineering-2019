@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App.Modeling.Models.PictureBoxes
 {
-     internal class MoveablePictureBox : PictureBox
+    internal class MoveablePictureBox : PictureBox
     {
         internal bool IsGoesFilling { get; set; }
         internal bool IsOnStation { get; set; }
@@ -21,7 +21,7 @@ namespace GasStationMs.App.Modeling.Models.PictureBoxes
 
         public MoveablePictureBox()
         {
-            _destinationPoints =  new List<Point>();
+            _destinationPoints = new List<Point>();
         }
 
         public PictureBox CreateDestinationSpot(Point destPoint)

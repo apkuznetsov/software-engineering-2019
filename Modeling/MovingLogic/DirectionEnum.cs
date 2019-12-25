@@ -1,5 +1,4 @@
-﻿using System;
-namespace GasStationMs.App.Modeling
+﻿namespace GasStationMs.App.Modeling
 {
     internal static class DirectionEnum
     {

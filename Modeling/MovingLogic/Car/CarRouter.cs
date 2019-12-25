@@ -1,8 +1,8 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using GasStationMs.App.Forms;
+﻿using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Modeling.MovingLogic.Car
 {
@@ -71,16 +71,16 @@ namespace GasStationMs.App.Modeling.MovingLogic.Car
 
         private static void ChooseFuelDispenser(CarPictureBox car)
         {
-            var carView = car.Tag as CarView ;
+            var carView = car.Tag as CarView;
 
             PictureBox optimalFuelDispenser = ModelingProcessor.FuelDispensersList[0];
-            FuelDispenserView fuelDispenserView = (FuelDispenserView) optimalFuelDispenser.Tag;
+            FuelDispenserView fuelDispenserView = (FuelDispenserView)optimalFuelDispenser.Tag;
             var minQueue = fuelDispenserView.CarsInQueue;
 
             // Looking for Fuel Dispenser with minimal queue
             foreach (var fuelDispenser in ModelingProcessor.FuelDispensersList)
             {
-                fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
+                fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
                 if (fuelDispenserView.CarsInQueue < minQueue)
                 {
                     minQueue = fuelDispenserView.CarsInQueue;
@@ -89,7 +89,7 @@ namespace GasStationMs.App.Modeling.MovingLogic.Car
             }
 
             carView.ChosenFuelDispenser = optimalFuelDispenser;
-            fuelDispenserView = (FuelDispenserView) optimalFuelDispenser.Tag;
+            fuelDispenserView = (FuelDispenserView)optimalFuelDispenser.Tag;
             fuelDispenserView.CarsInQueue++;
             carView.IsFuelDispenserChosen = true;
 
@@ -181,7 +181,7 @@ namespace GasStationMs.App.Modeling.MovingLogic.Car
                     continue;
                 }
 
-                var pictureBox = (PictureBox) c;
+                var pictureBox = (PictureBox)c;
 
                 if (!activeCar.Bounds.IntersectsWith(pictureBox.Bounds))
                 {
@@ -196,32 +196,32 @@ namespace GasStationMs.App.Modeling.MovingLogic.Car
                     switch (direction)
                     {
                         case DirectionEnum.Direction.Up:
-                        {
-                            activeCar.Top = anotherCar.Bottom;
+                            {
+                                activeCar.Top = anotherCar.Bottom;
 
-                            break;
-                        }
+                                break;
+                            }
 
                         case DirectionEnum.Direction.Right:
-                        {
-                            activeCar.Left = anotherCar.Left - activeCar.Width;
+                            {
+                                activeCar.Left = anotherCar.Left - activeCar.Width;
 
-                            break;
-                        }
+                                break;
+                            }
 
                         case DirectionEnum.Direction.Down:
-                        {
-                            activeCar.Top = anotherCar.Top - activeCar.Height;
+                            {
+                                activeCar.Top = anotherCar.Top - activeCar.Height;
 
-                            break;
-                        }
+                                break;
+                            }
 
                         case DirectionEnum.Direction.Left:
-                        {
-                            activeCar.Left = anotherCar.Right;
+                            {
+                                activeCar.Left = anotherCar.Right;
 
-                            break;
-                        }
+                                break;
+                            }
                     }
                 }
 
@@ -248,117 +248,117 @@ namespace GasStationMs.App.Modeling.MovingLogic.Car
                     switch (direction)
                     {
                         case DirectionEnum.Direction.Up:
-                        {
-                            activeCar.Top = fuelDispenser.Bottom;
-
-                            if (!activeCar.IsBypassingObject)
                             {
-                                activeCar.IsBypassingObject = true;
-                                // choose where to bypass 
-                                newDestX = destPoint.X < activeCar.Left
-                                    ? fuelDispenser.Left - (activeCar.Width + 5)
-                                    : fuelDispenser.Right + (activeCar.Width + 5);
+                                activeCar.Top = fuelDispenser.Bottom;
 
-
-                                if (destPoint.X < activeCar.Left)
+                                if (!activeCar.IsBypassingObject)
                                 {
-                                    newDestX = fuelDispenser.Left - (activeCar.Width + 5);
-                                    bypassFromLeft = true;
+                                    activeCar.IsBypassingObject = true;
+                                    // choose where to bypass 
+                                    newDestX = destPoint.X < activeCar.Left
+                                        ? fuelDispenser.Left - (activeCar.Width + 5)
+                                        : fuelDispenser.Right + (activeCar.Width + 5);
+
+
+                                    if (destPoint.X < activeCar.Left)
+                                    {
+                                        newDestX = fuelDispenser.Left - (activeCar.Width + 5);
+                                        bypassFromLeft = true;
+                                    }
+                                    else
+                                    {
+                                        newDestX = fuelDispenser.Right + (activeCar.Width + 5);
+                                        bypassFromRight = true;
+                                    }
+
+                                    newDestY = fuelDispenser.Bottom + 10;
+
+
+                                    newDestinationPoint1 = new Point(newDestX,
+                                        newDestY);
+
+                                    newDestY = fuelDispenser.Top + activeCar.Height + 10;
+                                    newDestinationPoint2 = new Point(newDestX,
+                                        newDestY);
+
+                                    activeCar.DeleteDestinationSpot(_modelingForm);
+                                    activeCar.AddDestinationPoint(newDestinationPoint2);
+                                    activeCar.AddDestinationPoint(newDestinationPoint1);
                                 }
-                                else
-                                {
-                                    newDestX = fuelDispenser.Right + (activeCar.Width + 5);
-                                    bypassFromRight = true;
-                                }
 
-                                newDestY = fuelDispenser.Bottom + 10;
-
-
-                                newDestinationPoint1 = new Point(newDestX,
-                                    newDestY);
-
-                                newDestY = fuelDispenser.Top + activeCar.Height + 10;
-                                newDestinationPoint2 = new Point(newDestX,
-                                    newDestY);
-
-                                activeCar.DeleteDestinationSpot(_modelingForm);
-                                activeCar.AddDestinationPoint(newDestinationPoint2);
-                                activeCar.AddDestinationPoint(newDestinationPoint1);
+                                break;
                             }
-
-                            break;
-                        }
 
                         case DirectionEnum.Direction.Right:
-                        {
-                            break;
-                        }
+                            {
+                                break;
+                            }
 
                         case DirectionEnum.Direction.Down:
-                        {
-                            activeCar.Top = fuelDispenser.Top - activeCar.Height;
-
-                            if (!activeCar.IsBypassingObject)
                             {
-                                activeCar.IsBypassingObject = true;
+                                activeCar.Top = fuelDispenser.Top - activeCar.Height;
+
+                                if (!activeCar.IsBypassingObject)
+                                {
+                                    activeCar.IsBypassingObject = true;
 
 
-                                newDestX = fuelDispenser.Left - (activeCar.Width + 5);
+                                    newDestX = fuelDispenser.Left - (activeCar.Width + 5);
 
-                                newDestY = fuelDispenser.Top - 10;
+                                    newDestY = fuelDispenser.Top - 10;
 
-                                newDestinationPoint1 = new Point(newDestX,
-                                    newDestY);
+                                    newDestinationPoint1 = new Point(newDestX,
+                                        newDestY);
 
-                                activeCar.DeleteDestinationSpot(_modelingForm);
-                                activeCar.AddDestinationPoint(newDestinationPoint1);
+                                    activeCar.DeleteDestinationSpot(_modelingForm);
+                                    activeCar.AddDestinationPoint(newDestinationPoint1);
+                                }
+
+                                break;
                             }
-
-                            break;
-                        }
 
                         case DirectionEnum.Direction.Left:
-                        {
-                            activeCar.Left = fuelDispenser.Right;
-
-                            if (!activeCar.IsBypassingObject)
                             {
-                                activeCar.IsBypassingObject = true;
+                                activeCar.Left = fuelDispenser.Right;
 
-
-                                newDestX = fuelDispenser.Right + 10;
-                                newDestY = fuelDispenser.Top - (ElementSizeDefiner.CarHeight + 5);
-
-                                newDestinationPoint1 = new Point(newDestX,
-                                    newDestY);
-
-                                if (activeCar.IsFilled)
+                                if (!activeCar.IsBypassingObject)
                                 {
-                                    newDestX = fuelDispenser.Left - ElementSizeDefiner.CarWidth - 5;
+                                    activeCar.IsBypassingObject = true;
+
+
+                                    newDestX = fuelDispenser.Right + 10;
+                                    newDestY = fuelDispenser.Top - (ElementSizeDefiner.CarHeight + 5);
+
+                                    newDestinationPoint1 = new Point(newDestX,
+                                        newDestY);
+
+                                    if (activeCar.IsFilled)
+                                    {
+                                        newDestX = fuelDispenser.Left - ElementSizeDefiner.CarWidth - 5;
+                                    }
+                                    else
+                                    {
+                                        activeCar.IsGoesHorizontal = true;
+                                        //newDestX = fuelDispenser.Left - CarWidth - 5 - TopologyCellSize;
+                                        newDestX = initialDestinationPoint.X + ElementSizeDefiner.TopologyCellSize / 2;
+                                    }
+
+                                    newDestinationPoint2 = new Point(newDestX,
+                                        newDestY);
+
+                                    activeCar.FromLeftBypassingPoint = newDestinationPoint2;
+
+                                    newDestinationPoint3 = new Point(fuelDispenser.Left - 20,
+                                        destPoint.Y - 20);
+
+                                    activeCar.DeleteDestinationSpot(_modelingForm);
+                                    //activeCarView.AddDestinationPoint(newDestinationPoint3);
+                                    activeCar.AddDestinationPoint(newDestinationPoint2);
+                                    activeCar.AddDestinationPoint(newDestinationPoint1);
                                 }
-                                else
-                                {
-                                    activeCar.IsGoesHorizontal = true;
-                                    //newDestX = fuelDispenser.Left - CarWidth - 5 - TopologyCellSize;
-                                    newDestX = initialDestinationPoint.X + ElementSizeDefiner.TopologyCellSize/2;
-                                }
 
-                                newDestinationPoint2 = new Point(newDestX,
-                                    newDestY);
-
-                                activeCar.FromLeftBypassingPoint = newDestinationPoint2;
-
-                                newDestinationPoint3 = new Point(fuelDispenser.Left - 20,
-                                    destPoint.Y - 20);
-
-                                activeCar.DeleteDestinationSpot(_modelingForm);
-                                //activeCarView.AddDestinationPoint(newDestinationPoint3);
-                                activeCar.AddDestinationPoint(newDestinationPoint2);
-                                activeCar.AddDestinationPoint(newDestinationPoint1);
+                                break;
                             }
-
-                            break;
-                        }
                     }
                 }
             }

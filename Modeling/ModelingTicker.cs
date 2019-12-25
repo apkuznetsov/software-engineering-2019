@@ -1,10 +1,9 @@
-using System.Windows.Forms;
 using GasStationMs.App.Forms;
-using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
 using GasStationMs.App.Modeling.MovingLogic.Car;
 using GasStationMs.App.Modeling.MovingLogic.Refueller;
+using System.Windows.Forms;
 using static GasStationMs.App.Modeling.ClickEventProvider;
 
 namespace GasStationMs.App.Modeling

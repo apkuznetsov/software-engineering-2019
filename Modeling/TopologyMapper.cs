@@ -1,8 +1,8 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using GasStationMs.App.DB.Models;
+﻿using GasStationMs.App.DB.Models;
 using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
+using System.Drawing;
+using System.Windows.Forms;
 using static GasStationMs.App.Modeling.ElementPictureBoxProducer;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
 using static GasStationMs.App.Modeling.ElementViewProducer;
@@ -25,7 +25,7 @@ namespace GasStationMs.App.Modeling
 
             SetupPlaygroundPanel();
             SetupServiceArea();
-                
+
             DestinationPointsDefiner.DefineElementsPoints(_mappedTopology);
 
             return _mappedTopology;

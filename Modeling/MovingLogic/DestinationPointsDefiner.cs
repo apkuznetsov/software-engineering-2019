@@ -11,11 +11,11 @@ namespace GasStationMs.App.Modeling
 
         internal static Point CashCounter { get; private set; }
 
-        internal static int FuelingPointDeltaX {get;}= 5;
+        internal static int FuelingPointDeltaX { get; } = 5;
         internal static int FuelingPointDeltaY { get; } = 5;
 
         internal static int NoFillingHorizontalLine { get; private set; }
-    
+
         internal static int FilledHorizontalLine { get; private set; }
 
         internal static int RightPlaygroundBorder { get; private set; }
@@ -76,7 +76,7 @@ namespace GasStationMs.App.Modeling
                 exit.Top + exit.Height / 2);
 
             EnterPoint1 = new Point(SpawnPoint.X - 200, FilledHorizontalLine);
-            EnterPoint2 = new Point(enter.Left + 10 , EnterCenter.Y + enter.Height);
+            EnterPoint2 = new Point(enter.Left + 10, EnterCenter.Y + enter.Height);
             EnterPoint3 = new Point(enter.Left + 10, enter.Top - enter.Height - 5);
 
             ExitPoint1 = new Point(ExitCenter.X, ExitCenter.Y - exit.Height);

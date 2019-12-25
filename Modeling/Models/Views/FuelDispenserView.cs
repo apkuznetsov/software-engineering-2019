@@ -1,7 +1,7 @@
-﻿using System;
+﻿using GasStationMs.App.DB.Models;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using GasStationMs.App.DB.Models;
 
 namespace GasStationMs.App.Modeling.Models.Views
 {
@@ -21,7 +21,7 @@ namespace GasStationMs.App.Modeling.Models.Views
             Name = name;
             SpeedOfFillingPerSecond = speedOfFillingPerSecond;
             // Since 20ms is 1 tick, 1second = 1000ms = 50 ticks
-            SpeedOfFillingPerTick = (double) speedOfFillingPerSecond / 50;
+            SpeedOfFillingPerTick = (double)speedOfFillingPerSecond / 50;
             IsBusy = false;
             CarsInQueue = 0;
         }
@@ -34,7 +34,7 @@ namespace GasStationMs.App.Modeling.Models.Views
 
             foreach (var fuelTank in fuelTanksList)
             {
-                var fuelTankView = (FuelTankView) fuelTank.Tag;
+                var fuelTankView = (FuelTankView)fuelTank.Tag;
 
                 if (fuelTankView.Fuel.Equals(fuel))
                 {

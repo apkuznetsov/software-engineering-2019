@@ -1,6 +1,6 @@
-﻿using System.Drawing;
+﻿using GasStationMs.App.DB.Models;
+using System.Drawing;
 using System.Windows.Forms;
-using GasStationMs.App.DB.Models;
 
 namespace GasStationMs.App.Modeling.Models.Views
 {
@@ -10,7 +10,7 @@ namespace GasStationMs.App.Modeling.Models.Views
         public string Name { get; set; }
         public int Volume { get; }
         public double CurrentFullness { get; set; }
-        public bool IsEmpty => CurrentFullness < ((double) Volume / 100) * WhenRefillInPercentage;
+        public bool IsEmpty => CurrentFullness < ((double)Volume / 100) * WhenRefillInPercentage;
         public FuelModel Fuel { get; set; }
         public Point PointOfRefilling { get; private set; }
 

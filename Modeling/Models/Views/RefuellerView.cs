@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace GasStationMs.App.Modeling.Models.Views
+﻿namespace GasStationMs.App.Modeling.Models.Views
 {
     public class RefuellerView
     {

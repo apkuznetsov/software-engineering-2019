@@ -1,8 +1,7 @@
+using GasStationMs.App.Modeling;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using GasStationMs.App.DistributionLaws;
-using GasStationMs.App.Modeling;
 
 namespace GasStationMs.App.Forms
 {

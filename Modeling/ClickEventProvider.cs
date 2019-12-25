@@ -1,9 +1,8 @@
-﻿using System.Text;
-using System.Windows.Forms;
-using GasStationMs.App.Forms;
-using GasStationMs.App.Modeling.Models;
+﻿using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using System.Text;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Modeling
 {
@@ -25,7 +24,7 @@ namespace GasStationMs.App.Modeling
             var carView = (CarView)car.Tag;
 
             // textBoxSelectedItemInformation.Text = "";
-           _labelSelectedElement.Text = "Автомобиль";
+            _labelSelectedElement.Text = "Автомобиль";
 
             StringBuilder carInfo = new StringBuilder();
 
@@ -38,7 +37,7 @@ namespace GasStationMs.App.Modeling
             _labelSelectedElement.Visible = true;
             _textBoxSelectedItemInformation.Visible = true;
 
-           _modelingForm.SelectedItem = car;
+            _modelingForm.SelectedItem = car;
         }
 
         internal static void FuelDispenserPictureBox_Click(object sender, MouseEventArgs e)

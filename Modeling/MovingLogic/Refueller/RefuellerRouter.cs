@@ -1,6 +1,6 @@
-﻿using System.Drawing;
-using GasStationMs.App.Modeling.Models.PictureBoxes;
+﻿using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using System.Drawing;
 using static GasStationMs.App.Modeling.DestinationPointsDefiner;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
 
@@ -29,13 +29,6 @@ namespace GasStationMs.App.Modeling.MovingLogic.Refueller
 
         private static void GoToFuelTank(RefuellerPictureBox refueller)
         {
-            //var refuellerView = refueller.Tag as RefuellerView;
-            //var fuelTank = ((RefuellerView)refueller.Tag).FuelTank;
-
-            //var destPointX = fuelTank.Right + FuelingPointDeltaX;
-            //var destPointY = fuelTank.Top;
-            //var destPoint = new Point(destPointX, destPointY);
-
             var fuelTank = ((RefuellerView)refueller.Tag).FuelTank;
             var pointOfFilling = fuelTank.PointOfRefilling;
 

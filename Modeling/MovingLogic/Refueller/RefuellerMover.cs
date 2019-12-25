@@ -1,8 +1,8 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using GasStationMs.App.Forms;
+﻿using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Modeling.MovingLogic.Refueller
 {
@@ -23,11 +23,11 @@ namespace GasStationMs.App.Modeling.MovingLogic.Refueller
 
             if (refueller.IsFilling)
             {
-                    var fillingFuelTank = refuellerView.FuelTank;
+                var fillingFuelTank = refuellerView.FuelTank;
 
-                    ModelingProcessor.RefillFuelTank(refueller, fillingFuelTank);
+                ModelingProcessor.RefillFuelTank(refueller, fillingFuelTank);
 
-                    return;
+                return;
             }
 
             var destPoint = refueller.GetDestinationPoint();
@@ -62,7 +62,7 @@ namespace GasStationMs.App.Modeling.MovingLogic.Refueller
                     //carView.IsFilled = true;
                 }
 
-                
+
                 if (refueller.Bottom < -(2 * ElementSizeDefiner.RefuellerHeight))
                 {
                     _modelingForm.PlaygroundPanel.Controls.Remove(refueller);
@@ -73,32 +73,32 @@ namespace GasStationMs.App.Modeling.MovingLogic.Refueller
 
         internal static Point MoveRefueller(RefuellerPictureBox refueller, Point destPoint, int refuellerSpeed)
         {
-                // Go left
-                if (refueller.Left >= destPoint.X)
-                {
-                    refueller.Left -= refuellerSpeed;
-                }
+            // Go left
+            if (refueller.Left >= destPoint.X)
+            {
+                refueller.Left -= refuellerSpeed;
+            }
 
-                // Go Right
-                if (refueller.Right <= destPoint.X)
-                {
-                    refueller.Left += refuellerSpeed;
-                }
+            // Go Right
+            if (refueller.Right <= destPoint.X)
+            {
+                refueller.Left += refuellerSpeed;
+            }
 
-                // Go Up
-                if (refueller.Top >= destPoint.Y)
-                {
-                    refueller.Top -= refuellerSpeed;
-                }
+            // Go Up
+            if (refueller.Top >= destPoint.Y)
+            {
+                refueller.Top -= refuellerSpeed;
+            }
 
-                // Go Down
-                if (refueller.Bottom <= destPoint.Y)
-                {
-                    refueller.Top += refuellerSpeed;
+            // Go Down
+            if (refueller.Bottom <= destPoint.Y)
+            {
+                refueller.Top += refuellerSpeed;
 
-                }
+            }
 
-                return destPoint;
+            return destPoint;
         }
 
         internal static void SetRefuellerSpeed(int refuellerSpeed)

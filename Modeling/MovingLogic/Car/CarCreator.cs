@@ -7,7 +7,7 @@ namespace GasStationMs.App.Modeling.MovingLogic.Car
         // test
         private static readonly Random Rnd = new Random();
         // /test
-       
+
         internal static void SpawnCar( /*CarModel carModel*/)
         {
             var carView = ElementViewProducer.CreateCarView( /*carModel*/);

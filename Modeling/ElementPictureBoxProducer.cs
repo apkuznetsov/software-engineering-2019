@@ -1,9 +1,8 @@
-using System.Drawing;
-using System.Windows.Forms;
 using GasStationMs.App.Forms;
-using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using System.Drawing;
+using System.Windows.Forms;
 using static GasStationMs.App.Modeling.ClickEventProvider;
 using static GasStationMs.App.Modeling.DestinationPointsDefiner;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;

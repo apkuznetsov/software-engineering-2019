@@ -1,8 +1,8 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using GasStationMs.App.Forms;
+﻿using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Modeling.MovingLogic.Car
 {
@@ -13,14 +13,14 @@ namespace GasStationMs.App.Modeling.MovingLogic.Car
         private static int _carSpeedFilling = 3;
         private static int _carSpeedNoFilling = 4;
 
-        internal static void  SetUpCarMover(ModelingForm modelingForm)
+        internal static void SetUpCarMover(ModelingForm modelingForm)
         {
             _modelingForm = modelingForm;
         }
 
         internal static void MoveCarToDestination(MoveablePictureBox car)
         {
-            CarView carView  = null;
+            CarView carView = null;
             CollectorView collectorView = null;
 
             if (car is CarPictureBox)
@@ -87,7 +87,7 @@ namespace GasStationMs.App.Modeling.MovingLogic.Car
 
                 if (car.IsGoesHorizontal && destPoint.Equals(car.FromLeftBypassingPoint))
                 {
-                     car.IsGoesHorizontal = false;
+                    car.IsGoesHorizontal = false;
                     //var x = 1;
                 }
 

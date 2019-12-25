@@ -1,5 +1,4 @@
 ﻿using GasStationMs.App.Modeling.Models.Views;
-using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App.Modeling.MovingLogic.Refueller
 {

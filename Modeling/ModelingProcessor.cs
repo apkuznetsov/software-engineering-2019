@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-using GasStationMs.App.Forms;
-using GasStationMs.App.Modeling.Models;
+﻿using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
 using GasStationMs.App.Modeling.MovingLogic.Car;
 using GasStationMs.App.Modeling.MovingLogic.Refueller;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Modeling
 {

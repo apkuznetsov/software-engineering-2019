@@ -1,6 +1,4 @@
-﻿using System;
-using GasStationMs.App.DB.Models;
-using GasStationMs.App.Modeling.Models;
+﻿using GasStationMs.App.DB.Models;
 using GasStationMs.App.Modeling.Models.Views;
 
 namespace GasStationMs.App.Modeling
@@ -36,9 +34,9 @@ namespace GasStationMs.App.Modeling
         {
             var speedOfRefillingPerSecond = 5000;
             return new RefuellerView(speedOfRefillingPerSecond)
-           {
-               FuelTank =  fuelTank
-           };
+            {
+                FuelTank = fuelTank
+            };
         }
 
         internal static FuelDispenserView CreateFuelDispenserView(string name, int speedOfFilling)
