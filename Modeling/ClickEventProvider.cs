@@ -124,6 +124,26 @@ namespace GasStationMs.App.Modeling
             _modelingForm.SelectedItem = cashCollector;
         }
 
+        internal static void RefuellerPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var refueller = (RefuellerPictureBox)sender;
+            var refuellerView = refueller.Tag as RefuellerView;
+
+            _labelSelectedElement.Text = "Дозаправщик";
+
+            StringBuilder cashCollectorInfo = new StringBuilder();
+
+            cashCollectorInfo.Append("\r\nОсталось топлива: " + (int)refuellerView.FuelRemaining + " л.");
+
+            _textBoxSelectedItemInformation.Text = cashCollectorInfo.ToString();
+
+            _labelSelectedElement.Visible = true;
+            _textBoxSelectedItemInformation.Visible = true;
+
+            _modelingForm.SelectedItem = refueller;
+        }
+
+
         internal static void EnterPictureBox_Click(object sender, MouseEventArgs e)
         {
             var enter = (PictureBox)sender;

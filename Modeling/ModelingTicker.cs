@@ -4,6 +4,7 @@ using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
 using GasStationMs.App.Modeling.MovingLogic.Car;
+using GasStationMs.App.Modeling.MovingLogic.Refueller;
 using static GasStationMs.App.Modeling.ClickEventProvider;
 
 namespace GasStationMs.App.Modeling
@@ -96,6 +97,12 @@ namespace GasStationMs.App.Modeling
                 }
 
                 // Refueller
+                if (moveablePictureBox is RefuellerPictureBox refueller)
+                {
+                    RefuellerRouter.RouteRefueller(refueller);
+
+                    RefuellerMover.MoveRefuellerToDestination(refueller);
+                }
             }
 
             #endregion /LoopingControls
