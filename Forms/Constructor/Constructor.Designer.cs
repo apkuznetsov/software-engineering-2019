@@ -44,8 +44,7 @@
             this.rbEntry = new System.Windows.Forms.RadioButton();
             this.rbExit = new System.Windows.Forms.RadioButton();
             this.panelClickedCell = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelMainTeProperty = new System.Windows.Forms.Label();
             this.numericUpDownVolume = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownFuelDispenserSpeed = new System.Windows.Forms.NumericUpDown();
             this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
@@ -54,6 +53,7 @@
             this.btnSaveAs = new System.Windows.Forms.Button();
             this.btnOpenInBrowserAbout = new System.Windows.Forms.Button();
             this.btnToModeling = new System.Windows.Forms.Button();
+            this.labelClickedTeName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -64,6 +64,8 @@
             // 
             // dgvTopology
             // 
+            this.dgvTopology.AllowDrop = true;
+            this.dgvTopology.AllowUserToAddRows = false;
             this.dgvTopology.AllowUserToResizeColumns = false;
             this.dgvTopology.AllowUserToResizeRows = false;
             this.dgvTopology.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
@@ -78,6 +80,8 @@
             this.dgvTopology.Size = new System.Drawing.Size(719, 437);
             this.dgvTopology.TabIndex = 0;
             this.dgvTopology.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTopology_CellMouseClick);
+            this.dgvTopology.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
+            this.dgvTopology.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragEnter);
             // 
             // cellsHorizontally
             // 
@@ -111,6 +115,7 @@
             this.rbFuelDispenser.UseVisualStyleBackColor = true;
             this.rbFuelDispenser.CheckedChanged += new System.EventHandler(this.radioButtonFuelDispenser_CheckedChanged);
             this.rbFuelDispenser.Click += new System.EventHandler(this.radioButtonFuelDispenser_Click);
+            this.rbFuelDispenser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbFuelDispenser_mouseDown);
             // 
             // rbFuelTank
             // 
@@ -126,6 +131,7 @@
             this.rbFuelTank.UseVisualStyleBackColor = true;
             this.rbFuelTank.CheckedChanged += new System.EventHandler(this.radioButtonFuelTank_CheckedChanged);
             this.rbFuelTank.Click += new System.EventHandler(this.radioButtonFuelTank_Click);
+            this.rbFuelTank.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbFuelTank_mouseDown);
             // 
             // listFuels
             // 
@@ -199,6 +205,7 @@
             this.rbCashCounter.UseVisualStyleBackColor = true;
             this.rbCashCounter.CheckedChanged += new System.EventHandler(this.rbCashCounter_CheckedChanged);
             this.rbCashCounter.Click += new System.EventHandler(this.rbCashCounter_Click);
+            this.rbCashCounter.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbCashCounter_mouseDown);
             // 
             // rbEntry
             // 
@@ -214,6 +221,7 @@
             this.rbEntry.UseVisualStyleBackColor = true;
             this.rbEntry.CheckedChanged += new System.EventHandler(this.rbEntry_CheckedChanged);
             this.rbEntry.Click += new System.EventHandler(this.rbEntry_Click);
+            this.rbEntry.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbEntry_mouseDown);
             // 
             // rbExit
             // 
@@ -229,11 +237,12 @@
             this.rbExit.UseVisualStyleBackColor = true;
             this.rbExit.CheckedChanged += new System.EventHandler(this.rbExit_CheckedChanged);
             this.rbExit.Click += new System.EventHandler(this.rbExit_Click);
+            this.rbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbExit_mouseDown);
             // 
             // panelClickedCell
             // 
-            this.panelClickedCell.Controls.Add(this.label2);
-            this.panelClickedCell.Controls.Add(this.label1);
+            this.panelClickedCell.Controls.Add(this.labelClickedTeName);
+            this.panelClickedCell.Controls.Add(this.labelMainTeProperty);
             this.panelClickedCell.Controls.Add(this.numericUpDownVolume);
             this.panelClickedCell.Controls.Add(this.numericUpDownFuelDispenserSpeed);
             this.panelClickedCell.Controls.Add(this.textBoxChosenFuel);
@@ -246,27 +255,15 @@
             this.panelClickedCell.TabIndex = 15;
             this.panelClickedCell.Visible = false;
             // 
-            // label2
+            // labelMainTeProperty
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 66);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 17);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Скорость заправки";
-            this.label2.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 106);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 17);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Объем бака";
-            this.label1.Visible = false;
+            this.labelMainTeProperty.AutoSize = true;
+            this.labelMainTeProperty.Location = new System.Drawing.Point(4, 32);
+            this.labelMainTeProperty.Name = "labelMainTeProperty";
+            this.labelMainTeProperty.Size = new System.Drawing.Size(87, 13);
+            this.labelMainTeProperty.TabIndex = 18;
+            this.labelMainTeProperty.Text = "TE main property";
+            this.labelMainTeProperty.Visible = false;
             // 
             // numericUpDownVolume
             // 
@@ -376,6 +373,15 @@
             this.btnOpenInBrowserAbout.Text = "Справка";
             this.btnOpenInBrowserAbout.UseVisualStyleBackColor = true;
             // 
+            // labelClickedTeName
+            // 
+            this.labelClickedTeName.AutoSize = true;
+            this.labelClickedTeName.Location = new System.Drawing.Point(4, 9);
+            this.labelClickedTeName.Name = "labelClickedTeName";
+            this.labelClickedTeName.Size = new System.Drawing.Size(50, 13);
+            this.labelClickedTeName.TabIndex = 19;
+            this.labelClickedTeName.Text = "TE name";
+            // 
             // btnToModeling
             // 
             this.btnToModeling.Location = new System.Drawing.Point(807, 597);
@@ -448,12 +454,12 @@
         private System.Windows.Forms.TextBox textBoxChosenFuel;
         private System.Windows.Forms.NumericUpDown numericUpDownFuelDispenserSpeed;
         private System.Windows.Forms.NumericUpDown numericUpDownVolume;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelMainTeProperty;
         private System.Windows.Forms.Button btnSaveTopology;
         private System.Windows.Forms.Button btnSaveAs;
         private System.Windows.Forms.Button btnOpenInBrowserAbout;
         private System.Windows.Forms.Button btnToModeling;
+        private System.Windows.Forms.Label labelClickedTeName;
     }
 }
 

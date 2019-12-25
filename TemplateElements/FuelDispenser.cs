@@ -7,25 +7,7 @@ namespace GasStationMs.App.TemplateElements
     public class FuelDispenser : IGasStationElement
     {
         #region статика
-        #region изображение
-        private static Bitmap _image;
-
-        public static Bitmap Image
-        {
-            get
-            {
-                return _image;
-            }
-
-            set
-            {
-                _image = value;
-                Icon = Icon.FromHandle(_image.GetHicon());
-            }
-        }
-
-        public static Icon Icon { get; private set; }
-        #endregion /изображение
+        public static Bitmap Image { get; set; }
 
         public static readonly int MinFuelFeedRateInLitersPerMinute = 25;
         public static readonly int MaxFuelFeedRateInLitersPerMinute = 160;
@@ -56,8 +38,7 @@ namespace GasStationMs.App.TemplateElements
 
         public override string ToString()
         {
-            return
-                 "ТРК: ";
+            return "ТРК";
         }
     }
 }
