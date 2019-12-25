@@ -1,4 +1,4 @@
-﻿namespace GasStationMs.App.Modeling
+﻿namespace GasStationMs.App.Modeling.MovingLogic
 {
     internal static class DirectionEnum
     {

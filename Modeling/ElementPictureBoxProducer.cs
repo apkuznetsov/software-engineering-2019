@@ -4,7 +4,7 @@ using GasStationMs.App.Modeling.Models.Views;
 using System.Drawing;
 using System.Windows.Forms;
 using static GasStationMs.App.Modeling.ClickEventProvider;
-using static GasStationMs.App.Modeling.DestinationPointsDefiner;
+using static GasStationMs.App.Modeling.MovingLogic.DestinationPointsDefiner;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
 
 namespace GasStationMs.App.Modeling
@@ -33,7 +33,7 @@ namespace GasStationMs.App.Modeling
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
 
-            cashCounter.MouseClick += new MouseEventHandler(CashCounterPictureBox_Click);
+            cashCounter.MouseClick += CashCounterPictureBox_Click;
 
             _modelingForm.PlaygroundPanel.Controls.Add(cashCounter);
             cashCounter.BringToFront();
@@ -61,7 +61,7 @@ namespace GasStationMs.App.Modeling
             };
             //enter.Image = Properties.Resources.Enter;
 
-            enter.MouseClick += new MouseEventHandler(EnterPictureBox_Click);
+            enter.MouseClick += EnterPictureBox_Click;
 
             _modelingForm.PlaygroundPanel.Controls.Add(enter);
             enter.BringToFront();
@@ -85,7 +85,7 @@ namespace GasStationMs.App.Modeling
             };
             //enter.Image = Properties.Resources.Exit;
 
-            exit.MouseClick += new MouseEventHandler(ExitPictureBox_Click);
+            exit.MouseClick += ExitPictureBox_Click;
 
 
             _modelingForm.PlaygroundPanel.Controls.Add(exit);
@@ -124,7 +124,7 @@ namespace GasStationMs.App.Modeling
                 SizeMode = PictureBoxSizeMode.StretchImage
             };
 
-            fuelDispenser.MouseClick += new MouseEventHandler(FuelDispenserPictureBox_Click);
+            fuelDispenser.MouseClick += FuelDispenserPictureBox_Click;
 
             _modelingForm.PlaygroundPanel.Controls.Add(fuelDispenser);
             fuelDispenser.BringToFront();
@@ -154,7 +154,7 @@ namespace GasStationMs.App.Modeling
 
             fuelTankView.DefinePointOfRefilling(fuelTank);
 
-            fuelTank.MouseClick += new MouseEventHandler(FuelTankPictureBox_Click);
+            fuelTank.MouseClick += FuelTankPictureBox_Click;
 
             _modelingForm.PlaygroundPanel.Controls.Add(fuelTank);
             fuelTank.BringToFront();

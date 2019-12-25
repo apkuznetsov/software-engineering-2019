@@ -1,6 +1,7 @@
 ﻿using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.Views;
 using System.Windows.Forms;
+using GasStationMs.App.Modeling.MovingLogic;
 
 namespace GasStationMs.App.Modeling.Models.PictureBoxes
 {
@@ -15,7 +16,7 @@ namespace GasStationMs.App.Modeling.Models.PictureBoxes
 
             IsGoesFilling = true;
 
-            MouseClick += new MouseEventHandler(ClickEventProvider.CashCollectorPictureBox_Click);
+            MouseClick += ClickEventProvider.CashCollectorPictureBox_Click;
 
             modelingForm.PlaygroundPanel.Controls.Add(this);
             BringToFront();

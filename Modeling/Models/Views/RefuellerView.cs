@@ -2,8 +2,8 @@
 {
     public class RefuellerView
     {
-        public int SpeedOfRefillingPerSecond { get; private set; }
-        public double SpeedOfRefillingPerTick { get; private set; }
+        public int SpeedOfRefillingPerSecond { get; }
+        public double SpeedOfRefillingPerTick { get; }
         public double FuelRemaining { get; private set; }
         public FuelTankView FuelTank { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.Views;
 using System.Windows.Forms;
+using GasStationMs.App.Modeling.MovingLogic;
 
 namespace GasStationMs.App.Modeling.Models.PictureBoxes
 {
@@ -13,7 +14,7 @@ namespace GasStationMs.App.Modeling.Models.PictureBoxes
             Location = DestinationPointsDefiner.RefuellerSpawnPoint;
             SizeMode = PictureBoxSizeMode.AutoSize;
 
-            MouseClick += new MouseEventHandler(ClickEventProvider.RefuellerPictureBox_Click);
+            MouseClick += ClickEventProvider.RefuellerPictureBox_Click;
 
             modelingForm.PlaygroundPanel.Controls.Add(this);
             BringToFront();

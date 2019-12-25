@@ -2,7 +2,7 @@
 using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
 using System.Drawing;
-using System.Windows.Forms;
+using GasStationMs.App.Modeling.MovingLogic;
 using static GasStationMs.App.Modeling.ElementPictureBoxProducer;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
 using static GasStationMs.App.Modeling.ElementViewProducer;
@@ -85,7 +85,7 @@ namespace GasStationMs.App.Modeling
                 }
             }
 
-            panelPlayground.MouseClick += new MouseEventHandler(ClickEventProvider.PlaygroundPanel_Click);
+            panelPlayground.MouseClick += ClickEventProvider.PlaygroundPanel_Click;
         }
 
         private static void SetupServiceArea()
@@ -102,7 +102,7 @@ namespace GasStationMs.App.Modeling
             pictureBoxServiceArea.Size = new Size(width, height);
             pictureBoxServiceArea.BackColor = Color.Wheat;
 
-            pictureBoxServiceArea.MouseClick += new MouseEventHandler(ClickEventProvider.ServiceArea_Click);
+            pictureBoxServiceArea.MouseClick += ClickEventProvider.ServiceArea_Click;
 
             _mappedTopology.ServiceArea = pictureBoxServiceArea;
         }

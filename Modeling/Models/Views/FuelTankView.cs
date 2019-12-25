@@ -1,6 +1,7 @@
 ﻿using GasStationMs.App.DB.Models;
 using System.Drawing;
 using System.Windows.Forms;
+using GasStationMs.App.Modeling.MovingLogic;
 
 namespace GasStationMs.App.Modeling.Models.Views
 {

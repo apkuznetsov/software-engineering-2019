@@ -1,7 +1,7 @@
 ﻿using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
 using System.Drawing;
-using static GasStationMs.App.Modeling.DestinationPointsDefiner;
+using static GasStationMs.App.Modeling.MovingLogic.DestinationPointsDefiner;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
 
 namespace GasStationMs.App.Modeling.MovingLogic.Refueller
