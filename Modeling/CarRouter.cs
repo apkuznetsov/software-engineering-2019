@@ -236,6 +236,8 @@ namespace GasStationMs.App.Modeling
                 {
                     var fuelDispenser = pictureBox;
 
+                    var initialDestinationPoint = activeCar.GetDestinationPoint();
+
                     bool bypassFromLeft = false;
                     bool bypassFromRight = false;
                     bool bypassFromBottom = false;
@@ -342,7 +344,8 @@ namespace GasStationMs.App.Modeling
                                 else
                                 {
                                     activeCar.IsGoesHorizontal = true;
-                                    newDestX = fuelDispenser.Left - CarWidth - 5 - TopologyCellSize;
+                                    //newDestX = fuelDispenser.Left - CarWidth - 5 - TopologyCellSize;
+                                    newDestX = initialDestinationPoint.X + TopologyCellSize/2;
                                 }
 
                                 newDestinationPoint2 = new Point(newDestX,
