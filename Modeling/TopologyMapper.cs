@@ -103,6 +103,8 @@ namespace GasStationMs.App.Modeling
             pictureBoxServiceArea.BackColor = Color.Wheat;
 
             pictureBoxServiceArea.MouseClick += new MouseEventHandler(ClickEventProvider.ServiceArea_Click);
+
+            _mappedTopology.ServiceArea = pictureBoxServiceArea;
         }
 
         #region CashCounter
