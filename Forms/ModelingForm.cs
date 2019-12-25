@@ -76,5 +76,10 @@ namespace GasStationMs.App.Forms
             labelTotalTime.Location = new Point(25, 25);
             labelTotalTimeValue.Location = new Point(labelTotalTime.Right + 10, 25);
         }
+
+        private void ModelingForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dispose();
+        }
     }
 }

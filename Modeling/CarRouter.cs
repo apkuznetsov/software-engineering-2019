@@ -103,7 +103,7 @@ namespace GasStationMs.App.Modeling
             Point destPoint;
 
             // Additional points for better graphics
-            destPointX = optimalFuelDispenser.Left - CarWidth + 5;
+            destPointX = optimalFuelDispenser.Left - FuelingPointDeltaX;
             destPointY = optimalFuelDispenser.Bottom + TopologyCellSize - 10;
             destPoint = new Point(destPointX, destPointY);
 
@@ -117,7 +117,7 @@ namespace GasStationMs.App.Modeling
             car.AddDestinationPoint(destPoint);
 
             // Additional points for better graphics
-            destPointX = optimalFuelDispenser.Right - TopologyCellSize / 2;
+            destPointX = optimalFuelDispenser.Right /*- TopologyCellSize / 2*/;
             destPoint = new Point(destPointX, destPointY + CarHeight + 5);
             car.AddDestinationPoint(destPoint);
         }
@@ -194,7 +194,7 @@ namespace GasStationMs.App.Modeling
                 }
 
                 // Another Car
-                if (pictureBox.Tag is CarView)
+                if (pictureBox is MoveablePictureBox)
                 {
                     var anotherCar = pictureBox;
 
@@ -235,6 +235,8 @@ namespace GasStationMs.App.Modeling
                 if (pictureBox.Tag is FuelDispenserView || pictureBox.Tag is CashCounterView)
                 {
                     var fuelDispenser = pictureBox;
+
+                    var initialDestinationPoint = activeCar.GetDestinationPoint();
 
                     bool bypassFromLeft = false;
                     bool bypassFromRight = false;
@@ -306,32 +308,15 @@ namespace GasStationMs.App.Modeling
                                 activeCar.IsBypassingObject = true;
 
 
-                                // choose where to bypass 
-                                newDestX = fuelDispenser.Right + 10;
-
-                                if (destPoint.X <= fuelDispenser.Left + fuelDispenser.Width / 2)
-                                {
-                                    newDestX = fuelDispenser.Left - (activeCar.Width + 5);
-                                    bypassFromLeft = true;
-                                }
-                                else
-                                {
-                                    newDestX = fuelDispenser.Right + (activeCar.Width + 5);
-                                    bypassFromRight = true;
-                                }
+                                newDestX = fuelDispenser.Left - (activeCar.Width + 5);
 
                                 newDestY = fuelDispenser.Top - 10;
 
                                 newDestinationPoint1 = new Point(newDestX,
                                     newDestY);
 
-                                newDestY = fuelDispenser.Bottom + activeCar.Height + 10;
-                                newDestinationPoint2 = new Point(newDestX,
-                                    newDestY);
-
-                               activeCar.DeleteDestinationSpot(_modelingForm);
-                               activeCar.AddDestinationPoint(newDestinationPoint2);
-                               activeCar.AddDestinationPoint(newDestinationPoint1);
+                                activeCar.DeleteDestinationSpot(_modelingForm);
+                                activeCar.AddDestinationPoint(newDestinationPoint1);
                             }
 
                             break;
@@ -345,26 +330,28 @@ namespace GasStationMs.App.Modeling
                             {
                                 activeCar.IsBypassingObject = true;
 
-                                // choose where to bypass 
-                                newDestX = fuelDispenser.Right + 10;
 
-                                if (destPoint.Y <= fuelDispenser.Bottom)
-                                {
-                                    newDestY = fuelDispenser.Top - (activeCar.Width + 5);
-                                    bypassFromTop = true;
-                                }
-                                else
-                                {
-                                    newDestY = fuelDispenser.Bottom + (activeCar.Width + 1);
-                                    bypassFromBottom = true;
-                                }
+                                newDestX = fuelDispenser.Right + 10;
+                                newDestY = fuelDispenser.Top - (CarHeight + 5);
 
                                 newDestinationPoint1 = new Point(newDestX,
                                     newDestY);
 
-                                newDestX = fuelDispenser.Left + fuelDispenser.Width / 2;
+                                if (activeCar.IsFilled)
+                                {
+                                    newDestX = fuelDispenser.Left - CarWidth - 5;
+                                }
+                                else
+                                {
+                                    activeCar.IsGoesHorizontal = true;
+                                    //newDestX = fuelDispenser.Left - CarWidth - 5 - TopologyCellSize;
+                                    newDestX = initialDestinationPoint.X + TopologyCellSize/2;
+                                }
+
                                 newDestinationPoint2 = new Point(newDestX,
                                     newDestY);
+
+                                activeCar.FromLeftBypassingPoint = newDestinationPoint2;
 
                                 newDestinationPoint3 = new Point(fuelDispenser.Left - 20,
                                     destPoint.Y - 20);
