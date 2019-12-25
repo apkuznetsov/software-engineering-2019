@@ -73,12 +73,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
-    <Compile Include="Modeling\CarCreator.cs" />
-    <Compile Include="Modeling\CarMover.cs" />
-    <Compile Include="Modeling\CarRouter.cs" />
+    <Compile Include="Modeling\MovingLogic\Car\CarCreator.cs" />
+    <Compile Include="Modeling\MovingLogic\Car\CarMover.cs" />
+    <Compile Include="Modeling\MovingLogic\Car\CarRouter.cs" />
     <Compile Include="Modeling\ClickEventProvider.cs" />
-    <Compile Include="Modeling\DestinationPointsDefiner.cs" />
-    <Compile Include="Modeling\DirectionEnum.cs" />
+    <Compile Include="Modeling\MovingLogic\DestinationPointsDefiner.cs" />
+    <Compile Include="Modeling\MovingLogic\DirectionEnum.cs" />
     <Compile Include="Modeling\ElementPictureBoxProducer.cs" />
     <Compile Include="Modeling\ElementSizeDefiner.cs" />
     <Compile Include="Modeling\ElementViewProducer.cs" />
@@ -264,6 +264,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Modeling\MovingLogic\Refueller\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

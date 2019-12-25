@@ -4,6 +4,7 @@ using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using GasStationMs.App.Modeling.MovingLogic.Car;
 
 namespace GasStationMs.App.Modeling
 {

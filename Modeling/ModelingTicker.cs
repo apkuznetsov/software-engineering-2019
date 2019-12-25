@@ -3,6 +3,7 @@ using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using GasStationMs.App.Modeling.MovingLogic.Car;
 using static GasStationMs.App.Modeling.ClickEventProvider;
 
 namespace GasStationMs.App.Modeling

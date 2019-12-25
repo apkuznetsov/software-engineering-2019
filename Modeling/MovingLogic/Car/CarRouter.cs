@@ -1,15 +1,10 @@
 ﻿using System.Drawing;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 using GasStationMs.App.Forms;
-using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
-using static GasStationMs.App.Modeling.DestinationPointsDefiner;
-using static GasStationMs.App.Modeling.DirectionEnum;
-using static GasStationMs.App.Modeling.ElementSizeDefiner;
 
-namespace GasStationMs.App.Modeling
+namespace GasStationMs.App.Modeling.MovingLogic.Car
 {
     internal static class CarRouter
     {
@@ -103,14 +98,14 @@ namespace GasStationMs.App.Modeling
             Point destPoint;
 
             // Additional points for better graphics
-            destPointX = optimalFuelDispenser.Left - FuelingPointDeltaX;
-            destPointY = optimalFuelDispenser.Bottom + TopologyCellSize - 10;
+            destPointX = optimalFuelDispenser.Left - DestinationPointsDefiner.FuelingPointDeltaX;
+            destPointY = optimalFuelDispenser.Bottom + ElementSizeDefiner.TopologyCellSize - 10;
             destPoint = new Point(destPointX, destPointY);
 
             car.AddDestinationPoint(destPoint);
 
-            destPointX = optimalFuelDispenser.Left + FuelingPointDeltaX;
-            destPointY = optimalFuelDispenser.Bottom + FuelingPointDeltaY;
+            destPointX = optimalFuelDispenser.Left + DestinationPointsDefiner.FuelingPointDeltaX;
+            destPointY = optimalFuelDispenser.Bottom + DestinationPointsDefiner.FuelingPointDeltaY;
             destPoint = new Point(destPointX, destPointY);
 
             // The main point of fueling
@@ -118,7 +113,7 @@ namespace GasStationMs.App.Modeling
 
             // Additional points for better graphics
             destPointX = optimalFuelDispenser.Right /*- TopologyCellSize / 2*/;
-            destPoint = new Point(destPointX, destPointY + CarHeight + 5);
+            destPoint = new Point(destPointX, destPointY + ElementSizeDefiner.CarHeight + 5);
             car.AddDestinationPoint(destPoint);
         }
 
@@ -136,30 +131,30 @@ namespace GasStationMs.App.Modeling
             Point destPoint;
 
             // Additional points for better graphics
-            destPointX = cashCounter.Left - CarWidth + 5;
-            destPointY = cashCounter.Bottom + TopologyCellSize - 10;
+            destPointX = cashCounter.Left - ElementSizeDefiner.CarWidth + 5;
+            destPointY = cashCounter.Bottom + ElementSizeDefiner.TopologyCellSize - 10;
             destPoint = new Point(destPointX, destPointY);
 
             collector.AddDestinationPoint(destPoint);
 
-            destPointX = cashCounter.Left + FuelingPointDeltaX;
-            destPointY = cashCounter.Bottom + FuelingPointDeltaY;
+            destPointX = cashCounter.Left + DestinationPointsDefiner.FuelingPointDeltaX;
+            destPointY = cashCounter.Bottom + DestinationPointsDefiner.FuelingPointDeltaY;
             destPoint = new Point(destPointX, destPointY);
 
             // The main point of fueling
             collector.AddDestinationPoint(destPoint);
 
             // Additional points for better graphics
-            destPointX = cashCounter.Right - TopologyCellSize / 2;
-            destPoint = new Point(destPointX, destPointY + CarHeight + 5);
+            destPointX = cashCounter.Right - ElementSizeDefiner.TopologyCellSize / 2;
+            destPoint = new Point(destPointX, destPointY + ElementSizeDefiner.CarHeight + 5);
             collector.AddDestinationPoint(destPoint);
         }
 
         private static void GoToEnter(MoveablePictureBox car)
         {
-            car.AddDestinationPoint(EnterPoint3);
-            car.AddDestinationPoint(EnterPoint2);
-            car.AddDestinationPoint(EnterPoint1);
+            car.AddDestinationPoint(DestinationPointsDefiner.EnterPoint3);
+            car.AddDestinationPoint(DestinationPointsDefiner.EnterPoint2);
+            car.AddDestinationPoint(DestinationPointsDefiner.EnterPoint1);
         }
 
         private static void GoToExit(MoveablePictureBox car)
@@ -167,15 +162,15 @@ namespace GasStationMs.App.Modeling
             var fillingFinishedPoint = car.GetDestinationPoint();
             car.RemoveDestinationPoint(_modelingForm);
 
-            car.AddDestinationPoint(LeavePointFilled);
-            car.AddDestinationPoint(ExitPoint3);
-            car.AddDestinationPoint(ExitPoint2);
-            car.AddDestinationPoint(ExitPoint1);
+            car.AddDestinationPoint(DestinationPointsDefiner.LeavePointFilled);
+            car.AddDestinationPoint(DestinationPointsDefiner.ExitPoint3);
+            car.AddDestinationPoint(DestinationPointsDefiner.ExitPoint2);
+            car.AddDestinationPoint(DestinationPointsDefiner.ExitPoint1);
 
             car.AddDestinationPoint(fillingFinishedPoint);
         }
 
-        internal static Point PreventIntersection(MoveablePictureBox activeCar, Direction direction)
+        internal static Point PreventIntersection(MoveablePictureBox activeCar, DirectionEnum.Direction direction)
         {
             var destPoint = activeCar.GetDestinationPoint();
 
@@ -200,28 +195,28 @@ namespace GasStationMs.App.Modeling
 
                     switch (direction)
                     {
-                        case Direction.Up:
+                        case DirectionEnum.Direction.Up:
                         {
                             activeCar.Top = anotherCar.Bottom;
 
                             break;
                         }
 
-                        case Direction.Right:
+                        case DirectionEnum.Direction.Right:
                         {
                             activeCar.Left = anotherCar.Left - activeCar.Width;
 
                             break;
                         }
 
-                        case Direction.Down:
+                        case DirectionEnum.Direction.Down:
                         {
                             activeCar.Top = anotherCar.Top - activeCar.Height;
 
                             break;
                         }
 
-                        case Direction.Left:
+                        case DirectionEnum.Direction.Left:
                         {
                             activeCar.Left = anotherCar.Right;
 
@@ -252,7 +247,7 @@ namespace GasStationMs.App.Modeling
 
                     switch (direction)
                     {
-                        case Direction.Up:
+                        case DirectionEnum.Direction.Up:
                         {
                             activeCar.Top = fuelDispenser.Bottom;
 
@@ -294,12 +289,12 @@ namespace GasStationMs.App.Modeling
                             break;
                         }
 
-                        case Direction.Right:
+                        case DirectionEnum.Direction.Right:
                         {
                             break;
                         }
 
-                        case Direction.Down:
+                        case DirectionEnum.Direction.Down:
                         {
                             activeCar.Top = fuelDispenser.Top - activeCar.Height;
 
@@ -322,7 +317,7 @@ namespace GasStationMs.App.Modeling
                             break;
                         }
 
-                        case Direction.Left:
+                        case DirectionEnum.Direction.Left:
                         {
                             activeCar.Left = fuelDispenser.Right;
 
@@ -332,20 +327,20 @@ namespace GasStationMs.App.Modeling
 
 
                                 newDestX = fuelDispenser.Right + 10;
-                                newDestY = fuelDispenser.Top - (CarHeight + 5);
+                                newDestY = fuelDispenser.Top - (ElementSizeDefiner.CarHeight + 5);
 
                                 newDestinationPoint1 = new Point(newDestX,
                                     newDestY);
 
                                 if (activeCar.IsFilled)
                                 {
-                                    newDestX = fuelDispenser.Left - CarWidth - 5;
+                                    newDestX = fuelDispenser.Left - ElementSizeDefiner.CarWidth - 5;
                                 }
                                 else
                                 {
                                     activeCar.IsGoesHorizontal = true;
                                     //newDestX = fuelDispenser.Left - CarWidth - 5 - TopologyCellSize;
-                                    newDestX = initialDestinationPoint.X + TopologyCellSize/2;
+                                    newDestX = initialDestinationPoint.X + ElementSizeDefiner.TopologyCellSize/2;
                                 }
 
                                 newDestinationPoint2 = new Point(newDestX,
