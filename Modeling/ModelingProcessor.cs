@@ -20,6 +20,7 @@ namespace GasStationMs.App.Modeling
             CashCounter = mappedTopology.CashCounter;
             FuelDispensersList = mappedTopology.FuelDispensersList;
             FuelTanksList = mappedTopology.FuelTanksList;
+            _isCollectingMoney = false;
 
             CarMover.SetUpCarMover(modelingForm);
             CarRouter.SetUpCarRouter(modelingForm);
