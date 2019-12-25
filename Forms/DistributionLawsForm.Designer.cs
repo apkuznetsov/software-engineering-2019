@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.determinedFlow = new System.Windows.Forms.RadioButton();
-            this.randomFlow = new System.Windows.Forms.RadioButton();
+            this.rbDeterminedFlow = new System.Windows.Forms.RadioButton();
+            this.rbRandomFlow = new System.Windows.Forms.RadioButton();
             this.nudDeterminedFlow = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,6 +50,7 @@
             this.normalDistributionPanel = new System.Windows.Forms.Panel();
             this.uniformDistributionPanel = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.gbSelectFlow = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudDeterminedFlow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.probabilityToEnter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exponentialDistributionLambda)).BeginInit();
@@ -59,37 +60,34 @@
             this.exponentialDistributionPanel.SuspendLayout();
             this.normalDistributionPanel.SuspendLayout();
             this.uniformDistributionPanel.SuspendLayout();
+            this.gbSelectFlow.SuspendLayout();
             this.SuspendLayout();
             // 
-            // determinedFlow
+            // rbDeterminedFlow
             // 
-            this.determinedFlow.AutoSize = true;
-            this.determinedFlow.Location = new System.Drawing.Point(25, 64);
-            this.determinedFlow.Name = "determinedFlow";
-            this.determinedFlow.Size = new System.Drawing.Size(165, 17);
-            this.determinedFlow.TabIndex = 0;
-            this.determinedFlow.TabStop = true;
-            this.determinedFlow.Text = "Детерминированный поток";
-            this.determinedFlow.UseVisualStyleBackColor = true;
-            this.determinedFlow.CheckedChanged += new System.EventHandler(this.radioButtonDeterminedFlow_CheckedChanged);
-            this.determinedFlow.Click += new System.EventHandler(this.radioButtonDeterminedFlow_Click);
+            this.rbDeterminedFlow.AutoSize = true;
+            this.rbDeterminedFlow.Location = new System.Drawing.Point(9, 19);
+            this.rbDeterminedFlow.Name = "rbDeterminedFlow";
+            this.rbDeterminedFlow.Size = new System.Drawing.Size(165, 17);
+            this.rbDeterminedFlow.TabIndex = 0;
+            this.rbDeterminedFlow.TabStop = true;
+            this.rbDeterminedFlow.Text = "Детерминированный поток";
+            this.rbDeterminedFlow.UseVisualStyleBackColor = true;
             // 
-            // randomFlow
+            // rbRandomFlow
             // 
-            this.randomFlow.AutoSize = true;
-            this.randomFlow.Location = new System.Drawing.Point(25, 139);
-            this.randomFlow.Name = "randomFlow";
-            this.randomFlow.Size = new System.Drawing.Size(112, 17);
-            this.randomFlow.TabIndex = 1;
-            this.randomFlow.TabStop = true;
-            this.randomFlow.Text = "Случайный поток";
-            this.randomFlow.UseVisualStyleBackColor = true;
-            this.randomFlow.CheckedChanged += new System.EventHandler(this.radioButtonRandomFlow_CheckedChanged);
-            this.randomFlow.Click += new System.EventHandler(this.radioButtonRandomFlow_Click);
+            this.rbRandomFlow.AutoSize = true;
+            this.rbRandomFlow.Location = new System.Drawing.Point(13, 70);
+            this.rbRandomFlow.Name = "rbRandomFlow";
+            this.rbRandomFlow.Size = new System.Drawing.Size(112, 17);
+            this.rbRandomFlow.TabIndex = 1;
+            this.rbRandomFlow.TabStop = true;
+            this.rbRandomFlow.Text = "Случайный поток";
+            this.rbRandomFlow.UseVisualStyleBackColor = true;
             // 
             // nudDeterminedFlow
             // 
-            this.nudDeterminedFlow.Location = new System.Drawing.Point(100, 105);
+            this.nudDeterminedFlow.Location = new System.Drawing.Point(103, 138);
             this.nudDeterminedFlow.Name = "nudDeterminedFlow";
             this.nudDeterminedFlow.Size = new System.Drawing.Size(45, 20);
             this.nudDeterminedFlow.TabIndex = 3;
@@ -97,7 +95,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 107);
+            this.label1.Location = new System.Drawing.Point(41, 140);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 4;
@@ -128,7 +126,7 @@
             // buttonInfo
             // 
             this.buttonInfo.Image = global::GasStationMs.App.Properties.Resources.info;
-            this.buttonInfo.Location = new System.Drawing.Point(196, 53);
+            this.buttonInfo.Location = new System.Drawing.Point(238, 37);
             this.buttonInfo.Name = "buttonInfo";
             this.buttonInfo.Size = new System.Drawing.Size(39, 40);
             this.buttonInfo.TabIndex = 2;
@@ -336,11 +334,22 @@
             this.label4.Text = "Для проверки генерации";
             this.label4.Click += new System.EventHandler(this.label4_Click_1);
             // 
+            // gbSelectFlow
+            // 
+            this.gbSelectFlow.Controls.Add(this.rbDeterminedFlow);
+            this.gbSelectFlow.Controls.Add(this.rbRandomFlow);
+            this.gbSelectFlow.Location = new System.Drawing.Point(12, 18);
+            this.gbSelectFlow.Name = "gbSelectFlow";
+            this.gbSelectFlow.Size = new System.Drawing.Size(200, 100);
+            this.gbSelectFlow.TabIndex = 22;
+            this.gbSelectFlow.TabStop = false;
+            // 
             // DistributionLawsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 339);
+            this.Controls.Add(this.gbSelectFlow);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.uniformDistributionPanel);
             this.Controls.Add(this.normalDistributionPanel);
@@ -353,8 +362,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nudDeterminedFlow);
             this.Controls.Add(this.buttonInfo);
-            this.Controls.Add(this.randomFlow);
-            this.Controls.Add(this.determinedFlow);
             this.Name = "DistributionLawsForm";
             this.Text = "DistributionLaws";
             ((System.ComponentModel.ISupportInitialize)(this.nudDeterminedFlow)).EndInit();
@@ -369,6 +376,8 @@
             this.normalDistributionPanel.PerformLayout();
             this.uniformDistributionPanel.ResumeLayout(false);
             this.uniformDistributionPanel.PerformLayout();
+            this.gbSelectFlow.ResumeLayout(false);
+            this.gbSelectFlow.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,8 +385,8 @@
 
         #endregion
 
-        private System.Windows.Forms.RadioButton determinedFlow;
-        private System.Windows.Forms.RadioButton randomFlow;
+        private System.Windows.Forms.RadioButton rbDeterminedFlow;
+        private System.Windows.Forms.RadioButton rbRandomFlow;
         private System.Windows.Forms.Button buttonInfo;
         private System.Windows.Forms.NumericUpDown nudDeterminedFlow;
         private System.Windows.Forms.Label label1;
@@ -398,5 +407,6 @@
         private System.Windows.Forms.Panel normalDistributionPanel;
         private System.Windows.Forms.Panel uniformDistributionPanel;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox gbSelectFlow;
     }
 }
