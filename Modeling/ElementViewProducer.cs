@@ -32,6 +32,15 @@ namespace GasStationMs.App.Modeling
             return new CollectorView(speedOfCashCollectingPerSecond);
         }
 
+        public static RefuellerView CreateRefuellerView(FuelTankView fuelTank)
+        {
+            var speedOfRefillingPerSecond = 5000;
+            return new RefuellerView(speedOfRefillingPerSecond)
+           {
+               FuelTank =  fuelTank
+           };
+        }
+
         internal static FuelDispenserView CreateFuelDispenserView(string name, int speedOfFilling)
         {
             return new FuelDispenserView(name, speedOfFilling);

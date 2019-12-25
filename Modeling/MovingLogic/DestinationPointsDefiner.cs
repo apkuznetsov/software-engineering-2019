@@ -27,6 +27,9 @@ namespace GasStationMs.App.Modeling
         internal static Point LeavePointNoFilling { get; private set; }
         internal static Point LeavePointFilled { get; private set; }
 
+        // Spawning refueller destination points
+        internal static Point RefuellerSpawnPoint { get; private set; }
+
         // Destination points to enter/leave gas station
         internal static Point EnterCenter { get; private set; }
         internal static Point ExitCenter { get; private set; }
@@ -61,7 +64,10 @@ namespace GasStationMs.App.Modeling
 
             var enter = mappedTopology.Enter;
             var exit = mappedTopology.Exit;
+            var serviceArea = mappedTopology.ServiceArea;
 
+            RefuellerSpawnPoint = new Point(RightPlaygroundBorder + RefuellerWidth + 20,
+                serviceArea.Bottom + RefuellerHeight + 5);
 
             // Destination points to enter/leave gas station
             EnterCenter = new Point(enter.Left + enter.Width / 2,

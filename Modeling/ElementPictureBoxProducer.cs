@@ -107,6 +107,11 @@ namespace GasStationMs.App.Modeling
             return new CollectorPictureBox(_modelingForm, collectorView);
         }
 
+        public static RefuellerPictureBox CreateRefuellerPictureBox(RefuellerView refuellerView)
+        {
+            return new RefuellerPictureBox(_modelingForm, refuellerView);
+        }
+
         internal static PictureBox CreateFuelDispenserPictureBox(FuelDispenserView fuelDispenserView,
             Point locationPoint)
         {
@@ -147,7 +152,8 @@ namespace GasStationMs.App.Modeling
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 BackColor = Color.Wheat
             };
-            //For testing
+
+            fuelTankView.DefinePointOfRefilling(fuelTank);
 
             fuelTank.MouseClick += new MouseEventHandler(FuelTankPictureBox_Click);
 
@@ -158,7 +164,5 @@ namespace GasStationMs.App.Modeling
 
             return fuelTank;
         }
-
-       
     }
 }

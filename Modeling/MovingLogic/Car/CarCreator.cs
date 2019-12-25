@@ -1,9 +1,6 @@
 ﻿using System;
-using static GasStationMs.App.Modeling.DestinationPointsDefiner;
-using static GasStationMs.App.Modeling.ElementPictureBoxProducer;
-using static GasStationMs.App.Modeling.ElementViewProducer;
 
-namespace GasStationMs.App.Modeling
+namespace GasStationMs.App.Modeling.MovingLogic.Car
 {
     internal static class CarCreator
     {
@@ -13,8 +10,8 @@ namespace GasStationMs.App.Modeling
        
         internal static void SpawnCar( /*CarModel carModel*/)
         {
-            var carView = CreateCarView( /*carModel*/);
-            var car = CreateCarPictureBox(carView);
+            var carView = ElementViewProducer.CreateCarView( /*carModel*/);
+            var car = ElementPictureBoxProducer.CreateCarPictureBox(carView);
 
             // Some Distribution law here
             if (Rnd.NextDouble() >= 0.5)
@@ -26,14 +23,14 @@ namespace GasStationMs.App.Modeling
 
             if (!car.IsGoesFilling)
             {
-                car.AddDestinationPoint(LeavePointNoFilling);
+                car.AddDestinationPoint(DestinationPointsDefiner.LeavePointNoFilling);
             }
         }
 
         internal static void SpawnCollector()
         {
-            var collectorView = CreateCollectorView();
-            CreateCollectorPictureBox(collectorView);
+            var collectorView = ElementViewProducer.CreateCollectorView();
+            ElementPictureBoxProducer.CreateCollectorPictureBox(collectorView);
         }
     }
 }
