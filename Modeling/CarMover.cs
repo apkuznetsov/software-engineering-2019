@@ -89,6 +89,12 @@ namespace GasStationMs.App.Modeling
                     car.IsOnStation = true;
                 }
 
+                if (car.IsGoesHorizontal && destPoint.Equals(car.FromLeftBypassingPoint))
+                {
+                     car.IsGoesHorizontal = false;
+                    //var x = 1;
+                }
+
                 if (car is CarPictureBox carPictureBox)
                 {
                     foreach (var fuelDispensersDestPoint in FuelDispensersDestPoints.Values)
@@ -110,7 +116,6 @@ namespace GasStationMs.App.Modeling
                         return;
                     }
                 }
-               
 
                 if (destPoint.Equals(ExitPoint1))
                 {
@@ -132,7 +137,7 @@ namespace GasStationMs.App.Modeling
 
             if (!car.IsBypassingObject)
             {
-                if (!car.IsFilled)
+                if (!car.IsFilled && !car.IsGoesHorizontal)
                 {
                     // Go Up
                     if (car.Top >= destPoint.Y && !isHorizontalMoving)
