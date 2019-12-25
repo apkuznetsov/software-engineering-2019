@@ -8,7 +8,7 @@ namespace GasStationMs.App.Forms
 {
     public partial class ModelingForm : Form
     {
-        private readonly IDistributionLaw timeBetweenCarsGenerator;
+        //private readonly IDistributionLaw timeBetweenCarsGenerator;
 
         private readonly MappedTopology _mappedTopology;
 
@@ -19,7 +19,7 @@ namespace GasStationMs.App.Forms
         public TextBox TextBoxSelectedItemInformation { get; private set; }
         public PictureBox PictureBoxServiceArea { get; private set; }
 
-        public ModelingForm(Topology.Topology topology, IDistributionLaw timeBetweenCarsGenerator)
+        public ModelingForm(Topology.Topology topology/*, IDistributionLaw timeBetweenCarsGenerator*/)
         {
             InitializeComponent();
             RemoveUnusedControls();
@@ -30,7 +30,7 @@ namespace GasStationMs.App.Forms
 
             ClickEventProvider.SetUpClickEventProvider(this);
 
-            this.timeBetweenCarsGenerator = timeBetweenCarsGenerator;
+            //this.timeBetweenCarsGenerator = timeBetweenCarsGenerator;
             _mappedTopology = TopologyMapper.MapTopology(this, topology);
 
             ModelingProcessor.SetUpModelingProcessor(this, _mappedTopology);

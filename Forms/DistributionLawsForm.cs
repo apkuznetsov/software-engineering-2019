@@ -95,8 +95,8 @@ namespace GasStationMs.App
             label4.Text = Generator.GetRandNumber().ToString();
 
             Topology.Topology topology = tb.ToTopology();
-            ModelingForm modelingForm = new ModelingForm(topology, Generator);
-            modelingForm.ShowDialog();
+            //ModelingForm modelingForm = new ModelingForm(topology, Generator);
+            //modelingForm.ShowDialog();
         }
 
         #endregion

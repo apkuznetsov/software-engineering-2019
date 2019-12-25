@@ -398,8 +398,12 @@ namespace GasStationMs.App.Constructor
 
         private void BtnToModeling_Click(object sender, EventArgs e)
         {
-            DistributionLawsForm distributionLawsForm = new DistributionLawsForm(_topologyBuilder);
-            distributionLawsForm.ShowDialog();
+            //DistributionLawsForm distributionLawsForm = new DistributionLawsForm(_topologyBuilder);
+            //distributionLawsForm.ShowDialog();
+
+            Topology.Topology topology = _topologyBuilder.ToTopology();
+            ModelingForm modelingForm = new ModelingForm(topology);
+            modelingForm.ShowDialog();
         }
     }
 }
