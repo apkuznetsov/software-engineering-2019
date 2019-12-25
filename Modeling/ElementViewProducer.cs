@@ -1,5 +1,7 @@
-﻿using GasStationMs.App.DB.Models;
+﻿using System;
+using GasStationMs.App.DB.Models;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Modeling.Models.Views;
 
 namespace GasStationMs.App.Modeling
 {
@@ -19,10 +21,15 @@ namespace GasStationMs.App.Modeling
             var fuelRemained = 20;
             FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
             var isTruck = false;
-            var isGoesFilling = false;
 
             return new CarView(id, name, tankVolume, fuelRemained,
-                fuel, isTruck, isGoesFilling);
+                fuel, isTruck);
+        }
+
+        internal static CollectorView CreateCollectorView()
+        {
+            var speedOfCashCollectingPerSecond = 10000;
+            return new CollectorView(speedOfCashCollectingPerSecond);
         }
 
         internal static FuelDispenserView CreateFuelDispenserView(string name, int speedOfFilling)

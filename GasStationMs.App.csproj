@@ -85,6 +85,17 @@
     <Compile Include="Modeling\MappedTopology.cs" />
     <Compile Include="Modeling\ModelingProcessor.cs" />
     <Compile Include="Modeling\ModelingTicker.cs" />
+    <Compile Include="Modeling\Models\Views\CollectorView.cs" />
+    <Compile Include="Modeling\Models\PictureBoxes\CollectorPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modeling\Models\PictureBoxes\MoveablePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modeling\Models\PictureBoxes\CarPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modeling\Models\Views\RefuellerView.cs" />
     <Compile Include="Modeling\TopologyMapper.cs" />
     <Compile Include="TemplateElements\Road.cs" />
     <Compile Include="TemplateElements\ServiceArea.cs" />
@@ -111,12 +122,12 @@
     <Compile Include="Forms\ModelingForm.Designer.cs">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modeling\Models\CarView.cs" />
+    <Compile Include="Modeling\Models\Views\CarView.cs" />
     <Compile Include="DistributionLaws\NormalDistribution.cs" />
     <Compile Include="DistributionLaws\UniformDistribution.cs" />
-    <Compile Include="Modeling\Models\CashCounterView.cs" />
-    <Compile Include="Modeling\Models\FuelDispenserView.cs" />
-    <Compile Include="Modeling\Models\FuelTankView.cs" />
+    <Compile Include="Modeling\Models\Views\CashCounterView.cs" />
+    <Compile Include="Modeling\Models\Views\FuelDispenserView.cs" />
+    <Compile Include="Modeling\Models\Views\FuelTankView.cs" />
     <Compile Include="TemplateElements\CashCounter.cs" />
     <Compile Include="TemplateElements\Entry.cs" />
     <Compile Include="TemplateElements\Exit.cs" />
@@ -205,6 +216,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Cars\refueler%2830x35%29.png" />
+    <None Include="Resources\Cars\refueler%2830x30%29.png" />
+    <None Include="Resources\Cars\collector%2835x17%29.png" />
     <None Include="Resources\Road.png" />
     <None Include="Resources\cashbox1.png" />
     <None Include="Resources\Cars\32x17\car%2832x17%29-up.png" />

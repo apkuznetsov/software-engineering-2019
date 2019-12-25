@@ -1,8 +1,12 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Modeling.Models.PictureBoxes;
+using GasStationMs.App.Modeling.Models.Views;
 using static GasStationMs.App.Modeling.ClickEventProvider;
+using static GasStationMs.App.Modeling.DestinationPointsDefiner;
+using static GasStationMs.App.Modeling.ElementSizeDefiner;
 
 namespace GasStationMs.App.Modeling
 {
@@ -20,7 +24,7 @@ namespace GasStationMs.App.Modeling
         internal static PictureBox CreateCashCounterPictureBox(CashCounterView cashCounterView,
             Point locationPoint)
         {
-            var size = 50;
+            var size = TopologyCellSize;
             PictureBox cashCounter = new PictureBox
             {
                 Tag = cashCounterView,
@@ -37,12 +41,16 @@ namespace GasStationMs.App.Modeling
 
             _mappedTopology.CashCounter = cashCounter;
 
+            _mappedTopology.CashCounterDestinationPoint = new Point(cashCounter.Left + FuelingPointDeltaX,
+                cashCounter.Bottom + FuelingPointDeltaY);
+
+
             return cashCounter;
         }
 
         internal static PictureBox CreateEnterPictureBox(Point locationPoint)
         {
-            var sizeX = ElementSizeDefiner.TopologyCellSize;
+            var sizeX = TopologyCellSize;
             var sizeY = 20;
             PictureBox enter = new PictureBox
             {
@@ -66,7 +74,7 @@ namespace GasStationMs.App.Modeling
 
         internal static PictureBox CreateExitPictureBox(Point locationPoint)
         {
-            var sizeX = ElementSizeDefiner.TopologyCellSize;
+            var sizeX = TopologyCellSize;
             var sizeY = 20;
             PictureBox exit = new PictureBox
             {
@@ -89,22 +97,14 @@ namespace GasStationMs.App.Modeling
             return exit;
         }
 
-        internal static PictureBox CreateCarPictureBox(CarView carView)
+        internal static CarPictureBox CreateCarPictureBox(CarView carView)
         {
-            PictureBox car = new PictureBox
-            {
-                Tag = carView,
-                Image = Properties.Resources.car_32x17__left,
-                Location = DestinationPointsDefiner.SpawnPoint,
-                SizeMode = PictureBoxSizeMode.AutoSize
-            };
+            return new CarPictureBox(_modelingForm, carView);
+        }
 
-            car.MouseClick += new MouseEventHandler(CarPictureBox_Click);
-
-            _modelingForm.PlaygroundPanel.Controls.Add(car);
-            car.BringToFront();
-
-            return car;
+        internal static CollectorPictureBox CreateCollectorPictureBox(CollectorView collectorView)
+        {
+            return new CollectorPictureBox(_modelingForm, collectorView);
         }
 
         internal static PictureBox CreateFuelDispenserPictureBox(FuelDispenserView fuelDispenserView,
@@ -127,8 +127,8 @@ namespace GasStationMs.App.Modeling
 
             _mappedTopology.FuelDispensersList.Add(fuelDispenser);
 
-            var pointOfFueling = new Point(fuelDispenser.Left + DestinationPointsDefiner.FuelingPointDeltaX,
-                fuelDispenser.Bottom + DestinationPointsDefiner.FuelingPointDeltaY);
+            var pointOfFueling = new Point(fuelDispenser.Left + FuelingPointDeltaX,
+                fuelDispenser.Bottom + FuelingPointDeltaY);
             _mappedTopology.AddFuelDispenserWithDestPoint(fuelDispenser, pointOfFueling);
 
             return fuelDispenser;
@@ -158,5 +158,7 @@ namespace GasStationMs.App.Modeling
 
             return fuelTank;
         }
+
+       
     }
 }
