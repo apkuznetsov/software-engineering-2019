@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using GasStationMs.App.DB.Models;
 
-namespace GasStationMs.App.Modeling.Models
+namespace GasStationMs.App.Modeling.Models.Views
 {
     public class FuelDispenserView
     {

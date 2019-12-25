@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using GasStationMs.App.DB.Models;
 
-namespace GasStationMs.App.Modeling.Models
+namespace GasStationMs.App.Modeling.Models.Views
 {
     internal class CarView
     {

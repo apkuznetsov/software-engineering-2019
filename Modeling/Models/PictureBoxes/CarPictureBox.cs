@@ -1,6 +1,7 @@
 ﻿using GasStationMs.App.Forms;
 using System;
 using System.Windows.Forms;
+using GasStationMs.App.Modeling.Models.Views;
 
 namespace GasStationMs.App.Modeling.Models.PictureBoxes
 {

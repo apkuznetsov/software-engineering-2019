@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace GasStationMs.App.Modeling.Models
+namespace GasStationMs.App.Modeling.Models.PictureBoxes
 {
      internal class MoveablePictureBox : PictureBox
     {

@@ -1,4 +1,4 @@
-﻿namespace GasStationMs.App.Modeling.Models
+namespace GasStationMs.App.Modeling.Models.Views
 {
     public class CashCounterView
     {

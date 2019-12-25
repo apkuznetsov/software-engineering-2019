@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
+using GasStationMs.App.Modeling.Models.Views;
 using static GasStationMs.App.Modeling.DestinationPointsDefiner;
 using static GasStationMs.App.Modeling.DirectionEnum;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;

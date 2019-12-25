@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
+using GasStationMs.App.Modeling.Models.Views;
 
 namespace GasStationMs.App.Modeling
 {

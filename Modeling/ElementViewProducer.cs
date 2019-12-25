@@ -1,6 +1,7 @@
 ﻿using System;
 using GasStationMs.App.DB.Models;
 using GasStationMs.App.Modeling.Models;
+using GasStationMs.App.Modeling.Models.Views;
 
 namespace GasStationMs.App.Modeling
 {
