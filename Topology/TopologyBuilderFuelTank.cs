@@ -22,7 +22,7 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                if (value > _serviceAreaInCells)
+                if (value > serviceAreaInCells)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -56,7 +56,7 @@ namespace GasStationMs.App.Topology
             if (isServiceArea &&
                 IsThroughOneRowAfterServiceAreaBorder(x, y))
             {
-                bool isNewCountRight = _fuelTanksCount + 1 <= _serviceAreaInCells;
+                bool isNewCountRight = _fuelTanksCount + 1 <= serviceAreaInCells;
 
                 if (isNewCountRight)
                     return true;

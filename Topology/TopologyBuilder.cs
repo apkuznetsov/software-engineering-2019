@@ -8,7 +8,7 @@ namespace GasStationMs.App.Topology
     public partial class TopologyBuilder
     {
         private DataGridView field;
-        private int _serviceAreaInCells;
+        private int serviceAreaInCells;
         private int serviceAreaBorderColIndex;
 
         public TopologyBuilder(DataGridView dgv)
@@ -20,7 +20,7 @@ namespace GasStationMs.App.Topology
 
             SetupDgv();
 
-            _serviceAreaInCells = RecalculateServiceArea();
+            serviceAreaInCells = RecalculateServiceArea();
 
             SetupServiceArea();
             SetupRoad();
@@ -43,6 +43,32 @@ namespace GasStationMs.App.Topology
             field.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        public void SetupField(int colsCount, int rowsCount)
+        {
+            for (int i = 0; i < field.ColumnCount; i++)
+                field.Columns.Remove(field.Columns[i]);
+            for (int j = 0; j < field.RowCount; j++)
+                field.Rows.Remove(field.Rows[j]);
+            DataGridViewImageCell cell30 = (DataGridViewImageCell)field.Rows[0].Cells[3];
+            DataGridViewImageCell cell31 = (DataGridViewImageCell)field.Rows[1].Cells[3];
+            DataGridViewImageCell cell32 = (DataGridViewImageCell)field.Rows[2].Cells[3];
+            DataGridViewImageCell cell40 = (DataGridViewImageCell)field.Rows[0].Cells[4];
+            DataGridViewImageCell cell41 = (DataGridViewImageCell)field.Rows[1].Cells[4];
+            DataGridViewImageCell cell42 = (DataGridViewImageCell)field.Rows[2].Cells[4];
+            cell30.Tag = null; cell30.Value = null;
+            cell31.Tag = null; cell31.Value = null;
+            cell32.Tag = null; cell32.Value = null;
+            cell40.Tag = null; cell40.Value = null;
+            cell41.Tag = null; cell41.Value = null;
+            cell42.Tag = null; cell42.Value = null;
+
+            AddDgvCols(colsCount);
+            AddDgvRows(rowsCount);
+            serviceAreaInCells = RecalculateServiceArea();
+            SetupServiceArea();
+            SetupRoad();
+        }
+
         private void AddDgvCols(int colsCount)
         {
             for (int i = 0; i < colsCount; i++)
@@ -63,7 +89,7 @@ namespace GasStationMs.App.Topology
         {
             int lastRowIndex = field.RowCount - 1;
 
-            int сellsLeftToAdd = _serviceAreaInCells;
+            int сellsLeftToAdd = serviceAreaInCells;
             int cellsAdded = 0;
 
             DataGridViewImageCell cell;
@@ -82,7 +108,7 @@ namespace GasStationMs.App.Topology
 
                 if (сellsLeftToAdd <= 0)
                 {
-                    _serviceAreaInCells = cellsAdded;
+                    serviceAreaInCells = cellsAdded;
                     serviceAreaBorderColIndex = currCol;
                     break;
                 }
