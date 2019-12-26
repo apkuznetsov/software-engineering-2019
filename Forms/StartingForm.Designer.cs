@@ -99,7 +99,10 @@
             this.Controls.Add(this.labelAbout);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOpenCreatingTopologyForm);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "StartingForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
