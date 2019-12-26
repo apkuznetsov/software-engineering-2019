@@ -14,5 +14,8 @@ namespace GasStationMs.App.Models
         public static readonly double MaxVarianceForNormalFlow = 2.0;
         public static readonly double MinExpectedValueForNormalFlow = 0.0;
         public static readonly double MaxExpectedValueForNormalFlow = 5.0;
+
+        public static readonly double MinLambdaForExponentialFlow = 0.1;
+        public static readonly double MaxLambdaForExponentialFlow = 5.0;
     }
 }
