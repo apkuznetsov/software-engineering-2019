@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
-using GasStationMs.App.Forms;
 using GasStationMs.App.Models;
 using GasStationMs.App.Topology;
 
@@ -180,10 +179,6 @@ namespace GasStationMs.App
             nudExponentialDistrLambda.Visible = true;
         }
 
-
-        #region
-
-
         private void buttonToModelling_Click(object sender, EventArgs e)
         {
             if (rbRandomFlow.Checked == true)
@@ -220,50 +215,10 @@ namespace GasStationMs.App
             }
             MessageBox.Show(randNumGenerator.GetRandNumber().ToString());
 
-            Topology.Topology topology = tb.ToTopology();
-            ModelingForm modelingForm = new ModelingForm(topology, randNumGenerator);
-            modelingForm.ShowDialog();
+            //Topology.Topology topology = tb.ToTopology();
+            //ModelingForm modelingForm = new ModelingForm(topology, randNumGenerator);
+            //modelingForm.ShowDialog();
         }
-
-        #endregion
-
-
-        #region Методы обязательные для форм
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void exponentialDistributionLambdaLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void exponentialDistributionLambda_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void label4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        #endregion
 
         private void rbRandomFlow_CheckedChanged(object sender, EventArgs e)
         {

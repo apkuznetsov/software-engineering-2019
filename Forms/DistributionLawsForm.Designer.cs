@@ -192,7 +192,6 @@
             this.labelNormalDistrVariance.TabIndex = 13;
             this.labelNormalDistrVariance.Text = "Дисперсия";
             this.labelNormalDistrVariance.Visible = false;
-            this.labelNormalDistrVariance.Click += new System.EventHandler(this.label4_Click);
             // 
             // labelNormalDistrExpectedValue
             // 
@@ -203,7 +202,6 @@
             this.labelNormalDistrExpectedValue.TabIndex = 15;
             this.labelNormalDistrExpectedValue.Text = "Мат. ожидание";
             this.labelNormalDistrExpectedValue.Visible = false;
-            this.labelNormalDistrExpectedValue.Click += new System.EventHandler(this.label6_Click);
             // 
             // labelDeterminedFlowParams
             // 
@@ -214,7 +212,6 @@
             this.labelDeterminedFlowParams.TabIndex = 16;
             this.labelDeterminedFlowParams.Text = "Время между появлением автомобилей, с";
             this.labelDeterminedFlowParams.Visible = false;
-            this.labelDeterminedFlowParams.Click += new System.EventHandler(this.label7_Click);
             // 
             // nudDeterminedFlow
             // 
@@ -234,7 +231,6 @@
             this.nudDeterminedFlow.Size = new System.Drawing.Size(46, 20);
             this.nudDeterminedFlow.TabIndex = 17;
             this.nudDeterminedFlow.Visible = false;
-            this.nudDeterminedFlow.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
             // gbSelectFlow
             // 
@@ -392,7 +388,6 @@
             this.nudExponentialDistrLambda.Size = new System.Drawing.Size(46, 20);
             this.nudExponentialDistrLambda.TabIndex = 10;
             this.nudExponentialDistrLambda.Visible = false;
-            this.nudExponentialDistrLambda.ValueChanged += new System.EventHandler(this.exponentialDistributionLambda_ValueChanged);
             // 
             // labelExponentialDistrLambda
             // 
@@ -403,7 +398,6 @@
             this.labelExponentialDistrLambda.TabIndex = 14;
             this.labelExponentialDistrLambda.Text = "Интенсивность";
             this.labelExponentialDistrLambda.Visible = false;
-            this.labelExponentialDistrLambda.Click += new System.EventHandler(this.exponentialDistributionLambdaLabel_Click);
             // 
             // gbExponentialDistrParams
             // 
