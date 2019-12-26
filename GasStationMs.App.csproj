@@ -167,6 +167,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Topology\Topology.cs" />
+    <EmbeddedResource Include="Forms\CreatingTopologyForm.resx">
+      <DependentUpon>CreatingTopologyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DistributionLawsForm.resx">
       <DependentUpon>DistributionLawsForm.cs</DependentUpon>
     </EmbeddedResource>
