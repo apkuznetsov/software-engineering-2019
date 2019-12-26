@@ -434,6 +434,8 @@
             this.Controls.Add(this.gbSelectFlow);
             this.Controls.Add(this.btnToModelingForm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DistributionLawsForm";
             this.Text = "Настройка транспортного потока";
             ((System.ComponentModel.ISupportInitialize)(this.nudProbabilityOfStoppingAtGasStation)).EndInit();
