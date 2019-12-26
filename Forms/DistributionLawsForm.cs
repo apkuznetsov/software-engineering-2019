@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
@@ -29,9 +29,6 @@ namespace GasStationMs.App
 
             SetupCbChooseDistributionLaw();
 
-            nudDeterminedFlow.Minimum = (decimal)TrafficFlow.MinParamForDeterminedFlow;
-            nudDeterminedFlow.Maximum = (decimal)TrafficFlow.MaxParamForDeterminedFlow;
-
             SetupDefaultSettings();
             SetupUniformFlowSettings();
         }
@@ -53,6 +50,10 @@ namespace GasStationMs.App
             MakeDeterminedFlowParamsVisible();
 
             MakeUniformFlowParamsInvisible();
+
+            SetupDeteminedFlowSettings();
+            SetupUniformFlowSettings();
+            SetupNormalFlowSettings();
         }
 
         private void MakeDeterminedFlowParamsVisible()
@@ -65,6 +66,12 @@ namespace GasStationMs.App
         {
             labelDeterminedFlowParams.Visible = false;
             nudDeterminedFlow.Visible = false;
+        }
+
+        private void SetupDeteminedFlowSettings()
+        {
+            nudDeterminedFlow.Minimum = (decimal)TrafficFlow.MinParamForDeterminedFlow;
+            nudDeterminedFlow.Maximum = (decimal)TrafficFlow.MaxParamForDeterminedFlow;
         }
 
         private void SetupUniformFlowSettings()
@@ -168,7 +175,7 @@ namespace GasStationMs.App
                             break;
 
                         case (int)DistributionLaws.NormalDistribution:
-                            randNumGenerator = new NormalDistribution((double)normalDistributionPredicted.Value, (double)normalDistributionDispersion.Value);
+                            randNumGenerator = new NormalDistribution((double)nudNormalDistrExpectedValue.Value, (double)nudNormalDistrVariance.Value);
                             break;
 
                         case (int)DistributionLaws.ExponentialDistribution:
