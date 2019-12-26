@@ -4,18 +4,16 @@ namespace GasStationMs.App.DistributionLaws
 {
     public class UniformDistribution : IDistributionLaw
     {
-        private readonly double _a;
-        private readonly double _b;
+        private readonly double a;
+        private readonly double b;
 
         public UniformDistribution(double a, double b)
         {
             if (a > b)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+                throw new ArgumentOutOfRangeException("ОШИБКА: левая граница больше правой");
 
-            this._a = a;
-            this._b = b;
+            this.a = a;
+            this.b = b;
         }
 
         public double A { get; }
@@ -25,7 +23,7 @@ namespace GasStationMs.App.DistributionLaws
         {
             Random random = new Random();
 
-            return random.NextDouble() * (_b - _a) + _a;
+            return random.NextDouble() * (b - a) + a;
         }
     }
 }
