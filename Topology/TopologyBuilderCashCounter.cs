@@ -7,13 +7,13 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder // CashCounter
     {
-        private int _cashCountersCount;
+        private int cashCountersCount;
 
         public int CashCountersCount
         {
             get
             {
-                return _cashCountersCount;
+                return cashCountersCount;
             }
 
             set
@@ -28,7 +28,7 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                _cashCountersCount = value;
+                cashCountersCount = value;
             }
         }
 
@@ -51,7 +51,7 @@ namespace GasStationMs.App.Topology
 
         private bool CanAddCashCounter(int x, int y)
         {
-            bool isNewCountOk = _cashCountersCount + 1 <= Topology.MaxCashCountersCount;
+            bool isNewCountOk = cashCountersCount + 1 <= Topology.MaxCashCountersCount;
 
             if (isNewCountOk &&
                 AreCellsAroundBlankOrDontExist(x, y))
@@ -128,12 +128,12 @@ namespace GasStationMs.App.Topology
 
         public void DeleteCashCounter()
         {
-            if (_cashCountersCount < 0)
+            if (cashCountersCount < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            _cashCountersCount--;
+            cashCountersCount--;
         }
     }
 }

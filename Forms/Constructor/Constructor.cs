@@ -8,17 +8,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.App.DB.Models;
-using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology;
-using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using GasStationMs.Dal;
 
 namespace GasStationMs.App.Constructor
 {
     public partial class Constructor : Form
     {
-        private string _currFilePath;
+        private string currFilePath;
         private TopologyBuilder _topologyBuilder;
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
@@ -56,11 +54,11 @@ namespace GasStationMs.App.Constructor
         {
             get
             {
-                return _currFilePath;
+                return currFilePath;
             }
             set
             {
-                _currFilePath = value;
+                currFilePath = value;
             }
         }
 
@@ -329,9 +327,15 @@ namespace GasStationMs.App.Constructor
 
         private void SaveTopologyIntoCurrFilePath()
         {
-            string temp = _currFilePath;
-            Topology.Topology topology = _topologyBuilder.ToTopology();
-            topology.Save(_currFilePath);
+            try
+            {
+                Topology.Topology topology = _topologyBuilder.ToTopology();
+                topology.Save(currFilePath);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
         private void btnDownloadTopology_Click(object sender, EventArgs e)
@@ -363,7 +367,7 @@ namespace GasStationMs.App.Constructor
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                _currFilePath = sfd.FileName;
+                currFilePath = sfd.FileName;
                 SaveTopologyIntoCurrFilePath();
             }
         }

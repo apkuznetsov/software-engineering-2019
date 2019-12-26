@@ -182,7 +182,9 @@ namespace GasStationMs.App.Topology
 
         public Topology ToTopology()
         {
-            IGasStationElement[,] gseArr = new IGasStationElement[_field.RowCount, _field.ColumnCount];
+            CheckTopologyCorrectness();
+
+            IGasStationElement[,] gseArr = new IGasStationElement[RowsCount, ColsCount];
 
             DataGridViewImageCell cell;
             for (int currRow = 0; currRow < gseArr.GetLength(0); currRow++)
@@ -190,18 +192,63 @@ namespace GasStationMs.App.Topology
                 for (int currCol = 0; currCol < gseArr.GetLength(1); currCol++)
                 {
                     cell = (DataGridViewImageCell)_field.Rows[currRow].Cells[currCol];
-                    //if (cell.Tag != null)
-                    //{
                     gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
-                    //}
-                    //else
-                    //{
-                    //    gseArr[currRow, currCol] = null;
-                    //}
                 }
             }
 
             return new Topology(gseArr, _serviceAreaBorderColIndex);
+        }
+
+        private void CheckTopologyCorrectness()
+        {
+            CheckMinNumOfTemplatesElements();
+            CheckMaxNumOfTemplatesElements();
+        }
+
+        private void CheckMinNumOfTemplatesElements()
+        {
+            if (cashCountersCount < Topology.MinCashCountersCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinCashCountersCount + " касс");
+
+            if (EntriesCount < Topology.MinEntriesCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinEntriesCount + " въездов");
+
+            if (ExitsCount < Topology.MinExitsCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinExitsCount + " выездов");
+
+            if (FuelDispensersCount < Topology.MinFuelDispensersCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinFuelDispensersCount + " ТРК");
+
+            if (FuelTanksCount < Topology.MinFuelTanksCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinFuelTanksCount + " ТБ");
+        }
+
+        private void CheckMaxNumOfTemplatesElements()
+        {
+            if (cashCountersCount > Topology.MaxCashCountersCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxCashCountersCount + " касс");
+
+            if (EntriesCount > Topology.MaxEntriesCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxEntriesCount + " въездов");
+
+            if (ExitsCount > Topology.MaxExitsCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxExitsCount + " выездов");
+
+            if (FuelDispensersCount > Topology.MaxFuelDispensersCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxFuelDispensersCount + " ТРК");
+
+            if (FuelTanksCount > Topology.MaxFuelTanksCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxFuelTanksCount + " ТБ");
         }
     }
 }
