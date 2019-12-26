@@ -43,22 +43,31 @@
             this.labelDeterminedFlowParams = new System.Windows.Forms.Label();
             this.nudDeterminedFlow = new System.Windows.Forms.NumericUpDown();
             this.exponentialDistributionPanel = new System.Windows.Forms.Panel();
-            this.normalDistributionPanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.gbSelectFlow = new System.Windows.Forms.GroupBox();
             this.gbDeterminedFlowParams = new System.Windows.Forms.GroupBox();
-            this.gbRandomFlowParams = new System.Windows.Forms.GroupBox();
+            this.gbRandomFlowParams1 = new System.Windows.Forms.GroupBox();
             this.labelChooseDistributionLaw = new System.Windows.Forms.Label();
+            this.gbRandomFlowParams2 = new System.Windows.Forms.GroupBox();
+            this.gbUniformFlowParams = new System.Windows.Forms.GroupBox();
+            this.nudUniformDistParamB = new System.Windows.Forms.NumericUpDown();
+            this.labelUniformDistParamB = new System.Windows.Forms.Label();
+            this.nudUniformDistParamA = new System.Windows.Forms.NumericUpDown();
+            this.labelUniformDistParamA = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.probabilityToEnter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exponentialDistributionLambda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.normalDistributionDispersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.normalDistributionPredicted)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDeterminedFlow)).BeginInit();
             this.exponentialDistributionPanel.SuspendLayout();
-            this.normalDistributionPanel.SuspendLayout();
             this.gbSelectFlow.SuspendLayout();
             this.gbDeterminedFlowParams.SuspendLayout();
-            this.gbRandomFlowParams.SuspendLayout();
+            this.gbRandomFlowParams1.SuspendLayout();
+            this.gbRandomFlowParams2.SuspendLayout();
+            this.gbUniformFlowParams.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUniformDistParamB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUniformDistParamA)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // rbDeterminedFlow
@@ -102,7 +111,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 389);
+            this.label3.Location = new System.Drawing.Point(15, 435);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(214, 13);
             this.label3.TabIndex = 7;
@@ -116,7 +125,7 @@
             0,
             0,
             65536});
-            this.probabilityToEnter.Location = new System.Drawing.Point(232, 387);
+            this.probabilityToEnter.Location = new System.Drawing.Point(285, 428);
             this.probabilityToEnter.Maximum = new decimal(new int[] {
             1,
             0,
@@ -128,9 +137,9 @@
             // 
             // buttonToModelling
             // 
-            this.buttonToModelling.Location = new System.Drawing.Point(142, 439);
+            this.buttonToModelling.Location = new System.Drawing.Point(12, 460);
             this.buttonToModelling.Name = "buttonToModelling";
-            this.buttonToModelling.Size = new System.Drawing.Size(357, 23);
+            this.buttonToModelling.Size = new System.Drawing.Size(593, 33);
             this.buttonToModelling.TabIndex = 9;
             this.buttonToModelling.Text = "Смоделировать";
             this.buttonToModelling.UseVisualStyleBackColor = true;
@@ -164,7 +173,7 @@
             0,
             0,
             65536});
-            this.normalDistributionDispersion.Location = new System.Drawing.Point(192, 24);
+            this.normalDistributionDispersion.Location = new System.Drawing.Point(9, 42);
             this.normalDistributionDispersion.Maximum = new decimal(new int[] {
             2,
             0,
@@ -183,7 +192,7 @@
             0,
             0,
             65536});
-            this.normalDistributionPredicted.Location = new System.Drawing.Point(192, 50);
+            this.normalDistributionPredicted.Location = new System.Drawing.Point(9, 130);
             this.normalDistributionPredicted.Maximum = new decimal(new int[] {
             5,
             0,
@@ -197,7 +206,7 @@
             // normalDistributionDispersionLabel
             // 
             this.normalDistributionDispersionLabel.AutoSize = true;
-            this.normalDistributionDispersionLabel.Location = new System.Drawing.Point(10, 26);
+            this.normalDistributionDispersionLabel.Location = new System.Drawing.Point(6, 26);
             this.normalDistributionDispersionLabel.Name = "normalDistributionDispersionLabel";
             this.normalDistributionDispersionLabel.Size = new System.Drawing.Size(176, 13);
             this.normalDistributionDispersionLabel.TabIndex = 13;
@@ -208,7 +217,7 @@
             // exponentialDistributionLambdaLabel
             // 
             this.exponentialDistributionLambdaLabel.AutoSize = true;
-            this.exponentialDistributionLambdaLabel.Location = new System.Drawing.Point(3, 15);
+            this.exponentialDistributionLambdaLabel.Location = new System.Drawing.Point(17, 22);
             this.exponentialDistributionLambdaLabel.Name = "exponentialDistributionLambdaLabel";
             this.exponentialDistributionLambdaLabel.Size = new System.Drawing.Size(234, 13);
             this.exponentialDistributionLambdaLabel.TabIndex = 14;
@@ -219,7 +228,7 @@
             // normalDistributionPredictedLabel
             // 
             this.normalDistributionPredictedLabel.AutoSize = true;
-            this.normalDistributionPredictedLabel.Location = new System.Drawing.Point(26, 57);
+            this.normalDistributionPredictedLabel.Location = new System.Drawing.Point(6, 104);
             this.normalDistributionPredictedLabel.Name = "normalDistributionPredictedLabel";
             this.normalDistributionPredictedLabel.Size = new System.Drawing.Size(148, 13);
             this.normalDistributionPredictedLabel.TabIndex = 15;
@@ -262,33 +271,11 @@
             // 
             this.exponentialDistributionPanel.Controls.Add(this.exponentialDistributionLambdaLabel);
             this.exponentialDistributionPanel.Controls.Add(this.exponentialDistributionLambda);
-            this.exponentialDistributionPanel.Location = new System.Drawing.Point(316, 374);
+            this.exponentialDistributionPanel.Location = new System.Drawing.Point(483, 182);
             this.exponentialDistributionPanel.Name = "exponentialDistributionPanel";
             this.exponentialDistributionPanel.Size = new System.Drawing.Size(306, 49);
             this.exponentialDistributionPanel.TabIndex = 18;
             this.exponentialDistributionPanel.Visible = false;
-            // 
-            // normalDistributionPanel
-            // 
-            this.normalDistributionPanel.Controls.Add(this.normalDistributionDispersionLabel);
-            this.normalDistributionPanel.Controls.Add(this.normalDistributionDispersion);
-            this.normalDistributionPanel.Controls.Add(this.normalDistributionPredicted);
-            this.normalDistributionPanel.Controls.Add(this.normalDistributionPredictedLabel);
-            this.normalDistributionPanel.Location = new System.Drawing.Point(352, 235);
-            this.normalDistributionPanel.Name = "normalDistributionPanel";
-            this.normalDistributionPanel.Size = new System.Drawing.Size(253, 100);
-            this.normalDistributionPanel.TabIndex = 19;
-            this.normalDistributionPanel.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(362, 159);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(135, 13);
-            this.label4.TabIndex = 21;
-            this.label4.Text = "Для проверки генерации";
-            this.label4.Click += new System.EventHandler(this.label4_Click_1);
             // 
             // gbSelectFlow
             // 
@@ -306,21 +293,21 @@
             this.gbDeterminedFlowParams.Controls.Add(this.labelDeterminedFlowParams);
             this.gbDeterminedFlowParams.Location = new System.Drawing.Point(218, 12);
             this.gbDeterminedFlowParams.Name = "gbDeterminedFlowParams";
-            this.gbDeterminedFlowParams.Size = new System.Drawing.Size(369, 61);
+            this.gbDeterminedFlowParams.Size = new System.Drawing.Size(387, 61);
             this.gbDeterminedFlowParams.TabIndex = 23;
             this.gbDeterminedFlowParams.TabStop = false;
             this.gbDeterminedFlowParams.Text = "Параметры детерминированного потока";
             // 
-            // gbRandomFlowParams
+            // gbRandomFlowParams1
             // 
-            this.gbRandomFlowParams.Controls.Add(this.labelChooseDistributionLaw);
-            this.gbRandomFlowParams.Controls.Add(this.cbChooseDistributionLaw);
-            this.gbRandomFlowParams.Location = new System.Drawing.Point(218, 80);
-            this.gbRandomFlowParams.Name = "gbRandomFlowParams";
-            this.gbRandomFlowParams.Size = new System.Drawing.Size(369, 61);
-            this.gbRandomFlowParams.TabIndex = 24;
-            this.gbRandomFlowParams.TabStop = false;
-            this.gbRandomFlowParams.Text = "Параметры случайного потока";
+            this.gbRandomFlowParams1.Controls.Add(this.labelChooseDistributionLaw);
+            this.gbRandomFlowParams1.Controls.Add(this.cbChooseDistributionLaw);
+            this.gbRandomFlowParams1.Location = new System.Drawing.Point(218, 80);
+            this.gbRandomFlowParams1.Name = "gbRandomFlowParams1";
+            this.gbRandomFlowParams1.Size = new System.Drawing.Size(387, 61);
+            this.gbRandomFlowParams1.TabIndex = 24;
+            this.gbRandomFlowParams1.TabStop = false;
+            this.gbRandomFlowParams1.Text = "Параметры случайного потока 1";
             // 
             // labelChooseDistributionLaw
             // 
@@ -332,22 +319,116 @@
             this.labelChooseDistributionLaw.Text = "Выберите закон распределения";
             this.labelChooseDistributionLaw.Visible = false;
             // 
+            // gbRandomFlowParams2
+            // 
+            this.gbRandomFlowParams2.Controls.Add(this.groupBox1);
+            this.gbRandomFlowParams2.Controls.Add(this.gbUniformFlowParams);
+            this.gbRandomFlowParams2.Controls.Add(this.exponentialDistributionPanel);
+            this.gbRandomFlowParams2.Location = new System.Drawing.Point(12, 147);
+            this.gbRandomFlowParams2.Name = "gbRandomFlowParams2";
+            this.gbRandomFlowParams2.Size = new System.Drawing.Size(593, 275);
+            this.gbRandomFlowParams2.TabIndex = 25;
+            this.gbRandomFlowParams2.TabStop = false;
+            this.gbRandomFlowParams2.Text = "Параметры случайного потока 2";
+            // 
+            // gbUniformFlowParams
+            // 
+            this.gbUniformFlowParams.Controls.Add(this.nudUniformDistParamB);
+            this.gbUniformFlowParams.Controls.Add(this.labelUniformDistParamB);
+            this.gbUniformFlowParams.Controls.Add(this.nudUniformDistParamA);
+            this.gbUniformFlowParams.Controls.Add(this.labelUniformDistParamA);
+            this.gbUniformFlowParams.Location = new System.Drawing.Point(6, 19);
+            this.gbUniformFlowParams.Name = "gbUniformFlowParams";
+            this.gbUniformFlowParams.Size = new System.Drawing.Size(200, 250);
+            this.gbUniformFlowParams.TabIndex = 20;
+            this.gbUniformFlowParams.TabStop = false;
+            this.gbUniformFlowParams.Text = "Параметры равномерного распределения";
+            // 
+            // nudUniformDistParamB
+            // 
+            this.nudUniformDistParamB.DecimalPlaces = 1;
+            this.nudUniformDistParamB.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudUniformDistParamB.Location = new System.Drawing.Point(144, 73);
+            this.nudUniformDistParamB.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudUniformDistParamB.Name = "nudUniformDistParamB";
+            this.nudUniformDistParamB.Size = new System.Drawing.Size(46, 20);
+            this.nudUniformDistParamB.TabIndex = 20;
+            this.nudUniformDistParamB.Visible = false;
+            // 
+            // labelUniformDistParamB
+            // 
+            this.labelUniformDistParamB.AutoSize = true;
+            this.labelUniformDistParamB.Location = new System.Drawing.Point(6, 75);
+            this.labelUniformDistParamB.Name = "labelUniformDistParamB";
+            this.labelUniformDistParamB.Size = new System.Drawing.Size(101, 13);
+            this.labelUniformDistParamB.TabIndex = 19;
+            this.labelUniformDistParamB.Text = "Правая граница, с";
+            this.labelUniformDistParamB.Visible = false;
+            // 
+            // nudUniformDistParamA
+            // 
+            this.nudUniformDistParamA.DecimalPlaces = 1;
+            this.nudUniformDistParamA.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudUniformDistParamA.Location = new System.Drawing.Point(144, 38);
+            this.nudUniformDistParamA.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudUniformDistParamA.Name = "nudUniformDistParamA";
+            this.nudUniformDistParamA.Size = new System.Drawing.Size(46, 20);
+            this.nudUniformDistParamA.TabIndex = 18;
+            this.nudUniformDistParamA.Visible = false;
+            // 
+            // labelUniformDistParamA
+            // 
+            this.labelUniformDistParamA.AutoSize = true;
+            this.labelUniformDistParamA.Location = new System.Drawing.Point(6, 40);
+            this.labelUniformDistParamA.Name = "labelUniformDistParamA";
+            this.labelUniformDistParamA.Size = new System.Drawing.Size(95, 13);
+            this.labelUniformDistParamA.TabIndex = 17;
+            this.labelUniformDistParamA.Text = "Левая граница, с";
+            this.labelUniformDistParamA.Visible = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.normalDistributionPredictedLabel);
+            this.groupBox1.Controls.Add(this.normalDistributionDispersionLabel);
+            this.groupBox1.Controls.Add(this.normalDistributionPredicted);
+            this.groupBox1.Controls.Add(this.normalDistributionDispersion);
+            this.groupBox1.Location = new System.Drawing.Point(215, 20);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(220, 249);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Параметры нормального распределения";
+            // 
             // DistributionLawsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 505);
-            this.Controls.Add(this.gbRandomFlowParams);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.gbRandomFlowParams2);
+            this.Controls.Add(this.gbRandomFlowParams1);
             this.Controls.Add(this.gbDeterminedFlowParams);
             this.Controls.Add(this.gbSelectFlow);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.normalDistributionPanel);
-            this.Controls.Add(this.exponentialDistributionPanel);
             this.Controls.Add(this.buttonToModelling);
             this.Controls.Add(this.probabilityToEnter);
-            this.Controls.Add(this.label3);
             this.Name = "DistributionLawsForm";
-            this.Text = "DistributionLaws";
+            this.Text = "Настройка транспортного потока";
             ((System.ComponentModel.ISupportInitialize)(this.probabilityToEnter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exponentialDistributionLambda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.normalDistributionDispersion)).EndInit();
@@ -355,14 +436,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudDeterminedFlow)).EndInit();
             this.exponentialDistributionPanel.ResumeLayout(false);
             this.exponentialDistributionPanel.PerformLayout();
-            this.normalDistributionPanel.ResumeLayout(false);
-            this.normalDistributionPanel.PerformLayout();
             this.gbSelectFlow.ResumeLayout(false);
             this.gbSelectFlow.PerformLayout();
             this.gbDeterminedFlowParams.ResumeLayout(false);
             this.gbDeterminedFlowParams.PerformLayout();
-            this.gbRandomFlowParams.ResumeLayout(false);
-            this.gbRandomFlowParams.PerformLayout();
+            this.gbRandomFlowParams1.ResumeLayout(false);
+            this.gbRandomFlowParams1.PerformLayout();
+            this.gbRandomFlowParams2.ResumeLayout(false);
+            this.gbUniformFlowParams.ResumeLayout(false);
+            this.gbUniformFlowParams.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUniformDistParamB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUniformDistParamA)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,11 +471,16 @@
         private System.Windows.Forms.Label labelDeterminedFlowParams;
         private System.Windows.Forms.NumericUpDown nudDeterminedFlow;
         private System.Windows.Forms.Panel exponentialDistributionPanel;
-        private System.Windows.Forms.Panel normalDistributionPanel;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox gbSelectFlow;
         private System.Windows.Forms.GroupBox gbDeterminedFlowParams;
-        private System.Windows.Forms.GroupBox gbRandomFlowParams;
+        private System.Windows.Forms.GroupBox gbRandomFlowParams1;
         private System.Windows.Forms.Label labelChooseDistributionLaw;
+        private System.Windows.Forms.GroupBox gbRandomFlowParams2;
+        private System.Windows.Forms.GroupBox gbUniformFlowParams;
+        private System.Windows.Forms.NumericUpDown nudUniformDistParamA;
+        private System.Windows.Forms.Label labelUniformDistParamA;
+        private System.Windows.Forms.NumericUpDown nudUniformDistParamB;
+        private System.Windows.Forms.Label labelUniformDistParamB;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

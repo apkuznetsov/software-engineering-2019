@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
@@ -29,16 +29,30 @@ namespace GasStationMs.App
 
             SetupCbChooseDistributionLaw();
 
-            nudDeterminedFlow.Minimum = (decimal)TrafficFlow.MinTimeBetweenCarsInSeconds;
-            nudDeterminedFlow.Maximum = (decimal)TrafficFlow.MaxTimeBetweenCarsInSeconds;
+            nudDeterminedFlow.Minimum = (decimal)TrafficFlow.MinParamForDeterminedFlow;
+            nudDeterminedFlow.Maximum = (decimal)TrafficFlow.MaxParamForDeterminedFlow;
 
             SetupDefaultSettings();
+            SetupUniformFlowSettings();
+        }
+
+        private void SetupCbChooseDistributionLaw()
+        {
+            List<string> distributionLawsList = new List<string>();
+            distributionLawsList.Add("НЕ ВЫБРАН");
+            distributionLawsList.Add("Равномерный");
+            distributionLawsList.Add("Нормальный");
+            distributionLawsList.Add("Показательный");
+
+            cbChooseDistributionLaw.DataSource = distributionLawsList;
         }
 
         private void SetupDefaultSettings()
         {
             rbDeterminedFlow.Checked = true;
             MakeDeterminedFlowParamsVisible();
+
+            MakeUniformFlowParamsInvisible();
         }
 
         private void MakeDeterminedFlowParamsVisible()
@@ -53,43 +67,50 @@ namespace GasStationMs.App
             nudDeterminedFlow.Visible = false;
         }
 
-        private void SetupCbChooseDistributionLaw()
+        private void SetupUniformFlowSettings()
         {
-            List<string> distributionLawsList = new List<string>();
-            distributionLawsList.Add("Равномерный");
-            distributionLawsList.Add("Нормальный");
-            distributionLawsList.Add("Показательный");
+            nudUniformDistParamA.Minimum = (decimal)TrafficFlow.MinAaParamForUniformFlow;
+            nudUniformDistParamA.Maximum = (decimal)TrafficFlow.MaxAaParamForUniformFlow;
 
-            cbChooseDistributionLaw.DataSource = distributionLawsList;
+            nudUniformDistParamB.Minimum = (decimal)TrafficFlow.MinBbParamForUniformFlow;
+            nudUniformDistParamB.Maximum = (decimal)TrafficFlow.MaxBbParamForUniformFlow;
         }
 
         private void cbChooseDistributionLaw_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MakeDeterminedFlowParamsInvisible();
-
-            MakeUniformFlowParamsInvisible();
-            MakeNormalFlowParamsInvisible();
-            MakeExponetialFlowParamsInvisible();
+            MakeAllFlowsParamsInvisible();
 
             switch (cbChooseDistributionLaw.SelectedIndex)
             {
-                case 0:
+                case (int)DistributionLaws.UniformDistribution:
                     MakeUniformFlowParamsVisible();
                     break;
 
-                case 1:
+                case (int)DistributionLaws.NormalDistribution:
                     MakeNormalFlowParamsVisible();
                     break;
 
-                case 2:
+                case (int)DistributionLaws.ExponentialDistribution:
                     MakeExponetialFlowParamsVisible();
                     break;
             }
         }
 
+        private void MakeAllFlowsParamsInvisible()
+        {
+            MakeDeterminedFlowParamsInvisible();
+            MakeUniformFlowParamsInvisible();
+            MakeNormalFlowParamsInvisible();
+            MakeExponetialFlowParamsInvisible();
+        }
+
         private void MakeUniformFlowParamsInvisible()
         {
+            labelUniformDistParamA.Visible = false;
+            nudUniformDistParamA.Visible = false;
 
+            labelUniformDistParamB.Visible = false;
+            nudUniformDistParamB.Visible = false;
         }
 
         private void MakeNormalFlowParamsInvisible()
@@ -104,7 +125,11 @@ namespace GasStationMs.App
 
         private void MakeUniformFlowParamsVisible()
         {
+            labelUniformDistParamA.Visible = true;
+            nudUniformDistParamA.Visible = true;
 
+            labelUniformDistParamB.Visible = true;
+            nudUniformDistParamB.Visible = true;
         }
 
         private void MakeNormalFlowParamsVisible()
@@ -120,39 +145,46 @@ namespace GasStationMs.App
 
         #region
 
-        public IDistributionLaw Generator;
+
         private void buttonToModelling_Click(object sender, EventArgs e)
         {
             if (rbRandomFlow.Checked == true)
             {
-                switch (cbChooseDistributionLaw.SelectedIndex)
+                try
                 {
-                    case 0:
-                        Generator = new UniformDistribution(0.1, (double)nudDeterminedFlow.Value);
-                        break;
+                    switch (cbChooseDistributionLaw.SelectedIndex)
+                    {
+                        case (int)DistributionLaws.UniformDistribution:
+                            randNumGenerator = new UniformDistribution((double)nudUniformDistParamA.Value, (double)nudUniformDistParamB.Value);
+                            break;
 
-                    case 1:
-                        Generator = new NormalDistribution((double)normalDistributionPredicted.Value, (double)normalDistributionDispersion.Value);
-                        break;
+                        case (int)DistributionLaws.NormalDistribution:
+                            randNumGenerator = new NormalDistribution((double)normalDistributionPredicted.Value, (double)normalDistributionDispersion.Value);
+                            break;
 
-                    case 2:
-                        Generator = new ExponentialDistribution((double)exponentialDistributionLambda.Value);
-                        break;
+                        case (int)DistributionLaws.ExponentialDistribution:
+                            randNumGenerator = new ExponentialDistribution((double)exponentialDistributionLambda.Value);
+                            break;
 
 
-                    default:
-                        break;
+                        default:
+                            break;
+                    }
                 }
-
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                    return;
+                }
             }
             else
             {
-                Generator = new DeterminedDistribution((double)nudDeterminedFlow.Value);
+                randNumGenerator = new DeterminedDistribution((double)nudDeterminedFlow.Value);
             }
-            label4.Text = Generator.GetRandNumber().ToString();
+            MessageBox.Show(randNumGenerator.GetRandNumber().ToString());
 
             Topology.Topology topology = tb.ToTopology();
-            ModelingForm modelingForm = new ModelingForm(topology, Generator);
+            ModelingForm modelingForm = new ModelingForm(topology, randNumGenerator);
             modelingForm.ShowDialog();
         }
 
