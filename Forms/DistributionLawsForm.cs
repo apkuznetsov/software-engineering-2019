@@ -18,10 +18,11 @@ namespace GasStationMs.App
 
             this.tb = tb;
 
-            nudDeterminedFlow.Minimum = TrafficFlow.MinTimeBetweenCarsInSeconds;
-            nudDeterminedFlow.Maximum = TrafficFlow.MaxTimeBetweenCarsInSeconds;
+            nudDeterminedFlow.Minimum = (decimal)TrafficFlow.MinTimeBetweenCarsInSeconds;
+            nudDeterminedFlow.Maximum = (decimal)TrafficFlow.MaxTimeBetweenCarsInSeconds;
 
-            cbSelectDistributionLaw.Visible = false;
+            rbDeterminedFlow.Checked = true;
+            MakeDeterminedFlowParamsVisible();
         }
         #region Отображение ЗР
 
@@ -30,9 +31,8 @@ namespace GasStationMs.App
             switch (cbSelectDistributionLaw.SelectedIndex)
             {
                 case 0:
-                    uniformDistributionTimeLabel.Visible = true;
-                    uniformDistributionTime.Visible = true;
-                    uniformDistributionPanel.Visible = true;
+                    labelDeterminedFlowParams.Visible = true;
+                    nudDeterminedFlow.Visible = true;
 
 
                     break;
@@ -71,7 +71,7 @@ namespace GasStationMs.App
                 switch (cbSelectDistributionLaw.SelectedIndex)
                 {
                     case 0:
-                        Generator = new UniformDistribution(0.1, (double)uniformDistributionTime.Value);
+                        Generator = new UniformDistribution(0.1, (double)nudDeterminedFlow.Value);
                         break;
 
                     case 1:
@@ -142,9 +142,27 @@ namespace GasStationMs.App
         private void rbRandomFlow_CheckedChanged(object sender, EventArgs e)
         {
             if (rbRandomFlow.Checked == true)
+            {
                 cbSelectDistributionLaw.Visible = true;
+                MakeDeterminedFlowParamsInvisible();
+            }
             else
+            {
                 cbSelectDistributionLaw.Visible = false;
+                MakeDeterminedFlowParamsVisible();
+            }
+        }
+
+        private void MakeDeterminedFlowParamsVisible()
+        {
+            labelDeterminedFlowParams.Visible = true;
+            nudDeterminedFlow.Visible = true;
+        }
+
+        private void MakeDeterminedFlowParamsInvisible()
+        {
+            labelDeterminedFlowParams.Visible = false;
+            nudDeterminedFlow.Visible = false;
         }
     }
 }

@@ -5,8 +5,8 @@ namespace GasStationMs.App.Models
 {
     public class TrafficFlow
     {
-        public static readonly int MinTimeBetweenCarsInSeconds = 2;
-        public static readonly int MaxTimeBetweenCarsInSeconds = 10;
+        public static readonly double MinTimeBetweenCarsInSeconds = 2.0;
+        public static readonly double MaxTimeBetweenCarsInSeconds = 10.0;
 
         private IDistributionLaw _distributionLaw;
         private int _timeBetweenCarsInSeconds;
