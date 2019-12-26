@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using GasStationMs.App.AdditionalModels;
+using GasStationMs.App.DB.Models;
 
 namespace GasStationMs.App.TemplateElements
 {
@@ -18,12 +18,12 @@ namespace GasStationMs.App.TemplateElements
         private int volume;
         private int criticalVolume;
         private int occupiedVolume;
-        private Fuel _fuel;
+        private FuelModel fuel;
 
         public FuelTank()
         {
             Volume = MinVolumeInLiters;
-            _fuel = new Fuel("АИ-100");
+            fuel = new FuelModel(-1, "АИ-92", 31);
         }
 
         public int Volume
@@ -78,11 +78,12 @@ namespace GasStationMs.App.TemplateElements
         {
             get
             {
-                return _fuel.Name;
+                return fuel.Name;
             }
+
             set
             {
-                this._fuel = new Fuel(value);
+                this.fuel = new FuelModel(-1, value, 32);
             }
         }
 
