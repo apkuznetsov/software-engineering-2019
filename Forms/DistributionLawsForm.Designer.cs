@@ -31,8 +31,8 @@
             this.rbDeterminedFlow = new System.Windows.Forms.RadioButton();
             this.rbRandomFlow = new System.Windows.Forms.RadioButton();
             this.cbChooseDistributionLaw = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.probabilityToEnter = new System.Windows.Forms.NumericUpDown();
+            this.labelProbabilityOfStoppingAtGasStation = new System.Windows.Forms.Label();
+            this.nudProbabilityOfStoppingAtGasStation = new System.Windows.Forms.NumericUpDown();
             this.buttonToModelling = new System.Windows.Forms.Button();
             this.nudNormalDistrVariance = new System.Windows.Forms.NumericUpDown();
             this.nudNormalDistrExpectedValue = new System.Windows.Forms.NumericUpDown();
@@ -54,7 +54,8 @@
             this.nudExponentialDistrLambda = new System.Windows.Forms.NumericUpDown();
             this.labelExponentialDistrLambda = new System.Windows.Forms.Label();
             this.gbExponentialDistrParams = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.probabilityToEnter)).BeginInit();
+            this.gbProbabilityOfStoppingAtGasStation = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProbabilityOfStoppingAtGasStation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistrVariance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistrExpectedValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDeterminedFlow)).BeginInit();
@@ -68,6 +69,7 @@
             this.gbNormalDistrParams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudExponentialDistrLambda)).BeginInit();
             this.gbExponentialDistrParams.SuspendLayout();
+            this.gbProbabilityOfStoppingAtGasStation.SuspendLayout();
             this.SuspendLayout();
             // 
             // rbDeterminedFlow
@@ -108,36 +110,36 @@
             this.cbChooseDistributionLaw.Visible = false;
             this.cbChooseDistributionLaw.SelectedIndexChanged += new System.EventHandler(this.cbChooseDistributionLaw_SelectedIndexChanged);
             // 
-            // label3
+            // labelProbabilityOfStoppingAtGasStation
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 435);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(214, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Вероятность заезда автомобиля на АЗС";
+            this.labelProbabilityOfStoppingAtGasStation.AutoSize = true;
+            this.labelProbabilityOfStoppingAtGasStation.Location = new System.Drawing.Point(6, 16);
+            this.labelProbabilityOfStoppingAtGasStation.Name = "labelProbabilityOfStoppingAtGasStation";
+            this.labelProbabilityOfStoppingAtGasStation.Size = new System.Drawing.Size(214, 13);
+            this.labelProbabilityOfStoppingAtGasStation.TabIndex = 7;
+            this.labelProbabilityOfStoppingAtGasStation.Text = "Вероятность заезда автомобиля на АЗС";
             // 
-            // probabilityToEnter
+            // nudProbabilityOfStoppingAtGasStation
             // 
-            this.probabilityToEnter.DecimalPlaces = 1;
-            this.probabilityToEnter.Increment = new decimal(new int[] {
+            this.nudProbabilityOfStoppingAtGasStation.DecimalPlaces = 1;
+            this.nudProbabilityOfStoppingAtGasStation.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.probabilityToEnter.Location = new System.Drawing.Point(285, 428);
-            this.probabilityToEnter.Maximum = new decimal(new int[] {
+            this.nudProbabilityOfStoppingAtGasStation.Location = new System.Drawing.Point(226, 14);
+            this.nudProbabilityOfStoppingAtGasStation.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.probabilityToEnter.Name = "probabilityToEnter";
-            this.probabilityToEnter.Size = new System.Drawing.Size(39, 20);
-            this.probabilityToEnter.TabIndex = 8;
+            this.nudProbabilityOfStoppingAtGasStation.Name = "nudProbabilityOfStoppingAtGasStation";
+            this.nudProbabilityOfStoppingAtGasStation.Size = new System.Drawing.Size(39, 20);
+            this.nudProbabilityOfStoppingAtGasStation.TabIndex = 8;
             // 
             // buttonToModelling
             // 
-            this.buttonToModelling.Location = new System.Drawing.Point(12, 460);
+            this.buttonToModelling.Location = new System.Drawing.Point(12, 326);
             this.buttonToModelling.Name = "buttonToModelling";
             this.buttonToModelling.Size = new System.Drawing.Size(624, 33);
             this.buttonToModelling.TabIndex = 9;
@@ -262,7 +264,7 @@
             this.gbRandomFlowParams1.Size = new System.Drawing.Size(418, 61);
             this.gbRandomFlowParams1.TabIndex = 24;
             this.gbRandomFlowParams1.TabStop = false;
-            this.gbRandomFlowParams1.Text = "Параметры случайного потока 1";
+            this.gbRandomFlowParams1.Text = "Параметры №1 случайного потока";
             // 
             // labelChooseDistributionLaw
             // 
@@ -284,7 +286,7 @@
             this.gbRandomFlowParams2.Size = new System.Drawing.Size(624, 131);
             this.gbRandomFlowParams2.TabIndex = 25;
             this.gbRandomFlowParams2.TabStop = false;
-            this.gbRandomFlowParams2.Text = "Параметры случайного потока 2";
+            this.gbRandomFlowParams2.Text = "Параметры №2 случайного потока ";
             // 
             // gbUniformDistrParams
             // 
@@ -410,21 +412,31 @@
             this.gbExponentialDistrParams.TabStop = false;
             this.gbExponentialDistrParams.Text = "Параметры показательного распределения";
             // 
+            // gbProbabilityOfStoppingAtGasStation
+            // 
+            this.gbProbabilityOfStoppingAtGasStation.Controls.Add(this.labelProbabilityOfStoppingAtGasStation);
+            this.gbProbabilityOfStoppingAtGasStation.Controls.Add(this.nudProbabilityOfStoppingAtGasStation);
+            this.gbProbabilityOfStoppingAtGasStation.Location = new System.Drawing.Point(12, 279);
+            this.gbProbabilityOfStoppingAtGasStation.Name = "gbProbabilityOfStoppingAtGasStation";
+            this.gbProbabilityOfStoppingAtGasStation.Size = new System.Drawing.Size(624, 41);
+            this.gbProbabilityOfStoppingAtGasStation.TabIndex = 26;
+            this.gbProbabilityOfStoppingAtGasStation.TabStop = false;
+            // 
             // DistributionLawsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 505);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(643, 370);
+            this.Controls.Add(this.gbProbabilityOfStoppingAtGasStation);
             this.Controls.Add(this.gbRandomFlowParams2);
             this.Controls.Add(this.gbRandomFlowParams1);
             this.Controls.Add(this.gbDeterminedFlowParams);
             this.Controls.Add(this.gbSelectFlow);
             this.Controls.Add(this.buttonToModelling);
-            this.Controls.Add(this.probabilityToEnter);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DistributionLawsForm";
             this.Text = "Настройка транспортного потока";
-            ((System.ComponentModel.ISupportInitialize)(this.probabilityToEnter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudProbabilityOfStoppingAtGasStation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistrVariance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistrExpectedValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDeterminedFlow)).EndInit();
@@ -444,8 +456,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudExponentialDistrLambda)).EndInit();
             this.gbExponentialDistrParams.ResumeLayout(false);
             this.gbExponentialDistrParams.PerformLayout();
+            this.gbProbabilityOfStoppingAtGasStation.ResumeLayout(false);
+            this.gbProbabilityOfStoppingAtGasStation.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -454,8 +467,8 @@
         private System.Windows.Forms.RadioButton rbDeterminedFlow;
         private System.Windows.Forms.RadioButton rbRandomFlow;
         private System.Windows.Forms.ComboBox cbChooseDistributionLaw;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown probabilityToEnter;
+        private System.Windows.Forms.Label labelProbabilityOfStoppingAtGasStation;
+        private System.Windows.Forms.NumericUpDown nudProbabilityOfStoppingAtGasStation;
         private System.Windows.Forms.Button buttonToModelling;
         private System.Windows.Forms.NumericUpDown nudNormalDistrVariance;
         private System.Windows.Forms.NumericUpDown nudNormalDistrExpectedValue;
@@ -477,5 +490,6 @@
         private System.Windows.Forms.GroupBox gbExponentialDistrParams;
         private System.Windows.Forms.NumericUpDown nudExponentialDistrLambda;
         private System.Windows.Forms.Label labelExponentialDistrLambda;
+        private System.Windows.Forms.GroupBox gbProbabilityOfStoppingAtGasStation;
     }
 }
