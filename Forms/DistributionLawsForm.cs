@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
+using GasStationMs.App.Forms;
 using GasStationMs.App.Models;
 using GasStationMs.App.Topology;
 
@@ -184,7 +185,7 @@ namespace GasStationMs.App
             nudExponentialDistrLambda.Visible = true;
         }
 
-        private void buttonToModelling_Click(object sender, EventArgs e)
+        private void btnToModelingForm_Click(object sender, EventArgs e)
         {
             if (rbRandomFlow.Checked == true)
             {
@@ -218,11 +219,12 @@ namespace GasStationMs.App
             {
                 randNumGenerator = new DeterminedDistribution((double)nudDeterminedFlow.Value);
             }
-            MessageBox.Show(randNumGenerator.GetRandNumber().ToString());
 
-            //Topology.Topology topology = tb.ToTopology();
-            //ModelingForm modelingForm = new ModelingForm(topology, randNumGenerator);
-            //modelingForm.ShowDialog();
+            Topology.Topology topology = tb.ToTopology();
+            TrafficFlow trafficFlow = new TrafficFlow(randNumGenerator, (double)nudProbabilityOfStoppingAtGasStation.Value);
+
+            ModelingForm modelingForm = new ModelingForm(topology, trafficFlow);
+            modelingForm.ShowDialog();
         }
 
         private void rbRandomFlow_CheckedChanged(object sender, EventArgs e)
