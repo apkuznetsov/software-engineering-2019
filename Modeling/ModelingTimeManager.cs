@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GasStationMs.App.Modeling
+﻿namespace GasStationMs.App.Modeling
 {
-    class ModelingTimeManager
+    internal static class ModelingTimeManager
     {
+        internal const int MillisecondsForTimerTick = 20;
+
+        internal static void SetUpModelingTimer(System.Windows.Forms.Timer timerModeling)
+        {
+            timerModeling.Interval = MillisecondsForTimerTick;
+        }
     }
 }

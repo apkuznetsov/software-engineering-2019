@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
+using static GasStationMs.App.Modeling.ModelingTimeManager;
 
 namespace GasStationMs.App.Forms
 {
@@ -19,12 +20,15 @@ namespace GasStationMs.App.Forms
         public TextBox TextBoxSelectedItemInformation { get; private set; }
         public PictureBox PictureBoxServiceArea { get; private set; }
 
+        public Timer ModelingTimer { get; private set; }
+
         public ModelingForm(Topology.Topology topology, IDistributionLaw timeBetweenCarsGenerator)
         {
             InitializeComponent();
             RemoveUnusedControls();
             DefineProperties();
             LocateFormElements();
+            SetUpModelingTimer(timerModeling);
 
             ElementSizeDefiner.TopologyCellSize = 50;
 
@@ -60,6 +64,7 @@ namespace GasStationMs.App.Forms
             TextBoxSelectedItemInformation = textBoxSelectedItemInformation;
             PictureBoxServiceArea = pictureBoxServiceArea;
             LabelCashCounterSumValue = labelCashCounterSumValue;
+            ModelingTimer = timerModeling;
         }
 
         private void LocateFormElements()
