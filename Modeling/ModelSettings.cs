@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using GasStationMs.App.DB.Models;
-using GasStationMs.App.DistributionLaws;
+using GasStationMs.App.Models;
 
 namespace GasStationMs.App.Modeling
 {
@@ -8,9 +8,9 @@ namespace GasStationMs.App.Modeling
     {
         internal static List<FuelModel> Fuels { get; private set; } 
 
-        internal static void SetUpModelSettings(IDistributionLaw timeBetweenCarsGenerator)
+        internal static void SetUpModelSettings(TrafficFlow trafficFlow)
         {
-            TimeBetweenCarsGenerator = timeBetweenCarsGenerator;
+            TrafficFlow = trafficFlow;
             Fuels = new List<FuelModel>();
 
             // test
@@ -18,7 +18,7 @@ namespace GasStationMs.App.Modeling
             // /test
         }
 
-        internal static IDistributionLaw TimeBetweenCarsGenerator { get; set; }
+        internal static TrafficFlow TrafficFlow { get; set; }
 
         internal static void AddUniqueFuel(FuelModel fuel)
         {

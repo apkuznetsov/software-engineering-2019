@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using GasStationMs.App.DB.Models;
 using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
 using System.Drawing;
-using GasStationMs.App.DistributionLaws;
 using GasStationMs.App.Modeling.MovingLogic;
+using GasStationMs.App.Models;
 using static GasStationMs.App.Modeling.ElementPictureBoxProducer;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
 using static GasStationMs.App.Modeling.ElementViewProducer;
@@ -19,11 +18,11 @@ namespace GasStationMs.App.Modeling
 
 
         internal static MappedTopology MapTopology(ModelingForm modelingForm, 
-            Topology.Topology topology, IDistributionLaw timeBetweenCarsGenerator)
+            Topology.Topology topology, TrafficFlow trafficFlow)
         {
             _modelingForm = modelingForm;
             _topology = topology;
-            ModelSettings.SetUpModelSettings(timeBetweenCarsGenerator);
+            ModelSettings.SetUpModelSettings(trafficFlow);
             _mappedTopology = new MappedTopology();
             ElementPictureBoxProducer.SetUpElementPictureBoxProducer(modelingForm, _mappedTopology);
 
