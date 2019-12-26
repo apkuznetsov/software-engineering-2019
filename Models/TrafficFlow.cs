@@ -1,42 +1,14 @@
-using System;
-using GasStationMs.App.DistributionLaws;
-
 namespace GasStationMs.App.Models
 {
     public class TrafficFlow
     {
-        public static readonly double MinTimeBetweenCarsInSeconds = 2.0;
-        public static readonly double MaxTimeBetweenCarsInSeconds = 10.0;
+        public static readonly double MinParamForDeterminedFlow = 2.0;
+        public static readonly double MaxParamForDeterminedFlow = 10.0;
 
-        private IDistributionLaw _distributionLaw;
-        private int _timeBetweenCarsInSeconds;
+        public static readonly double MinAaParamForUniformFlow = 2.0;
+        public static readonly double MaxAaParamForUniformFlow = 10.0;
+        public static readonly double MinBbParamForUniformFlow = 2.0;
+        public static readonly double MaxBbParamForUniformFlow = 10.0;
 
-        public TrafficFlow(IDistributionLaw distributionLaw)
-        {
-            _distributionLaw = distributionLaw;
-        }
-
-        public int TimeBetweenCarsInSeconds
-        {
-            get
-            {
-                return _timeBetweenCarsInSeconds;
-            }
-
-            set
-            {
-                if (value < MinTimeBetweenCarsInSeconds)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                if (value > MaxTimeBetweenCarsInSeconds)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                _timeBetweenCarsInSeconds = value;
-            }
-        }
     }
 }
