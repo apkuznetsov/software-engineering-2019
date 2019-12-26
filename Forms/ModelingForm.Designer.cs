@@ -1,4 +1,6 @@
-﻿namespace GasStationMs.App.Forms
+﻿using GasStationMs.App.Modeling;
+
+namespace GasStationMs.App.Forms
 {
     partial class ModelingForm
     {
@@ -39,13 +41,9 @@
             this.labelCashCounterLimit = new System.Windows.Forms.Label();
             this.labelCashCounterSum = new System.Windows.Forms.Label();
             this.labelCashCounter = new System.Windows.Forms.Label();
-            this.labelStatus = new System.Windows.Forms.Label();
+            this.labelModelState = new System.Windows.Forms.Label();
             this.textBoxSelectedItemInformation = new System.Windows.Forms.TextBox();
             this.panelPlayground = new System.Windows.Forms.Panel();
-            this.panelTimeManagment = new System.Windows.Forms.Panel();
-            this.labelTotalTimeValue = new System.Windows.Forms.Label();
-            this.labelTotalTime = new System.Windows.Forms.Label();
-            this.pictureBoxPauseAndPlay = new System.Windows.Forms.PictureBox();
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.pictureBoxEnter = new System.Windows.Forms.PictureBox();
             this.pictureBoxFuelTank1 = new System.Windows.Forms.PictureBox();
@@ -55,10 +53,12 @@
             this.pictureBoxServiceArea = new System.Windows.Forms.PictureBox();
             this.pictureBoxFuelDispenser1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCashCounter = new System.Windows.Forms.PictureBox();
+            this.panelTimeManagment = new System.Windows.Forms.Panel();
+            this.pictureBoxPauseAndPlay = new System.Windows.Forms.PictureBox();
+            this.labelTotalTimeValue = new System.Windows.Forms.Label();
+            this.labelTotalTime = new System.Windows.Forms.Label();
             this.panelModelingInformation.SuspendLayout();
             this.panelPlayground.SuspendLayout();
-            this.panelTimeManagment.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPauseAndPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).BeginInit();
@@ -68,6 +68,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxServiceArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCashCounter)).BeginInit();
+            this.panelTimeManagment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPauseAndPlay)).BeginInit();
             this.SuspendLayout();
             // 
             // timerModeling
@@ -87,7 +89,7 @@
             this.panelModelingInformation.Controls.Add(this.labelCashCounterLimit);
             this.panelModelingInformation.Controls.Add(this.labelCashCounterSum);
             this.panelModelingInformation.Controls.Add(this.labelCashCounter);
-            this.panelModelingInformation.Controls.Add(this.labelStatus);
+            this.panelModelingInformation.Controls.Add(this.labelModelState);
             this.panelModelingInformation.Controls.Add(this.textBoxSelectedItemInformation);
             this.panelModelingInformation.Location = new System.Drawing.Point(1179, 2);
             this.panelModelingInformation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -169,16 +171,16 @@
             this.labelCashCounter.TabIndex = 2;
             this.labelCashCounter.Text = "Касса";
             // 
-            // labelStatus
+            // labelModelState
             // 
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.ForeColor = System.Drawing.Color.Green;
-            this.labelStatus.Location = new System.Drawing.Point(20, 34);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(153, 36);
-            this.labelStatus.TabIndex = 1;
-            this.labelStatus.Text = "АКТИВНА";
+            this.labelModelState.AutoSize = true;
+            this.labelModelState.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelModelState.ForeColor = System.Drawing.Color.Green;
+            this.labelModelState.Location = new System.Drawing.Point(20, 34);
+            this.labelModelState.Name = "labelModelState";
+            this.labelModelState.Size = new System.Drawing.Size(153, 36);
+            this.labelModelState.TabIndex = 1;
+            this.labelModelState.Text = "АКТИВНА";
             // 
             // textBoxSelectedItemInformation
             // 
@@ -206,47 +208,6 @@
             this.panelPlayground.Name = "panelPlayground";
             this.panelPlayground.Size = new System.Drawing.Size(1176, 936);
             this.panelPlayground.TabIndex = 10;
-            // 
-            // panelTimeManagment
-            // 
-            this.panelTimeManagment.BackColor = System.Drawing.SystemColors.Window;
-            this.panelTimeManagment.Controls.Add(this.pictureBoxPauseAndPlay);
-            this.panelTimeManagment.Controls.Add(this.labelTotalTimeValue);
-            this.panelTimeManagment.Controls.Add(this.labelTotalTime);
-            this.panelTimeManagment.Location = new System.Drawing.Point(3, 938);
-            this.panelTimeManagment.Name = "panelTimeManagment";
-            this.panelTimeManagment.Size = new System.Drawing.Size(1176, 100);
-            this.panelTimeManagment.TabIndex = 1;
-            // 
-            // labelTotalTimeValue
-            // 
-            this.labelTotalTimeValue.AutoSize = true;
-            this.labelTotalTimeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalTimeValue.Location = new System.Drawing.Point(252, 43);
-            this.labelTotalTimeValue.Name = "labelTotalTimeValue";
-            this.labelTotalTimeValue.Size = new System.Drawing.Size(114, 29);
-            this.labelTotalTimeValue.TabIndex = 1;
-            this.labelTotalTimeValue.Text = "totalTime";
-            // 
-            // labelTotalTime
-            // 
-            this.labelTotalTime.AutoSize = true;
-            this.labelTotalTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalTime.Location = new System.Drawing.Point(23, 39);
-            this.labelTotalTime.Name = "labelTotalTime";
-            this.labelTotalTime.Size = new System.Drawing.Size(223, 29);
-            this.labelTotalTime.TabIndex = 0;
-            this.labelTotalTime.Text = "Времени прошло:";
-            // 
-            // pictureBoxPauseAndPlay
-            // 
-            this.pictureBoxPauseAndPlay.Image = global::GasStationMs.App.Properties.Resources.Pause;
-            this.pictureBoxPauseAndPlay.Location = new System.Drawing.Point(1082, 35);
-            this.pictureBoxPauseAndPlay.Name = "pictureBoxPauseAndPlay";
-            this.pictureBoxPauseAndPlay.Size = new System.Drawing.Size(58, 48);
-            this.pictureBoxPauseAndPlay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPauseAndPlay.TabIndex = 2;
-            this.pictureBoxPauseAndPlay.TabStop = false;
             // 
             // pictureBoxCar
             // 
@@ -350,6 +311,47 @@
             this.pictureBoxCashCounter.TabIndex = 4;
             this.pictureBoxCashCounter.TabStop = false;
             // 
+            // panelTimeManagment
+            // 
+            this.panelTimeManagment.BackColor = System.Drawing.SystemColors.Window;
+            this.panelTimeManagment.Controls.Add(this.pictureBoxPauseAndPlay);
+            this.panelTimeManagment.Controls.Add(this.labelTotalTimeValue);
+            this.panelTimeManagment.Controls.Add(this.labelTotalTime);
+            this.panelTimeManagment.Location = new System.Drawing.Point(3, 938);
+            this.panelTimeManagment.Name = "panelTimeManagment";
+            this.panelTimeManagment.Size = new System.Drawing.Size(1176, 100);
+            this.panelTimeManagment.TabIndex = 1;
+            // 
+            // pictureBoxPauseAndPlay
+            // 
+            this.pictureBoxPauseAndPlay.Image = global::GasStationMs.App.Properties.Resources.Pause;
+            this.pictureBoxPauseAndPlay.Location = new System.Drawing.Point(1082, 35);
+            this.pictureBoxPauseAndPlay.Name = "pictureBoxPauseAndPlay";
+            this.pictureBoxPauseAndPlay.Size = new System.Drawing.Size(58, 48);
+            this.pictureBoxPauseAndPlay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPauseAndPlay.TabIndex = 2;
+            this.pictureBoxPauseAndPlay.TabStop = false;
+            // 
+            // labelTotalTimeValue
+            // 
+            this.labelTotalTimeValue.AutoSize = true;
+            this.labelTotalTimeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalTimeValue.Location = new System.Drawing.Point(252, 43);
+            this.labelTotalTimeValue.Name = "labelTotalTimeValue";
+            this.labelTotalTimeValue.Size = new System.Drawing.Size(114, 29);
+            this.labelTotalTimeValue.TabIndex = 1;
+            this.labelTotalTimeValue.Text = "totalTime";
+            // 
+            // labelTotalTime
+            // 
+            this.labelTotalTime.AutoSize = true;
+            this.labelTotalTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotalTime.Location = new System.Drawing.Point(23, 39);
+            this.labelTotalTime.Name = "labelTotalTime";
+            this.labelTotalTime.Size = new System.Drawing.Size(223, 29);
+            this.labelTotalTime.TabIndex = 0;
+            this.labelTotalTime.Text = "Времени прошло:";
+            // 
             // ModelingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -369,9 +371,6 @@
             this.panelModelingInformation.PerformLayout();
             this.panelPlayground.ResumeLayout(false);
             this.panelPlayground.PerformLayout();
-            this.panelTimeManagment.ResumeLayout(false);
-            this.panelTimeManagment.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPauseAndPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEnter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelTank1)).EndInit();
@@ -381,6 +380,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxServiceArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFuelDispenser1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCashCounter)).EndInit();
+            this.panelTimeManagment.ResumeLayout(false);
+            this.panelTimeManagment.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPauseAndPlay)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -401,7 +403,7 @@
         private System.Windows.Forms.Panel panelTimeManagment;
         private System.Windows.Forms.Label labelTotalTime;
         private System.Windows.Forms.Label labelTotalTimeValue;
-        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Label labelModelState;
         private System.Windows.Forms.TextBox textBoxSelectedItemInformation;
         private System.Windows.Forms.Label labelCashCounter;
         private System.Windows.Forms.Label labelCashCounterLimitValue;

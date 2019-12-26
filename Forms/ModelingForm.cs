@@ -22,6 +22,9 @@ namespace GasStationMs.App.Forms
 
         public Timer ModelingTimer { get; private set; }
 
+        public PictureBox ButtonPausePlay { get; private set; }
+        public Label LabelModelState { get; private set; }
+
         public ModelingForm(Topology.Topology topology, IDistributionLaw timeBetweenCarsGenerator)
         {
             InitializeComponent();
@@ -33,10 +36,11 @@ namespace GasStationMs.App.Forms
             ElementSizeDefiner.TopologyCellSize = 50;
 
             ClickEventProvider.SetUpClickEventProvider(this);
+            pictureBoxPauseAndPlay.MouseClick += ClickEventProvider.PictureBoxPauseAndPlay_Click;
 
             //this.timeBetweenCarsGenerator = timeBetweenCarsGenerator;
             _mappedTopology = TopologyMapper.MapTopology(this, topology, timeBetweenCarsGenerator);
-
+            
             ModelingProcessor.SetUpModelingProcessor(this, _mappedTopology);
         }
 
@@ -65,6 +69,8 @@ namespace GasStationMs.App.Forms
             PictureBoxServiceArea = pictureBoxServiceArea;
             LabelCashCounterSumValue = labelCashCounterSumValue;
             ModelingTimer = timerModeling;
+            ButtonPausePlay = pictureBoxPauseAndPlay;
+            LabelModelState = labelModelState;
         }
 
         private void LocateFormElements()

@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
@@ -13,11 +14,17 @@ namespace GasStationMs.App.Modeling
         private static Label _labelSelectedElement;
         private static TextBox _textBoxSelectedItemInformation;
 
+        private static PictureBox _buttonPausePlay;
+        private static Label _labelModelState;
+
         internal static void SetUpClickEventProvider(ModelingForm modelingForm)
         {
             _modelingForm = modelingForm;
             _labelSelectedElement = modelingForm.LabelSelectedElement;
             _textBoxSelectedItemInformation = modelingForm.TextBoxSelectedItemInformation;
+
+            _buttonPausePlay = modelingForm.ButtonPausePlay;
+            _labelModelState = modelingForm.LabelModelState;
         }
         internal static void CarPictureBox_Click(object sender, MouseEventArgs e)
         {
@@ -208,5 +215,26 @@ namespace GasStationMs.App.Modeling
             _textBoxSelectedItemInformation.Visible = false;
         }
 
+        internal static void PictureBoxPauseAndPlay_Click(object sender, EventArgs e)
+        {
+            var isPaused = ModelingTimeManager.IsPaused;
+
+            if (!isPaused)
+            {
+                ModelingTimeManager.IsPaused = true;
+                _buttonPausePlay.Image = Properties.Resources.Play;
+                _labelModelState.Text = "ПАУЗА";
+                _labelModelState.ForeColor = Color.Brown;
+            }
+            else
+            {
+                ModelingTimeManager.IsPaused = false;
+                _buttonPausePlay.Image = Properties.Resources.Pause;
+                _labelModelState.Text = "АКТИВНА";
+                _labelModelState.ForeColor = Color.Green;
+            }
+
+            _labelModelState.Refresh();
+        }
     }
 }
