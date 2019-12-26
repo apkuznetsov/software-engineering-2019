@@ -37,6 +37,11 @@ namespace GasStationMs.App.Forms
             _mappedTopology = TopologyMapper.MapTopology(this, topology, trafficFlow);
 
             ModelingProcessor.SetUpModelingProcessor(this, _mappedTopology);
+
+            // not implemented
+            labelTotalTime.Hide();
+            labelTotalTimeValue.Hide();
+            // /not implemented
         }
 
         private void TimerModeling_Tick(object sender, EventArgs e)
