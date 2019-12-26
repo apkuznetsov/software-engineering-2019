@@ -14,7 +14,7 @@ namespace GasStationMs.App.Modeling.MovingLogic.Car
             var car = ElementPictureBoxProducer.CreateCarPictureBox(carView);
 
             // Some Distribution law here
-            if (Rnd.NextDouble() >= 0.5)
+            if (Rnd.NextDouble() <= ModelSettings.TrafficFlow.ProbabilityOfStoppingAtGasStation)
             {
                 car.IsGoesFilling = true;
             }
