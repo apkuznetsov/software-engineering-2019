@@ -224,6 +224,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Modeling\TimeManaging\Play.png" />
+    <None Include="Resources\Modeling\TimeManaging\Stop.png" />
+    <None Include="Resources\Modeling\TimeManaging\Pause.png" />
     <None Include="Resources\Cars\refueler%2830x35%29.png" />
     <None Include="Resources\Cars\refueler%2830x30%29.png" />
     <None Include="Resources\Cars\collector%2835x17%29.png" />
