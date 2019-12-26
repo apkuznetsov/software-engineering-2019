@@ -15,10 +15,10 @@ namespace GasStationMs.App.TemplateElements
         public static readonly double CriticalVolumeForRefuelingInShares = 0.15;
         #endregion /статика
 
-        private int _volume;
-        private int _criticalVolume;
+        private int volume;
+        private int criticalVolume;
+        private int occupiedVolume;
         private Fuel _fuel;
-        private int _occupiedVolume;
 
         public FuelTank()
         {
@@ -30,7 +30,7 @@ namespace GasStationMs.App.TemplateElements
         {
             get
             {
-                return _volume;
+                return volume;
             }
 
             set
@@ -38,9 +38,12 @@ namespace GasStationMs.App.TemplateElements
                 if (value < MinVolumeInLiters)
                     throw new ArgumentOutOfRangeException();
 
-                _volume = value;
+                if (value > MaxVolumeInLiters)
+                    throw new ArgumentOutOfRangeException();
 
-                _criticalVolume = (int)(_volume * CriticalVolumeForRefuelingInShares);
+                volume = value;
+
+                criticalVolume = (int)(volume * CriticalVolumeForRefuelingInShares);
             }
         }
 
@@ -48,7 +51,26 @@ namespace GasStationMs.App.TemplateElements
         {
             get
             {
-                return _criticalVolume;
+                return criticalVolume;
+            }
+        }
+
+        public int OccupiedVolume
+        {
+            get
+            {
+                return occupiedVolume;
+            }
+
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException();
+
+                if (value > volume)
+                    throw new ArgumentOutOfRangeException();
+
+                occupiedVolume = value;
             }
         }
 
@@ -61,29 +83,6 @@ namespace GasStationMs.App.TemplateElements
             set
             {
                 this._fuel = new Fuel(value);
-            }
-        }
-
-        public int OccupiedVolume
-        {
-            get
-            {
-                return _occupiedVolume;
-            }
-
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                if (value > _volume)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                _occupiedVolume = value;
             }
         }
 
