@@ -65,7 +65,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdditionalModels\Fuel.cs" />
     <Compile Include="Forms\Constructor\ConstructorRbs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,12 +72,17 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
-    <Compile Include="Modeling\CarCreator.cs" />
-    <Compile Include="Modeling\CarMover.cs" />
-    <Compile Include="Modeling\CarRouter.cs" />
+    <Compile Include="Modeling\ModelingTimeManager.cs" />
+    <Compile Include="Modeling\ModelSettings.cs" />
+    <Compile Include="Modeling\Models\PictureBoxes\RefuellerPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modeling\MovingLogic\Car\CarCreator.cs" />
+    <Compile Include="Modeling\MovingLogic\Car\CarMover.cs" />
+    <Compile Include="Modeling\MovingLogic\Car\CarRouter.cs" />
     <Compile Include="Modeling\ClickEventProvider.cs" />
-    <Compile Include="Modeling\DestinationPointsDefiner.cs" />
-    <Compile Include="Modeling\DirectionEnum.cs" />
+    <Compile Include="Modeling\MovingLogic\DestinationPointsDefiner.cs" />
+    <Compile Include="Modeling\MovingLogic\DirectionEnum.cs" />
     <Compile Include="Modeling\ElementPictureBoxProducer.cs" />
     <Compile Include="Modeling\ElementSizeDefiner.cs" />
     <Compile Include="Modeling\ElementViewProducer.cs" />
@@ -96,6 +100,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Modeling\Models\Views\RefuellerView.cs" />
+    <Compile Include="Modeling\MovingLogic\Refueller\RefuellerCreator.cs" />
+    <Compile Include="Modeling\MovingLogic\Refueller\RefuellerMover.cs" />
+    <Compile Include="Modeling\MovingLogic\Refueller\RefuellerRouter.cs" />
     <Compile Include="Modeling\TopologyMapper.cs" />
     <Compile Include="TemplateElements\Road.cs" />
     <Compile Include="TemplateElements\ServiceArea.cs" />
@@ -216,6 +223,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>GasStationMsDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Modeling\TimeManaging\Play.png" />
+    <None Include="Resources\Modeling\TimeManaging\Stop.png" />
+    <None Include="Resources\Modeling\TimeManaging\Pause.png" />
     <None Include="Resources\Cars\refueler%2830x35%29.png" />
     <None Include="Resources\Cars\refueler%2830x30%29.png" />
     <None Include="Resources\Cars\collector%2835x17%29.png" />

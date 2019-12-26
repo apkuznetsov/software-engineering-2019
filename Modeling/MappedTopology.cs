@@ -9,6 +9,7 @@ namespace GasStationMs.App.Modeling
         internal PictureBox CashCounter { get; set; }
         internal PictureBox Enter { get; set; }
         internal PictureBox Exit { get; set; }
+        internal PictureBox ServiceArea { get; set; }
         internal List<PictureBox> FuelDispensersList { get; set; }
         internal List<PictureBox> FuelTanksList { get; set; }
 

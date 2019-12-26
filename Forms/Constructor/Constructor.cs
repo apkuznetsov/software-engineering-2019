@@ -65,34 +65,6 @@ namespace GasStationMs.App.Constructor
         }
 
         #region события
-        private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
-            }
-            catch (CannotRemoveTopologyBuilderCol)
-            {
-                cellsHorizontally.Value = _topologyBuilder.ColsCount;
-                MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
-            }
-        }
-
-        private void cellsVertically_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _topologyBuilder.RowsCount = (int)cellsVertically.Value;
-            }
-            catch (CannotRemoveTopologyBuilderRow)
-            {
-                cellsVertically.Value = _topologyBuilder.RowsCount;
-                MessageBox.Show("удалите ШЭ прежде чем удалить строку");
-            }
-        }
-
-
-
         private void rbFuelDispenser_mouseDown(object sender, MouseEventArgs e)
         {
             rbFuelDispenser.Checked = true;
@@ -229,12 +201,14 @@ namespace GasStationMs.App.Constructor
         private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
         {
             _selectedFuelTank.Volume = (int)numericUpDownVolume.Value;
+            _selectedFuelTank.OccupiedVolume = _selectedFuelTank.Volume;
         }
 
         private void numericUpDownFuelDispenserSpeed_ValueChanged(object sender, EventArgs e)
         {
 
             _selectedFuelDispenser.FuelFeedRateInLitersPerMinute = (int)numericUpDownFuelDispenserSpeed.Value;
+            _selectedFuelTank.OccupiedVolume = _selectedFuelTank.Volume;
         }
 
         private void clickedFuelList_SelectionChangeCommitted(object sender, EventArgs e)
@@ -244,7 +218,7 @@ namespace GasStationMs.App.Constructor
             var fuel = (FuelModel)row["Fuel"];
 
             textBoxChosenFuel.Text = fuel.Name;
-            _selectedFuelTank.Fuel = fuel.Name;
+            _selectedFuelTank.Fuel = fuel;
 
         }
 
@@ -400,6 +374,14 @@ namespace GasStationMs.App.Constructor
         {
             DistributionLawsForm distributionLawsForm = new DistributionLawsForm(_topologyBuilder);
             distributionLawsForm.ShowDialog();
+
+            // test
+            //Topology.Topology topology = _topologyBuilder.ToTopology();
+            ////ModelingForm modelingForm = new ModelingForm(topology);
+            //ModelingForm modelingForm = new ModelingForm(topology, null);
+            //modelingForm.ShowDialog();
+            // test
+
         }
     }
 }

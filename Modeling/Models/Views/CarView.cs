@@ -1,6 +1,6 @@
-﻿using System;
+﻿using GasStationMs.App.DB.Models;
+using System;
 using System.Windows.Forms;
-using GasStationMs.App.DB.Models;
 
 namespace GasStationMs.App.Modeling.Models.Views
 {
@@ -18,7 +18,7 @@ namespace GasStationMs.App.Modeling.Models.Views
         //public string FuelTypeName { get; set; }
 
         public bool IsTruck { get; set; }
-        
+
         public bool IsFuelDispenserChosen { get; set; }
         public PictureBox ChosenFuelDispenser { get; set; }
 
@@ -36,7 +36,7 @@ namespace GasStationMs.App.Modeling.Models.Views
             IsTruck = isTruck;
         }
 
-        
+
         public void PayForOrderedFuel(CashCounterView cashCounterView)
         {
             cashCounterView.CurrentCashVolume += OrderedAmountOfFuel * Fuel.Price;
@@ -47,11 +47,11 @@ namespace GasStationMs.App.Modeling.Models.Views
             // With step equal to 5% of Tank volume
             var rnd = new Random();
 
-            var onePercentOfTankVolume = (double) TankVolume / 100;
+            var onePercentOfTankVolume = (double)TankVolume / 100;
             var fivePercentOfTankVolume = onePercentOfTankVolume * 5;
 
             // Percentage of the remained fuel of the total tank volume
-            var percentageOfRemainedFuel = Convert.ToInt32((double) FuelRemained / (onePercentOfTankVolume));
+            var percentageOfRemainedFuel = Convert.ToInt32((double)FuelRemained / (onePercentOfTankVolume));
 
             var countOfFivePercentPartInRemainedFuel = Convert.ToInt32(percentageOfRemainedFuel / 5);
 

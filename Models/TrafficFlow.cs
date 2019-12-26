@@ -51,7 +51,7 @@ namespace GasStationMs.App.Models
         {
             get
             {
-                return ProbabilityOfStoppingAtGasStation;
+                return probabilityOfStoppingAtGasStation;
             }
         }
     }

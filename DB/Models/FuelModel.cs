@@ -1,5 +1,8 @@
-﻿namespace GasStationMs.App.DB.Models
+﻿using System;
+
+namespace GasStationMs.App.DB.Models
 {
+    [Serializable()]
     public class FuelModel
     {
         public int Id { get; set; }

@@ -5,18 +5,16 @@ using GasStationMs.App.Modeling.MovingLogic;
 
 namespace GasStationMs.App.Modeling.Models.PictureBoxes
 {
-    internal class CarPictureBox : MoveablePictureBox
+    internal class RefuellerPictureBox : MoveablePictureBox
     {
-        public CarPictureBox(ModelingForm modelingForm, CarView carView)
+        public RefuellerPictureBox(ModelingForm modelingForm, RefuellerView refuellerView)
         {
-            Tag = carView;
-            Image = Properties.Resources.car_32x17__left;
-            Location = DestinationPointsDefiner.SpawnPoint;
+            Tag = refuellerView;
+            Image = Properties.Resources.refueler_30x35_;
+            Location = DestinationPointsDefiner.RefuellerSpawnPoint;
             SizeMode = PictureBoxSizeMode.AutoSize;
 
-            IsGoesFilling = false;
-
-            MouseClick += ClickEventProvider.CarPictureBox_Click;
+            MouseClick += ClickEventProvider.RefuellerPictureBox_Click;
 
             modelingForm.PlaygroundPanel.Controls.Add(this);
             BringToFront();

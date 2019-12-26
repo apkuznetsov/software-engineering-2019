@@ -1,14 +1,10 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using GasStationMs.App.Forms;
-using GasStationMs.App.Modeling.Models;
+﻿using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
-using static GasStationMs.App.Modeling.CarRouter;
-using static GasStationMs.App.Modeling.DestinationPointsDefiner;
-using static GasStationMs.App.Modeling.ModelingProcessor;
+using System.Drawing;
+using System.Windows.Forms;
 
-namespace GasStationMs.App.Modeling
+namespace GasStationMs.App.Modeling.MovingLogic.Car
 {
     internal static class CarMover
     {
@@ -17,14 +13,14 @@ namespace GasStationMs.App.Modeling
         private static int _carSpeedFilling = 3;
         private static int _carSpeedNoFilling = 4;
 
-        internal static void  SetUpCarMover(ModelingForm modelingForm)
+        internal static void SetUpCarMover(ModelingForm modelingForm)
         {
             _modelingForm = modelingForm;
         }
 
         internal static void MoveCarToDestination(MoveablePictureBox car)
         {
-            CarView carView  = null;
+            CarView carView = null;
             CollectorView collectorView = null;
 
             if (car is CarPictureBox)
@@ -43,7 +39,7 @@ namespace GasStationMs.App.Modeling
                 {
                     var chosenFuelDispenser = (FuelDispenserView)carView.ChosenFuelDispenser.Tag;
 
-                    FillCar(carPictureBox, chosenFuelDispenser);
+                    ModelingProcessor.FillCar(carPictureBox, chosenFuelDispenser);
 
                     return;
                 }
@@ -52,7 +48,7 @@ namespace GasStationMs.App.Modeling
                 {
                     var cashCounter = collectorView.CashCounter.Tag as CashCounterView;
 
-                    CollectCash(collector, cashCounter);
+                    ModelingProcessor.CollectCash(collector, cashCounter);
 
                     return;
                 }
@@ -84,24 +80,24 @@ namespace GasStationMs.App.Modeling
                 //_isGoHorizontal = false;
                 //_isGoVertical = false;
 
-                if (destPoint.Equals(EnterPoint3))
+                if (destPoint.Equals(DestinationPointsDefiner.EnterPoint3))
                 {
                     car.IsOnStation = true;
                 }
 
                 if (car.IsGoesHorizontal && destPoint.Equals(car.FromLeftBypassingPoint))
                 {
-                     car.IsGoesHorizontal = false;
+                    car.IsGoesHorizontal = false;
                     //var x = 1;
                 }
 
                 if (car is CarPictureBox carPictureBox)
                 {
-                    foreach (var fuelDispensersDestPoint in FuelDispensersDestPoints.Values)
+                    foreach (var fuelDispensersDestPoint in DestinationPointsDefiner.FuelDispensersDestPoints.Values)
                     {
                         if (destPoint.Equals(fuelDispensersDestPoint))
                         {
-                            StartFilling(carPictureBox, carView.ChosenFuelDispenser);
+                            ModelingProcessor.StartFilling(carPictureBox, carView.ChosenFuelDispenser);
                             //test
                             //carView.IsFilled = true;
                         }
@@ -112,17 +108,17 @@ namespace GasStationMs.App.Modeling
                 {
                     if (destPoint.Equals(DestinationPointsDefiner.CashCounter))
                     {
-                        StartCollectingCash(collector, collectorView.CashCounter.Tag as CashCounterView);
+                        ModelingProcessor.StartCollectingCash(collector, collectorView.CashCounter.Tag as CashCounterView);
                         return;
                     }
                 }
 
-                if (destPoint.Equals(ExitPoint1))
+                if (destPoint.Equals(DestinationPointsDefiner.ExitPoint1))
                 {
                     car.IsOnStation = false;
                 }
 
-                if (destPoint.Equals(LeavePointNoFilling) || destPoint.Equals(LeavePointFilled))
+                if (destPoint.Equals(DestinationPointsDefiner.LeavePointNoFilling) || destPoint.Equals(DestinationPointsDefiner.LeavePointFilled))
                 {
                     _modelingForm.PlaygroundPanel.Controls.Remove(car);
                     car.Dispose();
@@ -145,7 +141,7 @@ namespace GasStationMs.App.Modeling
                         car.Top -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__up;
                         isVerticalMoving = true;
-                        destPoint = PreventIntersection(car, DirectionEnum.Direction.Up);
+                        destPoint = CarRouter.PreventIntersection(car, DirectionEnum.Direction.Up);
                     }
 
                     // Go Down
@@ -154,7 +150,7 @@ namespace GasStationMs.App.Modeling
                         car.Top += carSpeed;
                         //car.Image = Properties.Resources.car_64x34__down;
                         isVerticalMoving = true;
-                        destPoint = PreventIntersection(car, DirectionEnum.Direction.Down);
+                        destPoint = CarRouter.PreventIntersection(car, DirectionEnum.Direction.Down);
                     }
 
                     // Go left
@@ -162,7 +158,7 @@ namespace GasStationMs.App.Modeling
                     {
                         car.Left -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__left;
-                        destPoint = PreventIntersection(car, DirectionEnum.Direction.Left);
+                        destPoint = CarRouter.PreventIntersection(car, DirectionEnum.Direction.Left);
                     }
 
                     // Go Right
@@ -180,7 +176,7 @@ namespace GasStationMs.App.Modeling
                         car.Left -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__left;
                         isHorizontalMoving = true;
-                        destPoint = PreventIntersection(car, DirectionEnum.Direction.Left);
+                        destPoint = CarRouter.PreventIntersection(car, DirectionEnum.Direction.Left);
                     }
 
                     // Go Right
@@ -196,7 +192,7 @@ namespace GasStationMs.App.Modeling
                     {
                         car.Top -= carSpeed;
                         //car.Image = Properties.Resources.car_32x17__up;
-                        destPoint = PreventIntersection(car, DirectionEnum.Direction.Up);
+                        destPoint = CarRouter.PreventIntersection(car, DirectionEnum.Direction.Up);
                     }
 
                     // Go Down
@@ -204,7 +200,7 @@ namespace GasStationMs.App.Modeling
                     {
                         car.Top += carSpeed;
                         //car.Image = Properties.Resources.car_32x17__down;
-                        destPoint = PreventIntersection(car, DirectionEnum.Direction.Down);
+                        destPoint = CarRouter.PreventIntersection(car, DirectionEnum.Direction.Down);
                     }
                 }
             }
@@ -215,7 +211,7 @@ namespace GasStationMs.App.Modeling
                 {
                     car.Left -= carSpeed;
                     //car.Image = Properties.Resources.car_32x17__left;
-                    destPoint = PreventIntersection(car, DirectionEnum.Direction.Left);
+                    destPoint = CarRouter.PreventIntersection(car, DirectionEnum.Direction.Left);
                 }
 
                 // Go Right
@@ -230,7 +226,7 @@ namespace GasStationMs.App.Modeling
                 {
                     car.Top -= carSpeed;
                     //car.Image = Properties.Resources.car_32x17__up;
-                    destPoint = PreventIntersection(car, DirectionEnum.Direction.Up);
+                    destPoint = CarRouter.PreventIntersection(car, DirectionEnum.Direction.Up);
                 }
 
                 // Go Down
@@ -239,7 +235,7 @@ namespace GasStationMs.App.Modeling
                     car.Top += carSpeed;
                     //car.Image = Properties.Resources.car_32x17__down;
 
-                    destPoint = PreventIntersection(car, DirectionEnum.Direction.Down);
+                    destPoint = CarRouter.PreventIntersection(car, DirectionEnum.Direction.Down);
                 }
             }
 
