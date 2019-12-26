@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasStationMs.App.Forms;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
@@ -15,10 +16,10 @@ namespace GasStationMs.App
             InitializeComponent();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void btnOpenCreatingTopologyForm_Click(object sender, EventArgs e)
         {
-            Constructor.Constructor formTopologyBuilder = _container.GetInstance<Constructor.Constructor>();
-            formTopologyBuilder.Show();
+            CreatingTopologyForm creatingTopologyForm = new CreatingTopologyForm();
+            creatingTopologyForm.ShowDialog();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
