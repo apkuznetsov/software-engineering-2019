@@ -1,4 +1,5 @@
-﻿using GasStationMs.App.Forms;
+using System;
+using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
 using System.Text;
@@ -49,8 +50,9 @@ namespace GasStationMs.App.Modeling
 
             StringBuilder fuelDispenserInfo = new StringBuilder();
 
-            fuelDispenserInfo.Append("\r\nСкорость подачи топлива: " + fuelDispenserView.SpeedOfFillingPerSecond +
-                                     " литров/сек.");
+            fuelDispenserInfo.Append("\r\nСкорость подачи топлива: " + 
+                                     fuelDispenserView.SpeedOfFillingPerMinute +
+                                     " литров/мин.");
 
             _textBoxSelectedItemInformation.Text = fuelDispenserInfo.ToString();
 
