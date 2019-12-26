@@ -2,6 +2,7 @@ namespace GasStationMs.App.Models
 {
     public class TrafficFlow
     {
+        #region статика
         public static readonly double MinParamForDeterminedFlow = 2.0;
         public static readonly double MaxParamForDeterminedFlow = 10.0;
 
@@ -17,5 +18,9 @@ namespace GasStationMs.App.Models
 
         public static readonly double MinLambdaForExponentialFlow = 0.1;
         public static readonly double MaxLambdaForExponentialFlow = 5.0;
+
+        public static readonly double MinProbabilityOfStoppingAtGasStation = 0.1;
+        public static readonly double MaxProbabilityOfStoppingAtGasStation = 0.99;
+        #endregion /статика
     }
 }

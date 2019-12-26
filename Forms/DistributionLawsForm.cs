@@ -29,7 +29,6 @@ namespace GasStationMs.App
             SetupCbChooseDistributionLaw();
 
             SetupDefaultSettings();
-            SetupUniformFlowSettings();
         }
 
         private void SetupCbChooseDistributionLaw()
@@ -47,10 +46,10 @@ namespace GasStationMs.App
         {
             rbDeterminedFlow.Checked = true;
             MakeDeterminedFlowParamsVisible();
-
             MakeUniformFlowParamsInvisible();
 
             SetupFlowsSettings();
+            SetupChoosingProbabilityOfStoppingAtGasStation();
         }
 
         private void MakeDeterminedFlowParamsVisible()
@@ -101,6 +100,12 @@ namespace GasStationMs.App
         {
             nudExponentialDistrLambda.Minimum = (decimal)TrafficFlow.MinLambdaForExponentialFlow;
             nudExponentialDistrLambda.Maximum = (decimal)TrafficFlow.MaxLambdaForExponentialFlow;
+        }
+
+        private void SetupChoosingProbabilityOfStoppingAtGasStation()
+        {
+            nudProbabilityOfStoppingAtGasStation.Minimum = (decimal)TrafficFlow.MinProbabilityOfStoppingAtGasStation;
+            nudProbabilityOfStoppingAtGasStation.Maximum = (decimal)TrafficFlow.MaxProbabilityOfStoppingAtGasStation;
         }
 
         private void cbChooseDistributionLaw_SelectedIndexChanged(object sender, EventArgs e)
