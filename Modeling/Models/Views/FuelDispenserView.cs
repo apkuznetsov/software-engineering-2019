@@ -29,7 +29,7 @@ namespace GasStationMs.App.Modeling.Models.Views
             CarsInQueue = 0;
         }
 
-        public void ChoseFuelTank(List<PictureBox> fuelTanksList, FuelModel fuel)
+        public void ChooseFuelTank(List<PictureBox> fuelTanksList, FuelModel fuel)
         {
             ChosenFuelTank = null;
 

@@ -38,7 +38,7 @@ namespace GasStationMs.App.Modeling
             var carView = car.Tag as CarView;
             var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
 
-            fuelDispenserView.ChoseFuelTank(FuelTanksList, carView.Fuel);
+            fuelDispenserView.ChooseFuelTank(FuelTanksList, carView.Fuel);
 
             carView.PayForOrderedFuel((CashCounterView)CashCounter.Tag);
 
