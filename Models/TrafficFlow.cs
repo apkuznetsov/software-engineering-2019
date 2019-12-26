@@ -10,5 +10,9 @@ namespace GasStationMs.App.Models
         public static readonly double MinBbParamForUniformFlow = 2.0;
         public static readonly double MaxBbParamForUniformFlow = 10.0;
 
+        public static readonly double MinVarianceForNormalFlow = 0.0;
+        public static readonly double MaxVarianceForNormalFlow = 2.0;
+        public static readonly double MinExpectedValueForNormalFlow = 0.0;
+        public static readonly double MaxExpectedValueForNormalFlow = 5.0;
     }
 }

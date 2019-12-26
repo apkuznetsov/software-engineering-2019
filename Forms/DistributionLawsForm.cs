@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
@@ -74,6 +74,15 @@ namespace GasStationMs.App
 
             nudUniformDistParamB.Minimum = (decimal)TrafficFlow.MinBbParamForUniformFlow;
             nudUniformDistParamB.Maximum = (decimal)TrafficFlow.MaxBbParamForUniformFlow;
+        }
+
+        private void SetupNormalFlowSettings()
+        {
+            nudNormalDistrVariance.Minimum = (decimal)TrafficFlow.MinVarianceForNormalFlow;
+            nudNormalDistrVariance.Maximum = (decimal)TrafficFlow.MaxVarianceForNormalFlow;
+
+            nudNormalDistrExpectedValue.Minimum = (decimal)TrafficFlow.MinExpectedValueForNormalFlow;
+            nudNormalDistrExpectedValue.Maximum = (decimal)TrafficFlow.MaxExpectedValueForNormalFlow;
         }
 
         private void cbChooseDistributionLaw_SelectedIndexChanged(object sender, EventArgs e)
