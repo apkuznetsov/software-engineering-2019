@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbSelectDistributionLaw = new System.Windows.Forms.ComboBox();
-            this.buttonInfo = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.probabilityToEnter = new System.Windows.Forms.NumericUpDown();
             this.buttonToModelling = new System.Windows.Forms.Button();
@@ -66,7 +65,7 @@
             // rbDeterminedFlow
             // 
             this.rbDeterminedFlow.AutoSize = true;
-            this.rbDeterminedFlow.Location = new System.Drawing.Point(9, 19);
+            this.rbDeterminedFlow.Location = new System.Drawing.Point(6, 15);
             this.rbDeterminedFlow.Name = "rbDeterminedFlow";
             this.rbDeterminedFlow.Size = new System.Drawing.Size(165, 17);
             this.rbDeterminedFlow.TabIndex = 0;
@@ -77,7 +76,7 @@
             // rbRandomFlow
             // 
             this.rbRandomFlow.AutoSize = true;
-            this.rbRandomFlow.Location = new System.Drawing.Point(13, 70);
+            this.rbRandomFlow.Location = new System.Drawing.Point(6, 68);
             this.rbRandomFlow.Name = "rbRandomFlow";
             this.rbRandomFlow.Size = new System.Drawing.Size(112, 17);
             this.rbRandomFlow.TabIndex = 1;
@@ -124,16 +123,6 @@
             this.cbSelectDistributionLaw.TabIndex = 6;
             this.cbSelectDistributionLaw.Visible = false;
             this.cbSelectDistributionLaw.SelectedIndexChanged += new System.EventHandler(this.cbSelectDistributionLaw_SelectedIndexChanged);
-            // 
-            // buttonInfo
-            // 
-            this.buttonInfo.Image = global::GasStationMs.App.Properties.Resources.info;
-            this.buttonInfo.Location = new System.Drawing.Point(238, 37);
-            this.buttonInfo.Name = "buttonInfo";
-            this.buttonInfo.Size = new System.Drawing.Size(39, 40);
-            this.buttonInfo.TabIndex = 2;
-            this.buttonInfo.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.buttonInfo.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -363,7 +352,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nudDeterminedFlow);
-            this.Controls.Add(this.buttonInfo);
             this.Name = "DistributionLawsForm";
             this.Text = "DistributionLaws";
             ((System.ComponentModel.ISupportInitialize)(this.nudDeterminedFlow)).EndInit();
@@ -389,7 +377,6 @@
 
         private System.Windows.Forms.RadioButton rbDeterminedFlow;
         private System.Windows.Forms.RadioButton rbRandomFlow;
-        private System.Windows.Forms.Button buttonInfo;
         private System.Windows.Forms.NumericUpDown nudDeterminedFlow;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
