@@ -354,14 +354,14 @@ namespace GasStationMs.App.Forms
             // 
             // ModelingForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1430, 1033);
             this.Controls.Add(this.panelTimeManagment);
             this.Controls.Add(this.panelPlayground);
             this.Controls.Add(this.panelModelingInformation);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ModelingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
