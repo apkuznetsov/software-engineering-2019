@@ -84,7 +84,7 @@ namespace GasStationMs.App.Modeling
                     if (topologyElement is FuelTank fuelTank)
                     {
                         CreateFuelTank(fuelTank, creationPoint);
-                        //ModelSettings.AddUniqueFuel(fuelTank.Fuel);
+                        ModelSettings.AddUniqueFuel(fuelTank.Fuel);
                     }
                 }
             }
@@ -152,14 +152,14 @@ namespace GasStationMs.App.Modeling
 
         private static void CreateFuelTank(FuelTank fuelTank, Point creationPoint)
         {
-            //var fuel = fuelTank.Fuel;
-            //var volume = fuelTank.Volume;
-            //var currentFullness = fuelTank.OccupiedVolume;
+            var fuel = fuelTank.Fuel;
+            var volume = fuelTank.Volume;
+            var currentFullness = fuelTank.OccupiedVolume;
 
             // test
-            FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
-            var volume = 10000;
-            var currentFullness = 5000;
+            //FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
+            //var volume = 10000;
+            //var currentFullness = 5000;
             // /test
 
             var fuelTankView = CreateFuelTankView("Fuel Tank", volume, currentFullness, fuel);

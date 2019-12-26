@@ -14,7 +14,7 @@ namespace GasStationMs.App.Modeling
             Fuels = new List<FuelModel>();
 
             // test
-            Fuels.Add(new FuelModel(1, "АИ-92", 42.9));
+            //Fuels.Add(new FuelModel(1, "АИ-92", 42.9));
             // /test
         }
 
