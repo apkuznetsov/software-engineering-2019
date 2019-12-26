@@ -143,11 +143,11 @@
     <Compile Include="Topology\TopologyBuilderEntry.cs" />
     <Compile Include="Topology\TopologyBuilder.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
-    <Compile Include="Forms\Start.cs">
+    <Compile Include="Forms\StartingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Start.Designer.cs">
-      <DependentUpon>Start.cs</DependentUpon>
+    <Compile Include="Forms\StartingForm.Designer.cs">
+      <DependentUpon>StartingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Constructor\ConstructorSettings.cs">
       <SubType>Form</SubType>
@@ -167,8 +167,8 @@
     <EmbeddedResource Include="Forms\ModelingForm.resx">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Start.resx">
-      <DependentUpon>Start.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\StartingForm.resx">
+      <DependentUpon>StartingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Constructor\Constructor.resx">
       <DependentUpon>Constructor.cs</DependentUpon>

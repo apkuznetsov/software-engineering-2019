@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App
 {
-    partial class Start
+    partial class StartingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -88,7 +88,7 @@
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
-            // Start
+            // StartingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,7 +100,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreateTopology);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Start";
+            this.Name = "StartingForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Начало работы";

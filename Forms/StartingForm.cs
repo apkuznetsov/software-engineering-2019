@@ -6,10 +6,10 @@ using Container = SimpleInjector.Container;
 
 namespace GasStationMs.App
 {
-    public partial class Start : Form
+    public partial class StartingForm : Form
     {
         private readonly Container _container;
-        public Start(Container container)
+        public StartingForm(Container container)
         {
             _container = container;
             InitializeComponent();

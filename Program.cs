@@ -19,7 +19,7 @@ namespace GasStationMs.App
             //Application.Run(new ModelingForm(null));
             //Application.Run(container.GetInstance<DistributionLaws.DistributionLaws>());
             //Так будет выглядеть запуск приложения в будущем
-            Application.Run(new Start(_container));
+            Application.Run(new StartingForm(_container));
         }
 
         private static void Bootstrap()
