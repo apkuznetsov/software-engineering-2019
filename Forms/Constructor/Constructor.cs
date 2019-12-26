@@ -199,12 +199,14 @@ namespace GasStationMs.App.Constructor
         private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
         {
             _selectedFuelTank.Volume = (int)numericUpDownVolume.Value;
+            _selectedFuelTank.OccupiedVolume = _selectedFuelTank.Volume;
         }
 
         private void numericUpDownFuelDispenserSpeed_ValueChanged(object sender, EventArgs e)
         {
 
             _selectedFuelDispenser.FuelFeedRateInLitersPerMinute = (int)numericUpDownFuelDispenserSpeed.Value;
+            _selectedFuelTank.OccupiedVolume = _selectedFuelTank.Volume;
         }
 
         private void clickedFuelList_SelectionChangeCommitted(object sender, EventArgs e)
@@ -214,7 +216,7 @@ namespace GasStationMs.App.Constructor
             var fuel = (FuelModel)row["Fuel"];
 
             textBoxChosenFuel.Text = fuel.Name;
-            _selectedFuelTank.Fuel = fuel.Name;
+            _selectedFuelTank.Fuel = fuel;
 
         }
 

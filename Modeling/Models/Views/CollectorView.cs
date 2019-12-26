@@ -5,8 +5,8 @@ namespace GasStationMs.App.Modeling.Models.Views
     internal class CollectorView
     {
         public double TakenCashVolume { get; private set; }
-        public int SpeedOfCashCollectingPerSecond { get; private set; }
-        public double SpeedOfCashCollectingPerTick { get; private set; }
+        public int SpeedOfCashCollectingPerSecond { get; }
+        public double SpeedOfCashCollectingPerTick { get; }
         public bool IsGoesToCashCounter { get; set; }
         public PictureBox CashCounter { get; set; }
 

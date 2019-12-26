@@ -1,52 +1,33 @@
-using System.Windows.Forms;
 using GasStationMs.App.Forms;
-using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using GasStationMs.App.Modeling.MovingLogic.Car;
+using GasStationMs.App.Modeling.MovingLogic.Refueller;
+using System.Windows.Forms;
+using GasStationMs.App.Models;
 using static GasStationMs.App.Modeling.ClickEventProvider;
+using static GasStationMs.App.Modeling.ModelingTimeManager;
 
 namespace GasStationMs.App.Modeling
 {
     internal static class ModelingTicker
     {
-        private static int _timerTicksCount;
-        private static bool _paused;
+
         internal static void Tick(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
-            var selectedItem = modelingForm.SelectedItem;
-            var panelPlayground = modelingForm.PlaygroundPanel;
-
-
-            _timerTicksCount++;
-
-            modelingForm.LabelCashCounterSumValue.Text = ((int)((CashCounterView)mappedTopology.CashCounter.Tag).CurrentCashVolume).ToString();
-
-            if (selectedItem != null)
+            if (IsPaused)
             {
-                if (selectedItem.Tag is CarView)
-                {
-                    CarPictureBox_Click(selectedItem, null);
-                }
+                return;
+            }
 
-                if (selectedItem.Tag is FuelDispenserView)
-                {
-                    FuelDispenserPictureBox_Click(selectedItem, null);
-                }
+            TimerTicksCount++;
+            TicksAfterLastCarSpawning++;
 
-                if (selectedItem.Tag is FuelTankView)
-                {
-                    FuelTankPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem.Tag is CashCounterView)
-                {
-                    CashCounterPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem is CollectorPictureBox)
-                {
-                    CashCollectorPictureBox_Click(selectedItem, null);
-                }
+            if (TimeAfterLastCarSpawningInSeconds >= TimeBetweenCars)
+            {
+                CarCreator.SpawnCar();
+                TimeBetweenCars = ModelSettings.TrafficFlow.TimeBetweenCars;
+                TicksAfterLastCarSpawning = 0;
             }
 
             //if (!_paused)
@@ -58,12 +39,15 @@ namespace GasStationMs.App.Modeling
             //    _paused = true;
             //}
 
-            if (_timerTicksCount % 20 == 0)
-            {
-                CarCreator.SpawnCar();
-            }
+
+            //if (TimerTicksCount % 20 == 0)
+            //{
+            //    CarCreator.SpawnCar();
+            //}
 
             #region LoopingControls
+
+            var panelPlayground = modelingForm.PlaygroundPanel;
 
             foreach (Control control in panelPlayground.Controls)
             {
@@ -95,9 +79,52 @@ namespace GasStationMs.App.Modeling
                 }
 
                 // Refueller
+                if (moveablePictureBox is RefuellerPictureBox refueller)
+                {
+                    RefuellerRouter.RouteRefueller(refueller);
+
+                    RefuellerMover.MoveRefuellerToDestination(refueller);
+                }
             }
 
             #endregion /LoopingControls
+
+            #region UI
+
+            var selectedItem = modelingForm.SelectedItem;
+
+            modelingForm.LabelCashCounterSumValue.Text =
+                ((int) ((CashCounterView) mappedTopology.CashCounter.Tag).CurrentCashVolume).ToString();
+
+            if (selectedItem != null)
+            {
+                if (selectedItem.Tag is CarView)
+                {
+                    CarPictureBox_Click(selectedItem, null);
+                }
+
+                if (selectedItem.Tag is FuelDispenserView)
+                {
+                    FuelDispenserPictureBox_Click(selectedItem, null);
+                }
+
+                if (selectedItem.Tag is FuelTankView)
+                {
+                    FuelTankPictureBox_Click(selectedItem, null);
+                }
+
+                if (selectedItem.Tag is CashCounterView)
+                {
+                    CashCounterPictureBox_Click(selectedItem, null);
+                }
+
+                if (selectedItem is CollectorPictureBox)
+                {
+                    CashCollectorPictureBox_Click(selectedItem, null);
+                }
+            }
+
+            #endregion UI
         }
     }
 }

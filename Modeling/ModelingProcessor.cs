@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-using GasStationMs.App.Forms;
-using GasStationMs.App.Modeling.Models;
+﻿using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using GasStationMs.App.Modeling.MovingLogic.Car;
+using GasStationMs.App.Modeling.MovingLogic.Refueller;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Modeling
 {
@@ -14,25 +15,32 @@ namespace GasStationMs.App.Modeling
         internal static List<PictureBox> FuelTanksList { get; private set; }
 
         private static bool _isCollectingMoney;
+        private static bool _isRefilling;
 
         internal static void SetUpModelingProcessor(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
             CashCounter = mappedTopology.CashCounter;
             FuelDispensersList = mappedTopology.FuelDispensersList;
             FuelTanksList = mappedTopology.FuelTanksList;
+            _isCollectingMoney = false;
+            _isRefilling = false;
 
             CarMover.SetUpCarMover(modelingForm);
             CarRouter.SetUpCarRouter(modelingForm);
+
+            RefuellerMover.SetUpRefuellerMover(modelingForm);
         }
+
+        #region Car
 
         internal static void StartFilling(CarPictureBox car, PictureBox fuelDispenser)
         {
             var carView = car.Tag as CarView;
-            var fuelDispenserView = (FuelDispenserView) fuelDispenser.Tag;
+            var fuelDispenserView = (FuelDispenserView)fuelDispenser.Tag;
 
-            fuelDispenserView.ChoseFuelTank(FuelTanksList, carView.Fuel);
+            fuelDispenserView.ChooseFuelTank(FuelTanksList, carView.Fuel);
 
-            carView.PayForOrderedFuel((CashCounterView) CashCounter.Tag);
+            carView.PayForOrderedFuel((CashCounterView)CashCounter.Tag);
 
             car.IsFilling = true;
             fuelDispenserView.IsBusy = true;
@@ -44,12 +52,13 @@ namespace GasStationMs.App.Modeling
 
             carView.FuelRemained += fuelDispenser.GetFuelFromTank();
 
-            if (fuelDispenser.ChosenFuelTank.IsEmpty)
+            if (fuelDispenser.ChosenFuelTank.IsEmpty && !_isRefilling)
             {
-                // CallRefiller()
+                CallRefueller(fuelDispenser.ChosenFuelTank);
+                _isRefilling = true;
             }
 
-            if (((CashCounterView) CashCounter.Tag).IsFull && !_isCollectingMoney)
+            if (((CashCounterView)CashCounter.Tag).IsFull && !_isCollectingMoney)
             {
                 CallCollector();
                 _isCollectingMoney = true;
@@ -80,6 +89,11 @@ namespace GasStationMs.App.Modeling
             fuelDispenser.CarsInQueue--;
             fuelDispenser.IsBusy = false;
         }
+
+        #endregion Car
+
+
+        #region CashCollector
 
         private static void CallCollector()
         {
@@ -116,5 +130,54 @@ namespace GasStationMs.App.Modeling
 
             _isCollectingMoney = false;
         }
+
+        #endregion CashCollector
+
+
+        #region Refueller
+
+        private static void CallRefueller(FuelTankView fuelTank)
+        {
+            RefuellerCreator.SpawnRefueller(fuelTank);
+        }
+        internal static void StartRefilling(RefuellerPictureBox refueller, FuelTankView fuelTank)
+        {
+            refueller.IsFilling = true;
+        }
+
+        internal static void RefillFuelTank(RefuellerPictureBox refueller, FuelTankView fillingFuelTank)
+        {
+            var refuellerView = refueller.Tag as RefuellerView;
+            refuellerView.RefillFuelTank();
+
+            if (fillingFuelTank.CurrentFullness >= fillingFuelTank.Volume || refuellerView.FuelRemaining <= 0)
+            {
+                StopRefilling(refueller, fillingFuelTank);
+            }
+        }
+
+        private static void StopRefilling(RefuellerPictureBox refueller, FuelTankView fillingFuelTank)
+        {
+            var refuellerView = refueller.Tag as RefuellerView;
+
+            if (fillingFuelTank.CurrentFullness >= fillingFuelTank.Volume)
+            {
+                var fuelSurplus = fillingFuelTank.CurrentFullness - fillingFuelTank.Volume;
+
+                if (refuellerView.FuelRemaining <= 0)
+                {
+                    fuelSurplus = -fuelSurplus;
+                }
+
+                refuellerView.ReturnFuelFromFuelTank(fuelSurplus);
+            }
+
+            refueller.IsFilling = false;
+            refueller.IsFilled = true;
+
+            _isRefilling = false;
+        }
+
+        #endregion Refueller
     }
 }

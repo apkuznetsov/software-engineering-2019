@@ -1,16 +1,14 @@
+using GasStationMs.App.Modeling;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using GasStationMs.App.DistributionLaws;
-using GasStationMs.App.Modeling;
 using GasStationMs.App.Models;
+using static GasStationMs.App.Modeling.ModelingTimeManager;
 
 namespace GasStationMs.App.Forms
 {
     public partial class ModelingForm : Form
     {
-        private readonly TrafficFlow trafficFlow;
-
         private readonly MappedTopology _mappedTopology;
 
         public PictureBox SelectedItem { get; set; }
@@ -20,21 +18,30 @@ namespace GasStationMs.App.Forms
         public TextBox TextBoxSelectedItemInformation { get; private set; }
         public PictureBox PictureBoxServiceArea { get; private set; }
 
+        public PictureBox ButtonPausePlay { get; set; }
+        public Label LabelModelState { get; private set; }
+        public Timer ModelingTimer { get; private set; }
         public ModelingForm(Topology.Topology topology, TrafficFlow trafficFlow)
         {
             InitializeComponent();
             RemoveUnusedControls();
             DefineProperties();
             LocateFormElements();
+            SetUpModelingTimeManager(timerModeling);
 
             ElementSizeDefiner.TopologyCellSize = 50;
 
             ClickEventProvider.SetUpClickEventProvider(this);
+            pictureBoxPauseAndPlay.MouseClick += ClickEventProvider.PictureBoxPauseAndPlay_Click;
 
-            this.trafficFlow = trafficFlow;
-            _mappedTopology = TopologyMapper.MapTopology(this, topology);
+            _mappedTopology = TopologyMapper.MapTopology(this, topology, trafficFlow);
 
             ModelingProcessor.SetUpModelingProcessor(this, _mappedTopology);
+
+            // not implemented
+            labelTotalTime.Hide();
+            labelTotalTimeValue.Hide();
+            // /not implemented
         }
 
         private void TimerModeling_Tick(object sender, EventArgs e)
@@ -61,6 +68,9 @@ namespace GasStationMs.App.Forms
             TextBoxSelectedItemInformation = textBoxSelectedItemInformation;
             PictureBoxServiceArea = pictureBoxServiceArea;
             LabelCashCounterSumValue = labelCashCounterSumValue;
+            ModelingTimer = timerModeling;
+            ButtonPausePlay = pictureBoxPauseAndPlay;
+            LabelModelState = labelModelState;
         }
 
         private void LocateFormElements()
@@ -80,6 +90,14 @@ namespace GasStationMs.App.Forms
 
             labelTotalTime.Location = new Point(25, 25);
             labelTotalTimeValue.Location = new Point(labelTotalTime.Right + 10, 25);
+
+            pictureBoxPauseAndPlay.Size = new Size(30, 30);
+            pictureBoxPauseAndPlay.Location = new Point(panelTimeManagment.Right - 80, 15);
+        }
+
+        private void ModelingForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Dispose();
         }
     }
 }

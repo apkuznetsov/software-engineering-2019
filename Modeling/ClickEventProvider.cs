@@ -1,9 +1,10 @@
-﻿using System.Text;
-using System.Windows.Forms;
+using System;
+using System.Drawing;
 using GasStationMs.App.Forms;
-using GasStationMs.App.Modeling.Models;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
+using System.Text;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Modeling
 {
@@ -13,11 +14,17 @@ namespace GasStationMs.App.Modeling
         private static Label _labelSelectedElement;
         private static TextBox _textBoxSelectedItemInformation;
 
+        private static PictureBox _buttonPausePlay;
+        private static Label _labelModelState;
+
         internal static void SetUpClickEventProvider(ModelingForm modelingForm)
         {
             _modelingForm = modelingForm;
             _labelSelectedElement = modelingForm.LabelSelectedElement;
             _textBoxSelectedItemInformation = modelingForm.TextBoxSelectedItemInformation;
+
+            _buttonPausePlay = modelingForm.ButtonPausePlay;
+            _labelModelState = modelingForm.LabelModelState;
         }
         internal static void CarPictureBox_Click(object sender, MouseEventArgs e)
         {
@@ -25,20 +32,21 @@ namespace GasStationMs.App.Modeling
             var carView = (CarView)car.Tag;
 
             // textBoxSelectedItemInformation.Text = "";
-           _labelSelectedElement.Text = "Автомобиль";
+            _labelSelectedElement.Text = "Автомобиль";
 
             StringBuilder carInfo = new StringBuilder();
 
             carInfo.Append("Название: " + carView.Name);
             carInfo.Append("\r\nОбъем бака: " + carView.TankVolume);
-            carInfo.Append("\r\nТоплива в баке: " + (int)carView.FuelRemained);
-
+            carInfo.Append("\r\nТоплива в баке: " 
+                           + (int)carView.FuelRemained);
+                           //+ Math.Truncate(carView.FuelRemained * 1000) / 1000 );
 
             _textBoxSelectedItemInformation.Text = carInfo.ToString();
             _labelSelectedElement.Visible = true;
             _textBoxSelectedItemInformation.Visible = true;
 
-           _modelingForm.SelectedItem = car;
+            _modelingForm.SelectedItem = car;
         }
 
         internal static void FuelDispenserPictureBox_Click(object sender, MouseEventArgs e)
@@ -50,8 +58,9 @@ namespace GasStationMs.App.Modeling
 
             StringBuilder fuelDispenserInfo = new StringBuilder();
 
-            fuelDispenserInfo.Append("\r\nСкорость подачи топлива: " + fuelDispenserView.SpeedOfFillingPerSecond +
-                                     " литров/сек.");
+            fuelDispenserInfo.Append("\r\nСкорость подачи топлива: " + 
+                                     fuelDispenserView.SpeedOfFillingPerMinute +
+                                     " литров/мин.");
 
             _textBoxSelectedItemInformation.Text = fuelDispenserInfo.ToString();
 
@@ -124,6 +133,26 @@ namespace GasStationMs.App.Modeling
             _modelingForm.SelectedItem = cashCollector;
         }
 
+        internal static void RefuellerPictureBox_Click(object sender, MouseEventArgs e)
+        {
+            var refueller = (RefuellerPictureBox)sender;
+            var refuellerView = refueller.Tag as RefuellerView;
+
+            _labelSelectedElement.Text = "Дозаправщик";
+
+            StringBuilder cashCollectorInfo = new StringBuilder();
+
+            cashCollectorInfo.Append("\r\nОсталось топлива: " + (int)refuellerView.FuelRemaining + " л.");
+
+            _textBoxSelectedItemInformation.Text = cashCollectorInfo.ToString();
+
+            _labelSelectedElement.Visible = true;
+            _textBoxSelectedItemInformation.Visible = true;
+
+            _modelingForm.SelectedItem = refueller;
+        }
+
+
         internal static void EnterPictureBox_Click(object sender, MouseEventArgs e)
         {
             var enter = (PictureBox)sender;
@@ -186,5 +215,26 @@ namespace GasStationMs.App.Modeling
             _textBoxSelectedItemInformation.Visible = false;
         }
 
+        internal static void PictureBoxPauseAndPlay_Click(object sender, EventArgs e)
+        {
+            var isPaused = ModelingTimeManager.IsPaused;
+
+            if (!isPaused)
+            {
+                ModelingTimeManager.IsPaused = true;
+                _buttonPausePlay.Image = Properties.Resources.Play;
+                _labelModelState.Text = "ПАУЗА";
+                _labelModelState.ForeColor = Color.Brown;
+            }
+            else
+            {
+                ModelingTimeManager.IsPaused = false;
+                _buttonPausePlay.Image = Properties.Resources.Pause;
+                _labelModelState.Text = "АКТИВНА";
+                _labelModelState.ForeColor = Color.Green;
+            }
+
+            _labelModelState.Refresh();
+        }
     }
 }

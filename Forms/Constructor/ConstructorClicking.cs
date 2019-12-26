@@ -127,7 +127,7 @@ namespace GasStationMs.App.Constructor
                         textBoxChosenFuel.Visible = true;
                         FuelTank clickedFuelTank = cell.Tag as FuelTank;
                         _selectedFuelTank = clickedFuelTank;
-                        textBoxChosenFuel.Text = _selectedFuelTank.Fuel;
+                        textBoxChosenFuel.Text = _selectedFuelTank.Fuel.Name;
                         clickedFuelList.DisplayMember = "Fuel";
                         clickedFuelList.ValueMember = "Id";
                         clickedFuelList.DataSource = _fuelDataTable;

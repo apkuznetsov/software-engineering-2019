@@ -1,8 +1,9 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
 using GasStationMs.App.DB.Models;
 using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
+using System.Drawing;
+using GasStationMs.App.Modeling.MovingLogic;
+using GasStationMs.App.Models;
 using static GasStationMs.App.Modeling.ElementPictureBoxProducer;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
 using static GasStationMs.App.Modeling.ElementViewProducer;
@@ -15,17 +16,19 @@ namespace GasStationMs.App.Modeling
         private static Topology.Topology _topology;
         private static MappedTopology _mappedTopology;
 
-        internal static MappedTopology MapTopology(ModelingForm modelingForm, Topology.Topology topology)
+
+        internal static MappedTopology MapTopology(ModelingForm modelingForm, 
+            Topology.Topology topology, TrafficFlow trafficFlow)
         {
             _modelingForm = modelingForm;
             _topology = topology;
+            ModelSettings.SetUpModelSettings(trafficFlow);
             _mappedTopology = new MappedTopology();
             ElementPictureBoxProducer.SetUpElementPictureBoxProducer(modelingForm, _mappedTopology);
 
-
             SetupPlaygroundPanel();
             SetupServiceArea();
-                
+
             DestinationPointsDefiner.DefineElementsPoints(_mappedTopology);
 
             return _mappedTopology;
@@ -81,11 +84,12 @@ namespace GasStationMs.App.Modeling
                     if (topologyElement is FuelTank fuelTank)
                     {
                         CreateFuelTank(fuelTank, creationPoint);
+                        ModelSettings.AddUniqueFuel(fuelTank.Fuel);
                     }
                 }
             }
 
-            panelPlayground.MouseClick += new MouseEventHandler(ClickEventProvider.PlaygroundPanel_Click);
+            panelPlayground.MouseClick += ClickEventProvider.PlaygroundPanel_Click;
         }
 
         private static void SetupServiceArea()
@@ -102,7 +106,9 @@ namespace GasStationMs.App.Modeling
             pictureBoxServiceArea.Size = new Size(width, height);
             pictureBoxServiceArea.BackColor = Color.Wheat;
 
-            pictureBoxServiceArea.MouseClick += new MouseEventHandler(ClickEventProvider.ServiceArea_Click);
+            pictureBoxServiceArea.MouseClick += ClickEventProvider.ServiceArea_Click;
+
+            _mappedTopology.ServiceArea = pictureBoxServiceArea;
         }
 
         #region CashCounter
@@ -133,8 +139,8 @@ namespace GasStationMs.App.Modeling
 
         private static void CreateFuelDispenser(FuelDispenser fuelDispenser, Point creationPoint)
         {
-            //var speedOfFilling = fuelDispenser.SpeedOfFilling;
-            var speedOfFilling = 15;
+            var speedOfFilling = fuelDispenser.FuelFeedRateInLitersPerMinute;
+            //var speedOfFilling = 15;
             var fuelView = CreateFuelDispenserView("Fuel Dispenser", speedOfFilling);
 
             CreateFuelDispenserPictureBox(fuelView, creationPoint);
@@ -146,14 +152,14 @@ namespace GasStationMs.App.Modeling
 
         private static void CreateFuelTank(FuelTank fuelTank, Point creationPoint)
         {
-            //var fuel = fuelTank.Fuel;
-            //var volume = fuelTank.Volume;
-            //var currentFullness = fuelTank.OccupiedVolume;
+            var fuel = fuelTank.Fuel;
+            var volume = fuelTank.Volume;
+            var currentFullness = fuelTank.OccupiedVolume;
 
             // test
-            FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
-            var volume = 10000;
-            var currentFullness = 5000;
+            //FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
+            //var volume = 10000;
+            //var currentFullness = 5000;
             // /test
 
             var fuelTankView = CreateFuelTankView("Fuel Tank", volume, currentFullness, fuel);

@@ -5,20 +5,23 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App.Modeling.Models.PictureBoxes
 {
-     internal class MoveablePictureBox : PictureBox
+    internal class MoveablePictureBox : PictureBox
     {
         internal bool IsGoesFilling { get; set; }
         internal bool IsOnStation { get; set; }
         internal bool IsFilled { get; set; }
         internal bool IsFilling { get; set; }
         internal bool IsBypassingObject { get; set; }
+        internal bool IsGoesHorizontal { get; set; }
+        internal Point FromLeftBypassingPoint { get; set; }
+
 
         private readonly List<Point> _destinationPoints;
         public PictureBox DestinationSpot;
 
         public MoveablePictureBox()
         {
-            _destinationPoints =  new List<Point>();
+            _destinationPoints = new List<Point>();
         }
 
         public PictureBox CreateDestinationSpot(Point destPoint)
@@ -30,7 +33,7 @@ namespace GasStationMs.App.Modeling.Models.PictureBoxes
                 Size = new Size(spotSize, spotSize),
                 Location = destPoint,
                 Visible = true,
-                BackColor = Color.DarkRed
+                //BackColor = Color.DarkRed
             };
 
             DestinationSpot.BringToFront();
@@ -66,9 +69,12 @@ namespace GasStationMs.App.Modeling.Models.PictureBoxes
 
         public void DeleteDestinationSpot(Form form)
         {
-            form.Controls.Remove(DestinationSpot);
-            DestinationSpot.Dispose();
-            DestinationSpot = null;
+            if (DestinationSpot != null)
+            {
+                form.Controls.Remove(DestinationSpot);
+                DestinationSpot.Dispose();
+                DestinationSpot = null;
+            }
         }
 
         public bool HasDestPoints()

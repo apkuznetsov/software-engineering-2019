@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace GasStationMs.App.DB
 {
-    internal  class ConnectionHelpers
+    internal class ConnectionHelpers
     {
         internal static SqlConnection OpenConnection()
         {
