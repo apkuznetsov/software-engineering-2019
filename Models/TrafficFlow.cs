@@ -1,3 +1,6 @@
+using System;
+using GasStationMs.App.DistributionLaws;
+
 namespace GasStationMs.App.Models
 {
     public class TrafficFlow
@@ -22,5 +25,34 @@ namespace GasStationMs.App.Models
         public static readonly double MinProbabilityOfStoppingAtGasStation = 0.1;
         public static readonly double MaxProbabilityOfStoppingAtGasStation = 0.99;
         #endregion /статика
+
+        private readonly IDistributionLaw timeBetweenCarsGenerator;
+        private readonly double probabilityOfStoppingAtGasStation;
+
+        public TrafficFlow(IDistributionLaw timeBetweenCarsGenerator, double probabilityOfStoppingAtGasStation)
+        {
+            this.timeBetweenCarsGenerator = timeBetweenCarsGenerator ?? throw new NullReferenceException();
+
+            if (probabilityOfStoppingAtGasStation < 0 || probabilityOfStoppingAtGasStation > 1)
+                throw new ArgumentOutOfRangeException();
+
+            this.probabilityOfStoppingAtGasStation = probabilityOfStoppingAtGasStation;
+        }
+
+        public double TimeBetweenCars
+        {
+            get
+            {
+                return timeBetweenCarsGenerator.GetRandNumber();
+            }
+        }
+
+        public double ProbabilityOfStoppingAtGasStation
+        {
+            get
+            {
+                return ProbabilityOfStoppingAtGasStation;
+            }
+        }
     }
 }
