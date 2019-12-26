@@ -42,28 +42,28 @@
             // labelChooseFilePath
             // 
             this.labelChooseFilePath.AutoSize = true;
-            this.labelChooseFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChooseFilePath.Location = new System.Drawing.Point(12, 79);
+            this.labelChooseFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChooseFilePath.Location = new System.Drawing.Point(12, 45);
             this.labelChooseFilePath.Name = "labelChooseFilePath";
-            this.labelChooseFilePath.Size = new System.Drawing.Size(426, 25);
+            this.labelChooseFilePath.Size = new System.Drawing.Size(260, 20);
             this.labelChooseFilePath.TabIndex = 0;
-            this.labelChooseFilePath.Text = "Задайте расположение файла топологии";
+            this.labelChooseFilePath.Text = "Расположение файла топологии";
             // 
             // btnFilePath
             // 
-            this.btnFilePath.Location = new System.Drawing.Point(494, 83);
+            this.btnFilePath.Location = new System.Drawing.Point(12, 68);
             this.btnFilePath.Name = "btnFilePath";
-            this.btnFilePath.Size = new System.Drawing.Size(78, 23);
+            this.btnFilePath.Size = new System.Drawing.Size(258, 23);
             this.btnFilePath.TabIndex = 1;
-            this.btnFilePath.Text = "Обзор";
+            this.btnFilePath.Text = "Выбрать";
             this.btnFilePath.UseVisualStyleBackColor = true;
             this.btnFilePath.Click += new System.EventHandler(this.btnFilePath_Click);
             // 
             // btnOpenConstructorForm
             // 
-            this.btnOpenConstructorForm.Location = new System.Drawing.Point(12, 326);
+            this.btnOpenConstructorForm.Location = new System.Drawing.Point(12, 201);
             this.btnOpenConstructorForm.Name = "btnOpenConstructorForm";
-            this.btnOpenConstructorForm.Size = new System.Drawing.Size(560, 23);
+            this.btnOpenConstructorForm.Size = new System.Drawing.Size(258, 23);
             this.btnOpenConstructorForm.TabIndex = 2;
             this.btnOpenConstructorForm.Text = "Создать";
             this.btnOpenConstructorForm.UseVisualStyleBackColor = true;
@@ -72,7 +72,7 @@
             // labelChooseColsCount
             // 
             this.labelChooseColsCount.AutoSize = true;
-            this.labelChooseColsCount.Location = new System.Drawing.Point(17, 255);
+            this.labelChooseColsCount.Location = new System.Drawing.Point(9, 119);
             this.labelChooseColsCount.Name = "labelChooseColsCount";
             this.labelChooseColsCount.Size = new System.Drawing.Size(116, 13);
             this.labelChooseColsCount.TabIndex = 3;
@@ -80,14 +80,14 @@
             // 
             // nudChooseColsCount
             // 
-            this.nudChooseColsCount.Location = new System.Drawing.Point(20, 271);
+            this.nudChooseColsCount.Location = new System.Drawing.Point(12, 135);
             this.nudChooseColsCount.Name = "nudChooseColsCount";
             this.nudChooseColsCount.Size = new System.Drawing.Size(120, 20);
             this.nudChooseColsCount.TabIndex = 4;
             // 
             // nudChooseRowsCount
             // 
-            this.nudChooseRowsCount.Location = new System.Drawing.Point(290, 271);
+            this.nudChooseRowsCount.Location = new System.Drawing.Point(150, 135);
             this.nudChooseRowsCount.Name = "nudChooseRowsCount";
             this.nudChooseRowsCount.Size = new System.Drawing.Size(120, 20);
             this.nudChooseRowsCount.TabIndex = 6;
@@ -95,7 +95,7 @@
             // labelChooseRowsCount
             // 
             this.labelChooseRowsCount.AutoSize = true;
-            this.labelChooseRowsCount.Location = new System.Drawing.Point(287, 255);
+            this.labelChooseRowsCount.Location = new System.Drawing.Point(147, 119);
             this.labelChooseRowsCount.Name = "labelChooseRowsCount";
             this.labelChooseRowsCount.Size = new System.Drawing.Size(116, 13);
             this.labelChooseRowsCount.TabIndex = 5;
@@ -105,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(282, 236);
             this.Controls.Add(this.nudChooseRowsCount);
             this.Controls.Add(this.labelChooseRowsCount);
             this.Controls.Add(this.nudChooseColsCount);
