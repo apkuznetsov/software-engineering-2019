@@ -10,15 +10,14 @@ namespace GasStationMs.App.Modeling
 
         internal static void SetUpModelSettings(IDistributionLaw timeBetweenCarsGenerator)
         {
+            TimeBetweenCarsGenerator = timeBetweenCarsGenerator;
             Fuels = new List<FuelModel>();
+
+            // test
+            Fuels.Add(new FuelModel(1, "АИ-92", 42.9));
+            // /test
         }
 
-        // test
-        static ModelSettings()
-        {
-            Fuels.Add(new FuelModel(1, "АИ-92", 42.9));
-        }
-        // /test
         internal static IDistributionLaw TimeBetweenCarsGenerator { get; set; }
 
         internal static void AddUniqueFuel(FuelModel fuel)
