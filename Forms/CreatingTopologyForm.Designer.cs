@@ -30,6 +30,7 @@
         {
             this.labelChooseFilePath = new System.Windows.Forms.Label();
             this.btnFilePath = new System.Windows.Forms.Button();
+            this.btnOpenConstructorForm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelChooseFilePath
@@ -52,11 +53,22 @@
             this.btnFilePath.UseVisualStyleBackColor = true;
             this.btnFilePath.Click += new System.EventHandler(this.btnFilePath_Click);
             // 
+            // btnOpenConstructorForm
+            // 
+            this.btnOpenConstructorForm.Location = new System.Drawing.Point(12, 326);
+            this.btnOpenConstructorForm.Name = "btnOpenConstructorForm";
+            this.btnOpenConstructorForm.Size = new System.Drawing.Size(560, 23);
+            this.btnOpenConstructorForm.TabIndex = 2;
+            this.btnOpenConstructorForm.Text = "Создать";
+            this.btnOpenConstructorForm.UseVisualStyleBackColor = true;
+            this.btnOpenConstructorForm.Click += new System.EventHandler(this.btnOpenConstructorForm_Click);
+            // 
             // CreatingTopologyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.btnOpenConstructorForm);
             this.Controls.Add(this.btnFilePath);
             this.Controls.Add(this.labelChooseFilePath);
             this.MaximizeBox = false;
@@ -73,5 +85,6 @@
 
         private System.Windows.Forms.Label labelChooseFilePath;
         private System.Windows.Forms.Button btnFilePath;
+        private System.Windows.Forms.Button btnOpenConstructorForm;
     }
 }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GasStationMs.App.Forms
@@ -17,6 +10,8 @@ namespace GasStationMs.App.Forms
         public CreatingTopologyForm()
         {
             InitializeComponent();
+
+            btnOpenConstructorForm.Enabled = false;
         }
 
         private void btnFilePath_Click(object sender, EventArgs e)
@@ -33,7 +28,13 @@ namespace GasStationMs.App.Forms
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 currFilePath = sfd.FileName;
+                btnOpenConstructorForm.Enabled = true;
             }
+        }
+
+        private void btnOpenConstructorForm_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
