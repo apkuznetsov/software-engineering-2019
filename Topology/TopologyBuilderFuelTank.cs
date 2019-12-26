@@ -35,7 +35,7 @@ namespace GasStationMs.App.Topology
         {
             if (CanAddFuelTank(x, y))
             {
-                DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
                 cell.Value = FuelTank.Image;
                 cell.Tag = new FuelTank();
@@ -50,7 +50,7 @@ namespace GasStationMs.App.Topology
 
         private bool CanAddFuelTank(int x, int y)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool isServiceArea = cell.Tag is ServiceArea;
 
             if (isServiceArea &&
@@ -67,11 +67,11 @@ namespace GasStationMs.App.Topology
 
         private bool IsThroughOneRowAfterServiceAreaBorder(int x, int y)
         {
-            bool isAfterBorderCol = x > _serviceAreaBorderColIndex;
+            bool isAfterBorderCol = x > serviceAreaBorderColIndex;
 
             if (isAfterBorderCol)
             {
-                bool isServiceAreaBorderColIndexEven = (_serviceAreaBorderColIndex % 2) == 0;
+                bool isServiceAreaBorderColIndexEven = (serviceAreaBorderColIndex % 2) == 0;
                 bool isExEven = (x % 2) == 0;
 
                 if (isServiceAreaBorderColIndexEven)
@@ -98,7 +98,7 @@ namespace GasStationMs.App.Topology
             if (_fuelTanksCount < 0)
                 throw new ArgumentOutOfRangeException();
 
-            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool canDelete = cell.Tag is FuelTank;
 
             if (canDelete)

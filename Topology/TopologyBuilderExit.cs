@@ -35,7 +35,7 @@ namespace GasStationMs.App.Topology
         {
             if (CanAddExit(x, y))
             {
-                DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
                 cell.Value = Exit.Image;
                 cell.Tag = new Exit();
@@ -50,7 +50,7 @@ namespace GasStationMs.App.Topology
 
         private bool CanAddExit(int x, int y)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool isRoad = cell.Tag is Road;
 
             if (isRoad &&
@@ -68,7 +68,7 @@ namespace GasStationMs.App.Topology
 
         private bool IsRightBeforeServiceAreaBorder(int x, int y)
         {
-            int colIndexRightBeforeServiceAreaBorder = _serviceAreaBorderColIndex - 1;
+            int colIndexRightBeforeServiceAreaBorder = serviceAreaBorderColIndex - 1;
 
             if (x == colIndexRightBeforeServiceAreaBorder)
                 return true;
@@ -81,7 +81,7 @@ namespace GasStationMs.App.Topology
             if (_exitsCount < 0)
                 throw new ArgumentOutOfRangeException();
 
-            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool canDelete = cell.Tag is Exit;
 
             if (canDelete)

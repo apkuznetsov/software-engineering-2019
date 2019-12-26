@@ -36,7 +36,7 @@ namespace GasStationMs.App.Topology
         {
             if (CanAddCashCounter(x, y))
             {
-                DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
                 cell.Value = CashCounter.Image;
                 cell.Tag = new CashCounter();
@@ -111,7 +111,7 @@ namespace GasStationMs.App.Topology
             if (isExLess)
                 return false;
 
-            bool isExMore = x > _field.ColumnCount - 1;
+            bool isExMore = x > field.ColumnCount - 1;
             if (isExMore)
                 return false;
 
@@ -119,7 +119,7 @@ namespace GasStationMs.App.Topology
             if (isEyUpper)
                 return false;
 
-            bool isEyLower = y > _field.RowCount - 1;
+            bool isEyLower = y > field.RowCount - 1;
             if (isEyLower)
                 return false;
 
