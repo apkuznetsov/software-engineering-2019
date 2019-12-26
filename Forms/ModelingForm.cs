@@ -84,6 +84,9 @@ namespace GasStationMs.App.Forms
 
             labelTotalTime.Location = new Point(25, 25);
             labelTotalTimeValue.Location = new Point(labelTotalTime.Right + 10, 25);
+
+            pictureBoxPauseAndPlay.Size = new Size(30, 30);
+            pictureBoxPauseAndPlay.Location = new Point(panelTimeManagment.Right - 80, 15);
         }
 
         private void ModelingForm_FormClosing(object sender, FormClosingEventArgs e)
