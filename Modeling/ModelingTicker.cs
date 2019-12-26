@@ -11,9 +11,13 @@ namespace GasStationMs.App.Modeling
     internal static class ModelingTicker
     {
         private static int _timerTicksCount;
-        private static bool _paused;
         internal static void Tick(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
+            if (ModelingTimeManager.IsPaused)
+            {
+                return;
+            }
+
             var selectedItem = modelingForm.SelectedItem;
             var panelPlayground = modelingForm.PlaygroundPanel;
 
