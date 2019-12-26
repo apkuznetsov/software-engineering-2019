@@ -18,12 +18,13 @@ namespace GasStationMs.App.TemplateElements
         private int volume;
         private int criticalVolume;
         private int occupiedVolume;
-        private FuelModel fuel;
+        public FuelModel Fuel { get; set; }
 
         public FuelTank()
         {
             Volume = MinVolumeInLiters;
-            fuel = new FuelModel(-1, "АИ-92", 31);
+            occupiedVolume = volume;
+            Fuel = new FuelModel(-1, "АИ-92               ", 42.3);
         }
 
         public int Volume
@@ -73,20 +74,7 @@ namespace GasStationMs.App.TemplateElements
                 occupiedVolume = value;
             }
         }
-
-        public string Fuel
-        {
-            get
-            {
-                return fuel.Name;
-            }
-
-            set
-            {
-                this.fuel = new FuelModel(-1, value, 32);
-            }
-        }
-
+        
         public override string ToString()
         {
             return "ТБ";
