@@ -31,6 +31,12 @@
             this.labelChooseFilePath = new System.Windows.Forms.Label();
             this.btnFilePath = new System.Windows.Forms.Button();
             this.btnOpenConstructorForm = new System.Windows.Forms.Button();
+            this.labelChooseColsCount = new System.Windows.Forms.Label();
+            this.nudChooseColsCount = new System.Windows.Forms.NumericUpDown();
+            this.nudChooseRowsCount = new System.Windows.Forms.NumericUpDown();
+            this.labelChooseRowsCount = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.nudChooseColsCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudChooseRowsCount)).BeginInit();
             this.SuspendLayout();
             // 
             // labelChooseFilePath
@@ -63,11 +69,47 @@
             this.btnOpenConstructorForm.UseVisualStyleBackColor = true;
             this.btnOpenConstructorForm.Click += new System.EventHandler(this.btnOpenConstructorForm_Click);
             // 
+            // labelChooseColsCount
+            // 
+            this.labelChooseColsCount.AutoSize = true;
+            this.labelChooseColsCount.Location = new System.Drawing.Point(17, 255);
+            this.labelChooseColsCount.Name = "labelChooseColsCount";
+            this.labelChooseColsCount.Size = new System.Drawing.Size(116, 13);
+            this.labelChooseColsCount.TabIndex = 3;
+            this.labelChooseColsCount.Text = "Количество столбцов";
+            // 
+            // nudChooseColsCount
+            // 
+            this.nudChooseColsCount.Location = new System.Drawing.Point(20, 271);
+            this.nudChooseColsCount.Name = "nudChooseColsCount";
+            this.nudChooseColsCount.Size = new System.Drawing.Size(120, 20);
+            this.nudChooseColsCount.TabIndex = 4;
+            // 
+            // nudChooseRowsCount
+            // 
+            this.nudChooseRowsCount.Location = new System.Drawing.Point(290, 271);
+            this.nudChooseRowsCount.Name = "nudChooseRowsCount";
+            this.nudChooseRowsCount.Size = new System.Drawing.Size(120, 20);
+            this.nudChooseRowsCount.TabIndex = 6;
+            // 
+            // labelChooseRowsCount
+            // 
+            this.labelChooseRowsCount.AutoSize = true;
+            this.labelChooseRowsCount.Location = new System.Drawing.Point(287, 255);
+            this.labelChooseRowsCount.Name = "labelChooseRowsCount";
+            this.labelChooseRowsCount.Size = new System.Drawing.Size(116, 13);
+            this.labelChooseRowsCount.TabIndex = 5;
+            this.labelChooseRowsCount.Text = "Количество столбцов";
+            // 
             // CreatingTopologyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.nudChooseRowsCount);
+            this.Controls.Add(this.labelChooseRowsCount);
+            this.Controls.Add(this.nudChooseColsCount);
+            this.Controls.Add(this.labelChooseColsCount);
             this.Controls.Add(this.btnOpenConstructorForm);
             this.Controls.Add(this.btnFilePath);
             this.Controls.Add(this.labelChooseFilePath);
@@ -76,6 +118,8 @@
             this.Name = "CreatingTopologyForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Создание топологии";
+            ((System.ComponentModel.ISupportInitialize)(this.nudChooseColsCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudChooseRowsCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -86,5 +130,9 @@
         private System.Windows.Forms.Label labelChooseFilePath;
         private System.Windows.Forms.Button btnFilePath;
         private System.Windows.Forms.Button btnOpenConstructorForm;
+        private System.Windows.Forms.Label labelChooseColsCount;
+        private System.Windows.Forms.NumericUpDown nudChooseColsCount;
+        private System.Windows.Forms.NumericUpDown nudChooseRowsCount;
+        private System.Windows.Forms.Label labelChooseRowsCount;
     }
 }

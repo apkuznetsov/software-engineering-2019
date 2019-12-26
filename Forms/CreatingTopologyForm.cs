@@ -12,6 +12,17 @@ namespace GasStationMs.App.Forms
             InitializeComponent();
 
             btnOpenConstructorForm.Enabled = false;
+
+            SetupNudsSettings();
+        }
+
+        private void SetupNudsSettings()
+        {
+            nudChooseColsCount.Minimum = Topology.Topology.MinColsCount;
+            nudChooseColsCount.Maximum = Topology.Topology.MaxColsCount;
+
+            nudChooseRowsCount.Minimum = Topology.Topology.MinRowsCount;
+            nudChooseRowsCount.Maximum = Topology.Topology.MaxRowsCount;
         }
 
         private void btnFilePath_Click(object sender, EventArgs e)
