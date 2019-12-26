@@ -7,6 +7,13 @@ namespace GasStationMs.App.Modeling
     internal static class ModelSettings
     {
         internal static List<FuelModel> Fuels { get;} = new List<FuelModel>();
+
+        // test
+        static ModelSettings()
+        {
+            Fuels.Add(new FuelModel(1, "АИ-92", 42.9));
+        }
+        // /test
         internal static IDistributionLaw TimeBetweenCarsGenerator { get; set; }
 
         internal static void AddUniqueFuel(FuelModel fuel)

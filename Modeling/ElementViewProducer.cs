@@ -1,4 +1,5 @@
-﻿using GasStationMs.App.DB.Models;
+﻿using System;
+using GasStationMs.App.DB.Models;
 using GasStationMs.App.Modeling.Models.Views;
 
 namespace GasStationMs.App.Modeling
@@ -17,7 +18,8 @@ namespace GasStationMs.App.Modeling
             var name = "mycar";
             var tankVolume = 80;
             var fuelRemained = 20;
-            FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
+            //FuelModel fuel = new FuelModel(1, "АИ-92", 42.9);
+            FuelModel fuel = ModelSettings.Fuels[new Random().Next(0, ModelSettings.Fuels.Count)];
             var isTruck = false;
 
             return new CarView(id, name, tankVolume, fuelRemained,
