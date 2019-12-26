@@ -4,7 +4,7 @@ namespace GasStationMs.App.DistributionLaws
 {
     public class ExponentialDistribution : IDistributionLaw
     {
-        private readonly double _lambda;
+        private readonly double lambda;
 
         public ExponentialDistribution(double lambda)
         {
@@ -13,7 +13,7 @@ namespace GasStationMs.App.DistributionLaws
                 throw new ArgumentOutOfRangeException();
             }
 
-            this._lambda = lambda;
+            this.lambda = lambda;
         }
 
         public double Lambda { get; }
@@ -23,7 +23,7 @@ namespace GasStationMs.App.DistributionLaws
             Random random = new Random();
             double y = random.NextDouble();
 
-            return -(1 / _lambda) * Math.Log(y);
+            return -(1 / lambda) * Math.Log(y);
         }
     }
 }

@@ -44,6 +44,7 @@
             this.rbEntry = new System.Windows.Forms.RadioButton();
             this.rbExit = new System.Windows.Forms.RadioButton();
             this.panelClickedCell = new System.Windows.Forms.Panel();
+            this.labelClickedTeName = new System.Windows.Forms.Label();
             this.labelMainTeProperty = new System.Windows.Forms.Label();
             this.numericUpDownVolume = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownFuelDispenserSpeed = new System.Windows.Forms.NumericUpDown();
@@ -51,9 +52,7 @@
             this.clickedFuelList = new System.Windows.Forms.ComboBox();
             this.btnSaveTopology = new System.Windows.Forms.Button();
             this.btnSaveAs = new System.Windows.Forms.Button();
-            this.btnOpenInBrowserAbout = new System.Windows.Forms.Button();
             this.btnToModeling = new System.Windows.Forms.Button();
-            this.labelClickedTeName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsHorizontally)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cellsVertically)).BeginInit();
@@ -73,11 +72,10 @@
             this.dgvTopology.ColumnHeadersHeight = 29;
             this.dgvTopology.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvTopology.ColumnHeadersVisible = false;
-            this.dgvTopology.Location = new System.Drawing.Point(28, 66);
-            this.dgvTopology.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvTopology.Location = new System.Drawing.Point(21, 54);
             this.dgvTopology.Name = "dgvTopology";
             this.dgvTopology.RowHeadersWidth = 51;
-            this.dgvTopology.Size = new System.Drawing.Size(719, 437);
+            this.dgvTopology.Size = new System.Drawing.Size(539, 355);
             this.dgvTopology.TabIndex = 0;
             this.dgvTopology.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTopology_CellMouseClick);
             this.dgvTopology.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
@@ -85,19 +83,17 @@
             // 
             // cellsHorizontally
             // 
-            this.cellsHorizontally.Location = new System.Drawing.Point(273, 612);
-            this.cellsHorizontally.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cellsHorizontally.Location = new System.Drawing.Point(205, 497);
             this.cellsHorizontally.Name = "cellsHorizontally";
-            this.cellsHorizontally.Size = new System.Drawing.Size(160, 22);
+            this.cellsHorizontally.Size = new System.Drawing.Size(120, 20);
             this.cellsHorizontally.TabIndex = 1;
             this.cellsHorizontally.ValueChanged += new System.EventHandler(this.cellsHorizontally_ValueChanged);
             // 
             // cellsVertically
             // 
-            this.cellsVertically.Location = new System.Drawing.Point(461, 612);
-            this.cellsVertically.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cellsVertically.Location = new System.Drawing.Point(346, 497);
             this.cellsVertically.Name = "cellsVertically";
-            this.cellsVertically.Size = new System.Drawing.Size(160, 22);
+            this.cellsVertically.Size = new System.Drawing.Size(120, 20);
             this.cellsVertically.TabIndex = 2;
             this.cellsVertically.ValueChanged += new System.EventHandler(this.cellsVertically_ValueChanged);
             // 
@@ -106,8 +102,7 @@
             this.rbFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelDispenser.AutoSize = true;
             this.rbFuelDispenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
-            this.rbFuelDispenser.Location = new System.Drawing.Point(785, 66);
-            this.rbFuelDispenser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbFuelDispenser.Location = new System.Drawing.Point(589, 54);
             this.rbFuelDispenser.Name = "rbFuelDispenser";
             this.rbFuelDispenser.Size = new System.Drawing.Size(38, 38);
             this.rbFuelDispenser.TabIndex = 6;
@@ -122,8 +117,7 @@
             this.rbFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelTank.AutoSize = true;
             this.rbFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
-            this.rbFuelTank.Location = new System.Drawing.Point(844, 69);
-            this.rbFuelTank.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbFuelTank.Location = new System.Drawing.Point(633, 56);
             this.rbFuelTank.Name = "rbFuelTank";
             this.rbFuelTank.Size = new System.Drawing.Size(36, 36);
             this.rbFuelTank.TabIndex = 7;
@@ -136,28 +130,27 @@
             // listFuels
             // 
             this.listFuels.FormattingEnabled = true;
-            this.listFuels.ItemHeight = 16;
-            this.listFuels.Location = new System.Drawing.Point(807, 370);
-            this.listFuels.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listFuels.Location = new System.Drawing.Point(605, 301);
+            this.listFuels.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listFuels.Name = "listFuels";
-            this.listFuels.Size = new System.Drawing.Size(211, 100);
+            this.listFuels.Size = new System.Drawing.Size(159, 82);
             this.listFuels.TabIndex = 8;
             this.listFuels.SelectedIndexChanged += new System.EventHandler(this.listFuels_SelectedIndexChanged);
             // 
             // textBoxNewFuelName
             // 
-            this.textBoxNewFuelName.Location = new System.Drawing.Point(807, 480);
-            this.textBoxNewFuelName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxNewFuelName.Location = new System.Drawing.Point(605, 390);
+            this.textBoxNewFuelName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxNewFuelName.Name = "textBoxNewFuelName";
-            this.textBoxNewFuelName.Size = new System.Drawing.Size(211, 22);
+            this.textBoxNewFuelName.Size = new System.Drawing.Size(159, 20);
             this.textBoxNewFuelName.TabIndex = 9;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(807, 544);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAdd.Location = new System.Drawing.Point(605, 442);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(56, 19);
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -165,10 +158,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(915, 544);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Location = new System.Drawing.Point(686, 442);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(56, 19);
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -176,19 +169,18 @@
             // 
             // textBoxNewFuelPrice
             // 
-            this.textBoxNewFuelPrice.Location = new System.Drawing.Point(807, 508);
-            this.textBoxNewFuelPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxNewFuelPrice.Location = new System.Drawing.Point(605, 413);
+            this.textBoxNewFuelPrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxNewFuelPrice.Name = "textBoxNewFuelPrice";
-            this.textBoxNewFuelPrice.Size = new System.Drawing.Size(211, 22);
+            this.textBoxNewFuelPrice.Size = new System.Drawing.Size(159, 20);
             this.textBoxNewFuelPrice.TabIndex = 9;
             // 
             // tbClickedCell
             // 
-            this.tbClickedCell.Location = new System.Drawing.Point(4, 16);
-            this.tbClickedCell.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbClickedCell.Location = new System.Drawing.Point(3, 13);
             this.tbClickedCell.Multiline = true;
             this.tbClickedCell.Name = "tbClickedCell";
-            this.tbClickedCell.Size = new System.Drawing.Size(140, 25);
+            this.tbClickedCell.Size = new System.Drawing.Size(106, 21);
             this.tbClickedCell.TabIndex = 11;
             // 
             // rbCashCounter
@@ -196,8 +188,7 @@
             this.rbCashCounter.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbCashCounter.AutoSize = true;
             this.rbCashCounter.Image = ((System.Drawing.Image)(resources.GetObject("rbCashCounter.Image")));
-            this.rbCashCounter.Location = new System.Drawing.Point(900, 66);
-            this.rbCashCounter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbCashCounter.Location = new System.Drawing.Point(675, 54);
             this.rbCashCounter.Name = "rbCashCounter";
             this.rbCashCounter.Size = new System.Drawing.Size(36, 36);
             this.rbCashCounter.TabIndex = 12;
@@ -212,8 +203,7 @@
             this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbEntry.AutoSize = true;
             this.rbEntry.Image = global::GasStationMs.App.Properties.Resources.Entry;
-            this.rbEntry.Location = new System.Drawing.Point(956, 69);
-            this.rbEntry.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbEntry.Location = new System.Drawing.Point(717, 56);
             this.rbEntry.Name = "rbEntry";
             this.rbEntry.Size = new System.Drawing.Size(36, 36);
             this.rbEntry.TabIndex = 13;
@@ -228,8 +218,7 @@
             this.rbExit.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbExit.AutoSize = true;
             this.rbExit.Image = global::GasStationMs.App.Properties.Resources.Exit;
-            this.rbExit.Location = new System.Drawing.Point(1012, 66);
-            this.rbExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbExit.Location = new System.Drawing.Point(759, 54);
             this.rbExit.Name = "rbExit";
             this.rbExit.Size = new System.Drawing.Size(36, 36);
             this.rbExit.TabIndex = 14;
@@ -248,17 +237,27 @@
             this.panelClickedCell.Controls.Add(this.textBoxChosenFuel);
             this.panelClickedCell.Controls.Add(this.clickedFuelList);
             this.panelClickedCell.Controls.Add(this.tbClickedCell);
-            this.panelClickedCell.Location = new System.Drawing.Point(755, 160);
-            this.panelClickedCell.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelClickedCell.Location = new System.Drawing.Point(566, 130);
             this.panelClickedCell.Name = "panelClickedCell";
-            this.panelClickedCell.Size = new System.Drawing.Size(296, 178);
+            this.panelClickedCell.Size = new System.Drawing.Size(222, 145);
             this.panelClickedCell.TabIndex = 15;
             this.panelClickedCell.Visible = false;
+            // 
+            // labelClickedTeName
+            // 
+            this.labelClickedTeName.AutoSize = true;
+            this.labelClickedTeName.Location = new System.Drawing.Point(3, 7);
+            this.labelClickedTeName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelClickedTeName.Name = "labelClickedTeName";
+            this.labelClickedTeName.Size = new System.Drawing.Size(50, 13);
+            this.labelClickedTeName.TabIndex = 19;
+            this.labelClickedTeName.Text = "TE name";
             // 
             // labelMainTeProperty
             // 
             this.labelMainTeProperty.AutoSize = true;
-            this.labelMainTeProperty.Location = new System.Drawing.Point(4, 32);
+            this.labelMainTeProperty.Location = new System.Drawing.Point(3, 26);
+            this.labelMainTeProperty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMainTeProperty.Name = "labelMainTeProperty";
             this.labelMainTeProperty.Size = new System.Drawing.Size(87, 13);
             this.labelMainTeProperty.TabIndex = 18;
@@ -272,8 +271,7 @@
             0,
             0,
             0});
-            this.numericUpDownVolume.Location = new System.Drawing.Point(131, 98);
-            this.numericUpDownVolume.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownVolume.Location = new System.Drawing.Point(98, 80);
             this.numericUpDownVolume.Maximum = new decimal(new int[] {
             75000,
             0,
@@ -285,7 +283,7 @@
             0,
             0});
             this.numericUpDownVolume.Name = "numericUpDownVolume";
-            this.numericUpDownVolume.Size = new System.Drawing.Size(160, 22);
+            this.numericUpDownVolume.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownVolume.TabIndex = 16;
             this.numericUpDownVolume.Value = new decimal(new int[] {
             10000,
@@ -297,8 +295,7 @@
             // 
             // numericUpDownFuelDispenserSpeed
             // 
-            this.numericUpDownFuelDispenserSpeed.Location = new System.Drawing.Point(201, 66);
-            this.numericUpDownFuelDispenserSpeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownFuelDispenserSpeed.Location = new System.Drawing.Point(151, 54);
             this.numericUpDownFuelDispenserSpeed.Maximum = new decimal(new int[] {
             160,
             0,
@@ -310,7 +307,7 @@
             0,
             0});
             this.numericUpDownFuelDispenserSpeed.Name = "numericUpDownFuelDispenserSpeed";
-            this.numericUpDownFuelDispenserSpeed.Size = new System.Drawing.Size(89, 22);
+            this.numericUpDownFuelDispenserSpeed.Size = new System.Drawing.Size(67, 20);
             this.numericUpDownFuelDispenserSpeed.TabIndex = 15;
             this.numericUpDownFuelDispenserSpeed.Value = new decimal(new int[] {
             25,
@@ -322,31 +319,28 @@
             // 
             // textBoxChosenFuel
             // 
-            this.textBoxChosenFuel.Location = new System.Drawing.Point(4, 132);
-            this.textBoxChosenFuel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxChosenFuel.Location = new System.Drawing.Point(3, 107);
             this.textBoxChosenFuel.Name = "textBoxChosenFuel";
             this.textBoxChosenFuel.ReadOnly = true;
-            this.textBoxChosenFuel.Size = new System.Drawing.Size(104, 22);
+            this.textBoxChosenFuel.Size = new System.Drawing.Size(79, 20);
             this.textBoxChosenFuel.TabIndex = 14;
             this.textBoxChosenFuel.Visible = false;
             // 
             // clickedFuelList
             // 
             this.clickedFuelList.FormattingEnabled = true;
-            this.clickedFuelList.Location = new System.Drawing.Point(131, 130);
-            this.clickedFuelList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clickedFuelList.Location = new System.Drawing.Point(98, 106);
             this.clickedFuelList.Name = "clickedFuelList";
-            this.clickedFuelList.Size = new System.Drawing.Size(160, 24);
+            this.clickedFuelList.Size = new System.Drawing.Size(121, 21);
             this.clickedFuelList.TabIndex = 12;
             this.clickedFuelList.Visible = false;
             this.clickedFuelList.SelectionChangeCommitted += new System.EventHandler(this.clickedFuelList_SelectionChangeCommitted);
             // 
             // btnSaveTopology
             // 
-            this.btnSaveTopology.Location = new System.Drawing.Point(17, 16);
-            this.btnSaveTopology.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveTopology.Location = new System.Drawing.Point(13, 13);
             this.btnSaveTopology.Name = "btnSaveTopology";
-            this.btnSaveTopology.Size = new System.Drawing.Size(100, 28);
+            this.btnSaveTopology.Size = new System.Drawing.Size(75, 23);
             this.btnSaveTopology.TabIndex = 16;
             this.btnSaveTopology.Text = "Сохранить";
             this.btnSaveTopology.UseVisualStyleBackColor = true;
@@ -354,39 +348,20 @@
             // 
             // btnSaveAs
             // 
-            this.btnSaveAs.Location = new System.Drawing.Point(125, 16);
-            this.btnSaveAs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveAs.Location = new System.Drawing.Point(94, 13);
             this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(149, 28);
+            this.btnSaveAs.Size = new System.Drawing.Size(112, 23);
             this.btnSaveAs.TabIndex = 17;
             this.btnSaveAs.Text = "Сохранить как";
             this.btnSaveAs.UseVisualStyleBackColor = true;
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
-            // btnOpenInBrowserAbout
-            // 
-            this.btnOpenInBrowserAbout.Location = new System.Drawing.Point(283, 16);
-            this.btnOpenInBrowserAbout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnOpenInBrowserAbout.Name = "btnOpenInBrowserAbout";
-            this.btnOpenInBrowserAbout.Size = new System.Drawing.Size(100, 28);
-            this.btnOpenInBrowserAbout.TabIndex = 18;
-            this.btnOpenInBrowserAbout.Text = "Справка";
-            this.btnOpenInBrowserAbout.UseVisualStyleBackColor = true;
-            // 
-            // labelClickedTeName
-            // 
-            this.labelClickedTeName.AutoSize = true;
-            this.labelClickedTeName.Location = new System.Drawing.Point(4, 9);
-            this.labelClickedTeName.Name = "labelClickedTeName";
-            this.labelClickedTeName.Size = new System.Drawing.Size(50, 13);
-            this.labelClickedTeName.TabIndex = 19;
-            this.labelClickedTeName.Text = "TE name";
-            // 
             // btnToModeling
             // 
-            this.btnToModeling.Location = new System.Drawing.Point(807, 597);
+            this.btnToModeling.Location = new System.Drawing.Point(605, 485);
+            this.btnToModeling.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnToModeling.Name = "btnToModeling";
-            this.btnToModeling.Size = new System.Drawing.Size(211, 62);
+            this.btnToModeling.Size = new System.Drawing.Size(158, 50);
             this.btnToModeling.TabIndex = 19;
             this.btnToModeling.Text = "Смоделировать";
             this.btnToModeling.UseVisualStyleBackColor = true;
@@ -394,11 +369,10 @@
             // 
             // Constructor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 690);
+            this.ClientSize = new System.Drawing.Size(800, 561);
             this.Controls.Add(this.btnToModeling);
-            this.Controls.Add(this.btnOpenInBrowserAbout);
             this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.btnSaveTopology);
             this.Controls.Add(this.panelClickedCell);
@@ -415,8 +389,7 @@
             this.Controls.Add(this.cellsVertically);
             this.Controls.Add(this.cellsHorizontally);
             this.Controls.Add(this.dgvTopology);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MinimumSize = new System.Drawing.Size(1061, 726);
+            this.MinimumSize = new System.Drawing.Size(800, 566);
             this.Name = "Constructor";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TopologyConstructor_FormClosing);
@@ -457,7 +430,6 @@
         private System.Windows.Forms.Label labelMainTeProperty;
         private System.Windows.Forms.Button btnSaveTopology;
         private System.Windows.Forms.Button btnSaveAs;
-        private System.Windows.Forms.Button btnOpenInBrowserAbout;
         private System.Windows.Forms.Button btnToModeling;
         private System.Windows.Forms.Label labelClickedTeName;
     }
