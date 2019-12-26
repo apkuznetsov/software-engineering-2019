@@ -340,22 +340,6 @@ namespace GasStationMs.App.Constructor
             }
         }
 
-        private void btnDownloadTopology_Click(object sender, EventArgs e)
-        {
-            const string fileName = "Топология" + ".tplg";
-            if (File.Exists(fileName))
-            {
-                Stream downloadingFileStream = File.OpenRead(fileName);
-
-                BinaryFormatter deserializer = new BinaryFormatter();
-                Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
-
-                downloadingFileStream.Close();
-
-                topologyBuilder.SetTopologyBuilder(topology);
-            }
-        }
-
         private void btnSaveAs_Click(object sender, EventArgs e)
         {
             string dotExt = Topology.Topology.DotExt;
