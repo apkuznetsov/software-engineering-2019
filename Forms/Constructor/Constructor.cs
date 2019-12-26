@@ -65,34 +65,6 @@ namespace GasStationMs.App.Constructor
         }
 
         #region события
-        private void cellsHorizontally_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _topologyBuilder.ColsCount = (int)cellsHorizontally.Value;
-            }
-            catch (CannotRemoveTopologyBuilderCol)
-            {
-                cellsHorizontally.Value = _topologyBuilder.ColsCount;
-                MessageBox.Show("удалите ШЭ прежде чем удалить столбец");
-            }
-        }
-
-        private void cellsVertically_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _topologyBuilder.RowsCount = (int)cellsVertically.Value;
-            }
-            catch (CannotRemoveTopologyBuilderRow)
-            {
-                cellsVertically.Value = _topologyBuilder.RowsCount;
-                MessageBox.Show("удалите ШЭ прежде чем удалить строку");
-            }
-        }
-
-
-
         private void rbFuelDispenser_mouseDown(object sender, MouseEventArgs e)
         {
             rbFuelDispenser.Checked = true;

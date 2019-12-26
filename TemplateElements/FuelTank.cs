@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using GasStationMs.App.AdditionalModels;
+using GasStationMs.App.DB.Models;
 
 namespace GasStationMs.App.TemplateElements
 {
@@ -15,22 +15,22 @@ namespace GasStationMs.App.TemplateElements
         public static readonly double CriticalVolumeForRefuelingInShares = 0.15;
         #endregion /статика
 
-        private int _volume;
-        private int _criticalVolume;
-        private Fuel _fuel;
-        private int _occupiedVolume;
+        private int volume;
+        private int criticalVolume;
+        private int occupiedVolume;
+        private FuelModel fuel;
 
         public FuelTank()
         {
             Volume = MinVolumeInLiters;
-            _fuel = new Fuel("АИ-100");
+            fuel = new FuelModel(-1, "АИ-92", 31);
         }
 
         public int Volume
         {
             get
             {
-                return _volume;
+                return volume;
             }
 
             set
@@ -38,9 +38,12 @@ namespace GasStationMs.App.TemplateElements
                 if (value < MinVolumeInLiters)
                     throw new ArgumentOutOfRangeException();
 
-                _volume = value;
+                if (value > MaxVolumeInLiters)
+                    throw new ArgumentOutOfRangeException();
 
-                _criticalVolume = (int)(_volume * CriticalVolumeForRefuelingInShares);
+                volume = value;
+
+                criticalVolume = (int)(volume * CriticalVolumeForRefuelingInShares);
             }
         }
 
@@ -48,19 +51,7 @@ namespace GasStationMs.App.TemplateElements
         {
             get
             {
-                return _criticalVolume;
-            }
-        }
-
-        public string Fuel
-        {
-            get
-            {
-                return _fuel.Name;
-            }
-            set
-            {
-                this._fuel = new Fuel(value);
+                return criticalVolume;
             }
         }
 
@@ -68,22 +59,31 @@ namespace GasStationMs.App.TemplateElements
         {
             get
             {
-                return _occupiedVolume;
+                return occupiedVolume;
             }
 
             set
             {
                 if (value < 0)
-                {
                     throw new ArgumentOutOfRangeException();
-                }
 
-                if (value > _volume)
-                {
+                if (value > volume)
                     throw new ArgumentOutOfRangeException();
-                }
 
-                _occupiedVolume = value;
+                occupiedVolume = value;
+            }
+        }
+
+        public string Fuel
+        {
+            get
+            {
+                return fuel.Name;
+            }
+
+            set
+            {
+                this.fuel = new FuelModel(-1, value, 32);
             }
         }
 

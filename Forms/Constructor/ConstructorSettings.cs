@@ -10,9 +10,6 @@ namespace GasStationMs.App.Constructor
         private void SetSettings()
         {
             SetCellsSize();
-
-            SetSpinners();
-
             SetRbsNames();
             SetTemplateElementsImages();
         }
@@ -29,18 +26,6 @@ namespace GasStationMs.App.Constructor
             {
                 dgvTopology.Rows[j].Height = CellSizeInPx;
             }
-        }
-
-        private void SetSpinners()
-        {
-            cellsHorizontally.Minimum = Topology.Topology.MinColsCount;
-            cellsHorizontally.Maximum = Topology.Topology.MaxColsCount;
-
-            cellsVertically.Minimum = Topology.Topology.MinRowsCount;
-            cellsVertically.Maximum = Topology.Topology.MaxRowsCount;
-
-            cellsHorizontally.Text = dgvTopology.ColumnCount.ToString();
-            cellsVertically.Text = dgvTopology.RowCount.ToString();
         }
 
         private void SetTemplateElementsImages()
