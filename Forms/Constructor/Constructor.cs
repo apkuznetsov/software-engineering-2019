@@ -376,8 +376,15 @@ namespace GasStationMs.App.Constructor
 
         private void btnToDistributionLawsForm_Click(object sender, EventArgs e)
         {
-            DistributionLawsForm distributionLawsForm = new DistributionLawsForm(topologyBuilder.ToTopology());
-            distributionLawsForm.ShowDialog();
+            try
+            {
+                DistributionLawsForm distributionLawsForm = new DistributionLawsForm(topologyBuilder.ToTopology());
+                distributionLawsForm.ShowDialog();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
     }
 }
