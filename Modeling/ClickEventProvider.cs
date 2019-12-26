@@ -32,7 +32,8 @@ namespace GasStationMs.App.Modeling
             carInfo.Append("Название: " + carView.Name);
             carInfo.Append("\r\nОбъем бака: " + carView.TankVolume);
             carInfo.Append("\r\nТоплива в баке: " 
-                           + Math.Truncate(carView.FuelRemained * 1000) / 1000 );
+                           + (int)carView.FuelRemained);
+                           //+ Math.Truncate(carView.FuelRemained * 1000) / 1000 );
 
             _textBoxSelectedItemInformation.Text = carInfo.ToString();
             _labelSelectedElement.Visible = true;

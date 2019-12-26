@@ -21,7 +21,8 @@ namespace GasStationMs.App.Modeling.Models.Views
         {
             Name = name;
             SpeedOfFillingPerMinute = speedOfFillingPerMinute;
-            SpeedOfFillingPerSecond = (double)speedOfFillingPerMinute / 60;
+            //SpeedOfFillingPerSecond = (double)speedOfFillingPerMinute / 60;
+            SpeedOfFillingPerSecond = (double)speedOfFillingPerMinute;
             // Since 20ms is 1 tick, 1second = 1000ms = 50 ticks
             SpeedOfFillingPerTick = (double)SpeedOfFillingPerSecond / 50;
             IsBusy = false;
