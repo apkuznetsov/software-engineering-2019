@@ -1,4 +1,4 @@
-﻿using GasStationMs.App.DB.Models;
+using GasStationMs.App.DB.Models;
 using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
 using System.Drawing;
@@ -135,8 +135,8 @@ namespace GasStationMs.App.Modeling
 
         private static void CreateFuelDispenser(FuelDispenser fuelDispenser, Point creationPoint)
         {
-            //var speedOfFilling = fuelDispenser.SpeedOfFilling;
-            var speedOfFilling = 15;
+            var speedOfFilling = fuelDispenser.FuelFeedRateInLitersPerMinute;
+            //var speedOfFilling = 15;
             var fuelView = CreateFuelDispenserView("Fuel Dispenser", speedOfFilling);
 
             CreateFuelDispenserPictureBox(fuelView, creationPoint);
