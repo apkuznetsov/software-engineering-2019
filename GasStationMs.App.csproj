@@ -72,6 +72,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
+    <Compile Include="Forms\CreatingTopologyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreatingTopologyForm.Designer.cs">
+      <DependentUpon>CreatingTopologyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modeling\ModelingTimeManager.cs" />
     <Compile Include="Modeling\ModelSettings.cs" />
     <Compile Include="Modeling\Models\PictureBoxes\RefuellerPictureBox.cs">
@@ -151,11 +157,11 @@
     <Compile Include="Topology\TopologyBuilderEntry.cs" />
     <Compile Include="Topology\TopologyBuilder.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
-    <Compile Include="Forms\Start.cs">
+    <Compile Include="Forms\StartingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Start.Designer.cs">
-      <DependentUpon>Start.cs</DependentUpon>
+    <Compile Include="Forms\StartingForm.Designer.cs">
+      <DependentUpon>StartingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Constructor\ConstructorSettings.cs">
       <SubType>Form</SubType>
@@ -169,14 +175,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Topology\Topology.cs" />
+    <EmbeddedResource Include="Forms\CreatingTopologyForm.resx">
+      <DependentUpon>CreatingTopologyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DistributionLawsForm.resx">
       <DependentUpon>DistributionLawsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModelingForm.resx">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Start.resx">
-      <DependentUpon>Start.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\StartingForm.resx">
+      <DependentUpon>StartingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Constructor\Constructor.resx">
       <DependentUpon>Constructor.cs</DependentUpon>

@@ -19,13 +19,13 @@ namespace GasStationMs.App
             Determined
         }
 
-        private TopologyBuilder tb;
+        private Topology.Topology topology;
         public IDistributionLaw randNumGenerator;
 
-        public DistributionLawsForm(TopologyBuilder tb)
+        public DistributionLawsForm(Topology.Topology topology)
         {
             InitializeComponent();
-            this.tb = tb;
+            this.topology = topology;
 
             SetupCbChooseDistributionLaw();
 
@@ -220,7 +220,7 @@ namespace GasStationMs.App
                 randNumGenerator = new DeterminedDistribution((double)nudDeterminedFlow.Value);
             }
 
-            Topology.Topology topology = tb.ToTopology();
+
             TrafficFlow trafficFlow = new TrafficFlow(randNumGenerator, (double)nudProbabilityOfStoppingAtGasStation.Value);
 
             ModelingForm modelingForm = new ModelingForm(topology, trafficFlow);

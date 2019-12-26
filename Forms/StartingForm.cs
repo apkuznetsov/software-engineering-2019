@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasStationMs.App.Forms;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
@@ -6,19 +7,19 @@ using Container = SimpleInjector.Container;
 
 namespace GasStationMs.App
 {
-    public partial class Start : Form
+    public partial class StartingForm : Form
     {
         private readonly Container _container;
-        public Start(Container container)
+        public StartingForm(Container container)
         {
             _container = container;
             InitializeComponent();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void btnOpenCreatingTopologyForm_Click(object sender, EventArgs e)
         {
-            Constructor.Constructor formTopologyBuilder = _container.GetInstance<Constructor.Constructor>();
-            formTopologyBuilder.Show();
+            CreatingTopologyForm creatingTopologyForm = _container.GetInstance<CreatingTopologyForm>();
+            creatingTopologyForm.ShowDialog();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

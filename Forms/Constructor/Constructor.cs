@@ -8,18 +8,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.App.DB.Models;
-using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology;
-using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using GasStationMs.Dal;
 
 namespace GasStationMs.App.Constructor
 {
     public partial class Constructor : Form
     {
-        private string _currFilePath;
-        private TopologyBuilder _topologyBuilder;
+        private string currFilePath;
+        private TopologyBuilder topologyBuilder;
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
@@ -34,7 +32,7 @@ namespace GasStationMs.App.Constructor
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            _topologyBuilder = new TopologyBuilder(dgvTopology);
+            topologyBuilder = new TopologyBuilder(dgvTopology);
             SetSettings();
         }
 
@@ -42,7 +40,7 @@ namespace GasStationMs.App.Constructor
         {
             get
             {
-                return _topologyBuilder;
+                return topologyBuilder;
             }
 
         }
@@ -56,11 +54,11 @@ namespace GasStationMs.App.Constructor
         {
             get
             {
-                return _currFilePath;
+                return currFilePath;
             }
             set
             {
-                _currFilePath = value;
+                currFilePath = value;
             }
         }
 
@@ -123,14 +121,14 @@ namespace GasStationMs.App.Constructor
                 bool isAdded = false;
                 if (rb.Name == typeof(FuelDispenser).ToString())
                 {
-                    isAdded = _topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
+                    isAdded = topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
                     rbFuelDispenser.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить ТРК");
                 }
                 else if (rb.Name == typeof(CashCounter).ToString())
                 {
-                    isAdded = _topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
                     rbCashCounter.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить кассу");
@@ -156,7 +154,7 @@ namespace GasStationMs.App.Constructor
                 bool isAdded = false;
                 if (rb.Name == typeof(FuelTank).ToString())
                 {
-                    isAdded = _topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
                     rbFuelTank.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить ТБ");
@@ -167,14 +165,14 @@ namespace GasStationMs.App.Constructor
                 bool isAdded = false;
                 if (rb.Name == typeof(Entry).ToString())
                 {
-                    isAdded = _topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
                     rbEntry.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить въезд");
                 }
                 else if (rb.Name == typeof(Exit).ToString())
                 {
-                    isAdded = _topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
                     rbExit.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить выезд");
@@ -326,29 +324,21 @@ namespace GasStationMs.App.Constructor
 
         private void btnSaveTopology_Click(object sender, EventArgs e)
         {
-            SaveTopologyIntoCurrFilePath();
+            SaveTopologyIntoCurrFilePath(topologyBuilder.ToTopology());
         }
 
-        private void SaveTopologyIntoCurrFilePath()
+        private void SaveTopologyIntoCurrFilePath(Topology.Topology topology)
         {
-            string temp = _currFilePath;
-            Topology.Topology topology = _topologyBuilder.ToTopology();
-            topology.Save(_currFilePath);
-        }
-
-        private void btnDownloadTopology_Click(object sender, EventArgs e)
-        {
-            const string fileName = "Топология" + ".tplg";
-            if (File.Exists(fileName))
+            try
             {
-                Stream downloadingFileStream = File.OpenRead(fileName);
+                if (topology == null)
+                    throw new NullReferenceException();
 
-                BinaryFormatter deserializer = new BinaryFormatter();
-                Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
-
-                downloadingFileStream.Close();
-
-                _topologyBuilder.SetTopologyBuilder(topology);
+                topology.Save(currFilePath);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
             }
         }
 
@@ -365,23 +355,22 @@ namespace GasStationMs.App.Constructor
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                _currFilePath = sfd.FileName;
-                SaveTopologyIntoCurrFilePath();
+                currFilePath = sfd.FileName;
+                SaveTopologyIntoCurrFilePath(topologyBuilder.ToTopology());
             }
         }
 
-        private void BtnToModeling_Click(object sender, EventArgs e)
+        private void btnToDistributionLawsForm_Click(object sender, EventArgs e)
         {
-            DistributionLawsForm distributionLawsForm = new DistributionLawsForm(_topologyBuilder);
-            distributionLawsForm.ShowDialog();
-
-            // test
-            //Topology.Topology topology = _topologyBuilder.ToTopology();
-            ////ModelingForm modelingForm = new ModelingForm(topology);
-            //ModelingForm modelingForm = new ModelingForm(topology, null);
-            //modelingForm.ShowDialog();
-            // test
-
+            try
+            {
+                DistributionLawsForm distributionLawsForm = new DistributionLawsForm(topologyBuilder.ToTopology());
+                distributionLawsForm.ShowDialog();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
     }
 }

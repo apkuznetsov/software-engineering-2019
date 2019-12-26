@@ -4,10 +4,10 @@
     {
         #region константы размера
         public static readonly int MinColsCount = 10;
-        public static readonly int MaxColsCount = 35;
+        public static readonly int MaxColsCount = 20;
 
         public static readonly int MinRowsCount = 7;
-        public static readonly int MaxRowsCount = 25;
+        public static readonly int MaxRowsCount = 14;
 
         public static readonly double ServiceAreaInShares = 0.25;
         #endregion

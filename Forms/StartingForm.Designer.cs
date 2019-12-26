@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App
 {
-    partial class Start
+    partial class StartingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCreateTopology = new System.Windows.Forms.Button();
+            this.btnOpenCreatingTopologyForm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.labelAbout = new System.Windows.Forms.Label();
             this.labelDoSomething = new System.Windows.Forms.Label();
             this.btnDownload = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnCreateTopology
+            // btnOpenCreatingTopologyForm
             // 
-            this.btnCreateTopology.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCreateTopology.Location = new System.Drawing.Point(216, 165);
-            this.btnCreateTopology.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCreateTopology.Name = "btnCreateTopology";
-            this.btnCreateTopology.Size = new System.Drawing.Size(127, 24);
-            this.btnCreateTopology.TabIndex = 0;
-            this.btnCreateTopology.Text = "Создать";
-            this.btnCreateTopology.UseVisualStyleBackColor = true;
-            this.btnCreateTopology.Click += new System.EventHandler(this.Button1_Click);
+            this.btnOpenCreatingTopologyForm.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnOpenCreatingTopologyForm.Location = new System.Drawing.Point(216, 165);
+            this.btnOpenCreatingTopologyForm.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOpenCreatingTopologyForm.Name = "btnOpenCreatingTopologyForm";
+            this.btnOpenCreatingTopologyForm.Size = new System.Drawing.Size(127, 24);
+            this.btnOpenCreatingTopologyForm.TabIndex = 0;
+            this.btnOpenCreatingTopologyForm.Text = "Создать";
+            this.btnOpenCreatingTopologyForm.UseVisualStyleBackColor = true;
+            this.btnOpenCreatingTopologyForm.Click += new System.EventHandler(this.btnOpenCreatingTopologyForm_Click);
             // 
             // btnCancel
             // 
@@ -88,7 +88,7 @@
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
-            // Start
+            // StartingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -98,9 +98,12 @@
             this.Controls.Add(this.labelDoSomething);
             this.Controls.Add(this.labelAbout);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnCreateTopology);
+            this.Controls.Add(this.btnOpenCreatingTopologyForm);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Start";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "StartingForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Начало работы";
@@ -111,7 +114,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnCreateTopology;
+        private System.Windows.Forms.Button btnOpenCreatingTopologyForm;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label labelAbout;
         private System.Windows.Forms.Label labelDoSomething;

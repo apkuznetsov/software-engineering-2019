@@ -50,7 +50,7 @@
             this.clickedFuelList = new System.Windows.Forms.ComboBox();
             this.btnSaveTopology = new System.Windows.Forms.Button();
             this.btnSaveAs = new System.Windows.Forms.Button();
-            this.btnToModeling = new System.Windows.Forms.Button();
+            this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             this.panelClickedCell.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).BeginInit();
@@ -336,23 +336,23 @@
             this.btnSaveAs.UseVisualStyleBackColor = true;
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
-            // btnToModeling
+            // btnToDistributionLawsForm
             // 
-            this.btnToModeling.Location = new System.Drawing.Point(605, 485);
-            this.btnToModeling.Margin = new System.Windows.Forms.Padding(2);
-            this.btnToModeling.Name = "btnToModeling";
-            this.btnToModeling.Size = new System.Drawing.Size(158, 50);
-            this.btnToModeling.TabIndex = 19;
-            this.btnToModeling.Text = "Смоделировать";
-            this.btnToModeling.UseVisualStyleBackColor = true;
-            this.btnToModeling.Click += new System.EventHandler(this.BtnToModeling_Click);
+            this.btnToDistributionLawsForm.Location = new System.Drawing.Point(605, 485);
+            this.btnToDistributionLawsForm.Margin = new System.Windows.Forms.Padding(2);
+            this.btnToDistributionLawsForm.Name = "btnToDistributionLawsForm";
+            this.btnToDistributionLawsForm.Size = new System.Drawing.Size(158, 50);
+            this.btnToDistributionLawsForm.TabIndex = 19;
+            this.btnToDistributionLawsForm.Text = "Смоделировать";
+            this.btnToDistributionLawsForm.UseVisualStyleBackColor = true;
+            this.btnToDistributionLawsForm.Click += new System.EventHandler(this.btnToDistributionLawsForm_Click);
             // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
-            this.Controls.Add(this.btnToModeling);
+            this.Controls.Add(this.btnToDistributionLawsForm);
             this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.btnSaveTopology);
             this.Controls.Add(this.panelClickedCell);
@@ -404,7 +404,7 @@
         private System.Windows.Forms.Label labelMainTeProperty;
         private System.Windows.Forms.Button btnSaveTopology;
         private System.Windows.Forms.Button btnSaveAs;
-        private System.Windows.Forms.Button btnToModeling;
+        private System.Windows.Forms.Button btnToDistributionLawsForm;
         private System.Windows.Forms.Label labelClickedTeName;
     }
 }
