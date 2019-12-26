@@ -131,7 +131,11 @@ namespace GasStationMs.App
 
         private void MakeNormalFlowParamsInvisible()
         {
+            labelNormalDistrVariance.Visible = false;
+            nudNormalDistrVariance.Visible = false;
 
+            labelNormalDistrExpectedValue.Visible = false;
+            nudNormalDistrExpectedValue.Visible = false;
         }
 
         private void MakeExponetialFlowParamsInvisible()
@@ -150,7 +154,11 @@ namespace GasStationMs.App
 
         private void MakeNormalFlowParamsVisible()
         {
+            labelNormalDistrVariance.Visible = true;
+            nudNormalDistrVariance.Visible = true;
 
+            labelNormalDistrExpectedValue.Visible = true;
+            nudNormalDistrExpectedValue.Visible = true;
         }
 
         private void MakeExponetialFlowParamsVisible()
