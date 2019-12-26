@@ -54,6 +54,7 @@ namespace GasStationMs.App
             SetupDeteminedFlowSettings();
             SetupUniformFlowSettings();
             SetupNormalFlowSettings();
+            SetupExponentialFlowSettings();
         }
 
         private void MakeDeterminedFlowParamsVisible()
