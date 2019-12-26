@@ -23,7 +23,7 @@ namespace GasStationMs.App.Modeling
         {
             _modelingForm = modelingForm;
             _topology = topology;
-            ModelSettings.TimeBetweenCarsGenerator = timeBetweenCarsGenerator;
+            ModelSettings.SetUpModelSettings(timeBetweenCarsGenerator);
             _mappedTopology = new MappedTopology();
             ElementPictureBoxProducer.SetUpElementPictureBoxProducer(modelingForm, _mappedTopology);
 

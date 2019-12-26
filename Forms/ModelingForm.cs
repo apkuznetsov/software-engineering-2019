@@ -28,7 +28,7 @@ namespace GasStationMs.App.Forms
             RemoveUnusedControls();
             DefineProperties();
             LocateFormElements();
-            SetUpModelingTimer(timerModeling);
+            SetUpModelingTimeManager(timerModeling);
 
             ElementSizeDefiner.TopologyCellSize = 50;
 
