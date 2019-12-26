@@ -5,15 +5,15 @@ using GasStationMs.App.Modeling.MovingLogic.Car;
 using GasStationMs.App.Modeling.MovingLogic.Refueller;
 using System.Windows.Forms;
 using static GasStationMs.App.Modeling.ClickEventProvider;
+using static GasStationMs.App.Modeling.ModelingTimeManager;
 
 namespace GasStationMs.App.Modeling
 {
     internal static class ModelingTicker
     {
-        private static int _timerTicksCount;
         internal static void Tick(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
-            if (ModelingTimeManager.IsPaused)
+            if (IsPaused)
             {
                 return;
             }
@@ -22,7 +22,7 @@ namespace GasStationMs.App.Modeling
             var panelPlayground = modelingForm.PlaygroundPanel;
 
 
-            _timerTicksCount++;
+            TimerTicksCount++;
 
             modelingForm.LabelCashCounterSumValue.Text = ((int)((CashCounterView)mappedTopology.CashCounter.Tag).CurrentCashVolume).ToString();
 
@@ -63,7 +63,9 @@ namespace GasStationMs.App.Modeling
             //    _paused = true;
             //}
 
-            if (_timerTicksCount % 20 == 0)
+
+
+            if (TimerTicksCount % 20 == 0)
             {
                 CarCreator.SpawnCar();
             }
