@@ -1,12 +1,16 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using GasStationMs.App.DistributionLaws;
 using GasStationMs.App.Modeling;
+using GasStationMs.App.Models;
 
 namespace GasStationMs.App.Forms
 {
     public partial class ModelingForm : Form
     {
+        private readonly TrafficFlow trafficFlow;
+
         private readonly MappedTopology _mappedTopology;
 
         public PictureBox SelectedItem { get; set; }
@@ -16,7 +20,7 @@ namespace GasStationMs.App.Forms
         public TextBox TextBoxSelectedItemInformation { get; private set; }
         public PictureBox PictureBoxServiceArea { get; private set; }
 
-        public ModelingForm(Topology.Topology topology)
+        public ModelingForm(Topology.Topology topology, TrafficFlow trafficFlow)
         {
             InitializeComponent();
             RemoveUnusedControls();
@@ -27,6 +31,7 @@ namespace GasStationMs.App.Forms
 
             ClickEventProvider.SetUpClickEventProvider(this);
 
+            this.trafficFlow = trafficFlow;
             _mappedTopology = TopologyMapper.MapTopology(this, topology);
 
             ModelingProcessor.SetUpModelingProcessor(this, _mappedTopology);
