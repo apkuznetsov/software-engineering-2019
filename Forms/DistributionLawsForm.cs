@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
@@ -10,7 +10,17 @@ namespace GasStationMs.App
 {
     public partial class DistributionLawsForm : Form
     {
+        private enum DistributionLaws
+        {
+            None,
+            UniformDistribution,
+            NormalDistribution,
+            ExponentialDistribution,
+            Determined
+        }
+
         private TopologyBuilder tb;
+        public IDistributionLaw randNumGenerator;
 
         public DistributionLawsForm(TopologyBuilder tb)
         {
