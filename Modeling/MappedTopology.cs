@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using GasStationMs.App.DB.Models;
 
 namespace GasStationMs.App.Modeling
 {

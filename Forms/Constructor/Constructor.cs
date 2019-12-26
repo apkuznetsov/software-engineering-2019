@@ -401,9 +401,13 @@ namespace GasStationMs.App.Constructor
             //DistributionLawsForm distributionLawsForm = new DistributionLawsForm(_topologyBuilder);
             //distributionLawsForm.ShowDialog();
 
+            // test
             Topology.Topology topology = _topologyBuilder.ToTopology();
-            ModelingForm modelingForm = new ModelingForm(topology);
+            //ModelingForm modelingForm = new ModelingForm(topology);
+            ModelingForm modelingForm = new ModelingForm(topology, null);
             modelingForm.ShowDialog();
+            // test
+
         }
     }
 }

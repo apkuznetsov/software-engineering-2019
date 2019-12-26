@@ -2,6 +2,7 @@ using GasStationMs.App.Modeling;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using GasStationMs.App.DistributionLaws;
 
 namespace GasStationMs.App.Forms
 {
@@ -18,7 +19,7 @@ namespace GasStationMs.App.Forms
         public TextBox TextBoxSelectedItemInformation { get; private set; }
         public PictureBox PictureBoxServiceArea { get; private set; }
 
-        public ModelingForm(Topology.Topology topology/*, IDistributionLaw timeBetweenCarsGenerator*/)
+        public ModelingForm(Topology.Topology topology, IDistributionLaw timeBetweenCarsGenerator)
         {
             InitializeComponent();
             RemoveUnusedControls();
@@ -30,7 +31,7 @@ namespace GasStationMs.App.Forms
             ClickEventProvider.SetUpClickEventProvider(this);
 
             //this.timeBetweenCarsGenerator = timeBetweenCarsGenerator;
-            _mappedTopology = TopologyMapper.MapTopology(this, topology);
+            _mappedTopology = TopologyMapper.MapTopology(this, topology, timeBetweenCarsGenerator);
 
             ModelingProcessor.SetUpModelingProcessor(this, _mappedTopology);
         }

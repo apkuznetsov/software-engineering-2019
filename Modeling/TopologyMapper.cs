@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using GasStationMs.App.DB.Models;
 using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
 using System.Drawing;
+using GasStationMs.App.DistributionLaws;
 using GasStationMs.App.Modeling.MovingLogic;
 using static GasStationMs.App.Modeling.ElementPictureBoxProducer;
 using static GasStationMs.App.Modeling.ElementSizeDefiner;
@@ -15,13 +17,15 @@ namespace GasStationMs.App.Modeling
         private static Topology.Topology _topology;
         private static MappedTopology _mappedTopology;
 
-        internal static MappedTopology MapTopology(ModelingForm modelingForm, Topology.Topology topology)
+
+        internal static MappedTopology MapTopology(ModelingForm modelingForm, 
+            Topology.Topology topology, IDistributionLaw timeBetweenCarsGenerator)
         {
             _modelingForm = modelingForm;
             _topology = topology;
+            ModelSettings.TimeBetweenCarsGenerator = timeBetweenCarsGenerator;
             _mappedTopology = new MappedTopology();
             ElementPictureBoxProducer.SetUpElementPictureBoxProducer(modelingForm, _mappedTopology);
-
 
             SetupPlaygroundPanel();
             SetupServiceArea();
@@ -81,6 +85,7 @@ namespace GasStationMs.App.Modeling
                     if (topologyElement is FuelTank fuelTank)
                     {
                         CreateFuelTank(fuelTank, creationPoint);
+                        //ModelSettings.AddUniqueFuel(fuelTank.Fuel);
                     }
                 }
             }
