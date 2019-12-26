@@ -4,6 +4,7 @@ using GasStationMs.App.Modeling.Models.Views;
 using GasStationMs.App.Modeling.MovingLogic.Car;
 using GasStationMs.App.Modeling.MovingLogic.Refueller;
 using System.Windows.Forms;
+using GasStationMs.App.Models;
 using static GasStationMs.App.Modeling.ClickEventProvider;
 using static GasStationMs.App.Modeling.ModelingTimeManager;
 
@@ -11,6 +12,7 @@ namespace GasStationMs.App.Modeling
 {
     internal static class ModelingTicker
     {
+
         internal static void Tick(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
             if (IsPaused)
@@ -18,40 +20,14 @@ namespace GasStationMs.App.Modeling
                 return;
             }
 
-            var selectedItem = modelingForm.SelectedItem;
-            var panelPlayground = modelingForm.PlaygroundPanel;
-
-
             TimerTicksCount++;
+            TicksAfterLastCarSpawning++;
 
-            modelingForm.LabelCashCounterSumValue.Text = ((int)((CashCounterView)mappedTopology.CashCounter.Tag).CurrentCashVolume).ToString();
-
-            if (selectedItem != null)
+            if (TimeAfterLastCarSpawningInSeconds >= TimeBetweenCars)
             {
-                if (selectedItem.Tag is CarView)
-                {
-                    CarPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem.Tag is FuelDispenserView)
-                {
-                    FuelDispenserPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem.Tag is FuelTankView)
-                {
-                    FuelTankPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem.Tag is CashCounterView)
-                {
-                    CashCounterPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem is CollectorPictureBox)
-                {
-                    CashCollectorPictureBox_Click(selectedItem, null);
-                }
+                CarCreator.SpawnCar();
+                TimeBetweenCars = ModelSettings.TrafficFlow.TimeBetweenCars;
+                TicksAfterLastCarSpawning = 0;
             }
 
             //if (!_paused)
@@ -64,13 +40,14 @@ namespace GasStationMs.App.Modeling
             //}
 
 
-
-            if (TimerTicksCount % 20 == 0)
-            {
-                CarCreator.SpawnCar();
-            }
+            //if (TimerTicksCount % 20 == 0)
+            //{
+            //    CarCreator.SpawnCar();
+            //}
 
             #region LoopingControls
+
+            var panelPlayground = modelingForm.PlaygroundPanel;
 
             foreach (Control control in panelPlayground.Controls)
             {
@@ -111,6 +88,43 @@ namespace GasStationMs.App.Modeling
             }
 
             #endregion /LoopingControls
+
+            #region UI
+
+            var selectedItem = modelingForm.SelectedItem;
+
+            modelingForm.LabelCashCounterSumValue.Text =
+                ((int) ((CashCounterView) mappedTopology.CashCounter.Tag).CurrentCashVolume).ToString();
+
+            if (selectedItem != null)
+            {
+                if (selectedItem.Tag is CarView)
+                {
+                    CarPictureBox_Click(selectedItem, null);
+                }
+
+                if (selectedItem.Tag is FuelDispenserView)
+                {
+                    FuelDispenserPictureBox_Click(selectedItem, null);
+                }
+
+                if (selectedItem.Tag is FuelTankView)
+                {
+                    FuelTankPictureBox_Click(selectedItem, null);
+                }
+
+                if (selectedItem.Tag is CashCounterView)
+                {
+                    CashCounterPictureBox_Click(selectedItem, null);
+                }
+
+                if (selectedItem is CollectorPictureBox)
+                {
+                    CashCollectorPictureBox_Click(selectedItem, null);
+                }
+            }
+
+            #endregion UI
         }
     }
 }
