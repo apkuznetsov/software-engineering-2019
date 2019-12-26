@@ -270,9 +270,10 @@ namespace GasStationMs.App
             if (rbRandomFlow.Checked == true)
             {
                 cbChooseDistributionLaw.Visible = true;
+                labelChooseDistributionLaw.Visible = true;
                 MakeDeterminedFlowParamsInvisible();
 
-                cbChooseDistributionLaw.SelectedValue = (int)DistributionLaws.None;
+                cbChooseDistributionLaw.Text = "НЕ ВЫБРАН";
             }
             else
             {
