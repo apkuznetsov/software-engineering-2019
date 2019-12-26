@@ -73,6 +73,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
+    <Compile Include="Modeling\ModelingTimeManager.cs" />
     <Compile Include="Modeling\ModelSettings.cs" />
     <Compile Include="Modeling\Models\PictureBoxes\RefuellerPictureBox.cs">
       <SubType>Component</SubType>
