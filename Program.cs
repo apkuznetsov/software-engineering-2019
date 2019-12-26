@@ -31,7 +31,7 @@ namespace GasStationMs.App
             _container.Register<GasStationContext>(Lifestyle.Singleton);
             //container.Register<IUserContext, WinFormsUserContext>();
             _container.Register<Constructor.Constructor>(/*Lifestyle.Scoped*/);
-            _container.Register<DistributionLawsForm>();
+            //_container.Register<DistributionLawsForm>();
             // Optionally verify the container.
             _container.Verify(VerificationOption.VerifyOnly);
         }

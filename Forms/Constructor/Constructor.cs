@@ -17,7 +17,7 @@ namespace GasStationMs.App.Constructor
     public partial class Constructor : Form
     {
         private string currFilePath;
-        private TopologyBuilder _topologyBuilder;
+        private TopologyBuilder topologyBuilder;
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
@@ -32,7 +32,7 @@ namespace GasStationMs.App.Constructor
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            _topologyBuilder = new TopologyBuilder(dgvTopology);
+            topologyBuilder = new TopologyBuilder(dgvTopology);
             SetSettings();
         }
 
@@ -40,7 +40,7 @@ namespace GasStationMs.App.Constructor
         {
             get
             {
-                return _topologyBuilder;
+                return topologyBuilder;
             }
 
         }
@@ -121,14 +121,14 @@ namespace GasStationMs.App.Constructor
                 bool isAdded = false;
                 if (rb.Name == typeof(FuelDispenser).ToString())
                 {
-                    isAdded = _topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
+                    isAdded = topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
                     rbFuelDispenser.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить ТРК");
                 }
                 else if (rb.Name == typeof(CashCounter).ToString())
                 {
-                    isAdded = _topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
                     rbCashCounter.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить кассу");
@@ -154,7 +154,7 @@ namespace GasStationMs.App.Constructor
                 bool isAdded = false;
                 if (rb.Name == typeof(FuelTank).ToString())
                 {
-                    isAdded = _topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
                     rbFuelTank.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить ТБ");
@@ -165,14 +165,14 @@ namespace GasStationMs.App.Constructor
                 bool isAdded = false;
                 if (rb.Name == typeof(Entry).ToString())
                 {
-                    isAdded = _topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
                     rbEntry.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить въезд");
                 }
                 else if (rb.Name == typeof(Exit).ToString())
                 {
-                    isAdded = _topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
+                    isAdded = topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
                     rbExit.Checked = false;
                     if (!isAdded)
                         MessageBox.Show("невозможно добавить выезд");
@@ -322,14 +322,16 @@ namespace GasStationMs.App.Constructor
 
         private void btnSaveTopology_Click(object sender, EventArgs e)
         {
-            SaveTopologyIntoCurrFilePath();
+            SaveTopologyIntoCurrFilePath(topologyBuilder.ToTopology());
         }
 
-        private void SaveTopologyIntoCurrFilePath()
+        private void SaveTopologyIntoCurrFilePath(Topology.Topology topology)
         {
             try
             {
-                Topology.Topology topology = _topologyBuilder.ToTopology();
+                if (topology == null)
+                    throw new NullReferenceException();
+
                 topology.Save(currFilePath);
             }
             catch (Exception exc)
@@ -350,7 +352,7 @@ namespace GasStationMs.App.Constructor
 
                 downloadingFileStream.Close();
 
-                _topologyBuilder.SetTopologyBuilder(topology);
+                topologyBuilder.SetTopologyBuilder(topology);
             }
         }
 
@@ -368,13 +370,13 @@ namespace GasStationMs.App.Constructor
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 currFilePath = sfd.FileName;
-                SaveTopologyIntoCurrFilePath();
+                SaveTopologyIntoCurrFilePath(topologyBuilder.ToTopology());
             }
         }
 
-        private void BtnToModeling_Click(object sender, EventArgs e)
+        private void btnToDistributionLawsForm_Click(object sender, EventArgs e)
         {
-            DistributionLawsForm distributionLawsForm = new DistributionLawsForm(_topologyBuilder);
+            DistributionLawsForm distributionLawsForm = new DistributionLawsForm(topologyBuilder.ToTopology());
             distributionLawsForm.ShowDialog();
         }
     }
