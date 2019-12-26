@@ -51,10 +51,7 @@ namespace GasStationMs.App
 
             MakeUniformFlowParamsInvisible();
 
-            SetupDeteminedFlowSettings();
-            SetupUniformFlowSettings();
-            SetupNormalFlowSettings();
-            SetupExponentialFlowSettings();
+            SetupFlowsSettings();
         }
 
         private void MakeDeterminedFlowParamsVisible()
@@ -67,6 +64,14 @@ namespace GasStationMs.App
         {
             labelDeterminedFlowParams.Visible = false;
             nudDeterminedFlow.Visible = false;
+        }
+
+        private void SetupFlowsSettings()
+        {
+            SetupDeteminedFlowSettings();
+            SetupUniformFlowSettings();
+            SetupNormalFlowSettings();
+            SetupExponentialFlowSettings();
         }
 
         private void SetupDeteminedFlowSettings()
@@ -93,6 +98,12 @@ namespace GasStationMs.App
             nudNormalDistrExpectedValue.Maximum = (decimal)TrafficFlow.MaxExpectedValueForNormalFlow;
         }
 
+        private void SetupExponentialFlowSettings()
+        {
+            nudExponentialDistrLambda.Minimum = (decimal)TrafficFlow.MinLambdaForExponentialFlow;
+            nudExponentialDistrLambda.Maximum = (decimal)TrafficFlow.MaxLambdaForExponentialFlow;
+        }
+
         private void cbChooseDistributionLaw_SelectedIndexChanged(object sender, EventArgs e)
         {
             MakeAllFlowsParamsInvisible();
@@ -108,7 +119,7 @@ namespace GasStationMs.App
                     break;
 
                 case (int)DistributionLaws.ExponentialDistribution:
-                    MakeExponetialFlowParamsVisible();
+                    MakeExponentialFlowParamsVisible();
                     break;
             }
         }
@@ -118,7 +129,7 @@ namespace GasStationMs.App
             MakeDeterminedFlowParamsInvisible();
             MakeUniformFlowParamsInvisible();
             MakeNormalFlowParamsInvisible();
-            MakeExponetialFlowParamsInvisible();
+            MakeExponentialFlowParamsInvisible();
         }
 
         private void MakeUniformFlowParamsInvisible()
@@ -139,9 +150,10 @@ namespace GasStationMs.App
             nudNormalDistrExpectedValue.Visible = false;
         }
 
-        private void MakeExponetialFlowParamsInvisible()
+        private void MakeExponentialFlowParamsInvisible()
         {
-
+            labelExponentialDistrLambda.Visible = false;
+            nudExponentialDistrLambda.Visible = false;
         }
 
         private void MakeUniformFlowParamsVisible()
@@ -162,9 +174,10 @@ namespace GasStationMs.App
             nudNormalDistrExpectedValue.Visible = true;
         }
 
-        private void MakeExponetialFlowParamsVisible()
+        private void MakeExponentialFlowParamsVisible()
         {
-
+            labelExponentialDistrLambda.Visible = true;
+            nudExponentialDistrLambda.Visible = true;
         }
 
 
@@ -188,9 +201,8 @@ namespace GasStationMs.App
                             break;
 
                         case (int)DistributionLaws.ExponentialDistribution:
-                            randNumGenerator = new ExponentialDistribution((double)exponentialDistributionLambda.Value);
+                            randNumGenerator = new ExponentialDistribution((double)nudExponentialDistrLambda.Value);
                             break;
-
 
                         default:
                             break;
@@ -259,14 +271,24 @@ namespace GasStationMs.App
             {
                 cbChooseDistributionLaw.Visible = true;
                 MakeDeterminedFlowParamsInvisible();
+
+                cbChooseDistributionLaw.SelectedValue = (int)DistributionLaws.None;
             }
             else
             {
                 cbChooseDistributionLaw.Visible = false;
+                MakeRandomFlowsParamsInvisible();
+
                 MakeDeterminedFlowParamsVisible();
             }
         }
 
+        private void MakeRandomFlowsParamsInvisible()
+        {
+            MakeUniformFlowParamsInvisible();
+            MakeNormalFlowParamsInvisible();
+            MakeExponentialFlowParamsInvisible();
+        }
 
     }
 }
