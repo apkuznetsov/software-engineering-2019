@@ -72,6 +72,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
+    <Compile Include="Forms\CreatingTopologyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreatingTopologyForm.Designer.cs">
+      <DependentUpon>CreatingTopologyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modeling\CarCreator.cs" />
     <Compile Include="Modeling\CarMover.cs" />
     <Compile Include="Modeling\CarRouter.cs" />
