@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
 using GasStationMs.App.Forms;
@@ -15,51 +15,98 @@ namespace GasStationMs.App
         public DistributionLawsForm(TopologyBuilder tb)
         {
             InitializeComponent();
-
             this.tb = tb;
+
+            SetupCbChooseDistributionLaw();
 
             nudDeterminedFlow.Minimum = (decimal)TrafficFlow.MinTimeBetweenCarsInSeconds;
             nudDeterminedFlow.Maximum = (decimal)TrafficFlow.MaxTimeBetweenCarsInSeconds;
 
+            SetupDefaultSettings();
+        }
+
+        private void SetupDefaultSettings()
+        {
             rbDeterminedFlow.Checked = true;
             MakeDeterminedFlowParamsVisible();
         }
-        #region Отображение ЗР
 
-        private void cbSelectDistributionLaw_SelectedIndexChanged(object sender, EventArgs e)
+        private void MakeDeterminedFlowParamsVisible()
         {
-            switch (cbSelectDistributionLaw.SelectedIndex)
+            labelDeterminedFlowParams.Visible = true;
+            nudDeterminedFlow.Visible = true;
+        }
+
+        private void MakeDeterminedFlowParamsInvisible()
+        {
+            labelDeterminedFlowParams.Visible = false;
+            nudDeterminedFlow.Visible = false;
+        }
+
+        private void SetupCbChooseDistributionLaw()
+        {
+            List<string> distributionLawsList = new List<string>();
+            distributionLawsList.Add("Равномерный");
+            distributionLawsList.Add("Нормальный");
+            distributionLawsList.Add("Показательный");
+
+            cbChooseDistributionLaw.DataSource = distributionLawsList;
+        }
+
+        private void cbChooseDistributionLaw_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MakeDeterminedFlowParamsInvisible();
+
+            MakeUniformFlowParamsInvisible();
+            MakeNormalFlowParamsInvisible();
+            MakeExponetialFlowParamsInvisible();
+
+            switch (cbChooseDistributionLaw.SelectedIndex)
             {
                 case 0:
-                    labelDeterminedFlowParams.Visible = true;
-                    nudDeterminedFlow.Visible = true;
-
-
+                    MakeUniformFlowParamsVisible();
                     break;
 
                 case 1:
-                    normalDistributionDispersion.Visible = true;
-                    normalDistributionPredicted.Visible = true;
-                    normalDistributionDispersionLabel.Visible = true;
-                    normalDistributionPredictedLabel.Visible = true;
-                    normalDistributionPanel.Visible = true;
-
-
+                    MakeNormalFlowParamsVisible();
                     break;
 
                 case 2:
-                    exponentialDistributionLambda.Visible = true;
-                    exponentialDistributionLambdaLabel.Visible = true;
-                    exponentialDistributionPanel.Visible = true;
-
-
-                    break;
-
-                default:
+                    MakeExponetialFlowParamsVisible();
                     break;
             }
         }
-        #endregion
+
+        private void MakeUniformFlowParamsInvisible()
+        {
+
+        }
+
+        private void MakeNormalFlowParamsInvisible()
+        {
+
+        }
+
+        private void MakeExponetialFlowParamsInvisible()
+        {
+
+        }
+
+        private void MakeUniformFlowParamsVisible()
+        {
+
+        }
+
+        private void MakeNormalFlowParamsVisible()
+        {
+
+        }
+
+        private void MakeExponetialFlowParamsVisible()
+        {
+
+        }
+
 
         #region
 
@@ -68,7 +115,7 @@ namespace GasStationMs.App
         {
             if (rbRandomFlow.Checked == true)
             {
-                switch (cbSelectDistributionLaw.SelectedIndex)
+                switch (cbChooseDistributionLaw.SelectedIndex)
                 {
                     case 0:
                         Generator = new UniformDistribution(0.1, (double)nudDeterminedFlow.Value);
@@ -143,26 +190,16 @@ namespace GasStationMs.App
         {
             if (rbRandomFlow.Checked == true)
             {
-                cbSelectDistributionLaw.Visible = true;
+                cbChooseDistributionLaw.Visible = true;
                 MakeDeterminedFlowParamsInvisible();
             }
             else
             {
-                cbSelectDistributionLaw.Visible = false;
+                cbChooseDistributionLaw.Visible = false;
                 MakeDeterminedFlowParamsVisible();
             }
         }
 
-        private void MakeDeterminedFlowParamsVisible()
-        {
-            labelDeterminedFlowParams.Visible = true;
-            nudDeterminedFlow.Visible = true;
-        }
 
-        private void MakeDeterminedFlowParamsInvisible()
-        {
-            labelDeterminedFlowParams.Visible = false;
-            nudDeterminedFlow.Visible = false;
-        }
     }
 }
