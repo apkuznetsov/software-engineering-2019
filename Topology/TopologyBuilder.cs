@@ -1,4 +1,4 @@
-﻿using GasStationMs.App.TemplateElements;
+using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using System;
 using System.Windows.Forms;
@@ -65,32 +65,6 @@ namespace GasStationMs.App.Topology
 
             field.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             field.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-        }
-
-        public void SetupField(int colsCount, int rowsCount)
-        {
-            for (int i = 0; i < field.ColumnCount; i++)
-                field.Columns.Remove(field.Columns[i]);
-            for (int j = 0; j < field.RowCount; j++)
-                field.Rows.Remove(field.Rows[j]);
-            DataGridViewImageCell cell30 = (DataGridViewImageCell)field.Rows[0].Cells[3];
-            DataGridViewImageCell cell31 = (DataGridViewImageCell)field.Rows[1].Cells[3];
-            DataGridViewImageCell cell32 = (DataGridViewImageCell)field.Rows[2].Cells[3];
-            DataGridViewImageCell cell40 = (DataGridViewImageCell)field.Rows[0].Cells[4];
-            DataGridViewImageCell cell41 = (DataGridViewImageCell)field.Rows[1].Cells[4];
-            DataGridViewImageCell cell42 = (DataGridViewImageCell)field.Rows[2].Cells[4];
-            cell30.Tag = null; cell30.Value = null;
-            cell31.Tag = null; cell31.Value = null;
-            cell32.Tag = null; cell32.Value = null;
-            cell40.Tag = null; cell40.Value = null;
-            cell41.Tag = null; cell41.Value = null;
-            cell42.Tag = null; cell42.Value = null;
-
-            AddDgvCols(colsCount);
-            AddDgvRows(rowsCount);
-            serviceAreaInCells = RecalculateServiceArea();
-            SetupServiceArea();
-            SetupRoad();
         }
 
         private void AddDgvCols(int colsCount)
