@@ -3,22 +3,18 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
-using Container = SimpleInjector.Container;
-
 namespace GasStationMs.App
 {
     public partial class StartingForm : Form
     {
-        private readonly Container _container;
-        public StartingForm(Container container)
+        public StartingForm()
         {
-            _container = container;
             InitializeComponent();
         }
 
         private void btnOpenCreatingTopologyForm_Click(object sender, EventArgs e)
         {
-            CreatingTopologyForm creatingTopologyForm = _container.GetInstance<CreatingTopologyForm>();
+            CreatingTopologyForm creatingTopologyForm = new CreatingTopologyForm();
             creatingTopologyForm.ShowDialog();
         }
 
@@ -53,9 +49,8 @@ namespace GasStationMs.App
                         Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
                         downloadingFileStream.Close();
 
-                        Constructor.Constructor formConstructor = _container.GetInstance<Constructor.Constructor>();
+                        Constructor.Constructor formConstructor = new Constructor.Constructor(topology);
                         formConstructor.Show();
-                        formConstructor.TopologyBuilder.SetTopologyBuilder(topology);
                         formConstructor.CurrFilePath = filePath;
                     }
                     catch

@@ -1,19 +1,14 @@
-﻿using GasStationMs.App.Forms;
-using System;
+﻿using System;
 using System.Windows.Forms;
-using Container = SimpleInjector.Container;
 
 namespace GasStationMs.App.Forms
 {
     public partial class CreatingTopologyForm : Form
     {
-        private readonly Container _container;
-
         private string filePath;
 
-        public CreatingTopologyForm(Container container)
+        public CreatingTopologyForm()
         {
-            _container = container;
             InitializeComponent();
 
             btnOpenConstructorForm.Enabled = false;
@@ -50,10 +45,9 @@ namespace GasStationMs.App.Forms
 
         private void btnOpenConstructorForm_Click(object sender, EventArgs e)
         {
-            Constructor.Constructor formConstructor = _container.GetInstance<Constructor.Constructor>();
+            Constructor.Constructor formConstructor = new Constructor.Constructor((int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
             formConstructor.Show();
 
-            formConstructor.TopologyBuilder.SetupField((int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
             formConstructor.CurrFilePath = filePath;
 
             this.Close();
