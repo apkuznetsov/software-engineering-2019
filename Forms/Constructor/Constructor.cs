@@ -13,7 +13,7 @@ namespace GasStationMs.App.Constructor
 {
     public partial class Constructor : Form
     {
-        private string currFilePath;
+        private string fullFilePath;
         private TopologyBuilder topologyBuilder;
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
@@ -21,17 +21,22 @@ namespace GasStationMs.App.Constructor
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
 
-        public Constructor(Topology.Topology topology)
+        public Constructor(string fullFilePath, Topology.Topology topology)
         {
+            if (fullFilePath == null ||
+                topology == null)
+                throw new NullReferenceException();
+
             _connection = ConnectionHelpers.OpenConnection();
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
+            this.fullFilePath = fullFilePath;
             SetSettings();
             topologyBuilder = new TopologyBuilder(dgvTopology, topology);
         }
 
-        public Constructor(int cols, int rows)
+        public Constructor(string fullFilePath, int cols, int rows)
         {
             if (cols < Topology.Topology.MinColsCount ||
                 cols > Topology.Topology.MaxColsCount)
@@ -61,18 +66,6 @@ namespace GasStationMs.App.Constructor
         private void TopologyConstructor_Load(object sender, EventArgs e)
         {
             LoadList();
-        }
-
-        public string CurrFilePath
-        {
-            get
-            {
-                return currFilePath;
-            }
-            set
-            {
-                currFilePath = value;
-            }
         }
 
         #region события
@@ -347,7 +340,7 @@ namespace GasStationMs.App.Constructor
                 if (topology == null)
                     throw new NullReferenceException();
 
-                topology.Save(currFilePath);
+                topology.Save(fullFilePath);
             }
             catch (Exception exc)
             {
@@ -368,7 +361,7 @@ namespace GasStationMs.App.Constructor
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                currFilePath = sfd.FileName;
+                fullFilePath = sfd.FileName;
                 SaveTopologyIntoCurrFilePath(topologyBuilder.ToTopology());
             }
         }

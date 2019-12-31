@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+
 namespace GasStationMs.App
 {
     public partial class StartingForm : Form
@@ -25,7 +26,7 @@ namespace GasStationMs.App
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            string filePath;
+            string fullFilePath;
             string dotExt = Topology.Topology.DotExt;
             string filter = " " + dotExt + "|" + "*" + dotExt;
 
@@ -37,11 +38,11 @@ namespace GasStationMs.App
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                filePath = ofd.FileName;
+                fullFilePath = ofd.FileName;
 
-                if (File.Exists(filePath))
+                if (File.Exists(fullFilePath))
                 {
-                    Stream downloadingFileStream = File.OpenRead(filePath);
+                    Stream downloadingFileStream = File.OpenRead(fullFilePath);
 
                     try
                     {
@@ -49,9 +50,8 @@ namespace GasStationMs.App
                         Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
                         downloadingFileStream.Close();
 
-                        Constructor.Constructor formConstructor = new Constructor.Constructor(topology);
-                        formConstructor.Show();
-                        formConstructor.CurrFilePath = filePath;
+                        Constructor.Constructor constructor = new Constructor.Constructor(fullFilePath, topology);
+                        constructor.Show();
                     }
                     catch
                     {

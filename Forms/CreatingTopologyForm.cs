@@ -5,7 +5,7 @@ namespace GasStationMs.App.Forms
 {
     public partial class CreatingTopologyForm : Form
     {
-        private string filePath;
+        private string fullFilePath;
 
         public CreatingTopologyForm()
         {
@@ -38,17 +38,15 @@ namespace GasStationMs.App.Forms
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                filePath = sfd.FileName;
+                fullFilePath = sfd.FileName;
                 btnOpenConstructorForm.Enabled = true;
             }
         }
 
         private void btnOpenConstructorForm_Click(object sender, EventArgs e)
         {
-            Constructor.Constructor formConstructor = new Constructor.Constructor((int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
-            formConstructor.Show();
-
-            formConstructor.CurrFilePath = filePath;
+            Constructor.Constructor constructor = new Constructor.Constructor(fullFilePath, (int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
+            constructor.Show();
 
             this.Close();
         }
