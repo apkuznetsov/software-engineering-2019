@@ -2,9 +2,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.App.DB.Models;
@@ -25,9 +23,8 @@ namespace GasStationMs.App.Constructor
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
 
-        public Constructor(GasStationContext gasStationContext)
+        public Constructor()
         {
-            _gasStationContext = gasStationContext;
             _connection = ConnectionHelpers.OpenConnection();
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
