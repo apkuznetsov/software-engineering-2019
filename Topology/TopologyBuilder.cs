@@ -26,6 +26,30 @@ namespace GasStationMs.App.Topology
             SetupRoad();
         }
 
+        public TopologyBuilder(DataGridView field, int cols, int rows)
+        {
+            this.field = field ?? throw new NullReferenceException();
+
+            if (cols < Topology.MinColsCount ||
+                cols > Topology.MaxColsCount)
+                throw new ArgumentOutOfRangeException();
+
+            if (rows < Topology.MinRowsCount ||
+                rows > Topology.MaxRowsCount)
+                throw new ArgumentOutOfRangeException();
+
+
+            AddDgvCols(Topology.MinColsCount);
+            this.field.RowCount = Topology.MinRowsCount;
+
+            SetupDgv();
+
+            serviceAreaInCells = RecalculateServiceArea();
+
+            SetupServiceArea();
+            SetupRoad();
+        }
+
         public void SetTopologyBuilder(Topology topology)
         {
             ToDgv(topology);

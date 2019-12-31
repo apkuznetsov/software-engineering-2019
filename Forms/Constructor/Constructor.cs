@@ -8,7 +8,6 @@ using GasStationMs.App.DB;
 using GasStationMs.App.DB.Models;
 using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology;
-using GasStationMs.Dal;
 
 namespace GasStationMs.App.Constructor
 {
@@ -19,11 +18,19 @@ namespace GasStationMs.App.Constructor
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
-        private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
 
-        public Constructor()
+        public Constructor(Topology.Topology topology)
+        {
+            _connection = ConnectionHelpers.OpenConnection();
+            _crudHelper = new CrudHelper(_connection);
+            InitializeComponent();
+
+            topologyBuilder = new TopologyBuilder(dgvTopology, topology);
+            SetSettings();
+        }
+
         public Constructor(int cols, int rows)
         {
             if (cols < Topology.Topology.MinColsCount ||
