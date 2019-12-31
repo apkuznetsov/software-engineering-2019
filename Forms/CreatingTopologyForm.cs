@@ -45,10 +45,9 @@ namespace GasStationMs.App.Forms
 
         private void btnOpenConstructorForm_Click(object sender, EventArgs e)
         {
-            Constructor.Constructor formConstructor = new Constructor.Constructor();
+            Constructor.Constructor formConstructor = new Constructor.Constructor((int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
             formConstructor.Show();
 
-            formConstructor.TopologyBuilder.SetupField((int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
             formConstructor.CurrFilePath = filePath;
 
             this.Close();

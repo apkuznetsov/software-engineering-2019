@@ -24,12 +24,21 @@ namespace GasStationMs.App.Constructor
         private readonly CrudHelper _crudHelper;
 
         public Constructor()
+        public Constructor(int cols, int rows)
         {
+            if (cols < Topology.Topology.MinColsCount ||
+                cols > Topology.Topology.MaxColsCount)
+                throw new ArgumentOutOfRangeException();
+
+            if (rows < Topology.Topology.MinRowsCount ||
+                rows > Topology.Topology.MaxRowsCount)
+                throw new ArgumentOutOfRangeException();
+
             _connection = ConnectionHelpers.OpenConnection();
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            topologyBuilder = new TopologyBuilder(dgvTopology);
+            topologyBuilder = new TopologyBuilder(dgvTopology, cols, rows);
             SetSettings();
         }
 
