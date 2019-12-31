@@ -49,9 +49,8 @@ namespace GasStationMs.App
                         Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
                         downloadingFileStream.Close();
 
-                        Constructor.Constructor formConstructor = new Constructor.Constructor();
+                        Constructor.Constructor formConstructor = new Constructor.Constructor(topology);
                         formConstructor.Show();
-                        formConstructor.TopologyBuilder.SetTopologyBuilder(topology);
                         formConstructor.CurrFilePath = filePath;
                     }
                     catch

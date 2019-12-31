@@ -1,4 +1,4 @@
-using GasStationMs.App.TemplateElements;
+﻿using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology.TopologyBuilderHelpers;
 using System;
 using System.Windows.Forms;
@@ -38,7 +38,6 @@ namespace GasStationMs.App.Topology
                 rows > Topology.MaxRowsCount)
                 throw new ArgumentOutOfRangeException();
 
-
             AddDgvCols(Topology.MinColsCount);
             this.field.RowCount = Topology.MinRowsCount;
 
@@ -50,9 +49,20 @@ namespace GasStationMs.App.Topology
             SetupRoad();
         }
 
-        public void SetTopologyBuilder(Topology topology)
+        public TopologyBuilder(DataGridView field, Topology topology)
         {
-            ToDgv(topology);
+            this.field = field ?? throw new NullReferenceException();
+
+            AddDgvCols(topology.ColsCount);
+            this.field.RowCount = topology.RowsCount;
+
+            SetupDgv();
+
+            serviceAreaInCells = RecalculateServiceArea();
+
+            SetupServiceArea();
+            SetupRoad();
+            SetField(topology);
         }
 
         private void SetupDgv()
@@ -124,7 +134,7 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        private void ToDgv(Topology topology)
+        private void SetField(Topology topology)
         {
             field.ColumnCount = topology.ColsCount;
             field.RowCount = topology.RowsCount;
