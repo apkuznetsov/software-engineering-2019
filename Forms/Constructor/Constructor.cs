@@ -27,8 +27,8 @@ namespace GasStationMs.App.Constructor
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            topologyBuilder = new TopologyBuilder(dgvTopology, topology);
             SetSettings();
+            topologyBuilder = new TopologyBuilder(dgvTopology, topology);
         }
 
         public Constructor(int cols, int rows)
@@ -45,8 +45,8 @@ namespace GasStationMs.App.Constructor
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            topologyBuilder = new TopologyBuilder(dgvTopology, cols, rows);
             SetSettings();
+            topologyBuilder = new TopologyBuilder(dgvTopology, cols, rows); ;
         }
 
         public TopologyBuilder TopologyBuilder

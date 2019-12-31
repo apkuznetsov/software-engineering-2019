@@ -97,9 +97,9 @@
             this.labelChooseRowsCount.AutoSize = true;
             this.labelChooseRowsCount.Location = new System.Drawing.Point(147, 119);
             this.labelChooseRowsCount.Name = "labelChooseRowsCount";
-            this.labelChooseRowsCount.Size = new System.Drawing.Size(116, 13);
+            this.labelChooseRowsCount.Size = new System.Drawing.Size(98, 13);
             this.labelChooseRowsCount.TabIndex = 5;
-            this.labelChooseRowsCount.Text = "Количество столбцов";
+            this.labelChooseRowsCount.Text = "Количество строк";
             // 
             // CreatingTopologyForm
             // 
