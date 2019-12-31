@@ -2,15 +2,12 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.App.DB.Models;
 using GasStationMs.App.TemplateElements;
 using GasStationMs.App.Topology;
-using GasStationMs.Dal;
 
 namespace GasStationMs.App.Constructor
 {
@@ -21,19 +18,35 @@ namespace GasStationMs.App.Constructor
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
-        private GasStationContext _gasStationContext;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
 
-        public Constructor(GasStationContext gasStationContext)
+        public Constructor(Topology.Topology topology)
         {
-            _gasStationContext = gasStationContext;
             _connection = ConnectionHelpers.OpenConnection();
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            topologyBuilder = new TopologyBuilder(dgvTopology);
             SetSettings();
+            topologyBuilder = new TopologyBuilder(dgvTopology, topology);
+        }
+
+        public Constructor(int cols, int rows)
+        {
+            if (cols < Topology.Topology.MinColsCount ||
+                cols > Topology.Topology.MaxColsCount)
+                throw new ArgumentOutOfRangeException();
+
+            if (rows < Topology.Topology.MinRowsCount ||
+                rows > Topology.Topology.MaxRowsCount)
+                throw new ArgumentOutOfRangeException();
+
+            _connection = ConnectionHelpers.OpenConnection();
+            _crudHelper = new CrudHelper(_connection);
+            InitializeComponent();
+
+            SetSettings();
+            topologyBuilder = new TopologyBuilder(dgvTopology, cols, rows); ;
         }
 
         public TopologyBuilder TopologyBuilder
