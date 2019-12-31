@@ -38,8 +38,8 @@ namespace GasStationMs.App.Topology
                 rows > Topology.MaxRowsCount)
                 throw new ArgumentOutOfRangeException();
 
-            AddDgvCols(Topology.MinColsCount);
-            this.field.RowCount = Topology.MinRowsCount;
+            AddDgvCols(cols);
+            this.field.RowCount = rows;
 
             SetupDgv();
 
