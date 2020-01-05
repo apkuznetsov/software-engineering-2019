@@ -1,4 +1,5 @@
 ﻿using GasStationMs.App.Forms;
+using GasStationMs.App.Topology;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -22,8 +23,8 @@ namespace GasStationMs.App
         private void btnLoadTopology_Click(object sender, EventArgs e)
         {
             string fullFilePath;
-            string dotExt = Topology.Topology.DotExt;
-            string filter = " " + dotExt + "|" + "*" + dotExt;
+            string dotExt = TopologySaverAndLoader.DotExt;
+            string filter = TopologySaverAndLoader.Filter;
 
             OpenFileDialog ofd = new OpenFileDialog
             {
@@ -37,16 +38,12 @@ namespace GasStationMs.App
 
                 if (File.Exists(fullFilePath))
                 {
-                    Stream downloadingFileStream = File.OpenRead(fullFilePath);
-
                     try
                     {
-                        BinaryFormatter deserializer = new BinaryFormatter();
-                        Topology.Topology topology = (Topology.Topology)deserializer.Deserialize(downloadingFileStream);
-                        downloadingFileStream.Close();
+                        Topology.Topology topology = TopologySaverAndLoader.Load(fullFilePath);
 
                         Constructor.Constructor constructor = new Constructor.Constructor(fullFilePath, topology);
-                        constructor.Show();
+                        constructor.ShowDialog();
                     }
                     catch
                     {
@@ -54,7 +51,9 @@ namespace GasStationMs.App
                     }
                 }
                 else
+                {
                     MessageBox.Show("ОШИБКА: файл не существует");
+                }
             }
         }
 
