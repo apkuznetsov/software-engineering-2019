@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App
 {
-    public partial class StartingForm : Form
+    public partial class CreateOrLoadTopology : Form
     {
-        public StartingForm()
+        public CreateOrLoadTopology()
         {
             InitializeComponent();
         }

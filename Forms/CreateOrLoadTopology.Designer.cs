@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App
 {
-    partial class StartingForm
+    partial class CreateOrLoadTopology
     {
         /// <summary>
         /// Required designer variable.
@@ -88,7 +88,7 @@
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
-            // StartingForm
+            // CreateOrLoadTopology
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,7 +103,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "StartingForm";
+            this.Name = "CreateOrLoadTopology";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Начало работы";
