@@ -13,18 +13,13 @@ namespace GasStationMs.App
             InitializeComponent();
         }
 
-        private void btnOpenCreatingTopologyForm_Click(object sender, EventArgs e)
+        private void btnOpenCreateTopology_Click(object sender, EventArgs e)
         {
-            CreatingTopologyForm creatingTopologyForm = new CreatingTopologyForm();
-            creatingTopologyForm.ShowDialog();
+            CreatingTopologyForm createTopology = new CreatingTopologyForm();
+            createTopology.ShowDialog();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnDownload_Click(object sender, EventArgs e)
+        private void btnLoadTopology_Click(object sender, EventArgs e)
         {
             string fullFilePath;
             string dotExt = Topology.Topology.DotExt;
@@ -61,6 +56,11 @@ namespace GasStationMs.App
                 else
                     MessageBox.Show("ОШИБКА: файл не существует");
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
