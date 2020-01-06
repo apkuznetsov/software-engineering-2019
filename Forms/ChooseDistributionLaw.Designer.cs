@@ -145,7 +145,7 @@
             this.btnToModelingForm.TabIndex = 9;
             this.btnToModelingForm.Text = "Смоделировать";
             this.btnToModelingForm.UseVisualStyleBackColor = true;
-            this.btnToModelingForm.Click += new System.EventHandler(this.btnToModelingForm_Click);
+            this.btnToModelingForm.Click += new System.EventHandler(this.btnOpenModeling_Click);
             // 
             // nudNormalDistrVariance
             // 

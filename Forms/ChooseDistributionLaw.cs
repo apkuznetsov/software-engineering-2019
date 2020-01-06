@@ -9,7 +9,7 @@ namespace GasStationMs.App
 {
     public partial class ChooseDistributionLaw : Form
     {
-        private Topology.Topology topology;
+        private readonly Topology.Topology topology;
         private IDistributionLaw randNumGenerator;
 
         public ChooseDistributionLaw(Topology.Topology topology)
@@ -184,7 +184,7 @@ namespace GasStationMs.App
             nudExponentialDistrLambda.Visible = false;
         }
 
-        private void btnToModelingForm_Click(object sender, EventArgs e)
+        private void btnOpenModeling_Click(object sender, EventArgs e)
         {
             if (rbRandomFlow.Checked == true)
             {
@@ -221,8 +221,8 @@ namespace GasStationMs.App
 
             TrafficFlow trafficFlow = new TrafficFlow(randNumGenerator, (double)nudProbabilityOfStoppingAtGasStation.Value);
 
-            ModelingForm modelingForm = new ModelingForm(topology, trafficFlow);
-            modelingForm.ShowDialog();
+            ModelingForm modeling = new ModelingForm(topology, trafficFlow);
+            modeling.Show();
 
             Dispose();
             Close();
