@@ -18,6 +18,8 @@ namespace GasStationMs.App.Forms
         private void SetupSettings()
         {
             btnOpenConstructor.Enabled = false;
+            rbChosenSmallSize.Checked = true;
+
             SetupNudsSettings();
         }
 
@@ -52,6 +54,20 @@ namespace GasStationMs.App.Forms
 
             Dispose();
             Close();
+        }
+
+        private void rbChosenOtherSize_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbChosenOtherSize.Checked == true)
+            {
+                nudChooseColsCount.Visible = true;
+                nudChooseRowsCount.Visible = true;
+            }
+            else
+            {
+                nudChooseColsCount.Visible = false;
+                nudChooseRowsCount.Visible = false;
+            }
         }
     }
 }

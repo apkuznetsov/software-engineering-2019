@@ -135,6 +135,7 @@
             this.rbChosenOtherSize.TabStop = true;
             this.rbChosenOtherSize.Text = "Свой размер";
             this.rbChosenOtherSize.UseVisualStyleBackColor = true;
+            this.rbChosenOtherSize.CheckedChanged += new System.EventHandler(this.rbChosenOtherSize_CheckedChanged);
             // 
             // rbChosenBigSize
             // 
