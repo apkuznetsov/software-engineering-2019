@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelChooseFilePath = new System.Windows.Forms.Label();
-            this.btnFilePath = new System.Windows.Forms.Button();
-            this.btnOpenConstructorForm = new System.Windows.Forms.Button();
+            this.labelChooseFullFilePath = new System.Windows.Forms.Label();
+            this.btnChooseFullFilePath = new System.Windows.Forms.Button();
+            this.btnOpenConstructor = new System.Windows.Forms.Button();
             this.labelChooseColsCount = new System.Windows.Forms.Label();
             this.nudChooseColsCount = new System.Windows.Forms.NumericUpDown();
             this.nudChooseRowsCount = new System.Windows.Forms.NumericUpDown();
@@ -39,35 +39,35 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudChooseRowsCount)).BeginInit();
             this.SuspendLayout();
             // 
-            // labelChooseFilePath
+            // labelChooseFullFilePath
             // 
-            this.labelChooseFilePath.AutoSize = true;
-            this.labelChooseFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChooseFilePath.Location = new System.Drawing.Point(12, 45);
-            this.labelChooseFilePath.Name = "labelChooseFilePath";
-            this.labelChooseFilePath.Size = new System.Drawing.Size(260, 20);
-            this.labelChooseFilePath.TabIndex = 0;
-            this.labelChooseFilePath.Text = "Расположение файла топологии";
+            this.labelChooseFullFilePath.AutoSize = true;
+            this.labelChooseFullFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelChooseFullFilePath.Location = new System.Drawing.Point(12, 45);
+            this.labelChooseFullFilePath.Name = "labelChooseFullFilePath";
+            this.labelChooseFullFilePath.Size = new System.Drawing.Size(260, 20);
+            this.labelChooseFullFilePath.TabIndex = 0;
+            this.labelChooseFullFilePath.Text = "Расположение файла топологии";
             // 
-            // btnFilePath
+            // btnChooseFullFilePath
             // 
-            this.btnFilePath.Location = new System.Drawing.Point(12, 68);
-            this.btnFilePath.Name = "btnFilePath";
-            this.btnFilePath.Size = new System.Drawing.Size(258, 23);
-            this.btnFilePath.TabIndex = 1;
-            this.btnFilePath.Text = "Выбрать";
-            this.btnFilePath.UseVisualStyleBackColor = true;
-            this.btnFilePath.Click += new System.EventHandler(this.btnFilePath_Click);
+            this.btnChooseFullFilePath.Location = new System.Drawing.Point(12, 68);
+            this.btnChooseFullFilePath.Name = "btnChooseFullFilePath";
+            this.btnChooseFullFilePath.Size = new System.Drawing.Size(258, 23);
+            this.btnChooseFullFilePath.TabIndex = 1;
+            this.btnChooseFullFilePath.Text = "Выбрать";
+            this.btnChooseFullFilePath.UseVisualStyleBackColor = true;
+            this.btnChooseFullFilePath.Click += new System.EventHandler(this.btnChooseFullFilePath_Click);
             // 
-            // btnOpenConstructorForm
+            // btnOpenConstructor
             // 
-            this.btnOpenConstructorForm.Location = new System.Drawing.Point(12, 201);
-            this.btnOpenConstructorForm.Name = "btnOpenConstructorForm";
-            this.btnOpenConstructorForm.Size = new System.Drawing.Size(258, 23);
-            this.btnOpenConstructorForm.TabIndex = 2;
-            this.btnOpenConstructorForm.Text = "Создать";
-            this.btnOpenConstructorForm.UseVisualStyleBackColor = true;
-            this.btnOpenConstructorForm.Click += new System.EventHandler(this.btnOpenConstructorForm_Click);
+            this.btnOpenConstructor.Location = new System.Drawing.Point(12, 201);
+            this.btnOpenConstructor.Name = "btnOpenConstructor";
+            this.btnOpenConstructor.Size = new System.Drawing.Size(258, 23);
+            this.btnOpenConstructor.TabIndex = 2;
+            this.btnOpenConstructor.Text = "Создать";
+            this.btnOpenConstructor.UseVisualStyleBackColor = true;
+            this.btnOpenConstructor.Click += new System.EventHandler(this.btnOpenConstructor_Click);
             // 
             // labelChooseColsCount
             // 
@@ -110,9 +110,9 @@
             this.Controls.Add(this.labelChooseRowsCount);
             this.Controls.Add(this.nudChooseColsCount);
             this.Controls.Add(this.labelChooseColsCount);
-            this.Controls.Add(this.btnOpenConstructorForm);
-            this.Controls.Add(this.btnFilePath);
-            this.Controls.Add(this.labelChooseFilePath);
+            this.Controls.Add(this.btnOpenConstructor);
+            this.Controls.Add(this.btnChooseFullFilePath);
+            this.Controls.Add(this.labelChooseFullFilePath);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CreateTopology";
@@ -127,9 +127,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelChooseFilePath;
-        private System.Windows.Forms.Button btnFilePath;
-        private System.Windows.Forms.Button btnOpenConstructorForm;
+        private System.Windows.Forms.Label labelChooseFullFilePath;
+        private System.Windows.Forms.Button btnChooseFullFilePath;
+        private System.Windows.Forms.Button btnOpenConstructor;
         private System.Windows.Forms.Label labelChooseColsCount;
         private System.Windows.Forms.NumericUpDown nudChooseColsCount;
         private System.Windows.Forms.NumericUpDown nudChooseRowsCount;

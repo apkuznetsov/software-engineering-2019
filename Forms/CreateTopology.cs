@@ -11,8 +11,12 @@ namespace GasStationMs.App.Forms
         {
             InitializeComponent();
 
-            btnOpenConstructorForm.Enabled = false;
+            SetupSettings();
+        }
 
+        private void SetupSettings()
+        {
+            btnOpenConstructor.Enabled = false;
             SetupNudsSettings();
         }
 
@@ -25,7 +29,7 @@ namespace GasStationMs.App.Forms
             nudChooseRowsCount.Maximum = Topology.Topology.MaxRowsCount;
         }
 
-        private void btnFilePath_Click(object sender, EventArgs e)
+        private void btnChooseFullFilePath_Click(object sender, EventArgs e)
         {
             string dotExt = Topology.Topology.DotExt;
             string filter = " " + dotExt + "|" + "*" + dotExt;
@@ -39,11 +43,11 @@ namespace GasStationMs.App.Forms
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 fullFilePath = sfd.FileName;
-                btnOpenConstructorForm.Enabled = true;
+                btnOpenConstructor.Enabled = true;
             }
         }
 
-        private void btnOpenConstructorForm_Click(object sender, EventArgs e)
+        private void btnOpenConstructor_Click(object sender, EventArgs e)
         {
             Constructor.Constructor constructor = new Constructor.Constructor(fullFilePath, (int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
             constructor.Show();
