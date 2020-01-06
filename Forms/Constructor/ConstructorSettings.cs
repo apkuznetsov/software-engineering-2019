@@ -8,7 +8,7 @@ namespace GasStationMs.App.Constructor
 {
     public partial class Constructor
     {
-        const int CellSizeInPx = 30;
+        public static readonly int CellSizeInPx = 30;
 
         public Constructor(string fullFilePath, Topology.Topology topology)
         {
@@ -21,7 +21,7 @@ namespace GasStationMs.App.Constructor
             InitializeComponent();
 
             this.fullFilePath = fullFilePath;
-            SetSettings();
+            SetupSettings();
             topologyBuilder = new TopologyBuilder(dgvTopology, topology);
         }
 
@@ -39,18 +39,18 @@ namespace GasStationMs.App.Constructor
             _crudHelper = new CrudHelper(_connection);
             InitializeComponent();
 
-            SetSettings();
+            SetupSettings();
             topologyBuilder = new TopologyBuilder(dgvTopology, cols, rows); ;
         }
 
-        private void SetSettings()
+        private void SetupSettings()
         {
-            SetCellsSize();
-            SetRbsNames();
-            SetTemplateElementsImages();
+            SetupCellsSize();
+            SetupRbsNames();
+            SetupTemplateElementsImages();
         }
 
-        private void SetCellsSize()
+        private void SetupCellsSize()
         {
             for (int i = 0; i < dgvTopology.ColumnCount; i++)
             {
@@ -63,7 +63,7 @@ namespace GasStationMs.App.Constructor
             }
         }
 
-        private void SetRbsNames()
+        private void SetupRbsNames()
         {
             rbFuelDispenser.Name = typeof(FuelDispenser).ToString();
             rbFuelTank.Name = typeof(FuelTank).ToString();
@@ -72,7 +72,7 @@ namespace GasStationMs.App.Constructor
             rbExit.Name = typeof(Exit).ToString();
         }
 
-        private void SetTemplateElementsImages()
+        private void SetupTemplateElementsImages()
         {
             FuelDispenser.Image = new Bitmap(Properties.Resources.Fuel, CellSizeInPx, CellSizeInPx);
             FuelTank.Image = new Bitmap(Properties.Resources.FuelTank, CellSizeInPx, CellSizeInPx);
