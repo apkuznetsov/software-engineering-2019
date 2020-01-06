@@ -31,10 +31,8 @@
             this.labelChooseFullFilePath = new System.Windows.Forms.Label();
             this.btnChooseFullFilePath = new System.Windows.Forms.Button();
             this.btnOpenConstructor = new System.Windows.Forms.Button();
-            this.labelChooseColsCount = new System.Windows.Forms.Label();
             this.nudChooseColsCount = new System.Windows.Forms.NumericUpDown();
             this.nudChooseRowsCount = new System.Windows.Forms.NumericUpDown();
-            this.labelChooseRowsCount = new System.Windows.Forms.Label();
             this.gbChooseFullFilePath = new System.Windows.Forms.GroupBox();
             this.gbChooseSize = new System.Windows.Forms.GroupBox();
             this.labelTimes = new System.Windows.Forms.Label();
@@ -70,22 +68,13 @@
             // 
             // btnOpenConstructor
             // 
-            this.btnOpenConstructor.Location = new System.Drawing.Point(12, 326);
+            this.btnOpenConstructor.Location = new System.Drawing.Point(12, 296);
             this.btnOpenConstructor.Name = "btnOpenConstructor";
-            this.btnOpenConstructor.Size = new System.Drawing.Size(560, 23);
+            this.btnOpenConstructor.Size = new System.Drawing.Size(560, 39);
             this.btnOpenConstructor.TabIndex = 2;
             this.btnOpenConstructor.Text = "Создать";
             this.btnOpenConstructor.UseVisualStyleBackColor = true;
             this.btnOpenConstructor.Click += new System.EventHandler(this.btnOpenConstructor_Click);
-            // 
-            // labelChooseColsCount
-            // 
-            this.labelChooseColsCount.AutoSize = true;
-            this.labelChooseColsCount.Location = new System.Drawing.Point(12, 265);
-            this.labelChooseColsCount.Name = "labelChooseColsCount";
-            this.labelChooseColsCount.Size = new System.Drawing.Size(116, 13);
-            this.labelChooseColsCount.TabIndex = 3;
-            this.labelChooseColsCount.Text = "Количество столбцов";
             // 
             // nudChooseColsCount
             // 
@@ -101,22 +90,13 @@
             this.nudChooseRowsCount.Size = new System.Drawing.Size(40, 20);
             this.nudChooseRowsCount.TabIndex = 6;
             // 
-            // labelChooseRowsCount
-            // 
-            this.labelChooseRowsCount.AutoSize = true;
-            this.labelChooseRowsCount.Location = new System.Drawing.Point(155, 265);
-            this.labelChooseRowsCount.Name = "labelChooseRowsCount";
-            this.labelChooseRowsCount.Size = new System.Drawing.Size(98, 13);
-            this.labelChooseRowsCount.TabIndex = 5;
-            this.labelChooseRowsCount.Text = "Количество строк";
-            // 
             // gbChooseFullFilePath
             // 
             this.gbChooseFullFilePath.Controls.Add(this.labelChooseFullFilePath);
             this.gbChooseFullFilePath.Controls.Add(this.btnChooseFullFilePath);
-            this.gbChooseFullFilePath.Location = new System.Drawing.Point(12, 16);
+            this.gbChooseFullFilePath.Location = new System.Drawing.Point(12, 36);
             this.gbChooseFullFilePath.Name = "gbChooseFullFilePath";
-            this.gbChooseFullFilePath.Size = new System.Drawing.Size(560, 49);
+            this.gbChooseFullFilePath.Size = new System.Drawing.Size(560, 65);
             this.gbChooseFullFilePath.TabIndex = 7;
             this.gbChooseFullFilePath.TabStop = false;
             // 
@@ -129,9 +109,9 @@
             this.gbChooseSize.Controls.Add(this.rbChosenMediumSize);
             this.gbChooseSize.Controls.Add(this.rbChosenSmallSize);
             this.gbChooseSize.Controls.Add(this.nudChooseColsCount);
-            this.gbChooseSize.Location = new System.Drawing.Point(12, 71);
+            this.gbChooseSize.Location = new System.Drawing.Point(12, 133);
             this.gbChooseSize.Name = "gbChooseSize";
-            this.gbChooseSize.Size = new System.Drawing.Size(560, 146);
+            this.gbChooseSize.Size = new System.Drawing.Size(560, 143);
             this.gbChooseSize.TabIndex = 8;
             this.gbChooseSize.TabStop = false;
             this.gbChooseSize.Text = "Укажите размер топологии (количество столбцов x количество строк)";
@@ -196,8 +176,6 @@
             this.ClientSize = new System.Drawing.Size(584, 361);
             this.Controls.Add(this.gbChooseSize);
             this.Controls.Add(this.gbChooseFullFilePath);
-            this.Controls.Add(this.labelChooseRowsCount);
-            this.Controls.Add(this.labelChooseColsCount);
             this.Controls.Add(this.btnOpenConstructor);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -211,7 +189,6 @@
             this.gbChooseSize.ResumeLayout(false);
             this.gbChooseSize.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -220,10 +197,8 @@
         private System.Windows.Forms.Label labelChooseFullFilePath;
         private System.Windows.Forms.Button btnChooseFullFilePath;
         private System.Windows.Forms.Button btnOpenConstructor;
-        private System.Windows.Forms.Label labelChooseColsCount;
         private System.Windows.Forms.NumericUpDown nudChooseColsCount;
         private System.Windows.Forms.NumericUpDown nudChooseRowsCount;
-        private System.Windows.Forms.Label labelChooseRowsCount;
         private System.Windows.Forms.GroupBox gbChooseFullFilePath;
         private System.Windows.Forms.GroupBox gbChooseSize;
         private System.Windows.Forms.RadioButton rbChosenOtherSize;
