@@ -16,7 +16,7 @@ namespace GasStationMs.App
 
         private void btnOpenCreateTopology_Click(object sender, EventArgs e)
         {
-            CreatingTopologyForm createTopology = new CreatingTopologyForm();
+            CreateTopology createTopology = new CreateTopology();
             createTopology.ShowDialog();
         }
 

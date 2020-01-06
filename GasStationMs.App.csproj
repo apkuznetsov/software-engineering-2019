@@ -72,11 +72,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
-    <Compile Include="Forms\CreatingTopologyForm.cs">
+    <Compile Include="Forms\CreateTopology.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CreatingTopologyForm.Designer.cs">
-      <DependentUpon>CreatingTopologyForm.cs</DependentUpon>
+    <Compile Include="Forms\CreateTopology.Designer.cs">
+      <DependentUpon>CreateTopology.cs</DependentUpon>
     </Compile>
     <Compile Include="Modeling\ModelingTimeManager.cs" />
     <Compile Include="Modeling\ModelSettings.cs" />
@@ -176,8 +176,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Topology\Topology.cs" />
     <Compile Include="Topology\TopologySaverAndLoader.cs" />
-    <EmbeddedResource Include="Forms\CreatingTopologyForm.resx">
-      <DependentUpon>CreatingTopologyForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CreateTopology.resx">
+      <DependentUpon>CreateTopology.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DistributionLawsForm.resx">
       <DependentUpon>DistributionLawsForm.cs</DependentUpon>

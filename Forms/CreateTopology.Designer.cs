@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App.Forms
 {
-    partial class CreatingTopologyForm
+    partial class CreateTopology
     {
         /// <summary>
         /// Required designer variable.
@@ -101,7 +101,7 @@
             this.labelChooseRowsCount.TabIndex = 5;
             this.labelChooseRowsCount.Text = "Количество строк";
             // 
-            // CreatingTopologyForm
+            // CreateTopology
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -115,7 +115,7 @@
             this.Controls.Add(this.labelChooseFilePath);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CreatingTopologyForm";
+            this.Name = "CreateTopology";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Создание топологии";
             ((System.ComponentModel.ISupportInitialize)(this.nudChooseColsCount)).EndInit();

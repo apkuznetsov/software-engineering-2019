@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App.Forms
 {
-    public partial class CreatingTopologyForm : Form
+    public partial class CreateTopology : Form
     {
         private string fullFilePath;
 
-        public CreatingTopologyForm()
+        public CreateTopology()
         {
             InitializeComponent();
 
