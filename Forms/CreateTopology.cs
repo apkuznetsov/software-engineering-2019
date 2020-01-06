@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GasStationMs.App.Topology;
+using System;
 using System.Windows.Forms;
 
 namespace GasStationMs.App.Forms
@@ -31,18 +32,15 @@ namespace GasStationMs.App.Forms
 
         private void btnChooseFullFilePath_Click(object sender, EventArgs e)
         {
-            string dotExt = Topology.Topology.DotExt;
-            string filter = " " + dotExt + "|" + "*" + dotExt;
-
-            SaveFileDialog sfd = new SaveFileDialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                DefaultExt = dotExt,
-                Filter = filter
+                DefaultExt = TopologySaverAndLoader.DotExt,
+                Filter = TopologySaverAndLoader.Filter
             };
 
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                fullFilePath = sfd.FileName;
+                fullFilePath = saveFileDialog.FileName;
                 btnOpenConstructor.Enabled = true;
             }
         }
