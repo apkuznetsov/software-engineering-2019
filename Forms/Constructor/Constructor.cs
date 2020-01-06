@@ -289,17 +289,10 @@ namespace GasStationMs.App.Constructor
 
         private void btnSaveTopology_Click(object sender, EventArgs e)
         {
-            SaveTopologyIntoCurrFilePath(topologyBuilder.ToTopology());
-        }
-
-        private void SaveTopologyIntoCurrFilePath(Topology.Topology topology)
-        {
             try
             {
-                if (topology == null)
-                    throw new NullReferenceException();
-
-                topology.Save(fullFilePath);
+                Topology.Topology topology = topologyBuilder.ToTopology();
+                TopologySaverAndLoader.Save(fullFilePath, topology);
             }
             catch (Exception exc)
             {
@@ -321,7 +314,7 @@ namespace GasStationMs.App.Constructor
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 fullFilePath = sfd.FileName;
-                SaveTopologyIntoCurrFilePath(topologyBuilder.ToTopology());
+                SaveTopology(topologyBuilder.ToTopology());
             }
         }
 
