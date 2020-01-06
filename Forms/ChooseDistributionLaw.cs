@@ -224,6 +224,9 @@ namespace GasStationMs.App
 
             ModelingForm modelingForm = new ModelingForm(topology, trafficFlow);
             modelingForm.ShowDialog();
+
+            Dispose();
+            Close();
         }
 
         private void rbRandomFlow_CheckedChanged(object sender, EventArgs e)
