@@ -4,11 +4,10 @@ using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Models;
-using GasStationMs.App.Topology;
 
 namespace GasStationMs.App
 {
-    public partial class DistributionLawsForm : Form
+    public partial class ChooseDistributionLaw : Form
     {
         private enum DistributionLaws
         {
@@ -22,7 +21,7 @@ namespace GasStationMs.App
         private Topology.Topology topology;
         public IDistributionLaw randNumGenerator;
 
-        public DistributionLawsForm(Topology.Topology topology)
+        public ChooseDistributionLaw(Topology.Topology topology)
         {
             InitializeComponent();
             this.topology = topology;
@@ -252,6 +251,5 @@ namespace GasStationMs.App
             MakeNormalFlowParamsInvisible();
             MakeExponentialFlowParamsInvisible();
         }
-
     }
 }

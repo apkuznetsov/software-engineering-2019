@@ -116,11 +116,11 @@
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
     <Compile Include="DistributionLaws\DeterminedDistribution.cs" />
-    <Compile Include="Forms\DistributionLawsForm.cs">
+    <Compile Include="Forms\ChooseDistributionLaw.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DistributionLawsForm.Designer.cs">
-      <DependentUpon>DistributionLawsForm.cs</DependentUpon>
+    <Compile Include="Forms\ChooseDistributionLaw.Designer.cs">
+      <DependentUpon>ChooseDistributionLaw.cs</DependentUpon>
     </Compile>
     <Compile Include="DistributionLaws\ExponentialDistribution.cs" />
     <Compile Include="DistributionLaws\IDistributionLaw.cs" />
@@ -179,8 +179,8 @@
     <EmbeddedResource Include="Forms\CreateTopology.resx">
       <DependentUpon>CreateTopology.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DistributionLawsForm.resx">
-      <DependentUpon>DistributionLawsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ChooseDistributionLaw.resx">
+      <DependentUpon>ChooseDistributionLaw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModelingForm.resx">
       <DependentUpon>ModelingForm.cs</DependentUpon>

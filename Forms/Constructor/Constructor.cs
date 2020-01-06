@@ -320,7 +320,7 @@ namespace GasStationMs.App.Constructor
         {
             try
             {
-                DistributionLawsForm distributionLawsForm = new DistributionLawsForm(topologyBuilder.ToTopology());
+                ChooseDistributionLaw distributionLawsForm = new ChooseDistributionLaw(topologyBuilder.ToTopology());
                 distributionLawsForm.ShowDialog();
             }
             catch (Exception exc)

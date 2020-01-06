@@ -1,6 +1,6 @@
 ﻿namespace GasStationMs.App
 {
-    partial class DistributionLawsForm
+    partial class ChooseDistributionLaw
     {
         /// <summary>
         /// Required designer variable.
@@ -422,7 +422,7 @@
             this.gbProbabilityOfStoppingAtGasStation.TabIndex = 26;
             this.gbProbabilityOfStoppingAtGasStation.TabStop = false;
             // 
-            // DistributionLawsForm
+            // ChooseDistributionLaw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -436,7 +436,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "DistributionLawsForm";
+            this.Name = "ChooseDistributionLaw";
             this.Text = "Настройка транспортного потока";
             ((System.ComponentModel.ISupportInitialize)(this.nudProbabilityOfStoppingAtGasStation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistrVariance)).EndInit();
