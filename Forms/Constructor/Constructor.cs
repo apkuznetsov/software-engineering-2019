@@ -300,21 +300,19 @@ namespace GasStationMs.App.Constructor
             }
         }
 
-        private void btnSaveAs_Click(object sender, EventArgs e)
+        private void btnSaveTopologyAs_Click(object sender, EventArgs e)
         {
-            string dotExt = Topology.Topology.DotExt;
-            string filter = " " + dotExt + "|" + "*" + dotExt;
-
             SaveFileDialog sfd = new SaveFileDialog
             {
-                DefaultExt = dotExt,
-                Filter = filter
+                DefaultExt = TopologySaverAndLoader.DotExt,
+                Filter = TopologySaverAndLoader.Filter
             };
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 fullFilePath = sfd.FileName;
-                SaveTopology(topologyBuilder.ToTopology());
+                Topology.Topology topology = topologyBuilder.ToTopology();
+                TopologySaverAndLoader.Save(fullFilePath, topology);
             }
         }
 

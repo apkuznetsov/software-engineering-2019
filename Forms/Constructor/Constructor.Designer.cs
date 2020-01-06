@@ -334,7 +334,7 @@
             this.btnSaveAs.TabIndex = 17;
             this.btnSaveAs.Text = "Сохранить как";
             this.btnSaveAs.UseVisualStyleBackColor = true;
-            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
+            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveTopologyAs_Click);
             // 
             // btnToDistributionLawsForm
             // 
