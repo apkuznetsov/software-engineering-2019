@@ -48,7 +48,7 @@ namespace GasStationMs.App.Forms
         private void btnOpenConstructor_Click(object sender, EventArgs e)
         {
             Constructor.Constructor constructor = new Constructor.Constructor(fullFilePath, (int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
-            constructor.ShowDialog();
+            constructor.Show();
 
             Dispose();
             Close();
