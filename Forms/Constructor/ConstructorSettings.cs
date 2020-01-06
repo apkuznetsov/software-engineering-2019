@@ -12,21 +12,24 @@ namespace GasStationMs.App.Constructor
 
         public Constructor(string fullFilePath, Topology.Topology topology)
         {
-            if (fullFilePath == null ||
-                topology == null)
+            this.fullFilePath = fullFilePath ?? throw new NullReferenceException();
+
+            if (topology == null)
                 throw new NullReferenceException();
 
             _connection = ConnectionHelpers.OpenConnection();
             _crudHelper = new CrudHelper(_connection);
+
             InitializeComponent();
 
-            this.fullFilePath = fullFilePath;
             SetupSettings();
             topologyBuilder = new TopologyBuilder(dgvTopology, topology);
         }
 
         public Constructor(string fullFilePath, int cols, int rows)
         {
+            this.fullFilePath = fullFilePath ?? throw new NullReferenceException();
+
             if (cols < Topology.Topology.MinColsCount ||
                 cols > Topology.Topology.MaxColsCount)
                 throw new ArgumentOutOfRangeException();
@@ -37,6 +40,7 @@ namespace GasStationMs.App.Constructor
 
             _connection = ConnectionHelpers.OpenConnection();
             _crudHelper = new CrudHelper(_connection);
+
             InitializeComponent();
 
             SetupSettings();
