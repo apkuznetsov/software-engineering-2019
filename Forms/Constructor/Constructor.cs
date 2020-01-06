@@ -13,66 +13,18 @@ namespace GasStationMs.App.Constructor
 {
     public partial class Constructor : Form
     {
-        private string currFilePath;
+        private string fullFilePath;
         private TopologyBuilder topologyBuilder;
+
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
 
-        public Constructor(Topology.Topology topology)
-        {
-            _connection = ConnectionHelpers.OpenConnection();
-            _crudHelper = new CrudHelper(_connection);
-            InitializeComponent();
-
-            SetSettings();
-            topologyBuilder = new TopologyBuilder(dgvTopology, topology);
-        }
-
-        public Constructor(int cols, int rows)
-        {
-            if (cols < Topology.Topology.MinColsCount ||
-                cols > Topology.Topology.MaxColsCount)
-                throw new ArgumentOutOfRangeException();
-
-            if (rows < Topology.Topology.MinRowsCount ||
-                rows > Topology.Topology.MaxRowsCount)
-                throw new ArgumentOutOfRangeException();
-
-            _connection = ConnectionHelpers.OpenConnection();
-            _crudHelper = new CrudHelper(_connection);
-            InitializeComponent();
-
-            SetSettings();
-            topologyBuilder = new TopologyBuilder(dgvTopology, cols, rows); ;
-        }
-
-        public TopologyBuilder TopologyBuilder
-        {
-            get
-            {
-                return topologyBuilder;
-            }
-
-        }
-
         private void TopologyConstructor_Load(object sender, EventArgs e)
         {
             LoadList();
-        }
-
-        public string CurrFilePath
-        {
-            get
-            {
-                return currFilePath;
-            }
-            set
-            {
-                currFilePath = value;
-            }
         }
 
         #region события
@@ -337,17 +289,10 @@ namespace GasStationMs.App.Constructor
 
         private void btnSaveTopology_Click(object sender, EventArgs e)
         {
-            SaveTopologyIntoCurrFilePath(topologyBuilder.ToTopology());
-        }
-
-        private void SaveTopologyIntoCurrFilePath(Topology.Topology topology)
-        {
             try
             {
-                if (topology == null)
-                    throw new NullReferenceException();
-
-                topology.Save(currFilePath);
+                Topology.Topology topology = topologyBuilder.ToTopology();
+                TopologySaverAndLoader.Save(fullFilePath, topology);
             }
             catch (Exception exc)
             {
@@ -355,21 +300,19 @@ namespace GasStationMs.App.Constructor
             }
         }
 
-        private void btnSaveAs_Click(object sender, EventArgs e)
+        private void btnSaveTopologyAs_Click(object sender, EventArgs e)
         {
-            string dotExt = Topology.Topology.DotExt;
-            string filter = " " + dotExt + "|" + "*" + dotExt;
-
             SaveFileDialog sfd = new SaveFileDialog
             {
-                DefaultExt = dotExt,
-                Filter = filter
+                DefaultExt = TopologySaverAndLoader.DotExt,
+                Filter = TopologySaverAndLoader.Filter
             };
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                currFilePath = sfd.FileName;
-                SaveTopologyIntoCurrFilePath(topologyBuilder.ToTopology());
+                fullFilePath = sfd.FileName;
+                Topology.Topology topology = topologyBuilder.ToTopology();
+                TopologySaverAndLoader.Save(fullFilePath, topology);
             }
         }
 
@@ -377,7 +320,7 @@ namespace GasStationMs.App.Constructor
         {
             try
             {
-                DistributionLawsForm distributionLawsForm = new DistributionLawsForm(topologyBuilder.ToTopology());
+                ChooseDistributionLaw distributionLawsForm = new ChooseDistributionLaw(topologyBuilder.ToTopology());
                 distributionLawsForm.ShowDialog();
             }
             catch (Exception exc)

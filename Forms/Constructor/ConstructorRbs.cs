@@ -11,15 +11,6 @@ namespace GasStationMs.App.Constructor
         private bool _isCheckedRbEntry = false;
         private bool _isCheckedRbExit = false;
 
-        private void SetRbsNames()
-        {
-            rbFuelDispenser.Name = typeof(FuelDispenser).ToString();
-            rbFuelTank.Name = typeof(FuelTank).ToString();
-            rbCashCounter.Name = typeof(CashCounter).ToString();
-            rbEntry.Name = typeof(Entry).ToString();
-            rbExit.Name = typeof(Exit).ToString();
-        }
-
         private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
         {
             _isCheckedradioButtonFuelDispenser = rbFuelDispenser.Checked;

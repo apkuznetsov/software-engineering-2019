@@ -1,21 +1,60 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using GasStationMs.App.DB;
 using GasStationMs.App.TemplateElements;
+using GasStationMs.App.Topology;
 
 namespace GasStationMs.App.Constructor
 {
     public partial class Constructor
     {
-        const int CellSizeInPx = 30;
+        public static readonly int CellSizeInPx = 30;
 
-        private void SetSettings()
+        public Constructor(string fullFilePath, Topology.Topology topology)
         {
-            SetCellsSize();
-            SetRbsNames();
-            SetTemplateElementsImages();
+            this.fullFilePath = fullFilePath ?? throw new NullReferenceException();
+
+            if (topology == null)
+                throw new NullReferenceException();
+
+            _connection = ConnectionHelpers.OpenConnection();
+            _crudHelper = new CrudHelper(_connection);
+
+            InitializeComponent();
+
+            SetupSettings();
+            topologyBuilder = new TopologyBuilder(dgvTopology, topology);
         }
 
-        private void SetCellsSize()
+        public Constructor(string fullFilePath, int cols, int rows)
+        {
+            this.fullFilePath = fullFilePath ?? throw new NullReferenceException();
 
+            if (cols < Topology.Topology.MinColsCount ||
+                cols > Topology.Topology.MaxColsCount)
+                throw new ArgumentOutOfRangeException();
+
+            if (rows < Topology.Topology.MinRowsCount ||
+                rows > Topology.Topology.MaxRowsCount)
+                throw new ArgumentOutOfRangeException();
+
+            _connection = ConnectionHelpers.OpenConnection();
+            _crudHelper = new CrudHelper(_connection);
+
+            InitializeComponent();
+
+            SetupSettings();
+            topologyBuilder = new TopologyBuilder(dgvTopology, cols, rows); ;
+        }
+
+        private void SetupSettings()
+        {
+            SetupCellsSize();
+            SetupRbsNames();
+            SetupTemplateElementsImages();
+        }
+
+        private void SetupCellsSize()
         {
             for (int i = 0; i < dgvTopology.ColumnCount; i++)
             {
@@ -28,7 +67,16 @@ namespace GasStationMs.App.Constructor
             }
         }
 
-        private void SetTemplateElementsImages()
+        private void SetupRbsNames()
+        {
+            rbFuelDispenser.Name = typeof(FuelDispenser).ToString();
+            rbFuelTank.Name = typeof(FuelTank).ToString();
+            rbCashCounter.Name = typeof(CashCounter).ToString();
+            rbEntry.Name = typeof(Entry).ToString();
+            rbExit.Name = typeof(Exit).ToString();
+        }
+
+        private void SetupTemplateElementsImages()
         {
             FuelDispenser.Image = new Bitmap(Properties.Resources.Fuel, CellSizeInPx, CellSizeInPx);
             FuelTank.Image = new Bitmap(Properties.Resources.FuelTank, CellSizeInPx, CellSizeInPx);

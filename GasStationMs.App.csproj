@@ -72,11 +72,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\Models\FuelModel.cs" />
-    <Compile Include="Forms\CreatingTopologyForm.cs">
+    <Compile Include="Forms\CreateTopology.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CreatingTopologyForm.Designer.cs">
-      <DependentUpon>CreatingTopologyForm.cs</DependentUpon>
+    <Compile Include="Forms\CreateTopology.Designer.cs">
+      <DependentUpon>CreateTopology.cs</DependentUpon>
     </Compile>
     <Compile Include="Modeling\ModelingTimeManager.cs" />
     <Compile Include="Modeling\ModelSettings.cs" />
@@ -116,11 +116,11 @@
     <Compile Include="DB\ConnectionHelpers.cs" />
     <Compile Include="DB\CrudHelper.cs" />
     <Compile Include="DistributionLaws\DeterminedDistribution.cs" />
-    <Compile Include="Forms\DistributionLawsForm.cs">
+    <Compile Include="Forms\ChooseDistributionLaw.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DistributionLawsForm.Designer.cs">
-      <DependentUpon>DistributionLawsForm.cs</DependentUpon>
+    <Compile Include="Forms\ChooseDistributionLaw.Designer.cs">
+      <DependentUpon>ChooseDistributionLaw.cs</DependentUpon>
     </Compile>
     <Compile Include="DistributionLaws\ExponentialDistribution.cs" />
     <Compile Include="DistributionLaws\IDistributionLaw.cs" />
@@ -157,11 +157,11 @@
     <Compile Include="Topology\TopologyBuilderEntry.cs" />
     <Compile Include="Topology\TopologyBuilder.cs" />
     <Compile Include="Models\TrafficFlow.cs" />
-    <Compile Include="Forms\StartingForm.cs">
+    <Compile Include="Forms\CreateOrLoadTopology.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\StartingForm.Designer.cs">
-      <DependentUpon>StartingForm.cs</DependentUpon>
+    <Compile Include="Forms\CreateOrLoadTopology.Designer.cs">
+      <DependentUpon>CreateOrLoadTopology.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Constructor\ConstructorSettings.cs">
       <SubType>Form</SubType>
@@ -175,17 +175,18 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Topology\Topology.cs" />
-    <EmbeddedResource Include="Forms\CreatingTopologyForm.resx">
-      <DependentUpon>CreatingTopologyForm.cs</DependentUpon>
+    <Compile Include="Topology\TopologySaverAndLoader.cs" />
+    <EmbeddedResource Include="Forms\CreateTopology.resx">
+      <DependentUpon>CreateTopology.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DistributionLawsForm.resx">
-      <DependentUpon>DistributionLawsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ChooseDistributionLaw.resx">
+      <DependentUpon>ChooseDistributionLaw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModelingForm.resx">
       <DependentUpon>ModelingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StartingForm.resx">
-      <DependentUpon>StartingForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\CreateOrLoadTopology.resx">
+      <DependentUpon>CreateOrLoadTopology.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Constructor\Constructor.resx">
       <DependentUpon>Constructor.cs</DependentUpon>
