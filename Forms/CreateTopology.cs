@@ -6,6 +6,15 @@ namespace GasStationMs.App.Forms
 {
     public partial class CreateTopology : Form
     {
+        private static readonly int smallColsCount = Topology.Topology.MinColsCount;
+        private static readonly int smallRowsCount = Topology.Topology.MinRowsCount;
+
+        private static readonly int bigColsCount = Topology.Topology.MaxColsCount;
+        private static readonly int bigRowsCount = Topology.Topology.MaxRowsCount;
+
+        private static readonly int mediumColsCount = (int)(smallColsCount + 0.5 * (bigColsCount - smallColsCount));
+        private static readonly int mediumRowsCount = (int)(smallRowsCount + 0.5 * (bigRowsCount - smallRowsCount));
+
         private string fullFilePath;
 
         public CreateTopology()
@@ -19,8 +28,31 @@ namespace GasStationMs.App.Forms
         {
             btnOpenConstructor.Enabled = false;
             rbChosenSmallSize.Checked = true;
+            MakeChosenOtherSizeInvisible();
 
+            SetupRbsTexts();
             SetupNudsSettings();
+        }
+
+        private void MakeChosenOtherSizeVisible()
+        {
+            nudChooseColsCount.Visible = true;
+            labelTimes.Visible = true;
+            nudChooseRowsCount.Visible = true;
+        }
+
+        private void MakeChosenOtherSizeInvisible()
+        {
+            nudChooseColsCount.Visible = false;
+            labelTimes.Visible = false;
+            nudChooseRowsCount.Visible = false;
+        }
+
+        private void SetupRbsTexts()
+        {
+            rbChosenSmallSize.Text = "Маленькая " + smallColsCount + " x " + smallRowsCount;
+            rbChosenBigSize.Text = "Большая " + bigColsCount + " x " + bigRowsCount;
+            rbChosenMediumSize.Text = "Средняя " + mediumColsCount + " x " + mediumRowsCount;
         }
 
         private void SetupNudsSettings()
@@ -49,7 +81,25 @@ namespace GasStationMs.App.Forms
 
         private void btnOpenConstructor_Click(object sender, EventArgs e)
         {
-            Constructor.Constructor constructor = new Constructor.Constructor(fullFilePath, (int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
+            Constructor.Constructor constructor;
+
+            if ((rbChosenSmallSize.Checked == true))
+            {
+                constructor = new Constructor.Constructor(fullFilePath, smallColsCount, smallRowsCount);
+            }
+            else if (rbChosenBigSize.Checked == true)
+            {
+                constructor = new Constructor.Constructor(fullFilePath, bigColsCount, bigRowsCount);
+            }
+            else if (rbChosenMediumSize.Checked == true)
+            {
+                constructor = new Constructor.Constructor(fullFilePath, mediumColsCount, mediumRowsCount);
+            }
+            else
+            {
+                constructor = new Constructor.Constructor(fullFilePath, (int)nudChooseColsCount.Value, (int)nudChooseRowsCount.Value);
+            }
+
             constructor.Show();
 
             Dispose();
@@ -60,13 +110,11 @@ namespace GasStationMs.App.Forms
         {
             if (rbChosenOtherSize.Checked == true)
             {
-                nudChooseColsCount.Visible = true;
-                nudChooseRowsCount.Visible = true;
+                MakeChosenOtherSizeVisible();
             }
             else
             {
-                nudChooseColsCount.Visible = false;
-                nudChooseRowsCount.Visible = false;
+                MakeChosenOtherSizeInvisible();
             }
         }
     }
