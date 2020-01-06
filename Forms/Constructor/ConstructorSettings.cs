@@ -51,7 +51,6 @@ namespace GasStationMs.App.Constructor
         }
 
         private void SetCellsSize()
-
         {
             for (int i = 0; i < dgvTopology.ColumnCount; i++)
             {
@@ -62,6 +61,15 @@ namespace GasStationMs.App.Constructor
             {
                 dgvTopology.Rows[j].Height = CellSizeInPx;
             }
+        }
+
+        private void SetRbsNames()
+        {
+            rbFuelDispenser.Name = typeof(FuelDispenser).ToString();
+            rbFuelTank.Name = typeof(FuelTank).ToString();
+            rbCashCounter.Name = typeof(CashCounter).ToString();
+            rbEntry.Name = typeof(Entry).ToString();
+            rbExit.Name = typeof(Exit).ToString();
         }
 
         private void SetTemplateElementsImages()
