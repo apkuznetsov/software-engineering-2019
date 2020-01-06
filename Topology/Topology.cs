@@ -8,7 +8,7 @@ namespace GasStationMs.App.Topology
     public partial class Topology
     {
         private readonly IGasStationElement[,] field;
-        private int serviceAreaBorderColIndex;
+        private readonly int serviceAreaBorderColIndex;
 
         public Topology(IGasStationElement[,] field, int serviceAreaBorderColIndex)
         {
@@ -16,13 +16,43 @@ namespace GasStationMs.App.Topology
             this.serviceAreaBorderColIndex = serviceAreaBorderColIndex;
         }
 
-        public int RowsCount
+        public IGasStationElement this[int x, int y]
         {
             get
             {
-                return field.GetLength(0);
+                if (x < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                if (x > LastX)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                if (y < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                if (y > LastY)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                return field[y, x];
             }
         }
+
+        public IGasStationElement this[Point p]
+        {
+            get
+            {
+                return this[p.X, p.Y];
+            }
+        }
+
+        public int ServiceAreaBorderColIndex { get; }
 
         public int ColsCount
         {
@@ -32,7 +62,13 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public int ServiceAreaBorderColIndex { get; }
+        public int RowsCount
+        {
+            get
+            {
+                return field.GetLength(0);
+            }
+        }
 
         public int LastX
         {
@@ -58,64 +94,8 @@ namespace GasStationMs.App.Topology
             }
         }
 
-        public IGasStationElement this[int x, int y]
-        {
-            get
-            {
-                if (y < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (y > LastY)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (x < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (x > LastX)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                return field[y, x];
-            }
-        }
-
-        public IGasStationElement this[Point p]
-        {
-            get
-            {
-                return this[p.X, p.Y];
-            }
-        }
-
         public IGasStationElement GetElement(int x, int y)
         {
-            if (x < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (x >= ColsCount)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (y < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (y >= RowsCount)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
             return field[y, x];
         }
 
