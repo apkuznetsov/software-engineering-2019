@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
@@ -19,14 +19,13 @@ namespace GasStationMs.App
         }
 
         private Topology.Topology topology;
-        public IDistributionLaw randNumGenerator;
+        private IDistributionLaw randNumGenerator;
 
         public ChooseDistributionLaw(Topology.Topology topology)
         {
-            InitializeComponent();
-            this.topology = topology;
+            this.topology = topology ?? throw new NullReferenceException();
 
-            SetupCbChooseDistributionLaw();
+            InitializeComponent();
 
             SetupDefaultSettings();
         }
@@ -48,6 +47,7 @@ namespace GasStationMs.App
             MakeDeterminedFlowParamsVisible();
             MakeUniformFlowParamsInvisible();
 
+            SetupCbChooseDistributionLaw();
             SetupFlowsSettings();
             SetupChoosingProbabilityOfStoppingAtGasStation();
         }
