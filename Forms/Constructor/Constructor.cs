@@ -15,20 +15,12 @@ namespace GasStationMs.App.Constructor
     {
         private string fullFilePath;
         private TopologyBuilder topologyBuilder;
+
         private DataTable _fuelDataTable;
         private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
-
-        public TopologyBuilder TopologyBuilder
-        {
-            get
-            {
-                return topologyBuilder;
-            }
-
-        }
 
         private void TopologyConstructor_Load(object sender, EventArgs e)
         {
