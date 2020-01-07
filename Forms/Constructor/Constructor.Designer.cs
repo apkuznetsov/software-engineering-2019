@@ -47,17 +47,17 @@
             this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
             this.clickedFuelList = new System.Windows.Forms.ComboBox();
             this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
-            this.gbTemplateElements = new System.Windows.Forms.GroupBox();
+            this.gbAddFuel = new System.Windows.Forms.GroupBox();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbTemplateElement = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).BeginInit();
-            this.gbTemplateElements.SuspendLayout();
+            this.gbAddFuel.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbTemplateElement.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvField
@@ -315,22 +315,22 @@
             this.btnToDistributionLawsForm.UseVisualStyleBackColor = true;
             this.btnToDistributionLawsForm.Click += new System.EventHandler(this.btnToDistributionLawsForm_Click);
             // 
-            // gbTemplateElements
+            // gbAddFuel
             // 
-            this.gbTemplateElements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbAddFuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbTemplateElements.Controls.Add(this.btnToDistributionLawsForm);
-            this.gbTemplateElements.Controls.Add(this.btnDelete);
-            this.gbTemplateElements.Controls.Add(this.btnAdd);
-            this.gbTemplateElements.Controls.Add(this.textBoxNewFuelPrice);
-            this.gbTemplateElements.Controls.Add(this.listFuels);
-            this.gbTemplateElements.Controls.Add(this.textBoxNewFuelName);
-            this.gbTemplateElements.Location = new System.Drawing.Point(561, 310);
-            this.gbTemplateElements.Name = "gbTemplateElements";
-            this.gbTemplateElements.Size = new System.Drawing.Size(211, 239);
-            this.gbTemplateElements.TabIndex = 20;
-            this.gbTemplateElements.TabStop = false;
-            this.gbTemplateElements.Text = "groupBox1";
+            this.gbAddFuel.Controls.Add(this.btnToDistributionLawsForm);
+            this.gbAddFuel.Controls.Add(this.btnDelete);
+            this.gbAddFuel.Controls.Add(this.btnAdd);
+            this.gbAddFuel.Controls.Add(this.textBoxNewFuelPrice);
+            this.gbAddFuel.Controls.Add(this.listFuels);
+            this.gbAddFuel.Controls.Add(this.textBoxNewFuelName);
+            this.gbAddFuel.Location = new System.Drawing.Point(561, 310);
+            this.gbAddFuel.Name = "gbAddFuel";
+            this.gbAddFuel.Size = new System.Drawing.Size(211, 239);
+            this.gbAddFuel.TabIndex = 20;
+            this.gbAddFuel.TabStop = false;
+            this.gbAddFuel.Text = "groupBox1";
             // 
             // mainMenuStrip
             // 
@@ -358,33 +358,33 @@
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
             this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКакToolStripMenuItem_Click);
             // 
-            // groupBox1
+            // gbTemplateElement
             // 
-            this.groupBox1.Controls.Add(this.clickedFuelList);
-            this.groupBox1.Controls.Add(this.textBoxChosenFuel);
-            this.groupBox1.Controls.Add(this.numericUpDownVolume);
-            this.groupBox1.Controls.Add(this.labelMainTeProperty);
-            this.groupBox1.Controls.Add(this.numericUpDownFuelDispenserSpeed);
-            this.groupBox1.Controls.Add(this.labelClickedTeName);
-            this.groupBox1.Location = new System.Drawing.Point(561, 69);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(211, 173);
-            this.groupBox1.TabIndex = 22;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.gbTemplateElement.Controls.Add(this.clickedFuelList);
+            this.gbTemplateElement.Controls.Add(this.textBoxChosenFuel);
+            this.gbTemplateElement.Controls.Add(this.numericUpDownVolume);
+            this.gbTemplateElement.Controls.Add(this.labelMainTeProperty);
+            this.gbTemplateElement.Controls.Add(this.numericUpDownFuelDispenserSpeed);
+            this.gbTemplateElement.Controls.Add(this.labelClickedTeName);
+            this.gbTemplateElement.Location = new System.Drawing.Point(561, 69);
+            this.gbTemplateElement.Name = "gbTemplateElement";
+            this.gbTemplateElement.Size = new System.Drawing.Size(211, 173);
+            this.gbTemplateElement.TabIndex = 22;
+            this.gbTemplateElement.TabStop = false;
+            this.gbTemplateElement.Text = "Информация";
             // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbTemplateElement);
             this.Controls.Add(this.rbFuelDispenser);
             this.Controls.Add(this.rbEntry);
             this.Controls.Add(this.rbCashCounter);
             this.Controls.Add(this.rbFuelTank);
             this.Controls.Add(this.rbExit);
-            this.Controls.Add(this.gbTemplateElements);
+            this.Controls.Add(this.gbAddFuel);
             this.Controls.Add(this.dgvField);
             this.Controls.Add(this.mainMenuStrip);
             this.MainMenuStrip = this.mainMenuStrip;
@@ -397,12 +397,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).EndInit();
-            this.gbTemplateElements.ResumeLayout(false);
-            this.gbTemplateElements.PerformLayout();
+            this.gbAddFuel.ResumeLayout(false);
+            this.gbAddFuel.PerformLayout();
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbTemplateElement.ResumeLayout(false);
+            this.gbTemplateElement.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -428,11 +428,11 @@
         private System.Windows.Forms.Label labelMainTeProperty;
         private System.Windows.Forms.Button btnToDistributionLawsForm;
         private System.Windows.Forms.Label labelClickedTeName;
-        private System.Windows.Forms.GroupBox gbTemplateElements;
+        private System.Windows.Forms.GroupBox gbAddFuel;
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbTemplateElement;
     }
 }
 
