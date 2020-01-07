@@ -48,8 +48,6 @@
             this.numericUpDownFuelDispenserSpeed = new System.Windows.Forms.NumericUpDown();
             this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
             this.clickedFuelList = new System.Windows.Forms.ComboBox();
-            this.btnSaveTopology = new System.Windows.Forms.Button();
-            this.btnSaveAs = new System.Windows.Forms.Button();
             this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
             this.gbTemplateElements = new System.Windows.Forms.GroupBox();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
@@ -330,26 +328,6 @@
             this.clickedFuelList.Visible = false;
             this.clickedFuelList.SelectionChangeCommitted += new System.EventHandler(this.clickedFuelList_SelectionChangeCommitted);
             // 
-            // btnSaveTopology
-            // 
-            this.btnSaveTopology.Location = new System.Drawing.Point(33, 64);
-            this.btnSaveTopology.Name = "btnSaveTopology";
-            this.btnSaveTopology.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveTopology.TabIndex = 16;
-            this.btnSaveTopology.Text = "Сохранить";
-            this.btnSaveTopology.UseVisualStyleBackColor = true;
-            this.btnSaveTopology.Click += new System.EventHandler(this.btnSaveTopology_Click);
-            // 
-            // btnSaveAs
-            // 
-            this.btnSaveAs.Location = new System.Drawing.Point(155, 92);
-            this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(112, 23);
-            this.btnSaveAs.TabIndex = 17;
-            this.btnSaveAs.Text = "Сохранить как";
-            this.btnSaveAs.UseVisualStyleBackColor = true;
-            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveTopologyAs_Click);
-            // 
             // btnToDistributionLawsForm
             // 
             this.btnToDistributionLawsForm.Location = new System.Drawing.Point(9, 422);
@@ -416,8 +394,6 @@
             this.Controls.Add(this.rbFuelTank);
             this.Controls.Add(this.rbExit);
             this.Controls.Add(this.gbTemplateElements);
-            this.Controls.Add(this.btnSaveAs);
-            this.Controls.Add(this.btnSaveTopology);
             this.Controls.Add(this.dgvField);
             this.Controls.Add(this.mainMenuStrip);
             this.MainMenuStrip = this.mainMenuStrip;
@@ -461,8 +437,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownFuelDispenserSpeed;
         private System.Windows.Forms.NumericUpDown numericUpDownVolume;
         private System.Windows.Forms.Label labelMainTeProperty;
-        private System.Windows.Forms.Button btnSaveTopology;
-        private System.Windows.Forms.Button btnSaveAs;
         private System.Windows.Forms.Button btnToDistributionLawsForm;
         private System.Windows.Forms.Label labelClickedTeName;
         private System.Windows.Forms.GroupBox gbTemplateElements;
