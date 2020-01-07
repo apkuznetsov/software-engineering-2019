@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Windows.Forms;
 using GasStationMs.App.TemplateElements;
@@ -125,6 +126,10 @@ namespace GasStationMs.App.Constructor
             {
                 MessageBox.Show(cannotAddExit);
             }
+            else
+            {
+                throw new InvalidCastException();
+            }
         }
 
         private void AddElementToServiceAreaCell(DataGridViewImageCell cell, RadioButton rb)
@@ -153,6 +158,10 @@ namespace GasStationMs.App.Constructor
             else if (rb.Name == typeof(Exit).ToString())
             {
                 MessageBox.Show(cannotAddExit);
+            }
+            else
+            {
+                throw new InvalidCastException();
             }
         }
 
@@ -184,6 +193,10 @@ namespace GasStationMs.App.Constructor
             else if (rb.Name == typeof(CashCounter).ToString())
             {
                 MessageBox.Show(cannotAddCashCounter);
+            }
+            else
+            {
+                throw new InvalidCastException();
             }
         }
 
