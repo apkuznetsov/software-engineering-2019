@@ -378,7 +378,6 @@
             this.gbTemplateElements.TabIndex = 20;
             this.gbTemplateElements.TabStop = false;
             this.gbTemplateElements.Text = "groupBox1";
-            this.gbTemplateElements.Enter += new System.EventHandler(this.gbTemplateElements_Enter);
             // 
             // mainMenuStrip
             // 
@@ -404,6 +403,7 @@
             this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
             this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
+            this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКакToolStripMenuItem_Click);
             // 
             // Constructor
             // 

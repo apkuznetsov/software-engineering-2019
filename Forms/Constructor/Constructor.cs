@@ -206,6 +206,11 @@ namespace GasStationMs.App.Constructor
 
         private void btnSaveTopology_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             try
             {
                 Topology.Topology topology = topologyBuilder.ToTopology();
@@ -219,6 +224,11 @@ namespace GasStationMs.App.Constructor
         }
 
         private void btnSaveTopologyAs_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog
             {
@@ -245,16 +255,6 @@ namespace GasStationMs.App.Constructor
             {
                 MessageBox.Show(exc.Message);
             }
-        }
-
-        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gbTemplateElements_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
