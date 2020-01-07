@@ -31,31 +31,7 @@ namespace GasStationMs.App.Constructor
 
                 if (cell.Tag == null)
                 {
-                    bool isAdded = false;
-                    if (rb.Name == typeof(FuelDispenser).ToString())
-                    {
-                        isAdded = topologyBuilder.AddFuelDispenser(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить ТРК");
-                    }
-                    else if (rb.Name == typeof(CashCounter).ToString())
-                    {
-                        isAdded = topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить кассу");
-                    }
-                    else if (rb.Name == typeof(FuelTank).ToString())
-                    {
-                        MessageBox.Show("невозможно добавить ТБ");
-                    }
-                    else if (rb.Name == typeof(Entry).ToString())
-                    {
-                        MessageBox.Show("невозможно добавить въезд");
-                    }
-                    else if (rb.Name == typeof(Exit).ToString())
-                    {
-                        MessageBox.Show("невозможно добавить выезд");
-                    }
+                    AddElementToBlankCell(cell, rb);
                 }
                 else if (cell.Tag is ServiceArea)
                 {
@@ -93,9 +69,9 @@ namespace GasStationMs.App.Constructor
                 }
                 else
                 {
-                    labelClickedTeName.Text = cell.Tag.ToString();
+                    gbClickedCell.Text = cell.Tag.ToString();
 
-                    panelClickedCell.Visible = true;
+                    gbClickedCell.Visible = true;
 
                     if (cell.Tag is FuelDispenser)
                     {
@@ -136,6 +112,38 @@ namespace GasStationMs.App.Constructor
 
                     }
                 }
+            }
+        }
+
+        private void AddElementToBlankCell(DataGridViewImageCell cell, RadioButton rb)
+        {
+            bool isAdded = false;
+
+            if (rb.Name == typeof(FuelDispenser).ToString())
+            {
+                isAdded = topologyBuilder.AddFuelDispenser(cell.ColumnIndex, cell.RowIndex);
+
+                if (!isAdded)
+                    MessageBox.Show("невозможно добавить ТРК");
+            }
+            else if (rb.Name == typeof(CashCounter).ToString())
+            {
+                isAdded = topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
+
+                if (!isAdded)
+                    MessageBox.Show("невозможно добавить кассу");
+            }
+            else if (rb.Name == typeof(FuelTank).ToString())
+            {
+                MessageBox.Show("невозможно добавить ТБ: ТБ может быть расположен только на служебной зоне");
+            }
+            else if (rb.Name == typeof(Entry).ToString())
+            {
+                MessageBox.Show("невозможно добавить въезд: въезд может быть расположен только на дороге");
+            }
+            else if (rb.Name == typeof(Exit).ToString())
+            {
+                MessageBox.Show("невозможно добавить выезд: выезд может быть расположен только на дороге");
             }
         }
 

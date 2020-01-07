@@ -51,13 +51,13 @@
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gbTemplateElement = new System.Windows.Forms.GroupBox();
+            this.gbClickedCell = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).BeginInit();
             this.gbAddFuel.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
-            this.gbTemplateElement.SuspendLayout();
+            this.gbClickedCell.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvField
@@ -358,27 +358,27 @@
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
             this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКакToolStripMenuItem_Click);
             // 
-            // gbTemplateElement
+            // gbClickedCell
             // 
-            this.gbTemplateElement.Controls.Add(this.clickedFuelList);
-            this.gbTemplateElement.Controls.Add(this.textBoxChosenFuel);
-            this.gbTemplateElement.Controls.Add(this.numericUpDownVolume);
-            this.gbTemplateElement.Controls.Add(this.labelMainTeProperty);
-            this.gbTemplateElement.Controls.Add(this.numericUpDownFuelDispenserSpeed);
-            this.gbTemplateElement.Controls.Add(this.labelClickedTeName);
-            this.gbTemplateElement.Location = new System.Drawing.Point(561, 69);
-            this.gbTemplateElement.Name = "gbTemplateElement";
-            this.gbTemplateElement.Size = new System.Drawing.Size(211, 173);
-            this.gbTemplateElement.TabIndex = 22;
-            this.gbTemplateElement.TabStop = false;
-            this.gbTemplateElement.Text = "Информация";
+            this.gbClickedCell.Controls.Add(this.clickedFuelList);
+            this.gbClickedCell.Controls.Add(this.textBoxChosenFuel);
+            this.gbClickedCell.Controls.Add(this.numericUpDownVolume);
+            this.gbClickedCell.Controls.Add(this.labelMainTeProperty);
+            this.gbClickedCell.Controls.Add(this.numericUpDownFuelDispenserSpeed);
+            this.gbClickedCell.Controls.Add(this.labelClickedTeName);
+            this.gbClickedCell.Location = new System.Drawing.Point(561, 69);
+            this.gbClickedCell.Name = "gbClickedCell";
+            this.gbClickedCell.Size = new System.Drawing.Size(211, 173);
+            this.gbClickedCell.TabIndex = 22;
+            this.gbClickedCell.TabStop = false;
+            this.gbClickedCell.Text = "Информация";
             // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.gbTemplateElement);
+            this.Controls.Add(this.gbClickedCell);
             this.Controls.Add(this.rbFuelDispenser);
             this.Controls.Add(this.rbEntry);
             this.Controls.Add(this.rbCashCounter);
@@ -401,8 +401,8 @@
             this.gbAddFuel.PerformLayout();
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
-            this.gbTemplateElement.ResumeLayout(false);
-            this.gbTemplateElement.PerformLayout();
+            this.gbClickedCell.ResumeLayout(false);
+            this.gbClickedCell.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -432,7 +432,7 @@
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
-        private System.Windows.Forms.GroupBox gbTemplateElement;
+        private System.Windows.Forms.GroupBox gbClickedCell;
     }
 }
 
