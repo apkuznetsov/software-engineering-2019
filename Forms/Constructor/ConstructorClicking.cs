@@ -45,27 +45,7 @@ namespace GasStationMs.App.Constructor
                 }
                 else if (cell.Tag is Road)
                 {
-                    bool isAdded = false;
-                    if (rb.Name == typeof(Entry).ToString())
-                    {
-                        isAdded = topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить въезд");
-                    }
-                    else if (rb.Name == typeof(Exit).ToString())
-                    {
-                        isAdded = topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить выезд");
-                    }
-                    else if (rb.Name == typeof(FuelTank).ToString())
-                    {
-                        MessageBox.Show("невозможно добавить ТБ");
-                    }
-                    else if (rb.Name == typeof(CashCounter).ToString())
-                    {
-                        MessageBox.Show("невозможно добавить кассу");
-                    }
+                    AddElementToRoadCell(cell, rb);
                 }
                 else
                 {
@@ -173,6 +153,37 @@ namespace GasStationMs.App.Constructor
             else if (rb.Name == typeof(Exit).ToString())
             {
                 MessageBox.Show(cannotAddExit);
+            }
+        }
+
+        private void AddElementToRoadCell(DataGridViewImageCell cell, RadioButton rb)
+        {
+            bool isAdded = false;
+            if (rb.Name == typeof(Entry).ToString())
+            {
+                isAdded = topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
+
+                if (!isAdded)
+                    MessageBox.Show("невозможно добавить въезд");
+            }
+            else if (rb.Name == typeof(Exit).ToString())
+            {
+                isAdded = topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
+
+                if (!isAdded)
+                    MessageBox.Show("невозможно добавить выезд");
+            }
+            else if (rb.Name == typeof(FuelTank).ToString())
+            {
+                MessageBox.Show(cannotAddFuelTank);
+            }
+            else if (rb.Name == typeof(FuelDispenser).ToString())
+            {
+                MessageBox.Show(cannotAddFuelDispenser);
+            }
+            else if (rb.Name == typeof(CashCounter).ToString())
+            {
+                MessageBox.Show(cannotAddCashCounter);
             }
         }
 
