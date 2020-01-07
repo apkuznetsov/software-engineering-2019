@@ -40,10 +40,9 @@
             this.rbCashCounter = new System.Windows.Forms.RadioButton();
             this.rbEntry = new System.Windows.Forms.RadioButton();
             this.rbExit = new System.Windows.Forms.RadioButton();
-            this.labelClickedTeName = new System.Windows.Forms.Label();
-            this.labelMainTeProperty = new System.Windows.Forms.Label();
+            this.labelElementProperty1 = new System.Windows.Forms.Label();
             this.numericUpDownVolume = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownFuelDispenserSpeed = new System.Windows.Forms.NumericUpDown();
+            this.nudElementProperty1 = new System.Windows.Forms.NumericUpDown();
             this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
             this.clickedFuelList = new System.Windows.Forms.ComboBox();
             this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
@@ -54,7 +53,7 @@
             this.gbClickedCell = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty1)).BeginInit();
             this.gbAddFuel.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.gbClickedCell.SuspendLayout();
@@ -211,26 +210,16 @@
             this.rbExit.Click += new System.EventHandler(this.rbExit_Click);
             this.rbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbExit_mouseDown);
             // 
-            // labelClickedTeName
+            // labelElementProperty1
             // 
-            this.labelClickedTeName.AutoSize = true;
-            this.labelClickedTeName.Location = new System.Drawing.Point(5, 16);
-            this.labelClickedTeName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelClickedTeName.Name = "labelClickedTeName";
-            this.labelClickedTeName.Size = new System.Drawing.Size(50, 13);
-            this.labelClickedTeName.TabIndex = 19;
-            this.labelClickedTeName.Text = "TE name";
-            // 
-            // labelMainTeProperty
-            // 
-            this.labelMainTeProperty.AutoSize = true;
-            this.labelMainTeProperty.Location = new System.Drawing.Point(5, 33);
-            this.labelMainTeProperty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelMainTeProperty.Name = "labelMainTeProperty";
-            this.labelMainTeProperty.Size = new System.Drawing.Size(87, 13);
-            this.labelMainTeProperty.TabIndex = 18;
-            this.labelMainTeProperty.Text = "TE main property";
-            this.labelMainTeProperty.Visible = false;
+            this.labelElementProperty1.AutoSize = true;
+            this.labelElementProperty1.Location = new System.Drawing.Point(5, 16);
+            this.labelElementProperty1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelElementProperty1.Name = "labelElementProperty1";
+            this.labelElementProperty1.Size = new System.Drawing.Size(64, 13);
+            this.labelElementProperty1.TabIndex = 18;
+            this.labelElementProperty1.Text = "Свойство 1";
+            this.labelElementProperty1.Visible = false;
             // 
             // numericUpDownVolume
             // 
@@ -261,29 +250,29 @@
             this.numericUpDownVolume.Visible = false;
             this.numericUpDownVolume.ValueChanged += new System.EventHandler(this.numericUpDownVolume_ValueChanged);
             // 
-            // numericUpDownFuelDispenserSpeed
+            // nudElementProperty1
             // 
-            this.numericUpDownFuelDispenserSpeed.Location = new System.Drawing.Point(140, 26);
-            this.numericUpDownFuelDispenserSpeed.Maximum = new decimal(new int[] {
+            this.nudElementProperty1.Location = new System.Drawing.Point(74, 14);
+            this.nudElementProperty1.Maximum = new decimal(new int[] {
             160,
             0,
             0,
             0});
-            this.numericUpDownFuelDispenserSpeed.Minimum = new decimal(new int[] {
+            this.nudElementProperty1.Minimum = new decimal(new int[] {
             25,
             0,
             0,
             0});
-            this.numericUpDownFuelDispenserSpeed.Name = "numericUpDownFuelDispenserSpeed";
-            this.numericUpDownFuelDispenserSpeed.Size = new System.Drawing.Size(67, 20);
-            this.numericUpDownFuelDispenserSpeed.TabIndex = 15;
-            this.numericUpDownFuelDispenserSpeed.Value = new decimal(new int[] {
+            this.nudElementProperty1.Name = "nudElementProperty1";
+            this.nudElementProperty1.Size = new System.Drawing.Size(67, 20);
+            this.nudElementProperty1.TabIndex = 15;
+            this.nudElementProperty1.Value = new decimal(new int[] {
             25,
             0,
             0,
             0});
-            this.numericUpDownFuelDispenserSpeed.Visible = false;
-            this.numericUpDownFuelDispenserSpeed.ValueChanged += new System.EventHandler(this.numericUpDownFuelDispenserSpeed_ValueChanged);
+            this.nudElementProperty1.Visible = false;
+            this.nudElementProperty1.ValueChanged += new System.EventHandler(this.nudElementProperty1_ValueChanged);
             // 
             // textBoxChosenFuel
             // 
@@ -364,9 +353,8 @@
             this.gbClickedCell.Controls.Add(this.clickedFuelList);
             this.gbClickedCell.Controls.Add(this.textBoxChosenFuel);
             this.gbClickedCell.Controls.Add(this.numericUpDownVolume);
-            this.gbClickedCell.Controls.Add(this.labelMainTeProperty);
-            this.gbClickedCell.Controls.Add(this.numericUpDownFuelDispenserSpeed);
-            this.gbClickedCell.Controls.Add(this.labelClickedTeName);
+            this.gbClickedCell.Controls.Add(this.labelElementProperty1);
+            this.gbClickedCell.Controls.Add(this.nudElementProperty1);
             this.gbClickedCell.Location = new System.Drawing.Point(561, 69);
             this.gbClickedCell.Name = "gbClickedCell";
             this.gbClickedCell.Size = new System.Drawing.Size(211, 173);
@@ -397,7 +385,7 @@
             this.Load += new System.EventHandler(this.TopologyConstructor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty1)).EndInit();
             this.gbAddFuel.ResumeLayout(false);
             this.gbAddFuel.PerformLayout();
             this.mainMenuStrip.ResumeLayout(false);
@@ -424,11 +412,10 @@
         private System.Windows.Forms.RadioButton rbExit;
         private System.Windows.Forms.ComboBox clickedFuelList;
         private System.Windows.Forms.TextBox textBoxChosenFuel;
-        private System.Windows.Forms.NumericUpDown numericUpDownFuelDispenserSpeed;
+        private System.Windows.Forms.NumericUpDown nudElementProperty1;
         private System.Windows.Forms.NumericUpDown numericUpDownVolume;
-        private System.Windows.Forms.Label labelMainTeProperty;
+        private System.Windows.Forms.Label labelElementProperty1;
         private System.Windows.Forms.Button btnToDistributionLawsForm;
-        private System.Windows.Forms.Label labelClickedTeName;
         private System.Windows.Forms.GroupBox gbAddFuel;
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;

@@ -17,7 +17,6 @@ namespace GasStationMs.App.Constructor
         private TopologyBuilder topologyBuilder;
 
         private DataTable _fuelDataTable;
-        private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
@@ -81,13 +80,6 @@ namespace GasStationMs.App.Constructor
         private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
         {
             _selectedFuelTank.Volume = (int)numericUpDownVolume.Value;
-            _selectedFuelTank.OccupiedVolume = _selectedFuelTank.Volume;
-        }
-
-        private void numericUpDownFuelDispenserSpeed_ValueChanged(object sender, EventArgs e)
-        {
-
-            _selectedFuelDispenser.FuelFeedRateInLitersPerMinute = (int)numericUpDownFuelDispenserSpeed.Value;
             _selectedFuelTank.OccupiedVolume = _selectedFuelTank.Volume;
         }
 

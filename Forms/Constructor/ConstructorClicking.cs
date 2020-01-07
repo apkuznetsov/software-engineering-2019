@@ -13,6 +13,8 @@ namespace GasStationMs.App.Constructor
         private static readonly string cannotAddEntry = "невозможно добавить ВЪЕЗД: въезд может быть расположен только на дороге";
         private static readonly string cannotAddExit = "невозможно добавить ВЫЕЗД: выезд может быть расположен только на дороге";
 
+        private IGasStationElement clickedElement;
+
         private void dgvField_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)dgvField.Rows[e.RowIndex].Cells[e.ColumnIndex];
@@ -162,32 +164,19 @@ namespace GasStationMs.App.Constructor
         private void ShowElementProperties(DataGridViewImageCell cell)
         {
             gbClickedCell.Text = cell.Tag.ToString();
-
             gbClickedCell.Visible = true;
 
             if (cell.Tag is FuelDispenser)
             {
-                labelMainTeProperty.Visible = true;
-                labelMainTeProperty.Text = "Скорость подачи топлива";
-
-
-                numericUpDownVolume.Visible = false;
-                clickedFuelList.Visible = false;
-                textBoxChosenFuel.Visible = false;
-
-
-                numericUpDownFuelDispenserSpeed.Visible = true;
-                FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
-                _selectedFuelDispenser = clickedFuelDispenser;
-                numericUpDownFuelDispenserSpeed.Value = clickedFuelDispenser.FuelFeedRateInLitersPerMinute;
+                ShowClickedFuelDispenserProperties(cell);
             }
             else if (cell.Tag is FuelTank)
             {
-                labelMainTeProperty.Visible = true;
-                labelMainTeProperty.Text = "Объём";
+                labelElementProperty1.Visible = true;
+                labelElementProperty1.Text = "Объём";
 
 
-                numericUpDownFuelDispenserSpeed.Visible = false;
+                nudElementProperty1.Visible = false;
 
 
                 numericUpDownVolume.Visible = true;
@@ -202,6 +191,38 @@ namespace GasStationMs.App.Constructor
                 clickedFuelList.DataSource = _fuelDataTable;
                 numericUpDownVolume.Value = _selectedFuelTank.Volume;
 
+            }
+        }
+
+        private void ShowClickedFuelDispenserProperties(DataGridViewImageCell cell)
+        {
+            MakeFuelDispenserPropertiesControlsInvisible();
+
+            labelElementProperty1.Visible = true;
+            labelElementProperty1.Text = "Скорость подачи топлива";
+
+            nudElementProperty1.Visible = true;
+            nudElementProperty1.Minimum = FuelDispenser.MinFuelFeedRateInLitersPerMinute;
+            nudElementProperty1.Maximum = FuelDispenser.MaxFuelFeedRateInLitersPerMinute;
+
+            FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
+            nudElementProperty1.Value = clickedFuelDispenser.FuelFeedRateInLitersPerMinute;
+            clickedElement = clickedFuelDispenser;
+        }
+
+        private void MakeFuelDispenserPropertiesControlsInvisible()
+        {
+            numericUpDownVolume.Visible = false;
+            clickedFuelList.Visible = false;
+            textBoxChosenFuel.Visible = false;
+        }
+
+        private void nudElementProperty1_ValueChanged(object sender, EventArgs e)
+        {
+            if (clickedElement is FuelDispenser)
+            {
+                FuelDispenser fuelDispenser = (FuelDispenser)clickedElement;
+                fuelDispenser.FuelFeedRateInLitersPerMinute = (int)nudElementProperty1.Value;
             }
         }
 
