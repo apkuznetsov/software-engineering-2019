@@ -50,48 +50,7 @@ namespace GasStationMs.App.Constructor
                 }
                 else
                 {
-                    gbClickedCell.Text = cell.Tag.ToString();
-
-                    gbClickedCell.Visible = true;
-
-                    if (cell.Tag is FuelDispenser)
-                    {
-                        labelMainTeProperty.Visible = true;
-                        labelMainTeProperty.Text = "Скорость подачи топлива";
-
-
-                        numericUpDownVolume.Visible = false;
-                        clickedFuelList.Visible = false;
-                        textBoxChosenFuel.Visible = false;
-
-
-                        numericUpDownFuelDispenserSpeed.Visible = true;
-                        FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
-                        _selectedFuelDispenser = clickedFuelDispenser;
-                        numericUpDownFuelDispenserSpeed.Value = clickedFuelDispenser.FuelFeedRateInLitersPerMinute;
-                    }
-                    else if (cell.Tag is FuelTank)
-                    {
-                        labelMainTeProperty.Visible = true;
-                        labelMainTeProperty.Text = "Объём";
-
-
-                        numericUpDownFuelDispenserSpeed.Visible = false;
-
-
-                        numericUpDownVolume.Visible = true;
-                        clickedFuelList.Visible = true;
-                        textBoxChosenFuel.Visible = true;
-                        FuelTank clickedFuelTank = cell.Tag as FuelTank;
-                        _selectedFuelTank = clickedFuelTank;
-                        textBoxChosenFuel.Text = _selectedFuelTank.Fuel.Name;
-                        clickedFuelList.DisplayMember = "Fuel";
-                        clickedFuelList.ValueMember = "Id";
-
-                        clickedFuelList.DataSource = _fuelDataTable;
-                        numericUpDownVolume.Value = _selectedFuelTank.Volume;
-
-                    }
+                    ShowElementProperties(cell);
                 }
             }
         }
@@ -197,6 +156,52 @@ namespace GasStationMs.App.Constructor
             else
             {
                 throw new InvalidCastException();
+            }
+        }
+
+        private void ShowElementProperties(DataGridViewImageCell cell)
+        {
+            gbClickedCell.Text = cell.Tag.ToString();
+
+            gbClickedCell.Visible = true;
+
+            if (cell.Tag is FuelDispenser)
+            {
+                labelMainTeProperty.Visible = true;
+                labelMainTeProperty.Text = "Скорость подачи топлива";
+
+
+                numericUpDownVolume.Visible = false;
+                clickedFuelList.Visible = false;
+                textBoxChosenFuel.Visible = false;
+
+
+                numericUpDownFuelDispenserSpeed.Visible = true;
+                FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
+                _selectedFuelDispenser = clickedFuelDispenser;
+                numericUpDownFuelDispenserSpeed.Value = clickedFuelDispenser.FuelFeedRateInLitersPerMinute;
+            }
+            else if (cell.Tag is FuelTank)
+            {
+                labelMainTeProperty.Visible = true;
+                labelMainTeProperty.Text = "Объём";
+
+
+                numericUpDownFuelDispenserSpeed.Visible = false;
+
+
+                numericUpDownVolume.Visible = true;
+                clickedFuelList.Visible = true;
+                textBoxChosenFuel.Visible = true;
+                FuelTank clickedFuelTank = cell.Tag as FuelTank;
+                _selectedFuelTank = clickedFuelTank;
+                textBoxChosenFuel.Text = _selectedFuelTank.Fuel.Name;
+                clickedFuelList.DisplayMember = "Fuel";
+                clickedFuelList.ValueMember = "Id";
+
+                clickedFuelList.DataSource = _fuelDataTable;
+                numericUpDownVolume.Value = _selectedFuelTank.Volume;
+
             }
         }
 

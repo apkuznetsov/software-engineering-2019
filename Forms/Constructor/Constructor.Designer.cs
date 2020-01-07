@@ -360,6 +360,7 @@
             // 
             // gbClickedCell
             // 
+            this.gbClickedCell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gbClickedCell.Controls.Add(this.clickedFuelList);
             this.gbClickedCell.Controls.Add(this.textBoxChosenFuel);
             this.gbClickedCell.Controls.Add(this.numericUpDownVolume);
