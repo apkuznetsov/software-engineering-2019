@@ -293,6 +293,7 @@ namespace GasStationMs.App.Constructor
             {
                 Topology.Topology topology = topologyBuilder.ToTopology();
                 TopologySaverAndLoader.Save(fullFilePath, topology);
+                MessageBox.Show("Топология сохраненена в\n" + fullFilePath);
             }
             catch (Exception exc)
             {
