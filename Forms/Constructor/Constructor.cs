@@ -246,5 +246,15 @@ namespace GasStationMs.App.Constructor
                 MessageBox.Show(exc.Message);
             }
         }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gbTemplateElements_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

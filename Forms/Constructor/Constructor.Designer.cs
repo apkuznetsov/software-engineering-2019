@@ -52,11 +52,15 @@
             this.btnSaveAs = new System.Windows.Forms.Button();
             this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
             this.gbTemplateElements = new System.Windows.Forms.GroupBox();
+            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             this.panelClickedCell.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).BeginInit();
             this.gbTemplateElements.SuspendLayout();
+            this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvField
@@ -73,10 +77,10 @@
             this.dgvField.ColumnHeadersHeight = 29;
             this.dgvField.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvField.ColumnHeadersVisible = false;
-            this.dgvField.Location = new System.Drawing.Point(12, 42);
+            this.dgvField.Location = new System.Drawing.Point(12, 27);
             this.dgvField.Name = "dgvField";
             this.dgvField.RowHeadersWidth = 51;
-            this.dgvField.Size = new System.Drawing.Size(516, 507);
+            this.dgvField.Size = new System.Drawing.Size(516, 522);
             this.dgvField.TabIndex = 0;
             this.dgvField.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvField_CellMouseClick);
             this.dgvField.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
@@ -88,7 +92,7 @@
             this.rbFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelDispenser.AutoSize = true;
             this.rbFuelDispenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
-            this.rbFuelDispenser.Location = new System.Drawing.Point(563, 12);
+            this.rbFuelDispenser.Location = new System.Drawing.Point(566, 27);
             this.rbFuelDispenser.Name = "rbFuelDispenser";
             this.rbFuelDispenser.Size = new System.Drawing.Size(38, 38);
             this.rbFuelDispenser.TabIndex = 6;
@@ -104,7 +108,7 @@
             this.rbFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelTank.AutoSize = true;
             this.rbFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
-            this.rbFuelTank.Location = new System.Drawing.Point(607, 12);
+            this.rbFuelTank.Location = new System.Drawing.Point(610, 27);
             this.rbFuelTank.Name = "rbFuelTank";
             this.rbFuelTank.Size = new System.Drawing.Size(36, 36);
             this.rbFuelTank.TabIndex = 7;
@@ -176,7 +180,7 @@
             this.rbCashCounter.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbCashCounter.AutoSize = true;
             this.rbCashCounter.Image = ((System.Drawing.Image)(resources.GetObject("rbCashCounter.Image")));
-            this.rbCashCounter.Location = new System.Drawing.Point(649, 12);
+            this.rbCashCounter.Location = new System.Drawing.Point(652, 27);
             this.rbCashCounter.Name = "rbCashCounter";
             this.rbCashCounter.Size = new System.Drawing.Size(36, 36);
             this.rbCashCounter.TabIndex = 12;
@@ -192,7 +196,7 @@
             this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbEntry.AutoSize = true;
             this.rbEntry.Image = global::GasStationMs.App.Properties.Resources.Entry;
-            this.rbEntry.Location = new System.Drawing.Point(691, 12);
+            this.rbEntry.Location = new System.Drawing.Point(694, 27);
             this.rbEntry.Name = "rbEntry";
             this.rbEntry.Size = new System.Drawing.Size(36, 36);
             this.rbEntry.TabIndex = 13;
@@ -208,7 +212,7 @@
             this.rbExit.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbExit.AutoSize = true;
             this.rbExit.Image = global::GasStationMs.App.Properties.Resources.Exit;
-            this.rbExit.Location = new System.Drawing.Point(736, 12);
+            this.rbExit.Location = new System.Drawing.Point(736, 27);
             this.rbExit.Name = "rbExit";
             this.rbExit.Size = new System.Drawing.Size(36, 36);
             this.rbExit.TabIndex = 14;
@@ -328,7 +332,7 @@
             // 
             // btnSaveTopology
             // 
-            this.btnSaveTopology.Location = new System.Drawing.Point(13, 13);
+            this.btnSaveTopology.Location = new System.Drawing.Point(33, 64);
             this.btnSaveTopology.Name = "btnSaveTopology";
             this.btnSaveTopology.Size = new System.Drawing.Size(75, 23);
             this.btnSaveTopology.TabIndex = 16;
@@ -338,7 +342,7 @@
             // 
             // btnSaveAs
             // 
-            this.btnSaveAs.Location = new System.Drawing.Point(94, 13);
+            this.btnSaveAs.Location = new System.Drawing.Point(155, 92);
             this.btnSaveAs.Name = "btnSaveAs";
             this.btnSaveAs.Size = new System.Drawing.Size(112, 23);
             this.btnSaveAs.TabIndex = 17;
@@ -368,12 +372,38 @@
             this.gbTemplateElements.Controls.Add(this.textBoxNewFuelPrice);
             this.gbTemplateElements.Controls.Add(this.listFuels);
             this.gbTemplateElements.Controls.Add(this.textBoxNewFuelName);
-            this.gbTemplateElements.Location = new System.Drawing.Point(534, 54);
+            this.gbTemplateElements.Location = new System.Drawing.Point(534, 69);
             this.gbTemplateElements.Name = "gbTemplateElements";
-            this.gbTemplateElements.Size = new System.Drawing.Size(238, 495);
+            this.gbTemplateElements.Size = new System.Drawing.Size(238, 480);
             this.gbTemplateElements.TabIndex = 20;
             this.gbTemplateElements.TabStop = false;
             this.gbTemplateElements.Text = "groupBox1";
+            this.gbTemplateElements.Enter += new System.EventHandler(this.gbTemplateElements_Enter);
+            // 
+            // mainMenuStrip
+            // 
+            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьToolStripMenuItem,
+            this.сохранитьКакToolStripMenuItem});
+            this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuStrip.Name = "mainMenuStrip";
+            this.mainMenuStrip.Size = new System.Drawing.Size(784, 24);
+            this.mainMenuStrip.TabIndex = 21;
+            this.mainMenuStrip.TabStop = true;
+            this.mainMenuStrip.Text = "mainMenuStrip";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
+            // сохранитьКакToolStripMenuItem
+            // 
+            this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
+            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
+            this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
             // 
             // Constructor
             // 
@@ -389,6 +419,8 @@
             this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.btnSaveTopology);
             this.Controls.Add(this.dgvField);
+            this.Controls.Add(this.mainMenuStrip);
+            this.MainMenuStrip = this.mainMenuStrip;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Constructor";
             this.ShowIcon = false;
@@ -402,6 +434,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).EndInit();
             this.gbTemplateElements.ResumeLayout(false);
             this.gbTemplateElements.PerformLayout();
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -432,6 +466,9 @@
         private System.Windows.Forms.Button btnToDistributionLawsForm;
         private System.Windows.Forms.Label labelClickedTeName;
         private System.Windows.Forms.GroupBox gbTemplateElements;
+        private System.Windows.Forms.MenuStrip mainMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
     }
 }
 
