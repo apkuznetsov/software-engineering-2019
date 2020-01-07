@@ -13,18 +13,18 @@ namespace GasStationMs.App.TemplateElements
         public static readonly int MaxFuelFeedRateInLitersPerMinute = 160;
         #endregion /статика
 
-        private int _fuelFeedRateInLitersPerMinute = 25;
+        private int fuelFeedRateInLitersPerMinute;
 
         public FuelDispenser()
         {
-            _fuelFeedRateInLitersPerMinute = MinFuelFeedRateInLitersPerMinute;
+            fuelFeedRateInLitersPerMinute = MinFuelFeedRateInLitersPerMinute;
         }
 
         public int FuelFeedRateInLitersPerMinute
         {
             get
             {
-                return _fuelFeedRateInLitersPerMinute;
+                return fuelFeedRateInLitersPerMinute;
             }
 
             set
@@ -32,7 +32,10 @@ namespace GasStationMs.App.TemplateElements
                 if (value < MinFuelFeedRateInLitersPerMinute)
                     throw new ArgumentOutOfRangeException();
 
-                _fuelFeedRateInLitersPerMinute = value;
+                if (value > MaxFuelFeedRateInLitersPerMinute)
+                    throw new ArgumentOutOfRangeException();
+
+                fuelFeedRateInLitersPerMinute = value;
             }
         }
 
