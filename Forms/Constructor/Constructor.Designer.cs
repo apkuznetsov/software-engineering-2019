@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Constructor));
-            this.dgvTopology = new System.Windows.Forms.DataGridView();
+            this.dgvField = new System.Windows.Forms.DataGridView();
             this.rbFuelDispenser = new System.Windows.Forms.RadioButton();
             this.rbFuelTank = new System.Windows.Forms.RadioButton();
             this.listFuels = new System.Windows.Forms.ListBox();
@@ -37,52 +37,59 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.textBoxNewFuelPrice = new System.Windows.Forms.TextBox();
-            this.tbClickedCell = new System.Windows.Forms.TextBox();
             this.rbCashCounter = new System.Windows.Forms.RadioButton();
             this.rbEntry = new System.Windows.Forms.RadioButton();
             this.rbExit = new System.Windows.Forms.RadioButton();
-            this.panelClickedCell = new System.Windows.Forms.Panel();
             this.labelClickedTeName = new System.Windows.Forms.Label();
             this.labelMainTeProperty = new System.Windows.Forms.Label();
             this.numericUpDownVolume = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownFuelDispenserSpeed = new System.Windows.Forms.NumericUpDown();
             this.textBoxChosenFuel = new System.Windows.Forms.TextBox();
             this.clickedFuelList = new System.Windows.Forms.ComboBox();
-            this.btnSaveTopology = new System.Windows.Forms.Button();
-            this.btnSaveAs = new System.Windows.Forms.Button();
             this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
-            this.panelClickedCell.SuspendLayout();
+            this.gbAddFuel = new System.Windows.Forms.GroupBox();
+            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gbClickedCell = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).BeginInit();
+            this.gbAddFuel.SuspendLayout();
+            this.mainMenuStrip.SuspendLayout();
+            this.gbClickedCell.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvTopology
+            // dgvField
             // 
-            this.dgvTopology.AllowDrop = true;
-            this.dgvTopology.AllowUserToAddRows = false;
-            this.dgvTopology.AllowUserToResizeColumns = false;
-            this.dgvTopology.AllowUserToResizeRows = false;
-            this.dgvTopology.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvTopology.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvTopology.ColumnHeadersHeight = 29;
-            this.dgvTopology.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvTopology.ColumnHeadersVisible = false;
-            this.dgvTopology.Location = new System.Drawing.Point(21, 54);
-            this.dgvTopology.Name = "dgvTopology";
-            this.dgvTopology.RowHeadersWidth = 51;
-            this.dgvTopology.Size = new System.Drawing.Size(539, 355);
-            this.dgvTopology.TabIndex = 0;
-            this.dgvTopology.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTopology_CellMouseClick);
-            this.dgvTopology.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
-            this.dgvTopology.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragEnter);
+            this.dgvField.AllowDrop = true;
+            this.dgvField.AllowUserToAddRows = false;
+            this.dgvField.AllowUserToResizeColumns = false;
+            this.dgvField.AllowUserToResizeRows = false;
+            this.dgvField.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvField.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvField.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvField.ColumnHeadersHeight = 29;
+            this.dgvField.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvField.ColumnHeadersVisible = false;
+            this.dgvField.Location = new System.Drawing.Point(12, 27);
+            this.dgvField.Name = "dgvField";
+            this.dgvField.RowHeadersWidth = 51;
+            this.dgvField.Size = new System.Drawing.Size(543, 522);
+            this.dgvField.TabIndex = 0;
+            this.dgvField.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvField_CellMouseClick);
+            this.dgvField.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
+            this.dgvField.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragEnter);
             // 
             // rbFuelDispenser
             // 
+            this.rbFuelDispenser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelDispenser.AutoSize = true;
             this.rbFuelDispenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
-            this.rbFuelDispenser.Location = new System.Drawing.Point(589, 54);
+            this.rbFuelDispenser.Location = new System.Drawing.Point(566, 27);
             this.rbFuelDispenser.Name = "rbFuelDispenser";
             this.rbFuelDispenser.Size = new System.Drawing.Size(38, 38);
             this.rbFuelDispenser.TabIndex = 6;
@@ -94,10 +101,11 @@
             // 
             // rbFuelTank
             // 
+            this.rbFuelTank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelTank.AutoSize = true;
             this.rbFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
-            this.rbFuelTank.Location = new System.Drawing.Point(633, 56);
+            this.rbFuelTank.Location = new System.Drawing.Point(610, 27);
             this.rbFuelTank.Name = "rbFuelTank";
             this.rbFuelTank.Size = new System.Drawing.Size(36, 36);
             this.rbFuelTank.TabIndex = 7;
@@ -110,7 +118,7 @@
             // listFuels
             // 
             this.listFuels.FormattingEnabled = true;
-            this.listFuels.Location = new System.Drawing.Point(605, 301);
+            this.listFuels.Location = new System.Drawing.Point(5, 18);
             this.listFuels.Margin = new System.Windows.Forms.Padding(2);
             this.listFuels.Name = "listFuels";
             this.listFuels.Size = new System.Drawing.Size(159, 82);
@@ -119,7 +127,7 @@
             // 
             // textBoxNewFuelName
             // 
-            this.textBoxNewFuelName.Location = new System.Drawing.Point(605, 390);
+            this.textBoxNewFuelName.Location = new System.Drawing.Point(5, 104);
             this.textBoxNewFuelName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNewFuelName.Name = "textBoxNewFuelName";
             this.textBoxNewFuelName.Size = new System.Drawing.Size(159, 20);
@@ -127,7 +135,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(605, 442);
+            this.btnAdd.Location = new System.Drawing.Point(5, 152);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(56, 19);
@@ -138,7 +146,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(686, 442);
+            this.btnDelete.Location = new System.Drawing.Point(108, 152);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(56, 19);
@@ -149,26 +157,19 @@
             // 
             // textBoxNewFuelPrice
             // 
-            this.textBoxNewFuelPrice.Location = new System.Drawing.Point(605, 413);
+            this.textBoxNewFuelPrice.Location = new System.Drawing.Point(5, 128);
             this.textBoxNewFuelPrice.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNewFuelPrice.Name = "textBoxNewFuelPrice";
             this.textBoxNewFuelPrice.Size = new System.Drawing.Size(159, 20);
             this.textBoxNewFuelPrice.TabIndex = 9;
             // 
-            // tbClickedCell
-            // 
-            this.tbClickedCell.Location = new System.Drawing.Point(3, 13);
-            this.tbClickedCell.Multiline = true;
-            this.tbClickedCell.Name = "tbClickedCell";
-            this.tbClickedCell.Size = new System.Drawing.Size(106, 21);
-            this.tbClickedCell.TabIndex = 11;
-            // 
             // rbCashCounter
             // 
+            this.rbCashCounter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbCashCounter.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbCashCounter.AutoSize = true;
             this.rbCashCounter.Image = ((System.Drawing.Image)(resources.GetObject("rbCashCounter.Image")));
-            this.rbCashCounter.Location = new System.Drawing.Point(675, 54);
+            this.rbCashCounter.Location = new System.Drawing.Point(652, 27);
             this.rbCashCounter.Name = "rbCashCounter";
             this.rbCashCounter.Size = new System.Drawing.Size(36, 36);
             this.rbCashCounter.TabIndex = 12;
@@ -180,10 +181,11 @@
             // 
             // rbEntry
             // 
+            this.rbEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbEntry.AutoSize = true;
             this.rbEntry.Image = global::GasStationMs.App.Properties.Resources.Entry;
-            this.rbEntry.Location = new System.Drawing.Point(717, 56);
+            this.rbEntry.Location = new System.Drawing.Point(694, 27);
             this.rbEntry.Name = "rbEntry";
             this.rbEntry.Size = new System.Drawing.Size(36, 36);
             this.rbEntry.TabIndex = 13;
@@ -195,10 +197,11 @@
             // 
             // rbExit
             // 
+            this.rbExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rbExit.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbExit.AutoSize = true;
             this.rbExit.Image = global::GasStationMs.App.Properties.Resources.Exit;
-            this.rbExit.Location = new System.Drawing.Point(759, 54);
+            this.rbExit.Location = new System.Drawing.Point(736, 27);
             this.rbExit.Name = "rbExit";
             this.rbExit.Size = new System.Drawing.Size(36, 36);
             this.rbExit.TabIndex = 14;
@@ -208,25 +211,10 @@
             this.rbExit.Click += new System.EventHandler(this.rbExit_Click);
             this.rbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbExit_mouseDown);
             // 
-            // panelClickedCell
-            // 
-            this.panelClickedCell.Controls.Add(this.labelClickedTeName);
-            this.panelClickedCell.Controls.Add(this.labelMainTeProperty);
-            this.panelClickedCell.Controls.Add(this.numericUpDownVolume);
-            this.panelClickedCell.Controls.Add(this.numericUpDownFuelDispenserSpeed);
-            this.panelClickedCell.Controls.Add(this.textBoxChosenFuel);
-            this.panelClickedCell.Controls.Add(this.clickedFuelList);
-            this.panelClickedCell.Controls.Add(this.tbClickedCell);
-            this.panelClickedCell.Location = new System.Drawing.Point(566, 130);
-            this.panelClickedCell.Name = "panelClickedCell";
-            this.panelClickedCell.Size = new System.Drawing.Size(222, 145);
-            this.panelClickedCell.TabIndex = 15;
-            this.panelClickedCell.Visible = false;
-            // 
             // labelClickedTeName
             // 
             this.labelClickedTeName.AutoSize = true;
-            this.labelClickedTeName.Location = new System.Drawing.Point(3, 7);
+            this.labelClickedTeName.Location = new System.Drawing.Point(5, 16);
             this.labelClickedTeName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelClickedTeName.Name = "labelClickedTeName";
             this.labelClickedTeName.Size = new System.Drawing.Size(50, 13);
@@ -236,7 +224,7 @@
             // labelMainTeProperty
             // 
             this.labelMainTeProperty.AutoSize = true;
-            this.labelMainTeProperty.Location = new System.Drawing.Point(3, 26);
+            this.labelMainTeProperty.Location = new System.Drawing.Point(5, 33);
             this.labelMainTeProperty.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMainTeProperty.Name = "labelMainTeProperty";
             this.labelMainTeProperty.Size = new System.Drawing.Size(87, 13);
@@ -251,7 +239,7 @@
             0,
             0,
             0});
-            this.numericUpDownVolume.Location = new System.Drawing.Point(98, 80);
+            this.numericUpDownVolume.Location = new System.Drawing.Point(81, 87);
             this.numericUpDownVolume.Maximum = new decimal(new int[] {
             75000,
             0,
@@ -275,7 +263,7 @@
             // 
             // numericUpDownFuelDispenserSpeed
             // 
-            this.numericUpDownFuelDispenserSpeed.Location = new System.Drawing.Point(151, 54);
+            this.numericUpDownFuelDispenserSpeed.Location = new System.Drawing.Point(140, 26);
             this.numericUpDownFuelDispenserSpeed.Maximum = new decimal(new int[] {
             160,
             0,
@@ -299,46 +287,26 @@
             // 
             // textBoxChosenFuel
             // 
-            this.textBoxChosenFuel.Location = new System.Drawing.Point(3, 107);
+            this.textBoxChosenFuel.Location = new System.Drawing.Point(6, 134);
             this.textBoxChosenFuel.Name = "textBoxChosenFuel";
             this.textBoxChosenFuel.ReadOnly = true;
-            this.textBoxChosenFuel.Size = new System.Drawing.Size(79, 20);
+            this.textBoxChosenFuel.Size = new System.Drawing.Size(63, 20);
             this.textBoxChosenFuel.TabIndex = 14;
             this.textBoxChosenFuel.Visible = false;
             // 
             // clickedFuelList
             // 
             this.clickedFuelList.FormattingEnabled = true;
-            this.clickedFuelList.Location = new System.Drawing.Point(98, 106);
+            this.clickedFuelList.Location = new System.Drawing.Point(84, 133);
             this.clickedFuelList.Name = "clickedFuelList";
             this.clickedFuelList.Size = new System.Drawing.Size(121, 21);
             this.clickedFuelList.TabIndex = 12;
             this.clickedFuelList.Visible = false;
             this.clickedFuelList.SelectionChangeCommitted += new System.EventHandler(this.clickedFuelList_SelectionChangeCommitted);
             // 
-            // btnSaveTopology
-            // 
-            this.btnSaveTopology.Location = new System.Drawing.Point(13, 13);
-            this.btnSaveTopology.Name = "btnSaveTopology";
-            this.btnSaveTopology.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveTopology.TabIndex = 16;
-            this.btnSaveTopology.Text = "Сохранить";
-            this.btnSaveTopology.UseVisualStyleBackColor = true;
-            this.btnSaveTopology.Click += new System.EventHandler(this.btnSaveTopology_Click);
-            // 
-            // btnSaveAs
-            // 
-            this.btnSaveAs.Location = new System.Drawing.Point(94, 13);
-            this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(112, 23);
-            this.btnSaveAs.TabIndex = 17;
-            this.btnSaveAs.Text = "Сохранить как";
-            this.btnSaveAs.UseVisualStyleBackColor = true;
-            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveTopologyAs_Click);
-            // 
             // btnToDistributionLawsForm
             // 
-            this.btnToDistributionLawsForm.Location = new System.Drawing.Point(605, 485);
+            this.btnToDistributionLawsForm.Location = new System.Drawing.Point(6, 175);
             this.btnToDistributionLawsForm.Margin = new System.Windows.Forms.Padding(2);
             this.btnToDistributionLawsForm.Name = "btnToDistributionLawsForm";
             this.btnToDistributionLawsForm.Size = new System.Drawing.Size(158, 50);
@@ -347,36 +315,95 @@
             this.btnToDistributionLawsForm.UseVisualStyleBackColor = true;
             this.btnToDistributionLawsForm.Click += new System.EventHandler(this.btnToDistributionLawsForm_Click);
             // 
+            // gbAddFuel
+            // 
+            this.gbAddFuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbAddFuel.Controls.Add(this.btnToDistributionLawsForm);
+            this.gbAddFuel.Controls.Add(this.btnDelete);
+            this.gbAddFuel.Controls.Add(this.btnAdd);
+            this.gbAddFuel.Controls.Add(this.textBoxNewFuelPrice);
+            this.gbAddFuel.Controls.Add(this.listFuels);
+            this.gbAddFuel.Controls.Add(this.textBoxNewFuelName);
+            this.gbAddFuel.Location = new System.Drawing.Point(561, 310);
+            this.gbAddFuel.Name = "gbAddFuel";
+            this.gbAddFuel.Size = new System.Drawing.Size(211, 239);
+            this.gbAddFuel.TabIndex = 20;
+            this.gbAddFuel.TabStop = false;
+            this.gbAddFuel.Text = "groupBox1";
+            // 
+            // mainMenuStrip
+            // 
+            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьToolStripMenuItem,
+            this.сохранитьКакToolStripMenuItem});
+            this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuStrip.Name = "mainMenuStrip";
+            this.mainMenuStrip.Size = new System.Drawing.Size(784, 24);
+            this.mainMenuStrip.TabIndex = 21;
+            this.mainMenuStrip.TabStop = true;
+            this.mainMenuStrip.Text = "mainMenuStrip";
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
+            // сохранитьКакToolStripMenuItem
+            // 
+            this.сохранитьКакToolStripMenuItem.Name = "сохранитьКакToolStripMenuItem";
+            this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
+            this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
+            this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКакToolStripMenuItem_Click);
+            // 
+            // gbClickedCell
+            // 
+            this.gbClickedCell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbClickedCell.Controls.Add(this.clickedFuelList);
+            this.gbClickedCell.Controls.Add(this.textBoxChosenFuel);
+            this.gbClickedCell.Controls.Add(this.numericUpDownVolume);
+            this.gbClickedCell.Controls.Add(this.labelMainTeProperty);
+            this.gbClickedCell.Controls.Add(this.numericUpDownFuelDispenserSpeed);
+            this.gbClickedCell.Controls.Add(this.labelClickedTeName);
+            this.gbClickedCell.Location = new System.Drawing.Point(561, 69);
+            this.gbClickedCell.Name = "gbClickedCell";
+            this.gbClickedCell.Size = new System.Drawing.Size(211, 173);
+            this.gbClickedCell.TabIndex = 22;
+            this.gbClickedCell.TabStop = false;
+            this.gbClickedCell.Text = "Информация";
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 561);
-            this.Controls.Add(this.btnToDistributionLawsForm);
-            this.Controls.Add(this.btnSaveAs);
-            this.Controls.Add(this.btnSaveTopology);
-            this.Controls.Add(this.panelClickedCell);
-            this.Controls.Add(this.rbExit);
+            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.gbClickedCell);
+            this.Controls.Add(this.rbFuelDispenser);
             this.Controls.Add(this.rbEntry);
             this.Controls.Add(this.rbCashCounter);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.textBoxNewFuelPrice);
-            this.Controls.Add(this.textBoxNewFuelName);
-            this.Controls.Add(this.listFuels);
             this.Controls.Add(this.rbFuelTank);
-            this.Controls.Add(this.rbFuelDispenser);
-            this.Controls.Add(this.dgvTopology);
-            this.MinimumSize = new System.Drawing.Size(800, 566);
+            this.Controls.Add(this.rbExit);
+            this.Controls.Add(this.gbAddFuel);
+            this.Controls.Add(this.dgvField);
+            this.Controls.Add(this.mainMenuStrip);
+            this.MainMenuStrip = this.mainMenuStrip;
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Constructor";
-            this.Text = "Form1";
+            this.ShowIcon = false;
+            this.Text = "Конструктор топологии";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TopologyConstructor_FormClosing);
             this.Load += new System.EventHandler(this.TopologyConstructor_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).EndInit();
-            this.panelClickedCell.ResumeLayout(false);
-            this.panelClickedCell.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).EndInit();
+            this.gbAddFuel.ResumeLayout(false);
+            this.gbAddFuel.PerformLayout();
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
+            this.gbClickedCell.ResumeLayout(false);
+            this.gbClickedCell.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,7 +411,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvTopology;
+        private System.Windows.Forms.DataGridView dgvField;
         private System.Windows.Forms.RadioButton rbFuelDispenser;
         private System.Windows.Forms.RadioButton rbFuelTank;
         private System.Windows.Forms.ListBox listFuels;
@@ -392,20 +419,21 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox textBoxNewFuelPrice;
-        private System.Windows.Forms.TextBox tbClickedCell;
         private System.Windows.Forms.RadioButton rbCashCounter;
         private System.Windows.Forms.RadioButton rbEntry;
         private System.Windows.Forms.RadioButton rbExit;
-        private System.Windows.Forms.Panel panelClickedCell;
         private System.Windows.Forms.ComboBox clickedFuelList;
         private System.Windows.Forms.TextBox textBoxChosenFuel;
         private System.Windows.Forms.NumericUpDown numericUpDownFuelDispenserSpeed;
         private System.Windows.Forms.NumericUpDown numericUpDownVolume;
         private System.Windows.Forms.Label labelMainTeProperty;
-        private System.Windows.Forms.Button btnSaveTopology;
-        private System.Windows.Forms.Button btnSaveAs;
         private System.Windows.Forms.Button btnToDistributionLawsForm;
         private System.Windows.Forms.Label labelClickedTeName;
+        private System.Windows.Forms.GroupBox gbAddFuel;
+        private System.Windows.Forms.MenuStrip mainMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
+        private System.Windows.Forms.GroupBox gbClickedCell;
     }
 }
 

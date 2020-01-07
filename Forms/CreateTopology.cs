@@ -75,6 +75,7 @@ namespace GasStationMs.App.Forms
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 fullFilePath = saveFileDialog.FileName;
+                tbFullFilePath.Text = fullFilePath;
                 btnOpenConstructor.Enabled = true;
             }
         }
