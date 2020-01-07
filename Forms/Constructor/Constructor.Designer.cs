@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Constructor));
-            this.dgvTopology = new System.Windows.Forms.DataGridView();
+            this.dgvField = new System.Windows.Forms.DataGridView();
             this.rbFuelDispenser = new System.Windows.Forms.RadioButton();
             this.rbFuelTank = new System.Windows.Forms.RadioButton();
             this.listFuels = new System.Windows.Forms.ListBox();
@@ -52,35 +52,35 @@
             this.btnSaveAs = new System.Windows.Forms.Button();
             this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
             this.gbTemplateElements = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             this.panelClickedCell.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).BeginInit();
             this.gbTemplateElements.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvTopology
+            // dgvField
             // 
-            this.dgvTopology.AllowDrop = true;
-            this.dgvTopology.AllowUserToAddRows = false;
-            this.dgvTopology.AllowUserToResizeColumns = false;
-            this.dgvTopology.AllowUserToResizeRows = false;
-            this.dgvTopology.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvField.AllowDrop = true;
+            this.dgvField.AllowUserToAddRows = false;
+            this.dgvField.AllowUserToResizeColumns = false;
+            this.dgvField.AllowUserToResizeRows = false;
+            this.dgvField.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvTopology.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvTopology.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvTopology.ColumnHeadersHeight = 29;
-            this.dgvTopology.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvTopology.ColumnHeadersVisible = false;
-            this.dgvTopology.Location = new System.Drawing.Point(12, 42);
-            this.dgvTopology.Name = "dgvTopology";
-            this.dgvTopology.RowHeadersWidth = 51;
-            this.dgvTopology.Size = new System.Drawing.Size(532, 507);
-            this.dgvTopology.TabIndex = 0;
-            this.dgvTopology.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTopology_CellMouseClick);
-            this.dgvTopology.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
-            this.dgvTopology.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragEnter);
+            this.dgvField.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvField.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvField.ColumnHeadersHeight = 29;
+            this.dgvField.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvField.ColumnHeadersVisible = false;
+            this.dgvField.Location = new System.Drawing.Point(12, 42);
+            this.dgvField.Name = "dgvField";
+            this.dgvField.RowHeadersWidth = 51;
+            this.dgvField.Size = new System.Drawing.Size(516, 507);
+            this.dgvField.TabIndex = 0;
+            this.dgvField.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvField_CellMouseClick);
+            this.dgvField.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
+            this.dgvField.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragEnter);
             // 
             // rbFuelDispenser
             // 
@@ -88,7 +88,7 @@
             this.rbFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelDispenser.AutoSize = true;
             this.rbFuelDispenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
-            this.rbFuelDispenser.Location = new System.Drawing.Point(579, 12);
+            this.rbFuelDispenser.Location = new System.Drawing.Point(563, 12);
             this.rbFuelDispenser.Name = "rbFuelDispenser";
             this.rbFuelDispenser.Size = new System.Drawing.Size(38, 38);
             this.rbFuelDispenser.TabIndex = 6;
@@ -104,7 +104,7 @@
             this.rbFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelTank.AutoSize = true;
             this.rbFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
-            this.rbFuelTank.Location = new System.Drawing.Point(623, 12);
+            this.rbFuelTank.Location = new System.Drawing.Point(607, 12);
             this.rbFuelTank.Name = "rbFuelTank";
             this.rbFuelTank.Size = new System.Drawing.Size(36, 36);
             this.rbFuelTank.TabIndex = 7;
@@ -176,7 +176,7 @@
             this.rbCashCounter.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbCashCounter.AutoSize = true;
             this.rbCashCounter.Image = ((System.Drawing.Image)(resources.GetObject("rbCashCounter.Image")));
-            this.rbCashCounter.Location = new System.Drawing.Point(665, 12);
+            this.rbCashCounter.Location = new System.Drawing.Point(649, 12);
             this.rbCashCounter.Name = "rbCashCounter";
             this.rbCashCounter.Size = new System.Drawing.Size(36, 36);
             this.rbCashCounter.TabIndex = 12;
@@ -192,7 +192,7 @@
             this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbEntry.AutoSize = true;
             this.rbEntry.Image = global::GasStationMs.App.Properties.Resources.Entry;
-            this.rbEntry.Location = new System.Drawing.Point(707, 12);
+            this.rbEntry.Location = new System.Drawing.Point(691, 12);
             this.rbEntry.Name = "rbEntry";
             this.rbEntry.Size = new System.Drawing.Size(36, 36);
             this.rbEntry.TabIndex = 13;
@@ -208,7 +208,7 @@
             this.rbExit.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbExit.AutoSize = true;
             this.rbExit.Image = global::GasStationMs.App.Properties.Resources.Exit;
-            this.rbExit.Location = new System.Drawing.Point(752, 12);
+            this.rbExit.Location = new System.Drawing.Point(736, 12);
             this.rbExit.Name = "rbExit";
             this.rbExit.Size = new System.Drawing.Size(36, 36);
             this.rbExit.TabIndex = 14;
@@ -368,7 +368,7 @@
             this.gbTemplateElements.Controls.Add(this.textBoxNewFuelPrice);
             this.gbTemplateElements.Controls.Add(this.listFuels);
             this.gbTemplateElements.Controls.Add(this.textBoxNewFuelName);
-            this.gbTemplateElements.Location = new System.Drawing.Point(550, 54);
+            this.gbTemplateElements.Location = new System.Drawing.Point(534, 54);
             this.gbTemplateElements.Name = "gbTemplateElements";
             this.gbTemplateElements.Size = new System.Drawing.Size(238, 495);
             this.gbTemplateElements.TabIndex = 20;
@@ -379,7 +379,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 561);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.rbFuelDispenser);
             this.Controls.Add(this.rbEntry);
             this.Controls.Add(this.rbCashCounter);
@@ -388,13 +388,14 @@
             this.Controls.Add(this.gbTemplateElements);
             this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.btnSaveTopology);
-            this.Controls.Add(this.dgvTopology);
-            this.MinimumSize = new System.Drawing.Size(800, 566);
+            this.Controls.Add(this.dgvField);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Constructor";
-            this.Text = "Form1";
+            this.ShowIcon = false;
+            this.Text = "Конструктор топологии";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TopologyConstructor_FormClosing);
             this.Load += new System.EventHandler(this.TopologyConstructor_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvField)).EndInit();
             this.panelClickedCell.ResumeLayout(false);
             this.panelClickedCell.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).EndInit();
@@ -408,7 +409,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvTopology;
+        private System.Windows.Forms.DataGridView dgvField;
         private System.Windows.Forms.RadioButton rbFuelDispenser;
         private System.Windows.Forms.RadioButton rbFuelTank;
         private System.Windows.Forms.ListBox listFuels;

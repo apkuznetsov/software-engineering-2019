@@ -6,9 +6,9 @@ namespace GasStationMs.App.Constructor
 {
     public partial class Constructor
     {
-        private void dgvTopology_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvField_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)dgvTopology.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            DataGridViewImageCell cell = (DataGridViewImageCell)dgvField.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
             switch (e.Button)
             {
@@ -130,13 +130,14 @@ namespace GasStationMs.App.Constructor
                         textBoxChosenFuel.Text = _selectedFuelTank.Fuel.Name;
                         clickedFuelList.DisplayMember = "Fuel";
                         clickedFuelList.ValueMember = "Id";
+
                         clickedFuelList.DataSource = _fuelDataTable;
                         numericUpDownVolume.Value = _selectedFuelTank.Volume;
+
                     }
                 }
             }
         }
-
 
         private void DeleteElement(DataGridViewImageCell cell)
         {

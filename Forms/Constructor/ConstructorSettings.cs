@@ -23,7 +23,7 @@ namespace GasStationMs.App.Constructor
             InitializeComponent();
 
             SetupSettings();
-            topologyBuilder = new TopologyBuilder(dgvTopology, topology);
+            topologyBuilder = new TopologyBuilder(dgvField, topology);
         }
 
         public Constructor(string fullFilePath, int cols, int rows)
@@ -44,7 +44,7 @@ namespace GasStationMs.App.Constructor
             InitializeComponent();
 
             SetupSettings();
-            topologyBuilder = new TopologyBuilder(dgvTopology, cols, rows); ;
+            topologyBuilder = new TopologyBuilder(dgvField, cols, rows); ;
         }
 
         private void SetupSettings()
@@ -56,14 +56,14 @@ namespace GasStationMs.App.Constructor
 
         private void SetupCellsSize()
         {
-            for (int i = 0; i < dgvTopology.ColumnCount; i++)
+            for (int i = 0; i < dgvField.ColumnCount; i++)
             {
-                dgvTopology.Columns[i].Width = CellSizeInPx;
+                dgvField.Columns[i].Width = CellSizeInPx;
             }
 
-            for (int j = 0; j < dgvTopology.RowCount; j++)
+            for (int j = 0; j < dgvField.RowCount; j++)
             {
-                dgvTopology.Rows[j].Height = CellSizeInPx;
+                dgvField.Rows[j].Height = CellSizeInPx;
             }
         }
 

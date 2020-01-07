@@ -33,14 +33,12 @@ namespace GasStationMs.App.Constructor
             rbFuelDispenser.Checked = true;
             _isCheckedradioButtonFuelDispenser = false;
             rbFuelDispenser.DoDragDrop(rbFuelDispenser.Image, DragDropEffects.Copy);
-
         }
         private void rbFuelTank_mouseDown(object sender, MouseEventArgs e)
         {
             rbFuelTank.Checked = true;
             _isCheckedradioButtonFuelTank = false;
             rbFuelTank.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
-
         }
 
         private void rbCashCounter_mouseDown(object sender, MouseEventArgs e)
@@ -48,7 +46,6 @@ namespace GasStationMs.App.Constructor
             rbCashCounter.Checked = true;
             _isCheckedRbCashCounter = false;
             rbCashCounter.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
-
         }
 
         private void rbEntry_mouseDown(object sender, MouseEventArgs e)
@@ -56,7 +53,6 @@ namespace GasStationMs.App.Constructor
             rbEntry.Checked = true;
             _isCheckedRbEntry = false;
             rbEntry.DoDragDrop(rbEntry.Image, DragDropEffects.Copy);
-
         }
 
         private void rbExit_mouseDown(object sender, MouseEventArgs e)
@@ -64,7 +60,6 @@ namespace GasStationMs.App.Constructor
             rbExit.Checked = true;
             _isCheckedRbExit = false;
             rbExit.DoDragDrop(rbExit.Image, DragDropEffects.Copy);
-
         }
 
         private void DataGridView_DragEnter(object sender, DragEventArgs e)
@@ -73,93 +68,15 @@ namespace GasStationMs.App.Constructor
 
         }
 
-
         private void DataGridView_DragDrop(object sender, DragEventArgs e)
         {
 
-            Point cursorPosition = dgvTopology.PointToClient(Cursor.Position);
-            DataGridView.HitTestInfo info = dgvTopology.HitTest(cursorPosition.X, cursorPosition.Y);
-            var rb = Controls.OfType<RadioButton>().FirstOrDefault(x => x.Checked);
-            DataGridViewImageCell cell = (DataGridViewImageCell)dgvTopology[info.ColumnIndex, info.RowIndex];
-            if (cell.Tag == null)
-            {
-                bool isAdded = false;
-                if (rb.Name == typeof(FuelDispenser).ToString())
-                {
-                    isAdded = topologyBuilder.AddFuelDispenser(info.ColumnIndex, info.RowIndex);
-                    rbFuelDispenser.Checked = false;
-                    if (!isAdded)
-                        MessageBox.Show("невозможно добавить ТРК");
-                }
-                else if (rb.Name == typeof(CashCounter).ToString())
-                {
-                    isAdded = topologyBuilder.AddCashCounter(cell.ColumnIndex, cell.RowIndex);
-                    rbCashCounter.Checked = false;
-                    if (!isAdded)
-                        MessageBox.Show("невозможно добавить кассу");
-                }
-                else if (rb.Name == typeof(FuelTank).ToString())
-                {
-                    rbFuelTank.Checked = false;
-                    MessageBox.Show("невозможно добавить ТБ");
-                }
-                else if (rb.Name == typeof(Entry).ToString())
-                {
-                    rbEntry.Checked = false;
-                    MessageBox.Show("невозможно добавить въезд");
-                }
-                else if (rb.Name == typeof(Exit).ToString())
-                {
-                    rbExit.Checked = false;
-                    MessageBox.Show("невозможно добавить выезд");
-                }
-            }
-            else if (cell.Tag is ServiceArea)
-            {
-                bool isAdded = false;
-                if (rb.Name == typeof(FuelTank).ToString())
-                {
-                    isAdded = topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
-                    rbFuelTank.Checked = false;
-                    if (!isAdded)
-                        MessageBox.Show("невозможно добавить ТБ");
-                }
-            }
-            else if (cell.Tag is Road)
-            {
-                bool isAdded = false;
-                if (rb.Name == typeof(Entry).ToString())
-                {
-                    isAdded = topologyBuilder.AddEntry(cell.ColumnIndex, cell.RowIndex);
-                    rbEntry.Checked = false;
-                    if (!isAdded)
-                        MessageBox.Show("невозможно добавить въезд");
-                }
-                else if (rb.Name == typeof(Exit).ToString())
-                {
-                    isAdded = topologyBuilder.AddExit(cell.ColumnIndex, cell.RowIndex);
-                    rbExit.Checked = false;
-                    if (!isAdded)
-                        MessageBox.Show("невозможно добавить выезд");
-                }
-                else if (rb.Name == typeof(FuelTank).ToString())
-                {
-                    rbFuelTank.Checked = false;
-                    MessageBox.Show("невозможно добавить ТБ");
-                }
-                else if (rb.Name == typeof(CashCounter).ToString())
-                {
-                    rbCashCounter.Checked = false;
-                    MessageBox.Show("невозможно добавить кассу");
-                }
-            }
+            Point cursorPosition = dgvField.PointToClient(Cursor.Position);
+            DataGridView.HitTestInfo info = dgvField.HitTest(cursorPosition.X, cursorPosition.Y);
+            DataGridViewImageCell cell = (DataGridViewImageCell)dgvField[info.ColumnIndex, info.RowIndex];
 
+            AddElement(cell);
         }
-
-
-
-
-
 
         private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
         {
