@@ -6,6 +6,12 @@ namespace GasStationMs.App.Constructor
 {
     public partial class Constructor
     {
+        private static readonly string cannotAddCashCounter = "невозможно добавить КАССУ: касса может быть расположена только на АЗС";
+        private static readonly string cannotAddFuelTank = "невозможно добавить ТБ: ТБ может быть расположен только на служебной зоне";
+        private static readonly string cannotAddFuelDispenser = "невозможно добавить ТРК: ТРК может быть расположена только на АЗС";
+        private static readonly string cannotAddEntry = "невозможно добавить ВЪЕЗД: въезд может быть расположен только на дороге";
+        private static readonly string cannotAddExit = "невозможно добавить ВЫЕЗД: выезд может быть расположен только на дороге";
+
         private void dgvField_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)dgvField.Rows[e.RowIndex].Cells[e.ColumnIndex];
@@ -35,13 +41,7 @@ namespace GasStationMs.App.Constructor
                 }
                 else if (cell.Tag is ServiceArea)
                 {
-                    bool isAdded = false;
-                    if (rb.Name == typeof(FuelTank).ToString())
-                    {
-                        isAdded = topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
-                        if (!isAdded)
-                            MessageBox.Show("невозможно добавить ТБ");
-                    }
+                    AddElementToServiceAreaCell(cell, rb);
                 }
                 else if (cell.Tag is Road)
                 {
@@ -135,15 +135,44 @@ namespace GasStationMs.App.Constructor
             }
             else if (rb.Name == typeof(FuelTank).ToString())
             {
-                MessageBox.Show("невозможно добавить ТБ: ТБ может быть расположен только на служебной зоне");
+                MessageBox.Show(cannotAddFuelTank);
             }
             else if (rb.Name == typeof(Entry).ToString())
             {
-                MessageBox.Show("невозможно добавить въезд: въезд может быть расположен только на дороге");
+                MessageBox.Show(cannotAddEntry);
             }
             else if (rb.Name == typeof(Exit).ToString())
             {
-                MessageBox.Show("невозможно добавить выезд: выезд может быть расположен только на дороге");
+                MessageBox.Show(cannotAddExit);
+            }
+        }
+
+        private void AddElementToServiceAreaCell(DataGridViewImageCell cell, RadioButton rb)
+        {
+            bool isAdded = false;
+
+            if (rb.Name == typeof(FuelTank).ToString())
+            {
+                isAdded = topologyBuilder.AddFuelTank(cell.ColumnIndex, cell.RowIndex);
+
+                if (!isAdded)
+                    MessageBox.Show("невозможно добавить ТБ");
+            }
+            else if (rb.Name == typeof(FuelDispenser).ToString())
+            {
+                MessageBox.Show(cannotAddFuelDispenser);
+            }
+            else if (rb.Name == typeof(CashCounter).ToString())
+            {
+                MessageBox.Show(cannotAddCashCounter);
+            }
+            else if (rb.Name == typeof(Entry).ToString())
+            {
+                MessageBox.Show(cannotAddEntry);
+            }
+            else if (rb.Name == typeof(Exit).ToString())
+            {
+                MessageBox.Show(cannotAddExit);
             }
         }
 
