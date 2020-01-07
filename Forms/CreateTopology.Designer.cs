@@ -40,37 +40,42 @@
             this.rbChosenBigSize = new System.Windows.Forms.RadioButton();
             this.rbChosenMediumSize = new System.Windows.Forms.RadioButton();
             this.rbChosenSmallSize = new System.Windows.Forms.RadioButton();
+            this.gbFullFilePath = new System.Windows.Forms.GroupBox();
+            this.labelFullFilePath = new System.Windows.Forms.Label();
+            this.tbFullFilePath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudChooseColsCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudChooseRowsCount)).BeginInit();
             this.gbChooseFullFilePath.SuspendLayout();
             this.gbChooseSize.SuspendLayout();
+            this.gbFullFilePath.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelChooseFullFilePath
             // 
             this.labelChooseFullFilePath.AutoSize = true;
             this.labelChooseFullFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelChooseFullFilePath.Location = new System.Drawing.Point(6, 16);
+            this.labelChooseFullFilePath.Location = new System.Drawing.Point(6, 23);
             this.labelChooseFullFilePath.Name = "labelChooseFullFilePath";
-            this.labelChooseFullFilePath.Size = new System.Drawing.Size(260, 20);
+            this.labelChooseFullFilePath.Size = new System.Drawing.Size(339, 20);
             this.labelChooseFullFilePath.TabIndex = 0;
-            this.labelChooseFullFilePath.Text = "Расположение файла топологии";
+            this.labelChooseFullFilePath.Text = "Выберите расположение файла топологии";
             // 
             // btnChooseFullFilePath
             // 
-            this.btnChooseFullFilePath.Location = new System.Drawing.Point(272, 16);
+            this.btnChooseFullFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnChooseFullFilePath.Location = new System.Drawing.Point(351, 21);
             this.btnChooseFullFilePath.Name = "btnChooseFullFilePath";
-            this.btnChooseFullFilePath.Size = new System.Drawing.Size(93, 23);
+            this.btnChooseFullFilePath.Size = new System.Drawing.Size(93, 25);
             this.btnChooseFullFilePath.TabIndex = 1;
-            this.btnChooseFullFilePath.Text = "Выбрать";
+            this.btnChooseFullFilePath.Text = "Обзор";
             this.btnChooseFullFilePath.UseVisualStyleBackColor = true;
             this.btnChooseFullFilePath.Click += new System.EventHandler(this.btnChooseFullFilePath_Click);
             // 
             // btnOpenConstructor
             // 
-            this.btnOpenConstructor.Location = new System.Drawing.Point(12, 296);
+            this.btnOpenConstructor.Location = new System.Drawing.Point(12, 319);
             this.btnOpenConstructor.Name = "btnOpenConstructor";
-            this.btnOpenConstructor.Size = new System.Drawing.Size(560, 39);
+            this.btnOpenConstructor.Size = new System.Drawing.Size(560, 30);
             this.btnOpenConstructor.TabIndex = 2;
             this.btnOpenConstructor.Text = "Создать";
             this.btnOpenConstructor.UseVisualStyleBackColor = true;
@@ -94,9 +99,9 @@
             // 
             this.gbChooseFullFilePath.Controls.Add(this.labelChooseFullFilePath);
             this.gbChooseFullFilePath.Controls.Add(this.btnChooseFullFilePath);
-            this.gbChooseFullFilePath.Location = new System.Drawing.Point(12, 36);
+            this.gbChooseFullFilePath.Location = new System.Drawing.Point(12, 12);
             this.gbChooseFullFilePath.Name = "gbChooseFullFilePath";
-            this.gbChooseFullFilePath.Size = new System.Drawing.Size(560, 65);
+            this.gbChooseFullFilePath.Size = new System.Drawing.Size(560, 63);
             this.gbChooseFullFilePath.TabIndex = 7;
             this.gbChooseFullFilePath.TabStop = false;
             // 
@@ -109,9 +114,9 @@
             this.gbChooseSize.Controls.Add(this.rbChosenMediumSize);
             this.gbChooseSize.Controls.Add(this.rbChosenSmallSize);
             this.gbChooseSize.Controls.Add(this.nudChooseColsCount);
-            this.gbChooseSize.Location = new System.Drawing.Point(12, 133);
+            this.gbChooseSize.Location = new System.Drawing.Point(12, 180);
             this.gbChooseSize.Name = "gbChooseSize";
-            this.gbChooseSize.Size = new System.Drawing.Size(560, 143);
+            this.gbChooseSize.Size = new System.Drawing.Size(560, 118);
             this.gbChooseSize.TabIndex = 8;
             this.gbChooseSize.TabStop = false;
             this.gbChooseSize.Text = "Укажите размер топологии (количество столбцов x количество строк)";
@@ -170,12 +175,42 @@
             this.rbChosenSmallSize.Text = "Маленькая 10 x 7";
             this.rbChosenSmallSize.UseVisualStyleBackColor = true;
             // 
+            // gbFullFilePath
+            // 
+            this.gbFullFilePath.Controls.Add(this.tbFullFilePath);
+            this.gbFullFilePath.Controls.Add(this.labelFullFilePath);
+            this.gbFullFilePath.Location = new System.Drawing.Point(12, 90);
+            this.gbFullFilePath.Name = "gbFullFilePath";
+            this.gbFullFilePath.Size = new System.Drawing.Size(560, 70);
+            this.gbFullFilePath.TabIndex = 9;
+            this.gbFullFilePath.TabStop = false;
+            // 
+            // labelFullFilePath
+            // 
+            this.labelFullFilePath.AutoSize = true;
+            this.labelFullFilePath.Location = new System.Drawing.Point(6, 16);
+            this.labelFullFilePath.Name = "labelFullFilePath";
+            this.labelFullFilePath.Size = new System.Drawing.Size(172, 13);
+            this.labelFullFilePath.TabIndex = 0;
+            this.labelFullFilePath.Text = "Расположение файла топологии";
+            // 
+            // tbFullFilePath
+            // 
+            this.tbFullFilePath.BackColor = System.Drawing.SystemColors.Control;
+            this.tbFullFilePath.ForeColor = System.Drawing.Color.Black;
+            this.tbFullFilePath.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.tbFullFilePath.Location = new System.Drawing.Point(6, 32);
+            this.tbFullFilePath.Name = "tbFullFilePath";
+            this.tbFullFilePath.Size = new System.Drawing.Size(548, 20);
+            this.tbFullFilePath.TabIndex = 1;
+            // 
             // CreateTopology
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.gbFullFilePath);
             this.Controls.Add(this.gbChooseSize);
             this.Controls.Add(this.gbChooseFullFilePath);
             this.Controls.Add(this.btnOpenConstructor);
@@ -191,6 +226,8 @@
             this.gbChooseFullFilePath.PerformLayout();
             this.gbChooseSize.ResumeLayout(false);
             this.gbChooseSize.PerformLayout();
+            this.gbFullFilePath.ResumeLayout(false);
+            this.gbFullFilePath.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -209,5 +246,8 @@
         private System.Windows.Forms.RadioButton rbChosenMediumSize;
         private System.Windows.Forms.RadioButton rbChosenSmallSize;
         private System.Windows.Forms.Label labelTimes;
+        private System.Windows.Forms.GroupBox gbFullFilePath;
+        private System.Windows.Forms.TextBox tbFullFilePath;
+        private System.Windows.Forms.Label labelFullFilePath;
     }
 }
