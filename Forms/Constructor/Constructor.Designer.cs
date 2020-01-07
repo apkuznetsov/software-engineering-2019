@@ -51,10 +51,12 @@
             this.btnSaveTopology = new System.Windows.Forms.Button();
             this.btnSaveAs = new System.Windows.Forms.Button();
             this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
+            this.gbTemplateElements = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTopology)).BeginInit();
             this.panelClickedCell.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).BeginInit();
+            this.gbTemplateElements.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvTopology
@@ -68,10 +70,10 @@
             this.dgvTopology.ColumnHeadersHeight = 29;
             this.dgvTopology.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvTopology.ColumnHeadersVisible = false;
-            this.dgvTopology.Location = new System.Drawing.Point(21, 54);
+            this.dgvTopology.Location = new System.Drawing.Point(12, 42);
             this.dgvTopology.Name = "dgvTopology";
             this.dgvTopology.RowHeadersWidth = 51;
-            this.dgvTopology.Size = new System.Drawing.Size(539, 355);
+            this.dgvTopology.Size = new System.Drawing.Size(532, 507);
             this.dgvTopology.TabIndex = 0;
             this.dgvTopology.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTopology_CellMouseClick);
             this.dgvTopology.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
@@ -82,7 +84,7 @@
             this.rbFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelDispenser.AutoSize = true;
             this.rbFuelDispenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
-            this.rbFuelDispenser.Location = new System.Drawing.Point(589, 54);
+            this.rbFuelDispenser.Location = new System.Drawing.Point(6, 19);
             this.rbFuelDispenser.Name = "rbFuelDispenser";
             this.rbFuelDispenser.Size = new System.Drawing.Size(38, 38);
             this.rbFuelDispenser.TabIndex = 6;
@@ -97,7 +99,7 @@
             this.rbFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelTank.AutoSize = true;
             this.rbFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
-            this.rbFuelTank.Location = new System.Drawing.Point(633, 56);
+            this.rbFuelTank.Location = new System.Drawing.Point(50, 20);
             this.rbFuelTank.Name = "rbFuelTank";
             this.rbFuelTank.Size = new System.Drawing.Size(36, 36);
             this.rbFuelTank.TabIndex = 7;
@@ -110,7 +112,7 @@
             // listFuels
             // 
             this.listFuels.FormattingEnabled = true;
-            this.listFuels.Location = new System.Drawing.Point(605, 301);
+            this.listFuels.Location = new System.Drawing.Point(12, 271);
             this.listFuels.Margin = new System.Windows.Forms.Padding(2);
             this.listFuels.Name = "listFuels";
             this.listFuels.Size = new System.Drawing.Size(159, 82);
@@ -119,7 +121,7 @@
             // 
             // textBoxNewFuelName
             // 
-            this.textBoxNewFuelName.Location = new System.Drawing.Point(605, 390);
+            this.textBoxNewFuelName.Location = new System.Drawing.Point(12, 357);
             this.textBoxNewFuelName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNewFuelName.Name = "textBoxNewFuelName";
             this.textBoxNewFuelName.Size = new System.Drawing.Size(159, 20);
@@ -127,7 +129,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(605, 442);
+            this.btnAdd.Location = new System.Drawing.Point(12, 405);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(56, 19);
@@ -138,7 +140,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(686, 442);
+            this.btnDelete.Location = new System.Drawing.Point(115, 405);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(56, 19);
@@ -149,7 +151,7 @@
             // 
             // textBoxNewFuelPrice
             // 
-            this.textBoxNewFuelPrice.Location = new System.Drawing.Point(605, 413);
+            this.textBoxNewFuelPrice.Location = new System.Drawing.Point(12, 381);
             this.textBoxNewFuelPrice.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNewFuelPrice.Name = "textBoxNewFuelPrice";
             this.textBoxNewFuelPrice.Size = new System.Drawing.Size(159, 20);
@@ -168,7 +170,7 @@
             this.rbCashCounter.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbCashCounter.AutoSize = true;
             this.rbCashCounter.Image = ((System.Drawing.Image)(resources.GetObject("rbCashCounter.Image")));
-            this.rbCashCounter.Location = new System.Drawing.Point(675, 54);
+            this.rbCashCounter.Location = new System.Drawing.Point(92, 20);
             this.rbCashCounter.Name = "rbCashCounter";
             this.rbCashCounter.Size = new System.Drawing.Size(36, 36);
             this.rbCashCounter.TabIndex = 12;
@@ -183,7 +185,7 @@
             this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbEntry.AutoSize = true;
             this.rbEntry.Image = global::GasStationMs.App.Properties.Resources.Entry;
-            this.rbEntry.Location = new System.Drawing.Point(717, 56);
+            this.rbEntry.Location = new System.Drawing.Point(134, 20);
             this.rbEntry.Name = "rbEntry";
             this.rbEntry.Size = new System.Drawing.Size(36, 36);
             this.rbEntry.TabIndex = 13;
@@ -198,7 +200,7 @@
             this.rbExit.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbExit.AutoSize = true;
             this.rbExit.Image = global::GasStationMs.App.Properties.Resources.Exit;
-            this.rbExit.Location = new System.Drawing.Point(759, 54);
+            this.rbExit.Location = new System.Drawing.Point(176, 20);
             this.rbExit.Name = "rbExit";
             this.rbExit.Size = new System.Drawing.Size(36, 36);
             this.rbExit.TabIndex = 14;
@@ -217,7 +219,7 @@
             this.panelClickedCell.Controls.Add(this.textBoxChosenFuel);
             this.panelClickedCell.Controls.Add(this.clickedFuelList);
             this.panelClickedCell.Controls.Add(this.tbClickedCell);
-            this.panelClickedCell.Location = new System.Drawing.Point(566, 130);
+            this.panelClickedCell.Location = new System.Drawing.Point(6, 63);
             this.panelClickedCell.Name = "panelClickedCell";
             this.panelClickedCell.Size = new System.Drawing.Size(222, 145);
             this.panelClickedCell.TabIndex = 15;
@@ -338,7 +340,7 @@
             // 
             // btnToDistributionLawsForm
             // 
-            this.btnToDistributionLawsForm.Location = new System.Drawing.Point(605, 485);
+            this.btnToDistributionLawsForm.Location = new System.Drawing.Point(13, 472);
             this.btnToDistributionLawsForm.Margin = new System.Windows.Forms.Padding(2);
             this.btnToDistributionLawsForm.Name = "btnToDistributionLawsForm";
             this.btnToDistributionLawsForm.Size = new System.Drawing.Size(158, 50);
@@ -347,25 +349,35 @@
             this.btnToDistributionLawsForm.UseVisualStyleBackColor = true;
             this.btnToDistributionLawsForm.Click += new System.EventHandler(this.btnToDistributionLawsForm_Click);
             // 
+            // gbTemplateElements
+            // 
+            this.gbTemplateElements.Controls.Add(this.rbFuelDispenser);
+            this.gbTemplateElements.Controls.Add(this.btnToDistributionLawsForm);
+            this.gbTemplateElements.Controls.Add(this.rbFuelTank);
+            this.gbTemplateElements.Controls.Add(this.rbCashCounter);
+            this.gbTemplateElements.Controls.Add(this.rbEntry);
+            this.gbTemplateElements.Controls.Add(this.btnDelete);
+            this.gbTemplateElements.Controls.Add(this.panelClickedCell);
+            this.gbTemplateElements.Controls.Add(this.btnAdd);
+            this.gbTemplateElements.Controls.Add(this.rbExit);
+            this.gbTemplateElements.Controls.Add(this.textBoxNewFuelPrice);
+            this.gbTemplateElements.Controls.Add(this.listFuels);
+            this.gbTemplateElements.Controls.Add(this.textBoxNewFuelName);
+            this.gbTemplateElements.Location = new System.Drawing.Point(550, 13);
+            this.gbTemplateElements.Name = "gbTemplateElements";
+            this.gbTemplateElements.Size = new System.Drawing.Size(238, 536);
+            this.gbTemplateElements.TabIndex = 20;
+            this.gbTemplateElements.TabStop = false;
+            this.gbTemplateElements.Text = "groupBox1";
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
-            this.Controls.Add(this.btnToDistributionLawsForm);
+            this.Controls.Add(this.gbTemplateElements);
             this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.btnSaveTopology);
-            this.Controls.Add(this.panelClickedCell);
-            this.Controls.Add(this.rbExit);
-            this.Controls.Add(this.rbEntry);
-            this.Controls.Add(this.rbCashCounter);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.textBoxNewFuelPrice);
-            this.Controls.Add(this.textBoxNewFuelName);
-            this.Controls.Add(this.listFuels);
-            this.Controls.Add(this.rbFuelTank);
-            this.Controls.Add(this.rbFuelDispenser);
             this.Controls.Add(this.dgvTopology);
             this.MinimumSize = new System.Drawing.Size(800, 566);
             this.Name = "Constructor";
@@ -377,8 +389,9 @@
             this.panelClickedCell.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownVolume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFuelDispenserSpeed)).EndInit();
+            this.gbTemplateElements.ResumeLayout(false);
+            this.gbTemplateElements.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -406,6 +419,7 @@
         private System.Windows.Forms.Button btnSaveAs;
         private System.Windows.Forms.Button btnToDistributionLawsForm;
         private System.Windows.Forms.Label labelClickedTeName;
+        private System.Windows.Forms.GroupBox gbTemplateElements;
     }
 }
 
