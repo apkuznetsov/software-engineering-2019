@@ -17,7 +17,6 @@ namespace GasStationMs.App.Constructor
         private TopologyBuilder topologyBuilder;
 
         private DataTable _fuelDataTable;
-        private FuelDispenser _selectedFuelDispenser;
         private FuelTank _selectedFuelTank;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
@@ -70,25 +69,18 @@ namespace GasStationMs.App.Constructor
 
         private void DataGridView_DragDrop(object sender, DragEventArgs e)
         {
+            try
+            {
+                Point cursorPosition = dgvField.PointToClient(Cursor.Position);
+                DataGridView.HitTestInfo hitTestInfo = dgvField.HitTest(cursorPosition.X, cursorPosition.Y);
+                DataGridViewImageCell cell = (DataGridViewImageCell)dgvField[hitTestInfo.ColumnIndex, hitTestInfo.RowIndex];
 
-            Point cursorPosition = dgvField.PointToClient(Cursor.Position);
-            DataGridView.HitTestInfo info = dgvField.HitTest(cursorPosition.X, cursorPosition.Y);
-            DataGridViewImageCell cell = (DataGridViewImageCell)dgvField[info.ColumnIndex, info.RowIndex];
-
-            AddElement(cell);
-        }
-
-        private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
-        {
-            _selectedFuelTank.Volume = (int)numericUpDownVolume.Value;
-            _selectedFuelTank.OccupiedVolume = _selectedFuelTank.Volume;
-        }
-
-        private void numericUpDownFuelDispenserSpeed_ValueChanged(object sender, EventArgs e)
-        {
-
-            _selectedFuelDispenser.FuelFeedRateInLitersPerMinute = (int)numericUpDownFuelDispenserSpeed.Value;
-            _selectedFuelTank.OccupiedVolume = _selectedFuelTank.Volume;
+                AddElement(cell);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return;
+            }
         }
 
         private void clickedFuelList_SelectionChangeCommitted(object sender, EventArgs e)
