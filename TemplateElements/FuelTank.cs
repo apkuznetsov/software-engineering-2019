@@ -20,9 +20,7 @@ namespace GasStationMs.App.TemplateElements
 
         private int volume;
         private int occupiedVolume;
-
         public FuelModel Fuel { get; set; }
-
         public int CriticalVolume { get; private set; }
 
         public FuelTank()

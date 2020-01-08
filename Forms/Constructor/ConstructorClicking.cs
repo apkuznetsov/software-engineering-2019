@@ -317,21 +317,26 @@ namespace GasStationMs.App.Constructor
             cbFuelList.DataSource = fuelDataTable;
         }
 
-        private void cbFuelList_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            DataRowView row = cbFuelList.SelectedItem as DataRowView;
-            var fuel = (FuelModel)row["Fuel"];
-
-            tbChosenFuel.Text = fuel.Name;
-            _selectedFuelTank.Fuel = fuel;
-        }
-
         private void nudElementProperty2_ValueChanged(object sender, EventArgs e)
         {
             if (clickedElement is FuelTank)
             {
                 FuelTank fuelTank = (FuelTank)clickedElement;
                 fuelTank.OccupiedVolume = (int)nudElementProperty2.Value;
+            }
+        }
+
+        private void cbFuelList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            DataRowView dataRowView = cbFuelList.SelectedItem as DataRowView;
+            FuelModel fuel = (FuelModel)dataRowView["Fuel"];
+
+            if (clickedElement is FuelTank)
+            {
+                FuelTank clickedFuelTank = (FuelTank)clickedElement;
+                clickedFuelTank.Fuel = fuel;
+
+                tbChosenFuel.Text = clickedFuelTank.Fuel.Name;
             }
         }
 

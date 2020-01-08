@@ -17,7 +17,6 @@ namespace GasStationMs.App.Constructor
         private TopologyBuilder topologyBuilder;
 
         private DataTable fuelDataTable;
-        private FuelTank _selectedFuelTank;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
 
