@@ -311,7 +311,7 @@ namespace GasStationMs.App.Constructor
             nudElementProperty2.Maximum = clickedFuelTank.Volume;
 
             labelElementProperty3.Text = "Топливо";
-            cbFuelList.Text = clickedFuelTank.Fuel.Name + ":  " + clickedFuelTank.Fuel.Price + "р.";
+            cbFuelList.Text = clickedFuelTank.Fuel.ToString();
 
             cbFuelList.DisplayMember = "Fuel";
             cbFuelList.ValueMember = "Id";
@@ -341,7 +341,7 @@ namespace GasStationMs.App.Constructor
 
         private void labelAddNewFuel_Click(object sender, EventArgs e)
         {
-            AddNewFuel addNewFuel = new AddNewFuel();
+            AddNewFuel addNewFuel = new AddNewFuel(_crudHelper);
             addNewFuel.ShowDialog();
         }
 
