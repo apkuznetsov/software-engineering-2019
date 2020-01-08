@@ -6,37 +6,33 @@ namespace GasStationMs.App.TemplateElements
     [Serializable()]
     public class CashCounter : IGasStationElement
     {
-        #region
+        #region статика
         public static Bitmap Image { get; set; }
-
-        public static readonly int CashLimitInRubles = 100000;
 
         public static readonly int MinPricePerLiterOfFuelInRubles = 10;
         public static readonly int MaxPricePerLiterOfFuelInRubles = 100;
+
+        public static readonly int CashLimitInRubles = 100000;
         #endregion /статика
 
-
-        private int _moneyInRubles;
+        private int moneyInRubles;
 
         public int MoneyInCashInRubles
         {
             get
             {
-                return _moneyInRubles;
+                return moneyInRubles;
             }
 
             set
             {
-                if (_moneyInRubles < 0)
-                {
+                if (moneyInRubles < 0)
                     throw new ArgumentOutOfRangeException();
-                }
-                if (_moneyInRubles > CashLimitInRubles)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
 
-                _moneyInRubles = value;
+                if (moneyInRubles > CashLimitInRubles)
+                    throw new ArgumentOutOfRangeException();
+
+                moneyInRubles = value;
             }
         }
 
