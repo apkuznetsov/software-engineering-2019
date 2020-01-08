@@ -28,19 +28,25 @@ namespace GasStationMs.App.Modeling
         }
         internal static void CarPictureBox_Click(object sender, MouseEventArgs e)
         {
-            var car = (PictureBox)sender;
+            var car = (CarPictureBox)sender;
             var carView = (CarView)car.Tag;
+            var sumToPay = (carView.DesiredFilling - carView.FuelRemained) * carView.Fuel.Price;
 
             // textBoxSelectedItemInformation.Text = "";
             _labelSelectedElement.Text = "Автомобиль";
 
             StringBuilder carInfo = new StringBuilder();
 
-            carInfo.Append("Название: " + carView.Name);
+            carInfo.Append("Топливо: " + carView.Fuel.Name);
+            carInfo.Append("\r\nСтоимость: " + carView.Fuel.Price);
             carInfo.Append("\r\nОбъем бака: " + carView.TankVolume);
             carInfo.Append("\r\nТоплива в баке: " 
                            + (int)carView.FuelRemained);
-                           //+ Math.Truncate(carView.FuelRemained * 1000) / 1000 );
+            if (car.IsGoesFilling)
+            {
+                carInfo.Append("\r\nЗаплатит денег: " + sumToPay);
+            }
+
 
             _textBoxSelectedItemInformation.Text = carInfo.ToString();
             _labelSelectedElement.Visible = true;
