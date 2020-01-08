@@ -69,12 +69,18 @@ namespace GasStationMs.App.Constructor
 
         private void DataGridView_DragDrop(object sender, DragEventArgs e)
         {
+            try
+            {
+                Point cursorPosition = dgvField.PointToClient(Cursor.Position);
+                DataGridView.HitTestInfo hitTestInfo = dgvField.HitTest(cursorPosition.X, cursorPosition.Y);
+                DataGridViewImageCell cell = (DataGridViewImageCell)dgvField[hitTestInfo.ColumnIndex, hitTestInfo.RowIndex];
 
-            Point cursorPosition = dgvField.PointToClient(Cursor.Position);
-            DataGridView.HitTestInfo info = dgvField.HitTest(cursorPosition.X, cursorPosition.Y);
-            DataGridViewImageCell cell = (DataGridViewImageCell)dgvField[info.ColumnIndex, info.RowIndex];
-
-            AddElement(cell);
+                AddElement(cell);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return;
+            }
         }
 
         private void clickedFuelList_SelectionChangeCommitted(object sender, EventArgs e)
