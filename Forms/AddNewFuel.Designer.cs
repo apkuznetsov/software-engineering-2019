@@ -99,6 +99,7 @@
             this.btnAddNewFuel.TabIndex = 6;
             this.btnAddNewFuel.Text = "Добавить";
             this.btnAddNewFuel.UseVisualStyleBackColor = true;
+            this.btnAddNewFuel.Click += new System.EventHandler(this.btnAddNewFuel_Click);
             // 
             // AddNewFuel
             // 

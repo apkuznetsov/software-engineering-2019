@@ -3,6 +3,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using GasStationMs.App.DB.Models;
+using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App.Constructor
@@ -340,7 +341,8 @@ namespace GasStationMs.App.Constructor
 
         private void labelAddNewFuel_Click(object sender, EventArgs e)
         {
-
+            AddNewFuel addNewFuel = new AddNewFuel();
+            addNewFuel.ShowDialog();
         }
 
         private void DeleteElement(DataGridViewImageCell cell)

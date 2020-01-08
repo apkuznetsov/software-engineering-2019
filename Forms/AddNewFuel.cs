@@ -8,5 +8,11 @@ namespace GasStationMs.App.Forms
         {
             InitializeComponent();
         }
+
+        private void btnAddNewFuel_Click(object sender, System.EventArgs e)
+        {
+            Dispose();
+            Close();
+        }
     }
 }
