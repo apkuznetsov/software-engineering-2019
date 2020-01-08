@@ -190,7 +190,7 @@ namespace GasStationMs.App.Constructor
             clickedElement = null;
             nudElementProperty1.Visible = true;
             nudElementProperty1.Minimum = CashCounter.MinCashInRubles;
-            nudElementProperty1.Maximum = CashCounter.MinCashInRubles;
+            nudElementProperty1.Maximum = CashCounter.MaxCashInRubles;
 
             CashCounter clickedCashCounter = cell.Tag as CashCounter;
             nudElementProperty1.Value = clickedCashCounter.CashInRubles;
