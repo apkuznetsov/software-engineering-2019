@@ -217,6 +217,8 @@ namespace GasStationMs.App.Constructor
             {
                 FuelTank fuelTank = (FuelTank)clickedElement;
                 fuelTank.Volume = (int)nudElementProperty1.Value;
+
+                nudElementProperty2.Maximum = fuelTank.Volume;
             }
         }
 
@@ -234,6 +236,20 @@ namespace GasStationMs.App.Constructor
             FuelTank clickedFuelTank = cell.Tag as FuelTank;
             nudElementProperty1.Value = clickedFuelTank.Volume;
             clickedElement = clickedFuelTank;
+
+            labelElementProperty2.Text = "Объём топлива";
+            nudElementProperty2.Minimum = 0;
+            nudElementProperty2.Maximum = clickedFuelTank.Volume;
+
+
+        private void nudElementProperty2_ValueChanged(object sender, EventArgs e)
+        {
+            if (clickedElement is FuelTank)
+            {
+                FuelTank fuelTank = (FuelTank)clickedElement;
+                fuelTank.OccupiedVolume = (int)nudElementProperty2.Value;
+            }
+        }
 
         private void DeleteElement(DataGridViewImageCell cell)
         {
