@@ -32,7 +32,6 @@ namespace GasStationMs.App.Constructor
             this.dgvField = new System.Windows.Forms.DataGridView();
             this.rbFuelDispenser = new System.Windows.Forms.RadioButton();
             this.rbFuelTank = new System.Windows.Forms.RadioButton();
-            this.listFuels = new System.Windows.Forms.ListBox();
             this.textBoxNewFuelName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.textBoxNewFuelPrice = new System.Windows.Forms.TextBox();
@@ -114,16 +113,6 @@ namespace GasStationMs.App.Constructor
             this.rbFuelTank.CheckedChanged += new System.EventHandler(this.radioButtonFuelTank_CheckedChanged);
             this.rbFuelTank.Click += new System.EventHandler(this.radioButtonFuelTank_Click);
             this.rbFuelTank.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbFuelTank_mouseDown);
-            // 
-            // listFuels
-            // 
-            this.listFuels.FormattingEnabled = true;
-            this.listFuels.Location = new System.Drawing.Point(5, 18);
-            this.listFuels.Margin = new System.Windows.Forms.Padding(2);
-            this.listFuels.Name = "listFuels";
-            this.listFuels.Size = new System.Drawing.Size(159, 82);
-            this.listFuels.TabIndex = 8;
-            this.listFuels.SelectedIndexChanged += new System.EventHandler(this.listFuels_SelectedIndexChanged);
             // 
             // textBoxNewFuelName
             // 
@@ -292,7 +281,6 @@ namespace GasStationMs.App.Constructor
             this.gbAddFuel.Controls.Add(this.btnToDistributionLawsForm);
             this.gbAddFuel.Controls.Add(this.btnAdd);
             this.gbAddFuel.Controls.Add(this.textBoxNewFuelPrice);
-            this.gbAddFuel.Controls.Add(this.listFuels);
             this.gbAddFuel.Controls.Add(this.textBoxNewFuelName);
             this.gbAddFuel.Location = new System.Drawing.Point(561, 310);
             this.gbAddFuel.Name = "gbAddFuel";
@@ -420,7 +408,6 @@ namespace GasStationMs.App.Constructor
         private System.Windows.Forms.DataGridView dgvField;
         private System.Windows.Forms.RadioButton rbFuelDispenser;
         private System.Windows.Forms.RadioButton rbFuelTank;
-        private System.Windows.Forms.ListBox listFuels;
         private System.Windows.Forms.TextBox textBoxNewFuelName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox textBoxNewFuelPrice;

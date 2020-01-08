@@ -155,13 +155,7 @@ namespace GasStationMs.App.Constructor
 
         private void listFuels_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataRowView row = listFuels.SelectedItem as DataRowView;
 
-            var fuel = (FuelModel)row["Fuel"];
-            textBoxNewFuelName.Text = fuel.Name;
-            textBoxNewFuelPrice.Text = fuel.Price.ToString();
-            //textBoxNewFuelName.Text = row["Name"].ToString();
-            //textBoxNewFuelPrice.Text = row["Price"].ToString();
         }
 
         private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
