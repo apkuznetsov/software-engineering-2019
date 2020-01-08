@@ -181,8 +181,9 @@ namespace GasStationMs.App.Constructor
             MakeFuelDispenserPropertiesControlsInvisible();
 
             labelElementProperty1.Visible = true;
-            labelElementProperty1.Text = "Скорость подачи топлива";
+            labelElementProperty1.Text = "Скорость подачи";
 
+            clickedElement = null;
             nudElementProperty1.Visible = true;
             nudElementProperty1.Minimum = FuelDispenser.MinFuelFeedRateInLitersPerMinute;
             nudElementProperty1.Maximum = FuelDispenser.MaxFuelFeedRateInLitersPerMinute;
@@ -194,14 +195,18 @@ namespace GasStationMs.App.Constructor
 
         private void MakeFuelDispenserPropertiesControlsVisible()
         {
+            labelElementProperty2.Visible = true;
             nudElementProperty2.Visible = true;
+
             clickedFuelList.Visible = true;
             textBoxChosenFuel.Visible = true;
         }
 
         private void MakeFuelDispenserPropertiesControlsInvisible()
         {
+            labelElementProperty2.Visible = false;
             nudElementProperty2.Visible = false;
+
             clickedFuelList.Visible = false;
             textBoxChosenFuel.Visible = false;
         }
@@ -229,6 +234,7 @@ namespace GasStationMs.App.Constructor
             labelElementProperty1.Visible = true;
             labelElementProperty1.Text = "Объём";
 
+            clickedElement = null;
             nudElementProperty1.Visible = true;
             nudElementProperty1.Minimum = FuelTank.MinVolumeInLiters;
             nudElementProperty1.Maximum = FuelTank.MaxVolumeInLiters;

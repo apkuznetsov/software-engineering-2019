@@ -1,4 +1,4 @@
-﻿namespace GasStationMs.App.Constructor
+namespace GasStationMs.App.Constructor
 {
     partial class Constructor
     {
@@ -230,7 +230,7 @@
             0,
             0,
             0});
-            this.nudElementProperty2.Location = new System.Drawing.Point(74, 40);
+            this.nudElementProperty2.Location = new System.Drawing.Point(138, 40);
             this.nudElementProperty2.Maximum = new decimal(new int[] {
             75000,
             0,
@@ -254,7 +254,7 @@
             // 
             // nudElementProperty1
             // 
-            this.nudElementProperty1.Location = new System.Drawing.Point(74, 14);
+            this.nudElementProperty1.Location = new System.Drawing.Point(138, 14);
             this.nudElementProperty1.Maximum = new decimal(new int[] {
             160,
             0,
