@@ -179,6 +179,10 @@ namespace GasStationMs.App.Constructor
             {
                 ShowClickedEntryProperties(cell);
             }
+            else if (cell.Tag is Exit)
+            {
+                ShowClickedExitProperties(cell);
+            }
             else if (cell.Tag is FuelDispenser)
             {
                 ShowClickedFuelDispenserProperties(cell);
@@ -260,6 +264,14 @@ namespace GasStationMs.App.Constructor
 
             Entry clickedEntry = cell.Tag as Entry;
             clickedElement = clickedEntry;
+        }
+
+        private void ShowClickedExitProperties(DataGridViewImageCell cell)
+        {
+            MakePropertiesControls1Visible();
+
+            Exit clickedExit = cell.Tag as Exit;
+            clickedElement = clickedExit;
         }
 
         private void ShowClickedFuelDispenserProperties(DataGridViewImageCell cell)
