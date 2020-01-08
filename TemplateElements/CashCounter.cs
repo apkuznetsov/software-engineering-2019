@@ -13,24 +13,24 @@ namespace GasStationMs.App.TemplateElements
         public static readonly int MaxCashInRubles = 100000;
         #endregion /статика
 
-        private int moneyInRubles;
+        private int cashInRubles;
 
-        public int MoneyInCashInRubles
+        public int CashInRubles
         {
             get
             {
-                return moneyInRubles;
+                return cashInRubles;
             }
 
             set
             {
-                if (moneyInRubles < MinCashInRubles)
+                if (cashInRubles < MinCashInRubles)
                     throw new ArgumentOutOfRangeException();
 
-                if (moneyInRubles > MaxCashInRubles)
+                if (cashInRubles > MaxCashInRubles)
                     throw new ArgumentOutOfRangeException();
 
-                moneyInRubles = value;
+                cashInRubles = value;
             }
         }
 

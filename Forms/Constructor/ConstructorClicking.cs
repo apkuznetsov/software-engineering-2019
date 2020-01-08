@@ -166,7 +166,11 @@ namespace GasStationMs.App.Constructor
             gbClickedCell.Text = cell.Tag.ToString();
             gbClickedCell.Visible = true;
 
-            if (cell.Tag is FuelDispenser)
+            if (cell.Tag is CashCounter)
+            {
+                ShowClickedCashCounterProperties(cell);
+            }
+            else if (cell.Tag is FuelDispenser)
             {
                 ShowClickedFuelDispenserProperties(cell);
             }
@@ -176,9 +180,65 @@ namespace GasStationMs.App.Constructor
             }
         }
 
+        private void ShowClickedCashCounterProperties(DataGridViewImageCell cell)
+        {
+            MakePropertiesControls2Invisible();
+
+            labelElementProperty1.Visible = true;
+            labelElementProperty1.Text = "Денег в кассе";
+
+            clickedElement = null;
+            nudElementProperty1.Visible = true;
+            nudElementProperty1.Minimum = CashCounter.MinCashInRubles;
+            nudElementProperty1.Maximum = CashCounter.MinCashInRubles;
+
+            CashCounter clickedCashCounter = cell.Tag as CashCounter;
+            nudElementProperty1.Value = clickedCashCounter.CashInRubles;
+            clickedElement = clickedCashCounter;
+        }
+
+        private void MakePropertiesControls2Visible()
+        {
+            labelElementProperty2.Visible = true;
+            nudElementProperty2.Visible = true;
+
+            clickedFuelList.Visible = true;
+            textBoxChosenFuel.Visible = true;
+        }
+
+        private void MakePropertiesControls2Invisible()
+        {
+            labelElementProperty2.Visible = false;
+            nudElementProperty2.Visible = false;
+
+            clickedFuelList.Visible = false;
+            textBoxChosenFuel.Visible = false;
+        }
+
+        private void nudElementProperty1_ValueChanged(object sender, EventArgs e)
+        {
+            if (clickedElement is CashCounter)
+            {
+                CashCounter cashCounter = (CashCounter)clickedElement;
+                cashCounter.CashInRubles = (int)nudElementProperty1.Value;
+            }
+            else if (clickedElement is FuelDispenser)
+            {
+                FuelDispenser fuelDispenser = (FuelDispenser)clickedElement;
+                fuelDispenser.FuelFeedRateInLitersPerMinute = (int)nudElementProperty1.Value;
+            }
+            else if (clickedElement is FuelTank)
+            {
+                FuelTank fuelTank = (FuelTank)clickedElement;
+                fuelTank.Volume = (int)nudElementProperty1.Value;
+
+                nudElementProperty2.Maximum = fuelTank.Volume;
+            }
+        }
+
         private void ShowClickedFuelDispenserProperties(DataGridViewImageCell cell)
         {
-            MakeFuelDispenserPropertiesControlsInvisible();
+            MakePropertiesControls2Invisible();
 
             labelElementProperty1.Visible = true;
             labelElementProperty1.Text = "Скорость подачи";
@@ -193,43 +253,9 @@ namespace GasStationMs.App.Constructor
             clickedElement = clickedFuelDispenser;
         }
 
-        private void MakeFuelDispenserPropertiesControlsVisible()
-        {
-            labelElementProperty2.Visible = true;
-            nudElementProperty2.Visible = true;
-
-            clickedFuelList.Visible = true;
-            textBoxChosenFuel.Visible = true;
-        }
-
-        private void MakeFuelDispenserPropertiesControlsInvisible()
-        {
-            labelElementProperty2.Visible = false;
-            nudElementProperty2.Visible = false;
-
-            clickedFuelList.Visible = false;
-            textBoxChosenFuel.Visible = false;
-        }
-
-        private void nudElementProperty1_ValueChanged(object sender, EventArgs e)
-        {
-            if (clickedElement is FuelDispenser)
-            {
-                FuelDispenser fuelDispenser = (FuelDispenser)clickedElement;
-                fuelDispenser.FuelFeedRateInLitersPerMinute = (int)nudElementProperty1.Value;
-            }
-            else if (clickedElement is FuelTank)
-            {
-                FuelTank fuelTank = (FuelTank)clickedElement;
-                fuelTank.Volume = (int)nudElementProperty1.Value;
-
-                nudElementProperty2.Maximum = fuelTank.Volume;
-            }
-        }
-
         private void ShowClickedFuelTankProperties(DataGridViewImageCell cell)
         {
-            MakeFuelDispenserPropertiesControlsVisible();
+            MakePropertiesControls2Visible();
 
             labelElementProperty1.Visible = true;
             labelElementProperty1.Text = "Объём";
