@@ -74,6 +74,7 @@ namespace GasStationMs.App.Modeling
             _textBoxSelectedItemInformation.Visible = true;
 
             _modelingForm.SelectedItem = fuelDispenser;
+            _modelingForm.SelectedFuelDispenser = fuelDispenser;
         }
 
         internal static void FuelTankPictureBox_Click(object sender, MouseEventArgs e)
@@ -95,6 +96,7 @@ namespace GasStationMs.App.Modeling
             _textBoxSelectedItemInformation.Visible = true;
 
             _modelingForm.SelectedItem = fuelTank;
+            _modelingForm.SelectedFuelTank = fuelTank;
         }
 
         internal static void CashCounterPictureBox_Click(object sender, MouseEventArgs e)
