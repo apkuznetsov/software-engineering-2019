@@ -9,10 +9,8 @@ namespace GasStationMs.App.TemplateElements
         #region статика
         public static Bitmap Image { get; set; }
 
-        public static readonly int MinPricePerLiterOfFuelInRubles = 10;
-        public static readonly int MaxPricePerLiterOfFuelInRubles = 100;
-
-        public static readonly int CashLimitInRubles = 100000;
+        public static readonly int MinCashInRubles = 0;
+        public static readonly int MaxCashInRubles = 100000;
         #endregion /статика
 
         private int moneyInRubles;
@@ -26,10 +24,10 @@ namespace GasStationMs.App.TemplateElements
 
             set
             {
-                if (moneyInRubles < 0)
+                if (moneyInRubles < MinCashInRubles)
                     throw new ArgumentOutOfRangeException();
 
-                if (moneyInRubles > CashLimitInRubles)
+                if (moneyInRubles > MaxCashInRubles)
                     throw new ArgumentOutOfRangeException();
 
                 moneyInRubles = value;
