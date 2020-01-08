@@ -175,6 +175,10 @@ namespace GasStationMs.App.Constructor
             {
                 ShowClickedCashCounterProperties(cell);
             }
+            else if (cell.Tag is Entry)
+            {
+                ShowClickedEntryProperties(cell);
+            }
             else if (cell.Tag is FuelDispenser)
             {
                 ShowClickedFuelDispenserProperties(cell);
@@ -248,6 +252,14 @@ namespace GasStationMs.App.Constructor
 
                 nudElementProperty2.Maximum = fuelTank.Volume;
             }
+        }
+
+        private void ShowClickedEntryProperties(DataGridViewImageCell cell)
+        {
+            MakePropertiesControls1Visible();
+
+            Entry clickedEntry = cell.Tag as Entry;
+            clickedElement = clickedEntry;
         }
 
         private void ShowClickedFuelDispenserProperties(DataGridViewImageCell cell)
