@@ -11,17 +11,10 @@ namespace GasStationMs.App.Constructor
         private bool _isCheckedRbEntry = false;
         private bool _isCheckedRbExit = false;
 
-        private void SetRbsNames()
-        {
-            rbFuelDispenser.Name = typeof(FuelDispenser).ToString();
-            rbFuelTank.Name = typeof(FuelTank).ToString();
-            rbCashCounter.Name = typeof(CashCounter).ToString();
-            rbEntry.Name = typeof(Entry).ToString();
-            rbExit.Name = typeof(Exit).ToString();
-        }
-
         private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
         {
+            MakeAllPropertiesContorlsInvisible();
+
             _isCheckedradioButtonFuelDispenser = rbFuelDispenser.Checked;
         }
 
@@ -38,6 +31,8 @@ namespace GasStationMs.App.Constructor
 
         private void radioButtonFuelTank_CheckedChanged(object sender, EventArgs e)
         {
+            MakeAllPropertiesContorlsInvisible();
+
             _isCheckedradioButtonFuelTank = rbFuelTank.Checked;
         }
 
@@ -55,6 +50,8 @@ namespace GasStationMs.App.Constructor
         #region касса
         private void rbCashCounter_CheckedChanged(object sender, EventArgs e)
         {
+            MakeAllPropertiesContorlsInvisible();
+
             _isCheckedRbCashCounter = rbCashCounter.Checked;
         }
 
@@ -73,6 +70,8 @@ namespace GasStationMs.App.Constructor
         #region Въезд
         private void rbEntry_CheckedChanged(object sender, EventArgs e)
         {
+            MakeAllPropertiesContorlsInvisible();
+
             _isCheckedRbEntry = rbEntry.Checked;
         }
 
@@ -91,6 +90,8 @@ namespace GasStationMs.App.Constructor
         #region Выезд
         private void rbExit_CheckedChanged(object sender, EventArgs e)
         {
+            MakeAllPropertiesContorlsInvisible();
+
             _isCheckedRbExit = rbExit.Checked;
         }
 

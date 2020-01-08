@@ -35,7 +35,7 @@ namespace GasStationMs.App.Topology
         {
             if (CanAddEntry(x, y))
             {
-                DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
                 cell.Value = Entry.Image;
                 cell.Tag = new Entry();
@@ -50,7 +50,7 @@ namespace GasStationMs.App.Topology
 
         private bool CanAddEntry(int x, int y)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool isRoad = cell.Tag is Road;
             bool isZerothCol = x == 0;
 
@@ -69,7 +69,7 @@ namespace GasStationMs.App.Topology
 
         private bool IsRoadUnderServiceArea(int x, int y)
         {
-            if (x >= _serviceAreaBorderColIndex)
+            if (x >= serviceAreaBorderColIndex)
                 return true;
 
             return false;
@@ -80,7 +80,7 @@ namespace GasStationMs.App.Topology
             if (_entriesCount < 0)
                 throw new ArgumentOutOfRangeException();
 
-            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
             bool canDelete = cell.Tag is Entry;
 
             if (canDelete)

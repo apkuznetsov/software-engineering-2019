@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace GasStationMs.App.DB
 {
-    class CrudHelper
+    public class CrudHelper
     {
         private readonly SqlConnection _connection;
 

@@ -1,40 +1,74 @@
 ﻿using GasStationMs.App.TemplateElements;
 using System;
 using System.Drawing;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GasStationMs.App.Topology
 {
     [Serializable()]
     public partial class Topology
     {
-        private readonly IGasStationElement[,] _field;
-        private int _serviceAreaBorderColIndex;
+        private readonly IGasStationElement[,] field;
+        private readonly int serviceAreaBorderColIndex;
 
         public Topology(IGasStationElement[,] field, int serviceAreaBorderColIndex)
         {
-            this._field = field ?? throw new NullReferenceException();
-            this._serviceAreaBorderColIndex = serviceAreaBorderColIndex;
+            this.field = field ?? throw new NullReferenceException();
+            this.serviceAreaBorderColIndex = serviceAreaBorderColIndex;
+        }
+
+        public IGasStationElement this[int x, int y]
+        {
+            get
+            {
+                if (x < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                if (x > LastX)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                if (y < 0)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                if (y > LastY)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                return field[y, x];
+            }
+        }
+
+        public IGasStationElement this[Point p]
+        {
+            get
+            {
+                return this[p.X, p.Y];
+            }
+        }
+
+        public int ServiceAreaBorderColIndex { get; }
+
+        public int ColsCount
+        {
+            get
+            {
+                return field.GetLength(1);
+            }
         }
 
         public int RowsCount
         {
             get
             {
-                return _field.GetLength(0);
+                return field.GetLength(0);
             }
         }
-
-        public int ColsCount
-        {
-            get
-            {
-                return _field.GetLength(1);
-            }
-        }
-
-        public int ServiceAreaBorderColIndex { get; }
 
         public int LastX
         {
@@ -56,69 +90,13 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                return new Point(_serviceAreaBorderColIndex, 0);
-            }
-        }
-
-        public IGasStationElement this[int x, int y]
-        {
-            get
-            {
-                if (y < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (y > LastY)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (x < 0)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                if (x > LastX)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-
-                return _field[y, x];
-            }
-        }
-
-        public IGasStationElement this[Point p]
-        {
-            get
-            {
-                return this[p.X, p.Y];
+                return new Point(serviceAreaBorderColIndex, 0);
             }
         }
 
         public IGasStationElement GetElement(int x, int y)
         {
-            if (x < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (x >= ColsCount)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (y < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            if (y >= RowsCount)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            return _field[y, x];
+            return field[y, x];
         }
 
         public IGasStationElement GetElement(Point p)
@@ -194,22 +172,6 @@ namespace GasStationMs.App.Topology
         public bool IsServiceArea(Point p)
         {
             return this[p] is ServiceArea;
-        }
-
-        public static string DotExt
-        {
-            get
-            {
-                return ".tplg";
-            }
-        }
-
-        public void Save(string currFilePath)
-        {
-            Stream savingFileStream = File.Create(currFilePath);
-            BinaryFormatter serializer = new BinaryFormatter();
-            serializer.Serialize(savingFileStream, this);
-            savingFileStream.Close();
         }
     }
 }

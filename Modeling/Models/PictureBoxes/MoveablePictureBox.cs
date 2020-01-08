@@ -33,7 +33,7 @@ namespace GasStationMs.App.Modeling.Models.PictureBoxes
                 Size = new Size(spotSize, spotSize),
                 Location = destPoint,
                 Visible = true,
-                BackColor = Color.DarkRed
+                //BackColor = Color.DarkRed
             };
 
             DestinationSpot.BringToFront();

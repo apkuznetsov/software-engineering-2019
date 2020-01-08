@@ -4,43 +4,21 @@ using System.Windows.Forms;
 using GasStationMs.App.DistributionLaws;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Models;
-using GasStationMs.App.Topology;
 
 namespace GasStationMs.App
 {
-    public partial class DistributionLawsForm : Form
+    public partial class ChooseDistributionLaw : Form
     {
-        private enum DistributionLaws
-        {
-            None,
-            UniformDistribution,
-            NormalDistribution,
-            ExponentialDistribution,
-            Determined
-        }
+        private readonly Topology.Topology topology;
+        private IDistributionLaw randNumGenerator;
 
-        private TopologyBuilder tb;
-        public IDistributionLaw randNumGenerator;
-
-        public DistributionLawsForm(TopologyBuilder tb)
+        public ChooseDistributionLaw(Topology.Topology topology)
         {
+            this.topology = topology ?? throw new NullReferenceException();
+
             InitializeComponent();
-            this.tb = tb;
-
-            SetupCbChooseDistributionLaw();
 
             SetupDefaultSettings();
-        }
-
-        private void SetupCbChooseDistributionLaw()
-        {
-            List<string> distributionLawsList = new List<string>();
-            distributionLawsList.Add("НЕ ВЫБРАН");
-            distributionLawsList.Add("Равномерный");
-            distributionLawsList.Add("Нормальный");
-            distributionLawsList.Add("Показательный");
-
-            cbChooseDistributionLaw.DataSource = distributionLawsList;
         }
 
         private void SetupDefaultSettings()
@@ -49,6 +27,7 @@ namespace GasStationMs.App
             MakeDeterminedFlowParamsVisible();
             MakeUniformFlowParamsInvisible();
 
+            SetupCbChooseDistributionLaw();
             SetupFlowsSettings();
             SetupChoosingProbabilityOfStoppingAtGasStation();
         }
@@ -63,6 +42,35 @@ namespace GasStationMs.App
         {
             labelDeterminedFlowParams.Visible = false;
             nudDeterminedFlow.Visible = false;
+        }
+
+        private void MakeUniformFlowParamsVisible()
+        {
+            labelUniformDistParamA.Visible = true;
+            nudUniformDistParamA.Visible = true;
+
+            labelUniformDistParamB.Visible = true;
+            nudUniformDistParamB.Visible = true;
+        }
+
+        private void MakeUniformFlowParamsInvisible()
+        {
+            labelUniformDistParamA.Visible = false;
+            nudUniformDistParamA.Visible = false;
+
+            labelUniformDistParamB.Visible = false;
+            nudUniformDistParamB.Visible = false;
+        }
+
+        private void SetupCbChooseDistributionLaw()
+        {
+            List<string> distributionLawsList = new List<string>();
+            distributionLawsList.Add("НЕ ВЫБРАН");
+            distributionLawsList.Add("Равномерный");
+            distributionLawsList.Add("Нормальный");
+            distributionLawsList.Add("Показательный");
+
+            cbChooseDistributionLaw.DataSource = distributionLawsList;
         }
 
         private void SetupFlowsSettings()
@@ -129,45 +137,21 @@ namespace GasStationMs.App
             }
         }
 
+        private enum DistributionLaws
+        {
+            None,
+            UniformDistribution,
+            NormalDistribution,
+            ExponentialDistribution,
+            Determined
+        }
+
         private void MakeAllFlowsParamsInvisible()
         {
             MakeDeterminedFlowParamsInvisible();
             MakeUniformFlowParamsInvisible();
             MakeNormalFlowParamsInvisible();
             MakeExponentialFlowParamsInvisible();
-        }
-
-        private void MakeUniformFlowParamsInvisible()
-        {
-            labelUniformDistParamA.Visible = false;
-            nudUniformDistParamA.Visible = false;
-
-            labelUniformDistParamB.Visible = false;
-            nudUniformDistParamB.Visible = false;
-        }
-
-        private void MakeNormalFlowParamsInvisible()
-        {
-            labelNormalDistrVariance.Visible = false;
-            nudNormalDistrVariance.Visible = false;
-
-            labelNormalDistrExpectedValue.Visible = false;
-            nudNormalDistrExpectedValue.Visible = false;
-        }
-
-        private void MakeExponentialFlowParamsInvisible()
-        {
-            labelExponentialDistrLambda.Visible = false;
-            nudExponentialDistrLambda.Visible = false;
-        }
-
-        private void MakeUniformFlowParamsVisible()
-        {
-            labelUniformDistParamA.Visible = true;
-            nudUniformDistParamA.Visible = true;
-
-            labelUniformDistParamB.Visible = true;
-            nudUniformDistParamB.Visible = true;
         }
 
         private void MakeNormalFlowParamsVisible()
@@ -179,13 +163,28 @@ namespace GasStationMs.App
             nudNormalDistrExpectedValue.Visible = true;
         }
 
+        private void MakeNormalFlowParamsInvisible()
+        {
+            labelNormalDistrVariance.Visible = false;
+            nudNormalDistrVariance.Visible = false;
+
+            labelNormalDistrExpectedValue.Visible = false;
+            nudNormalDistrExpectedValue.Visible = false;
+        }
+
         private void MakeExponentialFlowParamsVisible()
         {
             labelExponentialDistrLambda.Visible = true;
             nudExponentialDistrLambda.Visible = true;
         }
 
-        private void btnToModelingForm_Click(object sender, EventArgs e)
+        private void MakeExponentialFlowParamsInvisible()
+        {
+            labelExponentialDistrLambda.Visible = false;
+            nudExponentialDistrLambda.Visible = false;
+        }
+
+        private void btnOpenModeling_Click(object sender, EventArgs e)
         {
             if (rbRandomFlow.Checked == true)
             {
@@ -220,11 +219,13 @@ namespace GasStationMs.App
                 randNumGenerator = new DeterminedDistribution((double)nudDeterminedFlow.Value);
             }
 
-            Topology.Topology topology = tb.ToTopology();
             TrafficFlow trafficFlow = new TrafficFlow(randNumGenerator, (double)nudProbabilityOfStoppingAtGasStation.Value);
 
-            ModelingForm modelingForm = new ModelingForm(topology, trafficFlow);
-            modelingForm.ShowDialog();
+            ModelingForm modeling = new ModelingForm(topology, trafficFlow);
+            modeling.Show();
+
+            Dispose();
+            Close();
         }
 
         private void rbRandomFlow_CheckedChanged(object sender, EventArgs e)
@@ -252,6 +253,5 @@ namespace GasStationMs.App
             MakeNormalFlowParamsInvisible();
             MakeExponentialFlowParamsInvisible();
         }
-
     }
 }

@@ -115,7 +115,7 @@ namespace GasStationMs.App.Modeling
 
         private static void CreateCashCounter(Point creationPoint)
         {
-            var cashCounterView = CreateCashCounterView("Cash Counter", CashCounter.CashLimitInRubles);
+            var cashCounterView = CreateCashCounterView("Cash Counter", CashCounter.MaxCashInRubles);
             _mappedTopology.CashCounter = CreateCashCounterPictureBox(cashCounterView, creationPoint);
         }
 

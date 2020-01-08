@@ -12,13 +12,16 @@ namespace GasStationMs.App.TemplateElements
 
         public static readonly int MinVolumeInLiters = 10000;
         public static readonly int MaxVolumeInLiters = 75000;
+
+        public static readonly int MinOccupiedVolumeInLiters = 0;
+
         public static readonly double CriticalVolumeForRefuelingInShares = 0.15;
         #endregion /статика
 
         private int volume;
-        private int criticalVolume;
         private int occupiedVolume;
         public FuelModel Fuel { get; set; }
+        public int CriticalVolume { get; private set; }
 
         public FuelTank()
         {
@@ -44,15 +47,7 @@ namespace GasStationMs.App.TemplateElements
 
                 volume = value;
 
-                criticalVolume = (int)(volume * CriticalVolumeForRefuelingInShares);
-            }
-        }
-
-        public int CriticalVolume
-        {
-            get
-            {
-                return criticalVolume;
+                CriticalVolume = (int)(volume * CriticalVolumeForRefuelingInShares);
             }
         }
 
@@ -65,7 +60,7 @@ namespace GasStationMs.App.TemplateElements
 
             set
             {
-                if (value < 0)
+                if (value < MinOccupiedVolumeInLiters)
                     throw new ArgumentOutOfRangeException();
 
                 if (value > volume)
@@ -74,7 +69,7 @@ namespace GasStationMs.App.TemplateElements
                 occupiedVolume = value;
             }
         }
-        
+
         public override string ToString()
         {
             return "ТБ";

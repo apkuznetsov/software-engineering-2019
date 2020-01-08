@@ -7,47 +7,81 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder
     {
-        private DataGridView _field;
-        private int _serviceAreaInCells;
-        private int _serviceAreaBorderColIndex;
+        private DataGridView field;
+        private int serviceAreaInCells;
+        private int serviceAreaBorderColIndex;
 
         public TopologyBuilder(DataGridView dgv)
         {
-            _field = dgv ?? throw new NullReferenceException();
+            field = dgv ?? throw new NullReferenceException();
 
             AddDgvCols(Topology.MinColsCount);
-            _field.RowCount = Topology.MinRowsCount;
+            field.RowCount = Topology.MinRowsCount;
 
             SetupDgv();
 
-            _serviceAreaInCells = RecalculateServiceArea();
+            serviceAreaInCells = RecalculateServiceArea();
 
             SetupServiceArea();
             SetupRoad();
         }
 
-        public void SetTopologyBuilder(Topology topology)
+        public TopologyBuilder(DataGridView field, int cols, int rows)
         {
-            ToDgv(topology);
+            this.field = field ?? throw new NullReferenceException();
+
+            if (cols < Topology.MinColsCount ||
+                cols > Topology.MaxColsCount)
+                throw new ArgumentOutOfRangeException();
+
+            if (rows < Topology.MinRowsCount ||
+                rows > Topology.MaxRowsCount)
+                throw new ArgumentOutOfRangeException();
+
+            AddDgvCols(cols);
+            this.field.RowCount = rows;
+
+            SetupDgv();
+
+            serviceAreaInCells = RecalculateServiceArea();
+
+            SetupServiceArea();
+            SetupRoad();
+        }
+
+        public TopologyBuilder(DataGridView field, Topology topology)
+        {
+            this.field = field ?? throw new NullReferenceException();
+
+            AddDgvCols(topology.ColsCount);
+            this.field.RowCount = topology.RowsCount;
+
+            SetupDgv();
+
+            serviceAreaInCells = RecalculateServiceArea();
+
+            SetupServiceArea();
+            SetupRoad();
+            SetField(topology);
         }
 
         private void SetupDgv()
         {
-            _field.RowHeadersVisible = false;
-            _field.ColumnHeadersVisible = false;
+            field.RowHeadersVisible = false;
+            field.ColumnHeadersVisible = false;
 
-            _field.AllowUserToResizeColumns = false;
-            _field.AllowUserToResizeRows = false;
+            field.AllowUserToResizeColumns = false;
+            field.AllowUserToResizeRows = false;
 
-            _field.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            _field.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            field.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            field.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void AddDgvCols(int colsCount)
         {
             for (int i = 0; i < colsCount; i++)
             {
-                _field.Columns.Add(new BlankTopologyBuilderCol());
+                field.Columns.Add(new BlankTopologyBuilderCol());
             }
         }
 
@@ -55,24 +89,24 @@ namespace GasStationMs.App.Topology
         {
             for (int i = 0; i < rowsCount; i++)
             {
-                _field.Rows.Add();
+                field.Rows.Add();
             }
         }
 
         private void SetupServiceArea()
         {
-            int lastRowIndex = _field.RowCount - 1;
+            int lastRowIndex = field.RowCount - 1;
 
-            int сellsLeftToAdd = _serviceAreaInCells;
+            int сellsLeftToAdd = serviceAreaInCells;
             int cellsAdded = 0;
 
             DataGridViewImageCell cell;
 
-            for (int currCol = _field.ColumnCount - 1; currCol >= 0; currCol--)
+            for (int currCol = field.ColumnCount - 1; currCol >= 0; currCol--)
             {
                 for (int currRow = 0; currRow < lastRowIndex; currRow++)
                 {
-                    cell = (DataGridViewImageCell)_field.Rows[currRow].Cells[currCol];
+                    cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
                     cell.Tag = new ServiceArea();
                     cell.Value = ServiceArea.Image;
 
@@ -82,8 +116,8 @@ namespace GasStationMs.App.Topology
 
                 if (сellsLeftToAdd <= 0)
                 {
-                    _serviceAreaInCells = cellsAdded;
-                    _serviceAreaBorderColIndex = currCol;
+                    serviceAreaInCells = cellsAdded;
+                    serviceAreaBorderColIndex = currCol;
                     break;
                 }
             }
@@ -92,18 +126,18 @@ namespace GasStationMs.App.Topology
         private void SetupRoad()
         {
             DataGridViewImageCell cell;
-            for (int currCol = 0, lastRow = _field.Rows.GetLastRow(DataGridViewElementStates.Visible); currCol < _field.ColumnCount; currCol++)
+            for (int currCol = 0, lastRow = RoadRowIndex; currCol < field.ColumnCount; currCol++)
             {
-                cell = (DataGridViewImageCell)_field.Rows[lastRow].Cells[currCol];
+                cell = (DataGridViewImageCell)field.Rows[lastRow].Cells[currCol];
                 cell.Tag = new Road();
                 cell.Value = Road.Image;
             }
         }
 
-        private void ToDgv(Topology topology)
+        private void SetField(Topology topology)
         {
-            _field.ColumnCount = topology.ColsCount;
-            _field.RowCount = topology.RowsCount;
+            field.ColumnCount = topology.ColsCount;
+            field.RowCount = topology.RowsCount;
 
             SetupServiceArea();
             SetupRoad();
@@ -137,7 +171,7 @@ namespace GasStationMs.App.Topology
 
         private void AddBlank(int x, int y)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
             cell.Value = null;
             cell.Tag = null;
@@ -145,7 +179,7 @@ namespace GasStationMs.App.Topology
 
         private void AddRoad(int x, int y)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
             cell.Value = Road.Image;
             cell.Tag = new Road();
@@ -153,7 +187,7 @@ namespace GasStationMs.App.Topology
 
         private void AddServiceArea(int x, int y)
         {
-            DataGridViewImageCell cell = (DataGridViewImageCell)_field.Rows[y].Cells[x];
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
             cell.Value = ServiceArea.Image;
             cell.Tag = new ServiceArea();
@@ -163,7 +197,7 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                return _field.ColumnCount;
+                return field.ColumnCount;
             }
         }
 
@@ -171,7 +205,15 @@ namespace GasStationMs.App.Topology
         {
             get
             {
-                return _field.RowCount;
+                return field.RowCount;
+            }
+        }
+
+        public int RoadRowIndex
+        {
+            get
+            {
+                return field.Rows.GetLastRow(DataGridViewElementStates.Visible);
             }
         }
 
@@ -182,26 +224,107 @@ namespace GasStationMs.App.Topology
 
         public Topology ToTopology()
         {
-            IGasStationElement[,] gseArr = new IGasStationElement[_field.RowCount, _field.ColumnCount];
+            CheckTopologyCorrectness();
+
+            IGasStationElement[,] gseArr = new IGasStationElement[RowsCount, ColsCount];
 
             DataGridViewImageCell cell;
             for (int currRow = 0; currRow < gseArr.GetLength(0); currRow++)
             {
                 for (int currCol = 0; currCol < gseArr.GetLength(1); currCol++)
                 {
-                    cell = (DataGridViewImageCell)_field.Rows[currRow].Cells[currCol];
-                    //if (cell.Tag != null)
-                    //{
+                    cell = (DataGridViewImageCell)field.Rows[currRow].Cells[currCol];
                     gseArr[currRow, currCol] = (IGasStationElement)cell.Tag;
-                    //}
-                    //else
-                    //{
-                    //    gseArr[currRow, currCol] = null;
-                    //}
                 }
             }
 
-            return new Topology(gseArr, _serviceAreaBorderColIndex);
+            return new Topology(gseArr, serviceAreaBorderColIndex);
+        }
+
+        private void CheckTopologyCorrectness()
+        {
+            CheckMinNumOfTemplatesElements();
+            CheckMaxNumOfTemplatesElements();
+            CheckEntryAndExitOrder();
+        }
+
+        private void CheckMinNumOfTemplatesElements()
+        {
+            if (cashCountersCount < Topology.MinCashCountersCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinCashCountersCount + " касс");
+
+            if (EntriesCount < Topology.MinEntriesCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinEntriesCount + " въездов");
+
+            if (ExitsCount < Topology.MinExitsCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinExitsCount + " выездов");
+
+            if (FuelDispensersCount < Topology.MinFuelDispensersCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinFuelDispensersCount + " ТРК");
+
+            if (FuelTanksCount < Topology.MinFuelTanksCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinFuelTanksCount + " ТБ");
+        }
+
+        private void CheckMaxNumOfTemplatesElements()
+        {
+            if (cashCountersCount > Topology.MaxCashCountersCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxCashCountersCount + " касс");
+
+            if (EntriesCount > Topology.MaxEntriesCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxEntriesCount + " въездов");
+
+            if (ExitsCount > Topology.MaxExitsCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxExitsCount + " выездов");
+
+            if (FuelDispensersCount > Topology.MaxFuelDispensersCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxFuelDispensersCount + " ТРК");
+
+            if (FuelTanksCount > Topology.MaxFuelTanksCount)
+                throw new InvalidOperationException(
+                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxFuelTanksCount + " ТБ");
+        }
+
+        private void CheckEntryAndExitOrder()
+        {
+            int roadRowIndex = RoadRowIndex;
+            int entryColIndex = -1;
+            int exitColIndex = -1;
+
+            DataGridViewImageCell cell;
+            for (int currCol = 0; currCol < serviceAreaBorderColIndex; currCol++)
+            {
+                cell = (DataGridViewImageCell)field.Rows[roadRowIndex].Cells[currCol];
+
+                if (cell.Tag is Entry)
+                {
+                    entryColIndex = currCol;
+                    continue;
+                }
+                else if (cell.Tag is Exit)
+                {
+                    exitColIndex = currCol;
+                    continue;
+                }
+            }
+
+            if (entryColIndex == -1)
+                throw new NullReferenceException("ОШИБКА: нет въезда");
+
+            if (exitColIndex == -1)
+                throw new NullReferenceException("ОШИБКА: нет выезда");
+
+            if (entryColIndex < exitColIndex)
+                throw new InvalidOperationException("ОШИБКА: въезд должен располагаеться правее выезда");
         }
     }
 }
