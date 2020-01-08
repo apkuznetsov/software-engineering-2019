@@ -19,9 +19,11 @@ namespace GasStationMs.App.TemplateElements
         #endregion /статика
 
         private int volume;
-        private int criticalVolume;
         private int occupiedVolume;
+
         public FuelModel Fuel { get; set; }
+
+        public int CriticalVolume { get; private set; }
 
         public FuelTank()
         {
@@ -47,15 +49,7 @@ namespace GasStationMs.App.TemplateElements
 
                 volume = value;
 
-                criticalVolume = (int)(volume * CriticalVolumeForRefuelingInShares);
-            }
-        }
-
-        public int CriticalVolume
-        {
-            get
-            {
-                return criticalVolume;
+                CriticalVolume = (int)(volume * CriticalVolumeForRefuelingInShares);
             }
         }
 
