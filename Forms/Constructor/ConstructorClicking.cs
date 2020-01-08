@@ -349,11 +349,15 @@ namespace GasStationMs.App.Constructor
             {
                 FuelTank clickedFuelTank = (FuelTank)clickedElement;
 
-                AddNewFuel addNewFuel = new AddNewFuel(crudHelper, clickedFuelTank.Fuel);
+                AddNewFuel addNewFuel = new AddNewFuel(crudHelper, clickedFuelTank);
                 addNewFuel.ShowDialog();
 
-                cbFuelList.Text = clickedFuelTank.Fuel.ToString();
                 LoadList();
+                cbFuelList.Text = clickedFuelTank.Fuel.ToString();
+
+                cbFuelList.DisplayMember = "Fuel";
+                cbFuelList.ValueMember = "Id";
+                cbFuelList.DataSource = fuelDataTable;
             }
         }
 

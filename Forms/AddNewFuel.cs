@@ -8,13 +8,16 @@ namespace GasStationMs.App.Forms
 {
     public partial class AddNewFuel : Form
     {
-        private readonly CrudHelper crudHelper;
-        private FuelModel fuel;
+        private static readonly int MinNameLen = 1;
+        private static readonly int MaxNameLen = 20;
 
-        public AddNewFuel(CrudHelper crudHelper, FuelModel fuel)
+        private readonly CrudHelper crudHelper;
+        private FuelTank fuelTank;
+
+        public AddNewFuel(CrudHelper crudHelper, FuelTank fuelTank)
         {
             if (crudHelper == null ||
-                fuel == null)
+                fuelTank == null)
             {
                 throw new NullReferenceException();
             }
@@ -22,7 +25,7 @@ namespace GasStationMs.App.Forms
             InitializeComponent();
 
             this.crudHelper = crudHelper;
-            this.fuel = fuel;
+            this.fuelTank = fuelTank;
 
             labelWrongFuelName.Visible = false;
             nudCostPerLiter.Minimum = CashCounter.MinPricePerLiterOfFuelInRubles;
@@ -31,13 +34,14 @@ namespace GasStationMs.App.Forms
 
         private void btnAddNewFuel_Click(object sender, System.EventArgs e)
         {
-            AddNewFuelToDb();
-
-            Dispose();
-            Close();
+            if (AddNewFuelToDb())
+            {
+                Dispose();
+                Close();
+            }
         }
 
-        private void AddNewFuelToDb()
+        private bool AddNewFuelToDb()
         {
             if (IsRightFuelName())
             {
@@ -45,14 +49,20 @@ namespace GasStationMs.App.Forms
                 double newFuelCostPerLiter = (double)nudCostPerLiter.Value;
 
                 crudHelper.AddFuelToDb(newFuelName, newFuelCostPerLiter);
-                fuel = new FuelModel(-1, newFuelName, newFuelCostPerLiter);
+                fuelTank.Fuel = new FuelModel(-1, newFuelName, newFuelCostPerLiter);
 
-                MessageBox.Show("УСПЕШНО ДОБАВЛЕНО В БД" + newFuelName + ", " + newFuelCostPerLiter + " руб./литр");
+                MessageBox.Show(
+                    "УСПЕШНО ДОБАВЛЕНО В БД" + Environment.NewLine +
+                    newFuelName + ", " + newFuelCostPerLiter + " руб./литр");
+
+                return true;
             }
             else
             {
                 labelWrongFuelName.Visible = true;
-                labelWrongFuelName.Text = "ОШИБКА: название не может быть пустой строкой";
+                labelWrongFuelName.Text = "название должно быть не менее 1 символа и не более 20";
+
+                return false;
             }
         }
 
@@ -63,8 +73,8 @@ namespace GasStationMs.App.Forms
 
         private bool IsRightFuelName()
         {
-            if (tbFuelName.Text != null ||
-                tbFuelName.Text != "")
+            if (tbFuelName.Text.Length >= MinNameLen &&
+                tbFuelName.Text.Length <= MaxNameLen)
             {
                 return true;
             }

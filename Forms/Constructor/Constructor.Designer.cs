@@ -297,6 +297,7 @@ namespace GasStationMs.App.Constructor
             this.labelAddNewFuel.Size = new System.Drawing.Size(101, 13);
             this.labelAddNewFuel.TabIndex = 21;
             this.labelAddNewFuel.Text = "Добавить топливо";
+            this.labelAddNewFuel.Visible = false;
             this.labelAddNewFuel.Click += new System.EventHandler(this.labelAddNewFuel_Click);
             // 
             // labelElementProperty3
