@@ -11,6 +11,9 @@ namespace GasStationMs.App.TemplateElements
 
         public static readonly int MinCashInRubles = 0;
         public static readonly int MaxCashInRubles = 100000;
+
+        public static readonly int MinPricePerLiterOfFuelInRubles = 10;
+        public static readonly int MaxPricePerLiterOfFuelInRubles = 100;
         #endregion /статика
 
         private int cashInRubles;

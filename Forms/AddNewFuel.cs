@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using GasStationMs.App.TemplateElements;
+using System.Windows.Forms;
 
 namespace GasStationMs.App.Forms
 {
@@ -7,6 +8,9 @@ namespace GasStationMs.App.Forms
         public AddNewFuel()
         {
             InitializeComponent();
+
+            nudCostPerLiter.Minimum = CashCounter.MinPricePerLiterOfFuelInRubles;
+            nudCostPerLiter.Maximum = CashCounter.MaxPricePerLiterOfFuelInRubles;
         }
 
         private void btnAddNewFuel_Click(object sender, System.EventArgs e)
