@@ -310,7 +310,7 @@ namespace GasStationMs.App.Constructor
             nudElementProperty2.Maximum = clickedFuelTank.Volume;
 
             labelElementProperty3.Text = "Топливо";
-            cbFuelList.Text = clickedFuelTank.Fuel.Name;
+            cbFuelList.Text = clickedFuelTank.Fuel.Name + ":  " + clickedFuelTank.Fuel.Price + "р.";
 
             cbFuelList.DisplayMember = "Fuel";
             cbFuelList.ValueMember = "Id";
