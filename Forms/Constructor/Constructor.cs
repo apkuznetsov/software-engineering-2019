@@ -83,14 +83,6 @@ namespace GasStationMs.App.Constructor
         }
         #endregion
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            var newFuelName = textBoxNewFuelName.Text;
-            var newFuelPrice = Double.Parse(textBoxNewFuelPrice.Text);
-            _crudHelper.AddFuelToDb(newFuelName, newFuelPrice);
-            LoadList();
-        }
-
         #region DbMethods
         internal void LoadList()
         {
@@ -146,26 +138,12 @@ namespace GasStationMs.App.Constructor
             //listFuels.DisplayMember = "Name";
             //listFuels.ValueMember = "Id";
             this.fuelDataTable = fuelDataTable;
-            listFuels.DataSource = fuelDataTable;
-            listFuels.DisplayMember = "Fuel";
-            listFuels.ValueMember = "Id";
         }
         #endregion /DbMethods
-
-
-        private void listFuels_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
         {
             ConnectionHelpers.CloseConnection(_connection);
-        }
-
-        private void btnSaveTopology_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -180,11 +158,6 @@ namespace GasStationMs.App.Constructor
             {
                 MessageBox.Show(exc.Message);
             }
-        }
-
-        private void btnSaveTopologyAs_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,12 +176,12 @@ namespace GasStationMs.App.Constructor
             }
         }
 
-        private void btnToDistributionLawsForm_Click(object sender, EventArgs e)
+        private void btnOpenChooseDistributionLaw_Click(object sender, EventArgs e)
         {
             try
             {
-                ChooseDistributionLaw distributionLawsForm = new ChooseDistributionLaw(topologyBuilder.ToTopology());
-                distributionLawsForm.ShowDialog();
+                ChooseDistributionLaw chooseDistributionLaw = new ChooseDistributionLaw(topologyBuilder.ToTopology());
+                chooseDistributionLaw.ShowDialog();
             }
             catch (Exception exc)
             {
