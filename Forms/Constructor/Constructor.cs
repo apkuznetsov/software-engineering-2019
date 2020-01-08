@@ -18,7 +18,7 @@ namespace GasStationMs.App.Constructor
 
         private DataTable fuelDataTable;
         private readonly SqlConnection _connection;
-        private readonly CrudHelper _crudHelper;
+        private readonly CrudHelper crudHelper;
 
         private void TopologyConstructor_Load(object sender, EventArgs e)
         {

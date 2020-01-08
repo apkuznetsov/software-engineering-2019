@@ -1,4 +1,5 @@
 ﻿using GasStationMs.App.DB;
+using GasStationMs.App.DB.Models;
 using GasStationMs.App.TemplateElements;
 using System;
 using System.Windows.Forms;
@@ -8,12 +9,20 @@ namespace GasStationMs.App.Forms
     public partial class AddNewFuel : Form
     {
         private readonly CrudHelper crudHelper;
+        private FuelModel fuel;
 
-        public AddNewFuel(CrudHelper crudHelper)
+        public AddNewFuel(CrudHelper crudHelper, FuelModel fuel)
         {
+            if (crudHelper == null ||
+                fuel == null)
+            {
+                throw new NullReferenceException();
+            }
+
             InitializeComponent();
 
             this.crudHelper = crudHelper;
+            this.fuel = fuel;
 
             labelWrongFuelName.Visible = false;
             nudCostPerLiter.Minimum = CashCounter.MinPricePerLiterOfFuelInRubles;
@@ -33,9 +42,12 @@ namespace GasStationMs.App.Forms
             if (IsRightFuelName())
             {
                 string newFuelName = tbFuelName.Text;
-                double newFuelPrice = (double)nudCostPerLiter.Value;
+                double newFuelCostPerLiter = (double)nudCostPerLiter.Value;
 
-                crudHelper.AddFuelToDb(newFuelName, newFuelPrice);
+                crudHelper.AddFuelToDb(newFuelName, newFuelCostPerLiter);
+                fuel = new FuelModel(-1, newFuelName, newFuelCostPerLiter);
+
+                MessageBox.Show("УСПЕШНО ДОБАВЛЕНО В БД" + newFuelName + ", " + newFuelCostPerLiter + " руб./литр");
             }
             else
             {

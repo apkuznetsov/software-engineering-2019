@@ -212,7 +212,9 @@ namespace GasStationMs.App.Constructor
         private void MakePropertiesControls3Invisible()
         {
             labelElementProperty3.Visible = false;
+
             cbFuelList.Visible = false;
+            labelAddNewFuel.Visible = false;
         }
 
         private void MakePropertiesControls1Visible()
@@ -230,7 +232,9 @@ namespace GasStationMs.App.Constructor
         private void MakePropertiesControls3Visible()
         {
             labelElementProperty3.Visible = true;
+
             cbFuelList.Visible = true;
+            labelAddNewFuel.Visible = true;
         }
 
         private void ShowClickedCashCounterProperties(DataGridViewImageCell cell)
@@ -341,8 +345,16 @@ namespace GasStationMs.App.Constructor
 
         private void labelAddNewFuel_Click(object sender, EventArgs e)
         {
-            AddNewFuel addNewFuel = new AddNewFuel(_crudHelper);
-            addNewFuel.ShowDialog();
+            if (clickedElement is FuelTank)
+            {
+                FuelTank clickedFuelTank = (FuelTank)clickedElement;
+
+                AddNewFuel addNewFuel = new AddNewFuel(crudHelper, clickedFuelTank.Fuel);
+                addNewFuel.ShowDialog();
+
+                cbFuelList.Text = clickedFuelTank.Fuel.ToString();
+                LoadList();
+            }
         }
 
         private void DeleteElement(DataGridViewImageCell cell)
