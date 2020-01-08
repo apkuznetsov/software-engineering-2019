@@ -212,7 +212,6 @@ namespace GasStationMs.App.Constructor
         {
             labelElementProperty3.Visible = false;
             cbFuelList.Visible = false;
-            tbChosenFuel.Visible = false;
         }
 
         private void MakePropertiesControls1Visible()
@@ -231,7 +230,6 @@ namespace GasStationMs.App.Constructor
         {
             labelElementProperty3.Visible = true;
             cbFuelList.Visible = true;
-            tbChosenFuel.Visible = true;
         }
 
         private void ShowClickedCashCounterProperties(DataGridViewImageCell cell)
@@ -311,7 +309,9 @@ namespace GasStationMs.App.Constructor
             nudElementProperty2.Minimum = FuelTank.MinOccupiedVolumeInLiters;
             nudElementProperty2.Maximum = clickedFuelTank.Volume;
 
-            tbChosenFuel.Text = clickedFuelTank.Fuel.Name;
+            labelElementProperty3.Text = "Топливо";
+            cbFuelList.Text = clickedFuelTank.Fuel.Name;
+
             cbFuelList.DisplayMember = "Fuel";
             cbFuelList.ValueMember = "Id";
             cbFuelList.DataSource = fuelDataTable;
@@ -335,8 +335,6 @@ namespace GasStationMs.App.Constructor
             {
                 FuelTank clickedFuelTank = (FuelTank)clickedElement;
                 clickedFuelTank.Fuel = fuel;
-
-                tbChosenFuel.Text = clickedFuelTank.Fuel.Name;
             }
         }
 

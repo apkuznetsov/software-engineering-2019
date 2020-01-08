@@ -43,7 +43,6 @@ namespace GasStationMs.App.Constructor
             this.labelElementProperty1 = new System.Windows.Forms.Label();
             this.nudElementProperty2 = new System.Windows.Forms.NumericUpDown();
             this.nudElementProperty1 = new System.Windows.Forms.NumericUpDown();
-            this.tbChosenFuel = new System.Windows.Forms.TextBox();
             this.cbFuelList = new System.Windows.Forms.ComboBox();
             this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
             this.gbAddFuel = new System.Windows.Forms.GroupBox();
@@ -51,8 +50,8 @@ namespace GasStationMs.App.Constructor
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbClickedCell = new System.Windows.Forms.GroupBox();
-            this.labelElementProperty2 = new System.Windows.Forms.Label();
             this.labelElementProperty3 = new System.Windows.Forms.Label();
+            this.labelElementProperty2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty1)).BeginInit();
@@ -276,21 +275,12 @@ namespace GasStationMs.App.Constructor
             this.nudElementProperty1.Visible = false;
             this.nudElementProperty1.ValueChanged += new System.EventHandler(this.nudElementProperty1_ValueChanged);
             // 
-            // tbChosenFuel
-            // 
-            this.tbChosenFuel.Location = new System.Drawing.Point(6, 134);
-            this.tbChosenFuel.Name = "tbChosenFuel";
-            this.tbChosenFuel.ReadOnly = true;
-            this.tbChosenFuel.Size = new System.Drawing.Size(63, 20);
-            this.tbChosenFuel.TabIndex = 14;
-            this.tbChosenFuel.Visible = false;
-            // 
             // cbFuelList
             // 
             this.cbFuelList.FormattingEnabled = true;
-            this.cbFuelList.Location = new System.Drawing.Point(83, 66);
+            this.cbFuelList.Location = new System.Drawing.Point(6, 85);
             this.cbFuelList.Name = "cbFuelList";
-            this.cbFuelList.Size = new System.Drawing.Size(122, 21);
+            this.cbFuelList.Size = new System.Drawing.Size(199, 21);
             this.cbFuelList.TabIndex = 12;
             this.cbFuelList.Visible = false;
             this.cbFuelList.SelectionChangeCommitted += new System.EventHandler(this.cbFuelList_SelectionChangeCommitted);
@@ -355,28 +345,15 @@ namespace GasStationMs.App.Constructor
             this.gbClickedCell.Controls.Add(this.labelElementProperty3);
             this.gbClickedCell.Controls.Add(this.labelElementProperty2);
             this.gbClickedCell.Controls.Add(this.cbFuelList);
-            this.gbClickedCell.Controls.Add(this.tbChosenFuel);
             this.gbClickedCell.Controls.Add(this.nudElementProperty2);
             this.gbClickedCell.Controls.Add(this.labelElementProperty1);
             this.gbClickedCell.Controls.Add(this.nudElementProperty1);
             this.gbClickedCell.Location = new System.Drawing.Point(561, 69);
             this.gbClickedCell.Name = "gbClickedCell";
-            this.gbClickedCell.Size = new System.Drawing.Size(211, 173);
+            this.gbClickedCell.Size = new System.Drawing.Size(211, 141);
             this.gbClickedCell.TabIndex = 22;
             this.gbClickedCell.TabStop = false;
             this.gbClickedCell.Text = "Информация";
-            // 
-            // labelElementProperty2
-            // 
-            this.labelElementProperty2.AutoSize = true;
-            this.labelElementProperty2.CausesValidation = false;
-            this.labelElementProperty2.Location = new System.Drawing.Point(5, 42);
-            this.labelElementProperty2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelElementProperty2.Name = "labelElementProperty2";
-            this.labelElementProperty2.Size = new System.Drawing.Size(64, 13);
-            this.labelElementProperty2.TabIndex = 19;
-            this.labelElementProperty2.Text = "Свойство 2";
-            this.labelElementProperty2.Visible = false;
             // 
             // labelElementProperty3
             // 
@@ -389,6 +366,18 @@ namespace GasStationMs.App.Constructor
             this.labelElementProperty3.TabIndex = 20;
             this.labelElementProperty3.Text = "Свойство 3";
             this.labelElementProperty3.Visible = false;
+            // 
+            // labelElementProperty2
+            // 
+            this.labelElementProperty2.AutoSize = true;
+            this.labelElementProperty2.CausesValidation = false;
+            this.labelElementProperty2.Location = new System.Drawing.Point(5, 42);
+            this.labelElementProperty2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelElementProperty2.Name = "labelElementProperty2";
+            this.labelElementProperty2.Size = new System.Drawing.Size(64, 13);
+            this.labelElementProperty2.TabIndex = 19;
+            this.labelElementProperty2.Text = "Свойство 2";
+            this.labelElementProperty2.Visible = false;
             // 
             // Constructor
             // 
@@ -439,7 +428,6 @@ namespace GasStationMs.App.Constructor
         private System.Windows.Forms.RadioButton rbEntry;
         private System.Windows.Forms.RadioButton rbExit;
         private System.Windows.Forms.ComboBox cbFuelList;
-        private System.Windows.Forms.TextBox tbChosenFuel;
         private System.Windows.Forms.NumericUpDown nudElementProperty1;
         private System.Windows.Forms.NumericUpDown nudElementProperty2;
         private System.Windows.Forms.Label labelElementProperty1;
