@@ -77,12 +77,6 @@ namespace GasStationMs.App.Constructor
             AddElement(cell);
         }
 
-        private void numericUpDownVolume_ValueChanged(object sender, EventArgs e)
-        {
-            _selectedFuelTank.Volume = (int)numericUpDownVolume.Value;
-            _selectedFuelTank.OccupiedVolume = _selectedFuelTank.Volume;
-        }
-
         private void clickedFuelList_SelectionChangeCommitted(object sender, EventArgs e)
         {
 

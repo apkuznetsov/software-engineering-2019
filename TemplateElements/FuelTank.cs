@@ -12,6 +12,7 @@ namespace GasStationMs.App.TemplateElements
 
         public static readonly int MinVolumeInLiters = 10000;
         public static readonly int MaxVolumeInLiters = 75000;
+
         public static readonly double CriticalVolumeForRefuelingInShares = 0.15;
         #endregion /статика
 
