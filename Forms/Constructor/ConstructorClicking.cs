@@ -3,6 +3,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using GasStationMs.App.DB.Models;
+using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App.Constructor
@@ -42,14 +43,17 @@ namespace GasStationMs.App.Constructor
 
                 if (cell.Tag == null)
                 {
+                    MakeAllPropertiesContorlsInvisible();
                     AddElementToBlankCell(cell, rb);
                 }
                 else if (cell.Tag is ServiceArea)
                 {
+                    MakeAllPropertiesContorlsInvisible();
                     AddElementToServiceAreaCell(cell, rb);
                 }
                 else if (cell.Tag is Road)
                 {
+                    MakeAllPropertiesContorlsInvisible();
                     AddElementToRoadCell(cell, rb);
                 }
                 else
@@ -211,7 +215,18 @@ namespace GasStationMs.App.Constructor
         private void MakePropertiesControls3Invisible()
         {
             labelElementProperty3.Visible = false;
+
             cbFuelList.Visible = false;
+            labelAddNewFuel.Visible = false;
+        }
+
+        private void MakeAllPropertiesContorlsInvisible()
+        {
+            gbClickedCell.Text = "Информация";
+
+            MakePropertiesControls1Invisible();
+            MakePropertiesControls2Invisible();
+            MakePropertiesControls3Invisible();
         }
 
         private void MakePropertiesControls1Visible()
@@ -229,7 +244,9 @@ namespace GasStationMs.App.Constructor
         private void MakePropertiesControls3Visible()
         {
             labelElementProperty3.Visible = true;
+
             cbFuelList.Visible = true;
+            labelAddNewFuel.Visible = true;
         }
 
         private void ShowClickedCashCounterProperties(DataGridViewImageCell cell)
@@ -310,7 +327,7 @@ namespace GasStationMs.App.Constructor
             nudElementProperty2.Maximum = clickedFuelTank.Volume;
 
             labelElementProperty3.Text = "Топливо";
-            cbFuelList.Text = clickedFuelTank.Fuel.Name + ":  " + clickedFuelTank.Fuel.Price + "р.";
+            cbFuelList.Text = clickedFuelTank.Fuel.ToString();
 
             cbFuelList.DisplayMember = "Fuel";
             cbFuelList.ValueMember = "Id";
@@ -335,6 +352,24 @@ namespace GasStationMs.App.Constructor
             {
                 FuelTank clickedFuelTank = (FuelTank)clickedElement;
                 clickedFuelTank.Fuel = fuel;
+            }
+        }
+
+        private void labelAddNewFuel_Click(object sender, EventArgs e)
+        {
+            if (clickedElement is FuelTank)
+            {
+                FuelTank clickedFuelTank = (FuelTank)clickedElement;
+
+                AddNewFuel addNewFuel = new AddNewFuel(crudHelper, clickedFuelTank);
+                addNewFuel.ShowDialog();
+
+                LoadList();
+                cbFuelList.Text = clickedFuelTank.Fuel.ToString();
+
+                cbFuelList.DisplayMember = "Fuel";
+                cbFuelList.ValueMember = "Id";
+                cbFuelList.DataSource = fuelDataTable;
             }
         }
 

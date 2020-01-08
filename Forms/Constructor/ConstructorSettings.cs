@@ -18,7 +18,7 @@ namespace GasStationMs.App.Constructor
                 throw new NullReferenceException();
 
             _connection = ConnectionHelpers.OpenConnection();
-            _crudHelper = new CrudHelper(_connection);
+            crudHelper = new CrudHelper(_connection);
 
             InitializeComponent();
 
@@ -39,7 +39,7 @@ namespace GasStationMs.App.Constructor
                 throw new ArgumentOutOfRangeException();
 
             _connection = ConnectionHelpers.OpenConnection();
-            _crudHelper = new CrudHelper(_connection);
+            crudHelper = new CrudHelper(_connection);
 
             InitializeComponent();
 

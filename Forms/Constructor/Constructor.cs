@@ -18,7 +18,7 @@ namespace GasStationMs.App.Constructor
 
         private DataTable fuelDataTable;
         private readonly SqlConnection _connection;
-        private readonly CrudHelper _crudHelper;
+        private readonly CrudHelper crudHelper;
 
         private void TopologyConstructor_Load(object sender, EventArgs e)
         {
@@ -83,25 +83,6 @@ namespace GasStationMs.App.Constructor
         }
         #endregion
 
-        #region DbButtons
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            var newFuelName = textBoxNewFuelName.Text;
-            var newFuelPrice = Double.Parse(textBoxNewFuelPrice.Text);
-            _crudHelper.AddFuelToDb(newFuelName, newFuelPrice);
-            LoadList();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            _crudHelper.DeleteFuelFromDb(listFuels);
-            LoadList();
-        }
-
-        #endregion  /DbButtons
-
-
-
         #region DbMethods
         internal void LoadList()
         {
@@ -157,32 +138,12 @@ namespace GasStationMs.App.Constructor
             //listFuels.DisplayMember = "Name";
             //listFuels.ValueMember = "Id";
             this.fuelDataTable = fuelDataTable;
-            listFuels.DataSource = fuelDataTable;
-            listFuels.DisplayMember = "Fuel";
-            listFuels.ValueMember = "Id";
         }
         #endregion /DbMethods
-
-
-        private void listFuels_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataRowView row = listFuels.SelectedItem as DataRowView;
-
-            var fuel = (FuelModel)row["Fuel"];
-            textBoxNewFuelName.Text = fuel.Name;
-            textBoxNewFuelPrice.Text = fuel.Price.ToString();
-            //textBoxNewFuelName.Text = row["Name"].ToString();
-            //textBoxNewFuelPrice.Text = row["Price"].ToString();
-        }
 
         private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
         {
             ConnectionHelpers.CloseConnection(_connection);
-        }
-
-        private void btnSaveTopology_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -197,11 +158,6 @@ namespace GasStationMs.App.Constructor
             {
                 MessageBox.Show(exc.Message);
             }
-        }
-
-        private void btnSaveTopologyAs_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
@@ -220,12 +176,12 @@ namespace GasStationMs.App.Constructor
             }
         }
 
-        private void btnToDistributionLawsForm_Click(object sender, EventArgs e)
+        private void btnOpenChooseDistributionLaw_Click(object sender, EventArgs e)
         {
             try
             {
-                ChooseDistributionLaw distributionLawsForm = new ChooseDistributionLaw(topologyBuilder.ToTopology());
-                distributionLawsForm.ShowDialog();
+                ChooseDistributionLaw chooseDistributionLaw = new ChooseDistributionLaw(topologyBuilder.ToTopology());
+                chooseDistributionLaw.ShowDialog();
             }
             catch (Exception exc)
             {

@@ -32,11 +32,6 @@ namespace GasStationMs.App.Constructor
             this.dgvField = new System.Windows.Forms.DataGridView();
             this.rbFuelDispenser = new System.Windows.Forms.RadioButton();
             this.rbFuelTank = new System.Windows.Forms.RadioButton();
-            this.listFuels = new System.Windows.Forms.ListBox();
-            this.textBoxNewFuelName = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.textBoxNewFuelPrice = new System.Windows.Forms.TextBox();
             this.rbCashCounter = new System.Windows.Forms.RadioButton();
             this.rbEntry = new System.Windows.Forms.RadioButton();
             this.rbExit = new System.Windows.Forms.RadioButton();
@@ -44,18 +39,17 @@ namespace GasStationMs.App.Constructor
             this.nudElementProperty2 = new System.Windows.Forms.NumericUpDown();
             this.nudElementProperty1 = new System.Windows.Forms.NumericUpDown();
             this.cbFuelList = new System.Windows.Forms.ComboBox();
-            this.btnToDistributionLawsForm = new System.Windows.Forms.Button();
-            this.gbAddFuel = new System.Windows.Forms.GroupBox();
+            this.btnOpenChooseDistributionLaw = new System.Windows.Forms.Button();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbClickedCell = new System.Windows.Forms.GroupBox();
+            this.labelAddNewFuel = new System.Windows.Forms.Label();
             this.labelElementProperty3 = new System.Windows.Forms.Label();
             this.labelElementProperty2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty1)).BeginInit();
-            this.gbAddFuel.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.gbClickedCell.SuspendLayout();
             this.SuspendLayout();
@@ -114,54 +108,6 @@ namespace GasStationMs.App.Constructor
             this.rbFuelTank.CheckedChanged += new System.EventHandler(this.radioButtonFuelTank_CheckedChanged);
             this.rbFuelTank.Click += new System.EventHandler(this.radioButtonFuelTank_Click);
             this.rbFuelTank.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbFuelTank_mouseDown);
-            // 
-            // listFuels
-            // 
-            this.listFuels.FormattingEnabled = true;
-            this.listFuels.Location = new System.Drawing.Point(5, 18);
-            this.listFuels.Margin = new System.Windows.Forms.Padding(2);
-            this.listFuels.Name = "listFuels";
-            this.listFuels.Size = new System.Drawing.Size(159, 82);
-            this.listFuels.TabIndex = 8;
-            this.listFuels.SelectedIndexChanged += new System.EventHandler(this.listFuels_SelectedIndexChanged);
-            // 
-            // textBoxNewFuelName
-            // 
-            this.textBoxNewFuelName.Location = new System.Drawing.Point(5, 104);
-            this.textBoxNewFuelName.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxNewFuelName.Name = "textBoxNewFuelName";
-            this.textBoxNewFuelName.Size = new System.Drawing.Size(159, 20);
-            this.textBoxNewFuelName.TabIndex = 9;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(5, 152);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(56, 19);
-            this.btnAdd.TabIndex = 10;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(108, 152);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(56, 19);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // textBoxNewFuelPrice
-            // 
-            this.textBoxNewFuelPrice.Location = new System.Drawing.Point(5, 128);
-            this.textBoxNewFuelPrice.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxNewFuelPrice.Name = "textBoxNewFuelPrice";
-            this.textBoxNewFuelPrice.Size = new System.Drawing.Size(159, 20);
-            this.textBoxNewFuelPrice.TabIndex = 9;
             // 
             // rbCashCounter
             // 
@@ -285,33 +231,18 @@ namespace GasStationMs.App.Constructor
             this.cbFuelList.Visible = false;
             this.cbFuelList.SelectionChangeCommitted += new System.EventHandler(this.cbFuelList_SelectionChangeCommitted);
             // 
-            // btnToDistributionLawsForm
+            // btnOpenChooseDistributionLaw
             // 
-            this.btnToDistributionLawsForm.Location = new System.Drawing.Point(6, 175);
-            this.btnToDistributionLawsForm.Margin = new System.Windows.Forms.Padding(2);
-            this.btnToDistributionLawsForm.Name = "btnToDistributionLawsForm";
-            this.btnToDistributionLawsForm.Size = new System.Drawing.Size(158, 50);
-            this.btnToDistributionLawsForm.TabIndex = 19;
-            this.btnToDistributionLawsForm.Text = "Смоделировать";
-            this.btnToDistributionLawsForm.UseVisualStyleBackColor = true;
-            this.btnToDistributionLawsForm.Click += new System.EventHandler(this.btnToDistributionLawsForm_Click);
-            // 
-            // gbAddFuel
-            // 
-            this.gbAddFuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnOpenChooseDistributionLaw.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbAddFuel.Controls.Add(this.btnToDistributionLawsForm);
-            this.gbAddFuel.Controls.Add(this.btnDelete);
-            this.gbAddFuel.Controls.Add(this.btnAdd);
-            this.gbAddFuel.Controls.Add(this.textBoxNewFuelPrice);
-            this.gbAddFuel.Controls.Add(this.listFuels);
-            this.gbAddFuel.Controls.Add(this.textBoxNewFuelName);
-            this.gbAddFuel.Location = new System.Drawing.Point(561, 310);
-            this.gbAddFuel.Name = "gbAddFuel";
-            this.gbAddFuel.Size = new System.Drawing.Size(211, 239);
-            this.gbAddFuel.TabIndex = 20;
-            this.gbAddFuel.TabStop = false;
-            this.gbAddFuel.Text = "groupBox1";
+            this.btnOpenChooseDistributionLaw.Location = new System.Drawing.Point(560, 500);
+            this.btnOpenChooseDistributionLaw.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOpenChooseDistributionLaw.Name = "btnOpenChooseDistributionLaw";
+            this.btnOpenChooseDistributionLaw.Size = new System.Drawing.Size(213, 50);
+            this.btnOpenChooseDistributionLaw.TabIndex = 19;
+            this.btnOpenChooseDistributionLaw.Text = "Смоделировать";
+            this.btnOpenChooseDistributionLaw.UseVisualStyleBackColor = true;
+            this.btnOpenChooseDistributionLaw.Click += new System.EventHandler(this.btnOpenChooseDistributionLaw_Click);
             // 
             // mainMenuStrip
             // 
@@ -342,6 +273,7 @@ namespace GasStationMs.App.Constructor
             // gbClickedCell
             // 
             this.gbClickedCell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbClickedCell.Controls.Add(this.labelAddNewFuel);
             this.gbClickedCell.Controls.Add(this.labelElementProperty3);
             this.gbClickedCell.Controls.Add(this.labelElementProperty2);
             this.gbClickedCell.Controls.Add(this.cbFuelList);
@@ -354,6 +286,19 @@ namespace GasStationMs.App.Constructor
             this.gbClickedCell.TabIndex = 22;
             this.gbClickedCell.TabStop = false;
             this.gbClickedCell.Text = "Информация";
+            // 
+            // labelAddNewFuel
+            // 
+            this.labelAddNewFuel.AutoSize = true;
+            this.labelAddNewFuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelAddNewFuel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.labelAddNewFuel.Location = new System.Drawing.Point(104, 109);
+            this.labelAddNewFuel.Name = "labelAddNewFuel";
+            this.labelAddNewFuel.Size = new System.Drawing.Size(101, 13);
+            this.labelAddNewFuel.TabIndex = 21;
+            this.labelAddNewFuel.Text = "Добавить топливо";
+            this.labelAddNewFuel.Visible = false;
+            this.labelAddNewFuel.Click += new System.EventHandler(this.labelAddNewFuel_Click);
             // 
             // labelElementProperty3
             // 
@@ -384,13 +329,13 @@ namespace GasStationMs.App.Constructor
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btnOpenChooseDistributionLaw);
             this.Controls.Add(this.gbClickedCell);
             this.Controls.Add(this.rbFuelDispenser);
             this.Controls.Add(this.rbEntry);
             this.Controls.Add(this.rbCashCounter);
             this.Controls.Add(this.rbFuelTank);
             this.Controls.Add(this.rbExit);
-            this.Controls.Add(this.gbAddFuel);
             this.Controls.Add(this.dgvField);
             this.Controls.Add(this.mainMenuStrip);
             this.MainMenuStrip = this.mainMenuStrip;
@@ -403,8 +348,6 @@ namespace GasStationMs.App.Constructor
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty1)).EndInit();
-            this.gbAddFuel.ResumeLayout(false);
-            this.gbAddFuel.PerformLayout();
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
             this.gbClickedCell.ResumeLayout(false);
@@ -419,11 +362,6 @@ namespace GasStationMs.App.Constructor
         private System.Windows.Forms.DataGridView dgvField;
         private System.Windows.Forms.RadioButton rbFuelDispenser;
         private System.Windows.Forms.RadioButton rbFuelTank;
-        private System.Windows.Forms.ListBox listFuels;
-        private System.Windows.Forms.TextBox textBoxNewFuelName;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.TextBox textBoxNewFuelPrice;
         private System.Windows.Forms.RadioButton rbCashCounter;
         private System.Windows.Forms.RadioButton rbEntry;
         private System.Windows.Forms.RadioButton rbExit;
@@ -431,14 +369,14 @@ namespace GasStationMs.App.Constructor
         private System.Windows.Forms.NumericUpDown nudElementProperty1;
         private System.Windows.Forms.NumericUpDown nudElementProperty2;
         private System.Windows.Forms.Label labelElementProperty1;
-        private System.Windows.Forms.Button btnToDistributionLawsForm;
-        private System.Windows.Forms.GroupBox gbAddFuel;
+        private System.Windows.Forms.Button btnOpenChooseDistributionLaw;
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьКакToolStripMenuItem;
         private System.Windows.Forms.GroupBox gbClickedCell;
         private System.Windows.Forms.Label labelElementProperty2;
         private System.Windows.Forms.Label labelElementProperty3;
+        private System.Windows.Forms.Label labelAddNewFuel;
     }
 }
 
