@@ -302,6 +302,12 @@ namespace GasStationMs.App.Constructor
             nudElementProperty2.Minimum = 0;
             nudElementProperty2.Maximum = clickedFuelTank.Volume;
 
+            _selectedFuelTank = clickedFuelTank;
+            textBoxChosenFuel.Text = _selectedFuelTank.Fuel.Name;
+            clickedFuelList.DisplayMember = "Fuel";
+            clickedFuelList.ValueMember = "Id";
+            clickedFuelList.DataSource = _fuelDataTable;
+        }
 
         private void nudElementProperty2_ValueChanged(object sender, EventArgs e)
         {

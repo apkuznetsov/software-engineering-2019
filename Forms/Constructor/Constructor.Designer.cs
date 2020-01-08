@@ -221,7 +221,6 @@ namespace GasStationMs.App.Constructor
             this.labelElementProperty1.TabIndex = 18;
             this.labelElementProperty1.Text = "Свойство 1";
             this.labelElementProperty1.Visible = false;
-            this.labelElementProperty1.Click += new System.EventHandler(this.labelElementProperty1_Click);
             // 
             // nudElementProperty2
             // 
