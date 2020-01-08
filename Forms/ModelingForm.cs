@@ -12,9 +12,15 @@ namespace GasStationMs.App.Forms
         private readonly MappedTopology _mappedTopology;
 
         public PictureBox SelectedItem { get; set; }
+        public PictureBox SelectedFuelDispenser { get; set; }
+        public PictureBox SelectedFuelTank { get; set; }
         public Panel PlaygroundPanel { get; private set; }
         public Label LabelSelectedElement { get; private set; }
         public Label LabelCashCounterSumValue { get; private set; }
+        public Label LabelSpeedOfFillingValue { get; private set; }
+        public Label LabelFuelValue { get; private set; }
+        public Label LabelVolumeValue { get; private set; }
+        public Label LabelCurrentFullnessValue { get; private set; }
         public TextBox TextBoxSelectedItemInformation { get; private set; }
         public PictureBox PictureBoxServiceArea { get; private set; }
 
@@ -68,6 +74,10 @@ namespace GasStationMs.App.Forms
             TextBoxSelectedItemInformation = textBoxSelectedItemInformation;
             PictureBoxServiceArea = pictureBoxServiceArea;
             LabelCashCounterSumValue = labelCashCounterSumValue;
+            LabelSpeedOfFillingValue = labelSpeedOfFillingValue;
+            LabelFuelValue = labelFuelValue;
+            LabelVolumeValue = labelVolumeValue;
+            LabelCurrentFullnessValue = labelCurrentFullnessValue;
             ModelingTimer = timerModeling;
             ButtonPausePlay = pictureBoxPauseAndPlay;
             LabelModelState = labelModelState;
@@ -84,6 +94,10 @@ namespace GasStationMs.App.Forms
             textBoxSelectedItemInformation.Visible = false;
 
             textBoxSelectedItemInformation.Size = new Size(225, 150);
+            textBoxSelectedItemInformation.Location = new Point(5, 
+                panelModelingInformation.Bottom - textBoxSelectedItemInformation.Height - 120);
+            labelSelectedElement.Location = new Point(textBoxSelectedItemInformation.Left,
+                textBoxSelectedItemInformation.Top - 20);
 
             panelTimeManagment.Size = new Size(1030, 100);
             panelTimeManagment.Location = new Point(0, this.Height - panelTimeManagment.Height);
