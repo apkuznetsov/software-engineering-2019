@@ -260,16 +260,12 @@ namespace GasStationMs.App.Constructor
 
         private void ShowClickedEntryProperties(DataGridViewImageCell cell)
         {
-            MakePropertiesControls1Visible();
-
             Entry clickedEntry = cell.Tag as Entry;
             clickedElement = clickedEntry;
         }
 
         private void ShowClickedExitProperties(DataGridViewImageCell cell)
         {
-            MakePropertiesControls1Visible();
-
             Exit clickedExit = cell.Tag as Exit;
             clickedElement = clickedExit;
         }
