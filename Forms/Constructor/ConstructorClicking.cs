@@ -43,14 +43,17 @@ namespace GasStationMs.App.Constructor
 
                 if (cell.Tag == null)
                 {
+                    MakeAllPropertiesContorlsInvisible();
                     AddElementToBlankCell(cell, rb);
                 }
                 else if (cell.Tag is ServiceArea)
                 {
+                    MakeAllPropertiesContorlsInvisible();
                     AddElementToServiceAreaCell(cell, rb);
                 }
                 else if (cell.Tag is Road)
                 {
+                    MakeAllPropertiesContorlsInvisible();
                     AddElementToRoadCell(cell, rb);
                 }
                 else
@@ -215,6 +218,15 @@ namespace GasStationMs.App.Constructor
 
             cbFuelList.Visible = false;
             labelAddNewFuel.Visible = false;
+        }
+
+        private void MakeAllPropertiesContorlsInvisible()
+        {
+            gbClickedCell.Text = "Информация";
+
+            MakePropertiesControls1Invisible();
+            MakePropertiesControls2Invisible();
+            MakePropertiesControls3Invisible();
         }
 
         private void MakePropertiesControls1Visible()
