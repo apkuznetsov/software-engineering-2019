@@ -16,8 +16,7 @@ namespace GasStationMs.App.Constructor
         private string fullFilePath;
         private TopologyBuilder topologyBuilder;
 
-        private DataTable _fuelDataTable;
-        private FuelTank _selectedFuelTank;
+        private DataTable fuelDataTable;
         private readonly SqlConnection _connection;
         private readonly CrudHelper _crudHelper;
 
@@ -82,21 +81,6 @@ namespace GasStationMs.App.Constructor
                 return;
             }
         }
-
-        private void clickedFuelList_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-
-            DataRowView row = clickedFuelList.SelectedItem as DataRowView;
-            var fuel = (FuelModel)row["Fuel"];
-
-            textBoxChosenFuel.Text = fuel.Name;
-            _selectedFuelTank.Fuel = fuel;
-
-        }
-
-
-
-
         #endregion
 
         #region DbButtons
@@ -172,7 +156,7 @@ namespace GasStationMs.App.Constructor
             //listFuels.DataSource = dataTable;
             //listFuels.DisplayMember = "Name";
             //listFuels.ValueMember = "Id";
-            this._fuelDataTable = fuelDataTable;
+            this.fuelDataTable = fuelDataTable;
             listFuels.DataSource = fuelDataTable;
             listFuels.DisplayMember = "Fuel";
             listFuels.ValueMember = "Id";

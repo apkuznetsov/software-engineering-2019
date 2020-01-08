@@ -1,6 +1,8 @@
 using System;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using GasStationMs.App.DB.Models;
 using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App.Constructor
@@ -170,6 +172,7 @@ namespace GasStationMs.App.Constructor
 
             MakePropertiesControls1Invisible();
             MakePropertiesControls2Invisible();
+            MakePropertiesControls3Invisible();
 
             if (cell.Tag is CashCounter)
             {
@@ -203,9 +206,12 @@ namespace GasStationMs.App.Constructor
         {
             labelElementProperty2.Visible = false;
             nudElementProperty2.Visible = false;
+        }
 
-            clickedFuelList.Visible = false;
-            textBoxChosenFuel.Visible = false;
+        private void MakePropertiesControls3Invisible()
+        {
+            labelElementProperty3.Visible = false;
+            cbFuelList.Visible = false;
         }
 
         private void MakePropertiesControls1Visible()
@@ -218,9 +224,12 @@ namespace GasStationMs.App.Constructor
         {
             labelElementProperty2.Visible = true;
             nudElementProperty2.Visible = true;
+        }
 
-            clickedFuelList.Visible = true;
-            textBoxChosenFuel.Visible = true;
+        private void MakePropertiesControls3Visible()
+        {
+            labelElementProperty3.Visible = true;
+            cbFuelList.Visible = true;
         }
 
         private void ShowClickedCashCounterProperties(DataGridViewImageCell cell)
@@ -228,7 +237,6 @@ namespace GasStationMs.App.Constructor
             MakePropertiesControls1Visible();
 
             labelElementProperty1.Text = "Денег в кассе";
-
             nudElementProperty1.Minimum = CashCounter.MinCashInRubles;
             nudElementProperty1.Maximum = CashCounter.MaxCashInRubles;
 
@@ -275,7 +283,6 @@ namespace GasStationMs.App.Constructor
             MakePropertiesControls1Visible();
 
             labelElementProperty1.Text = "Скорость подачи";
-
             nudElementProperty1.Minimum = FuelDispenser.MinFuelFeedRateInLitersPerMinute;
             nudElementProperty1.Maximum = FuelDispenser.MaxFuelFeedRateInLitersPerMinute;
 
@@ -288,9 +295,9 @@ namespace GasStationMs.App.Constructor
         {
             MakePropertiesControls1Visible();
             MakePropertiesControls2Visible();
+            MakePropertiesControls3Visible();
 
             labelElementProperty1.Text = "Объём";
-
             nudElementProperty1.Minimum = FuelTank.MinVolumeInLiters;
             nudElementProperty1.Maximum = FuelTank.MaxVolumeInLiters;
 
@@ -299,14 +306,15 @@ namespace GasStationMs.App.Constructor
             clickedElement = clickedFuelTank;
 
             labelElementProperty2.Text = "Объём топлива";
-            nudElementProperty2.Minimum = 0;
+            nudElementProperty2.Minimum = FuelTank.MinOccupiedVolumeInLiters;
             nudElementProperty2.Maximum = clickedFuelTank.Volume;
 
-            _selectedFuelTank = clickedFuelTank;
-            textBoxChosenFuel.Text = _selectedFuelTank.Fuel.Name;
-            clickedFuelList.DisplayMember = "Fuel";
-            clickedFuelList.ValueMember = "Id";
-            clickedFuelList.DataSource = _fuelDataTable;
+            labelElementProperty3.Text = "Топливо";
+            cbFuelList.Text = clickedFuelTank.Fuel.Name + ":  " + clickedFuelTank.Fuel.Price + "р.";
+
+            cbFuelList.DisplayMember = "Fuel";
+            cbFuelList.ValueMember = "Id";
+            cbFuelList.DataSource = fuelDataTable;
         }
 
         private void nudElementProperty2_ValueChanged(object sender, EventArgs e)
@@ -315,6 +323,18 @@ namespace GasStationMs.App.Constructor
             {
                 FuelTank fuelTank = (FuelTank)clickedElement;
                 fuelTank.OccupiedVolume = (int)nudElementProperty2.Value;
+            }
+        }
+
+        private void cbFuelList_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            DataRowView dataRowView = cbFuelList.SelectedItem as DataRowView;
+            FuelModel fuel = (FuelModel)dataRowView["Fuel"];
+
+            if (clickedElement is FuelTank)
+            {
+                FuelTank clickedFuelTank = (FuelTank)clickedElement;
+                clickedFuelTank.Fuel = fuel;
             }
         }
 
