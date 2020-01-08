@@ -43,6 +43,7 @@
             this.tbFuelName.Name = "tbFuelName";
             this.tbFuelName.Size = new System.Drawing.Size(205, 20);
             this.tbFuelName.TabIndex = 0;
+            this.tbFuelName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFuelName_KeyPress);
             // 
             // labelFuelName
             // 
@@ -60,9 +61,9 @@
             this.labelWrongFuelName.ForeColor = System.Drawing.Color.Red;
             this.labelWrongFuelName.Location = new System.Drawing.Point(12, 92);
             this.labelWrongFuelName.Name = "labelWrongFuelName";
-            this.labelWrongFuelName.Size = new System.Drawing.Size(96, 13);
+            this.labelWrongFuelName.Size = new System.Drawing.Size(98, 13);
             this.labelWrongFuelName.TabIndex = 2;
-            this.labelWrongFuelName.Text = "ошибка названия";
+            this.labelWrongFuelName.Text = "Ошибка названия";
             // 
             // labelCostPerLiter
             // 
@@ -86,6 +87,12 @@
             // 
             // nudCostPerLiter
             // 
+            this.nudCostPerLiter.DecimalPlaces = 2;
+            this.nudCostPerLiter.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.nudCostPerLiter.Location = new System.Drawing.Point(12, 150);
             this.nudCostPerLiter.Name = "nudCostPerLiter";
             this.nudCostPerLiter.Size = new System.Drawing.Size(205, 20);
