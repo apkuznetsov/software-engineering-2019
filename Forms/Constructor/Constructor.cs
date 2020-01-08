@@ -83,7 +83,6 @@ namespace GasStationMs.App.Constructor
         }
         #endregion
 
-        #region DbButtons
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var newFuelName = textBoxNewFuelName.Text;
@@ -91,16 +90,6 @@ namespace GasStationMs.App.Constructor
             _crudHelper.AddFuelToDb(newFuelName, newFuelPrice);
             LoadList();
         }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            _crudHelper.DeleteFuelFromDb(listFuels);
-            LoadList();
-        }
-
-        #endregion  /DbButtons
-
-
 
         #region DbMethods
         internal void LoadList()

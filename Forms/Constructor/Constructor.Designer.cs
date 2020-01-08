@@ -35,7 +35,6 @@ namespace GasStationMs.App.Constructor
             this.listFuels = new System.Windows.Forms.ListBox();
             this.textBoxNewFuelName = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.textBoxNewFuelPrice = new System.Windows.Forms.TextBox();
             this.rbCashCounter = new System.Windows.Forms.RadioButton();
             this.rbEntry = new System.Windows.Forms.RadioButton();
@@ -144,17 +143,6 @@ namespace GasStationMs.App.Constructor
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(108, 152);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(56, 19);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // textBoxNewFuelPrice
             // 
@@ -302,7 +290,6 @@ namespace GasStationMs.App.Constructor
             this.gbAddFuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbAddFuel.Controls.Add(this.btnToDistributionLawsForm);
-            this.gbAddFuel.Controls.Add(this.btnDelete);
             this.gbAddFuel.Controls.Add(this.btnAdd);
             this.gbAddFuel.Controls.Add(this.textBoxNewFuelPrice);
             this.gbAddFuel.Controls.Add(this.listFuels);
@@ -436,7 +423,6 @@ namespace GasStationMs.App.Constructor
         private System.Windows.Forms.ListBox listFuels;
         private System.Windows.Forms.TextBox textBoxNewFuelName;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox textBoxNewFuelPrice;
         private System.Windows.Forms.RadioButton rbCashCounter;
         private System.Windows.Forms.RadioButton rbEntry;
