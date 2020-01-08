@@ -50,6 +50,7 @@ namespace GasStationMs.App.Constructor
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbClickedCell = new System.Windows.Forms.GroupBox();
+            this.labelAddNewFuel = new System.Windows.Forms.Label();
             this.labelElementProperty3 = new System.Windows.Forms.Label();
             this.labelElementProperty2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
@@ -342,6 +343,7 @@ namespace GasStationMs.App.Constructor
             // gbClickedCell
             // 
             this.gbClickedCell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbClickedCell.Controls.Add(this.labelAddNewFuel);
             this.gbClickedCell.Controls.Add(this.labelElementProperty3);
             this.gbClickedCell.Controls.Add(this.labelElementProperty2);
             this.gbClickedCell.Controls.Add(this.cbFuelList);
@@ -354,6 +356,18 @@ namespace GasStationMs.App.Constructor
             this.gbClickedCell.TabIndex = 22;
             this.gbClickedCell.TabStop = false;
             this.gbClickedCell.Text = "Информация";
+            // 
+            // labelAddNewFuel
+            // 
+            this.labelAddNewFuel.AutoSize = true;
+            this.labelAddNewFuel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelAddNewFuel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.labelAddNewFuel.Location = new System.Drawing.Point(104, 109);
+            this.labelAddNewFuel.Name = "labelAddNewFuel";
+            this.labelAddNewFuel.Size = new System.Drawing.Size(101, 13);
+            this.labelAddNewFuel.TabIndex = 21;
+            this.labelAddNewFuel.Text = "Добавить топливо";
+            this.labelAddNewFuel.Click += new System.EventHandler(this.labelAddNewFuel_Click);
             // 
             // labelElementProperty3
             // 
@@ -439,6 +453,7 @@ namespace GasStationMs.App.Constructor
         private System.Windows.Forms.GroupBox gbClickedCell;
         private System.Windows.Forms.Label labelElementProperty2;
         private System.Windows.Forms.Label labelElementProperty3;
+        private System.Windows.Forms.Label labelAddNewFuel;
     }
 }
 

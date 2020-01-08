@@ -338,6 +338,11 @@ namespace GasStationMs.App.Constructor
             }
         }
 
+        private void labelAddNewFuel_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void DeleteElement(DataGridViewImageCell cell)
         {
             bool canDelete = (cell.Tag != null);
