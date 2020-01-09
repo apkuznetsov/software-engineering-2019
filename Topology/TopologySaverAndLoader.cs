@@ -16,11 +16,10 @@ namespace GasStationMs.App.Topology
                 topology == null)
                 throw new NullReferenceException();
 
-            using (Stream savingFileStream = File.Create(fullFilePath))
-            {
-                BinaryFormatter serializer = new BinaryFormatter();
-                serializer.Serialize(savingFileStream, topology);
-            }
+            Stream saveFileStream = File.Create(fullFilePath);
+            BinaryFormatter serializer = new BinaryFormatter();
+            serializer.Serialize(saveFileStream, topology);
+            saveFileStream.Close();
         }
 
         public static Topology Load(string fullFilePath)
@@ -30,11 +29,10 @@ namespace GasStationMs.App.Topology
 
             Topology topology = null;
 
-            using (Stream downloadingFileStream = File.OpenRead(fullFilePath))
-            {
-                BinaryFormatter deserializer = new BinaryFormatter();
-                topology = (Topology)deserializer.Deserialize(downloadingFileStream);
-            }
+            Stream openFileStream = File.OpenRead(fullFilePath);
+            BinaryFormatter deserializer = new BinaryFormatter();
+            topology = (Topology)deserializer.Deserialize(openFileStream);
+            openFileStream.Close();
 
             if (topology == null)
                 throw new NullReferenceException();

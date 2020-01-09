@@ -7,7 +7,7 @@
         public static readonly int MaxColsCount = 20;
 
         public static readonly int MinRowsCount = 7;
-        public static readonly int MaxRowsCount = 14;
+        public static readonly int MaxRowsCount = 13;
 
         public static readonly double ServiceAreaInShares = 0.25;
         #endregion
