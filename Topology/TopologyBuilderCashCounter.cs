@@ -49,6 +49,23 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
+        public bool AddCashCounter(int x, int y, CashCounter cashCounter)
+        {
+            if (CanAddCashCounter(x, y))
+            {
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+                cell.Value = CashCounter.Image;
+                cell.Tag = cashCounter;
+
+                CashCountersCount++;
+
+                return true;
+            }
+
+            return false;
+        }
+
         private bool CanAddCashCounter(int x, int y)
         {
             bool isNewCountOk = cashCountersCount + 1 <= Topology.MaxCashCountersCount;
