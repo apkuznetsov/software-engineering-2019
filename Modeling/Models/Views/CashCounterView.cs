@@ -8,11 +8,11 @@ namespace GasStationMs.App.Modeling.Models.Views
         public double CurrentCashVolume { get; set; }
         public bool IsFull => CurrentCashVolume > ((double)MaxCashVolume / 100) * WhenDrawMoneyInPercentage;
 
-        public CashCounterView(string name, int maxCashVolume)
+        public CashCounterView(string name, int currentCashVolume, int maxCashVolume)
         {
             Name = name;
             MaxCashVolume = maxCashVolume;
-            CurrentCashVolume = 0;
+            CurrentCashVolume = currentCashVolume;
         }
     }
 }

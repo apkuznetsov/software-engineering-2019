@@ -6,9 +6,9 @@ namespace GasStationMs.App.Modeling
 {
     internal static class ElementViewProducer
     {
-        internal static CashCounterView CreateCashCounterView(string name, int maxCashVolume)
+        internal static CashCounterView CreateCashCounterView(string name, int currentCashVolume, int maxCashVolume)
         {
-            return new CashCounterView(name, maxCashVolume);
+            return new CashCounterView(name, currentCashVolume, maxCashVolume);
         }
 
         internal static CarView CreateCarView( /*CarModel*/)
