@@ -41,8 +41,8 @@
             this.rbChosenMediumSize = new System.Windows.Forms.RadioButton();
             this.rbChosenSmallSize = new System.Windows.Forms.RadioButton();
             this.gbFullFilePath = new System.Windows.Forms.GroupBox();
-            this.labelFullFilePath = new System.Windows.Forms.Label();
             this.tbFullFilePath = new System.Windows.Forms.TextBox();
+            this.labelFullFilePath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudChooseColsCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudChooseRowsCount)).BeginInit();
             this.gbChooseFullFilePath.SuspendLayout();
@@ -59,6 +59,7 @@
             this.labelChooseFullFilePath.Size = new System.Drawing.Size(339, 20);
             this.labelChooseFullFilePath.TabIndex = 0;
             this.labelChooseFullFilePath.Text = "Выберите расположение файла топологии";
+            this.labelChooseFullFilePath.UseWaitCursor = true;
             // 
             // btnChooseFullFilePath
             // 
@@ -69,6 +70,7 @@
             this.btnChooseFullFilePath.TabIndex = 1;
             this.btnChooseFullFilePath.Text = "Обзор";
             this.btnChooseFullFilePath.UseVisualStyleBackColor = true;
+            this.btnChooseFullFilePath.UseWaitCursor = true;
             this.btnChooseFullFilePath.Click += new System.EventHandler(this.btnChooseFullFilePath_Click);
             // 
             // btnOpenConstructor
@@ -79,6 +81,7 @@
             this.btnOpenConstructor.TabIndex = 2;
             this.btnOpenConstructor.Text = "Создать";
             this.btnOpenConstructor.UseVisualStyleBackColor = true;
+            this.btnOpenConstructor.UseWaitCursor = true;
             this.btnOpenConstructor.Click += new System.EventHandler(this.btnOpenConstructor_Click);
             // 
             // nudChooseColsCount
@@ -87,6 +90,7 @@
             this.nudChooseColsCount.Name = "nudChooseColsCount";
             this.nudChooseColsCount.Size = new System.Drawing.Size(37, 20);
             this.nudChooseColsCount.TabIndex = 4;
+            this.nudChooseColsCount.UseWaitCursor = true;
             // 
             // nudChooseRowsCount
             // 
@@ -94,6 +98,7 @@
             this.nudChooseRowsCount.Name = "nudChooseRowsCount";
             this.nudChooseRowsCount.Size = new System.Drawing.Size(40, 20);
             this.nudChooseRowsCount.TabIndex = 6;
+            this.nudChooseRowsCount.UseWaitCursor = true;
             // 
             // gbChooseFullFilePath
             // 
@@ -104,6 +109,7 @@
             this.gbChooseFullFilePath.Size = new System.Drawing.Size(560, 63);
             this.gbChooseFullFilePath.TabIndex = 7;
             this.gbChooseFullFilePath.TabStop = false;
+            this.gbChooseFullFilePath.UseWaitCursor = true;
             // 
             // gbChooseSize
             // 
@@ -120,6 +126,7 @@
             this.gbChooseSize.TabIndex = 8;
             this.gbChooseSize.TabStop = false;
             this.gbChooseSize.Text = "Укажите размер топологии (количество столбцов x количество строк)";
+            this.gbChooseSize.UseWaitCursor = true;
             // 
             // labelTimes
             // 
@@ -129,6 +136,7 @@
             this.labelTimes.Size = new System.Drawing.Size(12, 13);
             this.labelTimes.TabIndex = 7;
             this.labelTimes.Text = "x";
+            this.labelTimes.UseWaitCursor = true;
             // 
             // rbChosenOtherSize
             // 
@@ -140,6 +148,7 @@
             this.rbChosenOtherSize.TabStop = true;
             this.rbChosenOtherSize.Text = "Свой размер";
             this.rbChosenOtherSize.UseVisualStyleBackColor = true;
+            this.rbChosenOtherSize.UseWaitCursor = true;
             this.rbChosenOtherSize.CheckedChanged += new System.EventHandler(this.rbChosenOtherSize_CheckedChanged);
             // 
             // rbChosenBigSize
@@ -152,6 +161,7 @@
             this.rbChosenBigSize.TabStop = true;
             this.rbChosenBigSize.Text = "Большая 30 x 25";
             this.rbChosenBigSize.UseVisualStyleBackColor = true;
+            this.rbChosenBigSize.UseWaitCursor = true;
             // 
             // rbChosenMediumSize
             // 
@@ -163,6 +173,7 @@
             this.rbChosenMediumSize.TabStop = true;
             this.rbChosenMediumSize.Text = "Средняя 20 x 15";
             this.rbChosenMediumSize.UseVisualStyleBackColor = true;
+            this.rbChosenMediumSize.UseWaitCursor = true;
             // 
             // rbChosenSmallSize
             // 
@@ -174,6 +185,7 @@
             this.rbChosenSmallSize.TabStop = true;
             this.rbChosenSmallSize.Text = "Маленькая 10 x 7";
             this.rbChosenSmallSize.UseVisualStyleBackColor = true;
+            this.rbChosenSmallSize.UseWaitCursor = true;
             // 
             // gbFullFilePath
             // 
@@ -184,15 +196,7 @@
             this.gbFullFilePath.Size = new System.Drawing.Size(560, 70);
             this.gbFullFilePath.TabIndex = 9;
             this.gbFullFilePath.TabStop = false;
-            // 
-            // labelFullFilePath
-            // 
-            this.labelFullFilePath.AutoSize = true;
-            this.labelFullFilePath.Location = new System.Drawing.Point(6, 16);
-            this.labelFullFilePath.Name = "labelFullFilePath";
-            this.labelFullFilePath.Size = new System.Drawing.Size(172, 13);
-            this.labelFullFilePath.TabIndex = 0;
-            this.labelFullFilePath.Text = "Расположение файла топологии";
+            this.gbFullFilePath.UseWaitCursor = true;
             // 
             // tbFullFilePath
             // 
@@ -203,6 +207,17 @@
             this.tbFullFilePath.Name = "tbFullFilePath";
             this.tbFullFilePath.Size = new System.Drawing.Size(548, 20);
             this.tbFullFilePath.TabIndex = 1;
+            this.tbFullFilePath.UseWaitCursor = true;
+            // 
+            // labelFullFilePath
+            // 
+            this.labelFullFilePath.AutoSize = true;
+            this.labelFullFilePath.Location = new System.Drawing.Point(6, 16);
+            this.labelFullFilePath.Name = "labelFullFilePath";
+            this.labelFullFilePath.Size = new System.Drawing.Size(172, 13);
+            this.labelFullFilePath.TabIndex = 0;
+            this.labelFullFilePath.Text = "Расположение файла топологии";
+            this.labelFullFilePath.UseWaitCursor = true;
             // 
             // CreateTopology
             // 
@@ -220,6 +235,8 @@
             this.Name = "CreateTopology";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Создание топологии";
+            this.TopMost = true;
+            this.UseWaitCursor = true;
             ((System.ComponentModel.ISupportInitialize)(this.nudChooseColsCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudChooseRowsCount)).EndInit();
             this.gbChooseFullFilePath.ResumeLayout(false);

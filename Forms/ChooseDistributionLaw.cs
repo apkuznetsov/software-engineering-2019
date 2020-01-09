@@ -19,13 +19,14 @@ namespace GasStationMs.App
             InitializeComponent();
 
             SetupDefaultSettings();
+
+            labelDeterminedFlowParams.Visible = true;
+            nudDeterminedFlow.Visible = true;
         }
 
         private void SetupDefaultSettings()
         {
-            rbDeterminedFlow.Checked = true;
             MakeDeterminedFlowParamsVisible();
-            MakeUniformFlowParamsInvisible();
 
             SetupCbChooseDistributionLaw();
             SetupFlowsSettings();
@@ -233,7 +234,7 @@ namespace GasStationMs.App
             if (rbRandomFlow.Checked == true)
             {
                 cbChooseDistributionLaw.Visible = true;
-                labelChooseDistributionLaw.Visible = true;
+                labelChooseDistrLaw.Visible = true;
                 MakeDeterminedFlowParamsInvisible();
 
                 cbChooseDistributionLaw.Text = "НЕ ВЫБРАН";
@@ -241,6 +242,7 @@ namespace GasStationMs.App
             else
             {
                 cbChooseDistributionLaw.Visible = false;
+                labelChooseDistrLaw.Visible = false;
                 MakeRandomFlowsParamsInvisible();
 
                 MakeDeterminedFlowParamsVisible();

@@ -233,8 +233,7 @@ namespace GasStationMs.App.Constructor
             // 
             // btnOpenChooseDistributionLaw
             // 
-            this.btnOpenChooseDistributionLaw.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenChooseDistributionLaw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenChooseDistributionLaw.Location = new System.Drawing.Point(560, 500);
             this.btnOpenChooseDistributionLaw.Margin = new System.Windows.Forms.Padding(2);
             this.btnOpenChooseDistributionLaw.Name = "btnOpenChooseDistributionLaw";
@@ -343,6 +342,7 @@ namespace GasStationMs.App.Constructor
             this.Name = "Constructor";
             this.ShowIcon = false;
             this.Text = "Конструктор топологии";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TopologyConstructor_FormClosing);
             this.Load += new System.EventHandler(this.TopologyConstructor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).EndInit();

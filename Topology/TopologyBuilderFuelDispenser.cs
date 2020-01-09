@@ -48,6 +48,23 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
+        public bool AddFuelDispenser(int x, int y, FuelDispenser fuelDispenser)
+        {
+            if (CanAddFuelDispenser(x, y))
+            {
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+                cell.Value = FuelDispenser.Image;
+                cell.Tag = fuelDispenser;
+
+                FuelDispensersCount++;
+
+                return true;
+            }
+
+            return false;
+        }
+
         private bool CanAddFuelDispenser(int x, int y)
         {
             bool isNewCountOk = _fuelDispensersCount + 1 <= Topology.MaxFuelDispensersCount;

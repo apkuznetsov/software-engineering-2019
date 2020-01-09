@@ -48,6 +48,23 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
+        public bool AddFuelTank(int x, int y, FuelTank fuelTank)
+        {
+            if (CanAddFuelTank(x, y))
+            {
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+                cell.Value = FuelTank.Image;
+                cell.Tag = fuelTank;
+
+                FuelTanksCount++;
+
+                return true;
+            }
+
+            return false;
+        }
+
         private bool CanAddFuelTank(int x, int y)
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];

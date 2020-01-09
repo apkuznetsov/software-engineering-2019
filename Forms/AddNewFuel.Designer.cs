@@ -115,6 +115,7 @@
             this.Name = "AddNewFuel";
             this.ShowIcon = false;
             this.Text = "Добавление топлива";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.nudCostPerLiter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

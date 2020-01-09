@@ -149,23 +149,44 @@ namespace GasStationMs.App.Topology
                     gse = topology[x, y];
 
                     if (gse == null)
+                    {
                         AddBlank(x, y);
+                    }
                     else if (gse is CashCounter)
-                        AddCashCounter(x, y);
+                    {
+                        CashCounter cashCounter = (CashCounter)gse;
+                        AddCashCounter(x, y, cashCounter);
+                    }
                     else if (gse is Entry)
+                    {
                         AddEntry(x, y);
+                    }
                     else if (gse is Exit)
+                    {
                         AddExit(x, y);
+                    }
                     else if (gse is FuelDispenser)
-                        AddFuelDispenser(x, y);
+                    {
+                        FuelDispenser fuelDispenser = (FuelDispenser)gse;
+                        AddFuelDispenser(x, y, fuelDispenser);
+                    }
                     else if (gse is FuelTank)
-                        AddFuelTank(x, y);
+                    {
+                        FuelTank fuelTank = (FuelTank)gse;
+                        AddFuelTank(x, y, fuelTank);
+                    }
                     else if (gse is Road)
+                    {
                         AddRoad(x, y);
+                    }
                     else if (gse is ServiceArea)
+                    {
                         AddServiceArea(x, y);
+                    }
                     else
+                    {
                         throw new InvalidCastException();
+                    }
                 }
         }
 
