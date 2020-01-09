@@ -176,11 +176,17 @@ namespace GasStationMs.App.Topology
                         AddFuelTank(x, y, fuelTank);
                     }
                     else if (gse is Road)
+                    {
                         AddRoad(x, y);
+                    }
                     else if (gse is ServiceArea)
+                    {
                         AddServiceArea(x, y);
+                    }
                     else
+                    {
                         throw new InvalidCastException();
+                    }
                 }
         }
 

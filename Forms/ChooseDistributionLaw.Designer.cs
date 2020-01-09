@@ -43,7 +43,7 @@
             this.gbSelectFlow = new System.Windows.Forms.GroupBox();
             this.gbDeterminedFlowParams = new System.Windows.Forms.GroupBox();
             this.gbRandomFlowParams1 = new System.Windows.Forms.GroupBox();
-            this.labelChooseDistributionLaw = new System.Windows.Forms.Label();
+            this.labelChooseDistrLaw = new System.Windows.Forms.Label();
             this.gbRandomFlowParams2 = new System.Windows.Forms.GroupBox();
             this.gbExponentialDistrParams = new System.Windows.Forms.GroupBox();
             this.nudExponentialDistrLambda = new System.Windows.Forms.NumericUpDown();
@@ -75,6 +75,7 @@
             // rbDeterminedFlow
             // 
             this.rbDeterminedFlow.AutoSize = true;
+            this.rbDeterminedFlow.Checked = true;
             this.rbDeterminedFlow.Location = new System.Drawing.Point(6, 15);
             this.rbDeterminedFlow.Name = "rbDeterminedFlow";
             this.rbDeterminedFlow.Size = new System.Drawing.Size(165, 17);
@@ -90,7 +91,6 @@
             this.rbRandomFlow.Name = "rbRandomFlow";
             this.rbRandomFlow.Size = new System.Drawing.Size(112, 17);
             this.rbRandomFlow.TabIndex = 1;
-            this.rbRandomFlow.TabStop = true;
             this.rbRandomFlow.Text = "Случайный поток";
             this.rbRandomFlow.UseVisualStyleBackColor = true;
             this.rbRandomFlow.CheckedChanged += new System.EventHandler(this.rbRandomFlow_CheckedChanged);
@@ -213,7 +213,6 @@
             this.labelDeterminedFlowParams.Size = new System.Drawing.Size(223, 13);
             this.labelDeterminedFlowParams.TabIndex = 16;
             this.labelDeterminedFlowParams.Text = "Время между появлением автомобилей, с";
-            this.labelDeterminedFlowParams.Visible = false;
             // 
             // nudDeterminedFlow
             // 
@@ -232,7 +231,6 @@
             this.nudDeterminedFlow.Name = "nudDeterminedFlow";
             this.nudDeterminedFlow.Size = new System.Drawing.Size(46, 20);
             this.nudDeterminedFlow.TabIndex = 17;
-            this.nudDeterminedFlow.Visible = false;
             // 
             // gbSelectFlow
             // 
@@ -257,7 +255,7 @@
             // 
             // gbRandomFlowParams1
             // 
-            this.gbRandomFlowParams1.Controls.Add(this.labelChooseDistributionLaw);
+            this.gbRandomFlowParams1.Controls.Add(this.labelChooseDistrLaw);
             this.gbRandomFlowParams1.Controls.Add(this.cbChooseDistributionLaw);
             this.gbRandomFlowParams1.Location = new System.Drawing.Point(218, 80);
             this.gbRandomFlowParams1.Name = "gbRandomFlowParams1";
@@ -266,15 +264,15 @@
             this.gbRandomFlowParams1.TabStop = false;
             this.gbRandomFlowParams1.Text = "Параметры №1 случайного потока";
             // 
-            // labelChooseDistributionLaw
+            // labelChooseDistrLaw
             // 
-            this.labelChooseDistributionLaw.AutoSize = true;
-            this.labelChooseDistributionLaw.Location = new System.Drawing.Point(6, 28);
-            this.labelChooseDistributionLaw.Name = "labelChooseDistributionLaw";
-            this.labelChooseDistributionLaw.Size = new System.Drawing.Size(171, 13);
-            this.labelChooseDistributionLaw.TabIndex = 16;
-            this.labelChooseDistributionLaw.Text = "Выберите закон распределения";
-            this.labelChooseDistributionLaw.Visible = false;
+            this.labelChooseDistrLaw.AutoSize = true;
+            this.labelChooseDistrLaw.Location = new System.Drawing.Point(6, 28);
+            this.labelChooseDistrLaw.Name = "labelChooseDistrLaw";
+            this.labelChooseDistrLaw.Size = new System.Drawing.Size(171, 13);
+            this.labelChooseDistrLaw.TabIndex = 16;
+            this.labelChooseDistrLaw.Text = "Выберите закон распределения";
+            this.labelChooseDistrLaw.Visible = false;
             // 
             // gbRandomFlowParams2
             // 
@@ -438,6 +436,7 @@
             this.MinimizeBox = false;
             this.Name = "ChooseDistributionLaw";
             this.Text = "Настройка транспортного потока";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.nudProbabilityOfStoppingAtGasStation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistrVariance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNormalDistrExpectedValue)).EndInit();
@@ -481,7 +480,7 @@
         private System.Windows.Forms.GroupBox gbSelectFlow;
         private System.Windows.Forms.GroupBox gbDeterminedFlowParams;
         private System.Windows.Forms.GroupBox gbRandomFlowParams1;
-        private System.Windows.Forms.Label labelChooseDistributionLaw;
+        private System.Windows.Forms.Label labelChooseDistrLaw;
         private System.Windows.Forms.GroupBox gbRandomFlowParams2;
         private System.Windows.Forms.GroupBox gbUniformDistrParams;
         private System.Windows.Forms.NumericUpDown nudUniformDistParamA;

@@ -103,7 +103,7 @@ namespace GasStationMs.App.Forms
             this.labelSelectedElement.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSelectedElement.Location = new System.Drawing.Point(23, 332);
             this.labelSelectedElement.Name = "labelSelectedElement";
-            this.labelSelectedElement.Size = new System.Drawing.Size(91, 20);
+            this.labelSelectedElement.Size = new System.Drawing.Size(72, 17);
             this.labelSelectedElement.TabIndex = 7;
             this.labelSelectedElement.Text = "Элемент";
             // 
@@ -112,7 +112,7 @@ namespace GasStationMs.App.Forms
             this.labelRubles1.AutoSize = true;
             this.labelRubles1.Location = new System.Drawing.Point(153, 115);
             this.labelRubles1.Name = "labelRubles1";
-            this.labelRubles1.Size = new System.Drawing.Size(35, 17);
+            this.labelRubles1.Size = new System.Drawing.Size(27, 13);
             this.labelRubles1.TabIndex = 6;
             this.labelRubles1.Text = "руб.";
             // 
@@ -121,7 +121,7 @@ namespace GasStationMs.App.Forms
             this.labelRubles2.AutoSize = true;
             this.labelRubles2.Location = new System.Drawing.Point(153, 142);
             this.labelRubles2.Name = "labelRubles2";
-            this.labelRubles2.Size = new System.Drawing.Size(35, 17);
+            this.labelRubles2.Size = new System.Drawing.Size(27, 13);
             this.labelRubles2.TabIndex = 6;
             this.labelRubles2.Text = "руб.";
             // 
@@ -130,7 +130,7 @@ namespace GasStationMs.App.Forms
             this.labelCashCounterLimitValue.AutoSize = true;
             this.labelCashCounterLimitValue.Location = new System.Drawing.Point(90, 142);
             this.labelCashCounterLimitValue.Name = "labelCashCounterLimitValue";
-            this.labelCashCounterLimitValue.Size = new System.Drawing.Size(56, 17);
+            this.labelCashCounterLimitValue.Size = new System.Drawing.Size(43, 13);
             this.labelCashCounterLimitValue.TabIndex = 5;
             this.labelCashCounterLimitValue.Text = "100000";
             // 
@@ -139,7 +139,7 @@ namespace GasStationMs.App.Forms
             this.labelCashCounterSumValue.AutoSize = true;
             this.labelCashCounterSumValue.Location = new System.Drawing.Point(90, 115);
             this.labelCashCounterSumValue.Name = "labelCashCounterSumValue";
-            this.labelCashCounterSumValue.Size = new System.Drawing.Size(48, 17);
+            this.labelCashCounterSumValue.Size = new System.Drawing.Size(37, 13);
             this.labelCashCounterSumValue.TabIndex = 5;
             this.labelCashCounterSumValue.Text = "12354";
             // 
@@ -148,7 +148,7 @@ namespace GasStationMs.App.Forms
             this.labelCashCounterLimit.AutoSize = true;
             this.labelCashCounterLimit.Location = new System.Drawing.Point(30, 142);
             this.labelCashCounterLimit.Name = "labelCashCounterLimit";
-            this.labelCashCounterLimit.Size = new System.Drawing.Size(54, 17);
+            this.labelCashCounterLimit.Size = new System.Drawing.Size(43, 13);
             this.labelCashCounterLimit.TabIndex = 4;
             this.labelCashCounterLimit.Text = "Лимит:";
             // 
@@ -157,7 +157,7 @@ namespace GasStationMs.App.Forms
             this.labelCashCounterSum.AutoSize = true;
             this.labelCashCounterSum.Location = new System.Drawing.Point(30, 115);
             this.labelCashCounterSum.Name = "labelCashCounterSum";
-            this.labelCashCounterSum.Size = new System.Drawing.Size(54, 17);
+            this.labelCashCounterSum.Size = new System.Drawing.Size(44, 13);
             this.labelCashCounterSum.TabIndex = 3;
             this.labelCashCounterSum.Text = "Сумма:";
             // 
@@ -167,7 +167,7 @@ namespace GasStationMs.App.Forms
             this.labelCashCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCashCounter.Location = new System.Drawing.Point(23, 84);
             this.labelCashCounter.Name = "labelCashCounter";
-            this.labelCashCounter.Size = new System.Drawing.Size(63, 20);
+            this.labelCashCounter.Size = new System.Drawing.Size(52, 17);
             this.labelCashCounter.TabIndex = 2;
             this.labelCashCounter.Text = "Касса";
             // 
@@ -178,7 +178,7 @@ namespace GasStationMs.App.Forms
             this.labelModelState.ForeColor = System.Drawing.Color.Green;
             this.labelModelState.Location = new System.Drawing.Point(20, 34);
             this.labelModelState.Name = "labelModelState";
-            this.labelModelState.Size = new System.Drawing.Size(153, 36);
+            this.labelModelState.Size = new System.Drawing.Size(126, 29);
             this.labelModelState.TabIndex = 1;
             this.labelModelState.Text = "АКТИВНА";
             // 
@@ -338,7 +338,7 @@ namespace GasStationMs.App.Forms
             this.labelTotalTimeValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalTimeValue.Location = new System.Drawing.Point(252, 43);
             this.labelTotalTimeValue.Name = "labelTotalTimeValue";
-            this.labelTotalTimeValue.Size = new System.Drawing.Size(114, 29);
+            this.labelTotalTimeValue.Size = new System.Drawing.Size(86, 24);
             this.labelTotalTimeValue.TabIndex = 1;
             this.labelTotalTimeValue.Text = "totalTime";
             // 
@@ -348,7 +348,7 @@ namespace GasStationMs.App.Forms
             this.labelTotalTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotalTime.Location = new System.Drawing.Point(23, 39);
             this.labelTotalTime.Name = "labelTotalTime";
-            this.labelTotalTime.Size = new System.Drawing.Size(223, 29);
+            this.labelTotalTime.Size = new System.Drawing.Size(168, 24);
             this.labelTotalTime.TabIndex = 0;
             this.labelTotalTime.Text = "Времени прошло:";
             // 
@@ -366,6 +366,7 @@ namespace GasStationMs.App.Forms
             this.Name = "ModelingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modeling";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModelingForm_FormClosing);
             this.panelModelingInformation.ResumeLayout(false);
             this.panelModelingInformation.PerformLayout();
