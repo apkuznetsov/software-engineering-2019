@@ -16,7 +16,7 @@ namespace GasStationMs.App.Constructor
         private TopologyBuilder topologyBuilder;
 
         private DataTable fuelDataTable;
-        private readonly SqlConnection _connection;
+        private readonly SqlConnection connection;
         private readonly CrudHelper crudHelper;
 
         private void TopologyConstructor_Load(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace GasStationMs.App.Constructor
 
             DataTable dataTable = new DataTable();
 
-            SqlDataAdapter adapter = new SqlDataAdapter(rawSqlCommand, _connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(rawSqlCommand, connection);
 
             adapter.Fill(dataTable);
 
@@ -142,7 +142,7 @@ namespace GasStationMs.App.Constructor
 
         private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ConnectionHelpers.CloseConnection(_connection);
+            ConnectionHelpers.CloseConnection(connection);
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
