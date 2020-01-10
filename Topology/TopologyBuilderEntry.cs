@@ -6,13 +6,13 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder // Entry
     {
-        private int _entriesCount;
+        private int entriesCount;
 
         public int EntriesCount
         {
             get
             {
-                return _entriesCount;
+                return entriesCount;
             }
 
             set
@@ -27,7 +27,7 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                _entriesCount = value;
+                entriesCount = value;
             }
         }
 
@@ -48,6 +48,23 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
+        public bool AddEntry(int x, int y, Entry entry)
+        {
+            if (CanAddEntry(x, y))
+            {
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+                cell.Value = Entry.Image;
+                cell.Tag = entry;
+
+                EntriesCount++;
+
+                return true;
+            }
+
+            return false;
+        }
+
         private bool CanAddEntry(int x, int y)
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
@@ -58,7 +75,7 @@ namespace GasStationMs.App.Topology
                 !IsRoadUnderServiceArea(x, y) &&
                 !isZerothCol)
             {
-                bool isNewCountOk = _entriesCount + 1 <= Topology.MaxEntriesCount;
+                bool isNewCountOk = entriesCount + 1 <= Topology.MaxEntriesCount;
 
                 if (isNewCountOk)
                     return true;
@@ -77,7 +94,7 @@ namespace GasStationMs.App.Topology
 
         public void DeleteEntry(int x, int y)
         {
-            if (_entriesCount < 0)
+            if (entriesCount < 0)
                 throw new ArgumentOutOfRangeException();
 
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
@@ -89,7 +106,7 @@ namespace GasStationMs.App.Topology
                 cell.Tag = new Road();
                 cell.Value = Road.Image;
 
-                _entriesCount--;
+                entriesCount--;
             }
             else
                 throw new InvalidCastException();

@@ -19,14 +19,10 @@ namespace GasStationMs.App.Topology
             set
             {
                 if (value < Topology.MinCashCountersCount)
-                {
                     throw new ArgumentOutOfRangeException();
-                }
 
                 if (value > Topology.MaxCashCountersCount)
-                {
                     throw new ArgumentOutOfRangeException();
-                }
 
                 cashCountersCount = value;
             }

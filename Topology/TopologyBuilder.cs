@@ -147,44 +147,23 @@ namespace GasStationMs.App.Topology
                     gse = topology[x, y];
 
                     if (gse == null)
-                    {
                         AddBlank(x, y);
-                    }
-                    else if (gse is CashCounter)
-                    {
-                        CashCounter cashCounter = (CashCounter)gse;
+                    else if (gse is CashCounter cashCounter)
                         AddCashCounter(x, y, cashCounter);
-                    }
-                    else if (gse is Entry)
-                    {
-                        AddEntry(x, y);
-                    }
-                    else if (gse is Exit)
-                    {
-                        AddExit(x, y);
-                    }
-                    else if (gse is FuelDispenser)
-                    {
-                        FuelDispenser fuelDispenser = (FuelDispenser)gse;
+                    else if (gse is Entry entry)
+                        AddEntry(x, y, entry);
+                    else if (gse is Exit exit)
+                        AddExit(x, y, exit);
+                    else if (gse is FuelDispenser fuelDispenser)
                         AddFuelDispenser(x, y, fuelDispenser);
-                    }
-                    else if (gse is FuelTank)
-                    {
-                        FuelTank fuelTank = (FuelTank)gse;
+                    else if (gse is FuelTank fuelTank)
                         AddFuelTank(x, y, fuelTank);
-                    }
-                    else if (gse is Road)
-                    {
-                        AddRoad(x, y);
-                    }
-                    else if (gse is ServiceArea)
-                    {
-                        AddServiceArea(x, y);
-                    }
+                    else if (gse is Road road)
+                        AddRoad(x, y, road);
+                    else if (gse is ServiceArea serviceArea)
+                        AddServiceArea(x, y, serviceArea);
                     else
-                    {
                         throw new InvalidCastException();
-                    }
                 }
         }
 
@@ -204,12 +183,28 @@ namespace GasStationMs.App.Topology
             cell.Tag = new Road();
         }
 
+        private void AddRoad(int x, int y, Road road)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = Road.Image;
+            cell.Tag = road;
+        }
+
         private void AddServiceArea(int x, int y)
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
             cell.Value = ServiceArea.Image;
             cell.Tag = new ServiceArea();
+        }
+
+        private void AddServiceArea(int x, int y, ServiceArea serviceArea)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = ServiceArea.Image;
+            cell.Tag = serviceArea;
         }
 
         public int ColsCount
