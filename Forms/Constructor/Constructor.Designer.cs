@@ -366,8 +366,8 @@ namespace GasStationMs.App.Constructor
             this.ShowIcon = false;
             this.Text = "Конструктор топологии";
             this.TopMost = true;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TopologyConstructor_FormClosing);
-            this.Load += new System.EventHandler(this.TopologyConstructor_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Constructor_FormClosing);
+            this.Load += new System.EventHandler(this.Constructor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty1)).EndInit();

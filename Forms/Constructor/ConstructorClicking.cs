@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using GasStationMs.App.DB;
 using GasStationMs.App.DB.Models;
 using GasStationMs.App.Forms;
 using GasStationMs.App.TemplateElements;
@@ -16,6 +17,8 @@ namespace GasStationMs.App.Constructor
         private static readonly string cannotAddFuelDispenser = "невозможно добавить ТРК: ТРК может быть расположена только на АЗС";
         private static readonly string cannotAddEntry = "невозможно добавить ВЪЕЗД: въезд может быть расположен только на дороге";
         private static readonly string cannotAddExit = "невозможно добавить ВЫЕЗД: выезд может быть расположен только на дороге";
+
+        private readonly CrudHelper crudHelper;
 
         private IGasStationElement clickedElement;
 

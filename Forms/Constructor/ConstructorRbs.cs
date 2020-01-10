@@ -5,27 +5,27 @@ namespace GasStationMs.App.Constructor
 {
     public partial class Constructor
     {
-        private bool _isCheckedradioButtonFuelDispenser = false;
-        private bool _isCheckedradioButtonFuelTank = false;
-        private bool _isCheckedRbCashCounter = false;
-        private bool _isCheckedRbEntry = false;
-        private bool _isCheckedRbExit = false;
+        private bool canCheckRbFuelDispenser = false;
+        private bool canCheckRbFuelTank = false;
+        private bool canCheckRbCashCounter = false;
+        private bool canCheckRbEntry = false;
+        private bool canCheckRbExit = false;
 
         private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
         {
             MakeAllPropertiesContorlsInvisible();
 
-            _isCheckedradioButtonFuelDispenser = rbFuelDispenser.Checked;
+            canCheckRbFuelDispenser = rbFuelDispenser.Checked;
         }
 
         private void radioButtonFuelDispenser_Click(object sender, EventArgs e)
         {
-            if (rbFuelDispenser.Checked && !_isCheckedradioButtonFuelDispenser)
+            if (rbFuelDispenser.Checked && !canCheckRbFuelDispenser)
                 rbFuelDispenser.Checked = false;
             else
             {
                 rbFuelDispenser.Checked = true;
-                _isCheckedradioButtonFuelDispenser = false;
+                canCheckRbFuelDispenser = false;
             }
         }
 
@@ -33,17 +33,17 @@ namespace GasStationMs.App.Constructor
         {
             MakeAllPropertiesContorlsInvisible();
 
-            _isCheckedradioButtonFuelTank = rbFuelTank.Checked;
+            canCheckRbFuelTank = rbFuelTank.Checked;
         }
 
         private void radioButtonFuelTank_Click(object sender, EventArgs e)
         {
-            if (rbFuelTank.Checked && !_isCheckedradioButtonFuelTank)
+            if (rbFuelTank.Checked && !canCheckRbFuelTank)
                 rbFuelTank.Checked = false;
             else
             {
                 rbFuelTank.Checked = true;
-                _isCheckedradioButtonFuelTank = false;
+                canCheckRbFuelTank = false;
             }
         }
 
@@ -52,17 +52,17 @@ namespace GasStationMs.App.Constructor
         {
             MakeAllPropertiesContorlsInvisible();
 
-            _isCheckedRbCashCounter = rbCashCounter.Checked;
+            canCheckRbCashCounter = rbCashCounter.Checked;
         }
 
         private void rbCashCounter_Click(object sender, EventArgs e)
         {
-            if (rbCashCounter.Checked && !_isCheckedRbCashCounter)
+            if (rbCashCounter.Checked && !canCheckRbCashCounter)
                 rbCashCounter.Checked = false;
             else
             {
                 rbCashCounter.Checked = true;
-                _isCheckedRbCashCounter = false;
+                canCheckRbCashCounter = false;
             }
         }
         #endregion /касса
@@ -72,17 +72,17 @@ namespace GasStationMs.App.Constructor
         {
             MakeAllPropertiesContorlsInvisible();
 
-            _isCheckedRbEntry = rbEntry.Checked;
+            canCheckRbEntry = rbEntry.Checked;
         }
 
         private void rbEntry_Click(object sender, EventArgs e)
         {
-            if (rbEntry.Checked && !_isCheckedRbEntry)
+            if (rbEntry.Checked && !canCheckRbEntry)
                 rbEntry.Checked = false;
             else
             {
                 rbEntry.Checked = true;
-                _isCheckedRbEntry = false;
+                canCheckRbEntry = false;
             }
         }
         #endregion /Въезд
@@ -92,19 +92,19 @@ namespace GasStationMs.App.Constructor
         {
             MakeAllPropertiesContorlsInvisible();
 
-            _isCheckedRbExit = rbExit.Checked;
+            canCheckRbExit = rbExit.Checked;
         }
 
         private void rbExit_Click(object sender, EventArgs e)
         {
-            if (rbExit.Checked && !_isCheckedRbExit)
+            if (rbExit.Checked && !canCheckRbExit)
             {
                 rbExit.Checked = false;
             }
             else
             {
                 rbExit.Checked = true;
-                _isCheckedRbExit = false;
+                canCheckRbExit = false;
             }
         }
         #endregion /Выезд
