@@ -17,7 +17,7 @@ namespace GasStationMs.App
 
         private void linkLabelAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string fullFilePath = Path.GetFullPath(Resources.DevsPage);
+            string fullFilePath = Path.GetFullPath(Resources.AboutPage);
             System.Diagnostics.Process.Start(fullFilePath);
         }
 
