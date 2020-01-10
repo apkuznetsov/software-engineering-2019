@@ -1,3 +1,4 @@
+using System.Linq;
 using GasStationMs.App.Forms;
 using GasStationMs.App.Modeling.Models.PictureBoxes;
 using GasStationMs.App.Modeling.Models.Views;
@@ -12,7 +13,9 @@ namespace GasStationMs.App.Modeling
 {
     internal static class ModelingTicker
     {
-
+        private static PictureBox _selectedItem;
+        private static PictureBox _selectedFuelDispenser;
+        private static PictureBox _selectedFuelTank;
         internal static void Tick(ModelingForm modelingForm, MappedTopology mappedTopology)
         {
             if (IsPaused)
@@ -91,40 +94,71 @@ namespace GasStationMs.App.Modeling
 
             #region UI
 
-            var selectedItem = modelingForm.SelectedItem;
-
-            modelingForm.LabelCashCounterSumValue.Text =
-                ((int) ((CashCounterView) mappedTopology.CashCounter.Tag).CurrentCashVolume).ToString();
-
-            if (selectedItem != null)
-            {
-                if (selectedItem.Tag is CarView)
-                {
-                    CarPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem.Tag is FuelDispenserView)
-                {
-                    FuelDispenserPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem.Tag is FuelTankView)
-                {
-                    FuelTankPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem.Tag is CashCounterView)
-                {
-                    CashCounterPictureBox_Click(selectedItem, null);
-                }
-
-                if (selectedItem is CollectorPictureBox)
-                {
-                    CashCollectorPictureBox_Click(selectedItem, null);
-                }
-            }
+           UpdateUI(modelingForm, mappedTopology);
 
             #endregion UI
+        }
+
+        private static void UpdateUI(ModelingForm modelingForm, MappedTopology mappedTopology)
+        {
+            UpdateCashCounterInfo(modelingForm, mappedTopology);
+            UpdateFuelDispenserInfo(modelingForm, mappedTopology);
+            UpdateFuelTankInfo(modelingForm, mappedTopology);
+
+            _selectedItem = modelingForm.SelectedItem;
+
+            if (_selectedItem != null)
+            {
+                if (_selectedItem.Tag is CarView)
+                {
+                    CarPictureBox_Click(_selectedItem, null);
+                }
+
+                if (_selectedItem.Tag is FuelDispenserView)
+                {
+                    FuelDispenserPictureBox_Click(_selectedItem, null);
+                }
+
+                if (_selectedItem.Tag is FuelTankView)
+                {
+                    FuelTankPictureBox_Click(_selectedItem, null);
+                }
+
+                if (_selectedItem.Tag is CashCounterView)
+                {
+                    CashCounterPictureBox_Click(_selectedItem, null);
+                }
+
+                if (_selectedItem is CollectorPictureBox)
+                {
+                    CashCollectorPictureBox_Click(_selectedItem, null);
+                }
+            }
+        }
+
+        private static void UpdateCashCounterInfo(ModelingForm modelingForm, MappedTopology mappedTopology)
+        {
+            modelingForm.LabelCashCounterSumValue.Text =
+                ((int)((CashCounterView)mappedTopology.CashCounter.Tag).CurrentCashVolume).ToString();
+        }
+
+        private static void UpdateFuelDispenserInfo(ModelingForm modelingForm, MappedTopology mappedTopology)
+        {
+            _selectedFuelDispenser = modelingForm.SelectedFuelDispenser ?? mappedTopology.FuelDispensersList.First();
+            var fuelDispenserView = _selectedFuelDispenser.Tag as FuelDispenserView;
+
+            modelingForm.LabelSpeedOfFillingValue.Text = fuelDispenserView.SpeedOfFillingPerMinute.ToString();
+        }
+
+        private static void UpdateFuelTankInfo(ModelingForm modelingForm, MappedTopology mappedTopology)
+        {
+            _selectedFuelTank = modelingForm.SelectedFuelTank ?? mappedTopology.FuelTanksList.First();
+            var fuelTankView = _selectedFuelTank.Tag as FuelTankView;
+
+            modelingForm.LabelFuelValue.Text = fuelTankView.Fuel.ToString();
+            modelingForm.LabelVolumeValue.Text = fuelTankView.Volume.ToString();
+            modelingForm.LabelCurrentFullnessValue.Text = fuelTankView.CurrentFullness.ToString();
+
         }
     }
 }

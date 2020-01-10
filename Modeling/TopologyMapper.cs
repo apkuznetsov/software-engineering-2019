@@ -62,7 +62,7 @@ namespace GasStationMs.App.Modeling
 
                     if (topologyElement is CashCounter)
                     {
-                        CreateCashCounter(creationPoint);
+                        CreateCashCounter(topologyElement as CashCounter, creationPoint);
                     }
 
                     if (topologyElement is Entry)
@@ -113,9 +113,10 @@ namespace GasStationMs.App.Modeling
 
         #region CashCounter
 
-        private static void CreateCashCounter(Point creationPoint)
+        private static void CreateCashCounter(CashCounter cashCounter, Point creationPoint)
         {
-            var cashCounterView = CreateCashCounterView("Cash Counter", CashCounter.MaxCashInRubles);
+            var cashCounterView = CreateCashCounterView("Cash Counter", 
+                cashCounter.CashInRubles, CashCounter.MaxCashInRubles);
             _mappedTopology.CashCounter = CreateCashCounterPictureBox(cashCounterView, creationPoint);
         }
 
