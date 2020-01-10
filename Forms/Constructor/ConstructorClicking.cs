@@ -251,15 +251,15 @@ namespace GasStationMs.App.Constructor
 
         private void ShowClickedCashCounterProperties(DataGridViewImageCell cell)
         {
+            CashCounter clickedCashCounter = cell.Tag as CashCounter;
+            clickedElement = clickedCashCounter;
+
             MakePropertiesControls1Visible();
 
             labelElementProperty1.Text = "Денег в кассе";
             nudElementProperty1.Minimum = CashCounter.MinCashInRubles;
             nudElementProperty1.Maximum = CashCounter.MaxCashInRubles;
-
-            CashCounter clickedCashCounter = cell.Tag as CashCounter;
             nudElementProperty1.Value = clickedCashCounter.CashInRubles;
-            clickedElement = clickedCashCounter;
         }
 
         private void nudElementProperty1_ValueChanged(object sender, EventArgs e)
@@ -297,19 +297,22 @@ namespace GasStationMs.App.Constructor
 
         private void ShowClickedFuelDispenserProperties(DataGridViewImageCell cell)
         {
+            FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
+            clickedElement = clickedFuelDispenser;
+
             MakePropertiesControls1Visible();
 
             labelElementProperty1.Text = "Скорость подачи";
             nudElementProperty1.Minimum = FuelDispenser.MinFuelFeedRateInLitersPerMinute;
             nudElementProperty1.Maximum = FuelDispenser.MaxFuelFeedRateInLitersPerMinute;
-
-            FuelDispenser clickedFuelDispenser = cell.Tag as FuelDispenser;
             nudElementProperty1.Value = clickedFuelDispenser.FuelFeedRateInLitersPerMinute;
-            clickedElement = clickedFuelDispenser;
         }
 
         private void ShowClickedFuelTankProperties(DataGridViewImageCell cell)
         {
+            FuelTank clickedFuelTank = cell.Tag as FuelTank;
+            clickedElement = clickedFuelTank;
+
             MakePropertiesControls1Visible();
             MakePropertiesControls2Visible();
             MakePropertiesControls3Visible();
@@ -317,18 +320,15 @@ namespace GasStationMs.App.Constructor
             labelElementProperty1.Text = "Объём";
             nudElementProperty1.Minimum = FuelTank.MinVolumeInLiters;
             nudElementProperty1.Maximum = FuelTank.MaxVolumeInLiters;
-
-            FuelTank clickedFuelTank = cell.Tag as FuelTank;
             nudElementProperty1.Value = clickedFuelTank.Volume;
-            clickedElement = clickedFuelTank;
 
             labelElementProperty2.Text = "Объём топлива";
             nudElementProperty2.Minimum = FuelTank.MinOccupiedVolumeInLiters;
             nudElementProperty2.Maximum = clickedFuelTank.Volume;
+            nudElementProperty2.Value = clickedFuelTank.OccupiedVolume;
 
             labelElementProperty3.Text = "Топливо";
             cbFuelList.Text = clickedFuelTank.Fuel.ToString();
-
             cbFuelList.DisplayMember = "Fuel";
             cbFuelList.ValueMember = "Id";
             cbFuelList.DataSource = fuelDataTable;
