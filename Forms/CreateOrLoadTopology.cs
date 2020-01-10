@@ -2,6 +2,7 @@
 using GasStationMs.App.Topology;
 using System;
 using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
@@ -45,9 +46,13 @@ namespace GasStationMs.App
                         Constructor.Constructor constructor = new Constructor.Constructor(fullFilePath, topology);
                         constructor.ShowDialog();
                     }
-                    catch
+                    catch (SerializationException)
                     {
                         MessageBox.Show("ОШИБКА: файл повреждён");
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show(exc.StackTrace);
                     }
                 }
                 else

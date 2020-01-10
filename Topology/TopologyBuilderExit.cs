@@ -6,13 +6,13 @@ namespace GasStationMs.App.Topology
 {
     public partial class TopologyBuilder // Exit
     {
-        private int _exitsCount;
+        private int exitsCount;
 
         public int ExitsCount
         {
             get
             {
-                return _exitsCount;
+                return exitsCount;
             }
 
             set
@@ -27,7 +27,7 @@ namespace GasStationMs.App.Topology
                     throw new ArgumentOutOfRangeException();
                 }
 
-                _exitsCount = value;
+                exitsCount = value;
             }
         }
 
@@ -48,6 +48,23 @@ namespace GasStationMs.App.Topology
             return false;
         }
 
+        public bool AddExit(int x, int y, Exit exit)
+        {
+            if (CanAddExit(x, y))
+            {
+                DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+                cell.Value = Exit.Image;
+                cell.Tag = exit;
+
+                ExitsCount++;
+
+                return true;
+            }
+
+            return false;
+        }
+
         private bool CanAddExit(int x, int y)
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
@@ -57,7 +74,7 @@ namespace GasStationMs.App.Topology
                 !IsRoadUnderServiceArea(x, y) &&
                 !IsRightBeforeServiceAreaBorder(x, y))
             {
-                bool isNewCountOk = _exitsCount + 1 <= Topology.MaxExitsCount;
+                bool isNewCountOk = exitsCount + 1 <= Topology.MaxExitsCount;
 
                 if (isNewCountOk)
                     return true;
@@ -78,7 +95,7 @@ namespace GasStationMs.App.Topology
 
         public void DeleteExit(int x, int y)
         {
-            if (_exitsCount < 0)
+            if (exitsCount < 0)
                 throw new ArgumentOutOfRangeException();
 
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
@@ -90,7 +107,7 @@ namespace GasStationMs.App.Topology
                 cell.Tag = new Road();
                 cell.Value = Road.Image;
 
-                _exitsCount--;
+                exitsCount--;
             }
             else
                 throw new InvalidCastException();

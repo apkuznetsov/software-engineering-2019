@@ -229,6 +229,7 @@
             this.Controls.Add(this.gbChooseSize);
             this.Controls.Add(this.gbChooseFullFilePath);
             this.Controls.Add(this.btnOpenConstructor);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

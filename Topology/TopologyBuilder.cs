@@ -19,9 +19,7 @@ namespace GasStationMs.App.Topology
             field.RowCount = Topology.MinRowsCount;
 
             SetupDgv();
-
             serviceAreaInCells = RecalculateServiceArea();
-
             SetupServiceArea();
             SetupRoad();
         }
@@ -32,19 +30,21 @@ namespace GasStationMs.App.Topology
 
             if (cols < Topology.MinColsCount ||
                 cols > Topology.MaxColsCount)
+            {
                 throw new ArgumentOutOfRangeException();
+            }
 
             if (rows < Topology.MinRowsCount ||
                 rows > Topology.MaxRowsCount)
+            {
                 throw new ArgumentOutOfRangeException();
+            }
 
             AddDgvCols(cols);
             this.field.RowCount = rows;
 
             SetupDgv();
-
             serviceAreaInCells = RecalculateServiceArea();
-
             SetupServiceArea();
             SetupRoad();
         }
@@ -53,15 +53,17 @@ namespace GasStationMs.App.Topology
         {
             this.field = field ?? throw new NullReferenceException();
 
+            if (topology == null)
+                throw new NullReferenceException();
+
             AddDgvCols(topology.ColsCount);
             this.field.RowCount = topology.RowsCount;
 
             SetupDgv();
-
             serviceAreaInCells = RecalculateServiceArea();
-
             SetupServiceArea();
             SetupRoad();
+
             SetField(topology);
         }
 
@@ -80,17 +82,13 @@ namespace GasStationMs.App.Topology
         private void AddDgvCols(int colsCount)
         {
             for (int i = 0; i < colsCount; i++)
-            {
                 field.Columns.Add(new BlankTopologyBuilderCol());
-            }
         }
 
         private void AddDgvRows(int rowsCount)
         {
             for (int i = 0; i < rowsCount; i++)
-            {
                 field.Rows.Add();
-            }
         }
 
         private void SetupServiceArea()
@@ -149,44 +147,23 @@ namespace GasStationMs.App.Topology
                     gse = topology[x, y];
 
                     if (gse == null)
-                    {
                         AddBlank(x, y);
-                    }
-                    else if (gse is CashCounter)
-                    {
-                        CashCounter cashCounter = (CashCounter)gse;
+                    else if (gse is CashCounter cashCounter)
                         AddCashCounter(x, y, cashCounter);
-                    }
-                    else if (gse is Entry)
-                    {
-                        AddEntry(x, y);
-                    }
-                    else if (gse is Exit)
-                    {
-                        AddExit(x, y);
-                    }
-                    else if (gse is FuelDispenser)
-                    {
-                        FuelDispenser fuelDispenser = (FuelDispenser)gse;
+                    else if (gse is Entry entry)
+                        AddEntry(x, y, entry);
+                    else if (gse is Exit exit)
+                        AddExit(x, y, exit);
+                    else if (gse is FuelDispenser fuelDispenser)
                         AddFuelDispenser(x, y, fuelDispenser);
-                    }
-                    else if (gse is FuelTank)
-                    {
-                        FuelTank fuelTank = (FuelTank)gse;
+                    else if (gse is FuelTank fuelTank)
                         AddFuelTank(x, y, fuelTank);
-                    }
-                    else if (gse is Road)
-                    {
-                        AddRoad(x, y);
-                    }
-                    else if (gse is ServiceArea)
-                    {
-                        AddServiceArea(x, y);
-                    }
+                    else if (gse is Road road)
+                        AddRoad(x, y, road);
+                    else if (gse is ServiceArea serviceArea)
+                        AddServiceArea(x, y, serviceArea);
                     else
-                    {
                         throw new InvalidCastException();
-                    }
                 }
         }
 
@@ -206,12 +183,28 @@ namespace GasStationMs.App.Topology
             cell.Tag = new Road();
         }
 
+        private void AddRoad(int x, int y, Road road)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = Road.Image;
+            cell.Tag = road;
+        }
+
         private void AddServiceArea(int x, int y)
         {
             DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
 
             cell.Value = ServiceArea.Image;
             cell.Tag = new ServiceArea();
+        }
+
+        private void AddServiceArea(int x, int y, ServiceArea serviceArea)
+        {
+            DataGridViewImageCell cell = (DataGridViewImageCell)field.Rows[y].Cells[x];
+
+            cell.Value = ServiceArea.Image;
+            cell.Tag = serviceArea;
         }
 
         public int ColsCount
@@ -273,46 +266,46 @@ namespace GasStationMs.App.Topology
         {
             if (cashCountersCount < Topology.MinCashCountersCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinCashCountersCount + " касс");
+                    "ОШИБКА, некорректная топология: мин. кол-во касс -- " + Topology.MinCashCountersCount);
 
             if (EntriesCount < Topology.MinEntriesCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinEntriesCount + " въездов");
+                    "ОШИБКА, некорректная топология: мин. кол-во въездов -- " + Topology.MinEntriesCount);
 
             if (ExitsCount < Topology.MinExitsCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinExitsCount + " выездов");
+                    "ОШИБКА, некорректная топология: мин. кол-во выездов -- " + Topology.MinExitsCount);
 
             if (FuelDispensersCount < Topology.MinFuelDispensersCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinFuelDispensersCount + " ТРК");
+                    "ОШИБКА, некорректная топология: мин. кол-во ТРК -- " + Topology.MinFuelDispensersCount);
 
             if (FuelTanksCount < Topology.MinFuelTanksCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть минимум " + Topology.MinFuelTanksCount + " ТБ");
+                    "ОШИБКА, некорректная топология: мин. кол-во ТБ --  " + Topology.MinFuelTanksCount);
         }
 
         private void CheckMaxNumOfTemplatesElements()
         {
             if (cashCountersCount > Topology.MaxCashCountersCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxCashCountersCount + " касс");
+                    "ОШИБКА, некорректная топология: макс. кол-во касс -- " + Topology.MaxCashCountersCount);
 
             if (EntriesCount > Topology.MaxEntriesCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxEntriesCount + " въездов");
+                    "ОШИБКА, некорректная топология: макс. кол-во въездов -- " + Topology.MaxEntriesCount);
 
             if (ExitsCount > Topology.MaxExitsCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxExitsCount + " выездов");
+                    "ОШИБКА, некорректная топология: макс. кол-во выездов -- " + Topology.MaxExitsCount);
 
             if (FuelDispensersCount > Topology.MaxFuelDispensersCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxFuelDispensersCount + " ТРК");
+                    "ОШИБКА, некорректная топология: макс. кол-во ТРК -- " + Topology.MaxFuelDispensersCount);
 
             if (FuelTanksCount > Topology.MaxFuelTanksCount)
                 throw new InvalidOperationException(
-                    "ОШИБКА, некорректная топология: должно быть максимум " + Topology.MaxFuelTanksCount + " ТБ");
+                    "ОШИБКА, некорректная топология: макс. кол-во ТБ -- " + Topology.MaxFuelTanksCount);
         }
 
         private void CheckEntryAndExitOrder()
