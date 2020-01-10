@@ -74,8 +74,8 @@ namespace GasStationMs.App.Constructor
             this.dgvField.Size = new System.Drawing.Size(543, 522);
             this.dgvField.TabIndex = 0;
             this.dgvField.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvField_CellMouseClick);
-            this.dgvField.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragDrop);
-            this.dgvField.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataGridView_DragEnter);
+            this.dgvField.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvField_DragDrop);
+            this.dgvField.DragEnter += new System.Windows.Forms.DragEventHandler(this.dgvField_DragEnter);
             // 
             // rbFuelDispenser
             // 

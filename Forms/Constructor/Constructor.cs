@@ -60,13 +60,13 @@ namespace GasStationMs.App.Constructor
             rbExit.DoDragDrop(rbExit.Image, DragDropEffects.Copy);
         }
 
-        private void DataGridView_DragEnter(object sender, DragEventArgs e)
+        private void dgvField_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
 
         }
 
-        private void DataGridView_DragDrop(object sender, DragEventArgs e)
+        private void dgvField_DragDrop(object sender, DragEventArgs e)
         {
             try
             {
