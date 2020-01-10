@@ -43,11 +43,12 @@ namespace GasStationMs.App.Constructor
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.оРазбработчикахToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbClickedCell = new System.Windows.Forms.GroupBox();
             this.labelAddNewFuel = new System.Windows.Forms.Label();
             this.labelElementProperty3 = new System.Windows.Forms.Label();
             this.labelElementProperty2 = new System.Windows.Forms.Label();
-            this.оРазбработчикахToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty1)).BeginInit();
@@ -249,6 +250,7 @@ namespace GasStationMs.App.Constructor
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сохранитьToolStripMenuItem,
             this.сохранитьКакToolStripMenuItem,
+            this.справкаToolStripMenuItem,
             this.оРазбработчикахToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
@@ -270,6 +272,20 @@ namespace GasStationMs.App.Constructor
             this.сохранитьКакToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
             this.сохранитьКакToolStripMenuItem.Text = "Сохранить как";
             this.сохранитьКакToolStripMenuItem.Click += new System.EventHandler(this.сохранитьКакToolStripMenuItem_Click);
+            // 
+            // справкаToolStripMenuItem
+            // 
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.справкаToolStripMenuItem.Text = "Справка";
+            this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
+            // 
+            // оРазбработчикахToolStripMenuItem
+            // 
+            this.оРазбработчикахToolStripMenuItem.Name = "оРазбработчикахToolStripMenuItem";
+            this.оРазбработчикахToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.оРазбработчикахToolStripMenuItem.Text = "О разработчиках";
+            this.оРазбработчикахToolStripMenuItem.Click += new System.EventHandler(this.оРазбработчикахToolStripMenuItem_Click);
             // 
             // gbClickedCell
             // 
@@ -324,14 +340,6 @@ namespace GasStationMs.App.Constructor
             this.labelElementProperty2.TabIndex = 19;
             this.labelElementProperty2.Text = "Свойство 2";
             this.labelElementProperty2.Visible = false;
-            // 
-            // 
-            // оРазбработчикахToolStripMenuItem
-            // 
-            this.оРазбработчикахToolStripMenuItem.Name = "оРазбработчикахToolStripMenuItem";
-            this.оРазбработчикахToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
-            this.оРазбработчикахToolStripMenuItem.Text = "О разработчиках";
-            this.оРазбработчикахToolStripMenuItem.Click += new System.EventHandler(this.оРазбработчикахToolStripMenuItem_Click);
             // 
             // Constructor
             // 
@@ -392,6 +400,7 @@ namespace GasStationMs.App.Constructor
         private System.Windows.Forms.Label labelElementProperty2;
         private System.Windows.Forms.Label labelElementProperty3;
         private System.Windows.Forms.Label labelAddNewFuel;
+        private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оРазбработчикахToolStripMenuItem;
     }
 }

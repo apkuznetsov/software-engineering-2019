@@ -175,9 +175,14 @@ namespace GasStationMs.App.Constructor
             }
         }
 
+        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("chrome", Resources.HelpPage);
+        }
+
         private void оРазбработчикахToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("chrome", Resources.AboutDevs);
+            System.Diagnostics.Process.Start("chrome", Resources.AboutDevsPage);
         }
 
         private void btnOpenChooseDistributionLaw_Click(object sender, EventArgs e)

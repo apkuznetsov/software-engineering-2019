@@ -63,9 +63,9 @@ namespace GasStationMs.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string AboutDevs {
+        internal static string AboutDevsPage {
             get {
-                return ResourceManager.GetString("AboutDevs", resourceCulture);
+                return ResourceManager.GetString("AboutDevsPage", resourceCulture);
             }
         }
         
@@ -268,6 +268,12 @@ namespace GasStationMs.App.Properties {
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        internal static string HelpPage {
+            get {
+                return ResourceManager.GetString("HelpPage", resourceCulture);
+            }
+        }
+        
         /// </summary>
         internal static System.Drawing.Bitmap icons8_oil_storage_tank_64 {
             get {
