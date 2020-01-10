@@ -47,6 +47,7 @@ namespace GasStationMs.App.Constructor
             this.labelAddNewFuel = new System.Windows.Forms.Label();
             this.labelElementProperty3 = new System.Windows.Forms.Label();
             this.labelElementProperty2 = new System.Windows.Forms.Label();
+            this.оРазбработчикахToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty1)).BeginInit();
@@ -247,7 +248,8 @@ namespace GasStationMs.App.Constructor
             // 
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сохранитьToolStripMenuItem,
-            this.сохранитьКакToolStripMenuItem});
+            this.сохранитьКакToolStripMenuItem,
+            this.оРазбработчикахToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.Size = new System.Drawing.Size(884, 24);
@@ -323,6 +325,14 @@ namespace GasStationMs.App.Constructor
             this.labelElementProperty2.Text = "Свойство 2";
             this.labelElementProperty2.Visible = false;
             // 
+            // 
+            // оРазбработчикахToolStripMenuItem
+            // 
+            this.оРазбработчикахToolStripMenuItem.Name = "оРазбработчикахToolStripMenuItem";
+            this.оРазбработчикахToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.оРазбработчикахToolStripMenuItem.Text = "О разработчиках";
+            this.оРазбработчикахToolStripMenuItem.Click += new System.EventHandler(this.оРазбработчикахToolStripMenuItem_Click);
+            // 
             // Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,6 +392,7 @@ namespace GasStationMs.App.Constructor
         private System.Windows.Forms.Label labelElementProperty2;
         private System.Windows.Forms.Label labelElementProperty3;
         private System.Windows.Forms.Label labelAddNewFuel;
+        private System.Windows.Forms.ToolStripMenuItem оРазбработчикахToolStripMenuItem;
     }
 }
 

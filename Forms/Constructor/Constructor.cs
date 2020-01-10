@@ -2,11 +2,10 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.App.DB.Models;
-using GasStationMs.App.TemplateElements;
+using GasStationMs.App.Properties;
 using GasStationMs.App.Topology;
 
 namespace GasStationMs.App.Constructor
@@ -174,6 +173,11 @@ namespace GasStationMs.App.Constructor
                 Topology.Topology topology = topologyBuilder.ToTopology();
                 TopologySaverAndLoader.Save(fullFilePath, topology);
             }
+        }
+
+        private void оРазбработчикахToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("chrome", Resources.AboutDevs);
         }
 
         private void btnOpenChooseDistributionLaw_Click(object sender, EventArgs e)
