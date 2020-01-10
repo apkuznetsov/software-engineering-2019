@@ -71,7 +71,7 @@ namespace GasStationMs.App.Constructor
             this.dgvField.Location = new System.Drawing.Point(12, 27);
             this.dgvField.Name = "dgvField";
             this.dgvField.RowHeadersWidth = 51;
-            this.dgvField.Size = new System.Drawing.Size(543, 522);
+            this.dgvField.Size = new System.Drawing.Size(643, 422);
             this.dgvField.TabIndex = 0;
             this.dgvField.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvField_CellMouseClick);
             this.dgvField.DragDrop += new System.Windows.Forms.DragEventHandler(this.dgvField_DragDrop);
@@ -83,7 +83,7 @@ namespace GasStationMs.App.Constructor
             this.rbFuelDispenser.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelDispenser.AutoSize = true;
             this.rbFuelDispenser.Image = global::GasStationMs.App.Properties.Resources.fuel2;
-            this.rbFuelDispenser.Location = new System.Drawing.Point(566, 27);
+            this.rbFuelDispenser.Location = new System.Drawing.Point(666, 27);
             this.rbFuelDispenser.Name = "rbFuelDispenser";
             this.rbFuelDispenser.Size = new System.Drawing.Size(38, 38);
             this.rbFuelDispenser.TabIndex = 6;
@@ -99,7 +99,7 @@ namespace GasStationMs.App.Constructor
             this.rbFuelTank.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbFuelTank.AutoSize = true;
             this.rbFuelTank.Image = global::GasStationMs.App.Properties.Resources.icons8_oil_storage_tank_64_photo_resizer_ru;
-            this.rbFuelTank.Location = new System.Drawing.Point(610, 27);
+            this.rbFuelTank.Location = new System.Drawing.Point(710, 27);
             this.rbFuelTank.Name = "rbFuelTank";
             this.rbFuelTank.Size = new System.Drawing.Size(36, 36);
             this.rbFuelTank.TabIndex = 7;
@@ -115,7 +115,7 @@ namespace GasStationMs.App.Constructor
             this.rbCashCounter.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbCashCounter.AutoSize = true;
             this.rbCashCounter.Image = ((System.Drawing.Image)(resources.GetObject("rbCashCounter.Image")));
-            this.rbCashCounter.Location = new System.Drawing.Point(652, 27);
+            this.rbCashCounter.Location = new System.Drawing.Point(752, 27);
             this.rbCashCounter.Name = "rbCashCounter";
             this.rbCashCounter.Size = new System.Drawing.Size(36, 36);
             this.rbCashCounter.TabIndex = 12;
@@ -131,7 +131,7 @@ namespace GasStationMs.App.Constructor
             this.rbEntry.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbEntry.AutoSize = true;
             this.rbEntry.Image = global::GasStationMs.App.Properties.Resources.Entry;
-            this.rbEntry.Location = new System.Drawing.Point(694, 27);
+            this.rbEntry.Location = new System.Drawing.Point(794, 27);
             this.rbEntry.Name = "rbEntry";
             this.rbEntry.Size = new System.Drawing.Size(36, 36);
             this.rbEntry.TabIndex = 13;
@@ -147,7 +147,7 @@ namespace GasStationMs.App.Constructor
             this.rbExit.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbExit.AutoSize = true;
             this.rbExit.Image = global::GasStationMs.App.Properties.Resources.Exit;
-            this.rbExit.Location = new System.Drawing.Point(736, 27);
+            this.rbExit.Location = new System.Drawing.Point(836, 27);
             this.rbExit.Name = "rbExit";
             this.rbExit.Size = new System.Drawing.Size(36, 36);
             this.rbExit.TabIndex = 14;
@@ -234,7 +234,7 @@ namespace GasStationMs.App.Constructor
             // btnOpenChooseDistributionLaw
             // 
             this.btnOpenChooseDistributionLaw.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenChooseDistributionLaw.Location = new System.Drawing.Point(560, 500);
+            this.btnOpenChooseDistributionLaw.Location = new System.Drawing.Point(660, 400);
             this.btnOpenChooseDistributionLaw.Margin = new System.Windows.Forms.Padding(2);
             this.btnOpenChooseDistributionLaw.Name = "btnOpenChooseDistributionLaw";
             this.btnOpenChooseDistributionLaw.Size = new System.Drawing.Size(213, 50);
@@ -250,7 +250,7 @@ namespace GasStationMs.App.Constructor
             this.сохранитьКакToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(784, 24);
+            this.mainMenuStrip.Size = new System.Drawing.Size(884, 24);
             this.mainMenuStrip.TabIndex = 21;
             this.mainMenuStrip.TabStop = true;
             this.mainMenuStrip.Text = "mainMenuStrip";
@@ -279,7 +279,7 @@ namespace GasStationMs.App.Constructor
             this.gbClickedCell.Controls.Add(this.nudElementProperty2);
             this.gbClickedCell.Controls.Add(this.labelElementProperty1);
             this.gbClickedCell.Controls.Add(this.nudElementProperty1);
-            this.gbClickedCell.Location = new System.Drawing.Point(561, 69);
+            this.gbClickedCell.Location = new System.Drawing.Point(661, 69);
             this.gbClickedCell.Name = "gbClickedCell";
             this.gbClickedCell.Size = new System.Drawing.Size(211, 141);
             this.gbClickedCell.TabIndex = 22;
@@ -327,7 +327,8 @@ namespace GasStationMs.App.Constructor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(884, 461);
             this.Controls.Add(this.btnOpenChooseDistributionLaw);
             this.Controls.Add(this.gbClickedCell);
             this.Controls.Add(this.rbFuelDispenser);
@@ -337,8 +338,12 @@ namespace GasStationMs.App.Constructor
             this.Controls.Add(this.rbExit);
             this.Controls.Add(this.dgvField);
             this.Controls.Add(this.mainMenuStrip);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.mainMenuStrip;
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(900, 500);
             this.Name = "Constructor";
             this.ShowIcon = false;
             this.Text = "Конструктор топологии";
