@@ -1,51 +1,14 @@
 using System;
-using GasStationMs.App.TemplateElements;
 
 namespace GasStationMs.App.Constructor
 {
     public partial class Constructor
     {
-        private bool canCheckRbFuelDispenser = false;
-        private bool canCheckRbFuelTank = false;
         private bool canCheckRbCashCounter = false;
         private bool canCheckRbEntry = false;
         private bool canCheckRbExit = false;
-
-        private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
-        {
-            MakeAllPropertiesContorlsInvisible();
-
-            canCheckRbFuelDispenser = rbFuelDispenser.Checked;
-        }
-
-        private void radioButtonFuelDispenser_Click(object sender, EventArgs e)
-        {
-            if (rbFuelDispenser.Checked && !canCheckRbFuelDispenser)
-                rbFuelDispenser.Checked = false;
-            else
-            {
-                rbFuelDispenser.Checked = true;
-                canCheckRbFuelDispenser = false;
-            }
-        }
-
-        private void radioButtonFuelTank_CheckedChanged(object sender, EventArgs e)
-        {
-            MakeAllPropertiesContorlsInvisible();
-
-            canCheckRbFuelTank = rbFuelTank.Checked;
-        }
-
-        private void radioButtonFuelTank_Click(object sender, EventArgs e)
-        {
-            if (rbFuelTank.Checked && !canCheckRbFuelTank)
-                rbFuelTank.Checked = false;
-            else
-            {
-                rbFuelTank.Checked = true;
-                canCheckRbFuelTank = false;
-            }
-        }
+        private bool canCheckRbFuelDispenser = false;
+        private bool canCheckRbFuelTank = false;
 
         #region касса
         private void rbCashCounter_CheckedChanged(object sender, EventArgs e)
@@ -58,7 +21,9 @@ namespace GasStationMs.App.Constructor
         private void rbCashCounter_Click(object sender, EventArgs e)
         {
             if (rbCashCounter.Checked && !canCheckRbCashCounter)
+            {
                 rbCashCounter.Checked = false;
+            }
             else
             {
                 rbCashCounter.Checked = true;
@@ -67,7 +32,7 @@ namespace GasStationMs.App.Constructor
         }
         #endregion /касса
 
-        #region Въезд
+        #region въезд
         private void rbEntry_CheckedChanged(object sender, EventArgs e)
         {
             MakeAllPropertiesContorlsInvisible();
@@ -78,16 +43,18 @@ namespace GasStationMs.App.Constructor
         private void rbEntry_Click(object sender, EventArgs e)
         {
             if (rbEntry.Checked && !canCheckRbEntry)
+            {
                 rbEntry.Checked = false;
+            }
             else
             {
                 rbEntry.Checked = true;
                 canCheckRbEntry = false;
             }
         }
-        #endregion /Въезд
+        #endregion /въезд
 
-        #region Выезд
+        #region выезд
         private void rbExit_CheckedChanged(object sender, EventArgs e)
         {
             MakeAllPropertiesContorlsInvisible();
@@ -107,6 +74,50 @@ namespace GasStationMs.App.Constructor
                 canCheckRbExit = false;
             }
         }
-        #endregion /Выезд
+        #endregion /выезд
+
+        #region ТРК
+        private void radioButtonFuelDispenser_CheckedChanged(object sender, EventArgs e)
+        {
+            MakeAllPropertiesContorlsInvisible();
+
+            canCheckRbFuelDispenser = rbFuelDispenser.Checked;
+        }
+
+        private void rbFuelDispenser_Click(object sender, EventArgs e)
+        {
+            if (rbFuelDispenser.Checked && !canCheckRbFuelDispenser)
+            {
+                rbFuelDispenser.Checked = false;
+            }
+            else
+            {
+                rbFuelDispenser.Checked = true;
+                canCheckRbFuelDispenser = false;
+            }
+        }
+        #endregion /ТРК
+
+        #region ТБ
+        private void rbFuelTank_CheckedChanged(object sender, EventArgs e)
+        {
+            MakeAllPropertiesContorlsInvisible();
+
+            canCheckRbFuelTank = rbFuelTank.Checked;
+        }
+
+        private void rbFuelTank_Click(object sender, EventArgs e)
+        {
+            if (rbFuelTank.Checked && !canCheckRbFuelTank)
+            {
+                rbFuelTank.Checked = false;
+            }
+            else
+            {
+                rbFuelTank.Checked = true;
+                canCheckRbFuelTank = false;
+            }
+        }
+        #endregion /ТБ
     }
 }
