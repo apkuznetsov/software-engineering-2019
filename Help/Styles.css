@@ -1,0 +1,18 @@
+        @page {
+            margin: 0.79in 0.59in 0.79in 1.18in;
+        }
+
+        P {
+            margin-bottom: 0.08in;
+            direction: ltr;
+            widows: 2;
+            orphans: 2;
+
+            text-indent: 0.49in;
+            line-height: 150%;
+            font-family: serif;
+        }
+
+        IMG {
+            BORDER: 0;
+        }

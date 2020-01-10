@@ -162,12 +162,14 @@ namespace GasStationMs.App.Constructor
 
         private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("chrome", Resources.HelpPage);
+            string fullFilePath = System.IO.Path.GetFullPath(Resources.ConstructorPage);
+            System.Diagnostics.Process.Start(fullFilePath);
         }
 
         private void оРазбработчикахToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("chrome", Resources.AboutDevsPage);
+            string fullFilePath = System.IO.Path.GetFullPath(Resources.DevsPage);
+            System.Diagnostics.Process.Start(fullFilePath);
         }
 
         private void btnOpenChooseDistributionLaw_Click(object sender, EventArgs e)
