@@ -33,6 +33,7 @@
             this.labelAbout = new System.Windows.Forms.Label();
             this.labelDoSomething = new System.Windows.Forms.Label();
             this.btnLoadTopology = new System.Windows.Forms.Button();
+            this.linkLabelAbout = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // btnOpenCreateTopology
@@ -88,12 +89,24 @@
             this.btnLoadTopology.UseVisualStyleBackColor = true;
             this.btnLoadTopology.Click += new System.EventHandler(this.btnLoadTopology_Click);
             // 
+            // linkLabelAbout
+            // 
+            this.linkLabelAbout.AutoSize = true;
+            this.linkLabelAbout.Location = new System.Drawing.Point(12, 9);
+            this.linkLabelAbout.Name = "linkLabelAbout";
+            this.linkLabelAbout.Size = new System.Drawing.Size(75, 13);
+            this.linkLabelAbout.TabIndex = 5;
+            this.linkLabelAbout.TabStop = true;
+            this.linkLabelAbout.Text = "О программе";
+            this.linkLabelAbout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelAbout_LinkClicked);
+            // 
             // CreateOrLoadTopology
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.linkLabelAbout);
             this.Controls.Add(this.btnLoadTopology);
             this.Controls.Add(this.labelDoSomething);
             this.Controls.Add(this.labelAbout);
@@ -120,5 +133,6 @@
         private System.Windows.Forms.Label labelAbout;
         private System.Windows.Forms.Label labelDoSomething;
         private System.Windows.Forms.Button btnLoadTopology;
+        private System.Windows.Forms.LinkLabel linkLabelAbout;
     }
 }

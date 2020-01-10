@@ -15,54 +15,102 @@ namespace GasStationMs.App.Constructor
         private string fullFilePath;
         private TopologyBuilder topologyBuilder;
 
+        private readonly SqlConnection connection;
         private DataTable fuelDataTable;
-        private readonly SqlConnection _connection;
-        private readonly CrudHelper crudHelper;
 
-        private void TopologyConstructor_Load(object sender, EventArgs e)
+        private void Constructor_Load(object sender, EventArgs e)
         {
             LoadList();
         }
 
-        #region события
+        internal void LoadList()
+        {
+            string rawSqlCommand = "SELECT * FROM Fuels";
+
+            DataTable dataTable = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(rawSqlCommand, connection);
+            adapter.Fill(dataTable);
+
+            DataTable fuelDataTable = new DataTable();
+
+            DataColumn column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Int32");
+            column.ColumnName = "Id";
+            column.ReadOnly = true;
+            column.Unique = true;
+
+            fuelDataTable.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = typeof(FuelModel);
+            column.ColumnName = "Fuel";
+            column.AutoIncrement = false;
+            column.Caption = "Fuel";
+            column.ReadOnly = false;
+            column.Unique = false;
+            fuelDataTable.Columns.Add(column);
+
+            foreach (DataRow dataTableRow in dataTable.Rows)
+            {
+                int id = int.Parse(dataTableRow["Id"].ToString());
+                string name = dataTableRow["Name"].ToString();
+                double price = double.Parse(dataTableRow["Price"].ToString());
+
+                var fuel = new FuelModel(name, price);
+
+                var row = fuelDataTable.NewRow();
+                row["id"] = id;
+                row["Fuel"] = fuel;
+                fuelDataTable.Rows.Add(row);
+            }
+
+            this.fuelDataTable = fuelDataTable;
+        }
+
+        private void Constructor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ConnectionHelpers.CloseConnection(connection);
+        }
+
+        #region drag-and-drop
         private void rbFuelDispenser_mouseDown(object sender, MouseEventArgs e)
         {
             rbFuelDispenser.Checked = true;
-            _isCheckedradioButtonFuelDispenser = false;
+            canCheckRbFuelDispenser = false;
             rbFuelDispenser.DoDragDrop(rbFuelDispenser.Image, DragDropEffects.Copy);
         }
+
         private void rbFuelTank_mouseDown(object sender, MouseEventArgs e)
         {
             rbFuelTank.Checked = true;
-            _isCheckedradioButtonFuelTank = false;
+            canCheckRbFuelTank = false;
             rbFuelTank.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
         }
 
         private void rbCashCounter_mouseDown(object sender, MouseEventArgs e)
         {
             rbCashCounter.Checked = true;
-            _isCheckedRbCashCounter = false;
+            canCheckRbCashCounter = false;
             rbCashCounter.DoDragDrop(rbFuelTank.Image, DragDropEffects.Copy);
         }
 
         private void rbEntry_mouseDown(object sender, MouseEventArgs e)
         {
             rbEntry.Checked = true;
-            _isCheckedRbEntry = false;
+            canCheckRbEntry = false;
             rbEntry.DoDragDrop(rbEntry.Image, DragDropEffects.Copy);
         }
 
         private void rbExit_mouseDown(object sender, MouseEventArgs e)
         {
             rbExit.Checked = true;
-            _isCheckedRbExit = false;
+            canCheckRbExit = false;
             rbExit.DoDragDrop(rbExit.Image, DragDropEffects.Copy);
         }
 
         private void dgvField_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
-
         }
 
         private void dgvField_DragDrop(object sender, DragEventArgs e)
@@ -80,70 +128,7 @@ namespace GasStationMs.App.Constructor
                 return;
             }
         }
-        #endregion
-
-        #region DbMethods
-        internal void LoadList()
-        {
-            //var connection = OpenConnection();
-
-            string rawSqlCommand = "SELECT * FROM Fuels";
-
-            DataTable dataTable = new DataTable();
-
-            SqlDataAdapter adapter = new SqlDataAdapter(rawSqlCommand, _connection);
-
-            adapter.Fill(dataTable);
-
-            DataTable fuelDataTable = new DataTable();
-
-            // Create new DataColumn, set DataType, 
-            // ColumnName and add to DataTable.    
-            var column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Int32");
-            column.ColumnName = "Id";
-            column.ReadOnly = true;
-            column.Unique = true;
-            // Add the Column to the DataColumnCollection.
-            fuelDataTable.Columns.Add(column);
-
-            // Create second column.
-            column = new DataColumn();
-            column.DataType = typeof(FuelModel);
-            column.ColumnName = "Fuel";
-            column.AutoIncrement = false;
-            column.Caption = "Fuel";
-            column.ReadOnly = false;
-            column.Unique = false;
-            // Add the column to the table.
-            fuelDataTable.Columns.Add(column);
-
-
-            foreach (DataRow dataTableRow in dataTable.Rows)
-            {
-                var id = Int32.Parse(dataTableRow["Id"].ToString());
-                var name = dataTableRow["Name"].ToString();
-                var price = Double.Parse(dataTableRow["Price"].ToString());
-
-                var fuel = new FuelModel(name, price);
-
-                var row = fuelDataTable.NewRow();
-                row["id"] = id;
-                row["Fuel"] = fuel;
-                fuelDataTable.Rows.Add(row);
-            }
-
-            //listFuels.DataSource = dataTable;
-            //listFuels.DisplayMember = "Name";
-            //listFuels.ValueMember = "Id";
-            this.fuelDataTable = fuelDataTable;
-        }
-        #endregion /DbMethods
-
-        private void TopologyConstructor_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            ConnectionHelpers.CloseConnection(_connection);
-        }
+        #endregion /drag-and-drop
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -177,12 +162,14 @@ namespace GasStationMs.App.Constructor
 
         private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("chrome", Resources.HelpPage);
+            string fullFilePath = System.IO.Path.GetFullPath(Resources.ConstructorPage);
+            System.Diagnostics.Process.Start(fullFilePath);
         }
 
         private void оРазбработчикахToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("chrome", Resources.AboutDevsPage);
+            string fullFilePath = System.IO.Path.GetFullPath(Resources.DevsPage);
+            System.Diagnostics.Process.Start(fullFilePath);
         }
 
         private void btnOpenChooseDistributionLaw_Click(object sender, EventArgs e)

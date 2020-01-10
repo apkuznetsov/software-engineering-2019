@@ -63,9 +63,9 @@ namespace GasStationMs.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static string AboutDevsPage {
+        internal static string AboutPage {
             get {
-                return ResourceManager.GetString("AboutDevsPage", resourceCulture);
+                return ResourceManager.GetString("AboutPage", resourceCulture);
             }
         }
         
@@ -198,6 +198,18 @@ namespace GasStationMs.App.Properties {
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        internal static string ConstructorPage {
+            get {
+                return ResourceManager.GetString("ConstructorPage", resourceCulture);
+            }
+        }
+        
+        internal static string DevsPage {
+            get {
+                return ResourceManager.GetString("DevsPage", resourceCulture);
+            }
+        }
+        
         /// </summary>
         internal static System.Drawing.Bitmap dispenser70 {
             get {
@@ -268,12 +280,6 @@ namespace GasStationMs.App.Properties {
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        internal static string HelpPage {
-            get {
-                return ResourceManager.GetString("HelpPage", resourceCulture);
-            }
-        }
-        
         /// </summary>
         internal static System.Drawing.Bitmap icons8_oil_storage_tank_64 {
             get {
@@ -293,15 +299,7 @@ namespace GasStationMs.App.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap info {
-            get {
-                object obj = ResourceManager.GetObject("info", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>

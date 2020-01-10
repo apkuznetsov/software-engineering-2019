@@ -92,7 +92,7 @@ namespace GasStationMs.App.Constructor
             this.rbFuelDispenser.TabStop = true;
             this.rbFuelDispenser.UseVisualStyleBackColor = true;
             this.rbFuelDispenser.CheckedChanged += new System.EventHandler(this.radioButtonFuelDispenser_CheckedChanged);
-            this.rbFuelDispenser.Click += new System.EventHandler(this.radioButtonFuelDispenser_Click);
+            this.rbFuelDispenser.Click += new System.EventHandler(this.rbFuelDispenser_Click);
             this.rbFuelDispenser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbFuelDispenser_mouseDown);
             // 
             // rbFuelTank
@@ -107,8 +107,8 @@ namespace GasStationMs.App.Constructor
             this.rbFuelTank.TabIndex = 7;
             this.rbFuelTank.TabStop = true;
             this.rbFuelTank.UseVisualStyleBackColor = true;
-            this.rbFuelTank.CheckedChanged += new System.EventHandler(this.radioButtonFuelTank_CheckedChanged);
-            this.rbFuelTank.Click += new System.EventHandler(this.radioButtonFuelTank_Click);
+            this.rbFuelTank.CheckedChanged += new System.EventHandler(this.rbFuelTank_CheckedChanged);
+            this.rbFuelTank.Click += new System.EventHandler(this.rbFuelTank_Click);
             this.rbFuelTank.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rbFuelTank_mouseDown);
             // 
             // rbCashCounter
@@ -366,8 +366,8 @@ namespace GasStationMs.App.Constructor
             this.ShowIcon = false;
             this.Text = "Конструктор топологии";
             this.TopMost = true;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TopologyConstructor_FormClosing);
-            this.Load += new System.EventHandler(this.TopologyConstructor_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Constructor_FormClosing);
+            this.Load += new System.EventHandler(this.Constructor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElementProperty1)).EndInit();

@@ -1,9 +1,9 @@
 ﻿using GasStationMs.App.Forms;
+using GasStationMs.App.Properties;
 using GasStationMs.App.Topology;
 using System;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace GasStationMs.App
@@ -13,6 +13,12 @@ namespace GasStationMs.App
         public CreateOrLoadTopology()
         {
             InitializeComponent();
+        }
+
+        private void linkLabelAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string fullFilePath = Path.GetFullPath(Resources.AboutPage);
+            System.Diagnostics.Process.Start(fullFilePath);
         }
 
         private void btnOpenCreateTopology_Click(object sender, EventArgs e)
