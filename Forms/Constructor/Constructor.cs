@@ -2,9 +2,11 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using GasStationMs.App.DB;
 using GasStationMs.App.DB.Models;
+using GasStationMs.App.Forms;
 using GasStationMs.App.Properties;
 using GasStationMs.App.Topology;
 
@@ -162,8 +164,15 @@ namespace GasStationMs.App.Constructor
 
         private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string fullFilePath = System.IO.Path.GetFullPath(Resources.ConstructorPage);
-            System.Diagnostics.Process.Start(fullFilePath);
+            try
+            {
+                string fullFilePath = System.IO.Path.GetFullPath(Resources.ConstructorPage);
+                System.Diagnostics.Process.Start(fullFilePath);
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Файл справки не найден");
+            }
         }
 
         private void оРазбработчикахToolStripMenuItem_Click(object sender, EventArgs e)

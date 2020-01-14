@@ -17,8 +17,15 @@ namespace GasStationMs.App
 
         private void linkLabelAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string fullFilePath = Path.GetFullPath(Resources.AboutPage);
-            System.Diagnostics.Process.Start(fullFilePath);
+            try
+            {
+                string fullFilePath = Path.GetFullPath(Resources.AboutPage);
+                System.Diagnostics.Process.Start(fullFilePath);
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Файл справки не найден");
+            }
         }
 
         private void btnOpenCreateTopology_Click(object sender, EventArgs e)
