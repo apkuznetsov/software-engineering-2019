@@ -62,7 +62,25 @@ namespace GasStationMs.App.Properties {
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///
+        ///Выполнили студенты группы 6413-020302D:
+        ///Ионов А.Н
+        ///Кузнецов А.П.
+        ///Курепин Л.В.
+        ///Лисецкий А.К.
+        ///
+        ///Самара 2019
+        ///
+        ///По всем вопросам:
+        ///kouznts@ya.ru
+        ///+79379918514.
         /// </summary>
+        internal static string AboutDevs {
+            get {
+                return ResourceManager.GetString("AboutDevs", resourceCulture);
+            }
+        }
+        
         internal static string AboutPage {
             get {
                 return ResourceManager.GetString("AboutPage", resourceCulture);
@@ -204,12 +222,8 @@ namespace GasStationMs.App.Properties {
             }
         }
         
-        internal static string DevsPage {
-            get {
-                return ResourceManager.GetString("DevsPage", resourceCulture);
-            }
-        }
-        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap dispenser70 {
             get {
