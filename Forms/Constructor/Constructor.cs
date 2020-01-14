@@ -168,8 +168,11 @@ namespace GasStationMs.App.Constructor
 
         private void оРазбработчикахToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string fullFilePath = System.IO.Path.GetFullPath(Resources.DevsPage);
-            System.Diagnostics.Process.Start(fullFilePath);
+            AboutDevs aboutDevs = new AboutDevs();
+            aboutDevs.ShowDialog();
+
+            aboutDevs.Dispose();
+            aboutDevs.Close();
         }
 
         private void btnOpenChooseDistributionLaw_Click(object sender, EventArgs e)

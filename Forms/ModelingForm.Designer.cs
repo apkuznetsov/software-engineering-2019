@@ -1,4 +1,4 @@
-﻿using GasStationMs.App.Modeling;
+using GasStationMs.App.Modeling;
 
 namespace GasStationMs.App.Forms
 {
@@ -516,7 +516,6 @@ namespace GasStationMs.App.Forms
             this.Name = "ModelingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modeling";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ModelingForm_FormClosing);
             this.panelModelingInformation.ResumeLayout(false);
             this.panelModelingInformation.PerformLayout();

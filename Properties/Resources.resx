@@ -199,8 +199,20 @@
   <data name="Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Modeling\TimeManaging\Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DevsPage" xml:space="preserve">
-    <value>Help\Devs.html</value>
+  <data name="AboutDevs" xml:space="preserve">
+    <value>Курсовой проект по дисциплине «Программная инженерия» на тему «Система моделирования работы автозаправочной станции»
+
+Выполнили студенты группы 6413-020302D:
+Ионов А.Н
+Кузнецов А.П.
+Курепин Л.В.
+Лисецкий А.К.
+
+Самара 2019
+
+По всем вопросам:
+kouznts@ya.ru
++79379918514</value>
   </data>
   <data name="ConstructorPage" xml:space="preserve">
     <value>Help\Constructor.html</value>
