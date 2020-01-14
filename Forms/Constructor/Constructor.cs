@@ -169,7 +169,7 @@ namespace GasStationMs.App.Constructor
                 string fullFilePath = System.IO.Path.GetFullPath(Resources.ConstructorPage);
                 System.Diagnostics.Process.Start(fullFilePath);
             }
-            catch (FileNotFoundException)
+            catch
             {
                 MessageBox.Show("Файл справки не найден");
             }

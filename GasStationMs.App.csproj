@@ -255,6 +255,12 @@
     <Content Include="Help\Images\Image1.png" />
     <Content Include="Help\Images\Image2.png" />
     <Content Include="Help\Images\Image3.png" />
+    <Content Include="Help\Images\Image4.png" />
+    <Content Include="Help\Images\Image5.png" />
+    <Content Include="Help\Images\Image6.png" />
+    <Content Include="Help\Images\Image7.png" />
+    <Content Include="Help\Images\Image8.png" />
+    <Content Include="Help\Images\Image9.png" />
     <Content Include="Help\Index.html" />
     <Content Include="Help\Styles.css" />
     <Content Include="Help\TrafficFlow.html" />

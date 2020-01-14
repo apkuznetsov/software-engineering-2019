@@ -22,7 +22,7 @@ namespace GasStationMs.App
                 string fullFilePath = Path.GetFullPath(Resources.AboutPage);
                 System.Diagnostics.Process.Start(fullFilePath);
             }
-            catch (FileNotFoundException)
+            catch
             {
                 MessageBox.Show("Файл справки не найден");
             }
