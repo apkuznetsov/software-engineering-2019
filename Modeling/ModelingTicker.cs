@@ -156,8 +156,8 @@ namespace GasStationMs.App.Modeling
             var fuelTankView = _selectedFuelTank.Tag as FuelTankView;
 
             modelingForm.LabelFuelValue.Text = fuelTankView.Fuel.ToString();
-            modelingForm.LabelVolumeValue.Text = fuelTankView.Volume.ToString();
-            modelingForm.LabelCurrentFullnessValue.Text = fuelTankView.CurrentFullness.ToString();
+            modelingForm.LabelVolumeValue.Text = ((int)fuelTankView.Volume).ToString();
+            modelingForm.LabelCurrentFullnessValue.Text = ((int)fuelTankView.CurrentFullness).ToString();
 
         }
     }
