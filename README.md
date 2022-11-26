@@ -1,18 +1,8 @@
-# Система моделирования работы автозаправочной станции
+﻿## Система моделирования работы автозаправочной станции
 
-## Пояснительная записка – README/README.pdf
+### Пояснительная записка – about/gas-station-simulation.pdf
 
-![](README/watchme.gif)
-
-![](README/screenshot-1.png)
-
-![](README/screenshot-2.png)
-
-![](README/screenshot-3.png)
-
-![](README/screenshot-4.png)
-
-![](README/screenshot-5.png)
+![](about/gas-station-simulation.gif)
 
 Во время выполнения курсового проекта необходимо разработать систему моделирования работы АЗС, с помощью которой можно создать рабочую модель АЗС в соответствии с заданными параметрами.
 
