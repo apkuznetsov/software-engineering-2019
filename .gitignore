@@ -328,3 +328,9 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+gas-boiler-simulation-2021/colorDB/
+gas-boiler-simulation-2021/config/
+gas-boiler-simulation-2021/data/
+gas-boiler-simulation-2021/db/
+gas-boiler-simulation-2021/images/
