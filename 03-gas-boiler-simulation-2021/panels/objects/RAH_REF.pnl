@@ -1,0 +1,227 @@
+V 14
+2
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 108 110 N "_3DFace" 1
+"$dp"
+E E E E E 1 -1 -1 0  10 11
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10027 0 
+13 1
+"On"
+""
+1 8 36 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+0 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  6 34 100 59
+
+T 
+2
+LANG:10001 17 ВКЛ / выкл
+LANG:10027 17 ВКЛ / выкл
+"main()
+{
+  string requestGet = \"System1:\" + $dp + \".States.IsOn:_online.._value\";
+  string requestSet = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+
+  bool isOn;
+  float res = dpGet(requestGet, isOn);
+
+  if (isOn)
+    dpSetWait(requestSet, false);
+  else
+    dpSetWait(requestSet, true);
+}" 0
+ E E "main()
+{
+  string request = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+  dpConnect(\"onOrOffRah\", request);
+}
+
+onOrOffRah(string dpName, bool dpValue)
+{
+  bool canWork;
+  int res = dpGet(\"System1:\" + $dp + \".States.CanWork:_original.._value\", canWork);
+
+  if (!canWork)
+  {
+    setValue(\"\", \"text\", \"ОТКАЗ\");
+  }
+  else
+  {
+    if (dpValue)
+      setValue(\"\", \"text\", \"ВКЛ / выкл\");
+    else
+      setValue(\"\", \"text\", \"ВЫКЛ / вкл\");
+  }
+}" 0
+
+13 3
+"RepairRAH"
+""
+1 19.5 15 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  17.5 13 88.5 38
+
+T 
+2
+LANG:10001 12 Ремонт
+LANG:10027 12 Ремонт
+"main()
+{
+  fixRah();
+}
+
+void fixRah()
+{
+  dpSetWait(\"System1:\"+ $dp +\".States.CanWork:_original.._value\", true);
+  dpSetWait(\"System1:\"+ $dp +\".States.IsOn:_original.._value\", false);
+
+  delay(5);
+}" 0
+ E E "main()
+{
+  string request = \"System1:\" + $dp + \".States.CanWork:_original.._value\";
+  dpConnect(\"enableFixRah\", request);
+}
+
+enableFixRah(string dpName, bool dpValue)
+{
+    setValue(\"\", \"enabled\", !dpValue);
+}" 0
+
+6 4
+"RAH"
+""
+1 10 80 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"main()
+{
+  string request = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+  dpConnect(\"colorFan\", request);
+}
+
+colorFan(string dpName, bool dpValue)
+{
+  bool canWork;
+  int res = dpGet(\"System1:\" + $dp + \".States.CanWork:_original.._value\", canWork);
+
+  if (!canWork)
+  {
+    setValue(\"\", \"backCol\", \"red\");
+  }
+  else
+  {
+    if (dpValue)
+      setValue(\"\", \"backCol\", \"green\");
+    else
+      setValue(\"\", \"backCol\", \"white\");
+  }
+}" 0
+ E 0 1 3 2 1 E 0.8181818181818182 0 0.5 -0.181818181818181 20.625 1 E 10 80 120 160
+2 5
+"PRIMITIVE_TEXT1"
+""
+1 36 70.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+4 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 36 70.25 70 91
+0 2 2 "0s" 0 0 0 192 0 0  36 70.25 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10001 3 RAH
+LANG:10027 3 RAH
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+0

@@ -1,0 +1,272 @@
+V 14
+2
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 100 108 N "_3DFace" 1
+"$dp"
+E E E E E 1 -1 -1 0  27.46875000000001 86.625
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10027 0 
+7 1
+"CircleFem"
+""
+1 125 115 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string request = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+  dpConnect(\"colorFan\", request);
+}
+
+colorFan(string dpName, bool dpValue)
+{
+  bool canWork;
+  int res = dpGet(\"System1:\" + $dp + \".States.CanWork:_original.._value\", canWork);
+
+  if (!canWork)
+  {
+    setValue(\"\", \"backCol\", \"red\");
+  }
+  else
+  {
+    if (dpValue)
+      setValue(\"\", \"backCol\", \"green\");
+    else
+      setValue(\"\", \"backCol\", \"white\");
+  }
+}" 0
+ E 0 1 3 2 1 E 0.7857142857142859 0 0.2941738594327989 -49.62857142857146 32.72626387176328 1 E 125 115 35 35
+2 2
+"LabelFem"
+""
+1 58 86.25 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+"main()
+{
+  setValue(\"\", \"text\", $dp);
+}" 0
+ E 0 1 3 2 1 E 0.9518796992481203 0 0.9210850801479655 -24.70902255639099 -24.44358816276202 0 E 58 86.25 96 107
+0 2 2 "0s" 0 0 0 192 0 0  58 86.25 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10001 4 FE M
+LANG:10027 4 FE M
+13 4
+"ButtonFixFem"
+""
+1 -4.576938291139228 0.2564655172413808 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+3 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  12.375 9.000000000000002 83.375 34
+
+T 
+2
+LANG:10001 12 Ремонт
+LANG:10027 12 Ремонт
+"main()
+{
+  fixFem();
+}
+
+void fixFem()
+{
+  dpSetWait(\"System1:\"+ $dp +\".States.CanWork:_original.._value\", true);
+  dpSetWait(\"System1:\"+ $dp +\".States.IsOn:_original.._value\", false);
+
+  delay(5);
+}" 0
+ E E "main()
+{
+  string request = \"System1:\" + $dp + \".States.CanWork:_original.._value\";
+  dpConnect(\"enableFixFem\", request);
+}
+
+enableFixFem(string dpName, bool dpValue)
+{
+    setValue(\"\", \"enabled\", !dpValue);
+}" 0
+
+13 5
+"ButtonFemOnOrOff"
+""
+1 -2.070312499999986 31.71875 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1.250000000000004 30 95.25 55
+
+T 
+2
+LANG:10001 17 ВКЛ / выкл
+LANG:10027 17 ВКЛ / выкл
+"main()
+{
+  string requestGet = \"System1:\" + $dp + \".States.IsOn:_online.._value\";
+  string requestSet = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+
+  bool isOn;
+  float res = dpGet(requestGet, isOn);
+
+  if (isOn)
+    dpSetWait(requestSet, false);
+  else
+    dpSetWait(requestSet, true);
+}" 0
+ E E "main()
+{
+  string request = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+  dpConnect(\"onOrOffFem\", request);
+}
+
+onOrOffFem(string dpName, bool dpValue)
+{
+  bool canWork;
+  int res = dpGet(\"System1:\" + $dp + \".States.CanWork:_original.._value\", canWork);
+
+  if (!canWork)
+  {
+    setValue(\"\", \"text\", \"ОТКАЗ\");
+  }
+  else
+  {
+    if (dpValue)
+      setValue(\"\", \"text\", \"ВКЛ / выкл\");
+    else
+      setValue(\"\", \"text\", \"ВЫКЛ / вкл\");
+  }
+}" 0
+
+14 7
+"TextFieldFemValue"
+""
+1 -143.5017466517857 133.1460927866831 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+6 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+2
+"transparentForMouse" ""
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  0.585714285714289 76.8523427866831 96.46462053571429 103.1648427866831
+3 "0s" 0 0 0 0 0 -1  E "main()
+{
+  string requestPositions = \"System1:\"+ $dp +\".Inputs.Positions:_original.._value\";
+  string requestIsOn = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+
+  dpConnect(\"changeTextFieldFem\", requestPositions);
+  dpConnect(\"invisTextFieldFem\", requestIsOn);
+}
+
+void changeTextFieldFem(string dpName, int value)
+{
+  setValue(\"\", \"text\", dpValToString(dpName, value, TRUE));
+}
+
+void invisTextFieldFem(string dpName, bool dpValue)
+{
+    if (dpValue)
+      setValue(\"\", \"visible\", true);
+    else
+      setValue(\"\", \"visible\", false);
+}" 0
+ E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+0

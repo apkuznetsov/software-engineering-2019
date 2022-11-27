@@ -1,0 +1,227 @@
+V 14
+2
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 108 133 N "_3DFace" 1
+"$dp"
+E E E E E 1 -1 -1 0  115 125
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10027 0 
+7 1
+"FAN"
+""
+1 115 125 E E E 1 E 1 E N {0,0,0} E N {255,255,255} E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string request = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+  dpConnect(\"colorFan\", request);
+}
+
+colorFan(string dpName, bool dpValue)
+{
+  bool canWork;
+  int res = dpGet(\"System1:\" + $dp + \".States.CanWork:_original.._value\", canWork);
+
+  if (!canWork)
+  {
+    setValue(\"\", \"backCol\", \"red\");
+  }
+  else
+  {
+    if (dpValue)
+      setValue(\"\", \"backCol\", \"green\");
+    else
+      setValue(\"\", \"backCol\", \"white\");
+  }
+}" 0
+ E 0 1 3 2 1 E 0.7545454545454545 0 0.6090909090909091 -34.77272727272727 15.61363636363636 1 E 115 125 55 55
+2 2
+"PRIMITIVE_TEXT1"
+""
+1 36 81 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 36 81 68 102
+0 2 2 "0s" 0 0 0 192 0 0  36 81 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10001 3 FAN
+LANG:10027 3 FAN
+13 3
+"On"
+""
+1 6.5 31 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+2 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  5 29 99 54
+
+T 
+2
+LANG:10001 17 ВКЛ / выкл
+LANG:10027 17 ВКЛ / выкл
+"main()
+{
+  string requestGet = \"System1:\" + $dp + \".States.IsOn:_online.._value\";
+  string requestSet = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+
+  bool isOn;
+  float res = dpGet(requestGet, isOn);
+
+  if (isOn)
+    dpSetWait(requestSet, false);
+  else
+    dpSetWait(requestSet, true);
+}" 0
+ E E "main()
+{
+  string request = \"System1:\" + $dp + \".States.IsOn:_original.._value\";
+  dpConnect(\"onOrOffFan\", request);
+}
+
+onOrOffFan(string dpName, bool dpValue)
+{
+  bool canWork;
+  int res = dpGet(\"System1:\" + $dp + \".States.CanWork:_original.._value\", canWork);
+
+  if (!canWork)
+  {
+    setValue(\"\", \"text\", \"ОТКАЗ\");
+  }
+  else
+  {
+    if (dpValue)
+      setValue(\"\", \"text\", \"ВКЛ / выкл\");
+    else
+      setValue(\"\", \"text\", \"ВЫКЛ / вкл\");
+  }
+}" 0
+
+13 5
+"RepairFan"
+""
+1 18.5 7 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+4 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  17 5 88 30
+
+T 
+2
+LANG:10001 12 Ремонт
+LANG:10027 12 Ремонт
+"main()
+{
+  fixFan();
+}
+
+void fixFan()
+{
+  dpSetWait(\"System1:\"+ $dp +\".States.CanWork:_original.._value\", true);
+  dpSetWait(\"System1:\"+ $dp +\".States.IsOn:_original.._value\", false);
+
+  delay(5);
+}" 0
+ E E "main()
+{
+  string request = \"System1:\" + $dp + \".States.CanWork:_original.._value\";
+  dpConnect(\"enableFixFan\", request);
+}
+
+enableFixFan(string dpName, bool dpValue)
+{
+    setValue(\"\", \"enabled\", !dpValue);
+}" 0
+
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+0

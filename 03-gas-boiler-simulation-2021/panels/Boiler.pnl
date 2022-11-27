@@ -1,0 +1,2245 @@
+V 14
+2
+LANG:10001 52 Задание параметров датчиков
+LANG:10027 0 
+PANEL,-1 -1 1496 1001 N "_3DFace" 1
+"$SCREENTYPE"
+E E E E E 1 -1 -1 0  140 125
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10027 0 
+31 1874
+"PIPE9"
+""
+1 1283 358.125 E E E 1 E 1 E N "kobaltblau" E N {255,255,255} E E
+ E E
+118 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:FAN.States.IsOn:_online.._value\";
+  dpConnect(\"enablePipeAir2\", requestGet);
+}
+
+enablePipeAir2(string dpName, bool dpValue)
+{
+  bool isOpened;
+  dpGet(\"System1:VALVE_AIR_2.IsOpened:_online.._value\", isOpened);
+
+  if (dpValue && isOpened)
+    setValue(\"\", \"foreCol\", \"kobaltblau\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E U  0 0 0 6 6 1283 358.125
+1280 500
+870 500
+870 850
+260 850
+264 398.7987758224942
+31 1753
+"PIPE7"
+""
+1 1283 358.125 E E E 1 E 1 E N "kobaltblau" E N {255,255,255} E E
+ E E
+116 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:FAN.States.IsOn:_online.._value\";
+  dpConnect(\"enablePipeAir1\", requestGet);
+}
+
+enablePipeAir1(string dpName, bool dpValue)
+{
+  bool isOpened;
+  dpGet(\"System1:VALVE_AIR_1.IsOpened:_online.._value\", isOpened);
+
+  if (dpValue && isOpened)
+    setValue(\"\", \"foreCol\", \"kobaltblau\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E U  0 0 0 6 6 1283 358.125
+1280 230
+870 230
+870 10
+260 10
+264 398.7987758224942
+31 1632
+"PIPE6"
+""
+1 1389.02870218739 323.7377274904476 E E E 1 E 1 E N "yellow" E N {255,255,255} E E
+ E E
+114 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+E E 0 1 3 2 1 E U  0 0 0 6 10 1389.02870218739 323.7377274904476
+1390 260
+850 260
+850 30
+620 30
+620 830
+850 830
+850 470
+1390 470
+1389.02870218739 323.7377274904476
+31 1197
+"PipeAirBurner4"
+""
+1 250 780 E E E 1 E 1 E N "kobaltblau" E N {255,255,255} E E
+ E E
+73 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_AIR_BURNER_4.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeAirBurner4\", requestGet);
+}
+
+enablePipeAirBurner4(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"kobaltblau\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.05 0 1 -2.113095238095177 -15.89144897460938 0 0 0 6 3 250 780
+650 780
+640 780
+31 1196
+"PipeAirBurner3"
+""
+1 250 780 E E E 1 E 1 E N "STD_value_invalid" E N {255,255,255} E E
+ E E
+72 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_AIR_BURNER_3.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeAirBurner3\", requestGet);
+}
+
+enablePipeAirBurner3(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"kobaltblau\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.05 0 1 -2.5 -250.16845703125 0 0 0 6 3 250 780
+650 780
+640 780
+31 1195
+"PipeAirBurner2"
+""
+1 250 780 E E E 1 E 1 E N "kobaltblau" E N {255,255,255} E E
+ E E
+71 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_AIR_BURNER_2.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeAirBurner2\", requestGet);
+}
+
+enablePipeAirBurner2(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"kobaltblau\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.05 0 1 -2.015276227678442 -459.73828125 0 0 0 6 3 250 780
+650 780
+640 780
+31 1194
+"PipeAirBurner1"
+""
+1 250 780 E E E 1 E 1 E N "kobaltblau" E N {255,255,255} E E
+ E E
+70 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_AIR_BURNER_1.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeAirBurner1\", requestGet);
+}
+
+enablePipeAirBurner1(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"kobaltblau\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.15 0 1 -27.50000000000006 -656 0 0 0 6 3 250 780
+650 780
+640 780
+31 1008
+"PipeFefMain"
+""
+1 20 130 E E E 1 E 1 E N "violett" E N {255,255,255} E E
+ E E
+57 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEF_AFTER.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFefAfter\", requestGet);
+}
+
+enablePipeFefAfter(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"violett\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.305468198676058 0 0.8948608822292751 -20.25768569549335 151.4432089063856 0 0 0 6 3 20 130
+230 130
+230 670
+31 1013
+"PipeFefBurner1"
+""
+1 620 113.5 E E E 1 E 1 E N "violett" E N "White" E E
+ E E
+62 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEF_BURNER_1.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFefBurner1\", requestGet);
+}
+
+enablePipeFefBurner1(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"violett\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1 0 0.6370548300343415 30.03188069661462 34.27891594654864 0 0 0 6 4 620 113.5
+249.9999999999999 114.2831115722656
+250 370
+250 360
+31 1011
+"PipeFefBurner2"
+""
+1 250 780 E E E 1 E 1 E N "violett" E N {255,255,255} E E
+ E E
+60 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEF_BURNER_2.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFefBurner2\", requestGet);
+}
+
+enablePipeFefBurner2(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"violett\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.05 0 1 17.5 -477.4629821777345 0 0 0 6 3 250 780
+650 780
+640 780
+31 1010
+"PipeFefBurner3"
+""
+1 250 780 E E E 1 E 1 E N "violett" E N {255,255,255} E E
+ E E
+59 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEF_BURNER_3.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFefBurner3\", requestGet);
+}
+
+enablePipeFefBurner3(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"violett\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.05 0 1 17.5 -264.8584442138672 0 0 0 6 3 250 780
+650 780
+640 780
+31 1009
+"PipeFefBurner4"
+""
+1 250 780 E E E 1 E 1 E N "violett" E N {255,255,255} E E
+ E E
+58 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEF_BURNER_4.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFefBurner4\", requestGet);
+}
+
+enablePipeFefBurner4(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"violett\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.05 0 1 17.53188069661451 -32.89144897460938 0 0 0 6 3 250 780
+650 780
+640 780
+31 831
+"PipeFemBurner3"
+""
+1 250 140 E E E 1 E 1 E N "grey" E N {255,255,255} E E
+ E E
+53 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEM_BURNER_3.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFemBurner3\", requestGet);
+}
+
+enablePipeFemBurner3(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"black\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1 0 1 0.0978190104167922 404.2831115722656 0 0 0 6 3 250 140
+670 140
+660 140
+31 826
+"PipeFemBurner4"
+""
+1 250 780 E E E 1 E 1 E N "grey" E N {255,255,255} E E
+ E E
+48 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEM_BURNER_4.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFemBurner4\", requestGet);
+}
+
+enablePipeFemBurner4(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"black\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.05 0 1 -12.50000000000005 2.000000000000114 0 0 0 6 3 250 780
+650 780
+640 780
+31 827
+"PipeFemBurner1"
+""
+1 250 140 E E E 1 E 1 E N "grey" E N {255,255,255} E E
+ E E
+49 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEM_BURNER_1.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFemBurner1\", requestGet);
+}
+
+enablePipeFemBurner1(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"black\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1 0 1 -1.312499999999977 -0.1787109375 0 0 0 6 3 250 140
+670 140
+660 140
+31 829
+"PipeFemBurner2"
+""
+1 250 140 E E E 1 E 1 E N "grey" E N {255,255,255} E E
+ E E
+51 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEM_BURNER_2.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFemBurner2\", requestGet);
+}
+
+enablePipeFemBurner2(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"black\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1 0 1 -6.394884621840902e-14 196.5398427866831 0 0 0 6 3 250 140
+670 140
+660 140
+31 477
+"PipeFemMain"
+""
+1 20 130 E E E 1 E 1 E N "grey" E N {255,255,255} E E
+ E E
+45 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+3
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "1"
+"main()
+{
+  string requestGet = \"System1:VALVE_FEM_AFTER.IsOpened:_online.._value\";
+  dpConnect(\"enablePipeFemMain\", requestGet);
+}
+
+enablePipeFemMain(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"foreCol\", \"black\");
+  else
+    setValue(\"\", \"foreCol\", \"grey\");
+}" 0
+ E 0 1 3 2 1 E 1.076190476190476 0 1.24021646005136 2.476190476190482 -46.94502823441118 0 0 0 6 3 20 130
+230 130
+230 670
+1 2240 15 "" 3
+0
+1 2243 16 "" 1
+0
+1 2247 17 "" 1
+0
+1 2251 19 "" 8
+0
+13 125
+"ButtonSetSensorsParameters"
+""
+1 1317.976922032848 752.7793414142952 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+23 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1315.976922032848 741.9517552073986 1482.023077967152 809.9517552073986
+
+T 
+2
+LANG:10001 48 Задать параметры
+датчиков
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"SensorsSettings.pnl\",
+      \"SensorsSettings\",
+      makeDynString(\"\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {SensorsSettings.pnl}
+// Panel {SensorsSettings}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  if (!getUserPermission(6))
+  {
+    this.enabled = false;
+  }
+}" 0
+
+1 2261 26 "" 1
+0
+1 2265 32 "" 3
+0
+13 651
+"ButtonValveFemBefore"
+""
+1 -0.5677083333345081 89.19695661130831 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+46 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -2.283854166667254 87.76171875 69.71614583333275 126.76171875
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemBefore\",
+      makeDynString(\"$dp:\" + \"VALVE_FEM_BEFORE\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEM_BEFORE.IsOpened:_original.._value\");
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  ButtonValveFemBefore.buttonType(BT_PIXMAP_TEXT);
+  if (dpValue)
+  {
+      ButtonValveFemBefore.buttonUpPixmap(\"valve-opened.png\");
+  }
+  else
+  {
+      ButtonValveFemBefore.buttonUpPixmap(\"valve-closed.png\");
+  }
+}" 0
+
+13 825
+"ButtonValveFemAfter"
+""
+1 135.5114927576458 91.09395204741378 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+47 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  159.9372740076465 87.76171875 231.9372740076465 125.76171875
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEM_AFTER\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEM_AFTER.IsOpened:_original.._value\");
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  ButtonValveFemAfter.buttonType(BT_PIXMAP_TEXT);
+  if (dpValue)
+  {
+      ButtonValveFemAfter.buttonUpPixmap(\"valve-opened.png\");
+  }
+  else
+  {
+      ButtonValveFemAfter.buttonUpPixmap(\"valve-closed.png\");
+  }
+}" 0
+
+1 2237 14 "" 3
+0
+1 2268 33 "" 3
+0
+13 828
+"ButtonValveFemBurner1"
+""
+1 446.1275227864584 116.2666564955557 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+50 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  444.1275227864584 109.5770013231419 518.1275227864584 147.5770013231419
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEM_BURNER_1\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_FEM_AFTER.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEM_BURNER_1.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 830
+"ButtonValveFemBurner2"
+""
+1 445.8082682291666 323.8805273647965 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+52 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  443.8082682291666 317.1908721923828 517.8082682291665 355.1908721923828
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEM_BURNER_2\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_FEM_AFTER.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEM_BURNER_2.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 832
+"ButtonValveFemBurner3"
+""
+1 445.8082682291665 536.3527411099138 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+54 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  443.8082682291665 529.6630859375 517.8082682291665 567.6630859375001
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEM_BURNER_3\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_FEM_AFTER.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEM_BURNER_3.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 833
+"ButtonValveFemBurner4"
+""
+1 445.8082682291665 769.0153082485856 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+55 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  443.8082682291665 762.3256530761719 517.8082682291665 800.3256530761719
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEM_BURNER_4\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_FEM_AFTER.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEM_BURNER_4.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 1014
+"ButtonValveFefBurner1"
+""
+1 288.0637613932291 94.85670350244177 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+63 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  286.0637613932291 88.16704833002797 360.0637613932291 126.167048330028
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEF_BURNER_1\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_FEF_AFTER.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEF_BURNER_1.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 1015
+"ButtonValveFefBurner2"
+""
+1 288.0637613932291 289.9915884609881 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+64 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  286.0637613932291 283.3019332885742 360.0637613932291 321.3019332885742
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEF_BURNER_2\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_FEF_AFTER.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEF_BURNER_2.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 1016
+"ButtonValveFefBurner3"
+""
+1 288.0637613932291 496.5037077542008 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+65 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  286.0637613932291 489.8140525817871 360.0637613932291 527.8140525817871
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEF_BURNER_3\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_FEF_AFTER.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEF_BURNER_3.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 1017
+"ButtonValveFefBurner4"
+""
+1 288.0637613932291 733.9067572231951 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+66 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  286.0637613932291 727.2171020507813 360.0637613932291 765.2171020507813
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEF_BURNER_4\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_FEF_AFTER.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEF_BURNER_4.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 1018
+"ButtonValveFefBefore"
+""
+1 0.4510555317684464 251.1976321007966 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+67 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  -1.548944468231554 244.5079769283828 72.45105553176845 282.5079769283828
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemBefore\",
+      makeDynString(\"$dp:\" + \"VALVE_FEF_BEFORE\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEF_BEFORE.IsOpened:_original.._value\");
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  ButtonValveFefBefore.buttonType(BT_PIXMAP_TEXT);
+  if (dpValue)
+  {
+      ButtonValveFefBefore.buttonUpPixmap(\"valve-opened.png\");
+  }
+  else
+  {
+      ButtonValveFefBefore.buttonUpPixmap(\"valve-closed.png\");
+  }
+}" 0
+
+13 1019
+"ButtonValveFefAfter"
+""
+1 162.4009253234353 251.2773211924462 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+68 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  160.4009253234353 244.5876660200323 234.4009253234353 282.5876660200323
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_FEF_AFTER\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"changeValveImage\", \"System1:VALVE_FEF_AFTER.IsOpened:_original.._value\");
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  ButtonValveFefAfter.buttonType(BT_PIXMAP_TEXT);
+  if (dpValue)
+  {
+      ButtonValveFefAfter.buttonUpPixmap(\"valve-opened.png\");
+  }
+  else
+  {
+      ButtonValveFefAfter.buttonUpPixmap(\"valve-closed.png\");
+  }
+}" 0
+
+13 1198
+"ButtonValveAirBurner1"
+""
+1 632.5144275483633 53.90923462055569 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+74 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  630.5144275483633 47.2195794481419 704.5144275483633 85.2195794481419
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_AIR_BURNER_1\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_AIR_1.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_AIR_BURNER_1.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 1199
+"ButtonValveAirBurner2"
+""
+1 632.5144275483633 249.5283752455557 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+75 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  630.5144275483633 242.8387200731419 704.5144275483633 280.8387200731419
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_AIR_BURNER_2\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_AIR_1.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_AIR_BURNER_2.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 1200
+"ButtonValveAirBurner3"
+""
+1 632.8269275483634 461.9297424330557 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+76 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  630.8269275483634 455.2400872606419 704.8269275483633 493.2400872606419
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_AIR_BURNER_3\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_AIR_2.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_AIR_BURNER_3.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 1201
+"ButtonValveAirBurner4"
+""
+1 632.5144275483633 694.3752075209463 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+77 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  630.5144275483633 687.6855523485325 704.5144275483633 725.6855523485325
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_AIR_BURNER_4\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"enableClickValve\", \"System1:VALVE_AIR_2.IsOpened:_online.._value\");
+  dpConnect(\"changeValveImage\", \"System1:VALVE_AIR_BURNER_4.IsOpened:_online.._value\");
+}
+
+enableClickValve(string dpName, bool dpValue)
+{
+  this.enabled = dpValue;
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  this.buttonType(BT_PIXMAP_TEXT);
+
+  if (dpValue)
+      this.buttonUpPixmap(\"valve-opened.png\");
+  else
+      this.buttonUpPixmap(\"valve-closed.png\");
+}" 0
+
+13 1206
+"ButtonValveAir1"
+""
+1 1191.056417410714 139.0091292900775 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+82 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1189.056417410714 132.3194741176637 1263.056417410714 170.3194741176637
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_AIR_1\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"changeValveImage\", \"System1:VALVE_AIR_1.IsOpened:_original.._value\");
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  ButtonValveAir1.buttonType(BT_PIXMAP_TEXT);
+  if (dpValue)
+  {
+      ButtonValveAir1.buttonUpPixmap(\"valve-opened.png\");
+  }
+  else
+  {
+      ButtonValveAir1.buttonUpPixmap(\"valve-closed.png\");
+  }
+}" 0
+
+13 1207
+"ButtonValveAir2"
+""
+1 1191.056417410714 548.5551426695417 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+83 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1189.056417410714 541.865487497128 1263.056417410714 579.865487497128
+
+T 
+2
+LANG:10001 0 
+LANG:10027 12 PUSH_BUTTON1
+"// SimpleCtrlScriptStart {invalid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"objects/VALVE_Ref.pnl\",
+      \"PanelValveFemAfter\",
+      makeDynString(\"$dp:\" + \"VALVE_AIR_2\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {objects/VALVE_Ref.pnl}
+// Panel {PanelValveFemBefore}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// PanelPara1 {$dp:$dp}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E "main()
+{
+  dpConnect(\"changeValveImage\", \"System1:VALVE_AIR_2.IsOpened:_original.._value\");
+}
+
+changeValveImage(string dpName, bool dpValue)
+{
+  ButtonValveAir2.buttonType(BT_PIXMAP_TEXT);
+  if (dpValue)
+  {
+      ButtonValveAir2.buttonUpPixmap(\"valve-opened.png\");
+  }
+  else
+  {
+      ButtonValveAir2.buttonUpPixmap(\"valve-closed.png\");
+  }
+}" 0
+
+1 2271 34 "" 1
+0
+1 2276 35 "" 1
+0
+1 2281 36 "" 1
+0
+1 2286 37 "" 1
+0
+1 2291 38 "" 1
+0
+1 2296 39 "" 1
+0
+1 2301 40 "" 1
+0
+1 2306 41 "" 1
+0
+1 2311 42 "" 1
+0
+1 2316 43 "" 1
+0
+1 2321 44 "" 1
+0
+1 2326 45 "" 1
+0
+1 2331 46 "" 1
+0
+1 2336 47 "" 1
+0
+1 2341 48 "" 1
+0
+1 2346 49 "" 1
+0
+1 2351 50 "" 1
+0
+13 1994
+"PUSH_BUTTON2"
+""
+1 1328.017799428124 916.4906422213709 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+119 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1326.017799428124 908.9559536637925 1472.017799428124 953.0824457062353
+
+T 
+2
+LANG:10001 23 Архив данных
+LANG:10027 23 Архив данных
+"// SimpleCtrlScriptStart {valid}
+main()
+{
+  EP_childPanelOn();
+}
+
+void EP_childPanelOn()
+{
+  ChildPanelOnCentralModal(\"Trends.pnl\",
+      \"Trens\",
+      makeDynString(\"\"));
+}
+
+// SimpleCtrlScript {EP_childPanelOn}
+// Function {ChildPanelOnCentralModal}
+// File {Trends.pnl}
+// Panel {Trens}
+// Parent {}
+// Module {}
+// OffsetX {0}
+// OffsetY {0}
+// SimpleCtrlScriptEnd {EP_childPanelOn}
+" 0
+ E E E
+13 2114
+"PUSH_BUTTON3"
+""
+1 1328.016181298294 955.0790575265269 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+120 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1326.016181298294 949.0790575265269 1472.003236259658 982.0790575265269
+
+T 
+2
+LANG:10001 28 Экспортировать
+LANG:10027 28 Экспортировать
+"main(mapping event)
+{
+  dyn_dyn_anytype queryResult;
+  string request = \"SELECT ALL '_original.._value', '_online.._stime' FROM '{FEF,FEM}'\";
+  dpQuery(request, queryResult);
+
+  DebugN(\"МОЙ ЗАПРОС:\", queryResult);
+
+  file f;
+  int i;
+  string s1, s3;
+
+  f=fopen(\"C:/boiler-data.txt\",\"w+\");
+
+  for (i=1; i<=dynlen(queryResult); i++)
+  {
+    s1 = queryResult[i][1];
+    s3 = queryResult[i][3];
+    fprintf(f, \"%s|\", s1);
+    fprintf(f, \"%5.3f|\", queryResult[i][2]);
+    fprintf(f, \"%29s|\\n\", s3);
+  }
+
+  fclose(f);
+}" 0
+ E E E
+2 2234
+"PRIMITIVE_TEXT2"
+""
+1 1338.5 844.7022821360468 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+121 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E 1 0 1.011072642001957 61 -32.33328204281825 0 E 1271 844.7022821360468 1407 890
+0 2 2 "0s" 0 0 0 193 0 0  1338.5 844.7022821360468 2
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10001 29 Автоматический 
+LANG:10027 24 Ручной режим:
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10001 11 режим:
+LANG:10027 0 
+13 2236
+"PUSH_BUTTON4"
+""
+1 981 744.2456140350878 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+123 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  1326 868 1472 900
+
+T 
+2
+LANG:10001 17 ВКЛ / выкл
+LANG:10027 17 ВКЛ / выкл
+"main(mapping event)
+{
+  string requestGet = \"System1:AUTO.IsOn:_online.._value\";
+  string requestSet = \"System1:AUTO.IsOn:_original.._value\";
+
+  bool isOn;
+  float res = dpGet(requestGet, isOn);
+
+  if (isOn)
+    dpSetWait(requestSet, false);
+  else
+    dpSetWait(requestSet, true);
+}" 0
+ E E "main()
+{
+  string request = \"System1:AUTO.IsOn:_original.._value\";
+  dpConnect(\"onOrOffAuto\", request);
+}
+
+onOrOffAuto(string dpName, bool dpValue)
+{
+  if (dpValue)
+    setValue(\"\", \"text\", \"ВКЛ / выкл\");
+  else
+    setValue(\"\", \"text\", \"ВЫКЛ / вкл\");
+}" 0
+
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+3 14 "PanelBurner1" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/Burner_Ref.pnl" 336.6067708333334 590.625 T 18 1 0 1.379310344827586 323.3932291666666 -741.6551724137929
+1
+"$dp""BURNER_1"
+3 15 "PanelBurner2" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/Burner_Ref.pnl" 554.0000000000001 590.625 T 19 1.000798287016566 0 1.451047537710699 107.6306937374811 -591.0249519603817
+1
+"$dp""BURNER_2"
+3 16 "PANEL_REF22" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RAH_REF.pnl" 501.6067708333334 197.578125 T 20 1 0 1 554.3932291666666 216.421875
+1
+"$dp""RAH_2"
+3 17 "PANEL_REF23" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RAH_REF.pnl" 501.4101562500002 370.5 T 21 1 0 1 556.5898437499998 -196.5
+1
+"$dp""RAH_1"
+3 19 "PANEL_REF25" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"vision/aes/AESRow.pnl" 69.61523437500034 1945 T 23 1.309882680976431 0 4.645438613111044 3.907906121734909 -2517.942994505506
+1
+"$SCREENTYPE""$SCREENTYPE"
+3 26 "PANEL_REF33" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/FAN_Ref.pnl" 614.3204294840499 124.230712890625 T 30 1 0 1 731.6795705159502 292.769287109375
+1
+"$dp""FAN"
+3 32 "PanelBurner3" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/Burner_Ref.pnl" 535.1385904947916 390.5213928222656 T 39 1 0 1.461538461538461 126.8614095052084 -93.76203566331128
+1
+"$dp""BURNER_3"
+3 33 "PANEL_REF40" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/Burner_Ref.pnl" 333.9765624999999 504.2596740722656 T 40 1.002744352966012 0 1.461538461538461 327.1068879301246 -25.99490825946503
+1
+"$dp""BURNER_4"
+3 34 "PANEL_REF41" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 95.40505478772101 131.7913934777467 T 92 U 
+1
+"$dp""FEM"
+3 35 "PANEL_REF42" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 95.40505478772099 286.8198997991046 T 93 1 0 1 -0.4050547877209851 -0.8198997991045758
+1
+"$dp""FEF"
+3 36 "PANEL_REF43" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 377.8330275762655 124.4692865033944 T 94 U 
+1
+"$dp""PLG_1"
+3 37 "PANEL_REF44" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 378.908263578869 321.5555933095083 T 95 1 0 1 -0.9082635788690254 0.4444066904916895
+1
+"$dp""PLG_2"
+3 38 "PANEL_REF45" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 378.908263578869 534.2917001820668 T 96 1 0 1 -0.9082635788690254 -0.2917001820668474
+1
+"$dp""PLG_3"
+3 39 "PANEL_REF46" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 378.908263578869 766.6229837514029 T 97 1 0 1 -0.9082635788690254 0.3770162485971014
+1
+"$dp""PLG_4"
+3 40 "PANEL_REF47" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 540.1418324152629 142.0543097313871 T 98 U 
+1
+"$dp""PLA_1"
+3 41 "PANEL_REF48" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 540.8285109747015 338.8224542714224 T 99 1 0 1 -0.828510974701544 0.177545728577627
+1
+"$dp""PLA_2"
+3 42 "PANEL_REF49" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 540.5954380580355 551.2672861195671 T 100 1 0 1 -0.5954380580354837 -0.2672861195670748
+1
+"$dp""PLA_3"
+3 43 "PANEL_REF50" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 540.4757277715771 783.3219200209537 T 101 U 
+1
+"$dp""PLA_4"
+3 44 "PANEL_REF51" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 957.7667891729438 139.0091292900775 T 102 1 0 1 0.2332108270561548 116.9908707099225
+1
+"$dp""TRA_3"
+3 45 "PANEL_REF53" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 958.8135525658013 661.1535141800247 T 104 1 0 1 -0.8135525658012739 -145.1535141800247
+1
+"$dp""TRA_4"
+3 46 "PANEL_REF54" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 896.3830357142859 279.4514832737708 T 105 1 0 1 -41.0389487017103 -0.532123237199869
+1
+"$dp""TRG_1"
+3 47 "PANEL_REF55" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 903.1411132812503 487.7364508436378 T 106 1 0 1 -48.14111328125034 0.2635491563622168
+1
+"$dp""TRG_2"
+3 48 "PANEL_REF56" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 1204.939188058036 142.2245215901697 T 107 1 0 1 0.0608119419639479 113.7754784098303
+1
+"$dp""TRA_1"
+3 49 "PANEL_REF57" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 1204.282071358817 660.9916499240185 T 108 1 0 1 0.7179286411831072 -144.9916499240185
+1
+"$dp""TRA_2"
+3 50 "PANEL_REF58" -1
+"layoutAlignment" "AlignNone"
+"" ""
+"objects/RefSensor.pnl" 1517 369.8030285508947 T 109 0.9986837635869565 0 0.9796896117086198 -147.0032693614131 33.70781455030236
+1
+"$dp""TRG_3"
+0
