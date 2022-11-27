@@ -1,0 +1,2234 @@
+V 14
+3
+LANG:10001 6 AESRow
+LANG:10027 25 Строка аларма
+LANG:10000 7 AEZeile
+PANEL,-1 -1 1019 50 N "_3DFace" 1
+"$SCREENTYPE"
+"int oldVal=0;
+
+main()
+{
+  prepareVST();
+  synchronized(bSync)
+  {
+    g_regInitReady=AES_INITSTATE_WAITING;
+    dpGetCache(\"_Config.TimeoutJumping:_online.._value\", g_uJumpingTimeout);
+
+    int perc;
+    delay(0,100);  // necesary for langswitch
+
+    while( g_regInitReady == AES_INITSTATE_WAITING )
+    {    
+      delay( 0, 100 );  // $$$ war 300
+    }
+
+    if( g_regInitReady == AES_INITSTATE_FAILURE )
+    {
+      return;
+    } 
+
+      perc=100;  
+      if(TRUE)
+      {
+        if( perc >= 0 && perc <= 100 )
+        {
+          while (!shapeExists(\"te_proportionTop\") || !shapeExists(\"te_proportionBot\"))
+             delay(0,100);
+      
+          setMultiValue(
+            \"te_proportionTop\", \"text\", perc,
+            \"te_proportionBot\", \"text\", 100-perc );
+
+          oldVal=perc;
+          //save info to dp(only top)
+          dpSetCache( g_propDpNameTop+\".Settings.Proportion\"+AES_ORIVAL, perc );
+        }
+      }
+  }    
+        
+}" 0
+ "main()
+{
+  dropVST();
+}" 0
+ E E E 1 -1 -1 0  68 1230
+""0  1
+E "#uses \"aec.ctl\"
+#uses \"aes.ctl\"
+#uses \"aesuser.ctl\"
+//#uses \"dpGroups.ctl\"
+/////// neuer Teil - nicht loeschen
+///////////////////////////////////
+
+mapping  g_mQueryReplies;
+dyn_string g_dsSystems;
+bool g_bTableLineSynchronisation;
+unsigned g_uJumpingTimeout;
+int g_iLineHoldThreadTop = -1;
+
+bool gb_automaticScrollTop;
+bool gb_automaticScrollBot;
+
+bool gb_automaticScrollTimeoutTop;
+bool gb_automaticScrollTimeoutBot;
+
+bool bSync;
+
+bool g_initFromAES;
+bool g_langSwitched=false;
+int g_lsActiveRegister;
+string g_lsActiveScreenConfig;
+int g_lsProportion;
+
+bool g_firstHL=true;
+int g_arHeight=1;
+
+// flag for table init - wait for start operation
+bool g_regGeneralInit=false;
+
+bool p_startAction=false;
+string p_screenConfig;
+int p_action;
+string p_fileName;
+bool p_dispSlider=true;
+
+const bool g_autoAction=true;   // flag for automatic run
+const bool g_alertRow=true;    // flag to indicate alert row mode
+
+// neu
+dyn_anytype ddaRes;
+
+dyn_string      g_visibleColumnsTop;// da die sichtbaren Spalten auch die Reihenfolge im AS bestimmen
+dyn_string      g_visibleColumnsBot;// da die sichtbaren Spalten auch die Reihenfolge im AS bestimmen
+
+// speichert die letzte selektierte  registerkarte
+// wird in regChanged event beruecksichtigt um config und configList der
+// registerkarten top/bot mit general zu synchronisieren !!!
+// ACHTUNG - bei querystart muss immer die konfiguration der activen registerkarte verwendet werden !!!!!!
+// init mit 2 => entspricht reg_general
+unsigned g_lastActiveRegister=AESREGTAB_GENERAL;
+// header names for register tabs
+dyn_string g_regHeaderNames;
+
+// reg init statusinformation - important for table init routine ( _propDP check )
+int g_regInitReady=AES_INITSTATE_WAITING;
+
+// panel global propDP names ( _AESProperties )
+string g_propDpNameTop;   // name changed from gp_propDpName
+string g_propDpNameBot;
+
+// keeps the menuinformation
+dyn_dyn_anytype g_ddam;
+
+// global variables for shape information ( for top and bottom table )
+shape g_top;
+shape g_bottom;
+// §§§ alle panelglobalen mit gp !!!!!!!! damit kein konflikt mit scriptglobalen !!!!!
+
+/////// neuer Teil - nicht loeschen / end
+/////////////////////////////////////////
+
+int firstAlertMenu, lastAlertMenu;
+int firstEventMenu, lastEventMenu;
+int firstAlertRowMenu, lastAlertRowMenu;
+//****************************
+// from as/es_init() ****begin
+
+////// alerts
+//***********
+int AS_HIST_RANGE_SEC = 3600*24;
+int E_AS_FUNCTION = 0;
+int E_AS_DP_VAL = 1;
+dyn_string AS_TYPEFILTER;   // init in aes_initMainReg()
+dyn_int AS_TYPECONST;
+
+////// events
+//***********
+int ES_HIST_RANGE_SEC = 3600*24;
+int E_ES_FUNCTION = 0;
+int E_ES_DP_VAL = 1;
+dyn_string ES_TYPEFILTER;  // init in aes_initMainReg()
+dyn_int ES_TYPECONST;
+
+// §§§ ACHTUNG jetzt noch as - in zukunft aes oder ohne prefix !!!!!!!!!!!!!!!!
+// init ==> see aes_initOldScreenVariables() / initRegMain()
+int g_asMaxLinesToDisplay=0;
+int g_asMaxDpeToDisplay=0;
+int g_asMaxDpeHourToDisplay=0;
+
+// global flag for active windowmanager
+bool g_motif;
+
+// sync flags for reggeneralinit
+bool g_ctrlFlagTop=false;
+bool g_ctrlFlagBot=false;
+
+// global variables for splitscreen treating
+int  g_percent=50;
+int  g_splitMax=100;
+int  g_splitMin=0;
+int  g_splitInc=10;
+bool g_splitInit=false;
+int  g_percent;
+int  g_snap=4;
+
+int   g_both_x;
+float g_both_w;
+string sDummyStringForDollarParameter1 = $SCREENTYPE;
+int   g_top_y;
+float g_total_h;
+
+aes_scrollHandling(int tabType, int &iLineHoldThread)
+{
+  int propMode;
+  string propDpName;
+  bool b_automaticScroll;
+ 
+  if(g_uJumpingTimeout == 0)
+    return;
+  
+  propDpName = aes_getPropDpName(AES_DPTYPE_PROPERTIES, true, tabType);
+  aes_getPropMode(propDpName, propMode);
+
+  // check if scrolling was made automatically or manually
+  if(tabType == AESTAB_TOP)
+  {
+    if(gb_automaticScrollTop == 1)
+    {
+      b_automaticScroll = 1;
+      gb_automaticScrollTop = 0;
+    }
+  }
+  else
+  {
+    if(gb_automaticScrollBot == 1)
+    {
+      b_automaticScroll = 1;
+      gb_automaticScrollBot = 0;
+    }
+  }
+
+  if(iLineHoldThread == -2)
+  {
+    iLineHoldThread = -1;
+    return;
+  }
+
+  // stop the thread only if scrolling was made manually
+  if(iLineHoldThread != -1 && b_automaticScroll == 0)
+  {
+    stopThread(iLineHoldThread);
+    iLineHoldThread = -1;
+  }
+
+  // start the thread only if scrolling was made manually
+  if(propMode != AES_MODE_CLOSED && b_automaticScroll == 0)
+  {
+    iLineHoldThread = startThread(\"aes_lineHoldTimeoutThread\", tabType);
+  }
+}
+
+aes_lineHoldTimeoutThread(int tabType)
+{
+  dyn_string sortList;
+  dyn_bool sortAsc;
+  string s_propDp;
+  bool b_automaticScroll;
+  
+  int i_lineCount, iTopLine, iBottomLine;
+  
+  delay(g_uJumpingTimeout);
+
+  // check if scrolling shall be made when timeout is reached
+  if(tabType == AESTAB_TOP)
+  {
+    if(gb_automaticScrollTimeoutTop == 1)
+    {
+      b_automaticScroll = 1;
+      gb_automaticScrollTimeoutTop = 0;
+    }
+    gb_automaticScrollTop = 0;
+    
+    s_propDp = g_propDpNameTop;
+  }
+  else
+  {
+    if(gb_automaticScrollTimeoutBot == 1)
+    {
+      b_automaticScroll = 1;
+      gb_automaticScrollTimeoutBot = 0;
+    }
+    gb_automaticScrollBot = 0;
+
+    s_propDp = g_propDpNameBot;
+  }
+
+  // start automatic scrolling
+  if(b_automaticScroll == 1)
+  {
+    int i_sort;
+    bool b_sort;
+
+    if (dynlen(sortList)==0) //e.g. on delete
+    {
+      aes_getSortList( s_propDp, sortList, sortAsc );
+    }
+
+    i_sort = dynContains(sortList, \"__V_time\");
+    if (i_sort<1)
+      i_sort = dynContains(sortList, \"timeStr\");
+
+    if(i_sort<1)
+      b_sort=true;
+    else
+      b_sort = sortAsc[i_sort];
+    
+    if ( b_sort == 1 )
+      this.lineVisible = -1;
+    else
+      this.lineVisible = 0;
+  }
+  
+  if(tabType == AESTAB_TOP)
+    g_iLineHoldThreadTop = -2;
+  else
+    g_iLineHoldThreadBot = -2;
+  
+  // update line count
+  if(tabType == AESTAB_TOP)
+  {
+    getValue(\"table_top\",\"lineRangeVisible\",iTopLine,iBottomLine);
+    getValue(\"as_lineCount\",\"text\",i_lineCount);
+
+    if(i_lineCount > 0)
+    {
+      setValue(\"ar_currentLine\",\"text\",iTopLine+1);
+    }
+    else
+    {
+      setValue(\"ar_currentLine\",\"text\",0);
+    }
+  }
+}
+" 0
+ 5
+"CBRef" "1"
+"EClose" E
+"ELangChanged" "main()
+{
+  delay(0,500);
+  
+  synchronized(bSync)
+  {
+    int areg;
+    string sconfig;
+
+    g_regInitReady=AES_INITSTATE_WAITING;
+
+    g_langSwitched=true;
+
+    setMultiValue( \"ar_currentLine\", \"text\", \"-\",
+                   \"as_lineCount\", \"text\", \"-\" );
+  
+    areg=reg_main.activeRegister;
+    sconfig=cb_aesConfig.selectedText;
+  
+    if( sconfig == \"\" )
+      sconfig=cb_aesConfig.text;
+
+    g_lsActiveRegister=areg;
+    g_lsActiveScreenConfig=sconfig;
+    g_lsProportion=g_percent;
+  
+    aes_doStop(g_propDpNameTop);
+    aes_doStart(g_propDpNameTop);
+  }
+}"
+"LangSwitchMode" "1"
+"dpi" "96"
+0 0 0
+""
+NC
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 6 Layer1
+LANG:10027 6 Layer1
+13 8
+"bt_splitUp"
+""
+1 10 20 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+8 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+0  8 18 22 27
+
+T 
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+"main()
+{
+  int perc;
+
+  perc=aes_incPercentage( false );
+  aes_setSplitPosition( g_top, g_bottom, perc );
+}" 0
+ E E E
+13 9
+"bt_splitDown"
+""
+1 10 20 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+9 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+0  8 18 22 27
+
+T 
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+"main()
+{
+  int perc;
+
+  perc=aes_incPercentage( true );
+  aes_setSplitPosition( g_top, g_bottom, perc );
+}" 0
+ E E E
+13 16
+"bt_botSplit"
+""
+1 20 20 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+16 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 20 Change to split view
+LANG:10027 67 Перейти к раздельному представлению
+LANG:10000 29 Wechsle zur Splittdarstellung
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+0  18 18 32 27
+
+T 
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+"main()
+{
+
+  // g_percent - state before full mode
+  aes_resetSplitPosition( g_top, g_bottom );
+/*
+  // enable split button
+  setMultiValue(
+    \"bt_topFull\",  \"visible\", true,
+    \"bt_botFull\",  \"visible\", true,
+    \"bt_botSplit\", \"visible\", false );
+
+  g_top.visible( true );
+      
+  // disable slider ( buttons )
+  if( g_motif )
+  {
+    setMultiValue(
+      \"bt_splitUp\",   \"visible\", true,
+      \"bt_splitDown\", \"visible\", true );
+  }
+  else
+  {
+    setMultiValue(
+     \"ax_gauge\", \"visible\", true );
+  }
+*/
+  //reg_main.registerVisible(AESREGTAB_TOP)=true;
+}" 0
+ E E E
+13 12
+"bt_topFull"
+""
+1 10 10 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+12 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 29 Expand top table to full size
+LANG:10027 60 Максимизировать верхнюю таблицу
+LANG:10000 41 Expandiere Top Tabelle auf Maximalgröße
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+0  8 8 22 22
+
+T 
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+"main()
+{
+
+  aes_setTopFullSize( g_top, g_bottom );
+/*
+  // enable split button / activate register tab
+  setMultiValue(
+    \"bt_topFull\",  \"visible\", false,
+    \"bt_botFull\",  \"visible\", false,
+    \"bt_topSplit\", \"visible\", true,
+    AES_REGMAIN,   \"namedActiveRegister\", AES_TABNAME_TOP );
+    
+  // disable slider ( buttons )
+  if( g_motif )
+  {
+    setMultiValue(
+      \"bt_splitUp\",   \"visible\", false,
+      \"bt_splitDown\", \"visible\", false );
+  }
+  else
+  {
+    setMultiValue(
+     \"ax_gauge\", \"visible\", false );
+  }
+
+  //reg_main.registerVisible(AESREGTAB_BOT)=false;
+*/
+}" 0
+ E E E
+13 14
+"bt_botFull"
+""
+1 30 30 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+14 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 32 Expand bottom table to full size
+LANG:10027 58 Максимизировать нижнюю таблицу
+LANG:10000 44 Expandiere Bottom Tabelle auf Maximalgröße
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+0  28 28 42 37
+
+T 
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+"main()
+{
+  aes_setBottomFullSize( g_top, g_bottom );
+/*
+  // enable split button / activate register tab
+  setMultiValue(
+    \"bt_topFull\",  \"visible\", false,
+    \"bt_botFull\",  \"visible\", false,
+    \"bt_botSplit\", \"visible\", true,
+    AES_REGMAIN,    \"namedActiveRegister\", AES_TABNAME_BOT );
+  
+  // disable slider ( buttons )
+  if( g_motif )
+  {
+    setMultiValue(
+      \"bt_splitUp\",   \"visible\", false,
+      \"bt_splitDown\", \"visible\", false );
+  }
+  else
+  {
+    setMultiValue(
+     \"ax_gauge\", \"visible\", false );
+  }
+*/
+  // Behandlung jetzt in controlCB
+  //reg_main.registerVisible(AESREGTAB_TOP)=false;
+}" 0
+ E E E
+25 17
+"table_bot"
+""
+1 10 20 E E E 1 E 0 E N "_WindowText" E N "_Window" E "// SimpleCtrlScriptStart {valid}
+main()
+{
+string sObjectName;
+getValue(\"\",\"name\",sObjectName);
+ep_acknowledgeTableFunction( sObjectName,\"1\",\"__V_dpid\",\"__V_time\",\"__V_count\",\"__V_ackable\");
+}
+// SimpleCtrlScript {EP_confirmTable}
+// Type {1}
+// Column_DPE {__V_dpid}
+// Column_Time {__V_time}
+// Column_Index {__V_count}
+// Column_Confirmable {__V_ackable}
+// SimpleCtrlScriptEnd {EP_confirmTable}
+" 0
+
+ "main()
+{
+  aes_onRightClick( g_propDpNameBot, AESTAB_BOT, this.name );
+
+/*
+  string propDp=g_propDpNameBot;
+  unsigned screenType;
+  int row, column;
+  anytype val;
+  
+  setInputFocus( myModuleName(), myPanelName(), this.name );
+
+  aes_getScreenType( propDp, screenType );
+
+  getValue(\"\",\"currentCell\",row, column );
+  val=this.cellValue;
+
+  aes_displayMenu( screenType, row, column, val, propDp, this.name );
+*/
+}" 0
+ "main()
+{
+  int row, column;
+  anytype value;
+
+  // determine position 
+  getValue(\"\",\"currentCell\", row, column );
+  // and content of active cell !
+  getValue(\"\",\"cellValue\", value );
+
+  aes_doColumnDblClick( g_propDpNameBot, row, column, value );
+}" 0
+
+16 0 0 0 0 0
+"main()
+{
+  reg_main.namedActiveRegister( AES_TABNAME_BOT );
+}" 0
+ E E
+0
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+0  8 8 22 22
+"// neu - fuer bessere performance in callback
+bool g_firstHL;
+int g_screenType;
+// property dp name
+string g_propDp;
+// Top/Bot info
+int g_tabType;
+// column name of register tab ( to build the tabheader eg Top/Alerts/Open )
+string g_regColumn;
+// mode
+int g_valType;
+dyn_string g_systemSelections;
+
+//////// neue variablen fuer configMatrix, settings and table eval commands append/update/delete
+dyn_dyn_anytype g_configMatrix;
+dyn_anytype     g_configSettings;
+
+string          g_tableCmdAppend;
+string          g_tableCmdUpdate;
+string          g_tableCmdDelete;
+dyn_string      g_colNames;
+bool            g_useFontProp;
+int             g_dpidIdx;
+int             g_timeIdx;
+int             g_countIdx;
+
+dyn_string      g_attrList;
+dyn_string      g_visibleColumns;// da die sichtbaren Spalten auch die Reihenfolge im AS bestimmen
+
+//*****************************
+// from old as/es_init() ***begin
+
+// momentan wird das prefix as fuer beide verwendet / es routinen werden angepasst
+// arbeitsvariablen muessen scriptglobal( pro tabelle) sein !!!!!!!!!!!
+int g_asDisplayLines = 0;
+int g_asDisplayDpes = 0;
+int g_asDisplayHours = 0;
+
+// halten die werte fuer AES_TYPEFILTER/TYPECONST ( == panelglobal )
+dyn_string g_typeFilter;
+dyn_int g_typeConst;
+
+//*****************************
+// from old aes_init() *****end
+
+
+///////////////////////////////////////////////
+// from old screen ***********************begin
+// new
+bool     g_historicalData;
+int      g_historicalDataInterval;   // display interval in sec back from now / only open mode 
+int      g_queryBlockedTime; // holds to queryblocktime in ms / see general settings
+dyn_bool g_colVis;           // holds the flag wheter an optional column is visible or not
+string   g_connectId;        // holds id of current query
+time     g_timeLastUpdate;   // holds time of the last update
+string   g_dpCommentFilter;  // store filter
+
+bool     g_showInternals;    // value from _Config.ShowInternals
+
+bool     g_showInternalsA;    // value from _Config.ShowInternalDPs.Alerts
+bool     g_showInternalsAR;   // value from _Config.ShowInternalDPs.AlertRow
+bool     g_showInternalsE;    // value from _Config.ShowInternalDPs.Events
+
+unsigned g_maxClosedLines;   // max num of lines to be queried by closed protocoll
+unsigned g_state;            // alert-state filter
+
+int g_busyThread;    // id of thread, which shows busyness
+
+int g_maxLines;      // num of max lines in open protocoll
+
+// TI 14075 (discarding pending values)
+int        g_discardThread;
+time       g_discardStart;
+bool       g_discarded;
+const time MINCB_TIME = 2;
+const time MAXCB_TIME = 5;
+
+// characters for status-bits in current language
+// only for Events
+char g_Cdefault, g_Cout_prange, g_Cinvalid, g_Cfrom_GI, g_Cuserbit1, g_Cuserbit2;
+
+// IM 114080 - moved from aes.ctl
+dyn_string g_dsWorkAttr, g_dsWorkName, g_dsWorkVsbl;
+
+///////////////////////////////////////////////
+// from old screen *************************end
+
+main()
+{
+  aes_initMainTable( AESTAB_BOT );
+}
+" 0
+"main(int row, string column, string value)
+{
+  aes_doColumnClick( AESTAB_BOT, row, column, value );
+}" 0
+ 1 0 1 35 1 "#1" 3 1 1 "s" 3
+LANG:10001 2 #1
+LANG:10027 10 Время
+LANG:10000 4 Time
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+40 "#2" 2 1 1 "s" 3
+LANG:10001 2 #2
+LANG:10027 2 #2
+LANG:10000 2 #2
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+33 "#3" 16 1 1 "s" 3
+LANG:10001 2 #3
+LANG:10027 2 #3
+LANG:10000 2 #3
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+153 "#4" 24 1 1 "s" 3
+LANG:10001 2 #4
+LANG:10027 2 #4
+LANG:10000 2 #4
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+232 "#5" 16 1 1 "s" 3
+LANG:10001 2 #5
+LANG:10027 2 #5
+LANG:10000 2 #5
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+152 "#6" 3 1 1 "s" 3
+LANG:10001 2 #6
+LANG:10027 2 #6
+LANG:10000 2 #6
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+43 "#7" 5 1 1 "s" 3
+LANG:10001 2 #7
+LANG:10027 2 #7
+LANG:10000 2 #7
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+61 "#8" 2 1 1 "s" 3
+LANG:10001 2 #8
+LANG:10027 2 #8
+LANG:10000 2 #8
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+32 "#9" 14 1 1 "s" 3
+LANG:10001 2 #9
+LANG:10027 2 #9
+LANG:10000 2 #9
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+136 "#10" 3 1 1 "s" 3
+LANG:10001 3 #10
+LANG:10027 3 #10
+LANG:10000 3 #10
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+38 "#11" 1 1 1 "s" 3
+LANG:10001 3 #11
+LANG:10027 3 #11
+LANG:10000 3 #11
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#12" 1 1 1 "s" 3
+LANG:10001 3 #12
+LANG:10027 3 #12
+LANG:10000 3 #12
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#13" 1 1 1 "s" 3
+LANG:10001 3 #13
+LANG:10027 3 #13
+LANG:10000 3 #13
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#14" 1 1 1 "s" 3
+LANG:10001 3 #14
+LANG:10027 3 #14
+LANG:10000 3 #14
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#15" 1 1 1 "s" 3
+LANG:10001 3 #15
+LANG:10027 3 #15
+LANG:10000 3 #15
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#16" 1 1 1 "s" 3
+LANG:10001 3 #16
+LANG:10027 3 #16
+LANG:10000 3 #16
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#17" 1 1 1 "s" 3
+LANG:10001 3 #17
+LANG:10027 3 #17
+LANG:10000 3 #17
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#18" 1 1 1 "s" 3
+LANG:10001 3 #18
+LANG:10027 3 #18
+LANG:10000 3 #18
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#19" 1 1 1 "s" 3
+LANG:10001 3 #19
+LANG:10027 3 #19
+LANG:10000 3 #19
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#20" 1 1 1 "s" 3
+LANG:10001 3 #20
+LANG:10027 3 #20
+LANG:10000 3 #20
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#21" 1 1 1 "s" 3
+LANG:10001 3 #21
+LANG:10027 3 #21
+LANG:10000 3 #21
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#22" 1 1 1 "s" 3
+LANG:10001 3 #22
+LANG:10027 3 #22
+LANG:10000 3 #22
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#23" 1 1 1 "s" 3
+LANG:10001 3 #23
+LANG:10027 3 #23
+LANG:10000 3 #23
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#24" 1 1 1 "s" 3
+LANG:10001 3 #24
+LANG:10027 3 #24
+LANG:10000 3 #24
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#25" 1 1 1 "s" 3
+LANG:10001 3 #25
+LANG:10027 3 #25
+LANG:10000 3 #25
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#26" 1 1 1 "s" 3
+LANG:10001 3 #26
+LANG:10027 3 #26
+LANG:10000 3 #26
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#27" 1 1 1 "s" 3
+LANG:10001 3 #27
+LANG:10027 3 #27
+LANG:10000 3 #27
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#28" 1 1 1 "s" 3
+LANG:10001 3 #28
+LANG:10027 3 #28
+LANG:10000 3 #28
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#29" 1 1 1 "s" 3
+LANG:10001 3 #29
+LANG:10027 3 #29
+LANG:10000 3 #29
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#30" 1 1 1 "s" 3
+LANG:10001 3 #30
+LANG:10027 3 #30
+LANG:10000 3 #30
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#31" 1 0 1 "s" 3
+LANG:10001 3 #31
+LANG:10027 3 #31
+LANG:10000 3 #31
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#32" 1 0 1 "s" 3
+LANG:10001 3 #32
+LANG:10027 3 #32
+LANG:10000 3 #32
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#33" 1 0 1 "s" 3
+LANG:10001 3 #33
+LANG:10027 3 #33
+LANG:10000 3 #33
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#34" 1 0 1 "s" 3
+LANG:10001 3 #34
+LANG:10027 3 #34
+LANG:10000 3 #34
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#35" 1 0 1 "s" 3
+LANG:10001 3 #35
+LANG:10027 3 #35
+LANG:10000 3 #35
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 
+25 25 "" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+8 30
+3
+LANG:10001 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+0 0 1 1 1 7
+1 0
+22 25
+"cb_aesConfig"
+""
+1 10 9 E E E 1 E 0 E N {0,0,0} E N "_Window" E E
+ E E
+23 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+0  8 8 48 35
+0
+
+E
+"main()
+{
+  string screenConfigName;
+  
+  screenConfigName=this.text;
+  aes_screenConfigChanged( screenConfigName );
+
+}" 0
+
+E
+ 0 0
+13 15
+"bt_topSplit"
+""
+1 10 10 E E E 1 E 0 E N "_ButtonText" E N "_Button" E E
+ E E
+15 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 20 Change to split view
+LANG:10027 67 Перейти к раздельному представлению
+LANG:10000 29 Wechsle zur Splittdarstellung
+
+1
+"layoutAlignment" "AlignCenter"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+0  8 8 22 22
+
+T 
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+"main()
+{
+
+  // g_percent - state before full mode
+  aes_resetSplitPosition( g_top, g_bottom );
+
+/*
+  // enable split button
+  setMultiValue(
+    \"bt_topFull\",  \"visible\", true,
+    \"bt_botFull\",  \"visible\", true,
+    \"bt_topSplit\", \"visible\", false );
+  
+  g_bottom.visible( true );
+  
+  // disable slider ( buttons )
+  if( g_motif )
+  {
+    setMultiValue(
+      \"bt_splitUp\",   \"visible\", true,
+      \"bt_splitDown\", \"visible\", true );
+  }
+  else
+  {
+    setMultiValue(
+     \"ax_gauge\", \"visible\", true );
+  }
+
+  //reg_main.registerVisible(AESREGTAB_BOT)=true;
+*/
+}" 0
+ E E E
+28 0
+"reg_main"
+"ALERTROW"
+1 51 91 E E E 1 E 0 E N "_3DText" E N "_3DFace" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+2
+"layoutAlignment" "AlignCenter"
+"selchangedcb" "main()
+{
+  string config, _screenType, app, pre;
+  dyn_string configList;
+  unsigned actReg;   
+  
+  // we are using the top dp for regtab treating
+  aes_changed( g_propDpNameTop, AES_CHANGED_REGTAB );  
+}"
+3
+LANG:10001 26 Arial,-1,12,5,40,0,0,0,0,0
+LANG:10027 26 arial,-1,12,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,12,5,40,0,0,0,0,0
+0  48 8 152 35
+"main()
+{
+
+  aes_initMainReg();
+
+  // inform tableinitroutine that reginitroutine has finished
+  // we are misusing the type table property
+
+}" 0
+3 "tab_top" 3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+0
+"tab_bot" 3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+0
+"tab_general" 3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+0
+
+25 1
+"table_top"
+""
+1 10 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E "// SimpleCtrlScriptStart {valid}
+main()
+{
+string sObjectName;
+getValue(\"\",\"name\",sObjectName);
+ep_acknowledgeTableFunction( sObjectName,\"1\",\"__V_dpid\",\"__V_time\",\"__V_count\",\"__V_ackable\");
+}
+// SimpleCtrlScript {EP_confirmTable}
+// Type {1}
+// Column_DPE {__V_dpid}
+// Column_Time {__V_time}
+// Column_Index {__V_count}
+// Column_Confirmable {__V_ackable}
+// SimpleCtrlScriptEnd {EP_confirmTable}
+" 0
+
+ "main(int row, string column)
+{
+  //TFS 13652: if row has no valid line function should be interrupted
+  int lines = this.lineCount();
+  if(row > lines || row == -1)
+  {
+    return;
+  }
+  
+  int i, j;
+  anytype value;
+  mapping mTableMultipleRows;
+  
+  //IM 116642: Trigger table widget once, to avoid timing problems
+  synchronized(g_bTableLineSynchronisation)
+  { 
+    int length;
+    dyn_anytype alertRow;  
+    
+    value=this.cellValue;
+
+    alertRow = this.getLineN(row);
+    length = dynlen(alertRow);
+    
+    for(j=0; j<this.lineCount; j++)
+    {
+      mapping rowHeaderMapping;
+      
+      for(i=1; i<=length; i++)
+        rowHeaderMapping[this.columnName(i-1)] = alertRow[i];
+      
+      mTableMultipleRows[j] = rowHeaderMapping;
+    }
+  }
+
+  aes_onRightClick( g_propDpNameTop, AESTAB_TOP, this.name, row, column, value, mTableMultipleRows );
+}" 0
+ "main()
+{
+  int row, column;
+  anytype value;
+  mapping mTableRow;
+  
+  synchronized(g_bTableLineSynchronisation)
+  { 
+    int length;
+    dyn_anytype alertRow;  
+        
+    // determine position 
+    getValue(\"\",\"currentCell\", row, column );
+    // and content of active cell !
+    getValue(\"\",\"cellValue\", value );
+
+    alertRow = this.getLineN(row);
+    length = dynlen(alertRow);
+    for(int i=1; i<=length; i++)
+      mTableRow[this.columnName(i-1)] = alertRow[i];
+  }
+ 
+  aes_doColumnDblClick( g_propDpNameTop, row, column, value, mTableRow );
+}" 0
+
+2 0 0 0 0 0
+"main()
+{
+  reg_main.namedActiveRegister( AES_TABNAME_TOP );
+}" 0
+ E E
+0
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+2
+"layoutAlignment" "AlignCenter"
+"scrolledCB" "synchronized main()
+{
+  aes_scrollHandling(AESTAB_TOP, g_iLineHoldThreadTop);
+}"
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+0  8 8 1002 40
+"//Function table_top_EventInitialize()
+
+// neu - fuer bessere performance in callback
+bool g_firstHL = true;
+bool lastSystem = false;
+int g_screenType;
+// property dp name
+string g_propDp;
+// Top/Bot info
+int g_tabType;
+// column name of register tab ( to build the tabheader eg Top/Alerts/Open )
+string g_regColumn;
+// mode
+int g_valType;
+dyn_string g_systemSelections;
+
+//////// neue variablen fuer configMatrix, settings and table eval commands append/update/delete
+dyn_dyn_anytype g_configMatrix;
+dyn_anytype     g_configSettings;
+
+string          g_tableCmdAppend;
+string          g_tableCmdUpdate;
+string          g_tableCmdDelete;
+
+dyn_string      g_colNames;
+bool            g_useFontProp;
+int             g_dpidIdx;
+int             g_timeIdx;
+int             g_countIdx;
+
+dyn_string      g_attrList;
+
+//*****************************
+// from old as/es_init() ***begin
+
+// momentan wird das prefix as fuer beide verwendet / es routinen werden angepasst
+// arbeitsvariablen muessen scriptglobal( pro tabelle) sein !!!!!!!!!!!
+int g_asDisplayLines = 0;
+int g_asDisplayDpes = 0;
+int g_asDisplayHours = 0;
+
+// halten die werte fuer AES_TYPEFILTER/TYPECONST ( == panelglobal )
+dyn_string g_typeFilter;
+dyn_int g_typeConst;
+
+//*****************************
+// from old aes_init() *****end
+
+
+///////////////////////////////////////////////
+// from old screen ***********************begin
+// new
+bool     g_historicalData;
+int      g_historicalDataInterval;   // display interval in sec back from now / only open mode 
+int      g_queryBlockedTime; // holds to queryblocktime in ms / see general settings
+dyn_bool g_colVis;           // holds the flag wheter an optional column is visible or not
+string   g_connectId;        // holds id of current query
+dyn_string g_counterConnectId; // holds numbers of Id's
+//dyn_int  g_counterConnectId; // holds numbers of connected system id's
+dyn_string g_closedIdf;      // new
+bool     g_checkAll;         // holds property setting - connect all systems
+time     g_timeLastUpdate;   // holds time of the last update
+string   g_dpCommentFilter;  // store filter
+
+bool     g_showInternals;    // value from _Config.ShowInternals
+
+bool     g_showInternalsA;    // value from _Config.ShowInternalDPs.Alerts
+bool     g_showInternalsAR;   // value from _Config.ShowInternalDPs.AlertRow
+bool     g_showInternalsE;    // value from _Config.ShowInternalDPs.Events
+
+unsigned g_maxClosedLines;   // max num of lines to be queried by closed protocoll
+unsigned g_state;            // alert-state filter
+
+int g_busyThread;    // id of thread, which shows busyness
+
+int g_maxLines;      // num of max lines in open protocoll
+
+// TI 14075 (discarding pending values)
+int        g_discardThread;
+time       g_discardStart;
+bool       g_discarded;
+const time MINCB_TIME = 2;
+const time MAXCB_TIME = 5;
+
+// characters for status-bits in current language
+// only for Events
+char g_Cdefault, g_Cout_prange, g_Cinvalid, g_Cfrom_GI, g_Cuserbit1, g_Cuserbit2;
+
+// IM 114080 - moved from aes.ctl
+dyn_string g_dsWorkAttr, g_dsWorkName, g_dsWorkVsbl;
+
+///////////////////////////////////////////////
+// from old screen *************************end
+
+main()
+{
+//******************************** from row panel init begin
+  const string ARH=\"$AESREGDOLLAR_ROWHEIGHT\";
+  int p1, p2; 
+
+  if( isDollarDefined( ARH ) )
+  {
+    g_arHeight=(int)getDollarValue( ARH );
+  }  
+  else
+  {
+    table_top.visible=false;
+    table_top.appendLines(10);
+    getValue(\"table_top\",\"lineRangeVisible\",p1,p2);
+    table_top.deleteAllLines();
+    g_arHeight = p2-p1+1;
+    table_top.visible=true;
+  }
+
+//  delay(5);
+//  aes_doStart(\"_AESPropertiesRTRow_\"+myUiNumber() + \"_\" + myModuleName()+\"_Top\");
+
+//******************************** from row panel init end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  delay(0,100);
+  aes_initMainTable( AESTAB_TOP );
+}
+" 0
+"main(int row, string column, string value)
+{
+  mapping mTableRow;
+  
+  synchronized(g_bTableLineSynchronisation)
+  { 
+    int length;
+    dyn_anytype alertRow;  
+    
+    alertRow = this.getLineN(row);
+    
+    length = dynlen(alertRow);
+    for(int i=1; i<=length; i++)
+      mTableRow[this.columnName(i-1)] = alertRow[i];
+  }
+  
+  //read pos of visible lines
+  setMultiValue( \"ar_currentLine\", \"text\", row+1); // \"current line\" -indicator is 1 based
+
+  aes_doColumnClick( AESTAB_TOP, row, column, value, mTableRow );
+}
+
+" 0
+ 0 0 1 60 14 "#1" 2 1 1 "s" 3
+LANG:10001 2 #1
+LANG:10027 10 Время
+LANG:10000 4 Time
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+40 "#2" 2 1 1 "s" 3
+LANG:10001 2 #2
+LANG:10027 2 #2
+LANG:10000 2 #2
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+33 "#3" 14 1 1 "s" 3
+LANG:10001 2 #3
+LANG:10027 2 #3
+LANG:10000 2 #3
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+162 "#4" 20 1 1 "s" 3
+LANG:10001 2 #4
+LANG:10027 2 #4
+LANG:10000 2 #4
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+232 "#5" 13 1 1 "s" 3
+LANG:10001 2 #5
+LANG:10027 2 #5
+LANG:10000 2 #5
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+152 "#6" 3 1 1 "s" 3
+LANG:10001 2 #6
+LANG:10027 2 #6
+LANG:10000 2 #6
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+43 "#7" 4 1 1 "s" 3
+LANG:10001 2 #7
+LANG:10027 2 #7
+LANG:10000 2 #7
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+61 "#8" 2 1 1 "s" 3
+LANG:10001 2 #8
+LANG:10027 2 #8
+LANG:10000 2 #8
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+32 "#9" 10 1 1 "s" 3
+LANG:10001 2 #9
+LANG:10027 2 #9
+LANG:10000 2 #9
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+128 "#10" 2 1 1 "s" 3
+LANG:10001 3 #10
+LANG:10027 3 #10
+LANG:10000 3 #10
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+38 "#11" 1 1 1 "s" 3
+LANG:10001 3 #11
+LANG:10027 3 #11
+LANG:10000 3 #11
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#12" 1 0 1 "s" 3
+LANG:10001 3 #12
+LANG:10027 3 #12
+LANG:10000 3 #12
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#13" 1 0 1 "s" 3
+LANG:10001 3 #13
+LANG:10027 3 #13
+LANG:10000 3 #13
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#14" 1 0 1 "s" 3
+LANG:10001 3 #14
+LANG:10027 3 #14
+LANG:10000 3 #14
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#15" 1 0 1 "s" 3
+LANG:10001 3 #15
+LANG:10027 3 #15
+LANG:10000 3 #15
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#16" 1 0 1 "s" 3
+LANG:10001 3 #16
+LANG:10027 3 #16
+LANG:10000 3 #16
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#17" 1 0 1 "s" 3
+LANG:10001 3 #17
+LANG:10027 3 #17
+LANG:10000 3 #17
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#18" 1 0 1 "s" 3
+LANG:10001 3 #18
+LANG:10027 3 #18
+LANG:10000 3 #18
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#19" 1 0 1 "s" 3
+LANG:10001 3 #19
+LANG:10027 3 #19
+LANG:10000 3 #19
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#20" 1 0 1 "s" 3
+LANG:10001 3 #20
+LANG:10027 3 #20
+LANG:10000 3 #20
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#21" 1 0 1 "s" 3
+LANG:10001 3 #21
+LANG:10027 3 #21
+LANG:10000 3 #21
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#22" 1 0 1 "s" 3
+LANG:10001 3 #22
+LANG:10027 3 #22
+LANG:10000 3 #22
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#23" 1 0 1 "s" 3
+LANG:10001 3 #23
+LANG:10027 3 #23
+LANG:10000 3 #23
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#24" 1 0 1 "s" 3
+LANG:10001 3 #24
+LANG:10027 3 #24
+LANG:10000 3 #24
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#25" 1 0 1 "s" 3
+LANG:10001 3 #25
+LANG:10027 3 #25
+LANG:10000 3 #25
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#26" 1 0 1 "s" 3
+LANG:10001 3 #26
+LANG:10027 3 #26
+LANG:10000 3 #26
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#27" 1 0 1 "s" 3
+LANG:10001 3 #27
+LANG:10027 3 #27
+LANG:10000 3 #27
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#28" 1 0 1 "s" 3
+LANG:10001 3 #28
+LANG:10027 3 #28
+LANG:10000 3 #28
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#29" 1 0 1 "s" 3
+LANG:10001 3 #29
+LANG:10027 3 #29
+LANG:10000 3 #29
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#30" 1 0 1 "s" 3
+LANG:10001 3 #30
+LANG:10027 3 #30
+LANG:10000 3 #30
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#31" 1 0 1 "s" 3
+LANG:10001 3 #31
+LANG:10027 3 #31
+LANG:10000 3 #31
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#32" 1 0 1 "s" 3
+LANG:10001 3 #32
+LANG:10027 3 #32
+LANG:10000 3 #32
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#33" 1 0 1 "s" 3
+LANG:10001 3 #33
+LANG:10027 3 #33
+LANG:10000 3 #33
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#34" 1 0 1 "s" 3
+LANG:10001 3 #34
+LANG:10027 3 #34
+LANG:10000 3 #34
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#35" 1 0 1 "s" 3
+LANG:10001 3 #35
+LANG:10027 3 #35
+LANG:10000 3 #35
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+24 "#36" 0 0 1 "s" 3
+LANG:10001 3 #36
+LANG:10027 3 #36
+LANG:10000 3 #36
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#37" 0 0 1 "s" 3
+LANG:10001 3 #37
+LANG:10027 3 #37
+LANG:10000 3 #37
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#38" 0 0 1 "s" 3
+LANG:10001 3 #38
+LANG:10027 3 #38
+LANG:10000 3 #38
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#39" 0 0 1 "s" 3
+LANG:10001 3 #39
+LANG:10027 3 #39
+LANG:10000 3 #39
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#40" 0 0 1 "s" 3
+LANG:10001 3 #40
+LANG:10027 3 #40
+LANG:10000 3 #40
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#41" 0 0 1 "s" 3
+LANG:10001 3 #41
+LANG:10027 3 #41
+LANG:10000 3 #41
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#42" 0 0 1 "s" 3
+LANG:10001 3 #42
+LANG:10027 3 #42
+LANG:10000 3 #42
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#43" 0 0 1 "s" 3
+LANG:10001 3 #43
+LANG:10027 3 #43
+LANG:10000 3 #43
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#44" 0 0 1 "s" 3
+LANG:10001 3 #44
+LANG:10027 3 #44
+LANG:10000 3 #44
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#45" 0 0 1 "s" 3
+LANG:10001 3 #45
+LANG:10027 3 #45
+LANG:10000 3 #45
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#46" 0 0 1 "s" 3
+LANG:10001 3 #46
+LANG:10027 3 #46
+LANG:10000 3 #46
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#47" 0 0 1 "s" 3
+LANG:10001 3 #47
+LANG:10027 3 #47
+LANG:10000 3 #47
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#48" 0 0 1 "s" 3
+LANG:10001 3 #48
+LANG:10027 3 #48
+LANG:10000 3 #48
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#49" 0 0 1 "s" 3
+LANG:10001 3 #49
+LANG:10027 3 #49
+LANG:10000 3 #49
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#50" 0 0 1 "s" 3
+LANG:10001 3 #50
+LANG:10027 3 #50
+LANG:10000 3 #50
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#51" 0 0 1 "s" 3
+LANG:10001 3 #51
+LANG:10027 3 #51
+LANG:10000 3 #51
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#52" 0 0 1 "s" 3
+LANG:10001 3 #52
+LANG:10027 3 #52
+LANG:10000 3 #52
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#53" 0 0 1 "s" 3
+LANG:10001 3 #53
+LANG:10027 3 #53
+LANG:10000 3 #53
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#54" 0 0 1 "s" 3
+LANG:10001 3 #54
+LANG:10027 3 #54
+LANG:10000 3 #54
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#55" 0 0 1 "s" 3
+LANG:10001 3 #55
+LANG:10027 3 #55
+LANG:10000 3 #55
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#56" 0 0 1 "s" 3
+LANG:10001 3 #56
+LANG:10027 3 #56
+LANG:10000 3 #56
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#57" 0 0 1 "s" 3
+LANG:10001 3 #57
+LANG:10027 3 #57
+LANG:10000 3 #57
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#58" 0 0 1 "s" 3
+LANG:10001 3 #58
+LANG:10027 3 #58
+LANG:10000 3 #58
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#59" 0 0 1 "s" 3
+LANG:10001 3 #59
+LANG:10027 3 #59
+LANG:10000 3 #59
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 "#60" 0 0 1 "s" 3
+LANG:10001 3 #60
+LANG:10027 3 #60
+LANG:10000 3 #60
+E
+3
+LANG:10001 0 
+LANG:10027 0 
+LANG:10000 0 
+
+0 
+26 26 "" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+"" 1 3
+LANG:10001 5 row_1
+LANG:10027 5 row_1
+LANG:10000 5 row_1
+8 30
+3
+LANG:10001 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10027 26 Arial,-1,13,5,40,0,0,0,0,0
+LANG:10000 26 Arial,-1,13,5,40,0,0,0,0,0
+0 0 0 0 1 7
+1 0
+0
+LAYER, 1 
+2
+LANG:10001 6 Layer2
+LANG:10027 6 Layer2
+0
+LAYER, 2 
+2
+LANG:10001 6 Layer3
+LANG:10027 6 Layer3
+0
+LAYER, 3 
+2
+LANG:10001 6 Layer4
+LANG:10027 6 Layer4
+0
+LAYER, 4 
+2
+LANG:10001 6 Layer5
+LANG:10027 6 Layer5
+0
+LAYER, 5 
+2
+LANG:10001 6 Layer6
+LANG:10027 6 Layer6
+0
+LAYER, 6 
+2
+LANG:10001 6 Layer7
+LANG:10027 6 Layer7
+0
+LAYER, 7 
+2
+LANG:10001 6 Layer8
+LANG:10027 6 Layer8
+0
+0

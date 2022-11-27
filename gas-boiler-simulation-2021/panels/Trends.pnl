@@ -1,0 +1,109 @@
+V 14
+2
+LANG:10001 0 
+LANG:10027 0 
+PANEL,-1 -1 981 742 N "_3DFace" 0
+E E E E E 1 -1 -1 0  150 130
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10027 0 
+23 1
+"TREND1"
+""
+1 10.00000000000003 10 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  8.000000000000028 8 972 732
+5 E E E 1 959 N {0,0,0} 0 0 1 0 1 0 2 0 "#1_1" "System1:FEF.Inputs.Positions" 0 2 0 0 1 "3 2 0.0" "%x" 0 1 2 0 E
+E
+1 0 0 3 2
+2
+LANG:10001 20 FEF.Inputs.Positions
+LANG:10027 20 FEF.Inputs.Positions
+2
+LANG:10001 5 m³/h
+LANG:10027 5 m³/h
+1 "" ""  0 0 40 0 0 1 0 1 N "Red"
+0 0 0 0 0 0 0 0
+0 "#1_2" "System1:FEM.Inputs.Positions" 0 2 0 0 1 "3 2 0.0" "%x" 0 1 2 0 E
+E
+1 0 0 3 2
+2
+LANG:10001 20 FEM.Inputs.Positions
+LANG:10027 20 FEM.Inputs.Positions
+2
+LANG:10001 5 m³/h
+LANG:10027 5 m³/h
+1 "" ""  0 0 40000 0 0 1 0 1 N "blue"
+0 0 0 0 0 0 0 0
+1 1 "%H:%M:%S" "%x" 0 1 0 0 
+E 1 1 1 0 90 0 20 7200
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  100 
+N {0,0,0} 0 0 1 0 1 150 1 5 5 1 2
+0
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+0

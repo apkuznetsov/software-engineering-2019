@@ -1,0 +1,206 @@
+V 14
+2
+LANG:10001 50 Задание параметров клапана
+LANG:10027 0 
+PANEL,-1 -1 365 168 N "_3DFace" 1
+"$dp"
+"main()
+{
+  TextFieldValveName.text = $dp;
+
+  string request = \"System1:\" + $dp + \".IsOpened:_online.._value\";
+  bool isOpened;
+  float res = dpGet(request, isOpened);
+
+  if (isOpened)
+  {
+    TextFieldIsOpened.text = \"ОТКРЫТ\";
+  }
+  else
+  {
+    TextFieldIsOpened.text = \"ЗАКРЫТ\";
+  }
+}" 0
+ E E E E 1 -1 -1 0  40 20
+""0  1
+E E 3
+"CBRef" "1"
+"EClose" E
+"dpi" "96"
+0 0 0
+""
+DISPLAY_LAYER, 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+LAYER, 0 
+2
+LANG:10001 0 
+LANG:10027 0 
+2 1
+"LabelValveName"
+""
+1 28 24 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+0 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 28 24 91 45
+0 2 2 "0s" 0 0 0 192 0 0  28 24 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10001 13 Клапан:
+LANG:10027 13 Клапан:
+14 2
+"TextFieldValveName"
+""
+1 120 25 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+1 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  118 20 342 51
+3 "0s" 0 0 0 0 0 -1  E E E
+2 3
+"LabelIsOpened"
+""
+1 26 79 E E E 1 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+2 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+4
+"layoutAlignment" "AlignNone"
+"dashclr"N "_Transparent"
+"antiAliased" "0"
+"transformable" "0"
+E E 0 1 3 2 1 E U  0 E 26 79 116 100
+0 2 2 "0s" 0 0 0 192 0 0  26 79 1
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0 2
+LANG:10001 19 Состояние:
+LANG:10027 19 Состояние:
+14 4
+"TextFieldIsOpened"
+""
+1 118 80 E E E 0 E 1 E N "_WindowText" E N "_Window" E E
+ E E
+3 0 0 0 0 0
+E E E
+0
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  116 75 342 106
+3 "0s" 0 0 0 0 0 -1  E E E
+13 7
+"ButtonOpenOrCloseValve"
+""
+1 133 120 E E E 1 E 1 E N "_ButtonText" E N "_Button" E E
+ E E
+6 0 0 0 0 0
+E E E
+8
+2
+LANG:10001 0 
+LANG:10027 0 
+
+1
+"layoutAlignment" "AlignNone"
+2
+LANG:10001 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+LANG:10027 30 Noto Sans,-1,16,5,50,0,0,0,0,0
+0  131 114 225 147
+
+T 
+2
+LANG:10001 14 Открыть
+LANG:10027 12 PUSH_BUTTON1
+"main(mapping event)
+{
+  string requestGet = \"System1:\" + $dp + \".IsOpened:_online.._value\";
+  string requestSet = \"System1:\" + $dp + \".IsOpened:_original.._value\";
+
+  bool isOpened;
+  float res = dpGet(requestGet, isOpened);
+
+  if (isOpened)
+  {
+    TextFieldIsOpened.text = \"ЗАКРЫТ\";
+    this.text = \"Открыть\";
+    res = dpSet(requestSet, false);
+  }
+  else
+  {
+    TextFieldIsOpened.text = \"ОТКРЫТ\";
+    this.text = \"Закрыть\";
+    res = dpSet(requestSet, true);
+  }
+}" 0
+ E E E
+0
+LAYER, 1 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 2 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 3 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 4 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 5 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 6 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+LAYER, 7 
+2
+LANG:10001 0 
+LANG:10027 0 
+0
+0
